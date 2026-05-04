@@ -1,4 +1,4 @@
-import type { Metadata } from 'next'
+import type { Metadata, Viewport } from 'next'
 import { Syne, DM_Sans, Instrument_Serif, Almarai } from 'next/font/google'
 import './globals.css'
 import { Header } from '@/components/layout/Header'
@@ -131,6 +131,13 @@ export const metadata: Metadata = {
 
   manifest: '/site.webmanifest',
   other: { 'theme-color': '#000000' },
+}
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  themeColor: '#000000',
+  colorScheme: 'dark',
 }
 
 // ─── Layout ───────────────────────────────────────────────────────────────────

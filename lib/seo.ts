@@ -14,7 +14,7 @@ export function generatePageMetadata({
   title,
   description,
   path,
-  image = '/images/og-image.jpg',
+  image = '/images/og-image.svg',
   type = 'website',
   noIndex = false,
 }: PageSeoParams): Metadata {

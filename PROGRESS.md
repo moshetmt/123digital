@@ -18,9 +18,9 @@
 - [x] Tâche 10b — Pages manquantes (contact ✅, mentions-legales ✅, portfolio ✅, blog ✅) ✅
 
 ## PHASE 3 — Composants interactifs
-- [ ] Tâche 11 — AuditSimulator (formulaire interactif audit gratuit)
-- [ ] Tâche 12 — CountUp animé (chiffres qui s'incrémentent au scroll)
-- [ ] Tâche 13 — Carte interactive villes ARA (VillesMap)
+- [x] Tâche 11 — AuditSimulator (3 questions → recommandation personnalisée) ✅
+- [x] Tâche 12 — CountUp animé (IntersectionObserver, easing cubic) ✅
+- [x] Tâche 13 — Carte interactive villes ARA (VillesMap SVG, hover/click) ✅
 
 ## PHASE 4 — Blog
 - [x] Tâche 14 — Hub blog ✅ + pages articles dynamiques ✅ (5 articles dans data/blog.ts)
@@ -34,7 +34,10 @@
 - [ ] Tâche 18 — Déploiement Vercel + domaine 123digital.fr
 - [ ] Tâche 19 — Post-déploiement (Search Console, GBP, PageSpeed)
 
+## Build
+- 204 pages statiques générées ✅ (0 erreur TypeScript, 0 erreur build)
+
 ## Dernière session
 Date : 2026-05-05
-Dernière tâche complétée : Tâche 17 — Optimisation performance
-Prochaine tâche : Tâche 11 — AuditSimulator (composant interactif)
+Dernière tâche complétée : Tâche 17 + build validé (204 pages, 0 erreur)
+Prochaine tâche : Tâche 18 — Déploiement Vercel + domaine 123digital.fr

@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { JsonLd } from '@/components/seo/JsonLd'
 import { Breadcrumb } from '@/components/layout/Breadcrumb'
+import { AuditSimulator } from '@/components/sections/AuditSimulator'
 import { BASE_URL, breadcrumbSchema, auditPageSchema } from '@/lib/schema'
 
 export const metadata: Metadata = {
@@ -293,6 +294,43 @@ export default function AuditGratuitPage() {
                 </ul>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Simulateur interactif */}
+      <section
+        className="bg-black"
+        style={{ padding: '4rem 1.5rem', borderTop: '1px solid rgba(225,224,204,0.06)' }}
+      >
+        <div className="mx-auto max-w-5xl">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div>
+              <div
+                style={{
+                  fontSize: '0.65rem',
+                  letterSpacing: '0.14em',
+                  textTransform: 'uppercase',
+                  color: 'rgba(225,224,204,0.5)',
+                  fontWeight: 700,
+                  marginBottom: '1.5rem',
+                }}
+              >
+                Pas encore prêt à réserver ?
+              </div>
+              <h2
+                className="font-display font-normal mb-4"
+                style={{ fontSize: 'clamp(1.6rem, 3vw, 2.2rem)', color: '#E1E0CC', lineHeight: 1.1 }}
+              >
+                Trouvez votre stratégie<br />en 3 questions.
+              </h2>
+              <p style={{ fontSize: '0.88rem', color: 'rgba(225,224,204,0.55)', lineHeight: 1.7 }}>
+                Répondez à 3 questions rapides sur votre situation — vous obtiendrez une recommandation personnalisée avant même de me parler.
+              </p>
+            </div>
+            <div>
+              <AuditSimulator />
+            </div>
           </div>
         </div>
       </section>

@@ -7,6 +7,7 @@ import { Portfolio }    from '@/components/sections/Portfolio'
 import { Process }      from '@/components/sections/Process'
 import { FAQ }          from '@/components/sections/FAQ'
 import { CTA }          from '@/components/sections/CTA'
+import { Zones }        from '@/components/sections/Zones'
 import { JsonLd }       from '@/components/seo/JsonLd'
 import { faqPageSchema, BASE_URL } from '@/lib/schema'
 import { homeFaqs }     from '@/data/faq'
@@ -32,6 +33,9 @@ export default function HomePage() {
 
       {/* 5. Portfolio — cas clients concrets */}
       <Portfolio />
+
+      {/* 5b. Zones — carte interactive ARA */}
+      <Zones />
 
       {/* 6. Process — comment ça se passe */}
       <Process />

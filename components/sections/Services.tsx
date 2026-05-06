@@ -53,14 +53,28 @@ function ServiceCard({ service, index }: { service: typeof services[0]; index: n
       ref={ref}
       initial={{ opacity: 0, scale: 0.95, y: 16 }}
       animate={inView ? { opacity: 1, scale: 1, y: 0 } : {}}
+      whileHover={{
+        scale: 1.03,
+        boxShadow: '0 0 0 1px rgba(0,255,135,0.14), 0 28px 56px rgba(0,0,0,0.55)',
+      }}
       transition={{ duration: 0.7, delay: index * 0.12, ease: EASE }}
-      className="rounded-2xl overflow-hidden relative transition-colors duration-300"
-      style={{ backgroundColor: '#212121' }}
-      onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = '#262626' }}
-      onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = '#212121' }}
+      className="rounded-2xl overflow-hidden relative"
+      style={{ backgroundColor: '#212121', willChange: 'transform', cursor: 'default' }}
     >
+      {/* Liquid glass glow — visible on hover via parent whileHover cascade */}
+      <motion.div
+        className="absolute inset-0 pointer-events-none rounded-2xl"
+        initial={{ opacity: 0 }}
+        whileHover={{ opacity: 1 }}
+        transition={{ duration: 0.2 }}
+        style={{
+          background:
+            'radial-gradient(ellipse at 50% 0%, rgba(0,255,135,0.07) 0%, transparent 65%)',
+        }}
+        aria-hidden
+      />
       <div
-        className="flex flex-col gap-4"
+        className="relative flex flex-col gap-4"
         style={{ padding: '1.75rem', minHeight: '320px' }}
       >
         {/* Number */}
@@ -132,6 +146,7 @@ function ServiceCard({ service, index }: { service: typeof services[0]; index: n
     </motion.div>
   )
 }
+
 
 export function Services() {
   const ref = useRef<HTMLDivElement>(null)

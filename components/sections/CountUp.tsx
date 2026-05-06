@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
+import { motion } from 'framer-motion'
 
 interface CountUpProps {
   value: string
@@ -9,7 +10,6 @@ interface CountUpProps {
 }
 
 function parseNumeric(raw: string): { prefix: string; num: number; suffix: string } | null {
-  // Matches patterns like: "60+", "8 ans", "94%", "3–6 mois", "×3,5", "+150%", "3,5×"
   const m = raw.match(/^([+×]?)(\d+(?:[,\.]\d+)?)(.*)$/)
   if (!m) return null
   return {
@@ -36,9 +36,7 @@ export function CountUp({ value, label, duration = 1800 }: CountUpProps) {
     if (!ref.current) return
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting && !started) {
-          setStarted(true)
-        }
+        if (entry.isIntersecting && !started) setStarted(true)
       },
       { threshold: 0.4 }
     )
@@ -54,45 +52,63 @@ export function CountUp({ value, label, duration = 1800 }: CountUpProps) {
     function tick(now: number) {
       const elapsed = now - startTime
       const progress = Math.min(elapsed / duration, 1)
-      // Easing: ease-out cubic
       const eased = 1 - Math.pow(1 - progress, 3)
-      const current = eased * num
-      setDisplayed(formatNum(current, suffix))
+      setDisplayed(formatNum(eased * num, suffix))
       if (progress < 1) requestAnimationFrame(tick)
     }
 
     requestAnimationFrame(tick)
   }, [started, parsed, duration])
 
-  if (!parsed) {
-    return (
-      <div ref={ref} className="text-center">
-        <div
-          className="font-display font-normal mb-2"
-          style={{ fontSize: 'clamp(2rem, 4vw, 3rem)', color: '#00FF87', lineHeight: 1 }}
-        >
-          {value}
-        </div>
-        <div style={{ fontSize: '0.78rem', color: 'rgba(225,224,204,0.55)', letterSpacing: '0.06em', textTransform: 'uppercase' }}>
-          {label}
-        </div>
-      </div>
-    )
-  }
+  const numberEl = (
+    <div
+      className="font-display font-normal mb-2"
+      style={{ fontSize: 'clamp(2rem, 4vw, 3rem)', color: '#00FF87', lineHeight: 1 }}
+    >
+      {parsed ? `${parsed.prefix}${displayed}${parsed.suffix}` : value}
+    </div>
+  )
 
-  const { prefix, suffix } = parsed
+  const bar = (
+    <div
+      style={{
+        position: 'relative',
+        height: 2,
+        borderRadius: 1,
+        backgroundColor: 'rgba(0,255,135,0.12)',
+        overflow: 'hidden',
+        marginTop: '0.85rem',
+      }}
+    >
+      <motion.div
+        style={{
+          position: 'absolute',
+          inset: 0,
+          backgroundColor: '#00FF87',
+          transformOrigin: 'left',
+          willChange: 'transform',
+        }}
+        initial={{ scaleX: 0 }}
+        animate={started ? { scaleX: 1 } : { scaleX: 0 }}
+        transition={{ duration: duration / 1000, ease: [0.22, 1, 0.36, 1] }}
+      />
+    </div>
+  )
 
   return (
     <div ref={ref} className="text-center">
+      {numberEl}
       <div
-        className="font-display font-normal mb-2"
-        style={{ fontSize: 'clamp(2rem, 4vw, 3rem)', color: '#00FF87', lineHeight: 1 }}
+        style={{
+          fontSize: '0.78rem',
+          color: 'rgba(225,224,204,0.55)',
+          letterSpacing: '0.06em',
+          textTransform: 'uppercase',
+        }}
       >
-        {prefix}{displayed}{suffix}
-      </div>
-      <div style={{ fontSize: '0.78rem', color: 'rgba(225,224,204,0.55)', letterSpacing: '0.06em', textTransform: 'uppercase' }}>
         {label}
       </div>
+      {bar}
     </div>
   )
 }

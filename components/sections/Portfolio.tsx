@@ -60,18 +60,36 @@ function ProjectCard({ project, index }: { project: typeof projects[0]; index: n
   return (
     <motion.article
       ref={ref}
-      initial={{ opacity: 0, y: 28 }}
-      animate={inView ? { opacity: 1, y: 0 } : {}}
+      initial={{ opacity: 0, rotate: -3, y: 20 }}
+      animate={inView ? { opacity: 1, rotate: 0, y: 0 } : {}}
+      whileHover={{
+        scale: 1.02,
+        boxShadow: '0 0 0 1px rgba(0,255,135,0.12), 0 24px 48px rgba(0,0,0,0.5)',
+      }}
       transition={{ duration: 0.65, delay: index * 0.12, ease: EASE }}
       role="listitem"
-      className="flex flex-col rounded-2xl"
+      className="flex flex-col rounded-2xl relative overflow-hidden"
       style={{
         backgroundColor: '#212121',
         border: '1px solid rgba(255,255,255,0.05)',
         padding: '1.75rem',
         minHeight: '280px',
+        willChange: 'transform',
+        cursor: 'default',
       }}
     >
+      {/* Hover overlay — monte du bas */}
+      <motion.div
+        className="absolute inset-x-0 bottom-0 pointer-events-none"
+        initial={{ y: '100%', opacity: 0 }}
+        whileHover={{ y: '0%', opacity: 1 }}
+        transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+        style={{
+          height: '40%',
+          background: 'linear-gradient(to top, rgba(0,255,135,0.06) 0%, transparent 100%)',
+        }}
+        aria-hidden
+      />
       {/* Metric — vert #00FF87 comme Results, font-bold cohérent */}
       <div className="mb-5">
         <p

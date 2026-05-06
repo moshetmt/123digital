@@ -75,9 +75,9 @@ function StepCard({ step, index }: { step: Step; index: number }) {
   return (
     <motion.div
       ref={ref}
-      initial={{ opacity: 0, scale: 0.95, y: 16 }}
-      animate={inView ? { opacity: 1, scale: 1, y: 0 } : {}}
-      transition={{ duration: 0.7, delay: index * 0.12, ease: EASE }}
+      initial={{ opacity: 0, x: -30 }}
+      animate={inView ? { opacity: 1, x: 0 } : {}}
+      transition={{ duration: 0.7, delay: index * 0.15, ease: EASE }}
       className="flex flex-col rounded-2xl"
       style={{
         backgroundColor: '#212121',
@@ -181,6 +181,30 @@ export function Process() {
             <WordPullUp text="Un processus en quatre actes." delay={0.05} />
           </h2>
         </motion.div>
+
+        {/* Connector line — draws left→right as section enters view */}
+        <div
+          style={{
+            position: 'relative',
+            height: 1,
+            backgroundColor: 'rgba(225,224,204,0.06)',
+            marginBottom: '2rem',
+            overflow: 'hidden',
+          }}
+        >
+          <motion.div
+            style={{
+              position: 'absolute',
+              inset: 0,
+              backgroundColor: '#00FF87',
+              transformOrigin: 'left',
+              willChange: 'transform',
+            }}
+            initial={{ scaleX: 0 }}
+            animate={inView ? { scaleX: 1 } : {}}
+            transition={{ duration: 1.2, delay: 0.15, ease: PULL_EASE }}
+          />
+        </div>
 
         {/* 2×2 card grid — same style as Services */}
         <div

@@ -5,6 +5,7 @@ import { JsonLd } from '@/components/seo/JsonLd'
 import { Breadcrumb } from '@/components/layout/Breadcrumb'
 import { BASE_URL, breadcrumbSchema, localBusinessSchema } from '@/lib/schema'
 import { secteurs, getSecteurBySlug } from '@/data/secteurs'
+import { villesARA } from '@/data/villes'
 
 interface PageProps {
   params: Promise<{ secteur: string }>
@@ -40,6 +41,7 @@ export default async function SecteurPage({ params }: PageProps) {
   if (!secteur) notFound()
 
   const autresSecteurs = secteurs.filter((s) => s.slug !== secteur.slug)
+  const villesPrioritaires = villesARA.filter((v) => v.priority === 'high')
 
   const schemas = [
     localBusinessSchema(),
@@ -284,6 +286,60 @@ export default async function SecteurPage({ params }: PageProps) {
               </div>
             ))}
           </dl>
+        </div>
+      </section>
+
+      {/* Zones d'intervention — ARA */}
+      <section
+        className="bg-black"
+        style={{ padding: '4rem 1.5rem', borderTop: '1px solid rgba(225,224,204,0.06)' }}
+      >
+        <div className="mx-auto max-w-5xl">
+          <div
+            style={{
+              fontSize: '0.65rem',
+              letterSpacing: '0.14em',
+              textTransform: 'uppercase',
+              color: 'rgba(225,224,204,0.5)',
+              fontWeight: 700,
+              marginBottom: '1.5rem',
+            }}
+          >
+            Zones d&apos;intervention
+          </div>
+          <h2
+            className="font-display font-normal mb-4"
+            style={{ fontSize: 'clamp(1.4rem, 2.5vw, 2rem)', color: '#E1E0CC', lineHeight: 1.2 }}
+          >
+            {secteur.nomPluriel} en Auvergne-Rhône-Alpes
+          </h2>
+          <p
+            className="mb-6 max-w-2xl"
+            style={{ fontSize: '0.9rem', color: 'rgba(225,224,204,0.6)', lineHeight: 1.7 }}
+          >
+            J&apos;accompagne les {secteur.nomPluriel.toLowerCase()} de toute la région
+            Auvergne-Rhône-Alpes :{' '}
+            {villesPrioritaires.map((v) => v.nom).join(', ')} et leurs agglomérations.
+            Que vous soyez dans une grande métropole ou une ville moyenne, les enjeux digitaux
+            sont les mêmes — et les solutions mises en place sont calibrées pour votre marché local.
+          </p>
+          <div className="flex flex-wrap gap-3">
+            {villesPrioritaires.map((v) => (
+              <Link
+                key={v.slug}
+                href={`/${v.slug}`}
+                className="hover:text-[#00FF87] hover:border-[#00FF87] transition-colors"
+                style={{
+                  padding: '0.4rem 0.9rem',
+                  border: '1px solid rgba(225,224,204,0.12)',
+                  color: 'rgba(225,224,204,0.55)',
+                  fontSize: '0.8rem',
+                }}
+              >
+                {secteur.nom} à {v.nom}
+              </Link>
+            ))}
+          </div>
         </div>
       </section>
 

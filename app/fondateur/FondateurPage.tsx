@@ -1,9 +1,10 @@
 'use client'
 
-import { useState, useRef, useEffect, useCallback, Fragment } from 'react'
+import { useState, useRef, useEffect, useCallback } from 'react'
 import type { CSSProperties, ReactNode } from 'react'
 import { motion, useInView } from 'framer-motion'
 import Link from 'next/link'
+import Image from 'next/image'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useGSAP } from '@gsap/react'
@@ -26,125 +27,113 @@ const EXP: {
   title: string; period: string; role: string; desc: string
   kpis: string[]; piece: TK; size: 'lg' | 'md' | 'sm'
   tags: Array<'RECRUTEUR' | 'CLIENT' | 'PARTENAIRE'>
+  showPlaceholder?: boolean
 }[] = [
   {
     title: '123Digital',
     period: '2023 – présent',
-    role: 'Fondateur & Directeur',
-    desc: "Création et direction d'une agence digitale full-stack. Stratégie, développement web, SEO, publicité et automatisation pour TPE/PME de la région Auvergne-Rhône-Alpes.",
-    kpis: ['15+ clients', '6 services', 'Région ARA'],
+    role: 'Fondateur & Consultant Digital',
+    desc: "Accompagnement de PME, startups et associations sur stratégie digitale, SEO, acquisition organique et automatisations IA.",
+    kpis: ['15+ clients/an', '+30% leads', '+20→+50% trafic organique'],
     piece: 'S', size: 'lg',
     tags: ['CLIENT', 'RECRUTEUR'],
+    showPlaceholder: true,
   },
   {
     title: 'Fondation France-Israël',
-    period: '2024 – présent',
-    role: 'Responsable Stratégie Digitale',
-    desc: "Direction de la transformation numérique d'une fondation nationale. Campagnes data-driven, 3 plateformes gérées.",
-    kpis: ['Stratégie nationale', '3 plateformes', 'Data-driven'],
+    period: 'janv. 2024 – présent',
+    role: 'Chargé Marketing Digital',
+    desc: "Reporting GA4 + Search Console, production de contenus, optimisation SEO, veille et rédaction accélérées par l'IA.",
+    kpis: ['+35% trafic qualifié', '+40% engagement', '-30% temps de prod.'],
     piece: 'I', size: 'md',
     tags: ['RECRUTEUR', 'PARTENAIRE'],
+    showPlaceholder: true,
   },
   {
     title: 'Chabad On Campus',
-    period: '2017 – présent',
-    role: 'Chef de projet & Social Media',
-    desc: "9 ans de gestion de projet long terme, social media et coordination d'événements pour une communauté nationale de 600+ adhérents.",
-    kpis: ['9 ans', '600+ adhérents', 'National'],
+    period: 'févr. 2017 – présent',
+    role: 'Coordinateur Projets & Social Media',
+    desc: "Coordination d'événements étudiants de A à Z. Animation hebdomadaire des réseaux sociaux et gestion de communauté.",
+    kpis: ['500+ participants', 'Reach ×2', '+25% inscriptions'],
     piece: 'T', size: 'md',
     tags: ['RECRUTEUR'],
+    showPlaceholder: true,
   },
   {
-    title: 'Kedem Europe / Bartenura',
+    title: 'Consultant Digital Indépendant',
     period: '2017 – présent',
-    role: 'Responsable Production',
-    desc: "Management d'équipes de production pour la marque n°1 mondiale du vin cacher.",
-    kpis: ['8 saisons', '15+ / équipe', 'N°1 mondial'],
+    role: 'Stratégie & Acquisition',
+    desc: 'Stratégie d\'acquisition, audits SEO, dashboards Looker Studio / GA4, automatisations et missions logistiques internationales.',
+    kpis: ['4-5 clients/trimestre', '7 pays', 'Audits SEO +20→+50% trafic'],
     piece: 'L', size: 'md',
-    tags: ['RECRUTEUR', 'PARTENAIRE'],
-  },
-  {
-    title: 'EASYBAZAR',
-    period: '2022',
-    role: 'Digital Manager',
-    desc: 'Amazon + WordPress. +40% visibilité.',
-    kpis: ['+40% visibilité'],
-    piece: 'J', size: 'sm',
     tags: ['RECRUTEUR', 'CLIENT'],
   },
   {
-    title: 'LABRANDA / Jaguar',
-    period: '2021',
-    role: 'Responsable événementiel',
-    desc: 'Séjour VIP Jaguar, hôtel 4★ Gran Canaria.',
-    kpis: ['Luxe international'],
-    piece: 'O', size: 'sm',
-    tags: ['RECRUTEUR', 'PARTENAIRE'],
-  },
-  {
-    title: 'Green Energie France',
-    period: '2021',
-    role: 'Business Developer',
-    desc: 'Prospection B2B, développement commercial.',
-    kpis: ['10 mois', 'B2B'],
-    piece: 'Z', size: 'sm',
-    tags: ['RECRUTEUR'],
-  },
-  {
-    title: 'Sofitel Agadir',
-    period: '2019',
-    role: 'Superviseur & Relation Client',
-    desc: 'Supervision équipe restauration, établissement 5★.',
-    kpis: ['Sofitel 5★', 'Maroc'],
-    piece: 'I', size: 'sm',
+    title: 'EASYBAZAR',
+    period: 'févr. – sept. 2022',
+    role: 'Digital Manager',
+    desc: 'Gestion des ventes en ligne et optimisation des fiches produits.',
+    kpis: ['Amazon + WordPress'],
+    piece: 'J', size: 'sm',
     tags: ['RECRUTEUR'],
   },
 ]
 
 const SKILLS: { label: string; dots: number; piece: TK; icon: string }[] = [
-  { label: 'SEO / Référencement', dots: 5, piece: 'S', icon: '◈' },
-  { label: 'Web Design & Dev',    dots: 4, piece: 'I', icon: '◉' },
-  { label: 'Stratégie Digitale',  dots: 5, piece: 'T', icon: '◆' },
-  { label: 'Management',          dots: 4, piece: 'L', icon: '◐' },
-  { label: 'Community Mgmt',      dots: 4, piece: 'J', icon: '◈' },
-  { label: 'IA & Automation',     dots: 4, piece: 'O', icon: '◉' },
+  { label: 'SEO on-page',         dots: 4, piece: 'S', icon: '◈' },
+  { label: 'Content Marketing',   dots: 4, piece: 'I', icon: '◉' },
+  { label: 'Web Analytics / GA4', dots: 3, piece: 'T', icon: '◆' },
+  { label: 'Social Media',        dots: 4, piece: 'L', icon: '◐' },
+  { label: 'Marketing Ops',       dots: 3, piece: 'J', icon: '◈' },
+  { label: 'AI-assisted coding',  dots: 3, piece: 'O', icon: '◉' },
+]
+
+const STACK = [
+  'GA4', 'Google Search Console', 'Google Tag Manager', 'Looker Studio',
+  'HubSpot CRM', 'WordPress', 'ChatGPT', 'Claude', 'Next.js', 'Tailwind',
+]
+
+const FORMATION = [
+  { degree: 'Master 2 Marketing Digital', school: 'INSEEC MSc', year: '2023-2024', piece: 'S' as TK },
+  { degree: 'Master 1 Marketing Digital', school: 'INSEEC MSc', year: '2022-2023', piece: 'I' as TK },
+  { degree: 'Licence Marketing & Vente',  school: 'Montpellier Management', year: '2020-2021', piece: 'T' as TK },
+  { degree: 'BTS NDRC',                   school: 'CNED', year: '2018-2020', piece: 'L' as TK },
 ]
 
 const MILESTONES = [
   {
     year: '2017',
-    title: 'Première mission internationale',
-    desc: 'Bartenura — leader mondial vin cacher. Début du management d\'équipes en conditions réelles.',
+    title: 'Premières missions terrain',
+    desc: 'Bartenura (Kedem Europe) — leader mondial vin cacher. Début du management d\'équipes en conditions réelles. Coordinateur Chabad On Campus.',
     color: T.L,
   },
   {
     year: '2019',
-    title: 'Terrain sur 2 pays en 2 mois',
+    title: 'Terrain international : 2 pays en 2 mois',
     desc: 'Sofitel Agadir 5★ + missions Portugal. Développement de l\'adaptabilité culturelle et opérationnelle.',
     color: T.I,
   },
   {
     year: '2021',
-    title: 'Diversification : B2B + luxe international',
-    desc: 'Green Energie France + LABRANDA/Jaguar. Deux univers, une seule constante : la performance.',
+    title: 'B2B + luxe international',
+    desc: 'Green Energie France (prospection) + LABRANDA/Jaguar (événementiel VIP Gran Canaria). Deux univers, une seule constante : la performance.',
     color: T.T,
   },
   {
     year: '2022',
     title: 'Pivot digital',
-    desc: 'EASYBAZAR — Amazon & WordPress. La transition vers le digital full-stack s\'accélère.',
+    desc: 'EASYBAZAR — Amazon & WordPress. La transition vers le digital full-stack s\'accélère. Entrée en formation M1 INSEEC.',
     color: T.J,
   },
   {
     year: '2023 →',
     title: 'Création 123Digital + mandat national',
-    desc: 'Fondation d\'une agence + prise en charge de la stratégie digitale de la Fondation France-Israël.',
+    desc: 'Fondation d\'une agence digitale + prise en charge de la stratégie digitale de la Fondation France-Israël. M2 INSEEC obtenu.',
     color: T.S,
   },
 ]
 
 // ─── Magic UI : Interactive Grid Pattern ───────────────────────────────────
-// Adapted from magicui.design — two-layer CSS grid with mouse-proximity reveal
 
 function InteractiveGridPattern({ className }: { className?: string }) {
   const ref = useRef<HTMLDivElement>(null)
@@ -174,9 +163,7 @@ function InteractiveGridPattern({ className }: { className?: string }) {
       onMouseMove={onMove}
       onMouseLeave={onLeave}
     >
-      {/* Base grid — always visible */}
       <div style={{ ...grid, position: 'absolute', inset: 0 }} />
-      {/* Revealed layer near cursor */}
       <div
         style={{
           ...grid,
@@ -195,7 +182,6 @@ function InteractiveGridPattern({ className }: { className?: string }) {
 }
 
 // ─── Aceternity : Spotlight ────────────────────────────────────────────────
-// Adapted from ui.aceternity.com/components/spotlight
 
 function Spotlight({ parentRef }: { parentRef: React.RefObject<HTMLElement | null> }) {
   const [pos, setPos] = useState({ x: '30%', y: '40%' })
@@ -223,8 +209,7 @@ function Spotlight({ parentRef }: { parentRef: React.RefObject<HTMLElement | nul
   )
 }
 
-// ─── Aceternity : TypewriterEffect ────────────────────────────────────────
-// Adapted from ui.aceternity.com/components/typewriter-effect
+// ─── TypewriterEffect ─────────────────────────────────────────────────────
 
 function TypewriterEffect({ text, delay = 0.4 }: { text: string; delay?: number }) {
   return (
@@ -279,7 +264,6 @@ function CountUp({ to, suffix = '' }: { to: number; suffix?: string }) {
 }
 
 // ─── Magic UI : Aurora Background ─────────────────────────────────────────
-// Adapted from magicui.design — animated radial gradient blobs
 
 function AuroraBackground({ children }: { children: ReactNode }) {
   return (
@@ -361,50 +345,23 @@ function SkillDots({ dots, color }: { dots: number; color: string }) {
   )
 }
 
-// ─── Aceternity : Card Hover Effect ───────────────────────────────────────
-// Adapted from ui.aceternity.com — border glow that follows cursor
+// ─── PlaceholderImage ──────────────────────────────────────────────────────
 
-function HoverGlowCard({
-  children, color, style, className,
-}: {
-  children: ReactNode; color: string; style?: CSSProperties; className?: string
-}) {
-  const ref = useRef<HTMLDivElement>(null)
-
-  const onMove = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
-    const el = ref.current
-    if (!el) return
-    const r = el.getBoundingClientRect()
-    el.style.setProperty('--mx', `${e.clientX - r.left}px`)
-    el.style.setProperty('--my', `${e.clientY - r.top}px`)
-  }, [])
-
+function PlaceholderImage() {
   return (
-    <motion.div
-      ref={ref}
-      onMouseMove={onMove}
-      whileHover={{ y: -3 }}
-      transition={{ duration: 0.2 }}
-      className={className}
+    <div
       style={{
-        position: 'relative',
-        '--glow-color': color,
-        ...style,
-      } as CSSProperties}
+        width: '100%', height: '8rem', borderRadius: 6,
+        border: '1px dashed rgba(255,255,255,0.2)',
+        display: 'flex', alignItems: 'center', justifyContent: 'center',
+        marginTop: '0.75rem',
+        backgroundColor: 'rgba(255,255,255,0.02)',
+      }}
     >
-      {/* Glow border layer */}
-      <div
-        aria-hidden
-        style={{
-          position: 'absolute', inset: 0, borderRadius: 'inherit', pointerEvents: 'none', zIndex: 1, opacity: 0,
-          background: `radial-gradient(300px circle at var(--mx, 50%) var(--my, 50%), ${color}22, transparent 60%)`,
-          transition: 'opacity 0.25s',
-        }}
-        className="card-glow-layer"
-      />
-      <style>{`.card-glow-card:hover .card-glow-layer { opacity: 1 !important; }`}</style>
-      {children}
-    </motion.div>
+      <span className="font-mono" style={{ fontSize: '0.65rem', color: 'rgba(255,255,255,0.2)' }}>
+        [ visuel projet à venir ]
+      </span>
+    </div>
   )
 }
 
@@ -413,20 +370,15 @@ function HoverGlowCard({
 export function FondateurPage() {
   const [filter, setFilter] = useState<FilterType>(null)
 
-  // Refs for GSAP timeline (Section 5)
   const timelineSectionRef = useRef<HTMLElement>(null)
   const lineRef = useRef<HTMLDivElement>(null)
   const milestoneRefs = useRef<(HTMLDivElement | null)[]>([])
   const dotRefs = useRef<(HTMLDivElement | null)[]>([])
-
-  // Hero spotlight ref
   const heroRef = useRef<HTMLElement>(null)
 
-  // ── GSAP : Timeline section ─────────────────────────────────────────────
   useGSAP(() => {
     if (!timelineSectionRef.current || !lineRef.current) return
 
-    // Line draws as scroll progresses
     gsap.fromTo(
       lineRef.current,
       { height: '0%' },
@@ -442,7 +394,6 @@ export function FondateurPage() {
       }
     )
 
-    // Cards slide in alternating directions
     milestoneRefs.current.forEach((el, i) => {
       if (!el) return
       const isMobile = window.innerWidth < 768
@@ -461,7 +412,6 @@ export function FondateurPage() {
       )
     })
 
-    // Dots scale in
     dotRefs.current.forEach((dot) => {
       if (!dot) return
       gsap.fromTo(
@@ -479,7 +429,6 @@ export function FondateurPage() {
     })
   }, { scope: timelineSectionRef, dependencies: [] })
 
-  // ScrollTrigger.refresh() after mount
   useEffect(() => {
     const id = setTimeout(() => ScrollTrigger.refresh(), 300)
     return () => {
@@ -490,32 +439,23 @@ export function FondateurPage() {
 
   const visible = (tags: string[]) => !filter || tags.includes(filter)
 
-  // ────────────────────────────────────────────────────────────────────────
-  // RENDER
-  // ────────────────────────────────────────────────────────────────────────
-
   return (
     <div style={{ backgroundColor: '#080808', color: '#F5F5F5', overflowX: 'hidden' }}>
 
       {/* ══════════════════════════════════════════════════════════════════
           SECTION 1 — HERO SCOREBOARD
-          Breakpoints: 375px stack, 768px+ side-by-side, 1440px max-w-4xl
       ══════════════════════════════════════════════════════════════════ */}
       <section
         ref={heroRef}
         style={{ position: 'relative', minHeight: '100svh', display: 'flex', alignItems: 'center', overflow: 'hidden' }}
       >
-        {/* Magic UI Interactive Grid */}
         <InteractiveGridPattern />
-        {/* Aceternity Spotlight */}
         <Spotlight parentRef={heroRef} />
 
-        {/* Bottom vignette */}
         <div aria-hidden style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '30%', background: 'linear-gradient(transparent, #080808)', pointerEvents: 'none', zIndex: 4 }} />
 
         <div className="mx-auto w-full" style={{ maxWidth: '52rem', padding: 'clamp(2rem, 8vw, 3rem)', position: 'relative', zIndex: 5 }}>
 
-          {/* ── Scoreboard frame ── */}
           <motion.div
             initial={{ opacity: 0, y: 32 }}
             animate={{ opacity: 1, y: 0 }}
@@ -529,33 +469,80 @@ export function FondateurPage() {
               boxShadow: '0 0 60px rgba(0,255,135,0.04), 0 1px 0 rgba(0,255,135,0.15) inset',
             }}
           >
-            {/* Row 1 — player / score labels */}
+            {/* Row 1 — labels */}
             <div className="grid grid-cols-2" style={{ marginBottom: '0.5rem' }}>
               <span className="font-mono" style={{ fontSize: '0.6rem', letterSpacing: '0.2em', color: 'rgba(0,255,135,0.5)' }}>PLAYER 1</span>
               <span className="font-mono text-right" style={{ fontSize: '0.6rem', letterSpacing: '0.2em', color: 'rgba(0,255,135,0.5)' }}>HIGH SCORE</span>
             </div>
 
-            {/* Row 2 — name / agency */}
-            <div className="grid grid-cols-2 items-baseline" style={{ marginBottom: '1.5rem' }}>
-              <h1 className="font-mono font-bold" style={{ fontSize: 'clamp(1rem, 3vw, 1.5rem)', color: '#00FF87', letterSpacing: '0.05em' }}>
-                <TypewriterEffect text="MAURICE TIMSIT" delay={0.5} />
-              </h1>
+            {/* Row 2 — photo + name / agency */}
+            <div className="flex flex-wrap items-center gap-4" style={{ marginBottom: '1.5rem' }}>
+
+              {/* Portrait */}
               <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 1.8, duration: 0.6 }}
-                className="font-mono font-bold text-right"
-                style={{ fontSize: 'clamp(1rem, 3vw, 1.5rem)', color: '#00FF87', letterSpacing: '0.05em' }}
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 0.3, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+                style={{ flexShrink: 0 }}
               >
-                123DIGITAL
+                <Image
+                  src="/portraitmaurice.jpg"
+                  alt="Maurice Timsit"
+                  width={120}
+                  height={120}
+                  style={{
+                    borderRadius: '50%',
+                    border: '2px solid #00FF87',
+                    boxShadow: '0 0 20px rgba(0,255,135,0.25)',
+                    objectFit: 'cover',
+                    display: 'block',
+                  }}
+                  priority
+                />
               </motion.div>
+
+              {/* Name + agency */}
+              <div className="flex-1 min-w-0">
+                <div className="grid grid-cols-1 sm:grid-cols-2 items-baseline gap-1" style={{ marginBottom: '0.5rem' }}>
+                  <h1 className="font-mono font-bold" style={{ fontSize: 'clamp(1rem, 3vw, 1.5rem)', color: '#00FF87', letterSpacing: '0.05em' }}>
+                    <TypewriterEffect text="MAURICE TIMSIT" delay={0.5} />
+                  </h1>
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 1.8, duration: 0.6 }}
+                    className="font-mono font-bold sm:text-right"
+                    style={{ fontSize: 'clamp(1rem, 3vw, 1.5rem)', color: '#00FF87', letterSpacing: '0.05em' }}
+                  >
+                    123DIGITAL
+                  </motion.div>
+                </div>
+                <motion.p
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 2.1, duration: 0.5 }}
+                  className="font-mono"
+                  style={{ fontSize: '0.65rem', color: 'rgba(245,245,245,0.4)', letterSpacing: '0.08em', marginBottom: '0.25rem' }}
+                >
+                  Marketing Digital · SEO · IA · Contenu
+                </motion.p>
+                <motion.p
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 2.3, duration: 0.5 }}
+                  className="font-mono"
+                  style={{ fontSize: '0.58rem', color: 'rgba(245,245,245,0.25)', letterSpacing: '0.06em', fontStyle: 'italic' }}
+                >
+                  Produire plus vite · Ranker plus haut · Mesurer tout.
+                </motion.p>
+              </div>
             </div>
 
             {/* Separator */}
             <motion.div
               initial={{ scaleX: 0 }}
               animate={{ scaleX: 1 }}
-              transition={{ delay: 2.2, duration: 0.6, ease: 'easeOut' }}
+              transition={{ delay: 2.5, duration: 0.6, ease: 'easeOut' }}
               style={{ height: 1, background: 'linear-gradient(90deg, transparent, rgba(0,255,135,0.4), transparent)', marginBottom: '1.25rem', transformOrigin: 'left' }}
             />
 
@@ -563,7 +550,7 @@ export function FondateurPage() {
             <motion.p
               initial={{ opacity: 0, y: 8 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 2.5, duration: 0.6 }}
+              transition={{ delay: 2.7, duration: 0.6 }}
               style={{
                 fontFamily: 'var(--font-instrument-serif), serif',
                 fontStyle: 'italic',
@@ -575,19 +562,19 @@ export function FondateurPage() {
               Fondateur &amp; Stratège Digital
             </motion.p>
 
-            {/* Row 3 — stats */}
+            {/* Stats */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ delay: 2.8, duration: 0.5 }}
+              transition={{ delay: 3.0, duration: 0.5 }}
               className="grid grid-cols-2 sm:grid-cols-4"
               style={{ gap: 'clamp(1rem, 4vw, 2rem)' }}
             >
               {[
-                { label: 'LEVEL', value: 'EXPERT', isText: true },
-                { label: 'SCORE', value: 8, suffix: ' ANS', isText: false },
-                { label: 'LINES', value: 60, suffix: '+', isText: false },
-                { label: 'COUNTRIES', value: 8, suffix: '', isText: false },
+                { label: 'LEVEL',   value: 'M2 INSEEC', isText: true },
+                { label: 'XP',      value: 8, suffix: ' ANS', isText: false },
+                { label: 'PAYS',    value: 7, suffix: '', isText: false },
+                { label: 'CLIENTS', value: 15, suffix: '+', isText: false },
               ].map(({ label, value, suffix, isText }) => (
                 <div key={label}>
                   <div className="font-mono" style={{ fontSize: '0.55rem', letterSpacing: '0.2em', color: 'rgba(0,255,135,0.45)', marginBottom: 6 }}>
@@ -641,8 +628,7 @@ export function FondateurPage() {
       </section>
 
       {/* ══════════════════════════════════════════════════════════════════
-          SECTION 3 — BENTO GRID (Aceternity inspired)
-          Desktop: 3-col, 123Digital spans 2. Mobile: 1-col.
+          SECTION 3 — BENTO GRID
       ══════════════════════════════════════════════════════════════════ */}
       <section style={{ padding: 'clamp(1rem, 3vw, 2rem) clamp(1.5rem, 5vw, 3rem) clamp(4rem, 8vw, 6rem)' }}>
         <div className="mx-auto" style={{ maxWidth: '72rem' }}>
@@ -657,13 +643,8 @@ export function FondateurPage() {
             // EXPÉRIENCES.log
           </motion.div>
 
-          {/* Grid — 1 col mobile / 3 col md+ */}
           <div
-            style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(1, 1fr)',
-              gap: '0.75rem',
-            }}
+            style={{ display: 'grid', gridTemplateColumns: 'repeat(1, 1fr)', gap: '0.75rem' }}
             className="md:bento-grid"
           >
             <style>{`
@@ -684,6 +665,7 @@ export function FondateurPage() {
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: i * 0.07, ease: [0.16, 1, 0.3, 1] }}
                   className={exp.size === 'lg' ? 'bento-lg' : ''}
+                  whileHover={isVis ? { boxShadow: `0 0 32px ${color}20, 0 4px 32px rgba(0,0,0,0.5)` } : {}}
                   style={{
                     backgroundColor: 'rgba(255,255,255,0.03)',
                     border: '1px solid rgba(255,255,255,0.08)',
@@ -696,19 +678,15 @@ export function FondateurPage() {
                     transition: 'opacity 0.3s ease, filter 0.3s ease, box-shadow 0.25s ease',
                     cursor: 'default',
                   }}
-                  whileHover={isVis ? { boxShadow: `0 0 32px ${color}20, 0 4px 32px rgba(0,0,0,0.5)` } : {}}
                 >
-                  {/* Badge piece */}
                   <div style={{ position: 'absolute', top: '1rem', right: '1rem' }}>
                     <TetriIcon piece={exp.piece} />
                   </div>
 
-                  {/* Period */}
                   <div className="font-mono" style={{ fontSize: '0.58rem', color: 'rgba(245,245,245,0.3)', letterSpacing: '0.1em', marginBottom: '0.4rem' }}>
                     {exp.period}
                   </div>
 
-                  {/* Title + role */}
                   <div style={{ paddingRight: '2.5rem', marginBottom: '0.6rem' }}>
                     <div style={{ fontSize: exp.size === 'lg' ? '1.05rem' : '0.92rem', fontWeight: 700, color: '#F5F5F5', marginBottom: 2 }}>
                       {exp.title}
@@ -718,14 +696,12 @@ export function FondateurPage() {
                     </div>
                   </div>
 
-                  {/* Description — shown for lg/md */}
                   {exp.size !== 'sm' && (
                     <p style={{ fontSize: '0.78rem', color: 'rgba(245,245,245,0.5)', lineHeight: 1.65, marginBottom: '0.9rem' }}>
                       {exp.desc}
                     </p>
                   )}
 
-                  {/* KPIs */}
                   <div className="flex flex-wrap gap-1.5" style={{ marginBottom: '0.75rem' }}>
                     {exp.kpis.map((k) => (
                       <span key={k} className="font-mono" style={{ fontSize: '0.6rem', padding: '2px 7px', backgroundColor: `${color}0d`, border: `1px solid ${color}25`, color, borderRadius: 2 }}>
@@ -734,8 +710,7 @@ export function FondateurPage() {
                     ))}
                   </div>
 
-                  {/* Tags */}
-                  <div className="flex flex-wrap gap-1">
+                  <div className="flex flex-wrap gap-1" style={{ marginBottom: exp.showPlaceholder ? 0 : undefined }}>
                     {exp.tags.map((tag) => (
                       <span key={tag} className="font-mono" style={{
                         fontSize: '0.5rem', padding: '1px 5px', letterSpacing: '0.1em', borderRadius: 2,
@@ -747,6 +722,8 @@ export function FondateurPage() {
                       </span>
                     ))}
                   </div>
+
+                  {exp.showPlaceholder && <PlaceholderImage />}
                 </motion.div>
               )
             })}
@@ -755,7 +732,51 @@ export function FondateurPage() {
       </section>
 
       {/* ══════════════════════════════════════════════════════════════════
-          SECTION 4 — COMPÉTENCES (3×2 desktop, 2×3 mobile)
+          SECTION 4 — STACK OUTILS
+      ══════════════════════════════════════════════════════════════════ */}
+      <section style={{ padding: 'clamp(4rem, 8vw, 6rem) clamp(1.5rem, 5vw, 3rem)' }}>
+        <div className="mx-auto" style={{ maxWidth: '52rem' }}>
+
+          <motion.div
+            initial={{ opacity: 0, x: -16 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            className="font-mono mb-10"
+            style={{ fontSize: '0.6rem', letterSpacing: '0.24em', color: 'rgba(0,255,135,0.4)' }}
+          >
+            // STACK
+          </motion.div>
+
+          <div className="flex flex-wrap" style={{ gap: '0.5rem' }}>
+            {STACK.map((tool, i) => (
+              <motion.span
+                key={tool}
+                initial={{ opacity: 0, y: 12 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.35, delay: i * 0.05, ease: [0.16, 1, 0.3, 1] }}
+                whileHover={{ borderColor: '#00FF87', color: '#00FF87' }}
+                className="font-mono"
+                style={{
+                  fontSize: '0.68rem', letterSpacing: '0.06em',
+                  padding: '0.35rem 0.85rem',
+                  border: '1px solid rgba(255,255,255,0.1)',
+                  borderRadius: 3,
+                  color: 'rgba(245,245,245,0.55)',
+                  backgroundColor: 'transparent',
+                  cursor: 'default',
+                  transition: 'border-color 0.2s ease, color 0.2s ease',
+                }}
+              >
+                {tool}
+              </motion.span>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ══════════════════════════════════════════════════════════════════
+          SECTION 5 — COMPÉTENCES
       ══════════════════════════════════════════════════════════════════ */}
       <section style={{ padding: 'clamp(4rem, 8vw, 6rem) clamp(1.5rem, 5vw, 3rem)' }}>
         <div className="mx-auto" style={{ maxWidth: '52rem' }}>
@@ -770,7 +791,6 @@ export function FondateurPage() {
             // COMPÉTENCES.stack
           </motion.div>
 
-          {/* 2 cols mobile / 3 cols md+ */}
           <div className="grid grid-cols-2 md:grid-cols-3" style={{ gap: '0.75rem' }}>
             {SKILLS.map((skill, i) => {
               const color = T[skill.piece]
@@ -809,9 +829,7 @@ export function FondateurPage() {
       </section>
 
       {/* ══════════════════════════════════════════════════════════════════
-          SECTION 5 — TIMELINE GSAP
-          Desktop: alternating left/right cards.
-          Mobile (< 768px): left-aligned single column.
+          SECTION 6 — TIMELINE GSAP
       ══════════════════════════════════════════════════════════════════ */}
       <section
         ref={timelineSectionRef}
@@ -829,15 +847,13 @@ export function FondateurPage() {
             // MILESTONES.timeline
           </motion.div>
 
-          {/* ── Desktop timeline (md+) ── */}
+          {/* Desktop */}
           <div className="hidden md:block" style={{ position: 'relative' }}>
-            {/* Vertical line track (background) */}
             <div style={{
               position: 'absolute', left: 'calc(50% - 1px)',
               top: 0, bottom: 0, width: 2,
               backgroundColor: 'rgba(0,255,135,0.08)',
             }} />
-            {/* Animated line fill */}
             <div
               ref={lineRef}
               style={{
@@ -851,19 +867,13 @@ export function FondateurPage() {
 
             {MILESTONES.map((m, i) => (
               <div key={m.year} style={{ display: 'grid', gridTemplateColumns: '1fr 80px 1fr', gap: '0 1.5rem', marginBottom: '4rem', alignItems: 'start' }}>
-                {/* Left slot */}
                 <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
                   {i % 2 === 0 && (
-                    <div
-                      ref={el => { milestoneRefs.current[i] = el }}
-                      style={{ maxWidth: '360px', willChange: 'transform' }}
-                    >
+                    <div ref={el => { milestoneRefs.current[i] = el }} style={{ maxWidth: '360px', willChange: 'transform' }}>
                       <TimelineCard milestone={m} align="right" />
                     </div>
                   )}
                 </div>
-
-                {/* Center — dot */}
                 <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', paddingTop: '1.25rem' }}>
                   <div
                     ref={el => { dotRefs.current[i] = el }}
@@ -873,14 +883,9 @@ export function FondateurPage() {
                     {m.year}
                   </div>
                 </div>
-
-                {/* Right slot */}
                 <div>
                   {i % 2 !== 0 && (
-                    <div
-                      ref={el => { milestoneRefs.current[i] = el }}
-                      style={{ maxWidth: '360px', willChange: 'transform' }}
-                    >
+                    <div ref={el => { milestoneRefs.current[i] = el }} style={{ maxWidth: '360px', willChange: 'transform' }}>
                       <TimelineCard milestone={m} align="left" />
                     </div>
                   )}
@@ -889,7 +894,7 @@ export function FondateurPage() {
             ))}
           </div>
 
-          {/* ── Mobile timeline (< md) ── */}
+          {/* Mobile */}
           <div
             className="md:hidden"
             style={{ paddingLeft: '2rem', borderLeft: '2px solid rgba(0,255,135,0.12)', position: 'relative' }}
@@ -903,7 +908,6 @@ export function FondateurPage() {
                 transition={{ duration: 0.55, delay: i * 0.08, ease: [0.16, 1, 0.3, 1] }}
                 style={{ marginBottom: '2.5rem', position: 'relative' }}
               >
-                {/* Dot */}
                 <div style={{ position: 'absolute', left: '-2.6rem', top: '1.1rem', width: 12, height: 12, borderRadius: '50%', backgroundColor: m.color, boxShadow: `0 0 10px ${m.color}70` }} />
                 <TimelineCard milestone={m} align="left" />
               </motion.div>
@@ -913,8 +917,59 @@ export function FondateurPage() {
       </section>
 
       {/* ══════════════════════════════════════════════════════════════════
-          SECTION 6 — NEXT LEVEL CTA
-          Magic UI Aurora Background
+          SECTION 7 — FORMATION
+      ══════════════════════════════════════════════════════════════════ */}
+      <section style={{ padding: 'clamp(4rem, 8vw, 6rem) clamp(1.5rem, 5vw, 3rem)' }}>
+        <div className="mx-auto" style={{ maxWidth: '52rem' }}>
+
+          <motion.div
+            initial={{ opacity: 0, x: -16 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            className="font-mono mb-10"
+            style={{ fontSize: '0.6rem', letterSpacing: '0.24em', color: 'rgba(0,255,135,0.4)' }}
+          >
+            // FORMATION
+          </motion.div>
+
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
+            {FORMATION.map((f, i) => {
+              const color = T[f.piece]
+              return (
+                <motion.div
+                  key={f.degree}
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.4, delay: i * 0.07, ease: [0.16, 1, 0.3, 1] }}
+                  style={{
+                    display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '0.5rem',
+                    backgroundColor: 'rgba(255,255,255,0.02)',
+                    border: '1px solid rgba(255,255,255,0.07)',
+                    borderLeft: `2px solid ${color}`,
+                    borderRadius: 4,
+                    padding: '0.85rem 1.1rem',
+                  }}
+                >
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', minWidth: 0 }}>
+                    <TetriIcon piece={f.piece} />
+                    <div>
+                      <div style={{ fontSize: '0.82rem', fontWeight: 700, color: '#F5F5F5', lineHeight: 1.3 }}>{f.degree}</div>
+                      <div style={{ fontSize: '0.68rem', color, marginTop: 2 }}>{f.school}</div>
+                    </div>
+                  </div>
+                  <div className="font-mono" style={{ fontSize: '0.58rem', color: 'rgba(245,245,245,0.3)', letterSpacing: '0.1em', flexShrink: 0 }}>
+                    {f.year}
+                  </div>
+                </motion.div>
+              )
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* ══════════════════════════════════════════════════════════════════
+          SECTION 8 — CTA NEXT LEVEL + Aurora
       ══════════════════════════════════════════════════════════════════ */}
       <AuroraBackground>
         <section style={{ padding: 'clamp(6rem, 12vw, 10rem) clamp(1.5rem, 5vw, 3rem)', position: 'relative', zIndex: 2 }}>
@@ -959,15 +1014,17 @@ export function FondateurPage() {
               La partie continue chez vous.
             </motion.p>
 
+            {/* CTA Buttons */}
             <motion.div
               initial={{ opacity: 0, y: 12 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.45 }}
               className="flex flex-wrap justify-center gap-4"
+              style={{ marginBottom: '2rem' }}
             >
-              <Link
-                href="/contact"
+              <a
+                href="mailto:mochetimsit@gmail.com"
                 style={{
                   display: 'inline-flex', alignItems: 'center', gap: '0.5rem',
                   padding: '0.8rem 2rem',
@@ -979,10 +1036,12 @@ export function FondateurPage() {
                   transition: 'box-shadow 0.2s ease',
                 }}
               >
-                DÉMARRER UNE MISSION →
-              </Link>
-              <Link
-                href="/"
+                ÉCRIRE UN EMAIL →
+              </a>
+              <a
+                href="https://www.linkedin.com/in/mauricetimsit"
+                target="_blank"
+                rel="noopener noreferrer"
                 style={{
                   display: 'inline-flex', alignItems: 'center', gap: '0.5rem',
                   padding: '0.8rem 2rem',
@@ -994,9 +1053,55 @@ export function FondateurPage() {
                   transition: 'border-color 0.2s ease, color 0.2s ease',
                 }}
               >
-                ← VOIR LE SITE
+                LINKEDIN ↗
+              </a>
+              <Link
+                href="/contact"
+                style={{
+                  display: 'inline-flex', alignItems: 'center', gap: '0.5rem',
+                  padding: '0.8rem 2rem',
+                  backgroundColor: 'transparent', color: 'rgba(245,245,245,0.7)',
+                  fontFamily: 'ui-monospace, monospace', fontSize: '0.76rem',
+                  fontWeight: 700, letterSpacing: '0.1em',
+                  border: '1px solid rgba(245,245,245,0.2)', borderRadius: 3,
+                  textDecoration: 'none',
+                  transition: 'border-color 0.2s ease, color 0.2s ease',
+                }}
+              >
+                DÉMARRER UNE MISSION
               </Link>
             </motion.div>
+
+            {/* Contact info */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.65 }}
+              className="flex flex-wrap justify-center items-center gap-x-6 gap-y-2"
+              style={{ marginBottom: '1.5rem' }}
+            >
+              <a href="tel:+33652092301" className="font-mono" style={{ fontSize: '0.65rem', color: 'rgba(245,245,245,0.35)', textDecoration: 'none', letterSpacing: '0.08em', transition: 'color 0.2s' }}>
+                +33 6 52 09 23 01
+              </a>
+              <span className="font-mono" style={{ fontSize: '0.65rem', color: 'rgba(245,245,245,0.15)' }}>·</span>
+              <span className="font-mono" style={{ fontSize: '0.65rem', color: 'rgba(245,245,245,0.35)', letterSpacing: '0.06em' }}>
+                🇫🇷 Français C2 · 🇬🇧 Anglais B2 · 🇮🇱 Hébreu B2
+              </span>
+            </motion.div>
+
+            {/* Disponibilité */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.8 }}
+              className="font-mono"
+              style={{ fontSize: '0.6rem', letterSpacing: '0.2em', color: 'rgba(0,255,135,0.55)' }}
+            >
+              DISPONIBLE · Lyon · Remote OK · Freelance &amp; CDI
+            </motion.div>
+
           </div>
         </section>
       </AuroraBackground>
@@ -1005,7 +1110,7 @@ export function FondateurPage() {
   )
 }
 
-// ─── Timeline Card (used in Section 5) ────────────────────────────────────
+// ─── Timeline Card ─────────────────────────────────────────────────────────
 
 function TimelineCard({ milestone, align }: {
   milestone: typeof MILESTONES[number]

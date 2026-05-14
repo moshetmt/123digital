@@ -7,54 +7,6 @@ import { ArrowRight } from 'lucide-react'
 
 const PULL_EASE = [0.16, 1, 0.3, 1] as [number, number, number, number]
 
-// ── Word pull-up ───────────────────────────────────────────────────────────────
-
-function WordPullUp({
-  text,
-  delay = 0,
-  showAsterisk = false,
-}: {
-  text: string
-  delay?: number
-  showAsterisk?: boolean
-}) {
-  const ref = useRef<HTMLSpanElement>(null)
-  const isInView = useInView(ref, { once: true, margin: '-20px' })
-  const words = text.split(' ')
-
-  return (
-    <span ref={ref} style={{ display: 'inline-flex', flexWrap: 'wrap', gap: '0.18em' }}>
-      {words.map((word, i) => {
-        const isLast = i === words.length - 1
-        return (
-          <span key={i} style={{ display: 'inline-block', overflow: 'hidden' }}>
-            <motion.span
-              style={{ display: 'inline-block', position: 'relative' }}
-              initial={{ y: '110%' }}
-              animate={isInView ? { y: 0 } : {}}
-              transition={{ duration: 0.9, ease: PULL_EASE, delay: delay + i * 0.08 }}
-            >
-              {word}
-              {showAsterisk && isLast && (
-                <span
-                  style={{
-                    fontSize: '0.35em',
-                    verticalAlign: 'super',
-                    marginLeft: '0.05em',
-                    opacity: 0.6,
-                  }}
-                >
-                  *
-                </span>
-              )}
-            </motion.span>
-          </span>
-        )
-      })}
-    </span>
-  )
-}
-
 // ── Animated counter ──────────────────────────────────────────────────────────
 
 function Counter({ target, prefix = '', suffix = '' }: { target: number; prefix?: string; suffix?: string }) {
@@ -119,8 +71,7 @@ export function Hero() {
           loop
           playsInline
           aria-hidden
-          preload="metadata"
-          poster="/images/og-image.svg"
+          preload="auto"
         >
           <source src="/hero-video.mp4" type="video/mp4" />
         </video>
@@ -149,30 +100,11 @@ export function Hero() {
           style={{ opacity: 0.55, mixBlendMode: 'overlay' }}
         />
 
-        {/* ── Top-left wordmark ── */}
-        <motion.div
-          className="absolute z-10"
-          style={{ top: '1.5rem', left: '1.75rem' }}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.8, delay: 0.3 }}
-        >
-          <span
-            className="font-display font-bold text-base tracking-tight"
-            style={{ color: '#E1E0CC', letterSpacing: '-0.01em' }}
-          >
-            123
-            <span style={{ opacity: 0.5, fontWeight: 300, marginLeft: '0.35em' }}>
-              Digital
-            </span>
-          </span>
-        </motion.div>
-
         {/* ── Top-right — availability indicator ── */}
         <motion.div
           className="absolute z-10 flex items-center gap-3"
           style={{ top: '1.5rem', right: '1.75rem' }}
-          initial={{ opacity: 0 }}
+          initial={false}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.4 }}
         >
@@ -196,32 +128,64 @@ export function Hero() {
         <div className="flex-1 min-h-[40px]" />
 
         {/* ── Bottom content ── */}
-        <div className="relative z-10 px-5 sm:px-8 lg:px-10 pb-6 sm:pb-8 lg:pb-10">
+        <div className="relative z-10 px-5 sm:px-8 lg:px-10 pb-6 sm:pb-8 lg:pb-10 text-center lg:text-left">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 lg:gap-8 items-end">
 
             {/* Giant heading */}
             <div className="lg:col-span-8">
-              <h1
-                className="font-display font-medium leading-[0.85]"
-                aria-label="123 Digital — Expert en croissance digitale pour PME françaises"
-                style={{
-                  fontSize: 'clamp(3rem, 12vw, 17rem)',
-                  letterSpacing: '-0.07em',
-                  color: '#E1E0CC',
-                  wordBreak: 'break-word',
-                }}
+              <motion.div
+                initial={{ y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.9, ease: PULL_EASE, delay: 0.1 }}
+                style={{ display: 'flex', flexDirection: 'column', gap: '0.15em', alignItems: 'inherit' }}
               >
-                <WordPullUp text="123 Digital" delay={0.1} showAsterisk />
-              </h1>
+                <h1
+                  aria-label="Un expert. Une stratégie. Des résultats. — 123 Digital par M. Timsit"
+                  style={{
+                    fontFamily: 'var(--font-heading)',
+                    fontSize: 'clamp(1.8rem, 5vw, 4.5rem)',
+                    fontWeight: 500,
+                    letterSpacing: '-0.03em',
+                    lineHeight: 1.05,
+                    margin: 0,
+                    color: '#DEDBC8',
+                  }}
+                >
+                  Un expert. Une stratégie.<br />
+                  <span style={{ color: '#00FF87' }}>Des résultats.</span>
+                </h1>
+                <p
+                  style={{
+                    fontFamily: 'var(--font-heading)',
+                    fontSize: 'clamp(0.85rem, 1.8vw, 1.1rem)',
+                    color: '#DEDBC8',
+                    opacity: 0.55,
+                    margin: '0.6em 0 0',
+                    letterSpacing: '0.04em',
+                  }}
+                >
+                  123 Digital —{' '}
+                  <a
+                    href="https://www.linkedin.com/in/mauricetimsit/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{ color: 'inherit', textDecoration: 'none', transition: 'opacity 0.2s' }}
+                    onMouseEnter={e => (e.currentTarget.style.opacity = '1')}
+                    onMouseLeave={e => (e.currentTarget.style.opacity = '0.55')}
+                  >
+                    Par M. Timsit
+                  </a>
+                </p>
+              </motion.div>
             </div>
 
             {/* Right: description + CTA + stats */}
-            <div className="lg:col-span-4 flex flex-col gap-4 sm:gap-5">
+            <div className="lg:col-span-4 flex flex-col gap-4 sm:gap-5 items-center lg:items-start">
 
               <motion.p
                 className="text-sm sm:text-base leading-snug max-w-xs"
                 style={{ color: 'rgba(225,224,204,0.7)', lineHeight: 1.2 }}
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.5, duration: 1, ease: PULL_EASE }}
               >
@@ -232,7 +196,7 @@ export function Hero() {
 
               {/* CTA pill */}
               <motion.div
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.7, duration: 1, ease: PULL_EASE }}
               >
@@ -257,8 +221,8 @@ export function Hero() {
 
               {/* Stats */}
               <motion.div
-                className="flex gap-5 sm:gap-7 flex-wrap"
-                initial={{ opacity: 0 }}
+                className="flex gap-5 sm:gap-7 flex-wrap justify-center lg:justify-start"
+                initial={false}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 1.0, duration: 0.6 }}
               >
@@ -284,10 +248,10 @@ export function Hero() {
 
           {/* Footnote */}
           <motion.div
-            initial={{ opacity: 0 }}
+            initial={false}
             animate={{ opacity: 1 }}
             transition={{ delay: 1.2, duration: 0.8 }}
-            className="mt-4"
+            className="mt-4 text-center lg:text-left"
             style={{
               fontSize: '0.65rem',
               color: 'rgba(225,224,204,0.38)',

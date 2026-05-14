@@ -13,7 +13,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE_URL}/a-propos`, lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
     { url: `${BASE_URL}/audit-gratuit`, lastModified: now, changeFrequency: 'monthly', priority: 0.95 },
     { url: `${BASE_URL}/contact`, lastModified: now, changeFrequency: 'yearly', priority: 0.65 },
-    { url: `${BASE_URL}/portfolio`, lastModified: now, changeFrequency: 'monthly', priority: 0.75 },
+    { url: `${BASE_URL}/realisations`, lastModified: now, changeFrequency: 'monthly', priority: 0.75 },
     { url: `${BASE_URL}/consultant-digital-lyon`, lastModified: now, changeFrequency: 'monthly', priority: 0.95 },
     // Services hub + pages
     { url: `${BASE_URL}/services`, lastModified: now, changeFrequency: 'weekly', priority: 0.9 },

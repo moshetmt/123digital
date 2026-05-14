@@ -19,15 +19,15 @@ export const metadata: Metadata = {
 const moyensDeContact = [
   {
     label: 'Email',
-    valeur: 'maurice@123digital.fr',
-    href: 'mailto:maurice@123digital.fr',
+    valeur: 'contact@123digital.fr',
+    href: 'mailto:contact@123digital.fr',
     desc: 'Réponse sous 24h en semaine',
   },
   {
-    label: 'Audit gratuit',
-    valeur: 'Réserver un créneau',
-    href: '/audit-gratuit',
-    desc: '30 min d\'échange sans engagement',
+    label: 'Téléphone',
+    valeur: '+33 6 52 09 23 01',
+    href: 'tel:+33652092301',
+    desc: 'Du lundi au vendredi',
   },
   {
     label: 'LinkedIn',

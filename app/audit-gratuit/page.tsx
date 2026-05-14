@@ -201,43 +201,45 @@ export default function AuditGratuitPage() {
               className="font-display font-normal mb-6"
               style={{ fontSize: '1.2rem', color: '#E1E0CC' }}
             >
-              Réservez votre créneau gratuit
+              Démarrez votre audit par téléphone
             </p>
             <p style={{ fontSize: '0.85rem', color: 'rgba(225,224,204,0.6)', marginBottom: '1.5rem', lineHeight: 1.6 }}>
-              Choisissez un créneau de 30 minutes dans l&apos;agenda. Je prépare l&apos;analyse de votre site avant l&apos;appel.
+              Un appel de 30 minutes suffit. Je prépare l&apos;analyse de votre site avant l&apos;échange.
             </p>
-            <Link
-              href="https://cal.com/mauricetimsit/audit-gratuit"
-              target="_blank"
-              rel="noopener noreferrer"
+            <a
+              href="tel:+33652092301"
+              className="hover:opacity-85 transition-opacity"
               style={{
-                display: 'inline-block',
+                display: 'inline-flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: '8px',
                 width: '100%',
-                padding: '1rem',
                 backgroundColor: '#00FF87',
                 color: '#080808',
-                fontSize: '0.85rem',
-                fontWeight: 700,
-                letterSpacing: '0.08em',
-                textTransform: 'uppercase',
-                textAlign: 'center',
+                fontFamily: 'var(--font-heading)',
+                fontWeight: 600,
+                fontSize: '0.95rem',
+                padding: '1rem',
+                textDecoration: 'none',
+                letterSpacing: '-0.01em',
               }}
             >
-              Choisir mon créneau →
-            </Link>
+              📞 Appeler maintenant
+            </a>
             <p style={{ fontSize: '0.75rem', color: 'rgba(225,224,204,0.35)', marginTop: '0.75rem', textAlign: 'center' }}>
-              Réponse sous 24h si aucun créneau ne convient
+              +33 6 52 09 23 01 — disponible en semaine
             </p>
           </div>
 
           <p style={{ fontSize: '0.82rem', color: 'rgba(225,224,204,0.4)' }}>
             Ou écrivez-moi directement :{' '}
             <Link
-              href="mailto:maurice@123digital.fr"
+              href="mailto:contact@123digital.fr"
               className="hover:text-[#00FF87] transition-colors"
               style={{ color: 'rgba(225,224,204,0.55)', textDecoration: 'underline' }}
             >
-              maurice@123digital.fr
+              contact@123digital.fr
             </Link>
           </p>
         </div>
@@ -448,23 +450,26 @@ export default function AuditGratuitPage() {
           <p style={{ color: 'rgba(225,224,204,0.6)', marginBottom: '2.5rem', lineHeight: 1.7 }}>
             30 minutes. Gratuit. Sans jargon. Avec un plan d&apos;action concret à la fin.
           </p>
-          <Link
-            href="https://cal.com/mauricetimsit/audit-gratuit"
-            target="_blank"
-            rel="noopener noreferrer"
+          <a
+            href="tel:+33652092301"
+            className="hover:opacity-85 transition-opacity"
             style={{
-              display: 'inline-block',
-              padding: '1rem 2.5rem',
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '8px',
               backgroundColor: '#00FF87',
               color: '#080808',
-              fontSize: '0.85rem',
-              fontWeight: 700,
-              letterSpacing: '0.08em',
-              textTransform: 'uppercase',
+              fontFamily: 'var(--font-heading)',
+              fontWeight: 600,
+              fontSize: '1rem',
+              padding: '14px 28px',
+              borderRadius: '4px',
+              textDecoration: 'none',
+              letterSpacing: '-0.01em',
             }}
           >
-            Réserver mon audit gratuit
-          </Link>
+            📞 Appeler maintenant
+          </a>
         </div>
       </section>
     </>

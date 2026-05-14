@@ -37,7 +37,7 @@ interface NavLink { label: string; href: string; hasDropdown?: boolean }
 
 const navLinks: NavLink[] = [
   { label: 'Services', href: '/services', hasDropdown: true },
-  { label: 'Portfolio', href: '/portfolio' },
+  { label: 'Réalisations', href: '/realisations' },
   { label: 'À propos', href: '/a-propos' },
   { label: 'Blog', href: '/blog' },
   { label: 'Contact', href: '/contact' },

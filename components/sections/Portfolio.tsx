@@ -218,7 +218,7 @@ export function Portfolio() {
           </div>
 
           <Link
-            href="/portfolio"
+            href="/realisations"
             className="inline-flex items-center gap-2 text-sm font-medium transition-opacity duration-200 hover:opacity-60 shrink-0"
             style={{ color: 'rgba(225,224,204,0.55)' }}
           >

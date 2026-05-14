@@ -140,7 +140,7 @@ export default function CreationSiteWebPage() {
             <Link href="/audit-gratuit" className="inline-flex items-center gap-2 rounded-full font-medium text-sm h-12 px-8" style={{ backgroundColor: '#DEDBC8', color: '#000' }}>
               Devis gratuit en 24h
             </Link>
-            <Link href="/portfolio" className="inline-flex items-center gap-2 rounded-full font-medium text-sm h-12 px-8 hover:border-[#00FF87] hover:text-[#00FF87] transition-colors" style={{ border: '1px solid rgba(225,224,204,0.2)', color: 'rgba(225,224,204,0.7)' }}>
+            <Link href="/realisations" className="inline-flex items-center gap-2 rounded-full font-medium text-sm h-12 px-8 hover:border-[#00FF87] hover:text-[#00FF87] transition-colors" style={{ border: '1px solid rgba(225,224,204,0.2)', color: 'rgba(225,224,204,0.7)' }}>
               Voir les réalisations →
             </Link>
           </div>
@@ -239,7 +239,7 @@ export default function CreationSiteWebPage() {
               { label: 'Guide des prix : combien coûte un site web PME ?', href: '/blog/site-web-pme-prix-guide' },
               { label: 'Quand refondre votre site web ?', href: '/blog/refonte-site-web-quand-pourquoi' },
               { label: 'Ajouter le SEO après la création →', href: '/services/seo' },
-              { label: 'Voir le portfolio de réalisations →', href: '/portfolio' },
+              { label: 'Voir le portfolio de réalisations →', href: '/realisations' },
             ].map((link) => (
               <Link
                 key={link.href}

@@ -138,7 +138,7 @@ export default function BrandingPage() {
             <Link href="/audit-gratuit" className="inline-flex items-center gap-2 rounded-full font-medium text-sm h-12 px-8" style={{ backgroundColor: '#DEDBC8', color: '#000' }}>
               Discuter de mon projet
             </Link>
-            <Link href="/portfolio" className="inline-flex items-center gap-2 rounded-full font-medium text-sm h-12 px-8 hover:border-[#00FF87] hover:text-[#00FF87] transition-colors" style={{ border: '1px solid rgba(225,224,204,0.2)', color: 'rgba(225,224,204,0.7)' }}>
+            <Link href="/realisations" className="inline-flex items-center gap-2 rounded-full font-medium text-sm h-12 px-8 hover:border-[#00FF87] hover:text-[#00FF87] transition-colors" style={{ border: '1px solid rgba(225,224,204,0.2)', color: 'rgba(225,224,204,0.7)' }}>
               Voir les réalisations →
             </Link>
           </div>
@@ -231,7 +231,7 @@ export default function BrandingPage() {
           <div style={labelStyle}>Pour aller plus loin</div>
           <div className="flex flex-wrap gap-3">
             {[
-              { label: 'Voir les réalisations de branding →', href: '/portfolio' },
+              { label: 'Voir les réalisations de branding →', href: '/realisations' },
               { label: 'Appliquer votre identité sur un site web →', href: '/services/creation-site-web' },
               { label: 'Gérer votre image sur les réseaux →', href: '/services/community-management' },
               { label: 'Qui je suis — à propos →', href: '/a-propos' },

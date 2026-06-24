@@ -499,6 +499,175 @@ export const articles: BlogArticle[] = [
       },
     ],
   },
+  {
+    slug: 'google-business-profile-guide-pme',
+    titre: 'Google Business Profile pour PME : le guide complet pour dominer la recherche locale en 2026',
+    description: 'Comment creer, optimiser et exploiter votre fiche Google Business Profile pour attirer des clients locaux. Guide etape par etape pour PME, avec les nouveautes 2026.',
+    datePublication: '2026-06-24',
+    categorie: 'SEO',
+    tags: ['Google Business Profile', 'SEO local', 'PME', 'Google Maps', 'avis Google', 'fiche Google'],
+    image: '/images/blog/google-business-profile-pme.jpg',
+    tempsLecture: 10,
+    contenu: [
+      {
+        type: 'intro',
+        texte: 'Votre fiche Google Business Profile est souvent le premier contact entre votre entreprise et un client potentiel. Quand quelqu\'un tape "plombier Lyon" ou "coiffeur pres de moi", Google affiche 3 fiches d\'entreprises avec une carte avant meme les resultats classiques. Si votre fiche n\'est pas la, ou si elle est mal remplie, vous laissez vos concurrents capter ces clients. Ce guide vous montre comment creer, optimiser et exploiter votre profil Google Business pour generer plus d\'appels, plus de visites et plus de clients.',
+      },
+      {
+        type: 'h2',
+        titre: 'Pourquoi Google Business Profile est indispensable pour une PME locale',
+        texte: 'Google Business Profile (GBP, anciennement Google My Business) est un outil gratuit de Google qui permet a votre entreprise d\'apparaitre dans le Pack Local (les 3 resultats avec carte), sur Google Maps et dans les resultats de recherche classiques. 46% des recherches Google ont une intention locale, et 78% des recherches locales sur mobile aboutissent a un achat dans les 24 heures. Pour une PME qui vit de sa clientele de proximite, c\'est le levier le plus rentable qui existe.',
+      },
+      {
+        type: 'liste',
+        titre: 'Ce que Google Business Profile vous apporte concretement :',
+        items: [
+          'Visibilite dans le Pack Local (les 3 fiches au-dessus des resultats organiques)',
+          'Presence sur Google Maps (itineraire direct vers votre commerce)',
+          'Bouton d\'appel direct depuis la fiche (conversion immediate sur mobile)',
+          'Affichage de vos horaires, photos, avis et services sans que le client ait besoin de visiter votre site',
+          'Donnees statistiques gratuites : combien de personnes vous trouvent, vous appellent, demandent l\'itineraire',
+        ],
+      },
+      {
+        type: 'h2',
+        titre: 'Etape 1 : Creer ou reclamer votre fiche Google Business Profile',
+        texte: 'Si votre entreprise existe depuis un moment, il est probable que Google a deja cree une fiche automatique a partir d\'informations publiques. Votre premiere action est de la reclamer pour en prendre le controle. Rendez-vous sur business.google.com, connectez-vous avec un compte Google et cherchez votre entreprise. Si elle apparait, cliquez "Reclamer cette entreprise". Sinon, creez une nouvelle fiche. Google vous demandera de verifier que vous etes bien le proprietaire, generalement par courrier postal (carte avec code) ou par telephone.',
+      },
+      {
+        type: 'liste',
+        titre: 'Points de vigilance lors de la creation :',
+        items: [
+          'Utilisez le nom exact de votre entreprise, sans ajouter de mots-cles (c\'est contre les regles Google et risque la suspension)',
+          'Choisissez la categorie principale la plus precise possible ("Plombier" plutot que "Services a domicile")',
+          'Si vous vous deplacez chez les clients sans local, cochez "J\'effectue des livraisons et des visites a domicile" et definissez votre zone de service',
+          'Renseignez un numero de telephone local (pas un 08), c\'est un signal de confiance pour Google',
+        ],
+      },
+      {
+        type: 'h2',
+        titre: 'Etape 2 : Optimiser chaque section de votre fiche',
+        texte: 'Une fiche creee n\'est pas une fiche optimisee. Google classe les fiches locales selon 3 criteres : la pertinence (votre fiche correspond-elle a la recherche ?), la distance (etes-vous proche du chercheur ?) et la prominence (etes-vous connu et bien note ?). Vous ne pouvez pas changer votre distance, mais vous pouvez maximiser la pertinence et la prominence en remplissant chaque champ avec soin.',
+      },
+      {
+        type: 'liste',
+        titre: 'Les champs a remplir pour une fiche optimisee :',
+        items: [
+          'Description de l\'entreprise (750 caracteres max) : decrivez vos services, votre zone et votre specialite. Integrez naturellement vos mots-cles sans forcer.',
+          'Horaires d\'ouverture : a jour, y compris les jours feries et horaires exceptionnels. Les fiches avec horaires incorrects perdent la confiance des utilisateurs et de Google.',
+          'Photos : minimum 10 photos de qualite (facade, interieur, equipe, realisations). Les fiches avec plus de 10 photos recoivent 42% de demandes d\'itineraire en plus.',
+          'Services et produits : listez chaque service avec un prix indicatif si possible. Google utilise ces informations pour afficher votre fiche sur des recherches specifiques.',
+          'Attributs : accessibilite, Wi-Fi, parking, paiement, etc. En 2026, Google a ajoute des attributs de durabilite et d\'accessibilite qui renforcent la confiance.',
+          'Lien de prise de rendez-vous : si vous avez un formulaire en ligne, ajoutez le lien. Ca reduit la friction entre decouverte et conversion.',
+        ],
+      },
+      {
+        type: 'h2',
+        titre: 'Etape 3 : Obtenir et gerer les avis Google',
+        texte: 'Les avis sont le facteur de classement local qui a le plus progresse ces dernieres annees. En 2026, les signaux comportementaux (clics sur "Appeler", demandes d\'itineraire) sont passes au 4e rang des facteurs de classement, et les avis restent dans le top 3. Une fiche avec 50 avis a 4,5 etoiles surclassera presque toujours une fiche avec 5 avis a 5 etoiles.',
+      },
+      {
+        type: 'liste',
+        titre: 'Strategie avis en 5 points :',
+        items: [
+          'Demandez un avis a chaque client satisfait, au moment ou il est le plus content (juste apres la livraison, la prestation, le rendu). Un SMS avec un lien direct vers la page d\'avis fonctionne mieux qu\'un email.',
+          'Repondez a tous les avis, positifs comme negatifs. Google valorise les fiches actives et les clients potentiels lisent vos reponses.',
+          'Face a un avis negatif, restez professionnel : remerciez, reconnaissez le probleme, proposez une solution. Ne vous justifiez pas en 3 paragraphes.',
+          'Depuis 2025, les utilisateurs peuvent laisser des avis sous pseudonyme. Ne vous laissez pas destabiliser : concentrez-vous sur le volume d\'avis positifs.',
+          'N\'achetez jamais de faux avis et ne proposez pas de contrepartie. Google detecte et penalise ces pratiques.',
+        ],
+      },
+      {
+        type: 'h2',
+        titre: 'Etape 4 : Publier des posts Google regulierement',
+        texte: 'Google Business Profile permet de publier des posts (actualites, offres, evenements) directement sur votre fiche. Ces posts apparaissent quand quelqu\'un consulte votre fiche et signalent a Google que votre entreprise est active. Un post par semaine est un bon rythme.',
+      },
+      {
+        type: 'liste',
+        titre: 'Idees de posts GBP pour une PME :',
+        items: [
+          'Nouvelle realisation ou cas client avec photo',
+          'Offre speciale ou promotion saisonniere',
+          'Changement d\'horaires ou fermeture exceptionnelle',
+          'Conseil rapide lie a votre metier (ex: un plombier qui donne un conseil anti-gel en hiver)',
+          'Evenement local auquel vous participez',
+        ],
+      },
+      {
+        type: 'h2',
+        titre: 'Les nouveautes Google Business Profile en 2026',
+        texte: 'Google fait evoluer GBP en permanence. Voici les changements les plus importants pour les PME en 2026.',
+      },
+      {
+        type: 'liste',
+        titre: 'Nouveautes a connaitre :',
+        items: [
+          'Reponses IA aux questions clients : Google propose des reponses automatiques basees sur les informations de votre fiche. Vous pouvez les approuver, modifier ou rejeter avant publication.',
+          'Attributs de durabilite et d\'accessibilite : nouveaux champs pour afficher vos pratiques responsables, visibles directement sur la fiche.',
+          'Signaux comportementaux renforces : les clics sur "Appeler" et les demandes d\'itineraire pesent davantage dans le classement (passe du 6e au 4e rang).',
+          'Signaux sociaux : les reseaux sociaux lies a votre fiche entrent pour la premiere fois dans le top 5 des facteurs de classement local.',
+          'Business Profile Manager : interface unifiee pour gerer plusieurs fiches si vous avez plusieurs etablissements.',
+        ],
+      },
+      {
+        type: 'h2',
+        titre: 'Les 5 erreurs les plus courantes sur Google Business Profile',
+        texte: 'Ces erreurs reviennent chez la majorite des PME que j\'accompagne. Elles sont faciles a corriger mais coutent cher en visibilite si on les ignore.',
+      },
+      {
+        type: 'liste',
+        titre: 'Erreurs frequentes :',
+        items: [
+          'Bourrer le nom de l\'entreprise de mots-cles ("Plombier Lyon Pas Cher 24h" au lieu du vrai nom). Google suspend les fiches qui font ca.',
+          'Ne pas repondre aux avis. Meme un simple "Merci pour votre retour" vaut mieux que le silence.',
+          'Avoir des horaires obsoletes. Un client qui se deplace et trouve porte close laissera un avis 1 etoile.',
+          'Ne jamais publier de posts. Google considere les fiches inactives comme moins fiables.',
+          'Ignorer la section Q&R. N\'importe qui peut poser une question sur votre fiche. Si vous ne repondez pas, un inconnu le fera a votre place.',
+        ],
+      },
+      {
+        type: 'faq',
+        titre: 'Questions frequentes sur Google Business Profile',
+        faqs: [
+          {
+            question: 'Google Business Profile est-il vraiment gratuit ?',
+            reponse: 'Oui, a 100%. La creation, l\'optimisation et la gestion de votre fiche sont entierement gratuites. Google monetise via Google Ads, pas via GBP.',
+          },
+          {
+            question: 'Combien de temps pour apparaitre dans le Pack Local ?',
+            reponse: 'Apres verification de votre fiche (1 a 2 semaines par courrier), les premiers resultats apparaissent en 2 a 4 semaines. Pour les secteurs concurrentiels, comptez 2 a 3 mois d\'optimisation pour entrer dans le top 3.',
+          },
+          {
+            question: 'Faut-il un site web pour avoir une fiche Google Business Profile ?',
+            reponse: 'Non, mais c\'est fortement recommande. Une fiche GBP liee a un site web optimise SEO se classera mieux qu\'une fiche seule. Le site renforce votre credibilite et offre plus d\'informations a Google pour vous classer.',
+          },
+          {
+            question: 'Puis-je avoir une fiche GBP si je travaille de chez moi ?',
+            reponse: 'Oui. Si vous vous deplacez chez les clients, choisissez "Zone de service" au lieu d\'afficher une adresse. Votre adresse personnelle ne sera pas visible publiquement.',
+          },
+          {
+            question: 'Combien d\'avis faut-il pour etre bien classe ?',
+            reponse: 'Il n\'y a pas de nombre magique, mais visez au moins 20 a 30 avis avec une note superieure a 4,2. Plus important que le nombre : la regularite. 2-3 avis par mois valent mieux que 20 avis d\'un coup suivis de 6 mois de silence.',
+          },
+        ],
+      },
+      {
+        type: 'cta',
+        texte: 'Vous voulez optimiser votre fiche Google Business Profile ou ameliorer votre visibilite locale ? Je vous propose un audit gratuit de 30 minutes pour identifier vos opportunites.',
+      },
+      {
+        type: 'resume',
+        titre: 'En resume : Google Business Profile pour PME en 5 etapes',
+        items: [
+          'Reclamez ou creez votre fiche sur business.google.com — c\'est gratuit',
+          'Remplissez chaque champ : description, horaires, photos, services, attributs',
+          'Collectez des avis regulierement et repondez a tous sans exception',
+          'Publiez un post par semaine pour montrer a Google que vous etes actif',
+          'Exploitez les nouveautes 2026 : reponses IA, attributs durabilite, signaux sociaux',
+        ],
+      },
+    ],
+  },
 ]
 
 export function getArticleBySlug(slug: string): BlogArticle | undefined {

@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
+import Image from 'next/image'
 import Link from 'next/link'
 import { JsonLd } from '@/components/seo/JsonLd'
 import { Breadcrumb } from '@/components/layout/Breadcrumb'
@@ -89,8 +90,22 @@ export default async function VillePage({ params }: PageProps) {
       <JsonLd schema={schemas} />
 
       {/* Hero */}
-      <section className="bg-black" style={{ padding: '9rem 1.5rem 6rem' }}>
-        <div className="mx-auto max-w-5xl">
+      <section className="relative bg-black" style={{ padding: '9rem 1.5rem 6rem', overflow: 'hidden' }}>
+        <div className="absolute inset-0" aria-hidden>
+          <Image
+            src={`/images/villes/${ville.slug}.jpg`}
+            alt=""
+            fill
+            priority
+            sizes="100vw"
+            style={{ objectFit: 'cover', opacity: 0.5 }}
+          />
+          <div
+            className="absolute inset-0"
+            style={{ background: 'linear-gradient(180deg, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.7) 60%, #000 100%)' }}
+          />
+        </div>
+        <div className="relative mx-auto max-w-5xl">
           <div className="mb-6">
             <Breadcrumb
               items={[

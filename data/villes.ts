@@ -326,4 +326,126 @@ export const villeInsights: Record<string, VilleInsight> = {
     angle:
       "Pour les commerces et prestataires annéciens, j'intègre la saisonnalité touristique dans la stratégie : visibilité renforcée avant et pendant la haute saison, contenu adapté à une clientèle mixte locale et touristique.",
   },
+
+  // — Villes ARA priorité medium —
+  chambery: {
+    marche:
+      "Préfecture de la Savoie, Chambéry vit d'une économie mixte : administration publique, université (Savoie Mont Blanc), et un rôle de porte d'entrée vers les stations de ski des Alpes. La ville profite d'une clientèle de passage vers la montagne en plus de son bassin résidentiel propre.",
+    angle:
+      "Pour les PME chambériennes, je travaille un SEO qui capte à la fois la clientèle locale toute l'année et les pics de recherche liés à la saison touristique hivernale, sans négliger l'un au profit de l'autre.",
+  },
+  valence: {
+    marche:
+      "Valence est un carrefour logistique entre Lyon et Marseille, avec une économie portée par l'agroalimentaire, la logistique et un tissu industriel diversifié. La gare TGV en fait aussi un point de passage stratégique entre le nord et le sud.",
+    angle:
+      "J'aide les PME valentinoises à se différencier sur un marché moins saturé qu'à Lyon, avec un SEO local qui couvre à la fois Valence centre et son agglomération élargie.",
+  },
+  villeurbanne: {
+    marche:
+      "Deuxième ville du Rhône et quasiment fondue dans la métropole lyonnaise, Villeurbanne a sa propre identité commerçante autour des Gratte-Ciel et une forte population étudiante grâce à l'INSA Lyon et Doua. Le tissu d'artisans et commerces de proximité y est dense.",
+    angle:
+      "Pour les commerces et artisans villeurbannais, je mise sur un SEO hyper-local qui distingue clairement Villeurbanne de Lyon dans les recherches, plutôt que de se fondre dans la concurrence du centre-ville lyonnais.",
+  },
+  'bourg-en-bresse': {
+    marche:
+      "Préfecture de l'Ain, Bourg-en-Bresse a une économie ancrée dans l'agroalimentaire (volaille de Bresse AOC) et un tissu de PME et artisans à taille humaine. La concurrence digitale locale y est nettement plus faible qu'en métropole.",
+    angle:
+      "Pour les entreprises bressanes, un accompagnement SEO local même modeste suffit souvent à prendre une position dominante, la plupart des concurrents locaux n'ayant pas encore investi le digital.",
+  },
+  annemasse: {
+    marche:
+      "Ville frontalière avec Genève, Annemasse bénéficie d'une économie transfrontalière dynamique avec un pouvoir d'achat local élevé, porté par les nombreux travailleurs frontaliers suisses. C'est un marché à part, différent du reste de la Haute-Savoie.",
+    angle:
+      "Pour les commerces et services annemassiens, j'intègre la dimension transfrontalière dans la stratégie de mots-clés — les recherches et habitudes de consommation y diffèrent sensiblement du reste de la région.",
+  },
+
+  // — Villes ARA priorité basse —
+  'thonon-les-bains': {
+    marche:
+      "Ville thermale et lacustre sur la rive sud du lac Léman, Thonon-les-Bains vit du tourisme, du thermalisme et d'une économie résidentielle liée à la proximité de Genève. La saisonnalité touristique y est moins marquée qu'à Annecy mais bien présente.",
+    angle:
+      "Pour les PME thononaises, je combine SEO local classique et visibilité renforcée sur les périodes touristiques, avec une concurrence digitale locale généralement faible.",
+  },
+  roanne: {
+    marche:
+      "Ancienne ville textile en reconversion, Roanne s'est fait une réputation gastronomique (plusieurs tables étoilées) tout en gardant un coût de la vie et un coût d'acquisition publicitaire parmi les plus bas de la région.",
+    angle:
+      "Pour les entreprises roannaises, le rapport coût-résultat du SEO et de la publicité en ligne est particulièrement favorable : la concurrence digitale y est faible et les positions de tête accessibles rapidement.",
+  },
+  oyonnax: {
+    marche:
+      "Surnommée la capitale mondiale de la plasturgie, Oyonnax concentre un tissu industriel B2B très spécialisé (plasturgie, lunetterie historique). C'est un marché de niche, éloigné du commerce de proximité classique.",
+    angle:
+      "Pour les entreprises industrielles d'Oyonnax, je privilégie un positionnement B2B et technique — SEO sur des requêtes de niche, présence LinkedIn et mise en avant de références clients plutôt qu'un SEO local grand public.",
+  },
+  macon: {
+    marche:
+      "Porte de la Bourgogne, Mâcon vit largement de l'économie viticole (vignoble mâconnais) et du tourisme œnologique qui l'accompagne, en plus d'un tissu de commerces et services de ville moyenne.",
+    angle:
+      "Pour les entreprises mâconnaises, notamment dans le vin et le tourisme, j'intègre les recherches saisonnières liées à l'œnotourisme à la stratégie SEO globale.",
+  },
+  albertville: {
+    marche:
+      "Ville des Jeux olympiques d'hiver de 1992, Albertville est avant tout une porte d'accès vers les grandes stations de ski (Les Arcs, Val d'Isère, Tignes) et vit d'une économie touristique et industrielle liée à la vallée de l'Arly.",
+    angle:
+      "Pour les entreprises albertvilloises, je structure le SEO autour des pics de recherche liés aux saisons touristiques de montagne, hiver comme été.",
+  },
+
+  // — Grandes villes françaises (priorité haute) —
+  paris: {
+    marche:
+      "Paris est le marché digital le plus concurrentiel de France, avec une densité d'agences et de consultants sans équivalent et des coûts d'acquisition publicitaire nettement plus élevés qu'en région. S'y positionner demande une niche claire plutôt qu'un positionnement généraliste.",
+    angle:
+      "À Paris, je recommande aux PME de se différencier par un secteur ou un arrondissement précis plutôt que d'affronter frontalement une concurrence nationale sur des mots-clés génériques — la niche prime sur le volume.",
+  },
+  marseille: {
+    marche:
+      "Deuxième ville de France, Marseille conjugue une économie portuaire et logistique historique avec un écosystème entrepreneurial en forte croissance (French Tech, quartiers en rénovation comme Euroméditerranée). Le tourisme méditerranéen y ajoute une forte saisonnalité.",
+    angle:
+      "Pour les PME marseillaises, je combine SEO local par quartier (les habitudes de recherche varient fortement entre le centre, le sud et les quartiers nord) et prise en compte de la saisonnalité touristique estivale.",
+  },
+  toulouse: {
+    marche:
+      "Capitale européenne de l'aéronautique et du spatial (Airbus, écosystème de sous-traitants), Toulouse a aussi un écosystème tech et une population étudiante importante qui tire la croissance démographique de la ville.",
+    angle:
+      "Pour les PME toulousaines, notamment dans l'industrie et la tech, un positionnement B2B et une présence LinkedIn structurée complètent souvent mieux le SEO local qu'une approche purement grand public.",
+  },
+  bordeaux: {
+    marche:
+      "Bordeaux conjugue une économie viticole mondialement reconnue avec un écosystème tech en croissance (French Tech Bordeaux) et une forte attractivité résidentielle qui a fait grimper la concurrence commerciale ces dernières années.",
+    angle:
+      "Pour les PME bordelaises, je distingue clairement les codes du secteur vin/tourisme — très saisonnier et à forte dimension internationale — des besoins plus classiques des commerces et services de la ville.",
+  },
+
+  // — Grandes villes françaises (priorité medium) —
+  nantes: {
+    marche:
+      "Nantes est l'une des villes pionnières de la French Tech en France, avec une économie créative et numérique dynamique, un pôle aéronautique (Airbus) et une forte attractivité auprès des jeunes actifs.",
+    angle:
+      "Pour les PME nantaises, notamment dans le numérique et les services, je mise sur un SEO qui capitalise sur cette image d'innovation locale, en plus des fondamentaux du référencement local classique.",
+  },
+  lille: {
+    marche:
+      "Métropole transfrontalière proche de la Belgique, Lille a une longue tradition de vente à distance et de commerce (La Redoute, Décathlon y sont nés) et un rôle de carrefour logistique européen grâce au TGV et à l'Eurostar.",
+    angle:
+      "Pour les PME lilloises, j'intègre la dimension transfrontalière et logistique du marché dans la stratégie de mots-clés, en particulier pour les activités B2B et e-commerce.",
+  },
+  strasbourg: {
+    marche:
+      "Capitale européenne abritant plusieurs institutions de l'Union européenne, Strasbourg a une économie binationale avec l'Allemagne, un pôle biotech et pharmaceutique reconnu, et un tourisme fort autour de son marché de Noël.",
+    angle:
+      "Pour les PME strasbourgeoises, je prends en compte le bassin économique transfrontalier franco-allemand et la forte saisonnalité touristique de fin d'année dans la stratégie digitale.",
+  },
+  rennes: {
+    marche:
+      "Ville universitaire et technologique bretonne (pôle Images & Réseaux), Rennes a une économie portée par l'administration publique, le numérique et l'agroalimentaire régional.",
+    angle:
+      "Pour les PME rennaises, je combine SEO local classique et positionnement sur les requêtes tech/numérique quand l'activité s'y prête, en particulier pour toucher la population étudiante et jeunes actifs de la ville.",
+  },
+  nice: {
+    marche:
+      "Nice vit d'une économie résidentielle et touristique haut de gamme, avec un marché immobilier parmi les plus tendus de France, une proximité avec Monaco et l'Italie, et un écosystème tech naissant (French Tech Côte d'Azur).",
+    angle:
+      "Pour les PME niçoises, j'adapte la stratégie à une clientèle mixte — résidents à fort pouvoir d'achat et flux touristique international — avec une forte saisonnalité à anticiper.",
+  },
 }

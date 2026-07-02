@@ -45,11 +45,11 @@ export default function AProposPage() {
             fill
             priority
             sizes="100vw"
-            style={{ objectFit: 'cover', opacity: 0.22 }}
+            style={{ objectFit: 'cover', opacity: 0.45 }}
           />
           <div
             className="absolute inset-0"
-            style={{ background: 'linear-gradient(180deg, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.92) 70%, #000 100%)' }}
+            style={{ background: 'linear-gradient(180deg, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.65) 55%, #000 100%)' }}
           />
         </div>
         <div className="relative mx-auto max-w-5xl">

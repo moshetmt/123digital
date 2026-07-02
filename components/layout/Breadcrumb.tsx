@@ -28,7 +28,7 @@ export function Breadcrumb({ items }: BreadcrumbProps) {
           letterSpacing: '0.1em',
           textTransform: 'uppercase',
           color: 'rgba(225,224,204,0.5)',
-          fontFamily: 'var(--font-almarai)',
+          fontFamily: 'var(--font-sans)',
           fontWeight: 700,
         }}
       >

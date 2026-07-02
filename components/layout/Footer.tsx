@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { t, type Locale } from '@/lib/i18n'
 
 const LinkedinIcon = ({ size = 18 }: { size?: number }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor">
@@ -44,15 +45,28 @@ const socialLinks = [
   { href: 'mailto:contact@123digital.fr',               icon: MailIcon,       label: 'Email' },
 ]
 
-const navLinks = [
-  { label: 'Services',         href: '/services' },
-  { label: 'À propos',         href: '/a-propos' },
-  { label: 'Blog',             href: '/blog' },
-  { label: 'Contact',          href: '/contact' },
-  { label: 'Mentions légales', href: '/mentions-legales' },
-]
 
-export function Footer() {
+
+export function Footer({ lang = 'fr' }: { lang?: Locale }) {
+  const d = t(lang).footer
+  const base = lang === 'en' ? '/en' : ''
+  const navLinks = lang === 'en' ? [
+    { label: 'Services',     href: `${base}/services` },
+    { label: 'About',        href: `${base}/about` },
+    { label: 'Blog',         href: `${base}/blog` },
+    { label: 'Contact',      href: `${base}/contact` },
+    { label: 'Legal notice', href: '/mentions-legales' },
+  ] : [
+    { label: 'Services',                  href: '/services' },
+    { label: 'Réalisations',              href: '/realisations' },
+    { label: 'Blog',                      href: '/blog' },
+    { label: 'Secteurs',                  href: '/secteurs' },
+    { label: 'Consultant digital Lyon',   href: '/consultant-digital-lyon' },
+    { label: 'Audit gratuit',             href: '/audit-gratuit' },
+    { label: 'À propos',                  href: '/a-propos' },
+    { label: 'Contact',                   href: '/contact' },
+    { label: 'Mentions légales',          href: '/mentions-legales' },
+  ]
   return (
     <footer
       aria-label="Pied de page"
@@ -70,15 +84,15 @@ export function Footer() {
         {/* Brand + copyright */}
         <div className="flex flex-col gap-1.5">
           <Link
-            href="/"
-            aria-label="123 Digital — retour à l'accueil"
+            href={lang === 'en' ? '/en' : '/'}
+            aria-label="123 Digital"
             className="font-display font-medium transition-opacity duration-200 hover:opacity-70 w-fit"
             style={{ fontSize: '1.5rem', color: '#E1E0CC', letterSpacing: '-0.02em' }}
           >
             123 Digital
           </Link>
           <p style={{ color: '#6b7280', fontSize: '0.72rem' }}>
-            © {new Date().getFullYear()} Maurice Timsit. Tous droits réservés.
+            © {new Date().getFullYear()} Maurice Timsit. {d.rights}
           </p>
         </div>
 

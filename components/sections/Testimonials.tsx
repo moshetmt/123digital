@@ -16,35 +16,66 @@ interface Testimonial {
   initials: string
 }
 
-const testimonials: Testimonial[] = [
-  {
-    name: 'Sophie M.',
-    company: 'Boulangerie Artisane',
-    role: 'Gérante',
-    result: '+320% de visibilité locale',
-    initials: 'SM',
-    content:
-      "En 4 mois, mon site apparaît enfin sur Google quand les gens cherchent une boulangerie dans mon quartier. Le trafic a été multiplié par trois et j'ai de nouveaux clients qui viennent directement grâce au site.",
-  },
-  {
-    name: 'David K.',
-    company: 'Cabinet Comptable',
-    role: 'Expert-comptable',
-    result: '+68% de leads qualifiés',
-    initials: 'DK',
-    content:
-      "J'avais un site vitrine que personne ne trouvait. Après la refonte SEO et les campagnes Google Ads, je reçois des demandes de devis chaque semaine. Le ROI est là, concret et mesurable.",
-  },
-  {
-    name: 'Léa V.',
-    company: 'Boutique Éco-mode',
-    role: 'Fondatrice',
-    result: 'ROAS 4,2x · Instagram ×3',
-    initials: 'LV',
-    content:
-      "Maurice a complètement transformé notre présence sur Instagram et lancé nos premières Meta Ads. En deux mois, notre communauté a triplé et on vend en ligne régulièrement.",
-  },
-]
+function getTestimonials(lang: 'fr' | 'en'): Testimonial[] {
+  if (lang === 'en') return [
+    {
+      name: 'Sophie M.',
+      company: 'Artisan Bakery',
+      role: 'Owner',
+      result: '+320% local visibility',
+      initials: 'SM',
+      content:
+        "In 4 months my site finally shows up on Google when people search for a bakery in my neighbourhood. Traffic tripled and I get new customers coming in directly because of the website.",
+    },
+    {
+      name: 'David K.',
+      company: 'Accounting Firm',
+      role: 'Chartered Accountant',
+      result: '+68% qualified leads',
+      initials: 'DK',
+      content:
+        "I had a brochure site nobody could find. After the SEO overhaul and Google Ads campaigns, I receive quote requests every week. The ROI is real and measurable.",
+    },
+    {
+      name: 'Léa V.',
+      company: 'Eco-fashion Boutique',
+      role: 'Founder',
+      result: 'ROAS 4.2x · Instagram ×3',
+      initials: 'LV',
+      content:
+        "Maurice completely transformed our Instagram presence and launched our first Meta Ads. In two months our community tripled and we sell online regularly.",
+    },
+  ]
+  return [
+    {
+      name: 'Sophie M.',
+      company: 'Boulangerie Artisane',
+      role: 'Gérante',
+      result: '+320% de visibilité locale',
+      initials: 'SM',
+      content:
+        "En 4 mois, mon site apparaît enfin sur Google quand les gens cherchent une boulangerie dans mon quartier. Le trafic a été multiplié par trois et j'ai de nouveaux clients qui viennent directement grâce au site.",
+    },
+    {
+      name: 'David K.',
+      company: 'Cabinet Comptable',
+      role: 'Expert-comptable',
+      result: '+68% de leads qualifiés',
+      initials: 'DK',
+      content:
+        "J'avais un site vitrine que personne ne trouvait. Après la refonte SEO et les campagnes Google Ads, je reçois des demandes de devis chaque semaine. Le ROI est là, concret et mesurable.",
+    },
+    {
+      name: 'Léa V.',
+      company: 'Boutique Éco-mode',
+      role: 'Fondatrice',
+      result: 'ROAS 4,2x · Instagram ×3',
+      initials: 'LV',
+      content:
+        "Maurice a complètement transformé notre présence sur Instagram et lancé nos premières Meta Ads. En deux mois, notre communauté a triplé et on vend en ligne régulièrement.",
+    },
+  ]
+}
 
 // Word pull-up
 function WordPullUp({ text, delay = 0 }: { text: string; delay?: number }) {
@@ -78,7 +109,8 @@ const cardVariant: Variants = {
   visible: { y: 0, opacity: 1, transition: { duration: 0.6, ease: EASE } },
 }
 
-export function Testimonials() {
+export function Testimonials({ lang = 'fr' }: { lang?: 'fr' | 'en' }) {
+  const testimonials = getTestimonials(lang)
   const ref = useRef<HTMLDivElement>(null)
   const isInView = useInView(ref, { once: true, margin: '-100px' })
 
@@ -101,7 +133,7 @@ export function Testimonials() {
             className="text-[10px] font-semibold tracking-[0.22em] uppercase mb-5"
             style={{ color: 'oklch(0.878 0.020 92 / 50%)' }}
           >
-            Témoignages clients
+            {lang === 'en' ? 'Client testimonials' : 'Témoignages clients'}
           </p>
           <h2
             id="testimonials-heading"
@@ -158,7 +190,7 @@ export function Testimonials() {
                 className="text-sm leading-relaxed flex-1 mb-7 italic"
                 style={{
                   color: 'oklch(0.60 0 0)',
-                  fontFamily: 'var(--font-instrument-serif), serif',
+                  fontFamily: 'var(--font-serif)',
                   fontSize: '0.95rem',
                   lineHeight: 1.6,
                 }}
@@ -205,7 +237,7 @@ export function Testimonials() {
           className="mt-7 text-xs italic"
           style={{ color: 'oklch(0.38 0 0)' }}
         >
-          * Témoignages collectés avec accord des clients. Prénoms abrégés pour la confidentialité.
+          {lang === 'en' ? '* Testimonials collected with client consent. First names abbreviated for privacy.' : '* Témoignages collectés avec accord des clients. Prénoms abrégés pour la confidentialité.'}
         </motion.p>
       </div>
     </section>

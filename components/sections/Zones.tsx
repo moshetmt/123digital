@@ -1,6 +1,8 @@
 import { VillesMap } from './VillesMap'
+import { t, type Locale } from '@/lib/i18n'
 
-export function Zones() {
+export function Zones({ lang = 'fr' }: { lang?: Locale }) {
+  const d = t(lang).zones
   return (
     <section
       id="zones"
@@ -22,7 +24,7 @@ export function Zones() {
               }}
             >
               <span className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: '#00FF87' }} />
-              Zones d&apos;intervention
+              {d.label}
             </div>
 
             <h2
@@ -34,16 +36,17 @@ export function Zones() {
                 letterSpacing: '-0.025em',
               }}
             >
-              Ancré en ARA,<br />
-              <em
-                style={{
-                  color: '#00FF87',
-                  fontStyle: 'italic',
-                  fontFamily: 'var(--font-instrument-serif)',
-                }}
-              >
-                disponible partout.
-              </em>
+  {lang === 'en' ? (
+              <>
+                Based in Lyon,<br />
+                <em style={{ color: '#00FF87', fontStyle: 'italic', fontFamily: 'var(--font-serif)' }}>available everywhere.</em>
+              </>
+            ) : (
+              <>
+                Ancré en ARA,<br />
+                <em style={{ color: '#00FF87', fontStyle: 'italic', fontFamily: 'var(--font-serif)' }}>disponible partout.</em>
+              </>
+            )}
             </h2>
 
             <p
@@ -54,14 +57,20 @@ export function Zones() {
                 marginBottom: '1.5rem',
               }}
             >
-              Je suis basé à Lyon et j&apos;accompagne prioritairement les PME d&apos;Auvergne-Rhône-Alpes. 100% en distanciel, j&apos;interviens également sur toute la France.
+              {lang === 'en' ? "Based in Lyon, I primarily work with SMEs across the Auvergne-Rhône-Alpes region. 100% remote-friendly, I also work with businesses anywhere in France." : "Je suis basé à Lyon et j'accompagne prioritairement les PME d'Auvergne-Rhône-Alpes. 100% en distanciel, j'interviens également sur toute la France."}
             </p>
 
             <div className="space-y-3">
               {[
-                { label: 'Lyon & Métropole', desc: 'Présence prioritaire — délais réduits' },
-                { label: 'Région ARA', desc: '14 villes couvertes' },
-                { label: 'Toute la France', desc: 'En distanciel' },
+                ...(lang === 'en' ? [
+                  { label: 'Lyon & Metro', desc: 'Priority zone — fast turnaround' },
+                  { label: 'ARA Region', desc: '14 cities covered' },
+                  { label: 'All of France', desc: 'Fully remote' },
+                ] : [
+                  { label: 'Lyon & Métropole', desc: 'Présence prioritaire — délais réduits' },
+                  { label: 'Région ARA', desc: '14 villes couvertes' },
+                  { label: 'Toute la France', desc: 'En distanciel' },
+                ])
               ].map((z) => (
                 <div
                   key={z.label}
@@ -79,7 +88,7 @@ export function Zones() {
 
           {/* Carte droite */}
           <div>
-            <VillesMap />
+            <VillesMap lang={lang} />
           </div>
         </div>
       </div>

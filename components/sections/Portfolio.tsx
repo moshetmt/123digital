@@ -6,6 +6,7 @@ import { motion, useInView } from 'framer-motion'
 import { ArrowRight } from 'lucide-react'
 import type { Variants } from 'framer-motion'
 import { projects } from '@/data/portfolio'
+import { t, type Locale } from '@/lib/i18n'
 
 const EASE = [0.22, 1, 0.36, 1] as [number, number, number, number]
 const PULL_EASE = [0.16, 1, 0.3, 1] as [number, number, number, number]
@@ -27,6 +28,29 @@ function parseResult(results: string): { metric: string; sub: string } {
 }
 
 // ── WordPullUp ────────────────────────────────────────────────────────────────
+
+// Italic accent pull-up — Fraunces
+function ItalicPullUp({ text, delay = 0 }: { text: string; delay?: number }) {
+  const ref = useRef<HTMLSpanElement>(null)
+  const isInView = useInView(ref, { once: true, margin: '-10%' })
+  const words = text.split(' ')
+  return (
+    <span ref={ref} style={{ display: 'inline-flex', flexWrap: 'wrap', gap: '0.18em', fontFamily: 'var(--font-serif)', fontStyle: 'italic' }}>
+      {words.map((word, i) => (
+        <span key={i} style={{ display: 'inline-block', overflow: 'hidden' }}>
+          <motion.span
+            style={{ display: 'inline-block' }}
+            initial={{ y: '110%' }}
+            animate={isInView ? { y: 0 } : {}}
+            transition={{ duration: 0.85, ease: PULL_EASE, delay: delay + i * 0.07 }}
+          >
+            {word}
+          </motion.span>
+        </span>
+      ))}
+    </span>
+  )
+}
 
 function WordPullUp({ text, delay = 0 }: { text: string; delay?: number }) {
   const ref = useRef<HTMLSpanElement>(null)
@@ -173,7 +197,8 @@ const container: Variants = {
   visible: { opacity: 1, transition: { staggerChildren: 0.1 } },
 }
 
-export function Portfolio() {
+export function Portfolio({ lang = 'fr' }: { lang?: Locale }) {
+  const d = t(lang).portfolio
   const ref = useRef<HTMLDivElement>(null)
   const isInView = useInView(ref, { once: true, margin: '-100px' })
 
@@ -204,7 +229,7 @@ export function Portfolio() {
                 style={{ backgroundColor: '#00FF87' }}
                 aria-hidden
               />
-              Réalisations
+              {d.label}
             </div>
 
             {/* Heading — word pull-up bicolore */}
@@ -213,16 +238,18 @@ export function Portfolio() {
               className="font-display font-normal"
               style={{ fontSize: 'clamp(2rem, 4.5vw, 4rem)', color: '#E1E0CC', lineHeight: 1.05, letterSpacing: '-0.02em' }}
             >
-              <WordPullUp text="Résultats concrets." delay={0.05} />
+              <WordPullUp text={d.heading1} delay={0.05} />
+              {' '}
+              <ItalicPullUp text={d.heading2} delay={0.45} />
             </h2>
           </div>
 
           <Link
-            href="/realisations"
+            href={lang === "en" ? "/en/realisations" : "/realisations"}
             className="inline-flex items-center gap-2 text-sm font-medium transition-opacity duration-200 hover:opacity-60 shrink-0"
             style={{ color: 'rgba(225,224,204,0.55)' }}
           >
-            Voir tout
+            {d.cta}
             <ArrowRight size={14} aria-hidden />
           </Link>
         </motion.div>

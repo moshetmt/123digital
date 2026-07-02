@@ -4,19 +4,56 @@ import { useRef } from 'react'
 import Link from 'next/link'
 import { motion, useInView } from 'framer-motion'
 import { ArrowRight } from 'lucide-react'
-import { services } from '@/data/services'
+import { getServices } from '@/data/services'
+import { t, type Locale } from '@/lib/i18n'
 
 const EASE = [0.22, 1, 0.36, 1] as [number, number, number, number]
 const PULL_EASE = [0.16, 1, 0.3, 1] as [number, number, number, number]
 
-// Detailed bullet items per service (from design)
-const serviceItems: Record<string, string[]> = {
+// Detailed bullet items per service
+const serviceItemsFR: Record<string, string[]> = {
   'creation-site-web':        ['Site vitrine', 'E-commerce', 'Landing page conversion', 'Responsive mobile-first'],
   'seo':                      ['Audit technique', 'Optimisation contenu', 'Netlinking', 'SEO IA / SGE ready'],
   'publicite-en-ligne':       ['Google Ads', 'Meta Ads', 'Retargeting', 'Tracking & attribution'],
   'branding':                 ['Identité visuelle', 'Positionnement', 'Copywriting', 'Charte graphique'],
   'community-management':     ['Stratégie réseaux sociaux', 'Création de contenu', 'Gestion des comptes', 'Reporting mensuel'],
   'automatisation-marketing': ['Emailing & funnels', 'CRM setup', 'GA4 & dashboards', 'Maintenance & hébergement'],
+}
+
+const serviceItemsEN: Record<string, string[]> = {
+  'creation-site-web':        ['Showcase site', 'E-commerce', 'Conversion landing page', 'Mobile-first responsive'],
+  'seo':                      ['Technical audit', 'Content optimisation', 'Link building', 'AI / SGE ready'],
+  'publicite-en-ligne':       ['Google Ads', 'Meta Ads', 'Retargeting', 'Tracking & attribution'],
+  'branding':                 ['Visual identity', 'Positioning', 'Copywriting', 'Brand guidelines'],
+  'community-management':     ['Social media strategy', 'Content creation', 'Account management', 'Monthly reporting'],
+  'automatisation-marketing': ['Email & funnels', 'CRM setup', 'GA4 & dashboards', 'Maintenance & hosting'],
+}
+
+function getServiceItems(lang: 'fr' | 'en'): Record<string, string[]> {
+  return lang === 'en' ? serviceItemsEN : serviceItemsFR
+}
+
+// Italic accent pull-up — Fraunces
+function ItalicPullUp({ text, delay = 0 }: { text: string; delay?: number }) {
+  const ref = useRef<HTMLSpanElement>(null)
+  const isInView = useInView(ref, { once: true, margin: '-10%' })
+  const words = text.split(' ')
+  return (
+    <span ref={ref} style={{ display: 'inline-flex', flexWrap: 'wrap', gap: '0.18em', fontFamily: 'var(--font-serif)', fontStyle: 'italic' }}>
+      {words.map((word, i) => (
+        <span key={i} style={{ display: 'inline-block', overflow: 'hidden' }}>
+          <motion.span
+            style={{ display: 'inline-block' }}
+            initial={{ y: '100%', opacity: 0 }}
+            animate={isInView ? { y: 0, opacity: 1 } : {}}
+            transition={{ duration: 0.9, delay: delay + i * 0.07, ease: PULL_EASE }}
+          >
+            {word}
+          </motion.span>
+        </span>
+      ))}
+    </span>
+  )
 }
 
 // Word pull-up
@@ -42,10 +79,9 @@ function WordPullUp({ text, delay = 0, style }: { text: string; delay?: number; 
 }
 
 // Service card
-function ServiceCard({ service, index }: { service: typeof services[0]; index: number }) {
+function ServiceCard({ service, index, items }: { service: import('@/data/services').ServiceData; index: number; items: string[] }) {
   const ref = useRef<HTMLDivElement>(null)
   const inView = useInView(ref, { once: true, margin: '-10%' })
-  const items = serviceItems[service.id] ?? []
   const num = String(index + 1).padStart(2, '0')
 
   return (
@@ -148,7 +184,9 @@ function ServiceCard({ service, index }: { service: typeof services[0]; index: n
 }
 
 
-export function Services() {
+export function Services({ lang = 'fr' }: { lang?: Locale }) {
+  const d = t(lang).services
+  const services = getServices(lang)
   const ref = useRef<HTMLDivElement>(null)
   const inView = useInView(ref, { once: true, margin: '-80px' })
 
@@ -178,7 +216,7 @@ export function Services() {
             style={{ backgroundColor: '#00FF87' }}
             aria-hidden
           />
-          Nos services
+          {d.label}
         </div>
 
         {/* Heading */}
@@ -193,16 +231,20 @@ export function Services() {
           }}
         >
           <WordPullUp
-            text="Un système complet de croissance digitale."
+            text={lang === 'en' ? 'A complete digital growth' : 'Un système complet de croissance'}
             delay={0.05}
             style={{ color: '#E1E0CC' }}
           />
           {' '}
+          <ItalicPullUp text={lang === 'en' ? 'system.' : 'digitale.'} delay={0.45} />
+          {' '}
           <WordPullUp
-            text="Tout ce dont vous avez besoin. Un seul expert."
-            delay={0.4}
+            text={lang === 'en' ? 'Everything you need. One' : 'Tout ce dont vous avez besoin. Un seul'}
+            delay={0.5}
             style={{ color: '#E1E0CC' }}
           />
+          {' '}
+          <ItalicPullUp text="expert." delay={0.9} />
         </h2>
 
         {/* Cards grid */}
@@ -222,7 +264,7 @@ export function Services() {
             style={{ gridTemplateColumns: 'repeat(3, 1fr)' }}
           >
             {services.map((service, i) => (
-              <ServiceCard key={service.id} service={service} index={i} />
+              <ServiceCard key={service.id} service={service} index={i} items={getServiceItems(lang)[service.id] ?? []} />
             ))}
           </div>
         </div>
@@ -243,7 +285,7 @@ export function Services() {
               padding: '0.5rem 0.5rem 0.5rem 1.5rem',
             }}
           >
-            Audit gratuit — c&apos;est gratuit
+            {lang === 'en' ? 'Free audit — no cost' : "Audit gratuit — c'est gratuit"}
             <span
               className="flex items-center justify-center rounded-full w-8 h-8 transition-transform duration-300 group-hover:scale-110 shrink-0"
               style={{ backgroundColor: '#000' }}
@@ -256,7 +298,7 @@ export function Services() {
             </span>
           </Link>
           <p style={{ fontSize: '0.78rem', color: 'rgba(225,224,204,0.4)' }}>
-            Réponse sous 24h · Sans engagement · 30 min
+            {lang === 'en' ? 'Reply within 24h · No commitment · 30 min' : 'Réponse sous 24h · Sans engagement · 30 min'}
           </p>
         </motion.div>
       </div>

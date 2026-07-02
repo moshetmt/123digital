@@ -4,6 +4,7 @@ import React, { useRef, useEffect, useState } from 'react'
 import Link from 'next/link'
 import { motion, useInView } from 'framer-motion'
 import { ArrowRight } from 'lucide-react'
+import { t, type Locale } from '@/lib/i18n'
 
 const PULL_EASE = [0.16, 1, 0.3, 1] as [number, number, number, number]
 
@@ -29,15 +30,24 @@ function Counter({ target, prefix = '', suffix = '' }: { target: number; prefix?
   return <span ref={ref}>{prefix}{count}{suffix}</span>
 }
 
-const stats = [
-  { target: 50,  prefix: '+', suffix: '',  label: 'PME accompagnées' },
-  { target: 47,  prefix: '+', suffix: '%', label: 'trafic moyen' },
-  { target: 100, prefix: '',  suffix: '%', label: 'livrés en délais' },
-]
+function getStats(lang: 'fr' | 'en') {
+  if (lang === 'en') return [
+    { target: 50,  prefix: '+', suffix: '',  label: 'SMEs supported' },
+    { target: 47,  prefix: '+', suffix: '%', label: 'avg traffic growth' },
+    { target: 100, prefix: '',  suffix: '%', label: 'delivered on time' },
+  ]
+  return [
+    { target: 50,  prefix: '+', suffix: '',  label: 'PME accompagnées' },
+    { target: 47,  prefix: '+', suffix: '%', label: 'trafic moyen' },
+    { target: 100, prefix: '',  suffix: '%', label: 'livrés en délais' },
+  ]
+}
 
 // ── Hero ──────────────────────────────────────────────────────────────────────
 
-export function Hero() {
+export function Hero({ lang = 'fr' }: { lang?: Locale }) {
+  const d = t(lang).hero
+  const stats = getStats(lang)
   return (
     <section
       id="section-hero"
@@ -120,7 +130,7 @@ export function Hero() {
               }}
               aria-hidden
             />
-            Disponible — Q2 2026
+            {d.badge}
           </span>
         </motion.div>
 
@@ -140,7 +150,7 @@ export function Hero() {
                 style={{ display: 'flex', flexDirection: 'column', gap: '0.15em', alignItems: 'inherit' }}
               >
                 <h1
-                  aria-label="Un expert. Une stratégie. Des résultats. — 123 Digital par M. Timsit"
+                  aria-label={`${d.line1} ${d.line2} — ${d.byline}`}
                   style={{
                     fontFamily: 'var(--font-heading)',
                     fontSize: 'clamp(1.8rem, 5vw, 4.5rem)',
@@ -151,8 +161,18 @@ export function Hero() {
                     color: '#DEDBC8',
                   }}
                 >
-                  Un expert. Une stratégie.<br />
-                  <span style={{ color: '#00FF87' }}>Des résultats.</span>
+                  {lang === 'en' ? (
+                    <>One expert. One <em style={{ fontFamily: 'var(--font-serif)', fontStyle: 'italic' }}>strategy</em>.</>
+                  ) : (
+                    <>Un expert. Une <em style={{ fontFamily: 'var(--font-serif)', fontStyle: 'italic' }}>stratégie</em>.</>
+                  )}<br />
+                  <span style={{ color: '#00FF87' }}>
+                    {lang === 'en' ? (
+                      <>Real <em style={{ fontFamily: 'var(--font-serif)', fontStyle: 'italic', color: '#00FF87' }}>results</em>.</>
+                    ) : (
+                      <>Des <em style={{ fontFamily: 'var(--font-serif)', fontStyle: 'italic' }}>résultats</em>.</>
+                    )}
+                  </span>
                 </h1>
                 <p
                   style={{
@@ -164,7 +184,7 @@ export function Hero() {
                     letterSpacing: '0.04em',
                   }}
                 >
-                  123 Digital —{' '}
+                  {lang === 'en' ? '123 Digital — ' : d.byline.split('Par M. Timsit')[0]}
                   <a
                     href="https://www.linkedin.com/in/mauricetimsit/"
                     target="_blank"
@@ -173,7 +193,7 @@ export function Hero() {
                     onMouseEnter={e => (e.currentTarget.style.opacity = '1')}
                     onMouseLeave={e => (e.currentTarget.style.opacity = '0.55')}
                   >
-                    Par M. Timsit
+                    {lang === 'en' ? 'By M. Timsit' : 'Par M. Timsit'}
                   </a>
                 </p>
               </motion.div>
@@ -189,9 +209,7 @@ export function Hero() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.5, duration: 1, ease: PULL_EASE }}
               >
-                Consultant digital à Lyon — je transforme votre présence en machine
-                à clients : site web, SEO, publicité et automatisation pour attirer
-                du trafic qualifié et convertir.
+                {d.description}
               </motion.p>
 
               {/* CTA pill */}
@@ -201,11 +219,11 @@ export function Hero() {
                 transition={{ delay: 0.7, duration: 1, ease: PULL_EASE }}
               >
                 <Link
-                  href="#contact"
+                  href={lang === 'en' ? '/en/audit' : '#contact'}
                   className="group inline-flex items-center gap-2 rounded-full pl-5 pr-2 py-2 font-medium text-sm transition-all duration-300 hover:gap-3 w-fit"
                   style={{ backgroundColor: '#DEDBC8', color: '#000' }}
                 >
-                  Audit gratuit
+                  {d.cta}
                   <span
                     className="flex items-center justify-center rounded-full w-8 h-8 transition-transform duration-300 group-hover:scale-110 shrink-0"
                     style={{ backgroundColor: '#000' }}
@@ -259,7 +277,7 @@ export function Hero() {
               textTransform: 'uppercase',
             }}
           >
-            * Sites · SEO · Ads · Branding · Social · Automatisation
+            {d.footnote}
           </motion.div>
         </div>
       </div>

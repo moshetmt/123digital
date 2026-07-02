@@ -2,6 +2,7 @@
 
 import { useRef } from 'react'
 import { motion, useInView, useScroll, useTransform } from 'framer-motion'
+import { t, type Locale } from '@/lib/i18n'
 
 const PULL_EASE = [0.16, 1, 0.3, 1] as [number, number, number, number]
 
@@ -30,7 +31,7 @@ function WordsPullUpMultiStyle({ segments, delay = 0 }: { segments: Segment[]; d
                 display: 'inline-block',
                 overflow: 'hidden',
                 paddingRight: '0.22em',
-                fontFamily: seg.serif ? 'var(--font-instrument-serif), serif' : undefined,
+                fontFamily: seg.serif ? 'var(--font-serif)' : undefined,
                 fontStyle: seg.serif ? 'italic' : undefined,
               }}
             >
@@ -120,15 +121,24 @@ function ScrollRevealText({
 
 // ── Meta data ─────────────────────────────────────────────────────────────────
 
-const meta = [
-  { label: 'Basé à',      value: 'Lyon · Remote France' },
-  { label: 'Expérience',  value: '8+ ans · 60+ projets' },
-  { label: 'Engagement',  value: '1 expert, 1 dossier' },
-]
+function getMeta(lang: 'fr' | 'en') {
+  if (lang === 'en') return [
+    { label: 'Based in',    value: 'Lyon · Remote France' },
+    { label: 'Experience',  value: '8+ years' },
+    { label: 'Commitment',  value: '1 expert, 1 file' },
+  ]
+  return [
+    { label: 'Basé à',      value: 'Lyon · Remote France' },
+    { label: 'Expérience',  value: '8+ ans' },
+    { label: 'Engagement',  value: '1 expert, 1 dossier' },
+  ]
+}
 
 // ── About ─────────────────────────────────────────────────────────────────────
 
-export function About() {
+export function About({ lang = 'fr' }: { lang?: Locale }) {
+  const d = t(lang).about
+  const meta = getMeta(lang)
   const ref = useRef<HTMLDivElement>(null)
   const inView = useInView(ref, { once: true, margin: '-80px' })
 
@@ -165,7 +175,7 @@ export function About() {
           style={{ fontSize: '0.7rem', letterSpacing: '0.12em', textTransform: 'uppercase', color: 'rgba(225,224,204,0.7)', fontWeight: 700 }}
         >
           <span className="w-1.5 h-1.5 rounded-full shrink-0" style={{ backgroundColor: '#00FF87' }} aria-hidden />
-          Expert croissance digitale
+          {lang === 'en' ? 'Digital Growth Expert' : 'Expert croissance digitale'}
         </div>
 
         {/* Heading */}
@@ -181,9 +191,13 @@ export function About() {
           }}
         >
           <WordsPullUpMultiStyle
-            segments={[
-              { text: 'Je suis Maurice Timsit,',   style: { color: '#E1E0CC' } },
-              { text: 'consultant digital à Lyon.', style: { color: '#E1E0CC' }, serif: true },
+            segments={lang === 'en' ? [
+              { text: "I'm Maurice Timsit,",                  style: { color: '#E1E0CC' } },
+              { text: 'digital consultant in Lyon.',           style: { color: '#E1E0CC' }, serif: true },
+              { text: 'I build systems that attract traffic, convert visitors and grow your results over time.', style: { color: '#E1E0CC' } },
+            ] : [
+              { text: 'Je suis Maurice Timsit,',              style: { color: '#E1E0CC' } },
+              { text: 'consultant digital à Lyon.',            style: { color: '#E1E0CC' }, serif: true },
               { text: 'Je construis des systèmes qui attirent du trafic, convertissent des visiteurs et optimisent vos résultats dans le temps.', style: { color: '#E1E0CC' } },
             ]}
             delay={0.1}
@@ -192,7 +206,7 @@ export function About() {
 
         {/* Scroll-reveal body paragraph */}
         <ScrollRevealText
-          text="Basé à Lyon, j'accompagne des TPE, PME et entrepreneurs de la région Auvergne-Rhône-Alpes qui veulent une présence digitale qui travaille pour eux. Pas de grande agence, pas de junior qui apprend sur votre budget — vous avez un interlocuteur unique, qui connaît votre dossier et qui est investi dans vos résultats."
+          text={d.body}
           style={{
             color: '#DEDBC8',
             fontSize: '0.95rem',

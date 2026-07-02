@@ -3,6 +3,7 @@
 import { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
 import { Search, Lightbulb, Rocket, TrendingUp, type LucideIcon } from 'lucide-react'
+import { t, type Locale } from '@/lib/i18n'
 
 const EASE = [0.22, 1, 0.36, 1] as [number, number, number, number]
 const PULL_EASE = [0.16, 1, 0.3, 1] as [number, number, number, number]
@@ -14,36 +15,20 @@ interface Step {
   description: string
 }
 
-const steps: Step[] = [
-  {
-    num: '01',
-    Icon: Search,
-    title: 'Audit & Diagnostic',
-    description:
-      'Analyse complète de votre présence digitale : site, SEO, publicité, réseaux. Identification des freins et des opportunités de croissance rapide.',
-  },
-  {
-    num: '02',
-    Icon: Lightbulb,
-    title: 'Stratégie sur mesure',
-    description:
-      "Plan d'action priorisé selon votre secteur, votre budget et vos objectifs. Pas de modèle générique — une vraie feuille de route.",
-  },
-  {
-    num: '03',
-    Icon: Rocket,
-    title: 'Exécution & Déploiement',
-    description:
-      'Mise en œuvre concrète : développement, optimisations, campagnes. Je pilote ou co-pilote selon vos préférences.',
-  },
-  {
-    num: '04',
-    Icon: TrendingUp,
-    title: 'Optimisation continue',
-    description:
-      'Analyse des performances, ajustements et itérations régulières. Ce qui fonctionne est amplifié, ce qui freine est corrigé.',
-  },
-]
+function getSteps(lang: 'fr' | 'en'): Step[] {
+  if (lang === 'en') return [
+    { num: '01', Icon: Search,    title: 'Audit & Discovery',  description: 'Full analysis of your digital presence: website, SEO, advertising, social. Identifying blockers and quick-win growth opportunities.' },
+    { num: '02', Icon: Lightbulb, title: 'Custom Strategy',    description: 'Prioritised action plan tailored to your sector, budget and goals. No generic template — a real roadmap built around your business.' },
+    { num: '03', Icon: Rocket,    title: 'Execution',          description: 'Concrete implementation: development, optimisations, campaigns. I lead or co-lead depending on your preferences.' },
+    { num: '04', Icon: TrendingUp,title: 'Continuous Growth',  description: 'Performance analysis, regular adjustments and iterations. What works is amplified; what holds you back is fixed.' },
+  ]
+  return [
+    { num: '01', Icon: Search,    title: 'Audit & Diagnostic',    description: 'Analyse complète de votre présence digitale : site, SEO, publicité, réseaux. Identification des freins et des opportunités de croissance rapide.' },
+    { num: '02', Icon: Lightbulb, title: 'Stratégie sur mesure',  description: "Plan d'action priorisé selon votre secteur, votre budget et vos objectifs. Pas de modèle générique — une vraie feuille de route." },
+    { num: '03', Icon: Rocket,    title: 'Exécution & Déploiement', description: 'Mise en œuvre concrète : développement, optimisations, campagnes. Je pilote ou co-pilote selon vos préférences.' },
+    { num: '04', Icon: TrendingUp,title: 'Optimisation continue', description: 'Analyse des performances, ajustements et itérations régulières. Ce qui fonctionne est amplifié, ce qui freine est corrigé.' },
+  ]
+}
 
 function WordPullUp({ text, delay = 0 }: { text: string; delay?: number }) {
   const ref = useRef<HTMLSpanElement>(null)
@@ -51,6 +36,29 @@ function WordPullUp({ text, delay = 0 }: { text: string; delay?: number }) {
   const words = text.split(' ')
   return (
     <span ref={ref} style={{ display: 'inline-flex', flexWrap: 'wrap', gap: '0.18em' }}>
+      {words.map((word, i) => (
+        <span key={i} style={{ display: 'inline-block', overflow: 'hidden' }}>
+          <motion.span
+            style={{ display: 'inline-block' }}
+            initial={{ y: '110%' }}
+            animate={isInView ? { y: 0 } : {}}
+            transition={{ duration: 0.85, ease: PULL_EASE, delay: delay + i * 0.07 }}
+          >
+            {word}
+          </motion.span>
+        </span>
+      ))}
+    </span>
+  )
+}
+
+// Italic accent pull-up — Fraunces
+function ItalicPullUp({ text, delay = 0 }: { text: string; delay?: number }) {
+  const ref = useRef<HTMLSpanElement>(null)
+  const isInView = useInView(ref, { once: true, margin: '-10%' })
+  const words = text.split(' ')
+  return (
+    <span ref={ref} style={{ display: 'inline-flex', flexWrap: 'wrap', gap: '0.18em', fontFamily: 'var(--font-serif)', fontStyle: 'italic' }}>
       {words.map((word, i) => (
         <span key={i} style={{ display: 'inline-block', overflow: 'hidden' }}>
           <motion.span
@@ -139,7 +147,9 @@ function StepCard({ step, index }: { step: Step; index: number }) {
   )
 }
 
-export function Process() {
+export function Process({ lang = 'fr' }: { lang?: Locale }) {
+  const d = t(lang).process
+  const steps = getSteps(lang)
   const ref = useRef<HTMLDivElement>(null)
   const inView = useInView(ref, { once: true, margin: '-80px' })
 
@@ -169,7 +179,7 @@ export function Process() {
               style={{ backgroundColor: '#00FF87' }}
               aria-hidden
             />
-            Comment je travaille
+            {d.label}
           </div>
 
           {/* Heading */}
@@ -178,7 +188,9 @@ export function Process() {
             className="font-display font-normal"
             style={{ fontSize: 'clamp(2rem, 4.5vw, 4rem)', color: '#E1E0CC', lineHeight: 1.05, letterSpacing: '-0.02em' }}
           >
-            <WordPullUp text="Un processus en quatre actes." delay={0.05} />
+            <WordPullUp text={lang === 'en' ? 'A process in four' : 'Un processus en quatre'} delay={0.05} />
+            {' '}
+            <ItalicPullUp text={lang === 'en' ? 'acts.' : 'actes.'} delay={0.55} />
           </h2>
         </motion.div>
 

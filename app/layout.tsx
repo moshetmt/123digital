@@ -1,8 +1,7 @@
 import type { Metadata, Viewport } from 'next'
-import { Syne, DM_Sans, Instrument_Serif, Almarai } from 'next/font/google'
+import { Fraunces } from 'next/font/google'
+import Script from 'next/script'
 import './globals.css'
-import { Header } from '@/components/layout/Header'
-import { Footer } from '@/components/layout/Footer'
 import { JsonLd } from '@/components/seo/JsonLd'
 import {
   BASE_URL,
@@ -12,34 +11,13 @@ import {
 } from '@/lib/schema'
 
 // ─── Fonts ────────────────────────────────────────────────────────────────────
+// Switzer — @font-face dans globals.css (public/fonts/, conforme CNIL)
+// Fraunces — accents italiques éditoriaux (Google Fonts via next/font)
 
-const syne = Syne({
+const fraunces = Fraunces({
   subsets: ['latin'],
-  variable: '--font-syne',
-  weight: ['400', '500', '600', '700', '800'],
-  display: 'swap',
-})
-
-const almarai = Almarai({
-  subsets: ['latin'],
-  variable: '--font-almarai',
-  weight: ['300', '400', '700', '800'],
-  display: 'swap',
-})
-
-// Kept for legacy components that may reference it
-const dmSans = DM_Sans({
-  subsets: ['latin'],
-  variable: '--font-dm-sans',
-  weight: ['300', '400', '500', '600'],
-  display: 'swap',
-})
-
-const instrumentSerif = Instrument_Serif({
-  subsets: ['latin'],
-  variable: '--font-instrument-serif',
-  style: ['italic'],
-  weight: '400',
+  variable: '--font-fraunces',
+  style: ['normal', 'italic'],
   display: 'swap',
 })
 
@@ -137,19 +115,22 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html
       lang="fr"
-      className={`${syne.variable} ${almarai.variable} ${dmSans.variable} ${instrumentSerif.variable}`}
+      className={fraunces.variable}
       suppressHydrationWarning
     >
       <head>
         <JsonLd schema={[personSchema(), localBusinessSchema(), webSiteSchema()]} />
-        {/* Preload critical fonts to reduce LCP */}
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
       </head>
       <body className="min-h-screen bg-background text-foreground font-sans antialiased">
-        <Header />
-        <main>{children}</main>
-        <Footer />
+        {children}
+        {/* Google Analytics */}
+        <Script src="https://www.googletagmanager.com/gtag/js?id=G-96F0VT9FDY" strategy="afterInteractive" />
+        <Script id="ga4" strategy="afterInteractive">{`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-96F0VT9FDY');
+        `}</Script>
       </body>
     </html>
   )

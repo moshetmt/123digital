@@ -18,7 +18,8 @@ import {
 } from 'lucide-react'
 import { Sheet, SheetContent, SheetTrigger, SheetTitle } from '@/components/ui/sheet'
 import { cn } from '@/lib/utils'
-import { services, type ServiceIconName } from '@/data/services'
+import { getServices, type ServiceIconName } from '@/data/services'
+import { t, type Locale } from '@/lib/i18n'
 
 const CREAM = 'oklch(0.893 0.022 92)'
 const CREAM_DIM = 'oklch(0.878 0.020 92 / 55%)'
@@ -35,25 +36,30 @@ function ServiceIcon({ name, size = 15 }: { name: ServiceIconName; size?: number
 
 interface NavLink { label: string; href: string; hasDropdown?: boolean }
 
-const navLinks: NavLink[] = [
-  { label: 'Services', href: '/services', hasDropdown: true },
-  { label: 'Réalisations', href: '/realisations' },
-  { label: 'À propos', href: '/a-propos' },
-  { label: 'Blog', href: '/blog' },
-  { label: 'Contact', href: '/contact' },
-]
+// navLinks are built dynamically inside the component using `d` and `base`
 
-export function Header() {
+export function Header({ lang = 'fr' }: { lang?: Locale }) {
+  const d = t(lang).nav
+  const services = getServices(lang)
   const [scrolled, setScrolled] = useState(false)
   const [servicesOpen, setServicesOpen] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
   const pathname = usePathname()
+  const base = lang === 'en' ? '/en' : ''
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24)
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
+
+  const navLinks: NavLink[] = [
+    { label: d.services,     href: `${base}/services`, hasDropdown: true },
+    { label: d.realisations, href: `${base}/realisations` },
+    { label: d.about,        href: lang === 'en' ? '/en/about' : '/a-propos' },
+    { label: d.blog,         href: `${base}/blog` },
+    { label: d.contact,      href: `${base}/contact` },
+  ]
 
   const isActive = (href: string) =>
     href === '/' ? pathname === '/' : pathname.startsWith(href)
@@ -81,9 +87,9 @@ export function Header() {
       >
         {/* ── Logo ── */}
         <Link
-          href="/"
+          href={lang === 'en' ? '/en' : '/'}
           className="flex items-center gap-0.5 shrink-0"
-          aria-label="123 Digital — retour à l'accueil"
+          aria-label="123 Digital — homepage"
         >
           <span
             className="font-display font-medium text-xl tracking-tight"
@@ -189,14 +195,22 @@ export function Header() {
           )}
         </ul>
 
-        {/* ── Desktop CTA ── */}
-        <div className="hidden lg:block shrink-0">
+        {/* ── Desktop CTA + lang toggle ── */}
+        <div className="hidden lg:flex items-center gap-3 shrink-0">
+          {/* Lang switcher */}
           <Link
-            href="/audit-gratuit"
+            href={d.langHref}
+            className="text-xs font-medium px-2 py-1 rounded border transition-colors"
+            style={{ borderColor: 'rgba(225,224,204,0.2)', color: CREAM_DIM }}
+          >
+            {d.lang}
+          </Link>
+          <Link
+            href={lang === 'en' ? '/en/audit' : '/audit-gratuit'}
             className="group inline-flex items-center gap-2 rounded-full pl-5 pr-2 py-1.5 font-medium text-sm transition-all duration-300 hover:gap-3"
             style={{ backgroundColor: 'oklch(0.878 0.020 92)', color: '#000' }}
           >
-            Audit gratuit
+            {d.cta}
             <span
               className="flex items-center justify-center rounded-full w-7 h-7 transition-transform duration-300 group-hover:scale-110 shrink-0"
               style={{ backgroundColor: '#000' }}
@@ -230,7 +244,7 @@ export function Header() {
             <div className="flex flex-col h-full p-5">
               {/* Mobile logo */}
               <Link
-                href="/"
+                href={lang === 'en' ? '/en' : '/'}
                 className="flex items-center gap-0.5 mb-8"
                 onClick={() => setMobileOpen(false)}
               >
@@ -241,15 +255,15 @@ export function Header() {
               {/* Mobile links */}
               <nav className="flex flex-col gap-1 flex-1" aria-label="Navigation mobile">
                 <Link
-                  href="/"
+                  href={lang === 'en' ? '/en' : '/'}
                   onClick={() => setMobileOpen(false)}
                   className="block px-3 py-2.5 rounded-xl text-sm font-medium transition-colors"
                   style={{
-                    color: pathname === '/' ? CREAM : CREAM_DIM,
-                    backgroundColor: pathname === '/' ? 'rgba(255,255,255,0.06)' : 'transparent',
+                    color: pathname === '/' || pathname === '/en' ? CREAM : CREAM_DIM,
+                    backgroundColor: pathname === '/' || pathname === '/en' ? 'rgba(255,255,255,0.06)' : 'transparent',
                   }}
                 >
-                  Accueil
+                  {d.home}
                 </Link>
 
                 {navLinks.map((link) => (
@@ -289,15 +303,15 @@ export function Header() {
                 ))}
               </nav>
 
-              {/* Mobile CTA */}
-              <div className="pt-4 mt-4" style={{ borderTop: '1px solid rgba(255,255,255,0.07)' }}>
+              {/* Mobile CTA + lang */}
+              <div className="pt-4 mt-4 flex flex-col gap-3" style={{ borderTop: '1px solid rgba(255,255,255,0.07)' }}>
                 <Link
-                  href="/audit-gratuit"
+                  href={lang === 'en' ? '/en/audit' : '/audit-gratuit'}
                   onClick={() => setMobileOpen(false)}
                   className="group flex items-center justify-between w-full rounded-full pl-5 pr-2 py-2 font-medium text-sm transition-all duration-300"
                   style={{ backgroundColor: 'oklch(0.878 0.020 92)', color: '#000' }}
                 >
-                  Audit gratuit
+                  {d.cta}
                   <span
                     className="flex items-center justify-center rounded-full w-9 h-9 group-hover:scale-110 transition-transform shrink-0"
                     style={{ backgroundColor: '#000' }}
@@ -308,6 +322,14 @@ export function Header() {
                       aria-hidden
                     />
                   </span>
+                </Link>
+                <Link
+                  href={d.langHref}
+                  onClick={() => setMobileOpen(false)}
+                  className="text-center text-sm py-2 rounded border transition-colors"
+                  style={{ borderColor: 'rgba(225,224,204,0.15)', color: CREAM_DIM }}
+                >
+                  {d.lang === 'EN' ? '🇬🇧 English' : '🇫🇷 Français'}
                 </Link>
               </div>
             </div>

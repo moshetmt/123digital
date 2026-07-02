@@ -3,11 +3,12 @@
 import { useRef, useState } from 'react'
 import { motion, useInView } from 'framer-motion'
 import { ArrowRight } from 'lucide-react'
+import { t, type Locale } from '@/lib/i18n'
 
 const EASE = [0.22, 1, 0.36, 1] as [number, number, number, number]
 const PULL_EASE = [0.16, 1, 0.3, 1] as [number, number, number, number]
 
-// ── WordsPullUpMultiStyle ─────────────────────────────────────────────────────
+// ── WordsPullUp ───────────────────────────────────────────────────────────────
 
 function WordsPullUp({ text, delay = 0 }: { text: string; delay?: number }) {
   const ref = useRef<HTMLDivElement>(null)
@@ -30,7 +31,7 @@ function WordsPullUp({ text, delay = 0 }: { text: string; delay?: number }) {
   )
 }
 
-// ── Form ──────────────────────────────────────────────────────────────────────
+// ── Form types ────────────────────────────────────────────────────────────────
 
 interface FormState {
   prenom: string
@@ -41,15 +42,22 @@ interface FormState {
   message: string
 }
 
-const BESOINS = [
-  { value: 'site',    label: 'Création de site' },
-  { value: 'seo',     label: 'SEO' },
-  { value: 'ads',     label: 'Publicité en ligne' },
-  { value: 'branding',label: 'Branding' },
-  { value: 'full',    label: 'Accompagnement complet' },
+const BESOINS_FR = [
+  { value: 'site',     label: 'Création de site' },
+  { value: 'seo',      label: 'SEO' },
+  { value: 'ads',      label: 'Publicité en ligne' },
+  { value: 'branding', label: 'Branding' },
+  { value: 'full',     label: 'Accompagnement complet' },
 ]
 
-// Green-focus input style (applied via JS since CSS modules not available)
+const BESOINS_EN = [
+  { value: 'site',     label: 'Website creation' },
+  { value: 'seo',      label: 'SEO' },
+  { value: 'ads',      label: 'Online advertising' },
+  { value: 'branding', label: 'Branding' },
+  { value: 'full',     label: 'Full support' },
+]
+
 const inputBase: React.CSSProperties = {
   width: '100%',
   backgroundColor: '#212121',
@@ -64,61 +72,38 @@ const inputBase: React.CSSProperties = {
 }
 
 function FormInput({
-  type = 'text',
-  value,
-  onChange,
-  placeholder,
-  hasError,
+  type = 'text', value, onChange, placeholder, hasError,
 }: {
-  type?: string
-  value: string
-  onChange: React.ChangeEventHandler<HTMLInputElement>
-  placeholder?: string
-  hasError?: boolean
+  type?: string; value: string; onChange: React.ChangeEventHandler<HTMLInputElement>
+  placeholder?: string; hasError?: boolean
 }) {
   const [focused, setFocused] = useState(false)
   return (
     <input
-      type={type}
-      value={value}
-      onChange={onChange}
-      placeholder={placeholder}
+      type={type} value={value} onChange={onChange} placeholder={placeholder}
       style={{
         ...inputBase,
-        borderColor: hasError
-          ? 'rgba(255,90,90,0.6)'
-          : focused
-          ? 'rgba(0,255,135,0.5)'
-          : 'transparent',
+        borderColor: hasError ? 'rgba(255,90,90,0.6)' : focused ? 'rgba(0,255,135,0.5)' : 'transparent',
         backgroundColor: focused ? '#262626' : '#212121',
       }}
-      onFocus={() => setFocused(true)}
-      onBlur={() => setFocused(false)}
+      onFocus={() => setFocused(true)} onBlur={() => setFocused(false)}
     />
   )
 }
 
 function FormSelect({
-  value,
-  onChange,
-  hasError,
+  value, onChange, hasError, options, placeholder,
 }: {
-  value: string
-  onChange: React.ChangeEventHandler<HTMLSelectElement>
-  hasError?: boolean
+  value: string; onChange: React.ChangeEventHandler<HTMLSelectElement>
+  hasError?: boolean; options: { value: string; label: string }[]; placeholder: string
 }) {
   const [focused, setFocused] = useState(false)
   return (
     <select
-      value={value}
-      onChange={onChange}
+      value={value} onChange={onChange}
       style={{
         ...inputBase,
-        borderColor: hasError
-          ? 'rgba(255,90,90,0.6)'
-          : focused
-          ? 'rgba(0,255,135,0.5)'
-          : 'transparent',
+        borderColor: hasError ? 'rgba(255,90,90,0.6)' : focused ? 'rgba(0,255,135,0.5)' : 'transparent',
         backgroundColor: focused ? '#262626' : '#212121',
         appearance: 'none',
         backgroundImage: `url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8' fill='none'><path d='M1 1L6 6L11 1' stroke='%23E1E0CC' stroke-width='1.5' stroke-linecap='round'/></svg>")`,
@@ -126,60 +111,69 @@ function FormSelect({
         backgroundPosition: 'right 1rem center',
         paddingRight: '2.5rem',
       }}
-      onFocus={() => setFocused(true)}
-      onBlur={() => setFocused(false)}
+      onFocus={() => setFocused(true)} onBlur={() => setFocused(false)}
     >
-      <option value="" style={{ background: '#212121' }}>— Choisir —</option>
-      {BESOINS.map((b) => (
-        <option key={b.value} value={b.value} style={{ background: '#212121' }}>
-          {b.label}
-        </option>
+      <option value="" style={{ background: '#212121' }}>{placeholder}</option>
+      {options.map((b) => (
+        <option key={b.value} value={b.value} style={{ background: '#212121' }}>{b.label}</option>
       ))}
     </select>
   )
 }
 
 function FormTextarea({
-  value,
-  onChange,
+  value, onChange, placeholder,
 }: {
-  value: string
-  onChange: React.ChangeEventHandler<HTMLTextAreaElement>
+  value: string; onChange: React.ChangeEventHandler<HTMLTextAreaElement>; placeholder: string
 }) {
   const [focused, setFocused] = useState(false)
   return (
     <textarea
-      rows={4}
-      value={value}
-      onChange={onChange}
-      placeholder="Contexte, objectifs, délais…"
+      rows={4} value={value} onChange={onChange} placeholder={placeholder}
       style={{
         ...inputBase,
         borderColor: focused ? 'rgba(0,255,135,0.5)' : 'transparent',
         backgroundColor: focused ? '#262626' : '#212121',
         resize: 'vertical',
       }}
-      onFocus={() => setFocused(true)}
-      onBlur={() => setFocused(false)}
+      onFocus={() => setFocused(true)} onBlur={() => setFocused(false)}
     />
   )
 }
 
 // ── CTA Section ───────────────────────────────────────────────────────────────
 
-const reassurance = [
-  { icon: '🕐', label: 'Réponse sous 24h' },
-  { icon: '✓',  label: 'Audit offert' },
-  { icon: '○',  label: 'Sans engagement' },
-]
+export function CTA({ lang = 'fr' }: { lang?: Locale }) {
+  const d = t(lang).cta
+  const isEN = lang === 'en'
 
-export function CTA() {
+  const L = {
+    eyebrow:        isEN ? 'Free audit'                          : 'Audit gratuit',
+    firstName:      isEN ? 'First name'                          : 'Prénom',
+    lastName:       isEN ? 'Last name'                           : 'Nom',
+    emailLabel:     isEN ? 'Professional email'                  : 'Email professionnel',
+    siteLabel:      isEN ? 'Current website'                     : 'Site web actuel',
+    optional:       isEN ? '(optional)'                          : '(optionnel)',
+    needLabel:      isEN ? 'What is your main need?'             : 'Quel est votre besoin principal ?',
+    needPH:         isEN ? '— Choose —'                          : '— Choisir —',
+    messageLabel:   isEN ? 'Describe your project in 2-3 lines'  : 'Décrivez votre projet en 2-3 lignes',
+    sub1:           isEN ? 'Free audit'                          : 'Audit gratuit',
+    sub2:           isEN ? 'No commitment'                       : 'Sans engagement',
+    sub3:           isEN ? 'Reply within 24h'                    : 'Réponse sous 24h',
+    sending:        isEN ? 'Sending…'                            : 'Envoi en cours…',
+    successTitle:   isEN ? 'Request received.'                   : 'Demande reçue.',
+    successBody:    (prenom: string) => isEN
+      ? `Thank you${prenom ? ` ${prenom}` : ''}. I'll get back to you within 24h with an initial analysis of your project.`
+      : `Merci ${prenom}. Je reviens vers vous sous 24h avec une première analyse de votre projet.`,
+  }
+
+  const besoins = isEN ? BESOINS_EN : BESOINS_FR
+  const reassurance = [L.sub1, L.sub2, L.sub3]
+
   const ref = useRef<HTMLDivElement>(null)
   const isInView = useInView(ref, { once: true, margin: '-100px' })
 
-  const [form, setForm] = useState<FormState>({
-    prenom: '', nom: '', email: '', site: '', besoin: '', message: '',
-  })
+  const [form, setForm] = useState<FormState>({ prenom: '', nom: '', email: '', site: '', besoin: '', message: '' })
   const [submitted, setSubmitted] = useState(false)
   const [loading, setLoading] = useState(false)
   const [errors, setErrors] = useState<Partial<Record<keyof FormState, boolean>>>({})
@@ -198,7 +192,6 @@ export function CTA() {
     if (Object.keys(errs).length) { setErrors(errs); return }
     setErrors({})
     setLoading(true)
-    // TODO: wire to backend / Resend / Formspree
     await new Promise((res) => setTimeout(res, 800))
     setSubmitted(true)
     setLoading(false)
@@ -215,232 +208,122 @@ export function CTA() {
   }
 
   return (
-    <section
-      id="contact"
-      className="bg-black"
-      style={{ padding: '7rem 1.5rem' }}
-      aria-labelledby="contact-heading"
-    >
-      <div
-        ref={ref}
-        className="mx-auto text-center"
-        style={{ maxWidth: '640px' }}
-      >
+    <section id="contact" className="bg-black" style={{ padding: '7rem 1.5rem' }} aria-labelledby="contact-heading">
+      <div ref={ref} className="mx-auto text-center" style={{ maxWidth: '640px' }}>
+
         {/* Eyebrow */}
         <motion.div
-          initial={{ opacity: 0 }}
-          animate={isInView ? { opacity: 1 } : {}}
-          transition={{ duration: 0.5 }}
+          initial={{ opacity: 0 }} animate={isInView ? { opacity: 1 } : {}} transition={{ duration: 0.5 }}
           className="flex items-center justify-center gap-2 mb-6"
           style={{ fontSize: '0.7rem', letterSpacing: '0.12em', textTransform: 'uppercase', color: 'rgba(225,224,204,0.7)', fontWeight: 700 }}
         >
-          <span
-            className="w-1.5 h-1.5 rounded-full shrink-0"
-            style={{ backgroundColor: '#00FF87' }}
-            aria-hidden
-          />
-          Audit gratuit
+          <span className="w-1.5 h-1.5 rounded-full shrink-0" style={{ backgroundColor: '#00FF87' }} aria-hidden />
+          {L.eyebrow}
         </motion.div>
 
         {/* Heading */}
         <h2
-          id="contact-heading"
-          className="font-display font-normal mb-4"
-          style={{
-            fontSize: 'clamp(2rem, 5vw, 3.6rem)',
-            letterSpacing: '-0.03em',
-            lineHeight: 1.05,
-          }}
+          id="contact-heading" className="font-display font-normal mb-4"
+          style={{ fontSize: 'clamp(2rem, 5vw, 3.6rem)', letterSpacing: '-0.03em', lineHeight: 1.05 }}
         >
-          <WordsPullUp text="Parlons de votre croissance." delay={0.05} />
+          <WordsPullUp text={d.heading} delay={0.05} />
         </h2>
 
         {/* Sub */}
         <motion.p
-          initial={{ opacity: 0 }}
-          animate={isInView ? { opacity: 1 } : {}}
-          transition={{ delay: 0.3, duration: 0.5 }}
-          className="mb-12"
-          style={{ color: '#6b7280', fontSize: '1rem' }}
+          initial={{ opacity: 0 }} animate={isInView ? { opacity: 1 } : {}} transition={{ delay: 0.3, duration: 0.5 }}
+          className="mb-12" style={{ color: '#6b7280', fontSize: '1rem' }}
         >
-          Audit gratuit
+          {L.sub1}
           <span style={{ color: 'rgba(0,255,135,0.7)', margin: '0 0.4rem' }}>·</span>
-          Sans engagement
+          {L.sub2}
           <span style={{ color: 'rgba(0,255,135,0.7)', margin: '0 0.4rem' }}>·</span>
-          Réponse sous 24h
+          {L.sub3}
         </motion.p>
 
         {/* Form or success */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          initial={{ opacity: 0, y: 20 }} animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ delay: 0.2, duration: 0.6, ease: EASE }}
         >
           {!submitted ? (
             <form
-              onSubmit={handleSubmit}
-              noValidate
-              className="flex flex-col gap-4 text-left"
-              style={{
-                backgroundColor: '#101010',
-                borderRadius: '1.5rem',
-                padding: '2rem',
-              }}
+              onSubmit={handleSubmit} noValidate className="flex flex-col gap-4 text-left"
+              style={{ backgroundColor: '#101010', borderRadius: '1.5rem', padding: '2rem' }}
             >
-              {/* Prénom + Nom */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label style={labelStyle}>Prénom</label>
-                  <FormInput
-                    value={form.prenom}
-                    onChange={set('prenom')}
-                    placeholder="Maurice"
-                    hasError={errors.prenom}
-                  />
+                  <label style={labelStyle}>{L.firstName}</label>
+                  <FormInput value={form.prenom} onChange={set('prenom')} placeholder={isEN ? 'John' : 'Maurice'} hasError={errors.prenom} />
                 </div>
                 <div>
-                  <label style={labelStyle}>Nom</label>
-                  <FormInput
-                    value={form.nom}
-                    onChange={set('nom')}
-                    placeholder="Timsit"
-                    hasError={errors.nom}
-                  />
+                  <label style={labelStyle}>{L.lastName}</label>
+                  <FormInput value={form.nom} onChange={set('nom')} placeholder={isEN ? 'Smith' : 'Timsit'} hasError={errors.nom} />
                 </div>
               </div>
-
-              {/* Email */}
               <div>
-                <label style={labelStyle}>Email professionnel</label>
-                <FormInput
-                  type="email"
-                  value={form.email}
-                  onChange={set('email')}
-                  placeholder="vous@entreprise.fr"
-                  hasError={errors.email}
-                />
+                <label style={labelStyle}>{L.emailLabel}</label>
+                <FormInput type="email" value={form.email} onChange={set('email')} placeholder={isEN ? 'you@company.com' : 'vous@entreprise.fr'} hasError={errors.email} />
               </div>
-
-              {/* Site */}
               <div>
-                <label style={labelStyle}>
-                  Site web actuel{' '}
-                  <span style={{ opacity: 0.5 }}>(optionnel)</span>
-                </label>
-                <FormInput
-                  value={form.site}
-                  onChange={set('site')}
-                  placeholder="https://"
-                />
+                <label style={labelStyle}>{L.siteLabel} <span style={{ opacity: 0.5 }}>{L.optional}</span></label>
+                <FormInput value={form.site} onChange={set('site')} placeholder="https://" />
               </div>
-
-              {/* Besoin */}
               <div>
-                <label style={labelStyle}>Quel est votre besoin principal ?</label>
+                <label style={labelStyle}>{L.needLabel}</label>
                 <FormSelect
                   value={form.besoin}
                   onChange={set('besoin') as React.ChangeEventHandler<HTMLSelectElement>}
                   hasError={errors.besoin}
+                  options={besoins}
+                  placeholder={L.needPH}
                 />
               </div>
-
-              {/* Message */}
               <div>
-                <label style={labelStyle}>Décrivez votre projet en 2-3 lignes</label>
-                <FormTextarea
-                  value={form.message}
-                  onChange={set('message') as React.ChangeEventHandler<HTMLTextAreaElement>}
-                />
+                <label style={labelStyle}>{L.messageLabel}</label>
+                <FormTextarea value={form.message} onChange={set('message') as React.ChangeEventHandler<HTMLTextAreaElement>} placeholder={d.messagePlaceholder} />
               </div>
-
-              {/* Submit */}
               <button
-                type="submit"
-                disabled={loading}
+                type="submit" disabled={loading}
                 className="group flex items-center justify-between w-full rounded-full font-medium text-sm transition-all duration-300 disabled:opacity-50"
-                style={{
-                  backgroundColor: '#DEDBC8',
-                  color: '#000',
-                  padding: '0.75rem 0.75rem 0.75rem 1.5rem',
-                  border: 'none',
-                  cursor: loading ? 'not-allowed' : 'pointer',
-                  fontSize: '0.95rem',
-                }}
+                style={{ backgroundColor: '#DEDBC8', color: '#000', padding: '0.75rem 0.75rem 0.75rem 1.5rem', border: 'none', cursor: loading ? 'not-allowed' : 'pointer', fontSize: '0.95rem' }}
               >
-                <span>{loading ? 'Envoi en cours…' : 'Envoyer ma demande'}</span>
-                <span
-                  className="flex items-center justify-center rounded-full transition-transform duration-300 group-hover:scale-110 shrink-0"
-                  style={{ width: 36, height: 36, backgroundColor: '#000', color: '#DEDBC8' }}
-                >
+                <span>{loading ? L.sending : d.submit}</span>
+                <span className="flex items-center justify-center rounded-full transition-transform duration-300 group-hover:scale-110 shrink-0" style={{ width: 36, height: 36, backgroundColor: '#000', color: '#DEDBC8' }}>
                   <ArrowRight size={14} style={{ transform: 'rotate(-45deg)' }} aria-hidden />
                 </span>
               </button>
             </form>
           ) : (
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
+              initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}
               className="flex flex-col items-center text-center"
-              style={{
-                backgroundColor: '#101010',
-                borderRadius: '1.5rem',
-                padding: '3rem 2rem',
-              }}
+              style={{ backgroundColor: '#101010', borderRadius: '1.5rem', padding: '3rem 2rem' }}
             >
-              <div
-                className="flex items-center justify-center mb-5"
-                style={{
-                  width: 56,
-                  height: 56,
-                  borderRadius: '50%',
-                  backgroundColor: 'rgba(0,255,135,0.12)',
-                  color: '#00FF87',
-                }}
-              >
-                {/* Check SVG */}
+              <div className="flex items-center justify-center mb-5" style={{ width: 56, height: 56, borderRadius: '50%', backgroundColor: 'rgba(0,255,135,0.12)', color: '#00FF87' }}>
                 <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M20 6 9 17l-5-5" />
                 </svg>
               </div>
-              <h3
-                className="font-display font-bold mb-2"
-                style={{ color: '#E1E0CC', fontSize: '1.4rem' }}
-              >
-                Demande reçue.
-              </h3>
-              <p style={{ color: 'rgba(225,224,204,0.65)', fontSize: '0.9rem', lineHeight: 1.5 }}>
-                Merci {form.prenom}. Je reviens vers vous sous 24h avec une première
-                analyse de votre projet.
-              </p>
+              <h3 className="font-display font-bold mb-2" style={{ color: '#E1E0CC', fontSize: '1.4rem' }}>{L.successTitle}</h3>
+              <p style={{ color: 'rgba(225,224,204,0.65)', fontSize: '0.9rem', lineHeight: 1.5 }}>{L.successBody(form.prenom)}</p>
             </motion.div>
           )}
         </motion.div>
 
         {/* Reassurance pills */}
         <motion.div
-          initial={{ opacity: 0 }}
-          animate={isInView ? { opacity: 1 } : {}}
-          transition={{ delay: 0.5, duration: 0.5 }}
+          initial={{ opacity: 0 }} animate={isInView ? { opacity: 1 } : {}} transition={{ delay: 0.5, duration: 0.5 }}
           className="flex items-center justify-center gap-2 mt-6 flex-wrap"
         >
-          {reassurance.map(({ label }) => (
-            <div
-              key={label}
-              className="inline-flex items-center gap-2"
-              style={{
-                backgroundColor: '#212121',
-                color: 'rgba(225,224,204,0.7)',
-                fontSize: '0.72rem',
-                padding: '0.45rem 0.85rem',
-                borderRadius: '999px',
-              }}
-            >
+          {reassurance.map((label) => (
+            <div key={label} className="inline-flex items-center gap-2" style={{ backgroundColor: '#212121', color: 'rgba(225,224,204,0.7)', fontSize: '0.72rem', padding: '0.45rem 0.85rem', borderRadius: '999px' }}>
               <span style={{ color: '#00FF87', fontSize: '0.75rem' }}>✓</span>
               {label}
             </div>
           ))}
         </motion.div>
+
       </div>
     </section>
   )

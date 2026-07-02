@@ -3,12 +3,36 @@
 import { useRef, useState } from 'react'
 import { motion, useInView, AnimatePresence } from 'framer-motion'
 import { ChevronDown } from 'lucide-react'
-import { homeFaqs } from '@/data/faq'
+import { getHomeFaqs } from '@/data/faq'
+import { t, type Locale } from '@/lib/i18n'
 
 const EASE = [0.22, 1, 0.36, 1] as [number, number, number, number]
 const PULL_EASE = [0.16, 1, 0.3, 1] as [number, number, number, number]
 
 // ── WordPullUp ────────────────────────────────────────────────────────────────
+
+// Italic accent pull-up — Fraunces
+function ItalicPullUp({ text, delay = 0 }: { text: string; delay?: number }) {
+  const ref = useRef<HTMLSpanElement>(null)
+  const isInView = useInView(ref, { once: true, margin: '-10%' })
+  const words = text.split(' ')
+  return (
+    <span ref={ref} style={{ display: 'inline-flex', flexWrap: 'wrap', gap: '0.18em', fontFamily: 'var(--font-serif)', fontStyle: 'italic' }}>
+      {words.map((word, i) => (
+        <span key={i} style={{ display: 'inline-block', overflow: 'hidden' }}>
+          <motion.span
+            style={{ display: 'inline-block' }}
+            initial={{ y: '110%' }}
+            animate={isInView ? { y: 0 } : {}}
+            transition={{ duration: 0.85, ease: PULL_EASE, delay: delay + i * 0.07 }}
+          >
+            {word}
+          </motion.span>
+        </span>
+      ))}
+    </span>
+  )
+}
 
 function WordPullUp({ text, delay = 0 }: { text: string; delay?: number }) {
   const ref = useRef<HTMLSpanElement>(null)
@@ -125,7 +149,8 @@ function FAQItem({
 
 // ── FAQ section ───────────────────────────────────────────────────────────────
 
-export function FAQ() {
+export function FAQ({ lang = 'fr' }: { lang?: Locale }) {
+  const d = t(lang).faq
   const ref = useRef<HTMLDivElement>(null)
   const isInView = useInView(ref, { once: true, margin: '-100px' })
 
@@ -162,7 +187,7 @@ export function FAQ() {
                 style={{ backgroundColor: '#00FF87' }}
                 aria-hidden
               />
-              Questions fréquentes
+              {d.label}
             </div>
 
             {/* Heading */}
@@ -176,21 +201,22 @@ export function FAQ() {
                 letterSpacing: '-0.02em',
               }}
             >
-              <WordPullUp text="Vous avez des questions ? J'ai les réponses." delay={0.05} />
+              <WordPullUp text={lang === 'en' ? 'Got questions? I have' : "Vous avez des questions ? J'ai les"} delay={0.05} />
+              {' '}
+              <ItalicPullUp text={lang === 'en' ? 'answers.' : 'réponses.'} delay={0.65} />
             </h2>
 
             <p
               className="text-sm leading-relaxed max-w-sm"
               style={{ color: 'rgba(225,224,204,0.45)' }}
             >
-              Vous ne trouvez pas ce que vous cherchez ? Contactez-moi directement ou
-              réservez un audit gratuit — on répond à tout en 30 minutes.
+              {lang === 'en' ? "Can't find what you're looking for? Contact me directly or book a free audit — we cover everything in 30 minutes." : "Vous ne trouvez pas ce que vous cherchez ? Contactez-moi directement ou réservez un audit gratuit — on répond à tout en 30 minutes."}
             </p>
           </motion.div>
 
           {/* Right: accordion items */}
           <div className="flex flex-col gap-2">
-            {homeFaqs.map((faq, i) => (
+            {getHomeFaqs(lang).map((faq, i) => (
               <FAQItem
                 key={i}
                 question={faq.question}

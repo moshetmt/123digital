@@ -2,6 +2,7 @@
 
 import { useRef, useEffect, useState } from 'react'
 import { motion, useInView } from 'framer-motion'
+import { t, type Locale } from '@/lib/i18n'
 
 const EASE = [0.22, 1, 0.36, 1] as [number, number, number, number]
 const PULL_EASE = [0.16, 1, 0.3, 1] as [number, number, number, number]
@@ -129,16 +130,26 @@ function MetricCard({ m, index }: { m: Metric; index: number }) {
 
 // ── Data ──────────────────────────────────────────────────────────────────────
 
-const metrics: Metric[] = [
-  { prefix: '+', value: 150, suffix: '%', desc: 'croissance trafic organique moyenne' },
-  { prefix: '×', value: 3,   suffix: '',  desc: 'retour sur investissement publicitaire moyen' },
-  { prefix: '',  value: 72,  suffix: 'h', desc: 'pour livrer votre première version de site' },
-  { prefix: '',  value: 100, suffix: '%', desc: 'clients satisfaits — ou remboursés' },
-]
+function getMetrics(lang: 'fr' | 'en'): Metric[] {
+  if (lang === 'en') return [
+    { prefix: '+', value: 150, suffix: '%', desc: 'average organic traffic growth' },
+    { prefix: '×', value: 3,   suffix: '',  desc: 'average advertising return on investment' },
+    { prefix: '',  value: 72,  suffix: 'h', desc: 'to deliver your first website version' },
+    { prefix: '',  value: 100, suffix: '%', desc: 'satisfied clients — or refunded' },
+  ]
+  return [
+    { prefix: '+', value: 150, suffix: '%', desc: 'croissance trafic organique moyenne' },
+    { prefix: '×', value: 3,   suffix: '',  desc: 'retour sur investissement publicitaire moyen' },
+    { prefix: '',  value: 72,  suffix: 'h', desc: 'pour livrer votre première version de site' },
+    { prefix: '',  value: 100, suffix: '%', desc: 'clients satisfaits — ou remboursés' },
+  ]
+}
 
 // ── Results ───────────────────────────────────────────────────────────────────
 
-export function Results() {
+export function Results({ lang = 'fr' }: { lang?: Locale }) {
+  const d = t(lang).results
+  const metrics = getMetrics(lang)
   const ref = useRef<HTMLDivElement>(null)
   const inView = useInView(ref, { once: true, margin: '-80px' })
 
@@ -160,7 +171,7 @@ export function Results() {
           style={{ fontSize: '0.7rem', letterSpacing: '0.12em', textTransform: 'uppercase', color: 'rgba(225,224,204,0.7)', fontWeight: 700 }}
         >
           <span className="w-1.5 h-1.5 rounded-full shrink-0" style={{ backgroundColor: '#00FF87' }} aria-hidden />
-          Résultats
+          {d.label}
         </motion.div>
 
         {/* Heading */}
@@ -176,7 +187,7 @@ export function Results() {
             lineHeight: 1.05,
           }}
         >
-          <WordsPullUp text="Des résultats concrets, pas des promesses." delay={0.1} />
+          <WordsPullUp text={d.heading} delay={0.1} />
         </h2>
 
         {/* Metrics grid */}
@@ -201,7 +212,7 @@ export function Results() {
           <div
             className="absolute"
             style={{
-              fontFamily: 'var(--font-instrument-serif), serif',
+              fontFamily: 'var(--font-serif)',
               fontStyle: 'italic',
               fontSize: '5rem',
               color: 'rgba(0,255,135,0.4)',
@@ -216,7 +227,7 @@ export function Results() {
 
           <p
             style={{
-              fontFamily: 'var(--font-instrument-serif), serif',
+              fontFamily: 'var(--font-serif)',
               fontStyle: 'italic',
               color: 'rgba(225,224,204,0.9)',
               fontSize: '1.35rem',
@@ -225,8 +236,9 @@ export function Results() {
               paddingLeft: '1rem',
             }}
           >
-            Maurice a transformé notre site vitrine en vrai outil commercial.
-            En 3 mois, notre trafic a doublé et nos demandes de devis ont triplé.
+            {lang === 'en'
+              ? 'Maurice transformed our brochure site into a real business tool. In 3 months, our traffic doubled and our quote requests tripled.'
+              : 'Maurice a transformé notre site vitrine en vrai outil commercial. En 3 mois, notre trafic a doublé et nos demandes de devis ont triplé.'}
           </p>
 
           <div className="flex items-center gap-3" style={{ paddingLeft: '1rem' }}>
@@ -236,8 +248,8 @@ export function Results() {
               aria-hidden
             />
             <div>
-              <div style={{ color: '#E1E0CC', fontSize: '0.85rem', fontWeight: 700 }}>Gérant</div>
-              <div style={{ color: '#9ca3af', fontSize: '0.75rem' }}>Entreprise de services B2B</div>
+              <div style={{ color: '#E1E0CC', fontSize: '0.85rem', fontWeight: 700 }}>{lang === 'en' ? 'Managing Director' : 'Gérant'}</div>
+              <div style={{ color: '#9ca3af', fontSize: '0.75rem' }}>{lang === 'en' ? 'B2B Services Company' : 'Entreprise de services B2B'}</div>
             </div>
           </div>
         </motion.div>

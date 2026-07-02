@@ -2,6 +2,22 @@
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
 
+/* ── Switzer Variable — auto-hébergée, conforme CNIL ── */
+@font-face {
+  font-family: "Switzer";
+  src: url("/fonts/Switzer-Variable.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Switzer";
+  src: url("/fonts/Switzer-VariableItalic.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: italic;
+  font-display: swap;
+}
+
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
@@ -23,11 +39,12 @@
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
-  --font-sans: var(--font-almarai);
-  --font-mono: var(--font-geist-mono, ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, monospace);
-  --font-heading: var(--font-syne);
-  --font-display: var(--font-syne);
-  --font-serif: var(--font-instrument-serif);
+  /* Fraunces — police principale + accents italiques */
+  --font-sans:    var(--font-fraunces), serif;
+  --font-heading: var(--font-fraunces), serif;
+  --font-display: var(--font-fraunces), serif;
+  --font-serif:   var(--font-fraunces), serif;
+  --font-mono: ui-monospace, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
   --radius-sm: calc(var(--radius) * 0.6);
   --radius-md: calc(var(--radius) * 0.8);
   --radius-lg: var(--radius);
@@ -137,9 +154,9 @@
     background-repeat: repeat;
   }
 
-  /* Italic serif */
+  /* Italic accent — Fraunces éditorial */
   .italic-serif, .italic-serif * {
-    font-family: var(--font-instrument-serif), serif !important;
+    font-family: var(--font-fraunces), serif;
     font-style: italic;
   }
 

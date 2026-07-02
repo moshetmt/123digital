@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Image from 'next/image'
 import Link from 'next/link'
 import { JsonLd } from '@/components/seo/JsonLd'
 import { Breadcrumb } from '@/components/layout/Breadcrumb'
@@ -147,6 +148,24 @@ export default function BlogPage() {
                   borderBottom: '1px solid rgba(225,224,204,0.06)',
                 }}
               >
+                <div
+                  style={{
+                    flexShrink: 0,
+                    width: '160px',
+                    height: '100px',
+                    position: 'relative',
+                    overflow: 'hidden',
+                  }}
+                >
+                  <Image
+                    src={article.image}
+                    alt={article.titre}
+                    fill
+                    sizes="160px"
+                    style={{ objectFit: 'cover' }}
+                  />
+                </div>
+
                 <div style={{ flexShrink: 0 }}>
                   <div
                     style={{

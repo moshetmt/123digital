@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Image from 'next/image'
 import Link from 'next/link'
 import { JsonLd } from '@/components/seo/JsonLd'
 import { Breadcrumb } from '@/components/layout/Breadcrumb'
@@ -55,6 +56,15 @@ const serviceDetails = [
     inclus: ['Audit de vos processus actuels', 'Mise en place Make / n8n / HubSpot', 'Séquences email et SMS', 'Intégration CRM', 'Formation et documentation'],
   },
 ]
+
+const serviceImages: Record<string, string> = {
+  'creation-site-web': '/images/services/creation-site-web.jpg',
+  seo: '/images/services/seo.jpg',
+  'publicite-en-ligne': '/images/services/publicite-en-ligne.jpg',
+  branding: '/images/services/branding.jpg',
+  'community-management': '/images/services/community-management.jpg',
+  'automatisation-marketing': '/images/services/automatisation-marketing.jpg',
+}
 
 const faqs = [
   {
@@ -269,6 +279,25 @@ export default function ServicesPage() {
                           Audit gratuit
                         </Link>
                       </div>
+                    </div>
+
+                    <div
+                      className="hidden md:block"
+                      style={{
+                        position: 'relative',
+                        width: '220px',
+                        height: '220px',
+                        borderRadius: '1rem',
+                        overflow: 'hidden',
+                      }}
+                    >
+                      <Image
+                        src={serviceImages[service.id]}
+                        alt={service.title}
+                        fill
+                        sizes="220px"
+                        style={{ objectFit: 'cover' }}
+                      />
                     </div>
                   </div>
                 </article>

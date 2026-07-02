@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
+import Image from 'next/image'
 import Link from 'next/link'
 import { JsonLd } from '@/components/seo/JsonLd'
 import { Breadcrumb } from '@/components/layout/Breadcrumb'
@@ -332,6 +333,22 @@ export default async function BlogArticlePage({ params }: PageProps) {
           >
             {article.description}
           </p>
+        </div>
+      </section>
+
+      {/* Image de couverture */}
+      <section className="bg-black" style={{ padding: '0 1.5rem 3rem' }}>
+        <div className="mx-auto max-w-3xl">
+          <div style={{ position: 'relative', width: '100%', aspectRatio: '1200 / 628', overflow: 'hidden' }}>
+            <Image
+              src={article.image}
+              alt={article.titre}
+              fill
+              sizes="(max-width: 768px) 100vw, 768px"
+              style={{ objectFit: 'cover' }}
+              priority
+            />
+          </div>
         </div>
       </section>
 

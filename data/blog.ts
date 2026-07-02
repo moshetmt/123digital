@@ -28,7 +28,7 @@ export const articles: BlogArticle[] = [
     dateModification: '2026-04-01',
     categorie: 'SEO',
     tags: ['SEO local', 'Google Business Profile', 'PME', 'référencement local', 'Google Maps'],
-    image: '/images/blog/seo-local-pme.svg',
+    image: '/images/blog/seo-local-pme.jpg',
     tempsLecture: 12,
     contenu: [
       {
@@ -161,7 +161,7 @@ export const articles: BlogArticle[] = [
     datePublication: '2026-02-20',
     categorie: 'Création de site web',
     tags: ['prix site web', 'budget site web', 'création site web PME', 'coût site internet'],
-    image: '/images/blog/prix-site-web-pme.svg',
+    image: '/images/blog/prix-site-web-pme.jpg',
     tempsLecture: 10,
     contenu: [
       {
@@ -298,7 +298,7 @@ export const articles: BlogArticle[] = [
     datePublication: '2026-01-10',
     categorie: 'Publicité en ligne',
     tags: ['Google Ads', 'publicité en ligne PME', 'Google Ads débutant', 'budget Google Ads'],
-    image: '/images/blog/google-ads-pme.svg',
+    image: '/images/blog/google-ads-pme.jpg',
     tempsLecture: 11,
     contenu: [
       {
@@ -386,7 +386,7 @@ export const articles: BlogArticle[] = [
     datePublication: '2024-12-05',
     categorie: 'Automatisation',
     tags: ['automatisation marketing', 'email marketing', 'CRM PME', 'marketing automation', 'Make n8n HubSpot'],
-    image: '/images/blog/automatisation-marketing-pme.svg',
+    image: '/images/blog/automatisation-marketing-pme.jpg',
     tempsLecture: 9,
     contenu: [
       {
@@ -445,7 +445,7 @@ export const articles: BlogArticle[] = [
     datePublication: '2024-11-18',
     categorie: 'Création de site web',
     tags: ['refonte site web', 'redesign site', 'site web obsolète', 'mise à jour site web PME'],
-    image: '/images/blog/refonte-site-web.svg',
+    image: '/images/blog/refonte-site-web.jpg',
     tempsLecture: 8,
     contenu: [
       {
@@ -506,7 +506,7 @@ export const articles: BlogArticle[] = [
     datePublication: '2026-06-24',
     categorie: 'SEO',
     tags: ['Google Business Profile', 'SEO local', 'PME', 'Google Maps', 'avis Google', 'fiche Google'],
-    image: '/images/blog/google-business-profile-pme.svg',
+    image: '/images/blog/google-business-profile-pme.jpg',
     tempsLecture: 10,
     contenu: [
       {
@@ -675,7 +675,7 @@ export const articles: BlogArticle[] = [
     datePublication: '2026-07-02',
     categorie: 'Stratégie digitale',
     tags: ['agence digitale Lyon', 'consultant digital Lyon', 'freelance marketing Lyon', 'choisir prestataire digital', 'PME Lyon'],
-    image: '/images/blog/consultant-ou-agence-lyon.svg',
+    image: '/images/blog/consultant-ou-agence-lyon.jpg',
     tempsLecture: 9,
     contenu: [
       {

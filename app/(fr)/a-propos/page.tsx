@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Image from 'next/image'
 import Link from 'next/link'
 import { JsonLd } from '@/components/seo/JsonLd'
 import { BASE_URL, personSchema, breadcrumbSchema } from '@/lib/schema'
@@ -36,8 +37,22 @@ export default function AProposPage() {
       ]} />
 
       {/* Hero */}
-      <section className="bg-black" style={{ padding: '9rem 1.5rem 6rem' }}>
-        <div className="mx-auto max-w-5xl">
+      <section className="relative bg-black" style={{ padding: '9rem 1.5rem 6rem', overflow: 'hidden' }}>
+        <div className="absolute inset-0" aria-hidden>
+          <Image
+            src="/images/hero.jpg"
+            alt=""
+            fill
+            priority
+            sizes="100vw"
+            style={{ objectFit: 'cover', opacity: 0.22 }}
+          />
+          <div
+            className="absolute inset-0"
+            style={{ background: 'linear-gradient(180deg, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.92) 70%, #000 100%)' }}
+          />
+        </div>
+        <div className="relative mx-auto max-w-5xl">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
             <div>
               <div className="flex items-center gap-2 mb-6" style={{ fontSize: '0.7rem', letterSpacing: '0.12em', textTransform: 'uppercase', color: 'rgba(225,224,204,0.7)', fontWeight: 700 }}>

@@ -285,3 +285,45 @@ export const allVilles = [...villesARA, ...villesFrance]
 export function getVilleBySlug(slug: string): VilleData | undefined {
   return allVilles.find((v) => v.slug === slug)
 }
+
+// ─── Contenu enrichi villes prioritaires ────────────────────────────────────
+// Contexte économique réel et angle d'accompagnement différencié par ville,
+// pour éviter le contenu quasi-dupliqué entre pages [ville] à fort volume.
+
+export interface VilleInsight {
+  marche: string
+  angle: string
+}
+
+export const villeInsights: Record<string, VilleInsight> = {
+  lyon: {
+    marche:
+      "Deuxième métropole économique de France, Lyon concentre une économie diversifiée : santé et biotech (pôle Lyonbiopôle), fintech, logistique — carrefour entre le nord et le sud de l'Europe — et un tissu dense de PME de services. La concurrence digitale y est plus forte que dans le reste de la région, ce qui rend un positionnement SEO précis et une fiche Google Business Profile soignée d'autant plus déterminants.",
+    angle:
+      "Pour les PME lyonnaises, je combine SEO local ciblé par arrondissement (Lyon 1er à Lyon 9e, Villeurbanne, Caluire-et-Cuire) et créneaux sectoriels moins saturés, plutôt que d'affronter frontalement les mots-clés génériques déjà occupés par les grandes agences du centre-ville.",
+  },
+  grenoble: {
+    marche:
+      "Grenoble est un pôle majeur de la microélectronique et de la deep-tech en Europe (CEA-Leti, Minatec, STMicroelectronics), avec un tissu dense de PME industrielles et technologiques B2B. Ce marché demande une approche digitale différente d'une ville à dominante commerce : contenu technique, SEO orienté B2B et présence LinkedIn priment souvent sur le SEO local grand public.",
+    angle:
+      "J'adapte la stratégie aux PME industrielles et tech grenobloises : SEO orienté requêtes techniques et B2B, mise en avant de références chiffrées, et une présence LinkedIn structurée en complément du site web.",
+  },
+  'saint-etienne': {
+    marche:
+      "Ville UNESCO de design depuis 2010, Saint-Étienne a transformé son héritage industriel (armement, textile, rubanerie) en économie créative et manufacturière renouvelée. Les coûts d'acquisition y sont généralement plus bas qu'à Lyon, ce qui rend le SEO local particulièrement rentable pour les artisans et commerces de la ville.",
+    angle:
+      "Pour les entreprises stéphanoises, je mise sur un SEO local offensif : la concurrence digitale y est moins dense qu'à Lyon, donc les premières positions Google restent accessibles avec un investissement mesuré.",
+  },
+  'clermont-ferrand': {
+    marche:
+      "Clermont-Ferrand est historiquement la ville de Michelin et reste un pôle industriel et pharmaceutique important, entouré d'une économie agroalimentaire auvergnate solide. Ce mélange industrie lourde et PME locales crée deux besoins distincts : image de marque professionnelle pour les sous-traitants B2B, et SEO local pour les commerces et artisans.",
+    angle:
+      "Je distingue clairement les deux approches selon votre profil : branding et présence B2B pour les entreprises liées à l'industrie, SEO local classique pour les commerces et professions de proximité.",
+  },
+  annecy: {
+    marche:
+      "Annecy combine une économie touristique forte autour du lac avec un pôle animation et jeu vidéo reconnu internationalement (festival international du film d'animation, studios implantés dans la ville) et la proximité de Genève, qui attire une clientèle transfrontalière à fort pouvoir d'achat. La saisonnalité touristique influence directement les pics de recherche.",
+    angle:
+      "Pour les commerces et prestataires annéciens, j'intègre la saisonnalité touristique dans la stratégie : visibilité renforcée avant et pendant la haute saison, contenu adapté à une clientèle mixte locale et touristique.",
+  },
+}

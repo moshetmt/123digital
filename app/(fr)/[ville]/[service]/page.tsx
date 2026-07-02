@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { JsonLd } from '@/components/seo/JsonLd'
 import { Breadcrumb } from '@/components/layout/Breadcrumb'
 import { BASE_URL, breadcrumbSchema, localBusinessSchema, serviceSchema } from '@/lib/schema'
-import { allVilles, villesARA } from '@/data/villes'
+import { allVilles, villesARA, villeInsights } from '@/data/villes'
 import { services } from '@/data/services'
 
 interface PageProps {
@@ -262,6 +262,7 @@ export default async function VilleServicePage({ params }: PageProps) {
   const isARA = villesARA.some((v) => v.slug === ville.slug)
   const autresServices = services.filter((s) => s.id !== service.id)
   const autresVilles = villesARA.filter((v) => v.slug !== ville.slug).slice(0, 6)
+  const insight = villeInsights[ville.slug]
 
   const faqs = content.faqs.map(({ q, a }) => ({
     question: q(ville.nom),
@@ -349,6 +350,15 @@ export default async function VilleServicePage({ params }: PageProps) {
           >
             {content.intro(ville.nom)}
           </p>
+
+          {insight && (
+            <p
+              className="text-sm leading-relaxed mb-6 max-w-2xl"
+              style={{ color: 'rgba(225,224,204,0.5)' }}
+            >
+              {insight.angle}
+            </p>
+          )}
 
           <div className="flex items-center gap-4 mb-8 flex-wrap">
             <div className="flex items-center gap-3">

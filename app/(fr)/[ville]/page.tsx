@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { JsonLd } from '@/components/seo/JsonLd'
 import { Breadcrumb } from '@/components/layout/Breadcrumb'
 import { BASE_URL, breadcrumbSchema, localBusinessSchema } from '@/lib/schema'
-import { allVilles, villesARA } from '@/data/villes'
+import { allVilles, villesARA, villeInsights } from '@/data/villes'
 import { services } from '@/data/services'
 import { secteurs } from '@/data/secteurs'
 
@@ -42,6 +42,7 @@ export default async function VillePage({ params }: PageProps) {
   if (!ville) notFound()
 
   const isARA = villesARA.some((v) => v.slug === ville.slug)
+  const insight = villeInsights[ville.slug]
 
   const faqs = [
     {
@@ -187,6 +188,51 @@ export default async function VillePage({ params }: PageProps) {
           </div>
         </div>
       </section>
+
+      {/* Marché local — contenu unique pour les villes prioritaires */}
+      {insight && (
+        <section
+          className="bg-black"
+          style={{ padding: '4rem 1.5rem 6rem', borderTop: '1px solid rgba(225,224,204,0.06)' }}
+        >
+          <div className="mx-auto max-w-5xl">
+            <div
+              style={{
+                fontSize: '0.65rem',
+                letterSpacing: '0.14em',
+                textTransform: 'uppercase',
+                color: 'rgba(225,224,204,0.5)',
+                fontWeight: 700,
+                marginBottom: '1.5rem',
+              }}
+            >
+              Le marché à {ville.nom}
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+              <p style={{ color: 'rgba(225,224,204,0.65)', lineHeight: 1.75, fontSize: '0.95rem' }}>
+                {insight.marche}
+              </p>
+              <div>
+                <div
+                  style={{
+                    fontSize: '0.7rem',
+                    letterSpacing: '0.1em',
+                    textTransform: 'uppercase',
+                    color: '#00FF87',
+                    fontWeight: 700,
+                    marginBottom: '0.75rem',
+                  }}
+                >
+                  Mon approche à {ville.nom}
+                </div>
+                <p style={{ color: 'rgba(225,224,204,0.65)', lineHeight: 1.75, fontSize: '0.95rem' }}>
+                  {insight.angle}
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* Services disponibles */}
       <section

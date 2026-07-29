@@ -7,3 +7,6 @@ out/
 *.tsbuildinfo
 
 .vercel
+
+# Worktrees temporaires de Claude Code
+.claude/worktrees/

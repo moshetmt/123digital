@@ -87,7 +87,7 @@ function MetricCard({ m, index }: { m: Metric; index: number }) {
       animate={inView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.7, delay: index * 0.1, ease: EASE }}
       className="relative overflow-hidden"
-      style={{ backgroundColor: 'var(--surface-2)', borderRadius: '1.25rem', padding: '2rem 1.75rem' }}
+      style={{ backgroundColor: 'var(--surface-2)', border: '1px solid var(--line)', borderRadius: '1.25rem', padding: '2rem 1.75rem' }}
     >
       {/* Number — electric green */}
       <div
@@ -206,7 +206,7 @@ export function Results({ lang = 'fr' }: { lang?: Locale }) {
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ delay: 0.5, duration: 0.7, ease: EASE }}
           className="relative mx-auto"
-          style={{ backgroundColor: 'var(--surface-2)', borderRadius: '1.25rem', padding: '2.5rem 2rem', maxWidth: '720px' }}
+          style={{ backgroundColor: 'var(--surface-2)', border: '1px solid var(--line)', borderRadius: '1.25rem', padding: '2.5rem 2rem', maxWidth: '720px' }}
         >
           {/* Green italic quote mark */}
           <div

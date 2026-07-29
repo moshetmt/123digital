@@ -95,7 +95,7 @@ function ServiceCard({ service, index, items }: { service: import('@/data/servic
       }}
       transition={{ duration: 0.7, delay: index * 0.12, ease: EASE }}
       className="rounded-2xl overflow-hidden relative"
-      style={{ backgroundColor: 'var(--surface-2)', willChange: 'transform', cursor: 'default' }}
+      style={{ backgroundColor: 'var(--surface-2)', border: '1px solid var(--line)', willChange: 'transform', cursor: 'default' }}
     >
       {/* Liquid glass glow — visible on hover via parent whileHover cascade */}
       <motion.div

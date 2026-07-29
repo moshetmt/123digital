@@ -102,7 +102,7 @@ export default async function VillePage({ params }: PageProps) {
           />
           <div
             className="absolute inset-0"
-            style={{ background: 'linear-gradient(180deg, oklch(0.30 0.02 95 / 0.07) 0%, oklch(0.30 0.02 95 / 0.13) 60%, var(--on-brand) 100%)' }}
+            style={{ background: 'linear-gradient(180deg, oklch(0.962 0.012 96 / 0.30) 0%, oklch(0.962 0.012 96 / 0.62) 55%, var(--surface) 100%)' }}
           />
         </div>
         <div className="relative mx-auto max-w-5xl">
@@ -175,7 +175,7 @@ export default async function VillePage({ params }: PageProps) {
                 display: 'inline-block',
                 padding: '0.85rem 2rem',
                 backgroundColor: 'var(--brand)',
-                color: 'var(--ink)',
+                color: 'var(--on-brand)',
                 fontSize: '0.82rem',
                 fontWeight: 700,
                 letterSpacing: '0.08em',
@@ -480,7 +480,7 @@ export default async function VillePage({ params }: PageProps) {
               display: 'inline-block',
               padding: '1rem 2.5rem',
               backgroundColor: 'var(--brand)',
-              color: 'var(--ink)',
+              color: 'var(--on-brand)',
               fontSize: '0.85rem',
               fontWeight: 700,
               letterSpacing: '0.08em',

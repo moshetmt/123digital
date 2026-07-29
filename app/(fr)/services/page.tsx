@@ -254,7 +254,7 @@ export default function ServicesPage() {
                           style={{
                             padding: '0.65rem 1.5rem',
                             backgroundColor: 'var(--brand)',
-                            color: 'var(--ink)',
+                            color: 'var(--on-brand)',
                             fontSize: '0.8rem',
                             fontWeight: 700,
                             letterSpacing: '0.06em',
@@ -374,7 +374,7 @@ export default function ServicesPage() {
               display: 'inline-block',
               padding: '1rem 2.5rem',
               backgroundColor: 'var(--brand)',
-              color: 'var(--ink)',
+              color: 'var(--on-brand)',
               fontSize: '0.85rem',
               fontWeight: 700,
               letterSpacing: '0.08em',

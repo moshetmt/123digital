@@ -182,7 +182,7 @@ export function VillesMap({ lang = 'fr' }: { lang?: 'fr' | 'en' }) {
               style={{
                 padding: '0.6rem 1.2rem',
                 backgroundColor: 'var(--brand)',
-                color: 'var(--ink)',
+                color: 'var(--on-brand)',
                 fontSize: '0.75rem',
                 fontWeight: 700,
                 letterSpacing: '0.08em',
@@ -211,7 +211,7 @@ export function VillesMap({ lang = 'fr' }: { lang?: 'fr' | 'en' }) {
               href={`/${ville.slug}`}
               style={{
                 padding: '0.35rem 0.85rem',
-                border: `1px solid ${active === ville.slug ? 'var(--brand)' : 'var(--ink-4)'}`,
+                border: `1px solid ${active === ville.slug ? 'var(--brand)' : 'var(--ink-3)'}`,
                 color: active === ville.slug ? 'var(--brand)' : 'var(--ink-2)',
                 fontSize: '0.78rem',
                 textDecoration: 'none',

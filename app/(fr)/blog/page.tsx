@@ -281,7 +281,7 @@ export default function BlogPage() {
               display: 'inline-block',
               padding: '1rem 2.5rem',
               backgroundColor: 'var(--brand)',
-              color: 'var(--ink)',
+              color: 'var(--on-brand)',
               fontSize: '0.85rem',
               fontWeight: 700,
               letterSpacing: '0.08em',

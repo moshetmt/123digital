@@ -157,6 +157,7 @@ export function About({ lang = 'fr' }: { lang?: Locale }) {
         className="relative overflow-hidden mx-auto text-center"
         style={{
           backgroundColor: 'var(--surface-2)',
+          border: '1px solid var(--line)',
           borderRadius: '2rem',
           maxWidth: '1280px',
           padding: 'clamp(3.5rem, 6vw, 5rem) clamp(1.5rem, 4vw, 2rem)',

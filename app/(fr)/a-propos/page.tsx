@@ -49,7 +49,7 @@ export default function AProposPage() {
           />
           <div
             className="absolute inset-0"
-            style={{ background: 'linear-gradient(180deg, oklch(0.30 0.02 95 / 0.06) 0%, oklch(0.30 0.02 95 / 0.12) 55%, var(--on-brand) 100%)' }}
+            style={{ background: 'linear-gradient(180deg, oklch(0.962 0.012 96 / 0.28) 0%, oklch(0.962 0.012 96 / 0.60) 55%, var(--surface) 100%)' }}
           />
         </div>
         <div className="relative mx-auto max-w-5xl">

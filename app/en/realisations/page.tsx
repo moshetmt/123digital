@@ -96,7 +96,7 @@ export default function CaseStudiesPage() {
             {d.ctaHeading}
           </h2>
           <p style={{ color: 'var(--ink-2)', marginBottom: '2.5rem', lineHeight: 1.7 }}>{d.ctaBody}</p>
-          <Link href="/en/audit" style={{ display: 'inline-block', padding: '1rem 2.5rem', backgroundColor: 'var(--brand)', color: 'var(--ink)', fontSize: '0.85rem', fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', textDecoration: 'none' }}>
+          <Link href="/en/audit" style={{ display: 'inline-block', padding: '1rem 2.5rem', backgroundColor: 'var(--brand)', color: 'var(--on-brand)', fontSize: '0.85rem', fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', textDecoration: 'none' }}>
             {d.ctaBtn}
           </Link>
         </div>

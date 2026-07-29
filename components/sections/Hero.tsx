@@ -92,10 +92,9 @@ export function Hero({ lang = 'fr' }: { lang?: Locale }) {
           style={{ opacity: 0.22 }}
         />
 
-        {/* ── Top-right — availability indicator ── */}
+        {/* ── Availability indicator — dans le flux pour ne pas passer sous l'en-tête ── */}
         <motion.div
-          className="absolute z-10 flex items-center gap-3"
-          style={{ top: '1.5rem', right: '1.75rem' }}
+          className="relative z-10 flex items-center justify-center lg:justify-end gap-3 px-5 sm:px-8 lg:px-10 mb-4"
           initial={false}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.4 }}

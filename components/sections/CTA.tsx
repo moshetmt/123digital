@@ -221,7 +221,7 @@ export function CTA({ lang = 'fr' }: { lang?: Locale }) {
       aria-labelledby="contact-heading"
     >
       {/* Grain clair + halo néon — réservés aux zones sombres */}
-      <div className="absolute inset-0 bg-noise-dark pointer-events-none" aria-hidden style={{ opacity: 0.5 }} />
+      <div className="absolute inset-0 bg-noise-dark pointer-events-none" aria-hidden style={{ opacity: 0.14 }} />
       <div
         className="absolute inset-0 pointer-events-none"
         aria-hidden

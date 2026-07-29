@@ -82,7 +82,7 @@
   --surface:       oklch(0.962 0.012 96);   /* #F5F3EA — fond de page */
   --surface-2:     oklch(0.989 0.005 96);   /* #FCFBF8 — cartes */
   --surface-3:     oklch(0.945 0.014 96);   /* #EFEDE3 — aplats secondaires */
-  --surface-alpha: oklch(0.962 0.012 96 / 82%);
+  --surface-alpha: oklch(0.962 0.012 96 / 93%);  /* en-tête au scroll — reste ivoire au-dessus des zones sombres */
 
   /* ── Encre ── */
   --ink:    oklch(0.195 0.004 95);   /* #151513 — titres, texte fort */

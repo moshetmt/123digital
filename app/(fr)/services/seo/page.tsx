@@ -92,12 +92,12 @@ const faqSchema = {
   })),
 }
 
-const sectionStyle = { padding: '4rem 1.5rem 6rem', borderTop: '1px solid rgba(225,224,204,0.06)' }
+const sectionStyle = { padding: '4rem 1.5rem 6rem', borderTop: '1px solid var(--line)' }
 const labelStyle = {
   fontSize: '0.65rem',
   letterSpacing: '0.14em',
   textTransform: 'uppercase' as const,
-  color: 'rgba(225,224,204,0.5)',
+  color: 'var(--ink-2)',
   fontWeight: 700,
   marginBottom: '1.5rem',
 }
@@ -112,29 +112,29 @@ export default function SeoPage() {
       ]} />
 
       {/* Hero */}
-      <section className="bg-black" style={{ padding: '9rem 1.5rem 6rem' }}>
+      <section className="bg-background" style={{ padding: '9rem 1.5rem 6rem' }}>
         <div className="mx-auto max-w-4xl">
-          <div className="flex items-center gap-2 mb-6" style={{ fontSize: '0.7rem', letterSpacing: '0.12em', textTransform: 'uppercase', color: 'rgba(225,224,204,0.7)', fontWeight: 700 }}>
-            <span className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: '#00FF87' }} />
+          <div className="flex items-center gap-2 mb-6" style={{ fontSize: '0.7rem', letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--ink-2)', fontWeight: 700 }}>
+            <span className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: 'var(--brand)' }} />
             Service · SEO & Référencement
           </div>
-          <h1 className="font-display font-normal mb-6" style={{ fontSize: 'clamp(2.4rem, 5vw, 5rem)', color: '#E1E0CC', lineHeight: 1.05, letterSpacing: '-0.025em' }}>
+          <h1 className="font-display font-normal mb-6" style={{ fontSize: 'clamp(2.4rem, 5vw, 5rem)', color: 'var(--ink)', lineHeight: 1.05, letterSpacing: '-0.025em' }}>
             SEO & Référencement naturel<br />
-            <span style={{ color: '#00FF87' }}>1ère page Google pour votre PME.</span>
+            <span style={{ color: 'var(--brand)' }}>1ère page Google pour votre PME.</span>
           </h1>
-          <p className="text-base leading-relaxed mb-4 max-w-2xl" style={{ color: 'rgba(225,224,204,0.65)' }}>
+          <p className="text-base leading-relaxed mb-4 max-w-2xl" style={{ color: 'var(--ink-2)' }}>
             Le premier résultat Google capte 32% des clics. Je positionne votre PME en tête
             des recherches de vos clients — trafic qualifié, durable, sans dépendre de la publicité.
           </p>
           <div className="flex items-center gap-3 mb-8">
-            <span className="text-2xl font-display font-bold" style={{ color: '#00FF87' }}>+150%</span>
-            <span className="text-sm" style={{ color: 'rgba(225,224,204,0.5)' }}>trafic organique moyen après 6 mois</span>
+            <span className="text-2xl font-display font-bold" style={{ color: 'var(--brand)' }}>+150%</span>
+            <span className="text-sm" style={{ color: 'var(--ink-2)' }}>trafic organique moyen après 6 mois</span>
           </div>
           <div className="flex gap-4 flex-wrap">
-            <Link href="/audit-gratuit" className="inline-flex items-center gap-2 rounded-full font-medium text-sm h-12 px-8" style={{ backgroundColor: '#DEDBC8', color: '#000' }}>
+            <Link href="/audit-gratuit" className="inline-flex items-center gap-2 rounded-full font-medium text-sm h-12 px-8" style={{ backgroundColor: 'var(--brand)', color: 'var(--on-brand)' }}>
               Audit SEO gratuit
             </Link>
-            <Link href="/services/creation-site-web" className="inline-flex items-center gap-2 rounded-full font-medium text-sm h-12 px-8 hover:border-[#00FF87] hover:text-[#00FF87] transition-colors" style={{ border: '1px solid rgba(225,224,204,0.2)', color: 'rgba(225,224,204,0.7)' }}>
+            <Link href="/services/creation-site-web" className="inline-flex items-center gap-2 rounded-full font-medium text-sm h-12 px-8 hover:border-[var(--brand)] hover:text-[var(--brand)] transition-colors" style={{ border: '1px solid var(--line)', color: 'var(--ink-2)' }}>
               Créer d&apos;abord votre site →
             </Link>
           </div>
@@ -142,18 +142,18 @@ export default function SeoPage() {
       </section>
 
       {/* Méthodologie */}
-      <section className="bg-black" style={{ ...sectionStyle, paddingTop: '0' }}>
+      <section className="bg-background" style={{ ...sectionStyle, paddingTop: '0' }}>
         <div className="mx-auto max-w-5xl">
           <div style={labelStyle}>Ma méthode SEO</div>
-          <h2 className="font-display font-normal mb-10" style={{ fontSize: 'clamp(1.6rem, 3vw, 2.5rem)', color: '#E1E0CC', letterSpacing: '-0.02em' }}>
+          <h2 className="font-display font-normal mb-10" style={{ fontSize: 'clamp(1.6rem, 3vw, 2.5rem)', color: 'var(--ink)', letterSpacing: '-0.02em' }}>
             Référencement naturel PME en 4 étapes
           </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-px" style={{ backgroundColor: 'rgba(225,224,204,0.06)' }}>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-px" style={{ backgroundColor: 'var(--line)' }}>
             {steps.map((s) => (
-              <div key={s.num} className="p-8" style={{ backgroundColor: '#080808' }}>
-                <div style={{ fontSize: '0.65rem', letterSpacing: '0.12em', color: '#00FF87', fontWeight: 700, marginBottom: '1rem' }}>{s.num}</div>
-                <h3 className="font-display font-normal mb-3" style={{ fontSize: '1.1rem', color: '#E1E0CC' }}>{s.title}</h3>
-                <p style={{ fontSize: '0.88rem', color: 'rgba(225,224,204,0.6)', lineHeight: 1.65 }}>{s.desc}</p>
+              <div key={s.num} className="p-8" style={{ backgroundColor: 'var(--surface-2)' }}>
+                <div style={{ fontSize: '0.65rem', letterSpacing: '0.12em', color: 'var(--brand)', fontWeight: 700, marginBottom: '1rem' }}>{s.num}</div>
+                <h3 className="font-display font-normal mb-3" style={{ fontSize: '1.1rem', color: 'var(--ink)' }}>{s.title}</h3>
+                <p style={{ fontSize: '0.88rem', color: 'var(--ink-2)', lineHeight: 1.65 }}>{s.desc}</p>
               </div>
             ))}
           </div>
@@ -161,10 +161,10 @@ export default function SeoPage() {
       </section>
 
       {/* Ce qui est inclus */}
-      <section className="bg-black" style={sectionStyle}>
+      <section className="bg-background" style={sectionStyle}>
         <div className="mx-auto max-w-5xl">
           <div style={labelStyle}>Ce qui est inclus</div>
-          <h2 className="font-display font-normal mb-10" style={{ fontSize: 'clamp(1.6rem, 3vw, 2.5rem)', color: '#E1E0CC', letterSpacing: '-0.02em' }}>
+          <h2 className="font-display font-normal mb-10" style={{ fontSize: 'clamp(1.6rem, 3vw, 2.5rem)', color: 'var(--ink)', letterSpacing: '-0.02em' }}>
             Un SEO PME complet, sans zone grise
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
@@ -176,12 +176,12 @@ export default function SeoPage() {
               { title: 'Netlinking qualitatif', desc: 'Liens entrants depuis des sources pertinentes et locales pour renforcer l\'autorité de votre domaine.' },
               { title: 'Rapport mensuel transparent', desc: 'Positions, trafic, leads — chiffres clairs, sans jargon, avec les actions du mois suivant.' },
             ].map((f) => (
-              <div key={f.title} className="rounded-2xl p-6" style={{ backgroundColor: '#212121', border: '1px solid rgba(255,255,255,0.05)' }}>
-                <div style={{ width: 28, height: 28, borderRadius: '50%', backgroundColor: 'rgba(0,255,135,0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '0.75rem', color: '#00FF87' }}>
+              <div key={f.title} className="rounded-2xl p-6" style={{ backgroundColor: 'var(--surface-2)', border: '1px solid var(--line)' }}>
+                <div style={{ width: 28, height: 28, borderRadius: '50%', backgroundColor: 'var(--brand-tint)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '0.75rem', color: 'var(--brand)' }}>
                   <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M20 6 9 17l-5-5" /></svg>
                 </div>
-                <h3 className="font-display font-normal text-base mb-2" style={{ color: '#E1E0CC' }}>{f.title}</h3>
-                <p className="text-sm leading-relaxed" style={{ color: '#9ca3af' }}>{f.desc}</p>
+                <h3 className="font-display font-normal text-base mb-2" style={{ color: 'var(--ink)' }}>{f.title}</h3>
+                <p className="text-sm leading-relaxed" style={{ color: 'var(--ink-2)' }}>{f.desc}</p>
               </div>
             ))}
           </div>
@@ -189,24 +189,24 @@ export default function SeoPage() {
       </section>
 
       {/* Tarifs */}
-      <section className="bg-black" style={sectionStyle}>
+      <section className="bg-background" style={sectionStyle}>
         <div className="mx-auto max-w-5xl">
           <div style={labelStyle}>Investissement</div>
-          <h2 className="font-display font-normal mb-4" style={{ fontSize: 'clamp(1.6rem, 3vw, 2.5rem)', color: '#E1E0CC', letterSpacing: '-0.02em' }}>
+          <h2 className="font-display font-normal mb-4" style={{ fontSize: 'clamp(1.6rem, 3vw, 2.5rem)', color: 'var(--ink)', letterSpacing: '-0.02em' }}>
             Combien coûte un accompagnement SEO pour une PME ?
           </h2>
-          <p className="mb-10 max-w-2xl" style={{ color: 'rgba(225,224,204,0.6)', fontSize: '0.95rem', lineHeight: 1.7 }}>
+          <p className="mb-10 max-w-2xl" style={{ color: 'var(--ink-2)', fontSize: '0.95rem', lineHeight: 1.7 }}>
             Un SEO sérieux ne s&apos;improvise pas en un mois. Les formules ci-dessous reflètent un
             investissement réaliste pour des résultats durables — pas du SEO au rabais qui disparaît
             à la prochaine mise à jour de Google.
           </p>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
             {pricingTiers.map((t) => (
-              <div key={t.label} className="rounded-2xl p-7" style={{ backgroundColor: '#212121', border: '1px solid rgba(255,255,255,0.05)' }}>
-                <div style={{ fontSize: '0.65rem', letterSpacing: '0.12em', textTransform: 'uppercase', color: '#00FF87', fontWeight: 700, marginBottom: '0.75rem' }}>{t.label}</div>
-                <div className="font-display font-normal mb-3" style={{ fontSize: '1.3rem', color: '#E1E0CC' }}>{t.price}</div>
-                <p className="text-sm leading-relaxed mb-4" style={{ color: '#9ca3af' }}>{t.desc}</p>
-                <div style={{ fontSize: '0.75rem', color: 'rgba(225,224,204,0.4)', fontWeight: 600 }}>{t.delay}</div>
+              <div key={t.label} className="rounded-2xl p-7" style={{ backgroundColor: 'var(--surface-2)', border: '1px solid var(--line)' }}>
+                <div style={{ fontSize: '0.65rem', letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--brand)', fontWeight: 700, marginBottom: '0.75rem' }}>{t.label}</div>
+                <div className="font-display font-normal mb-3" style={{ fontSize: '1.3rem', color: 'var(--ink)' }}>{t.price}</div>
+                <p className="text-sm leading-relaxed mb-4" style={{ color: 'var(--ink-2)' }}>{t.desc}</p>
+                <div style={{ fontSize: '0.75rem', color: 'var(--ink-3)', fontWeight: 600 }}>{t.delay}</div>
               </div>
             ))}
           </div>
@@ -214,17 +214,17 @@ export default function SeoPage() {
       </section>
 
       {/* FAQ */}
-      <section className="bg-black" style={sectionStyle}>
+      <section className="bg-background" style={sectionStyle}>
         <div className="mx-auto max-w-3xl">
           <div style={labelStyle}>Questions fréquentes</div>
-          <h2 className="font-display font-normal mb-10" style={{ fontSize: 'clamp(1.6rem, 3vw, 2.5rem)', color: '#E1E0CC', letterSpacing: '-0.02em' }}>
+          <h2 className="font-display font-normal mb-10" style={{ fontSize: 'clamp(1.6rem, 3vw, 2.5rem)', color: 'var(--ink)', letterSpacing: '-0.02em' }}>
             SEO pour PME — vos questions
           </h2>
           <dl className="space-y-8">
             {faqs.map(({ question, answer }, i) => (
-              <div key={i} style={{ borderTop: '1px solid rgba(225,224,204,0.08)', paddingTop: '2rem' }}>
-                <dt className="font-display font-normal mb-3" style={{ fontSize: '1.05rem', color: '#E1E0CC' }}>{question}</dt>
-                <dd style={{ color: 'rgba(225,224,204,0.65)', lineHeight: 1.75, fontSize: '0.95rem' }}>{answer}</dd>
+              <div key={i} style={{ borderTop: '1px solid var(--line)', paddingTop: '2rem' }}>
+                <dt className="font-display font-normal mb-3" style={{ fontSize: '1.05rem', color: 'var(--ink)' }}>{question}</dt>
+                <dd style={{ color: 'var(--ink-2)', lineHeight: 1.75, fontSize: '0.95rem' }}>{answer}</dd>
               </div>
             ))}
           </dl>
@@ -232,7 +232,7 @@ export default function SeoPage() {
       </section>
 
       {/* Pour aller plus loin */}
-      <section className="bg-black" style={{ ...sectionStyle, paddingBottom: '3rem' }}>
+      <section className="bg-background" style={{ ...sectionStyle, paddingBottom: '3rem' }}>
         <div className="mx-auto max-w-5xl">
           <div style={labelStyle}>Pour aller plus loin</div>
           <div className="flex flex-wrap gap-3">
@@ -245,8 +245,8 @@ export default function SeoPage() {
               <Link
                 key={link.href}
                 href={link.href}
-                className="hover:text-[#00FF87] hover:border-[#00FF87] transition-colors"
-                style={{ padding: '0.5rem 1rem', border: '1px solid rgba(225,224,204,0.12)', color: 'rgba(225,224,204,0.6)', fontSize: '0.82rem', borderRadius: '0.25rem' }}
+                className="hover:text-[var(--brand)] hover:border-[var(--brand)] transition-colors"
+                style={{ padding: '0.5rem 1rem', border: '1px solid var(--line)', color: 'var(--ink-2)', fontSize: '0.82rem', borderRadius: '0.25rem' }}
               >
                 {link.label}
               </Link>
@@ -256,13 +256,13 @@ export default function SeoPage() {
       </section>
 
       {/* CTA final */}
-      <section className="bg-black" style={{ padding: '4rem 1.5rem 7rem', borderTop: '1px solid rgba(225,224,204,0.06)', textAlign: 'center' }}>
+      <section className="bg-background" style={{ padding: '4rem 1.5rem 7rem', borderTop: '1px solid var(--line)', textAlign: 'center' }}>
         <div className="mx-auto max-w-2xl">
-          <h2 className="font-display font-normal mb-4" style={{ fontSize: 'clamp(1.8rem, 4vw, 3rem)', color: '#E1E0CC', letterSpacing: '-0.025em' }}>
+          <h2 className="font-display font-normal mb-4" style={{ fontSize: 'clamp(1.8rem, 4vw, 3rem)', color: 'var(--ink)', letterSpacing: '-0.025em' }}>
             Prêt à dépasser vos concurrents<br />sur Google ?
           </h2>
-          <p className="text-sm mb-8" style={{ color: 'rgba(225,224,204,0.5)' }}>Audit gratuit · Résultats en 3 à 6 mois · Reporting mensuel transparent</p>
-          <Link href="/audit-gratuit" className="inline-flex items-center gap-2 rounded-full font-medium text-sm h-12 px-8" style={{ backgroundColor: '#DEDBC8', color: '#000' }}>
+          <p className="text-sm mb-8" style={{ color: 'var(--ink-2)' }}>Audit gratuit · Résultats en 3 à 6 mois · Reporting mensuel transparent</p>
+          <Link href="/audit-gratuit" className="inline-flex items-center gap-2 rounded-full font-medium text-sm h-12 px-8" style={{ backgroundColor: 'var(--brand)', color: 'var(--on-brand)' }}>
             Demander mon audit SEO gratuit
           </Link>
         </div>

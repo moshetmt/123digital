@@ -126,7 +126,7 @@ export default function AuditGratuitPage() {
       <JsonLd schema={schemas} />
 
       {/* Hero */}
-      <section className="bg-black" style={{ padding: '9rem 1.5rem 6rem' }}>
+      <section className="bg-background" style={{ padding: '9rem 1.5rem 6rem' }}>
         <div className="mx-auto max-w-5xl">
           <div className="mb-6">
             <Breadcrumb
@@ -143,11 +143,11 @@ export default function AuditGratuitPage() {
               fontSize: '0.7rem',
               letterSpacing: '0.12em',
               textTransform: 'uppercase',
-              color: 'rgba(225,224,204,0.7)',
+              color: 'var(--ink-2)',
               fontWeight: 700,
             }}
           >
-            <span className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: '#00FF87' }} />
+            <span className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: 'var(--brand)' }} />
             Gratuit · Sans engagement · 30 minutes
           </div>
 
@@ -155,7 +155,7 @@ export default function AuditGratuitPage() {
             className="font-display font-normal mb-6"
             style={{
               fontSize: 'clamp(2.6rem, 5vw, 5rem)',
-              color: '#E1E0CC',
+              color: 'var(--ink)',
               lineHeight: 1.05,
               letterSpacing: '-0.025em',
             }}
@@ -163,7 +163,7 @@ export default function AuditGratuitPage() {
             Votre audit digital<br />
             <em
               style={{
-                color: '#00FF87',
+                color: 'var(--brand)',
                 fontStyle: 'italic',
                 fontFamily: 'var(--font-serif)',
               }}
@@ -174,14 +174,14 @@ export default function AuditGratuitPage() {
 
           <p
             className="text-base leading-relaxed mb-4 max-w-2xl"
-            style={{ color: 'rgba(225,224,204,0.65)' }}
+            style={{ color: 'var(--ink-2)' }}
           >
             En 30 minutes, j&apos;identifie pourquoi votre site ne génère pas autant de clients qu&apos;il le devrait — et je vous donne les 3 actions prioritaires pour changer ça. Analyse concrète, pas de discours commercial.
           </p>
 
           <div
             className="flex flex-wrap gap-4 mb-8"
-            style={{ fontSize: '0.8rem', color: 'rgba(225,224,204,0.5)' }}
+            style={{ fontSize: '0.8rem', color: 'var(--ink-2)' }}
           >
             {['✓ Aucune carte bancaire', '✓ Pas de relance commerciale', '✓ Résultats actionnables'].map((item) => (
               <span key={item}>{item}</span>
@@ -192,18 +192,18 @@ export default function AuditGratuitPage() {
           <div
             className="p-8 mb-8"
             style={{
-              backgroundColor: 'rgba(0,255,135,0.05)',
-              border: '1px solid rgba(0,255,135,0.2)',
+              backgroundColor: 'var(--brand-tint)',
+              border: '1px solid var(--brand-line)',
               maxWidth: '480px',
             }}
           >
             <p
               className="font-display font-normal mb-6"
-              style={{ fontSize: '1.2rem', color: '#E1E0CC' }}
+              style={{ fontSize: '1.2rem', color: 'var(--ink)' }}
             >
               Démarrez votre audit par téléphone
             </p>
-            <p style={{ fontSize: '0.85rem', color: 'rgba(225,224,204,0.6)', marginBottom: '1.5rem', lineHeight: 1.6 }}>
+            <p style={{ fontSize: '0.85rem', color: 'var(--ink-2)', marginBottom: '1.5rem', lineHeight: 1.6 }}>
               Un appel de 30 minutes suffit. Je prépare l&apos;analyse de votre site avant l&apos;échange.
             </p>
             <a
@@ -215,8 +215,8 @@ export default function AuditGratuitPage() {
                 justifyContent: 'center',
                 gap: '8px',
                 width: '100%',
-                backgroundColor: '#00FF87',
-                color: '#080808',
+                backgroundColor: 'var(--brand)',
+                color: 'var(--ink)',
                 fontFamily: 'var(--font-heading)',
                 fontWeight: 600,
                 fontSize: '0.95rem',
@@ -227,17 +227,17 @@ export default function AuditGratuitPage() {
             >
               📞 Appeler maintenant
             </a>
-            <p style={{ fontSize: '0.75rem', color: 'rgba(225,224,204,0.35)', marginTop: '0.75rem', textAlign: 'center' }}>
+            <p style={{ fontSize: '0.75rem', color: 'var(--ink-3)', marginTop: '0.75rem', textAlign: 'center' }}>
               +33 6 52 09 23 01 — disponible en semaine
             </p>
           </div>
 
-          <p style={{ fontSize: '0.82rem', color: 'rgba(225,224,204,0.4)' }}>
+          <p style={{ fontSize: '0.82rem', color: 'var(--ink-3)' }}>
             Ou écrivez-moi directement :{' '}
             <Link
               href="mailto:contact@123digital.fr"
-              className="hover:text-[#00FF87] transition-colors"
-              style={{ color: 'rgba(225,224,204,0.55)', textDecoration: 'underline' }}
+              className="hover:text-[var(--brand)] transition-colors"
+              style={{ color: 'var(--ink-2)', textDecoration: 'underline' }}
             >
               contact@123digital.fr
             </Link>
@@ -247,8 +247,8 @@ export default function AuditGratuitPage() {
 
       {/* Ce que j'analyse */}
       <section
-        className="bg-black"
-        style={{ padding: '4rem 1.5rem 6rem', borderTop: '1px solid rgba(225,224,204,0.06)' }}
+        className="bg-background"
+        style={{ padding: '4rem 1.5rem 6rem', borderTop: '1px solid var(--line)' }}
       >
         <div className="mx-auto max-w-5xl">
           <div
@@ -256,7 +256,7 @@ export default function AuditGratuitPage() {
               fontSize: '0.65rem',
               letterSpacing: '0.14em',
               textTransform: 'uppercase',
-              color: 'rgba(225,224,204,0.5)',
+              color: 'var(--ink-2)',
               fontWeight: 700,
               marginBottom: '1.5rem',
             }}
@@ -265,30 +265,30 @@ export default function AuditGratuitPage() {
           </div>
           <h2
             className="font-display font-normal mb-10"
-            style={{ fontSize: 'clamp(1.8rem, 3vw, 2.6rem)', color: '#E1E0CC', lineHeight: 1.1 }}
+            style={{ fontSize: 'clamp(1.8rem, 3vw, 2.6rem)', color: 'var(--ink)', lineHeight: 1.1 }}
           >
             Une analyse complète<br />
-            <span style={{ color: 'rgba(225,224,204,0.5)' }}>en 30 minutes.</span>
+            <span style={{ color: 'var(--ink-2)' }}>en 30 minutes.</span>
           </h2>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-px" style={{ backgroundColor: 'rgba(225,224,204,0.06)' }}>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-px" style={{ backgroundColor: 'var(--line)' }}>
             {ceQueJanalysee.map((bloc) => (
               <div
                 key={bloc.titre}
                 className="p-8"
-                style={{ backgroundColor: '#080808' }}
+                style={{ backgroundColor: 'var(--surface-2)' }}
               >
                 <h3
                   className="font-display font-normal mb-4"
-                  style={{ fontSize: '1.1rem', color: '#00FF87' }}
+                  style={{ fontSize: '1.1rem', color: 'var(--brand)' }}
                 >
                   {bloc.titre}
                 </h3>
                 <ul className="space-y-2">
                   {bloc.points.map((point, i) => (
                     <li key={i} className="flex items-start gap-2">
-                      <span style={{ color: 'rgba(225,224,204,0.3)', flexShrink: 0, marginTop: '0.1rem' }}>—</span>
-                      <span style={{ fontSize: '0.87rem', color: 'rgba(225,224,204,0.6)', lineHeight: 1.5 }}>
+                      <span style={{ color: 'var(--ink-3)', flexShrink: 0, marginTop: '0.1rem' }}>—</span>
+                      <span style={{ fontSize: '0.87rem', color: 'var(--ink-2)', lineHeight: 1.5 }}>
                         {point}
                       </span>
                     </li>
@@ -302,8 +302,8 @@ export default function AuditGratuitPage() {
 
       {/* Simulateur interactif */}
       <section
-        className="bg-black"
-        style={{ padding: '4rem 1.5rem', borderTop: '1px solid rgba(225,224,204,0.06)' }}
+        className="bg-background"
+        style={{ padding: '4rem 1.5rem', borderTop: '1px solid var(--line)' }}
       >
         <div className="mx-auto max-w-5xl">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
@@ -313,7 +313,7 @@ export default function AuditGratuitPage() {
                   fontSize: '0.65rem',
                   letterSpacing: '0.14em',
                   textTransform: 'uppercase',
-                  color: 'rgba(225,224,204,0.5)',
+                  color: 'var(--ink-2)',
                   fontWeight: 700,
                   marginBottom: '1.5rem',
                 }}
@@ -322,11 +322,11 @@ export default function AuditGratuitPage() {
               </div>
               <h2
                 className="font-display font-normal mb-4"
-                style={{ fontSize: 'clamp(1.6rem, 3vw, 2.2rem)', color: '#E1E0CC', lineHeight: 1.1 }}
+                style={{ fontSize: 'clamp(1.6rem, 3vw, 2.2rem)', color: 'var(--ink)', lineHeight: 1.1 }}
               >
                 Trouvez votre stratégie<br />en 3 questions.
               </h2>
-              <p style={{ fontSize: '0.88rem', color: 'rgba(225,224,204,0.55)', lineHeight: 1.7 }}>
+              <p style={{ fontSize: '0.88rem', color: 'var(--ink-2)', lineHeight: 1.7 }}>
                 Répondez à 3 questions rapides sur votre situation — vous obtiendrez une recommandation personnalisée avant même de me parler.
               </p>
             </div>
@@ -339,8 +339,8 @@ export default function AuditGratuitPage() {
 
       {/* Les 4 étapes */}
       <section
-        className="bg-black"
-        style={{ padding: '4rem 1.5rem 6rem', borderTop: '1px solid rgba(225,224,204,0.06)' }}
+        className="bg-background"
+        style={{ padding: '4rem 1.5rem 6rem', borderTop: '1px solid var(--line)' }}
       >
         <div className="mx-auto max-w-5xl">
           <div
@@ -348,7 +348,7 @@ export default function AuditGratuitPage() {
               fontSize: '0.65rem',
               letterSpacing: '0.14em',
               textTransform: 'uppercase',
-              color: 'rgba(225,224,204,0.5)',
+              color: 'var(--ink-2)',
               fontWeight: 700,
               marginBottom: '1.5rem',
             }}
@@ -357,24 +357,24 @@ export default function AuditGratuitPage() {
           </div>
           <h2
             className="font-display font-normal mb-10"
-            style={{ fontSize: 'clamp(1.8rem, 3vw, 2.6rem)', color: '#E1E0CC', lineHeight: 1.1 }}
+            style={{ fontSize: 'clamp(1.8rem, 3vw, 2.6rem)', color: 'var(--ink)', lineHeight: 1.1 }}
           >
             De la réservation<br />
-            <span style={{ color: 'rgba(225,224,204,0.5)' }}>au plan d&apos;action.</span>
+            <span style={{ color: 'var(--ink-2)' }}>au plan d&apos;action.</span>
           </h2>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-px" style={{ backgroundColor: 'rgba(225,224,204,0.06)' }}>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-px" style={{ backgroundColor: 'var(--line)' }}>
             {etapes.map((etape) => (
               <div
                 key={etape.num}
                 className="p-8"
-                style={{ backgroundColor: '#080808' }}
+                style={{ backgroundColor: 'var(--surface-2)' }}
               >
                 <div
                   style={{
                     fontSize: '0.65rem',
                     letterSpacing: '0.12em',
-                    color: 'rgba(225,224,204,0.3)',
+                    color: 'var(--ink-3)',
                     fontWeight: 700,
                     marginBottom: '1rem',
                   }}
@@ -383,11 +383,11 @@ export default function AuditGratuitPage() {
                 </div>
                 <h3
                   className="font-display font-normal mb-3"
-                  style={{ fontSize: '1.1rem', color: '#E1E0CC' }}
+                  style={{ fontSize: '1.1rem', color: 'var(--ink)' }}
                 >
                   {etape.titre}
                 </h3>
-                <p style={{ fontSize: '0.88rem', color: 'rgba(225,224,204,0.6)', lineHeight: 1.65 }}>
+                <p style={{ fontSize: '0.88rem', color: 'var(--ink-2)', lineHeight: 1.65 }}>
                   {etape.desc}
                 </p>
               </div>
@@ -398,8 +398,8 @@ export default function AuditGratuitPage() {
 
       {/* FAQ */}
       <section
-        className="bg-black"
-        style={{ padding: '4rem 1.5rem 6rem', borderTop: '1px solid rgba(225,224,204,0.06)' }}
+        className="bg-background"
+        style={{ padding: '4rem 1.5rem 6rem', borderTop: '1px solid var(--line)' }}
       >
         <div className="mx-auto max-w-3xl">
           <div
@@ -407,7 +407,7 @@ export default function AuditGratuitPage() {
               fontSize: '0.65rem',
               letterSpacing: '0.14em',
               textTransform: 'uppercase',
-              color: 'rgba(225,224,204,0.5)',
+              color: 'var(--ink-2)',
               fontWeight: 700,
               marginBottom: '1.5rem',
             }}
@@ -416,17 +416,17 @@ export default function AuditGratuitPage() {
           </div>
           <h2
             className="font-display font-normal mb-10"
-            style={{ fontSize: 'clamp(1.8rem, 3vw, 2.6rem)', color: '#E1E0CC', lineHeight: 1.1 }}
+            style={{ fontSize: 'clamp(1.8rem, 3vw, 2.6rem)', color: 'var(--ink)', lineHeight: 1.1 }}
           >
             Tout ce que vous voulez savoir<br />sur l&apos;audit gratuit
           </h2>
           <dl className="space-y-8">
             {faqs.map(({ q, a }, i) => (
-              <div key={i} style={{ borderTop: '1px solid rgba(225,224,204,0.08)', paddingTop: '2rem' }}>
-                <dt className="font-display font-normal mb-3" style={{ fontSize: '1.05rem', color: '#E1E0CC' }}>
+              <div key={i} style={{ borderTop: '1px solid var(--line)', paddingTop: '2rem' }}>
+                <dt className="font-display font-normal mb-3" style={{ fontSize: '1.05rem', color: 'var(--ink)' }}>
                   {q}
                 </dt>
-                <dd style={{ color: 'rgba(225,224,204,0.65)', lineHeight: 1.75, fontSize: '0.95rem' }}>
+                <dd style={{ color: 'var(--ink-2)', lineHeight: 1.75, fontSize: '0.95rem' }}>
                   {a}
                 </dd>
               </div>
@@ -437,17 +437,17 @@ export default function AuditGratuitPage() {
 
       {/* CTA final */}
       <section
-        className="bg-black"
-        style={{ padding: '4rem 1.5rem 6rem', borderTop: '1px solid rgba(225,224,204,0.06)', textAlign: 'center' }}
+        className="bg-background"
+        style={{ padding: '4rem 1.5rem 6rem', borderTop: '1px solid var(--line)', textAlign: 'center' }}
       >
         <div className="mx-auto max-w-2xl">
           <h2
             className="font-display font-normal mb-4"
-            style={{ fontSize: 'clamp(1.8rem, 3.5vw, 2.8rem)', color: '#E1E0CC', lineHeight: 1.1 }}
+            style={{ fontSize: 'clamp(1.8rem, 3.5vw, 2.8rem)', color: 'var(--ink)', lineHeight: 1.1 }}
           >
             Prêt à savoir ce qui bloque<br />votre croissance ?
           </h2>
-          <p style={{ color: 'rgba(225,224,204,0.6)', marginBottom: '2.5rem', lineHeight: 1.7 }}>
+          <p style={{ color: 'var(--ink-2)', marginBottom: '2.5rem', lineHeight: 1.7 }}>
             30 minutes. Gratuit. Sans jargon. Avec un plan d&apos;action concret à la fin.
           </p>
           <a
@@ -457,8 +457,8 @@ export default function AuditGratuitPage() {
               display: 'inline-flex',
               alignItems: 'center',
               gap: '8px',
-              backgroundColor: '#00FF87',
-              color: '#080808',
+              backgroundColor: 'var(--brand)',
+              color: 'var(--ink)',
               fontFamily: 'var(--font-heading)',
               fontWeight: 600,
               fontSize: '1rem',

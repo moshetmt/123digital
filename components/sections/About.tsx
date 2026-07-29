@@ -145,7 +145,7 @@ export function About({ lang = 'fr' }: { lang?: Locale }) {
   return (
     <section
       id="apropos"
-      className="bg-black"
+      className="bg-background"
       style={{ padding: '7rem 1.5rem' }}
       aria-labelledby="about-heading"
     >
@@ -156,7 +156,7 @@ export function About({ lang = 'fr' }: { lang?: Locale }) {
         transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
         className="relative overflow-hidden mx-auto text-center"
         style={{
-          backgroundColor: '#101010',
+          backgroundColor: 'var(--surface-2)',
           borderRadius: '2rem',
           maxWidth: '1280px',
           padding: 'clamp(3.5rem, 6vw, 5rem) clamp(1.5rem, 4vw, 2rem)',
@@ -166,15 +166,15 @@ export function About({ lang = 'fr' }: { lang?: Locale }) {
         <div
           className="absolute inset-0 pointer-events-none"
           aria-hidden
-          style={{ background: 'radial-gradient(circle at 50% 0%, rgba(0,255,135,0.04), transparent 50%)' }}
+          style={{ background: 'radial-gradient(circle at 50% 0%, var(--brand-tint), transparent 50%)' }}
         />
 
         {/* Eyebrow */}
         <div
           className="relative flex items-center justify-center gap-2 mb-8"
-          style={{ fontSize: '0.7rem', letterSpacing: '0.12em', textTransform: 'uppercase', color: 'rgba(225,224,204,0.7)', fontWeight: 700 }}
+          style={{ fontSize: '0.7rem', letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--ink-2)', fontWeight: 700 }}
         >
-          <span className="w-1.5 h-1.5 rounded-full shrink-0" style={{ backgroundColor: '#00FF87' }} aria-hidden />
+          <span className="w-1.5 h-1.5 rounded-full shrink-0" style={{ backgroundColor: 'var(--brand)' }} aria-hidden />
           {lang === 'en' ? 'Digital Growth Expert' : 'Expert croissance digitale'}
         </div>
 
@@ -186,19 +186,19 @@ export function About({ lang = 'fr' }: { lang?: Locale }) {
             fontSize: 'clamp(1.8rem, 4.2vw, 3.6rem)',
             lineHeight: 1.0,
             letterSpacing: '-0.025em',
-            color: '#E1E0CC',
+            color: 'var(--ink)',
             maxWidth: '24ch',
           }}
         >
           <WordsPullUpMultiStyle
             segments={lang === 'en' ? [
-              { text: "I'm Maurice Timsit,",                  style: { color: '#E1E0CC' } },
-              { text: 'digital consultant in Lyon.',           style: { color: '#E1E0CC' }, serif: true },
-              { text: 'I build systems that attract traffic, convert visitors and grow your results over time.', style: { color: '#E1E0CC' } },
+              { text: "I'm Maurice Timsit,",                  style: { color: 'var(--ink)' } },
+              { text: 'digital consultant in Lyon.',           style: { color: 'var(--ink)' }, serif: true },
+              { text: 'I build systems that attract traffic, convert visitors and grow your results over time.', style: { color: 'var(--ink)' } },
             ] : [
-              { text: 'Je suis Maurice Timsit,',              style: { color: '#E1E0CC' } },
-              { text: 'consultant digital à Lyon.',            style: { color: '#E1E0CC' }, serif: true },
-              { text: 'Je construis des systèmes qui attirent du trafic, convertissent des visiteurs et optimisent vos résultats dans le temps.', style: { color: '#E1E0CC' } },
+              { text: 'Je suis Maurice Timsit,',              style: { color: 'var(--ink)' } },
+              { text: 'consultant digital à Lyon.',            style: { color: 'var(--ink)' }, serif: true },
+              { text: 'Je construis des systèmes qui attirent du trafic, convertissent des visiteurs et optimisent vos résultats dans le temps.', style: { color: 'var(--ink)' } },
             ]}
             delay={0.1}
           />
@@ -208,7 +208,7 @@ export function About({ lang = 'fr' }: { lang?: Locale }) {
         <ScrollRevealText
           text={d.body}
           style={{
-            color: '#DEDBC8',
+            color: 'var(--ink)',
             fontSize: '0.95rem',
             lineHeight: 1.7,
             maxWidth: '56ch',
@@ -219,22 +219,22 @@ export function About({ lang = 'fr' }: { lang?: Locale }) {
         {/* Meta pills */}
         <div
           className="relative inline-flex items-center gap-6 flex-wrap justify-center"
-          style={{ padding: '0.75rem 1.5rem', border: '1px solid rgba(225,224,204,0.08)', borderRadius: '999px' }}
+          style={{ padding: '0.75rem 1.5rem', border: '1px solid var(--line)', borderRadius: '999px' }}
         >
           {meta.map((m, i) => (
             <div key={m.label} className="flex items-center gap-6">
               <div className="flex flex-col gap-0.5 text-left">
-                <span style={{ fontSize: '0.6rem', letterSpacing: '0.12em', textTransform: 'uppercase', color: 'rgba(225,224,204,0.4)' }}>
+                <span style={{ fontSize: '0.6rem', letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--ink-3)' }}>
                   {m.label}
                 </span>
-                <span style={{ fontSize: '0.8rem', color: '#E1E0CC', fontWeight: 700 }}>
+                <span style={{ fontSize: '0.8rem', color: 'var(--ink)', fontWeight: 700 }}>
                   {m.value}
                 </span>
               </div>
               {i < meta.length - 1 && (
                 <div
                   className="hidden sm:block"
-                  style={{ width: 1, height: 24, backgroundColor: 'rgba(225,224,204,0.1)' }}
+                  style={{ width: 1, height: 24, backgroundColor: 'var(--line-strong)' }}
                   aria-hidden
                 />
               )}

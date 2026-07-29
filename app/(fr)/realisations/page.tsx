@@ -38,7 +38,7 @@ export default function PortfolioPage() {
       <JsonLd schema={schemas} />
 
       {/* Hero */}
-      <section className="bg-black" style={{ padding: '9rem 1.5rem 6rem' }}>
+      <section className="bg-background" style={{ padding: '9rem 1.5rem 6rem' }}>
         <div className="mx-auto max-w-5xl">
           <div className="mb-6">
             <Breadcrumb
@@ -55,11 +55,11 @@ export default function PortfolioPage() {
               fontSize: '0.7rem',
               letterSpacing: '0.12em',
               textTransform: 'uppercase',
-              color: 'rgba(225,224,204,0.7)',
+              color: 'var(--ink-2)',
               fontWeight: 700,
             }}
           >
-            <span className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: '#00FF87' }} />
+            <span className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: 'var(--brand)' }} />
             Réalisations clients
           </div>
 
@@ -67,7 +67,7 @@ export default function PortfolioPage() {
             className="font-display font-normal mb-6"
             style={{
               fontSize: 'clamp(2.6rem, 5vw, 5rem)',
-              color: '#E1E0CC',
+              color: 'var(--ink)',
               lineHeight: 1.05,
               letterSpacing: '-0.025em',
             }}
@@ -75,7 +75,7 @@ export default function PortfolioPage() {
             Des résultats,<br />
             <em
               style={{
-                color: '#00FF87',
+                color: 'var(--brand)',
                 fontStyle: 'italic',
                 fontFamily: 'var(--font-serif)',
               }}
@@ -86,7 +86,7 @@ export default function PortfolioPage() {
 
           <p
             className="text-base leading-relaxed max-w-2xl"
-            style={{ color: 'rgba(225,224,204,0.65)' }}
+            style={{ color: 'var(--ink-2)' }}
           >
             Chaque projet présenté ici est un vrai cas client, avec de vraies métriques. Pas de captures d&apos;écran retouchées, pas de résultats exceptionnels non reproductibles.
           </p>
@@ -95,8 +95,8 @@ export default function PortfolioPage() {
 
       {/* Stats */}
       <section
-        className="bg-black"
-        style={{ padding: '3rem 1.5rem', borderTop: '1px solid rgba(225,224,204,0.06)' }}
+        className="bg-background"
+        style={{ padding: '3rem 1.5rem', borderTop: '1px solid var(--line)' }}
       >
         <div className="mx-auto max-w-5xl">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
@@ -104,11 +104,11 @@ export default function PortfolioPage() {
               <div key={label} className="text-center">
                 <div
                   className="font-display font-normal mb-2"
-                  style={{ fontSize: 'clamp(2rem, 4vw, 3rem)', color: '#00FF87', lineHeight: 1 }}
+                  style={{ fontSize: 'clamp(2rem, 4vw, 3rem)', color: 'var(--brand)', lineHeight: 1 }}
                 >
                   {chiffre}
                 </div>
-                <div style={{ fontSize: '0.78rem', color: 'rgba(225,224,204,0.55)', letterSpacing: '0.06em', textTransform: 'uppercase' }}>
+                <div style={{ fontSize: '0.78rem', color: 'var(--ink-2)', letterSpacing: '0.06em', textTransform: 'uppercase' }}>
                   {label}
                 </div>
               </div>
@@ -119,16 +119,16 @@ export default function PortfolioPage() {
 
       {/* Projets */}
       <section
-        className="bg-black"
-        style={{ padding: '4rem 1.5rem 6rem', borderTop: '1px solid rgba(225,224,204,0.06)' }}
+        className="bg-background"
+        style={{ padding: '4rem 1.5rem 6rem', borderTop: '1px solid var(--line)' }}
       >
         <div className="mx-auto max-w-5xl">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-px" style={{ backgroundColor: 'rgba(225,224,204,0.06)' }}>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-px" style={{ backgroundColor: 'var(--line)' }}>
             {projects.map((project) => (
               <div
                 key={project.id}
                 className="p-8"
-                style={{ backgroundColor: '#080808' }}
+                style={{ backgroundColor: 'var(--surface-2)' }}
               >
                 <div className="flex items-start justify-between mb-4 gap-4">
                   <div>
@@ -137,7 +137,7 @@ export default function PortfolioPage() {
                         fontSize: '0.65rem',
                         letterSpacing: '0.12em',
                         textTransform: 'uppercase',
-                        color: '#00FF87',
+                        color: 'var(--brand)',
                         fontWeight: 700,
                         marginBottom: '0.4rem',
                       }}
@@ -146,7 +146,7 @@ export default function PortfolioPage() {
                     </div>
                     <h2
                       className="font-display font-normal"
-                      style={{ fontSize: '1.25rem', color: '#E1E0CC', lineHeight: 1.2 }}
+                      style={{ fontSize: '1.25rem', color: 'var(--ink)', lineHeight: 1.2 }}
                     >
                       {project.title}
                     </h2>
@@ -154,8 +154,8 @@ export default function PortfolioPage() {
                   <div
                     style={{
                       padding: '0.25rem 0.7rem',
-                      border: '1px solid rgba(225,224,204,0.12)',
-                      color: 'rgba(225,224,204,0.45)',
+                      border: '1px solid var(--line)',
+                      color: 'var(--ink-2)',
                       fontSize: '0.7rem',
                       flexShrink: 0,
                     }}
@@ -164,7 +164,7 @@ export default function PortfolioPage() {
                   </div>
                 </div>
 
-                <p style={{ fontSize: '0.88rem', color: 'rgba(225,224,204,0.6)', lineHeight: 1.65, marginBottom: '1.2rem' }}>
+                <p style={{ fontSize: '0.88rem', color: 'var(--ink-2)', lineHeight: 1.65, marginBottom: '1.2rem' }}>
                   {project.description}
                 </p>
 
@@ -172,7 +172,7 @@ export default function PortfolioPage() {
                   className="font-display font-normal"
                   style={{
                     fontSize: '1rem',
-                    color: '#00FF87',
+                    color: 'var(--brand)',
                     marginBottom: '1rem',
                   }}
                 >
@@ -185,9 +185,9 @@ export default function PortfolioPage() {
                       key={tag}
                       style={{
                         padding: '0.2rem 0.6rem',
-                        backgroundColor: 'rgba(225,224,204,0.05)',
-                        border: '1px solid rgba(225,224,204,0.08)',
-                        color: 'rgba(225,224,204,0.4)',
+                        backgroundColor: 'var(--surface-3)',
+                        border: '1px solid var(--line)',
+                        color: 'var(--ink-3)',
                         fontSize: '0.72rem',
                       }}
                     >
@@ -203,7 +203,7 @@ export default function PortfolioPage() {
               href="/audit-gratuit"
               className="group block p-8"
               style={{
-                backgroundColor: '#080808',
+                backgroundColor: 'var(--surface-2)',
                 borderTop: 'none',
               }}
             >
@@ -215,11 +215,11 @@ export default function PortfolioPage() {
                   style={{
                     width: '48px',
                     height: '48px',
-                    border: '1px solid rgba(0,255,135,0.3)',
+                    border: '1px solid var(--brand-line)',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    color: '#00FF87',
+                    color: 'var(--brand)',
                     fontSize: '1.5rem',
                   }}
                 >
@@ -227,12 +227,12 @@ export default function PortfolioPage() {
                 </div>
                 <div>
                   <div
-                    className="font-display font-normal mb-2 group-hover:text-[#00FF87] transition-colors"
-                    style={{ fontSize: '1.1rem', color: '#E1E0CC' }}
+                    className="font-display font-normal mb-2 group-hover:text-[var(--brand)] transition-colors"
+                    style={{ fontSize: '1.1rem', color: 'var(--ink)' }}
                   >
                     Votre projet ici
                   </div>
-                  <div style={{ fontSize: '0.82rem', color: 'rgba(225,224,204,0.45)' }}>
+                  <div style={{ fontSize: '0.82rem', color: 'var(--ink-2)' }}>
                     Audit gratuit 30 min →
                   </div>
                 </div>
@@ -244,17 +244,17 @@ export default function PortfolioPage() {
 
       {/* CTA */}
       <section
-        className="bg-black"
-        style={{ padding: '4rem 1.5rem 6rem', borderTop: '1px solid rgba(225,224,204,0.06)', textAlign: 'center' }}
+        className="bg-background"
+        style={{ padding: '4rem 1.5rem 6rem', borderTop: '1px solid var(--line)', textAlign: 'center' }}
       >
         <div className="mx-auto max-w-2xl">
           <h2
             className="font-display font-normal mb-4"
-            style={{ fontSize: 'clamp(1.8rem, 3.5vw, 2.8rem)', color: '#E1E0CC', lineHeight: 1.1 }}
+            style={{ fontSize: 'clamp(1.8rem, 3.5vw, 2.8rem)', color: 'var(--ink)', lineHeight: 1.1 }}
           >
             Votre entreprise pourrait<br />être dans cette liste.
           </h2>
-          <p style={{ color: 'rgba(225,224,204,0.6)', marginBottom: '2.5rem', lineHeight: 1.7 }}>
+          <p style={{ color: 'var(--ink-2)', marginBottom: '2.5rem', lineHeight: 1.7 }}>
             Un audit gratuit de 30 minutes pour commencer. Pas de jargon, pas de promesses irréalistes — juste un plan d&apos;action adapté à votre situation.
           </p>
           <Link
@@ -262,8 +262,8 @@ export default function PortfolioPage() {
             style={{
               display: 'inline-block',
               padding: '1rem 2.5rem',
-              backgroundColor: '#00FF87',
-              color: '#080808',
+              backgroundColor: 'var(--brand)',
+              color: 'var(--ink)',
               fontSize: '0.85rem',
               fontWeight: 700,
               letterSpacing: '0.08em',

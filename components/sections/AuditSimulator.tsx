@@ -128,8 +128,8 @@ export function AuditSimulator() {
   return (
     <div
       style={{
-        backgroundColor: '#0d0d0d',
-        border: '1px solid rgba(225,224,204,0.08)',
+        backgroundColor: 'var(--surface-2)',
+        border: '1px solid var(--line)',
         padding: '2.5rem',
         maxWidth: '640px',
         margin: '0 auto',
@@ -142,7 +142,7 @@ export function AuditSimulator() {
             fontSize: '0.65rem',
             letterSpacing: '0.14em',
             textTransform: 'uppercase',
-            color: '#00FF87',
+            color: 'var(--brand)',
             fontWeight: 700,
           }}
         >
@@ -153,7 +153,7 @@ export function AuditSimulator() {
           <div
             style={{
               fontSize: '0.75rem',
-              color: 'rgba(225,224,204,0.35)',
+              color: 'var(--ink-3)',
             }}
           >
             {step + 1} / {questions.length}
@@ -166,14 +166,14 @@ export function AuditSimulator() {
         <div
           style={{
             height: '2px',
-            backgroundColor: 'rgba(225,224,204,0.08)',
+            backgroundColor: 'var(--surface-3)',
             marginBottom: '2rem',
           }}
         >
           <div
             style={{
               height: '2px',
-              backgroundColor: '#00FF87',
+              backgroundColor: 'var(--brand)',
               width: `${((step) / questions.length) * 100}%`,
               transition: 'width 0.3s ease',
             }}
@@ -186,7 +186,7 @@ export function AuditSimulator() {
         <div>
           <h3
             className="font-display font-normal mb-6"
-            style={{ fontSize: 'clamp(1.1rem, 2vw, 1.4rem)', color: '#E1E0CC', lineHeight: 1.2 }}
+            style={{ fontSize: 'clamp(1.1rem, 2vw, 1.4rem)', color: 'var(--ink)', lineHeight: 1.2 }}
           >
             {currentQuestion.label}
           </h3>
@@ -200,9 +200,9 @@ export function AuditSimulator() {
                 onMouseLeave={() => setHoveredOption(null)}
                 style={{
                   padding: '1rem',
-                  border: `1px solid ${hoveredOption === option.value ? '#00FF87' : 'rgba(225,224,204,0.1)'}`,
-                  backgroundColor: hoveredOption === option.value ? 'rgba(0,255,135,0.05)' : 'transparent',
-                  color: hoveredOption === option.value ? '#E1E0CC' : 'rgba(225,224,204,0.6)',
+                  border: `1px solid ${hoveredOption === option.value ? 'var(--brand)' : 'var(--ink-4)'}`,
+                  backgroundColor: hoveredOption === option.value ? 'var(--brand-tint)' : 'transparent',
+                  color: hoveredOption === option.value ? 'var(--ink)' : 'var(--ink-2)',
                   textAlign: 'left',
                   cursor: 'pointer',
                   transition: 'all 0.15s ease',
@@ -230,9 +230,9 @@ export function AuditSimulator() {
                     key={q.id}
                     style={{
                       padding: '0.25rem 0.65rem',
-                      backgroundColor: 'rgba(0,255,135,0.08)',
-                      border: '1px solid rgba(0,255,135,0.2)',
-                      color: '#00FF87',
+                      backgroundColor: 'var(--brand-tint)',
+                      border: '1px solid var(--brand-line)',
+                      color: 'var(--brand)',
                       fontSize: '0.72rem',
                     }}
                   >
@@ -251,7 +251,7 @@ export function AuditSimulator() {
           <div
             style={{
               height: '2px',
-              backgroundColor: '#00FF87',
+              backgroundColor: 'var(--brand)',
               marginBottom: '2rem',
             }}
           />
@@ -261,7 +261,7 @@ export function AuditSimulator() {
               fontSize: '0.65rem',
               letterSpacing: '0.14em',
               textTransform: 'uppercase',
-              color: 'rgba(225,224,204,0.5)',
+              color: 'var(--ink-2)',
               fontWeight: 700,
               marginBottom: '0.75rem',
             }}
@@ -271,12 +271,12 @@ export function AuditSimulator() {
 
           <h3
             className="font-display font-normal mb-4"
-            style={{ fontSize: '1.5rem', color: '#00FF87', lineHeight: 1.2 }}
+            style={{ fontSize: '1.5rem', color: 'var(--brand)', lineHeight: 1.2 }}
           >
             {recommendation.titre}
           </h3>
 
-          <p style={{ fontSize: '0.9rem', color: 'rgba(225,224,204,0.65)', lineHeight: 1.7, marginBottom: '2rem' }}>
+          <p style={{ fontSize: '0.9rem', color: 'var(--ink-2)', lineHeight: 1.7, marginBottom: '2rem' }}>
             {recommendation.description}
           </p>
 
@@ -286,8 +286,8 @@ export function AuditSimulator() {
               style={{
                 display: 'inline-block',
                 padding: '0.85rem 1.75rem',
-                backgroundColor: '#00FF87',
-                color: '#080808',
+                backgroundColor: 'var(--brand)',
+                color: 'var(--ink)',
                 fontSize: '0.82rem',
                 fontWeight: 700,
                 letterSpacing: '0.08em',
@@ -301,8 +301,8 @@ export function AuditSimulator() {
               onClick={handleReset}
               style={{
                 padding: '0.85rem 1.75rem',
-                border: '1px solid rgba(225,224,204,0.15)',
-                color: 'rgba(225,224,204,0.5)',
+                border: '1px solid var(--line)',
+                color: 'var(--ink-2)',
                 fontSize: '0.82rem',
                 fontWeight: 700,
                 letterSpacing: '0.08em',
@@ -325,8 +325,8 @@ export function AuditSimulator() {
                   key={q.id}
                   style={{
                     padding: '0.25rem 0.65rem',
-                    border: '1px solid rgba(225,224,204,0.1)',
-                    color: 'rgba(225,224,204,0.4)',
+                    border: '1px solid var(--line)',
+                    color: 'var(--ink-3)',
                     fontSize: '0.72rem',
                   }}
                 >

@@ -63,7 +63,7 @@ export function CountUp({ value, label, duration = 1800 }: CountUpProps) {
   const numberEl = (
     <div
       className="font-display font-normal mb-2"
-      style={{ fontSize: 'clamp(2rem, 4vw, 3rem)', color: '#00FF87', lineHeight: 1 }}
+      style={{ fontSize: 'clamp(2rem, 4vw, 3rem)', color: 'var(--brand)', lineHeight: 1 }}
     >
       {parsed ? `${parsed.prefix}${displayed}${parsed.suffix}` : value}
     </div>
@@ -75,7 +75,7 @@ export function CountUp({ value, label, duration = 1800 }: CountUpProps) {
         position: 'relative',
         height: 2,
         borderRadius: 1,
-        backgroundColor: 'rgba(0,255,135,0.12)',
+        backgroundColor: 'var(--brand-tint)',
         overflow: 'hidden',
         marginTop: '0.85rem',
       }}
@@ -84,7 +84,7 @@ export function CountUp({ value, label, duration = 1800 }: CountUpProps) {
         style={{
           position: 'absolute',
           inset: 0,
-          backgroundColor: '#00FF87',
+          backgroundColor: 'var(--brand)',
           transformOrigin: 'left',
           willChange: 'transform',
         }}
@@ -101,7 +101,7 @@ export function CountUp({ value, label, duration = 1800 }: CountUpProps) {
       <div
         style={{
           fontSize: '0.78rem',
-          color: 'rgba(225,224,204,0.55)',
+          color: 'var(--ink-2)',
           letterSpacing: '0.06em',
           textTransform: 'uppercase',
         }}

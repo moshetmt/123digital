@@ -6,8 +6,8 @@ export function Zones({ lang = 'fr' }: { lang?: Locale }) {
   return (
     <section
       id="zones"
-      className="bg-black"
-      style={{ padding: '7rem 1.5rem', borderTop: '1px solid rgba(225,224,204,0.06)' }}
+      className="bg-background"
+      style={{ padding: '7rem 1.5rem', borderTop: '1px solid var(--line)' }}
     >
       <div className="mx-auto max-w-5xl">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
@@ -19,11 +19,11 @@ export function Zones({ lang = 'fr' }: { lang?: Locale }) {
                 fontSize: '0.7rem',
                 letterSpacing: '0.12em',
                 textTransform: 'uppercase',
-                color: 'rgba(225,224,204,0.7)',
+                color: 'var(--ink-2)',
                 fontWeight: 700,
               }}
             >
-              <span className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: '#00FF87' }} />
+              <span className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: 'var(--brand)' }} />
               {d.label}
             </div>
 
@@ -31,7 +31,7 @@ export function Zones({ lang = 'fr' }: { lang?: Locale }) {
               className="font-display font-normal mb-6"
               style={{
                 fontSize: 'clamp(1.8rem, 3.5vw, 3rem)',
-                color: '#E1E0CC',
+                color: 'var(--ink)',
                 lineHeight: 1.05,
                 letterSpacing: '-0.025em',
               }}
@@ -39,19 +39,19 @@ export function Zones({ lang = 'fr' }: { lang?: Locale }) {
   {lang === 'en' ? (
               <>
                 Based in Lyon,<br />
-                <em style={{ color: '#00FF87', fontStyle: 'italic', fontFamily: 'var(--font-serif)' }}>available everywhere.</em>
+                <em style={{ color: 'var(--brand)', fontStyle: 'italic', fontFamily: 'var(--font-serif)' }}>available everywhere.</em>
               </>
             ) : (
               <>
                 Ancré en ARA,<br />
-                <em style={{ color: '#00FF87', fontStyle: 'italic', fontFamily: 'var(--font-serif)' }}>disponible partout.</em>
+                <em style={{ color: 'var(--brand)', fontStyle: 'italic', fontFamily: 'var(--font-serif)' }}>disponible partout.</em>
               </>
             )}
             </h2>
 
             <p
               style={{
-                color: 'rgba(225,224,204,0.6)',
+                color: 'var(--ink-2)',
                 lineHeight: 1.75,
                 fontSize: '0.95rem',
                 marginBottom: '1.5rem',
@@ -76,10 +76,10 @@ export function Zones({ lang = 'fr' }: { lang?: Locale }) {
                   key={z.label}
                   className="flex items-center gap-3"
                 >
-                  <span style={{ color: '#00FF87', fontSize: '0.8rem' }}>→</span>
+                  <span style={{ color: 'var(--brand)', fontSize: '0.8rem' }}>→</span>
                   <div>
-                    <span style={{ fontSize: '0.88rem', color: '#E1E0CC', fontWeight: 600 }}>{z.label}</span>
-                    <span style={{ fontSize: '0.82rem', color: 'rgba(225,224,204,0.45)', marginLeft: '0.5rem' }}>— {z.desc}</span>
+                    <span style={{ fontSize: '0.88rem', color: 'var(--ink)', fontWeight: 600 }}>{z.label}</span>
+                    <span style={{ fontSize: '0.82rem', color: 'var(--ink-2)', marginLeft: '0.5rem' }}>— {z.desc}</span>
                   </div>
                 </div>
               ))}

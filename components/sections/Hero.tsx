@@ -51,63 +51,45 @@ export function Hero({ lang = 'fr' }: { lang?: Locale }) {
   return (
     <section
       id="section-hero"
-      className="relative bg-black"
-      style={{ minHeight: '100svh', padding: 'clamp(10px, 1.5vw, 22px)' }}
+      className="relative bg-background"
+      style={{ minHeight: '88svh', padding: 'clamp(10px, 1.5vw, 22px)' }}
       aria-label="Section hero"
     >
-      {/* ── Inset rounded container ── */}
+      {/* ── Inset rounded container — version claire ── */}
       <div
-        className="relative w-full flex flex-col overflow-hidden"
+        className="relative w-full flex flex-col justify-center overflow-hidden"
         style={{
-          minHeight: 'calc(100svh - clamp(20px, 3vw, 44px))',
+          minHeight: 'calc(88svh - clamp(20px, 3vw, 44px))',
           borderRadius: 'clamp(14px, 2vw, 30px)',
-          backgroundColor: '#080705', /* fallback si la vidéo ne charge pas */
+          backgroundColor: 'var(--surface-2)',
+          border: '1px solid var(--line)',
         }}
       >
-        {/* ── Video background ── */}
-        {/*
-          ⚠️  CORS / Google Drive :
-          Les fichiers Google Drive sont servis depuis drive.usercontent.google.com
-          avec des headers CORS restrictifs. Le navigateur peut bloquer la lecture
-          si l'origine n'est pas autorisée. Si la vidéo ne s'affiche pas :
-          → Héberger sur un CDN (Cloudflare R2, AWS S3, Vercel Blob)
-          → Ou utiliser un service vidéo dédié (Mux, Vimeo, Cloudflare Stream)
-        */}
-        <video
-          className="absolute inset-0 w-full h-full pointer-events-none"
-          style={{ objectFit: 'cover', objectPosition: 'center' }}
-          autoPlay
-          muted
-          loop
-          playsInline
-          aria-hidden
-          preload="auto"
-        >
-          <source src="/hero-video.mp4" type="video/mp4" />
-        </video>
-
-        {/* ── Dark overlay — assure la lisibilité du texte sur la vidéo ── */}
-        <div
-          className="absolute inset-0 pointer-events-none"
-          aria-hidden
-          style={{ backgroundColor: 'rgba(0,0,0,0.52)' }}
-        />
-
-        {/* Gradient vignette — renforce haut/bas */}
+        {/* Halo vert très dilué — ancrage bas gauche */}
         <div
           className="absolute inset-0 pointer-events-none"
           aria-hidden
           style={{
             background:
-              'linear-gradient(to bottom, rgba(0,0,0,0.45) 0%, rgba(0,0,0,0.1) 30%, rgba(0,0,0,0.15) 60%, rgba(0,0,0,0.72) 100%)',
+              'radial-gradient(120% 90% at 6% 108%, var(--brand-tint) 0%, transparent 62%)',
           }}
         />
 
-        {/* Noise overlay — grain cinématographique */}
+        {/* Voile ivoire chaud — réchauffe le blanc de la carte */}
         <div
-          className="absolute inset-0 noise-overlay pointer-events-none"
+          className="absolute inset-0 pointer-events-none"
           aria-hidden
-          style={{ opacity: 0.55, mixBlendMode: 'overlay' }}
+          style={{
+            background:
+              'linear-gradient(to bottom, oklch(0.945 0.014 96 / 0.55) 0%, transparent 42%)',
+          }}
+        />
+
+        {/* Grain très discret */}
+        <div
+          className="absolute inset-0 bg-noise pointer-events-none"
+          aria-hidden
+          style={{ opacity: 0.22 }}
         />
 
         {/* ── Top-right — availability indicator ── */}
@@ -120,22 +102,27 @@ export function Hero({ lang = 'fr' }: { lang?: Locale }) {
         >
           <span
             className="flex items-center gap-2 text-[10px] sm:text-[11px] tracking-widest uppercase"
-            style={{ color: 'rgba(225,224,204,0.55)' }}
+            style={{ color: 'var(--ink-2)' }}
           >
             <span
               className="w-1.5 h-1.5 rounded-full shrink-0"
-              style={{
-                backgroundColor: '#00FF87',
-                boxShadow: '0 0 8px #00FF87',
-              }}
+              style={{ backgroundColor: 'var(--brand)' }}
               aria-hidden
             />
             {d.badge}
           </span>
         </motion.div>
 
-        {/* ── Spacer (cinematic atmosphere) ── */}
-        <div className="flex-1 min-h-[40px]" />
+        {/* ── Filet vert — motif typographique ── */}
+        <div
+          className="relative z-10 mx-5 sm:mx-8 lg:mx-10 mb-6 sm:mb-8"
+          aria-hidden
+          style={{
+            height: 1,
+            background:
+              'linear-gradient(to right, var(--brand) 0%, var(--brand-line) 22%, var(--line) 100%)',
+          }}
+        />
 
         {/* ── Bottom content ── */}
         <div className="relative z-10 px-5 sm:px-8 lg:px-10 pb-6 sm:pb-8 lg:pb-10 text-center lg:text-left">
@@ -158,17 +145,17 @@ export function Hero({ lang = 'fr' }: { lang?: Locale }) {
                     letterSpacing: '-0.03em',
                     lineHeight: 1.05,
                     margin: 0,
-                    color: '#DEDBC8',
+                    color: 'var(--ink)',
                   }}
                 >
                   {lang === 'en' ? (
-                    <>One expert. One <em style={{ fontFamily: 'var(--font-serif)', fontStyle: 'italic' }}>strategy</em>.</>
+                    <>One expert. One <em className="rule-underline" style={{ fontFamily: 'var(--font-serif)', fontStyle: 'italic' }}>strategy</em>.</>
                   ) : (
-                    <>Un expert. Une <em style={{ fontFamily: 'var(--font-serif)', fontStyle: 'italic' }}>stratégie</em>.</>
+                    <>Un expert. Une <em className="rule-underline" style={{ fontFamily: 'var(--font-serif)', fontStyle: 'italic' }}>stratégie</em>.</>
                   )}<br />
-                  <span style={{ color: '#00FF87' }}>
+                  <span style={{ color: 'var(--brand)' }}>
                     {lang === 'en' ? (
-                      <>Real <em style={{ fontFamily: 'var(--font-serif)', fontStyle: 'italic', color: '#00FF87' }}>results</em>.</>
+                      <>Real <em style={{ fontFamily: 'var(--font-serif)', fontStyle: 'italic', color: 'var(--brand)' }}>results</em>.</>
                     ) : (
                       <>Des <em style={{ fontFamily: 'var(--font-serif)', fontStyle: 'italic' }}>résultats</em>.</>
                     )}
@@ -178,8 +165,7 @@ export function Hero({ lang = 'fr' }: { lang?: Locale }) {
                   style={{
                     fontFamily: 'var(--font-heading)',
                     fontSize: 'clamp(0.85rem, 1.8vw, 1.1rem)',
-                    color: '#DEDBC8',
-                    opacity: 0.55,
+                    color: 'var(--ink-3)',
                     margin: '0.6em 0 0',
                     letterSpacing: '0.04em',
                   }}
@@ -189,9 +175,9 @@ export function Hero({ lang = 'fr' }: { lang?: Locale }) {
                     href="https://www.linkedin.com/in/mauricetimsit/"
                     target="_blank"
                     rel="noopener noreferrer"
-                    style={{ color: 'inherit', textDecoration: 'none', transition: 'opacity 0.2s' }}
-                    onMouseEnter={e => (e.currentTarget.style.opacity = '1')}
-                    onMouseLeave={e => (e.currentTarget.style.opacity = '0.55')}
+                    style={{ color: 'inherit', textDecoration: 'none', transition: 'color 0.2s' }}
+                    onMouseEnter={e => (e.currentTarget.style.color = 'var(--brand)')}
+                    onMouseLeave={e => (e.currentTarget.style.color = 'inherit')}
                   >
                     {lang === 'en' ? 'By M. Timsit' : 'Par M. Timsit'}
                   </a>
@@ -204,7 +190,7 @@ export function Hero({ lang = 'fr' }: { lang?: Locale }) {
 
               <motion.p
                 className="text-sm sm:text-base leading-snug max-w-xs"
-                style={{ color: 'rgba(225,224,204,0.7)', lineHeight: 1.2 }}
+                style={{ color: 'var(--ink-2)', lineHeight: 1.2 }}
                 initial={{ y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.5, duration: 1, ease: PULL_EASE }}
@@ -221,16 +207,16 @@ export function Hero({ lang = 'fr' }: { lang?: Locale }) {
                 <Link
                   href={lang === 'en' ? '/en/audit' : '#contact'}
                   className="group inline-flex items-center gap-2 rounded-full pl-5 pr-2 py-2 font-medium text-sm transition-all duration-300 hover:gap-3 w-fit"
-                  style={{ backgroundColor: '#DEDBC8', color: '#000' }}
+                  style={{ backgroundColor: 'var(--brand)', color: 'var(--on-brand)' }}
                 >
                   {d.cta}
                   <span
                     className="flex items-center justify-center rounded-full w-8 h-8 transition-transform duration-300 group-hover:scale-110 shrink-0"
-                    style={{ backgroundColor: '#000' }}
+                    style={{ backgroundColor: 'var(--on-brand)' }}
                   >
                     <ArrowRight
                       size={14}
-                      style={{ color: '#DEDBC8', transform: 'rotate(-45deg)' }}
+                      style={{ color: 'var(--brand)', transform: 'rotate(-45deg)' }}
                       aria-hidden
                     />
                   </span>
@@ -248,13 +234,13 @@ export function Hero({ lang = 'fr' }: { lang?: Locale }) {
                   <div key={label} className="flex flex-col gap-0.5">
                     <span
                       className="font-display font-bold tabular-nums text-lg sm:text-xl"
-                      style={{ color: '#E1E0CC' }}
+                      style={{ color: 'var(--ink)' }}
                     >
                       <Counter target={target} prefix={prefix} suffix={suffix} />
                     </span>
                     <span
                       className="text-[10px] sm:text-[11px] leading-tight"
-                      style={{ color: 'rgba(225,224,204,0.4)' }}
+                      style={{ color: 'var(--ink-3)' }}
                     >
                       {label}
                     </span>
@@ -272,7 +258,7 @@ export function Hero({ lang = 'fr' }: { lang?: Locale }) {
             className="mt-4 text-center lg:text-left"
             style={{
               fontSize: '0.65rem',
-              color: 'rgba(225,224,204,0.38)',
+              color: 'var(--ink-3)',
               letterSpacing: '0.06em',
               textTransform: 'uppercase',
             }}

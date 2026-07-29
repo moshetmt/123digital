@@ -71,8 +71,8 @@ export function Footer({ lang = 'fr' }: { lang?: Locale }) {
     <footer
       aria-label="Pied de page"
       style={{
-        backgroundColor: '#000',
-        borderTop: '1px solid rgba(255,255,255,0.05)',
+        backgroundColor: 'var(--dark)',
+        borderTop: '1px solid var(--dark-line)',
         padding: '3rem 1.5rem',
       }}
     >
@@ -87,11 +87,11 @@ export function Footer({ lang = 'fr' }: { lang?: Locale }) {
             href={lang === 'en' ? '/en' : '/'}
             aria-label="123 Digital"
             className="font-display font-medium transition-opacity duration-200 hover:opacity-70 w-fit"
-            style={{ fontSize: '1.5rem', color: '#E1E0CC', letterSpacing: '-0.02em' }}
+            style={{ fontSize: '1.5rem', color: 'var(--cream)', letterSpacing: '-0.02em' }}
           >
             123 Digital
           </Link>
-          <p style={{ color: '#6b7280', fontSize: '0.72rem' }}>
+          <p style={{ color: 'var(--cream-3)', fontSize: '0.72rem' }}>
             © {new Date().getFullYear()} Maurice Timsit. {d.rights}
           </p>
         </div>
@@ -105,13 +105,13 @@ export function Footer({ lang = 'fr' }: { lang?: Locale }) {
             <span key={link.href} className="flex items-center gap-3">
               <Link
                 href={link.href}
-                className="transition-colors duration-200 hover:text-foreground"
-                style={{ color: '#6b7280', fontSize: '0.78rem' }}
+                className="footer-link transition-colors duration-200"
+                style={{ color: 'var(--cream-2)', fontSize: '0.78rem' }}
               >
                 {link.label}
               </Link>
               {i < navLinks.length - 1 && (
-                <span style={{ color: '#3f3f46', fontSize: '0.78rem' }} aria-hidden>·</span>
+                <span style={{ color: 'oklch(0.902 0.027 105 / 32%)', fontSize: '0.78rem' }} aria-hidden>·</span>
               )}
             </span>
           ))}
@@ -119,13 +119,13 @@ export function Footer({ lang = 'fr' }: { lang?: Locale }) {
 
         {/* Contact + Social */}
         <div className="footer-contact flex flex-col gap-1" style={{ textAlign: 'right' }}>
-          <span style={{ color: 'rgba(225,224,204,0.45)', fontSize: '0.78rem' }}>
+          <span style={{ color: 'var(--cream-3)', fontSize: '0.78rem' }}>
             123digital.fr
           </span>
           <a
             href="mailto:contact@123digital.fr"
-            className="transition-colors duration-200 hover:text-foreground"
-            style={{ color: 'rgba(225,224,204,0.45)', fontSize: '0.78rem' }}
+            className="footer-link transition-colors duration-200"
+            style={{ color: 'var(--cream-2)', fontSize: '0.78rem' }}
           >
             contact@123digital.fr
           </a>
@@ -138,7 +138,7 @@ export function Footer({ lang = 'fr' }: { lang?: Locale }) {
                 target={href.startsWith('http') ? '_blank' : undefined}
                 rel={href.startsWith('http') ? 'noopener noreferrer' : undefined}
                 className="social-icon transition-colors duration-200"
-                style={{ color: '#DEDBC8' }}
+                style={{ color: 'var(--cream)' }}
               >
                 <Icon size={18} aria-hidden />
               </a>
@@ -155,7 +155,13 @@ export function Footer({ lang = 'fr' }: { lang?: Locale }) {
           gap: 2rem;
           align-items: center;
         }
-        .social-icon:hover { color: #00FF87 !important; }
+        .footer-link { display: inline-flex; align-items: center; min-height: 44px; }
+        .footer-link:hover { color: var(--neon) !important; }
+        .social-icon {
+          display: inline-flex; align-items: center; justify-content: center;
+          min-width: 44px; min-height: 44px;
+        }
+        .social-icon:hover { color: var(--neon) !important; }
         @media (max-width: 720px) {
           .footer-grid { grid-template-columns: 1fr; text-align: center; }
           .footer-contact { text-align: center !important; align-items: center !important; }

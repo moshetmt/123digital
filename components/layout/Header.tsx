@@ -21,9 +21,10 @@ import { cn } from '@/lib/utils'
 import { getServices, type ServiceIconName } from '@/data/services'
 import { t, type Locale } from '@/lib/i18n'
 
-const CREAM = 'oklch(0.893 0.022 92)'
-const CREAM_DIM = 'oklch(0.878 0.020 92 / 55%)'
-const CREAM_FAINT = 'oklch(0.878 0.020 92 / 30%)'
+// Encre sur ivoire — plancher de contraste 4,5:1 sur --surface
+const INK = 'var(--ink)'
+const INK_DIM = 'var(--ink-2)'
+const INK_FAINT = 'var(--ink-3)'
 
 const iconMap: Record<ServiceIconName, LucideIcon> = {
   Globe, Search, Target, Palette, Users, Zap,
@@ -76,9 +77,10 @@ export function Header({ lang = 'fr' }: { lang?: Locale }) {
           : 'bg-transparent',
       )}
       style={scrolled ? {
-        backgroundColor: 'rgba(0,0,0,0.82)',
+        backgroundColor: 'var(--surface-alpha)',
         backdropFilter: 'blur(20px)',
-        borderColor: 'rgba(255,255,255,0.07)',
+        WebkitBackdropFilter: 'blur(20px)',
+        borderColor: 'var(--line)',
       } : undefined}
     >
       <nav
@@ -93,13 +95,13 @@ export function Header({ lang = 'fr' }: { lang?: Locale }) {
         >
           <span
             className="font-display font-medium text-xl tracking-tight"
-            style={{ color: CREAM }}
+            style={{ color: INK }}
           >
             123
           </span>
           <span
             className="font-display font-light text-xl tracking-tight"
-            style={{ color: CREAM_DIM }}
+            style={{ color: INK_DIM }}
           >
             Digital
           </span>
@@ -118,7 +120,7 @@ export function Header({ lang = 'fr' }: { lang?: Locale }) {
                     type="button"
                     className="relative flex items-center gap-1 px-3 py-2 rounded-lg text-sm font-medium transition-colors duration-150"
                     style={{
-                      color: isActive(link.href) ? CREAM : CREAM_DIM,
+                      color: isActive(link.href) ? INK : INK_DIM,
                     }}
                     aria-expanded={servicesOpen}
                     aria-haspopup="true"
@@ -141,10 +143,11 @@ export function Header({ lang = 'fr' }: { lang?: Locale }) {
                         transition={{ duration: 0.16, ease: 'easeOut' }}
                         className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-72 rounded-2xl p-2 shadow-2xl"
                         style={{
-                          border: '1px solid rgba(255,255,255,0.08)',
-                          backgroundColor: 'rgba(15,15,15,0.97)',
+                          border: '1px solid var(--line)',
+                          backgroundColor: 'var(--surface-2)',
                           backdropFilter: 'blur(20px)',
-                          boxShadow: '0 24px 60px rgba(0,0,0,0.6)',
+                          WebkitBackdropFilter: 'blur(20px)',
+                          boxShadow: '0 24px 60px oklch(0.30 0.02 95 / 0.12)',
                         }}
                         role="menu"
                         aria-label="Services"
@@ -156,21 +159,21 @@ export function Header({ lang = 'fr' }: { lang?: Locale }) {
                             role="menuitem"
                             onClick={() => setServicesOpen(false)}
                             className="flex items-start gap-3 rounded-xl px-3 py-2.5 transition-colors group"
-                            style={{ color: CREAM_DIM }}
-                            onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = 'rgba(255,255,255,0.05)' }}
+                            style={{ color: INK_DIM }}
+                            onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = 'var(--surface-3)' }}
                             onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = 'transparent' }}
                           >
-                            <span className="mt-0.5 shrink-0" style={{ color: CREAM_FAINT }}>
+                            <span className="mt-0.5 shrink-0" style={{ color: INK_FAINT }}>
                               <ServiceIcon name={service.icon} size={14} />
                             </span>
                             <div>
                               <p
                                 className="text-sm font-medium leading-snug transition-colors"
-                                style={{ color: CREAM_DIM }}
+                                style={{ color: INK_DIM }}
                               >
                                 {service.title}
                               </p>
-                              <p className="text-xs leading-snug mt-0.5" style={{ color: CREAM_FAINT }}>
+                              <p className="text-xs leading-snug mt-0.5" style={{ color: INK_FAINT }}>
                                 {service.shortDesc}
                               </p>
                             </div>
@@ -186,7 +189,7 @@ export function Header({ lang = 'fr' }: { lang?: Locale }) {
                 <Link
                   href={link.href}
                   className="relative block px-3 py-2 rounded-lg text-sm font-medium transition-colors duration-150"
-                  style={{ color: isActive(link.href) ? CREAM : CREAM_DIM }}
+                  style={{ color: isActive(link.href) ? INK : INK_DIM }}
                 >
                   {link.label}
                 </Link>
@@ -201,44 +204,59 @@ export function Header({ lang = 'fr' }: { lang?: Locale }) {
           <Link
             href={d.langHref}
             className="text-xs font-medium px-2 py-1 rounded border transition-colors"
-            style={{ borderColor: 'rgba(225,224,204,0.2)', color: CREAM_DIM }}
+            style={{ borderColor: 'var(--line-strong)', color: INK_DIM }}
           >
             {d.lang}
           </Link>
           <Link
             href={lang === 'en' ? '/en/audit' : '/audit-gratuit'}
             className="group inline-flex items-center gap-2 rounded-full pl-5 pr-2 py-1.5 font-medium text-sm transition-all duration-300 hover:gap-3"
-            style={{ backgroundColor: 'oklch(0.878 0.020 92)', color: '#000' }}
+            style={{ backgroundColor: 'var(--brand)', color: 'var(--on-brand)' }}
           >
             {d.cta}
             <span
               className="flex items-center justify-center rounded-full w-7 h-7 transition-transform duration-300 group-hover:scale-110 shrink-0"
-              style={{ backgroundColor: '#000' }}
+              style={{ backgroundColor: 'var(--on-brand)' }}
             >
               <ArrowRight
                 size={12}
-                style={{ color: 'oklch(0.878 0.020 92)', transform: 'rotate(-45deg)' }}
+                style={{ color: 'var(--brand)', transform: 'rotate(-45deg)' }}
                 aria-hidden
               />
             </span>
           </Link>
         </div>
 
-        {/* ── Mobile hamburger ── */}
-        <Sheet open={mobileOpen} onOpenChange={setMobileOpen}>
-          <SheetTrigger
-            className="lg:hidden p-2 rounded-lg transition-colors"
-            style={{ color: CREAM_DIM }}
-            aria-label="Ouvrir le menu de navigation"
+        {/* ── Mobile : CTA visible + hamburger ── */}
+        <div className="lg:hidden flex items-center gap-2 shrink-0">
+          {/* Même destination et même libellé que le CTA du panneau latéral */}
+          <Link
+            href={lang === 'en' ? '/en/audit' : '/audit-gratuit'}
+            className="inline-flex items-center justify-center rounded-full px-4 font-medium whitespace-nowrap"
+            style={{
+              backgroundColor: 'var(--brand)',
+              color: 'var(--on-brand)',
+              fontSize: '0.8rem',
+              minHeight: 40,
+            }}
           >
-            <Menu size={20} aria-hidden />
-          </SheetTrigger>
+            {d.cta}
+          </Link>
 
-          <SheetContent
-            side="right"
-            className="w-[300px] sm:w-[340px] p-0"
-            style={{ backgroundColor: '#0a0a0a', borderColor: 'rgba(255,255,255,0.07)' }}
-          >
+          <Sheet open={mobileOpen} onOpenChange={setMobileOpen}>
+            <SheetTrigger
+              className="flex items-center justify-center rounded-lg transition-colors"
+              style={{ color: INK_DIM, minWidth: 44, minHeight: 44 }}
+              aria-label="Ouvrir le menu de navigation"
+            >
+              <Menu size={20} aria-hidden />
+            </SheetTrigger>
+
+            <SheetContent
+              side="right"
+              className="w-[300px] sm:w-[340px] p-0"
+              style={{ backgroundColor: 'var(--surface)', borderColor: 'var(--line)' }}
+            >
             <SheetTitle className="sr-only">Menu de navigation</SheetTitle>
 
             <div className="flex flex-col h-full p-5">
@@ -248,8 +266,8 @@ export function Header({ lang = 'fr' }: { lang?: Locale }) {
                 className="flex items-center gap-0.5 mb-8"
                 onClick={() => setMobileOpen(false)}
               >
-                <span className="font-display font-medium text-2xl" style={{ color: CREAM }}>123</span>
-                <span className="font-display font-light text-2xl" style={{ color: CREAM_DIM }}>Digital</span>
+                <span className="font-display font-medium text-2xl" style={{ color: INK }}>123</span>
+                <span className="font-display font-light text-2xl" style={{ color: INK_DIM }}>Digital</span>
               </Link>
 
               {/* Mobile links */}
@@ -259,8 +277,8 @@ export function Header({ lang = 'fr' }: { lang?: Locale }) {
                   onClick={() => setMobileOpen(false)}
                   className="block px-3 py-2.5 rounded-xl text-sm font-medium transition-colors"
                   style={{
-                    color: pathname === '/' || pathname === '/en' ? CREAM : CREAM_DIM,
-                    backgroundColor: pathname === '/' || pathname === '/en' ? 'rgba(255,255,255,0.06)' : 'transparent',
+                    color: pathname === '/' || pathname === '/en' ? INK : INK_DIM,
+                    backgroundColor: pathname === '/' || pathname === '/en' ? 'var(--brand-tint)' : 'transparent',
                   }}
                 >
                   {d.home}
@@ -273,8 +291,8 @@ export function Header({ lang = 'fr' }: { lang?: Locale }) {
                       onClick={() => !link.hasDropdown && setMobileOpen(false)}
                       className="block px-3 py-2.5 rounded-xl text-sm font-medium transition-colors"
                       style={{
-                        color: isActive(link.href) ? CREAM : CREAM_DIM,
-                        backgroundColor: isActive(link.href) ? 'rgba(255,255,255,0.06)' : 'transparent',
+                        color: isActive(link.href) ? INK : INK_DIM,
+                        backgroundColor: isActive(link.href) ? 'var(--brand-tint)' : 'transparent',
                       }}
                     >
                       {link.label}
@@ -283,7 +301,7 @@ export function Header({ lang = 'fr' }: { lang?: Locale }) {
                     {link.hasDropdown && (
                       <div
                         className="ml-4 mt-1 mb-1 pl-3 flex flex-col gap-0.5"
-                        style={{ borderLeft: '1px solid rgba(255,255,255,0.08)' }}
+                        style={{ borderLeft: '1px solid var(--line)' }}
                       >
                         {services.map((service) => (
                           <Link
@@ -291,7 +309,7 @@ export function Header({ lang = 'fr' }: { lang?: Locale }) {
                             href={service.href}
                             onClick={() => setMobileOpen(false)}
                             className="flex items-center gap-2 py-1.5 px-2 rounded-lg text-xs transition-colors"
-                            style={{ color: CREAM_FAINT }}
+                            style={{ color: INK_FAINT }}
                           >
                             <ServiceIcon name={service.icon} size={11} />
                             {service.title}
@@ -304,21 +322,21 @@ export function Header({ lang = 'fr' }: { lang?: Locale }) {
               </nav>
 
               {/* Mobile CTA + lang */}
-              <div className="pt-4 mt-4 flex flex-col gap-3" style={{ borderTop: '1px solid rgba(255,255,255,0.07)' }}>
+              <div className="pt-4 mt-4 flex flex-col gap-3" style={{ borderTop: '1px solid var(--line)' }}>
                 <Link
                   href={lang === 'en' ? '/en/audit' : '/audit-gratuit'}
                   onClick={() => setMobileOpen(false)}
                   className="group flex items-center justify-between w-full rounded-full pl-5 pr-2 py-2 font-medium text-sm transition-all duration-300"
-                  style={{ backgroundColor: 'oklch(0.878 0.020 92)', color: '#000' }}
+                  style={{ backgroundColor: 'var(--brand)', color: 'var(--on-brand)' }}
                 >
                   {d.cta}
                   <span
                     className="flex items-center justify-center rounded-full w-9 h-9 group-hover:scale-110 transition-transform shrink-0"
-                    style={{ backgroundColor: '#000' }}
+                    style={{ backgroundColor: 'var(--on-brand)' }}
                   >
                     <ArrowRight
                       size={14}
-                      style={{ color: 'oklch(0.878 0.020 92)', transform: 'rotate(-45deg)' }}
+                      style={{ color: 'var(--brand)', transform: 'rotate(-45deg)' }}
                       aria-hidden
                     />
                   </span>
@@ -327,14 +345,15 @@ export function Header({ lang = 'fr' }: { lang?: Locale }) {
                   href={d.langHref}
                   onClick={() => setMobileOpen(false)}
                   className="text-center text-sm py-2 rounded border transition-colors"
-                  style={{ borderColor: 'rgba(225,224,204,0.15)', color: CREAM_DIM }}
+                  style={{ borderColor: 'var(--line-strong)', color: INK_DIM }}
                 >
                   {d.lang === 'EN' ? '🇬🇧 English' : '🇫🇷 Français'}
                 </Link>
               </div>
-            </div>
-          </SheetContent>
-        </Sheet>
+              </div>
+            </SheetContent>
+          </Sheet>
+        </div>
       </nav>
     </motion.header>
   )

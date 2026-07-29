@@ -18,7 +18,7 @@ function WordsPullUp({ text, delay = 0 }: { text: string; delay?: number }) {
       {text.split(' ').map((word, i) => (
         <span key={i} style={{ display: 'inline-block', overflow: 'hidden', paddingRight: '0.22em' }}>
           <motion.span
-            style={{ display: 'inline-block', color: '#E1E0CC' }}
+            style={{ display: 'inline-block', color: 'var(--cream)' }}
             initial={{ y: '100%', opacity: 0 }}
             animate={isInView ? { y: 0, opacity: 1 } : {}}
             transition={{ duration: 0.9, delay: delay + i * 0.08, ease: PULL_EASE }}
@@ -58,13 +58,19 @@ const BESOINS_EN = [
   { value: 'full',     label: 'Full support' },
 ]
 
+// Zone sombre — continuité de marque : crème + néon réservés à ces sections
+const FIELD = 'var(--dark-3)'
+const FIELD_FOCUS = 'oklch(0.295 0 0)'
+const FIELD_FOCUS_LINE = 'oklch(0.876 0.229 152 / 60%)'
+const FIELD_ERROR_LINE = 'oklch(0.68 0.19 25 / 70%)'
+
 const inputBase: React.CSSProperties = {
   width: '100%',
-  backgroundColor: '#212121',
-  border: '1px solid transparent',
+  backgroundColor: FIELD,
+  border: '1px solid var(--dark-line)',
   borderRadius: '0.85rem',
   padding: '0.8rem 1rem',
-  color: '#E1E0CC',
+  color: 'var(--cream)',
   fontSize: '0.92rem',
   outline: 'none',
   fontFamily: 'inherit',
@@ -83,8 +89,8 @@ function FormInput({
       type={type} value={value} onChange={onChange} placeholder={placeholder}
       style={{
         ...inputBase,
-        borderColor: hasError ? 'rgba(255,90,90,0.6)' : focused ? 'rgba(0,255,135,0.5)' : 'transparent',
-        backgroundColor: focused ? '#262626' : '#212121',
+        borderColor: hasError ? FIELD_ERROR_LINE : focused ? FIELD_FOCUS_LINE : 'var(--dark-line)',
+        backgroundColor: focused ? FIELD_FOCUS : FIELD,
       }}
       onFocus={() => setFocused(true)} onBlur={() => setFocused(false)}
     />
@@ -103,8 +109,8 @@ function FormSelect({
       value={value} onChange={onChange}
       style={{
         ...inputBase,
-        borderColor: hasError ? 'rgba(255,90,90,0.6)' : focused ? 'rgba(0,255,135,0.5)' : 'transparent',
-        backgroundColor: focused ? '#262626' : '#212121',
+        borderColor: hasError ? FIELD_ERROR_LINE : focused ? FIELD_FOCUS_LINE : 'var(--dark-line)',
+        backgroundColor: focused ? FIELD_FOCUS : FIELD,
         appearance: 'none',
         backgroundImage: `url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8' fill='none'><path d='M1 1L6 6L11 1' stroke='%23E1E0CC' stroke-width='1.5' stroke-linecap='round'/></svg>")`,
         backgroundRepeat: 'no-repeat',
@@ -113,9 +119,9 @@ function FormSelect({
       }}
       onFocus={() => setFocused(true)} onBlur={() => setFocused(false)}
     >
-      <option value="" style={{ background: '#212121' }}>{placeholder}</option>
+      <option value="" style={{ background: '#1E1E1E' }}>{placeholder}</option>
       {options.map((b) => (
-        <option key={b.value} value={b.value} style={{ background: '#212121' }}>{b.label}</option>
+        <option key={b.value} value={b.value} style={{ background: '#1E1E1E' }}>{b.label}</option>
       ))}
     </select>
   )
@@ -132,8 +138,8 @@ function FormTextarea({
       rows={4} value={value} onChange={onChange} placeholder={placeholder}
       style={{
         ...inputBase,
-        borderColor: focused ? 'rgba(0,255,135,0.5)' : 'transparent',
-        backgroundColor: focused ? '#262626' : '#212121',
+        borderColor: focused ? FIELD_FOCUS_LINE : 'var(--dark-line)',
+        backgroundColor: focused ? FIELD_FOCUS : FIELD,
         resize: 'vertical',
       }}
       onFocus={() => setFocused(true)} onBlur={() => setFocused(false)}
@@ -201,23 +207,40 @@ export function CTA({ lang = 'fr' }: { lang?: Locale }) {
     fontSize: '0.7rem',
     textTransform: 'uppercase',
     letterSpacing: '0.1em',
-    color: 'rgba(225,224,204,0.55)',
+    color: 'var(--cream-2)',
     fontWeight: 700,
     display: 'block',
     marginBottom: '0.45rem',
   }
 
   return (
-    <section id="contact" className="bg-black" style={{ padding: '7rem 1.5rem' }} aria-labelledby="contact-heading">
-      <div ref={ref} className="mx-auto text-center" style={{ maxWidth: '640px' }}>
+    <section
+      id="contact"
+      className="relative overflow-hidden"
+      style={{ backgroundColor: 'var(--dark)', padding: '7rem 1.5rem' }}
+      aria-labelledby="contact-heading"
+    >
+      {/* Grain clair + halo néon — réservés aux zones sombres */}
+      <div className="absolute inset-0 bg-noise-dark pointer-events-none" aria-hidden style={{ opacity: 0.5 }} />
+      <div
+        className="absolute inset-0 pointer-events-none"
+        aria-hidden
+        style={{ background: 'radial-gradient(80% 55% at 50% 0%, var(--neon-tint) 0%, transparent 60%)' }}
+      />
+      <style>{`
+        #contact input::placeholder,
+        #contact textarea::placeholder { color: var(--cream-3); opacity: 1; }
+      `}</style>
+
+      <div ref={ref} className="relative mx-auto text-center" style={{ maxWidth: '640px' }}>
 
         {/* Eyebrow */}
         <motion.div
           initial={{ opacity: 0 }} animate={isInView ? { opacity: 1 } : {}} transition={{ duration: 0.5 }}
           className="flex items-center justify-center gap-2 mb-6"
-          style={{ fontSize: '0.7rem', letterSpacing: '0.12em', textTransform: 'uppercase', color: 'rgba(225,224,204,0.7)', fontWeight: 700 }}
+          style={{ fontSize: '0.7rem', letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--cream-2)', fontWeight: 700 }}
         >
-          <span className="w-1.5 h-1.5 rounded-full shrink-0" style={{ backgroundColor: '#00FF87' }} aria-hidden />
+          <span className="w-1.5 h-1.5 rounded-full shrink-0" style={{ backgroundColor: 'var(--neon)' }} aria-hidden />
           {L.eyebrow}
         </motion.div>
 
@@ -232,12 +255,12 @@ export function CTA({ lang = 'fr' }: { lang?: Locale }) {
         {/* Sub */}
         <motion.p
           initial={{ opacity: 0 }} animate={isInView ? { opacity: 1 } : {}} transition={{ delay: 0.3, duration: 0.5 }}
-          className="mb-12" style={{ color: '#6b7280', fontSize: '1rem' }}
+          className="mb-12" style={{ color: 'var(--cream-2)', fontSize: '1rem' }}
         >
           {L.sub1}
-          <span style={{ color: 'rgba(0,255,135,0.7)', margin: '0 0.4rem' }}>·</span>
+          <span style={{ color: 'var(--neon)', margin: '0 0.4rem' }}>·</span>
           {L.sub2}
-          <span style={{ color: 'rgba(0,255,135,0.7)', margin: '0 0.4rem' }}>·</span>
+          <span style={{ color: 'var(--neon)', margin: '0 0.4rem' }}>·</span>
           {L.sub3}
         </motion.p>
 
@@ -249,7 +272,12 @@ export function CTA({ lang = 'fr' }: { lang?: Locale }) {
           {!submitted ? (
             <form
               onSubmit={handleSubmit} noValidate className="flex flex-col gap-4 text-left"
-              style={{ backgroundColor: '#101010', borderRadius: '1.5rem', padding: '2rem' }}
+              style={{
+                backgroundColor: 'var(--dark-2)',
+                border: '1px solid var(--dark-line)',
+                borderRadius: '1.5rem',
+                padding: '2rem',
+              }}
             >
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
@@ -266,7 +294,7 @@ export function CTA({ lang = 'fr' }: { lang?: Locale }) {
                 <FormInput type="email" value={form.email} onChange={set('email')} placeholder={isEN ? 'you@company.com' : 'vous@entreprise.fr'} hasError={errors.email} />
               </div>
               <div>
-                <label style={labelStyle}>{L.siteLabel} <span style={{ opacity: 0.5 }}>{L.optional}</span></label>
+                <label style={labelStyle}>{L.siteLabel} <span style={{ opacity: 0.7 }}>{L.optional}</span></label>
                 <FormInput value={form.site} onChange={set('site')} placeholder="https://" />
               </div>
               <div>
@@ -286,10 +314,10 @@ export function CTA({ lang = 'fr' }: { lang?: Locale }) {
               <button
                 type="submit" disabled={loading}
                 className="group flex items-center justify-between w-full rounded-full font-medium text-sm transition-all duration-300 disabled:opacity-50"
-                style={{ backgroundColor: '#DEDBC8', color: '#000', padding: '0.75rem 0.75rem 0.75rem 1.5rem', border: 'none', cursor: loading ? 'not-allowed' : 'pointer', fontSize: '0.95rem' }}
+                style={{ backgroundColor: 'var(--neon)', color: 'var(--dark)', padding: '0.75rem 0.75rem 0.75rem 1.5rem', border: 'none', cursor: loading ? 'not-allowed' : 'pointer', fontSize: '0.95rem' }}
               >
                 <span>{loading ? L.sending : d.submit}</span>
-                <span className="flex items-center justify-center rounded-full transition-transform duration-300 group-hover:scale-110 shrink-0" style={{ width: 36, height: 36, backgroundColor: '#000', color: '#DEDBC8' }}>
+                <span className="flex items-center justify-center rounded-full transition-transform duration-300 group-hover:scale-110 shrink-0" style={{ width: 36, height: 36, backgroundColor: 'var(--dark)', color: 'var(--neon)' }}>
                   <ArrowRight size={14} style={{ transform: 'rotate(-45deg)' }} aria-hidden />
                 </span>
               </button>
@@ -298,15 +326,20 @@ export function CTA({ lang = 'fr' }: { lang?: Locale }) {
             <motion.div
               initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}
               className="flex flex-col items-center text-center"
-              style={{ backgroundColor: '#101010', borderRadius: '1.5rem', padding: '3rem 2rem' }}
+              style={{
+                backgroundColor: 'var(--dark-2)',
+                border: '1px solid var(--dark-line)',
+                borderRadius: '1.5rem',
+                padding: '3rem 2rem',
+              }}
             >
-              <div className="flex items-center justify-center mb-5" style={{ width: 56, height: 56, borderRadius: '50%', backgroundColor: 'rgba(0,255,135,0.12)', color: '#00FF87' }}>
+              <div className="flex items-center justify-center mb-5" style={{ width: 56, height: 56, borderRadius: '50%', backgroundColor: 'var(--neon-tint)', color: 'var(--neon)' }}>
                 <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M20 6 9 17l-5-5" />
                 </svg>
               </div>
-              <h3 className="font-display font-bold mb-2" style={{ color: '#E1E0CC', fontSize: '1.4rem' }}>{L.successTitle}</h3>
-              <p style={{ color: 'rgba(225,224,204,0.65)', fontSize: '0.9rem', lineHeight: 1.5 }}>{L.successBody(form.prenom)}</p>
+              <h3 className="font-display font-bold mb-2" style={{ color: 'var(--cream)', fontSize: '1.4rem' }}>{L.successTitle}</h3>
+              <p style={{ color: 'var(--cream-2)', fontSize: '0.9rem', lineHeight: 1.5 }}>{L.successBody(form.prenom)}</p>
             </motion.div>
           )}
         </motion.div>
@@ -317,8 +350,8 @@ export function CTA({ lang = 'fr' }: { lang?: Locale }) {
           className="flex items-center justify-center gap-2 mt-6 flex-wrap"
         >
           {reassurance.map((label) => (
-            <div key={label} className="inline-flex items-center gap-2" style={{ backgroundColor: '#212121', color: 'rgba(225,224,204,0.7)', fontSize: '0.72rem', padding: '0.45rem 0.85rem', borderRadius: '999px' }}>
-              <span style={{ color: '#00FF87', fontSize: '0.75rem' }}>✓</span>
+            <div key={label} className="inline-flex items-center gap-2" style={{ backgroundColor: 'var(--dark-3)', border: '1px solid var(--dark-line)', color: 'var(--cream-2)', fontSize: '0.72rem', padding: '0.45rem 0.85rem', borderRadius: '999px' }}>
+              <span style={{ color: 'var(--neon)', fontSize: '0.75rem' }}>✓</span>
               {label}
             </div>
           ))}

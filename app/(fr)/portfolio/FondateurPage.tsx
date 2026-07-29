@@ -5,8 +5,8 @@ import Link from 'next/link'
 
 const SIG = {
   green:  'var(--brand)',
-  orange: '#FF6B2B',
-  violet: '#9B59B6',
+  orange: '#A8410C',
+  violet: '#7B3E96',
 } as const
 
 function GlobalStyles() {
@@ -157,7 +157,7 @@ const PROJECTS = [
     objective: "Site vitrine BTP/démolition Lyon. SEO local, pages géo-ciblées par commune, stratégie de contenu technique.",
     result: '+180% impressions GSC en 5 mois — visibilité locale secteur BTP.',
     gradient: null as string | null,
-    accentColor: '#E8A84C',
+    accentColor: '#8A5A12',
   },
   {
     name: 'A+ Audition',
@@ -168,7 +168,7 @@ const PROJECTS = [
     objective: "Audioprothèse Cannes. Référencement local + intégration Doctolib. Site pensé pour convertir les recherches locales.",
     result: "1ère position locale 'audioprothésiste Cannes' — 3 mois après lancement.",
     gradient: null as string | null,
-    accentColor: '#3B82F6',
+    accentColor: '#1D4ED8',
   },
 ]
 
@@ -687,10 +687,9 @@ export function FondateurPage() {
                           letterSpacing: '2px',
                           color: 'var(--brand)',
                           textDecoration: 'none',
-                          opacity: 0.7,
                         }}
-                        onMouseEnter={(e) => (e.currentTarget.style.opacity = '1')}
-                        onMouseLeave={(e) => (e.currentTarget.style.opacity = '0.7')}
+                        onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--brand-strong)')}
+                        onMouseLeave={(e) => (e.currentTarget.style.color = 'var(--brand)')}
                       >
                         VISITER →
                       </a>

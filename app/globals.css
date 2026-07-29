@@ -71,9 +71,12 @@
    Le néon #00FF87 et le crème #E1E0CC ne servent plus que dans les zones
    sombres — section contact et pied de page.
 
-   Contrastes WCAG 2.1 mesurés sur --surface :
-     --ink 16,4:1 · --ink-2 7,1:1 · --ink-3 4,9:1 · --brand 4,9:1
-     --on-brand sur --brand 5,1:1 · --ink-4 2,8:1 (décoratif seulement)
+   Contrastes WCAG 2.1 mesurés au navigateur (canvas, 24 combinaisons
+   page × format). Le plancher n'est pas --surface mais --brand-tint
+   (#DCE6D9), l'aplat clair le plus sombre du site :
+     sur --surface     : --ink 16,4:1 · --ink-2 7,1:1 · --ink-3 5,4:1 · --brand 5,4:1
+     sur --brand-tint  : --ink-3 4,7:1 · --brand 4,7:1
+     --on-brand sur --brand 5,6:1 · --ink-4 2,8:1 (décoratif seulement)
 ──────────────────────────────────────────────────────────── */
 :root {
   color-scheme: light;
@@ -87,7 +90,7 @@
   /* ── Encre ── */
   --ink:    oklch(0.195 0.004 95);   /* #151513 — titres, texte fort */
   --ink-2:  oklch(0.435 0.012 95);   /* #53514A — corps de texte */
-  --ink-3:  oklch(0.520 0.014 95);   /* #6B6960 — labels, légendes */
+  --ink-3:  oklch(0.500 0.014 95);   /* #666459 — labels, légendes (4,7:1 sur --brand-tint) */
   --ink-4:  oklch(0.660 0.014 95);   /* #959289 — décoratif non informatif */
 
   /* ── Filets ── */
@@ -95,10 +98,10 @@
   --line-strong: oklch(0.820 0.014 95);
 
   /* ── Vert profond — CTA et liens sur fond clair ── */
-  --brand:        oklch(0.505 0.128 155);       /* #007942 */
+  --brand:        oklch(0.485 0.128 155);       /* ≈ #00713D — vert profond */
   --brand-strong: oklch(0.440 0.122 155);       /* #006532 — survol */
-  --brand-tint:   oklch(0.505 0.128 155 / 10%);
-  --brand-line:   oklch(0.505 0.128 155 / 30%);
+  --brand-tint:   oklch(0.485 0.128 155 / 10%);
+  --brand-line:   oklch(0.485 0.128 155 / 30%);
   --on-brand:     oklch(0.975 0.008 95);        /* #F8F7F1 */
 
   /* ── Zones sombres — continuité de marque ── */
@@ -134,10 +137,10 @@
   --destructive: oklch(0.505 0.190 27);
   --border:      var(--line);
   --input:       var(--line-strong);
-  --ring:        oklch(0.505 0.128 155 / 40%);
+  --ring:        oklch(0.485 0.128 155 / 40%);
   --radius:      0.75rem;
 
-  --chart-1: oklch(0.505 0.128 155);
+  --chart-1: oklch(0.485 0.128 155);
   --chart-2: oklch(0.55 0.13 230);
   --chart-3: oklch(0.62 0.14 60);
   --chart-4: oklch(0.50 0.15 30);
@@ -150,7 +153,7 @@
   --sidebar-accent:             var(--surface-3);
   --sidebar-accent-foreground:  var(--ink);
   --sidebar-border:             var(--line);
-  --sidebar-ring:               oklch(0.505 0.128 155 / 40%);
+  --sidebar-ring:               oklch(0.485 0.128 155 / 40%);
 }
 
 /* ── Base ─────────────────────────────────────────────────── */
@@ -164,7 +167,7 @@
 
   /* Text selection — vert profond */
   ::selection {
-    background: oklch(0.505 0.128 155 / 22%);
+    background: oklch(0.485 0.128 155 / 22%);
     color: var(--ink);
   }
 
@@ -207,7 +210,7 @@
 
   /* Filet vert sous un mot — accent typographique */
   .rule-underline {
-    background-image: linear-gradient(to right, var(--brand) 0%, oklch(0.505 0.128 155 / 12%) 100%);
+    background-image: linear-gradient(to right, var(--brand) 0%, oklch(0.485 0.128 155 / 12%) 100%);
     background-repeat: no-repeat;
     background-position: 0 100%;
     background-size: 100% 0.08em;

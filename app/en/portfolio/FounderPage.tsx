@@ -4,8 +4,8 @@ import Image from 'next/image'
 
 const SIG = {
   green:  'var(--brand)',
-  orange: '#FF6B2B',
-  violet: '#9B59B6',
+  orange: '#A8410C',
+  violet: '#7B3E96',
 } as const
 
 function GlobalStyles() {
@@ -155,7 +155,7 @@ const PROJECTS = [
     objective: "Construction/demolition showcase site in Lyon. Local SEO, geo-targeted pages by city, technical content strategy.",
     result: '+180% GSC impressions in 5 months — strong local visibility in the construction sector.',
     gradient: null as string | null,
-    accentColor: '#E8A84C',
+    accentColor: '#8A5A12',
   },
   {
     name: 'A+ Audition',
@@ -166,7 +166,7 @@ const PROJECTS = [
     objective: "Hearing clinic in Cannes. Local SEO + Doctolib integration. Site built to convert local searches.",
     result: "#1 local position for 'audioprothésiste Cannes' — 3 months after launch.",
     gradient: null as string | null,
-    accentColor: '#3B82F6',
+    accentColor: '#1D4ED8',
   },
 ]
 
@@ -683,10 +683,9 @@ export function FounderPage() {
                           letterSpacing: '2px',
                           color: 'var(--brand)',
                           textDecoration: 'none',
-                          opacity: 0.7,
                         }}
-                        onMouseEnter={(e) => (e.currentTarget.style.opacity = '1')}
-                        onMouseLeave={(e) => (e.currentTarget.style.opacity = '0.7')}
+                        onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--brand-strong)')}
+                        onMouseLeave={(e) => (e.currentTarget.style.color = 'var(--brand)')}
                       >
                         VISIT →
                       </a>

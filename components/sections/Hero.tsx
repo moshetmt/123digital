@@ -205,7 +205,7 @@ export function Hero({ lang = 'fr' }: { lang?: Locale }) {
               >
                 <Link
                   href={lang === 'en' ? '/en/audit' : '#contact'}
-                  className="group inline-flex items-center gap-2 rounded-full pl-5 pr-2 py-2 font-medium text-sm transition-all duration-300 hover:gap-3 w-fit"
+                  className="group inline-flex items-center gap-2 rounded-full pl-5 pr-2 py-2 font-medium text-sm transition-all duration-300 hover:gap-3 active:scale-[0.97] active:duration-100 w-fit"
                   style={{ backgroundColor: 'var(--brand)', color: 'var(--on-brand)' }}
                 >
                   {d.cta}

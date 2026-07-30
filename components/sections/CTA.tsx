@@ -1,7 +1,7 @@
 'use client'
 
 import { useRef, useState } from 'react'
-import { motion, useInView } from 'framer-motion'
+import { motion, useInView, AnimatePresence } from 'framer-motion'
 import { ArrowRight } from 'lucide-react'
 import { t, type Locale } from '@/lib/i18n'
 
@@ -283,8 +283,12 @@ export function CTA({ lang = 'fr' }: { lang?: Locale }) {
           initial={{ opacity: 0, y: 20 }} animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ delay: 0.2, duration: 0.6, ease: EASE }}
         >
+          <AnimatePresence mode="wait" initial={false}>
           {!submitted ? (
-            <form
+            <motion.form
+              key="form"
+              exit={{ opacity: 0, y: -8 }}
+              transition={{ duration: 0.22, ease: EASE }}
               onSubmit={handleSubmit} noValidate className="flex flex-col gap-4 text-left"
               style={{
                 backgroundColor: 'var(--dark-2)',
@@ -329,13 +333,24 @@ export function CTA({ lang = 'fr' }: { lang?: Locale }) {
               <div aria-hidden style={{ position: 'absolute', left: '-9999px', width: 1, height: 1, overflow: 'hidden' }}>
                 <input type="text" tabIndex={-1} autoComplete="off" value={hp} onChange={(e) => setHp(e.target.value)} placeholder="Ne pas remplir" />
               </div>
-              {sendError && (
-                <p role="alert" style={{ color: 'rgba(255,120,120,0.95)', fontSize: '0.85rem', margin: 0 }}>
-                  {L.sendError}
-                </p>
-              )}
-              <button
+              <AnimatePresence>
+                {sendError && (
+                  <motion.p
+                    role="alert"
+                    initial={{ opacity: 0, y: -4 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.2, ease: EASE }}
+                    style={{ color: 'rgba(255,120,120,0.95)', fontSize: '0.85rem', margin: 0 }}
+                  >
+                    {L.sendError}
+                  </motion.p>
+                )}
+              </AnimatePresence>
+              <motion.button
                 type="submit" disabled={loading}
+                whileTap={{ scale: 0.97 }}
+                transition={{ duration: 0.14, ease: EASE }}
                 className="group flex items-center justify-between w-full rounded-full font-medium text-sm transition-all duration-300 disabled:opacity-50"
                 style={{ backgroundColor: 'var(--neon)', color: 'var(--dark)', padding: '0.75rem 0.75rem 0.75rem 1.5rem', border: 'none', cursor: loading ? 'not-allowed' : 'pointer', fontSize: '0.95rem' }}
               >
@@ -343,11 +358,12 @@ export function CTA({ lang = 'fr' }: { lang?: Locale }) {
                 <span className="flex items-center justify-center rounded-full transition-transform duration-300 group-hover:scale-110 shrink-0" style={{ width: 36, height: 36, backgroundColor: 'var(--dark)', color: 'var(--neon)' }}>
                   <ArrowRight size={14} style={{ transform: 'rotate(-45deg)' }} aria-hidden />
                 </span>
-              </button>
-            </form>
+              </motion.button>
+            </motion.form>
           ) : (
             <motion.div
-              initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}
+              key="success"
+              initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, ease: EASE }}
               className="flex flex-col items-center text-center"
               style={{
                 backgroundColor: 'var(--dark-2)',
@@ -365,6 +381,7 @@ export function CTA({ lang = 'fr' }: { lang?: Locale }) {
               <p style={{ color: 'var(--cream-2)', fontSize: '0.9rem', lineHeight: 1.5 }}>{L.successBody(form.prenom)}</p>
             </motion.div>
           )}
+          </AnimatePresence>
         </motion.div>
 
         {/* Reassurance pills */}

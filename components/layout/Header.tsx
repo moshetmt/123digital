@@ -210,7 +210,7 @@ export function Header({ lang = 'fr' }: { lang?: Locale }) {
           </Link>
           <Link
             href={lang === 'en' ? '/en/audit' : '/audit-gratuit'}
-            className="group inline-flex items-center gap-2 rounded-full pl-5 pr-2 py-1.5 font-medium text-sm transition-all duration-300 hover:gap-3"
+            className="group inline-flex items-center gap-2 rounded-full pl-5 pr-2 py-1.5 font-medium text-sm transition-all duration-300 hover:gap-3 active:scale-[0.97] active:duration-100"
             style={{ backgroundColor: 'var(--brand)', color: 'var(--on-brand)' }}
           >
             {d.cta}
@@ -232,7 +232,7 @@ export function Header({ lang = 'fr' }: { lang?: Locale }) {
           {/* Même destination et même libellé que le CTA du panneau latéral */}
           <Link
             href={lang === 'en' ? '/en/audit' : '/audit-gratuit'}
-            className="inline-flex items-center justify-center rounded-full px-4 font-medium whitespace-nowrap"
+            className="inline-flex items-center justify-center rounded-full px-4 font-medium whitespace-nowrap transition-transform duration-100 active:scale-[0.97]"
             style={{
               backgroundColor: 'var(--brand)',
               color: 'var(--on-brand)',
@@ -326,7 +326,7 @@ export function Header({ lang = 'fr' }: { lang?: Locale }) {
                 <Link
                   href={lang === 'en' ? '/en/audit' : '/audit-gratuit'}
                   onClick={() => setMobileOpen(false)}
-                  className="group flex items-center justify-between w-full rounded-full pl-5 pr-2 py-2 font-medium text-sm transition-all duration-300"
+                  className="group flex items-center justify-between w-full rounded-full pl-5 pr-2 py-2 font-medium text-sm transition-all duration-300 active:scale-[0.97] active:duration-100"
                   style={{ backgroundColor: 'var(--brand)', color: 'var(--on-brand)' }}
                 >
                   {d.cta}

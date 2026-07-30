@@ -167,6 +167,7 @@ export function CTA({ lang = 'fr' }: { lang?: Locale }) {
     sub2:           isEN ? 'No commitment'                       : 'Sans engagement',
     sub3:           isEN ? 'Reply within 24h'                    : 'Réponse sous 24h',
     sending:        isEN ? 'Sending…'                            : 'Envoi en cours…',
+    sendError:      isEN ? 'Something went wrong. Please try again in a moment.' : 'L\'envoi a échoué. Réessayez dans un instant.',
     successTitle:   isEN ? 'Request received.'                   : 'Demande reçue.',
     successBody:    (prenom: string) => isEN
       ? `Thank you${prenom ? ` ${prenom}` : ''}. I'll get back to you within 24h with an initial analysis of your project.`
@@ -180,8 +181,10 @@ export function CTA({ lang = 'fr' }: { lang?: Locale }) {
   const isInView = useInView(ref, { once: true, margin: '-100px' })
 
   const [form, setForm] = useState<FormState>({ prenom: '', nom: '', email: '', site: '', besoin: '', message: '' })
+  const [hp, setHp] = useState('')
   const [submitted, setSubmitted] = useState(false)
   const [loading, setLoading] = useState(false)
+  const [sendError, setSendError] = useState(false)
   const [errors, setErrors] = useState<Partial<Record<keyof FormState, boolean>>>({})
 
   const set = (k: keyof FormState) => (
@@ -197,10 +200,21 @@ export function CTA({ lang = 'fr' }: { lang?: Locale }) {
     if (!form.besoin) errs.besoin = true
     if (Object.keys(errs).length) { setErrors(errs); return }
     setErrors({})
+    setSendError(false)
     setLoading(true)
-    await new Promise((res) => setTimeout(res, 800))
-    setSubmitted(true)
-    setLoading(false)
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ ...form, hp }),
+      })
+      if (!res.ok) throw new Error('send_failed')
+      setSubmitted(true)
+    } catch {
+      setSendError(true)
+    } finally {
+      setLoading(false)
+    }
   }
 
   const labelStyle: React.CSSProperties = {
@@ -311,6 +325,15 @@ export function CTA({ lang = 'fr' }: { lang?: Locale }) {
                 <label style={labelStyle}>{L.messageLabel}</label>
                 <FormTextarea value={form.message} onChange={set('message') as React.ChangeEventHandler<HTMLTextAreaElement>} placeholder={d.messagePlaceholder} />
               </div>
+              {/* Honeypot anti-spam : invisible et hors tabulation, un humain n'y écrit jamais */}
+              <div aria-hidden style={{ position: 'absolute', left: '-9999px', width: 1, height: 1, overflow: 'hidden' }}>
+                <input type="text" tabIndex={-1} autoComplete="off" value={hp} onChange={(e) => setHp(e.target.value)} placeholder="Ne pas remplir" />
+              </div>
+              {sendError && (
+                <p role="alert" style={{ color: 'rgba(255,120,120,0.95)', fontSize: '0.85rem', margin: 0 }}>
+                  {L.sendError}
+                </p>
+              )}
               <button
                 type="submit" disabled={loading}
                 className="group flex items-center justify-between w-full rounded-full font-medium text-sm transition-all duration-300 disabled:opacity-50"

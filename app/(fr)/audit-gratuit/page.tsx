@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { JsonLd } from '@/components/seo/JsonLd'
 import { Breadcrumb } from '@/components/layout/Breadcrumb'
 import { AuditSimulator } from '@/components/sections/AuditSimulator'
+import { CTA } from '@/components/sections/CTA'
 import { BASE_URL, breadcrumbSchema, auditPageSchema } from '@/lib/schema'
 
 export const metadata: Metadata = {
@@ -244,6 +245,10 @@ export default function AuditGratuitPage() {
           </p>
         </div>
       </section>
+
+      {/* Formulaire d'audit — P0-2 de l'audit UX : la page vers laquelle tous
+          les CTA convergent doit permettre d'agir sans téléphoner */}
+      <CTA />
 
       {/* Ce que j'analyse */}
       <section

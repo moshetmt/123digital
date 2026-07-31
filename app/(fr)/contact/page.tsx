@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { JsonLd } from '@/components/seo/JsonLd'
 import { Breadcrumb } from '@/components/layout/Breadcrumb'
+import { CTA } from '@/components/sections/CTA'
 import { BASE_URL, breadcrumbSchema, contactPageSchema } from '@/lib/schema'
 
 export const metadata: Metadata = {
@@ -197,6 +198,10 @@ export default function ContactPage() {
           </div>
         </div>
       </section>
+
+      {/* Formulaire — P0-3 de l'audit UX : la meta de la page promettait un
+          formulaire de contact qui n'existait pas */}
+      <CTA />
     </>
   )
 }

@@ -259,23 +259,13 @@ export function Portfolio({ lang = 'fr' }: { lang?: Locale }) {
           variants={container}
           initial="hidden"
           animate={isInView ? 'visible' : 'hidden'}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"
+          className="grid grid-cols-1 md:grid-cols-2 gap-4"
           role="list"
         >
           {projects.map((project, i) => (
             <ProjectCard key={project.id} project={project} index={i} />
           ))}
         </motion.div>
-
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={isInView ? { opacity: 1 } : {}}
-          transition={{ delay: 0.4, duration: 0.5 }}
-          className="mt-6 text-xs italic"
-          style={{ color: 'var(--ink-3)' }}
-        >
-          * Projets présentés avec accord des clients ou à titre illustratif.
-        </motion.p>
       </div>
     </section>
   )

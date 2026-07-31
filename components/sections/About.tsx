@@ -1,6 +1,7 @@
 'use client'
 
 import { useRef } from 'react'
+import Image from 'next/image'
 import { motion, useInView, useScroll, useTransform } from 'framer-motion'
 import { t, type Locale } from '@/lib/i18n'
 
@@ -169,6 +170,20 @@ export function About({ lang = 'fr' }: { lang?: Locale }) {
           aria-hidden
           style={{ background: 'radial-gradient(circle at 50% 0%, var(--brand-tint), transparent 50%)' }}
         />
+
+        {/* Portrait — un site qui dit « je » montre un visage */}
+        <div
+          className="relative mx-auto mb-6 overflow-hidden rounded-full"
+          style={{ width: 'clamp(96px, 12vw, 128px)', aspectRatio: '1', border: '2px solid var(--line-strong)' }}
+        >
+          <Image
+            src="/portraitmaurice.jpg"
+            alt={lang === 'en' ? 'Maurice Timsit, digital consultant in Lyon' : 'Maurice Timsit, consultant digital à Lyon'}
+            fill
+            sizes="128px"
+            className="object-cover"
+          />
+        </div>
 
         {/* Eyebrow */}
         <div

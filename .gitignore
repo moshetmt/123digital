@@ -5,3 +5,6 @@ node_modules/
 .next/
 out/
 *.tsbuildinfo
+
+# Captures generees par scripts/screenshot-fondateur.mjs
+fondateur-*.png

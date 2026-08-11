@@ -86,14 +86,14 @@ function MetricCard({ m, index }: { m: Metric; index: number }) {
       animate={inView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.7, delay: index * 0.1, ease: EASE }}
       className="relative overflow-hidden"
-      style={{ backgroundColor: '#101010', borderRadius: '1.25rem', padding: '2rem 1.75rem' }}
+      style={{ backgroundColor: 'var(--surface-2)', borderRadius: '1.25rem', padding: '2rem 1.75rem' }}
     >
       {/* Number — electric green */}
       <div
         className="font-display font-bold mb-3"
         style={{
           fontSize: 'clamp(2.6rem, 5vw, 3.6rem)',
-          color: '#00FF87',
+          color: 'var(--brand)',
           letterSpacing: '-0.04em',
           lineHeight: 1,
           fontFeatureSettings: '"tnum"',
@@ -103,14 +103,14 @@ function MetricCard({ m, index }: { m: Metric; index: number }) {
       </div>
 
       {/* Description */}
-      <div style={{ color: '#9ca3af', fontSize: '0.82rem', lineHeight: 1.4, minHeight: '2.4em' }}>
+      <div style={{ color: 'var(--ink-2)', fontSize: '0.82rem', lineHeight: 1.4, minHeight: '2.4em' }}>
         {m.desc}
       </div>
 
       {/* Green bar */}
       <div
         className="mt-5 overflow-hidden"
-        style={{ height: 2, backgroundColor: 'rgba(255,255,255,0.05)', borderRadius: 2 }}
+        style={{ height: 2, backgroundColor: 'var(--surface-3)', borderRadius: 2 }}
       >
         <motion.div
           initial={{ width: 0 }}
@@ -118,7 +118,7 @@ function MetricCard({ m, index }: { m: Metric; index: number }) {
           transition={{ duration: 1.2, delay: index * 0.1 + 0.4, ease: EASE }}
           style={{
             height: '100%',
-            background: 'linear-gradient(to right, #00FF87, rgba(0,255,135,0.2))',
+            background: 'linear-gradient(to right, var(--brand), var(--brand-tint))',
             borderRadius: 2,
           }}
         />
@@ -145,7 +145,7 @@ export function Results() {
   return (
     <section
       id="resultats"
-      className="bg-black"
+      className="bg-background"
       style={{ padding: '7rem 1.5rem' }}
       aria-labelledby="results-heading"
     >
@@ -157,9 +157,9 @@ export function Results() {
           animate={inView ? { opacity: 1 } : {}}
           transition={{ duration: 0.5 }}
           className="flex items-center gap-2 mb-5"
-          style={{ fontSize: '0.7rem', letterSpacing: '0.12em', textTransform: 'uppercase', color: 'rgba(225,224,204,0.7)', fontWeight: 700 }}
+          style={{ fontSize: '0.7rem', letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--ink)', fontWeight: 700 }}
         >
-          <span className="w-1.5 h-1.5 rounded-full shrink-0" style={{ backgroundColor: '#00FF87' }} aria-hidden />
+          <span className="w-1.5 h-1.5 rounded-full shrink-0" style={{ backgroundColor: 'var(--brand)' }} aria-hidden />
           Résultats
         </motion.div>
 
@@ -170,7 +170,7 @@ export function Results() {
           style={{
             fontSize: 'clamp(1.8rem, 4vw, 3rem)',
             fontWeight: 500,
-            color: '#E1E0CC',
+            color: 'var(--ink)',
             letterSpacing: '-0.025em',
             maxWidth: '22ch',
             lineHeight: 1.05,
@@ -195,7 +195,7 @@ export function Results() {
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ delay: 0.5, duration: 0.7, ease: EASE }}
           className="relative mx-auto"
-          style={{ backgroundColor: '#212121', borderRadius: '1.25rem', padding: '2.5rem 2rem', maxWidth: '720px' }}
+          style={{ backgroundColor: 'var(--surface-2)', borderRadius: '1.25rem', padding: '2.5rem 2rem', maxWidth: '720px' }}
         >
           {/* Green italic quote mark */}
           <div
@@ -204,7 +204,7 @@ export function Results() {
               fontFamily: 'var(--font-instrument-serif), serif',
               fontStyle: 'italic',
               fontSize: '5rem',
-              color: 'rgba(0,255,135,0.4)',
+              color: 'var(--brand)',
               lineHeight: 0.6,
               top: '1.25rem',
               left: '1.5rem',
@@ -218,7 +218,7 @@ export function Results() {
             style={{
               fontFamily: 'var(--font-instrument-serif), serif',
               fontStyle: 'italic',
-              color: 'rgba(225,224,204,0.9)',
+              color: 'var(--ink)',
               fontSize: '1.35rem',
               lineHeight: 1.4,
               margin: '0 0 1.75rem',
@@ -232,12 +232,12 @@ export function Results() {
           <div className="flex items-center gap-3" style={{ paddingLeft: '1rem' }}>
             <div
               className="shrink-0"
-              style={{ width: 36, height: 36, borderRadius: '50%', background: 'linear-gradient(135deg, #DEDBC8, #6e6c5c)' }}
+              style={{ width: 36, height: 36, borderRadius: '50%', background: 'linear-gradient(135deg, var(--brand), var(--line-strong))' }}
               aria-hidden
             />
             <div>
-              <div style={{ color: '#E1E0CC', fontSize: '0.85rem', fontWeight: 700 }}>Gérant</div>
-              <div style={{ color: '#9ca3af', fontSize: '0.75rem' }}>Entreprise de services B2B</div>
+              <div style={{ color: 'var(--ink)', fontSize: '0.85rem', fontWeight: 700 }}>Gérant</div>
+              <div style={{ color: 'var(--ink-2)', fontSize: '0.75rem' }}>Entreprise de services B2B</div>
             </div>
           </div>
         </motion.div>

@@ -55,11 +55,11 @@ function ServiceCard({ service, index }: { service: typeof services[0]; index: n
       animate={inView ? { opacity: 1, scale: 1, y: 0 } : {}}
       whileHover={{
         scale: 1.03,
-        boxShadow: '0 0 0 1px rgba(0,255,135,0.14), 0 28px 56px rgba(0,0,0,0.55)',
+        boxShadow: '0 0 0 1px var(--brand-line), 0 28px 56px oklch(0.30 0.02 95 / 0.10)',
       }}
       transition={{ duration: 0.7, delay: index * 0.12, ease: EASE }}
       className="rounded-2xl overflow-hidden relative"
-      style={{ backgroundColor: '#212121', willChange: 'transform', cursor: 'default' }}
+      style={{ backgroundColor: 'var(--surface-2)', willChange: 'transform', cursor: 'default' }}
     >
       {/* Liquid glass glow — visible on hover via parent whileHover cascade */}
       <motion.div
@@ -69,7 +69,7 @@ function ServiceCard({ service, index }: { service: typeof services[0]; index: n
         transition={{ duration: 0.2 }}
         style={{
           background:
-            'radial-gradient(ellipse at 50% 0%, rgba(0,255,135,0.07) 0%, transparent 65%)',
+            'radial-gradient(ellipse at 50% 0%, var(--brand-tint) 0%, transparent 65%)',
         }}
         aria-hidden
       />
@@ -80,7 +80,7 @@ function ServiceCard({ service, index }: { service: typeof services[0]; index: n
         {/* Number */}
         <div
           className="text-xs font-bold tracking-widest"
-          style={{ color: 'rgba(225,224,204,0.4)', letterSpacing: '0.1em' }}
+          style={{ color: 'var(--ink-3)', letterSpacing: '0.1em' }}
         >
           {num}
         </div>
@@ -91,7 +91,7 @@ function ServiceCard({ service, index }: { service: typeof services[0]; index: n
           style={{
             fontSize: 'clamp(1.1rem, 2vw, 1.4rem)',
             letterSpacing: '-0.02em',
-            color: '#E1E0CC',
+            color: 'var(--ink)',
             minHeight: '3em',
           }}
         >
@@ -104,7 +104,7 @@ function ServiceCard({ service, index }: { service: typeof services[0]; index: n
             <li
               key={item}
               className="flex items-center gap-2.5"
-              style={{ color: '#9ca3af', fontSize: '0.82rem' }}
+              style={{ color: 'var(--ink-2)', fontSize: '0.82rem' }}
             >
               <span
                 className="flex items-center justify-center shrink-0"
@@ -112,8 +112,8 @@ function ServiceCard({ service, index }: { service: typeof services[0]; index: n
                   width: 18,
                   height: 18,
                   borderRadius: '50%',
-                  backgroundColor: 'rgba(0,255,135,0.12)',
-                  color: '#00FF87',
+                  backgroundColor: 'var(--brand-tint)',
+                  color: 'var(--brand)',
                 }}
                 aria-hidden
               >
@@ -131,7 +131,7 @@ function ServiceCard({ service, index }: { service: typeof services[0]; index: n
         <Link
           href={service.href}
           className="group inline-flex items-center gap-1.5 font-bold text-sm mt-2 transition-all duration-300 hover:gap-2.5 w-fit"
-          style={{ color: '#E1E0CC', fontSize: '0.8rem' }}
+          style={{ color: 'var(--ink)', fontSize: '0.8rem' }}
         >
           En savoir plus
           <span
@@ -156,7 +156,7 @@ export function Services() {
     <section
       id="section-services"
       aria-labelledby="services-heading"
-      className="relative bg-black"
+      className="relative bg-background"
       style={{ padding: '7rem 1.5rem 6rem', minHeight: '100vh' }}
     >
       {/* Noise overlay */}
@@ -171,11 +171,11 @@ export function Services() {
         {/* Eyebrow with green dot */}
         <div
           className="flex items-center gap-2 mb-6"
-          style={{ fontSize: '0.7rem', letterSpacing: '0.12em', textTransform: 'uppercase', color: 'rgba(225,224,204,0.7)', fontWeight: 700 }}
+          style={{ fontSize: '0.7rem', letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--ink)', fontWeight: 700 }}
         >
           <span
             className="w-1.5 h-1.5 rounded-full shrink-0"
-            style={{ backgroundColor: '#00FF87' }}
+            style={{ backgroundColor: 'var(--brand)' }}
             aria-hidden
           />
           Nos services
@@ -195,13 +195,13 @@ export function Services() {
           <WordPullUp
             text="Un système complet de croissance digitale."
             delay={0.05}
-            style={{ color: '#E1E0CC' }}
+            style={{ color: 'var(--ink)' }}
           />
           {' '}
           <WordPullUp
             text="Tout ce dont vous avez besoin. Un seul expert."
             delay={0.4}
-            style={{ color: '#E1E0CC' }}
+            style={{ color: 'var(--ink)' }}
           />
         </h2>
 
@@ -238,24 +238,24 @@ export function Services() {
             href="#contact"
             className="group inline-flex items-center gap-2 rounded-full font-medium text-sm transition-all duration-300 hover:gap-3"
             style={{
-              backgroundColor: '#DEDBC8',
-              color: '#000',
+              backgroundColor: 'var(--brand)',
+              color: 'var(--on-brand)',
               padding: '0.5rem 0.5rem 0.5rem 1.5rem',
             }}
           >
             Audit gratuit — c&apos;est gratuit
             <span
               className="flex items-center justify-center rounded-full w-8 h-8 transition-transform duration-300 group-hover:scale-110 shrink-0"
-              style={{ backgroundColor: '#000' }}
+              style={{ backgroundColor: 'var(--on-brand)' }}
             >
               <ArrowRight
                 size={14}
-                style={{ color: '#DEDBC8', transform: 'rotate(-45deg)' }}
+                style={{ color: 'var(--ink)', transform: 'rotate(-45deg)' }}
                 aria-hidden
               />
             </span>
           </Link>
-          <p style={{ fontSize: '0.78rem', color: 'rgba(225,224,204,0.4)' }}>
+          <p style={{ fontSize: '0.78rem', color: 'var(--ink-3)' }}>
             Réponse sous 24h · Sans engagement · 30 min
           </p>
         </motion.div>

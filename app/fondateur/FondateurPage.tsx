@@ -455,7 +455,7 @@ export function FondateurPage() {
           scrollTrigger: {
             trigger: el,
             start: 'top 82%',
-            toggleActions: 'play none none reverse',
+            toggleActions: 'play none none none',
           },
         }
       )
@@ -472,7 +472,7 @@ export function FondateurPage() {
           scrollTrigger: {
             trigger: dot,
             start: 'top 82%',
-            toggleActions: 'play none none reverse',
+            toggleActions: 'play none none none',
           },
         }
       )

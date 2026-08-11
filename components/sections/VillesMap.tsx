@@ -42,12 +42,12 @@ export function VillesMap() {
   }
 
   function getColor(slug: string, priority: VillePoint['priority']) {
-    if (slug === (hovered ?? selected)) return '#00FF87'
+    if (slug === (hovered ?? selected)) return 'var(--brand)'
     return priority === 'high'
-      ? 'rgba(225,224,204,0.8)'
+      ? 'var(--ink)'
       : priority === 'medium'
-        ? 'rgba(225,224,204,0.5)'
-        : 'rgba(225,224,204,0.3)'
+        ? 'var(--ink-2)'
+        : 'var(--ink-3)'
   }
 
   return (
@@ -56,8 +56,8 @@ export function VillesMap() {
       <div
         style={{
           position: 'relative',
-          border: '1px solid rgba(225,224,204,0.08)',
-          backgroundColor: '#0d0d0d',
+          border: '1px solid var(--line)',
+          backgroundColor: 'var(--surface-2)',
         }}
       >
         <svg
@@ -68,8 +68,8 @@ export function VillesMap() {
           {/* Fond région simplifié — tracé approximatif ARA */}
           <path
             d="M10,10 L20,5 L40,3 L60,5 L80,10 L90,25 L88,50 L80,70 L60,75 L40,78 L20,72 L8,55 L6,35 Z"
-            fill="rgba(225,224,204,0.02)"
-            stroke="rgba(225,224,204,0.06)"
+            fill="var(--ink-4)"
+            stroke="var(--ink-4)"
             strokeWidth="0.5"
           />
 
@@ -85,7 +85,7 @@ export function VillesMap() {
                   y1={lyon.y}
                   x2={v.x}
                   y2={v.y}
-                  stroke={v.slug === (hovered ?? selected) ? 'rgba(0,255,135,0.3)' : 'rgba(225,224,204,0.04)'}
+                  stroke={v.slug === (hovered ?? selected) ? 'var(--brand)' : 'var(--ink-4)'}
                   strokeWidth="0.3"
                   strokeDasharray="1,2"
                 />
@@ -110,8 +110,8 @@ export function VillesMap() {
                     cx={ville.x}
                     cy={ville.y}
                     r={r + 4}
-                    fill="rgba(0,255,135,0.1)"
-                    stroke="rgba(0,255,135,0.3)"
+                    fill="var(--brand)"
+                    stroke="var(--brand)"
                     strokeWidth="0.5"
                   />
                 )}
@@ -132,7 +132,7 @@ export function VillesMap() {
                     y={ville.y + 1}
                     style={{
                       fontSize: '3.5px',
-                      fill: isActive ? '#00FF87' : 'rgba(225,224,204,0.6)',
+                      fill: isActive ? 'var(--brand)' : 'var(--ink-2)',
                       fontFamily: 'var(--font-syne)',
                       userSelect: 'none',
                     }}
@@ -157,9 +157,9 @@ export function VillesMap() {
           }}
         >
           {[
-            { label: 'Priorité haute', color: 'rgba(225,224,204,0.8)', size: 8 },
-            { label: 'Priorité moyenne', color: 'rgba(225,224,204,0.5)', size: 6 },
-            { label: 'Priorité basse', color: 'rgba(225,224,204,0.3)', size: 4 },
+            { label: 'Priorité haute', color: 'var(--ink)', size: 8 },
+            { label: 'Priorité moyenne', color: 'var(--ink-2)', size: 6 },
+            { label: 'Priorité basse', color: 'var(--ink-3)', size: 4 },
           ].map((l) => (
             <div key={l.label} className="flex items-center gap-2">
               <div
@@ -171,7 +171,7 @@ export function VillesMap() {
                   flexShrink: 0,
                 }}
               />
-              <span style={{ fontSize: '0.62rem', color: 'rgba(225,224,204,0.35)' }}>{l.label}</span>
+              <span style={{ fontSize: '0.62rem', color: 'var(--ink-3)' }}>{l.label}</span>
             </div>
           ))}
         </div>
@@ -182,9 +182,9 @@ export function VillesMap() {
         style={{
           minHeight: '100px',
           padding: '1.5rem',
-          border: '1px solid rgba(225,224,204,0.08)',
+          border: '1px solid var(--line)',
           borderTop: 'none',
-          backgroundColor: '#0d0d0d',
+          backgroundColor: 'var(--surface-2)',
           transition: 'all 0.15s ease',
         }}
       >
@@ -196,7 +196,7 @@ export function VillesMap() {
                   fontSize: '0.65rem',
                   letterSpacing: '0.12em',
                   textTransform: 'uppercase',
-                  color: '#00FF87',
+                  color: 'var(--brand)',
                   fontWeight: 700,
                   marginBottom: '0.3rem',
                 }}
@@ -205,11 +205,11 @@ export function VillesMap() {
               </div>
               <div
                 className="font-display font-normal"
-                style={{ fontSize: '1.4rem', color: '#E1E0CC', marginBottom: '0.5rem' }}
+                style={{ fontSize: '1.4rem', color: 'var(--ink)', marginBottom: '0.5rem' }}
               >
                 {hoveredVille.nom}
               </div>
-              <p style={{ fontSize: '0.82rem', color: 'rgba(225,224,204,0.5)' }}>
+              <p style={{ fontSize: '0.82rem', color: 'var(--ink-2)' }}>
                 Cliquez pour voir les services disponibles à {hoveredVille.nom}
               </p>
             </div>
@@ -217,8 +217,8 @@ export function VillesMap() {
               href={`/${hoveredVille.slug}`}
               style={{
                 padding: '0.6rem 1.2rem',
-                backgroundColor: '#00FF87',
-                color: '#080808',
+                backgroundColor: 'var(--brand)',
+                color: 'var(--ink)',
                 fontSize: '0.75rem',
                 fontWeight: 700,
                 letterSpacing: '0.08em',
@@ -231,7 +231,7 @@ export function VillesMap() {
             </Link>
           </div>
         ) : (
-          <p style={{ fontSize: '0.85rem', color: 'rgba(225,224,204,0.35)', fontStyle: 'italic' }}>
+          <p style={{ fontSize: '0.85rem', color: 'var(--ink-3)', fontStyle: 'italic' }}>
             Survolez ou cliquez une ville pour en savoir plus
           </p>
         )}
@@ -246,8 +246,8 @@ export function VillesMap() {
               href={`/${ville.slug}`}
               style={{
                 padding: '0.3rem 0.75rem',
-                border: `1px solid ${hovered === ville.slug || selected === ville.slug ? '#00FF87' : 'rgba(225,224,204,0.1)'}`,
-                color: hovered === ville.slug || selected === ville.slug ? '#00FF87' : 'rgba(225,224,204,0.45)',
+                border: `1px solid ${hovered === ville.slug || selected === ville.slug ? 'var(--brand)' : 'var(--ink-4)'}`,
+                color: hovered === ville.slug || selected === ville.slug ? 'var(--brand)' : 'var(--ink-2)',
                 fontSize: '0.75rem',
                 transition: 'all 0.15s ease',
               }}

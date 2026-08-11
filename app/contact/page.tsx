@@ -19,8 +19,8 @@ export const metadata: Metadata = {
 const moyensDeContact = [
   {
     label: 'Email',
-    valeur: 'maurice@123digital.fr',
-    href: 'mailto:maurice@123digital.fr',
+    valeur: 'contact@123digital.fr',
+    href: 'mailto:contact@123digital.fr',
     desc: 'Réponse sous 24h en semaine',
   },
   {

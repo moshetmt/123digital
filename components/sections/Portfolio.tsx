@@ -64,14 +64,14 @@ function ProjectCard({ project, index }: { project: typeof projects[0]; index: n
       animate={inView ? { opacity: 1, rotate: 0, y: 0 } : {}}
       whileHover={{
         scale: 1.02,
-        boxShadow: '0 0 0 1px rgba(0,255,135,0.12), 0 24px 48px rgba(0,0,0,0.5)',
+        boxShadow: '0 0 0 1px var(--brand-line), 0 24px 48px oklch(0.30 0.02 95 / 0.09)',
       }}
       transition={{ duration: 0.65, delay: index * 0.12, ease: EASE }}
       role="listitem"
       className="flex flex-col rounded-2xl relative overflow-hidden"
       style={{
-        backgroundColor: '#212121',
-        border: '1px solid rgba(255,255,255,0.05)',
+        backgroundColor: 'var(--surface-2)',
+        border: '1px solid var(--line)',
         padding: '1.75rem',
         minHeight: '280px',
         willChange: 'transform',
@@ -86,17 +86,17 @@ function ProjectCard({ project, index }: { project: typeof projects[0]; index: n
         transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
         style={{
           height: '40%',
-          background: 'linear-gradient(to top, rgba(0,255,135,0.06) 0%, transparent 100%)',
+          background: 'linear-gradient(to top, var(--brand-tint) 0%, transparent 100%)',
         }}
         aria-hidden
       />
-      {/* Metric — vert #00FF87 comme Results, font-bold cohérent */}
+      {/* Metric — vert var(--brand) comme Results, font-bold cohérent */}
       <div className="mb-5">
         <p
           className="font-display font-bold leading-none"
           style={{
             fontSize: 'clamp(1.8rem, 3.5vw, 2.6rem)',
-            color: '#00FF87',
+            color: 'var(--brand)',
             letterSpacing: '-0.04em',
             fontFeatureSettings: '"tnum"',
             marginBottom: '0.25rem',
@@ -105,7 +105,7 @@ function ProjectCard({ project, index }: { project: typeof projects[0]; index: n
           {metric}
         </p>
         {sub && (
-          <p style={{ fontSize: '0.72rem', color: '#9ca3af' }}>
+          <p style={{ fontSize: '0.72rem', color: 'var(--ink-2)' }}>
             {sub}
           </p>
         )}
@@ -118,7 +118,7 @@ function ProjectCard({ project, index }: { project: typeof projects[0]; index: n
           fontWeight: 700,
           letterSpacing: '0.14em',
           textTransform: 'uppercase',
-          color: 'rgba(225,224,204,0.4)',
+          color: 'var(--ink-3)',
           display: 'block',
           marginBottom: '0.5rem',
         }}
@@ -132,7 +132,7 @@ function ProjectCard({ project, index }: { project: typeof projects[0]; index: n
         style={{
           fontSize: 'clamp(1rem, 1.5vw, 1.25rem)',
           letterSpacing: '-0.01em',
-          color: '#E1E0CC',
+          color: 'var(--ink)',
           marginBottom: '0.75rem',
         }}
       >
@@ -142,7 +142,7 @@ function ProjectCard({ project, index }: { project: typeof projects[0]; index: n
       {/* Description */}
       <p
         className="text-xs leading-relaxed flex-1"
-        style={{ color: '#9ca3af' }}
+        style={{ color: 'var(--ink-2)' }}
       >
         {project.description}
       </p>
@@ -154,8 +154,8 @@ function ProjectCard({ project, index }: { project: typeof projects[0]; index: n
             key={tag}
             className="inline-block px-2.5 py-0.5 rounded-full text-[10px] font-medium"
             style={{
-              backgroundColor: 'rgba(0,255,135,0.08)',
-              color: 'rgba(0,255,135,0.6)',
+              backgroundColor: 'var(--brand-tint)',
+              color: 'var(--brand)',
             }}
           >
             {tag}
@@ -180,7 +180,7 @@ export function Portfolio() {
   return (
     <section
       id="section-portfolio"
-      className="bg-black"
+      className="bg-background"
       style={{ padding: '7rem 1.5rem' }}
       aria-labelledby="portfolio-heading"
     >
@@ -197,11 +197,11 @@ export function Portfolio() {
             {/* Eyebrow with green dot */}
             <div
               className="flex items-center gap-2 mb-5"
-              style={{ fontSize: '0.7rem', letterSpacing: '0.12em', textTransform: 'uppercase', color: 'rgba(225,224,204,0.7)', fontWeight: 700 }}
+              style={{ fontSize: '0.7rem', letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--ink)', fontWeight: 700 }}
             >
               <span
                 className="w-1.5 h-1.5 rounded-full shrink-0"
-                style={{ backgroundColor: '#00FF87' }}
+                style={{ backgroundColor: 'var(--brand)' }}
                 aria-hidden
               />
               Réalisations
@@ -211,7 +211,7 @@ export function Portfolio() {
             <h2
               id="portfolio-heading"
               className="font-display font-normal"
-              style={{ fontSize: 'clamp(2rem, 4.5vw, 4rem)', color: '#E1E0CC', lineHeight: 1.05, letterSpacing: '-0.02em' }}
+              style={{ fontSize: 'clamp(2rem, 4.5vw, 4rem)', color: 'var(--ink)', lineHeight: 1.05, letterSpacing: '-0.02em' }}
             >
               <WordPullUp text="Résultats concrets." delay={0.05} />
             </h2>
@@ -220,7 +220,7 @@ export function Portfolio() {
           <Link
             href="/portfolio"
             className="inline-flex items-center gap-2 text-sm font-medium transition-opacity duration-200 hover:opacity-60 shrink-0"
-            style={{ color: 'rgba(225,224,204,0.55)' }}
+            style={{ color: 'var(--ink-2)' }}
           >
             Voir tout
             <ArrowRight size={14} aria-hidden />
@@ -245,7 +245,7 @@ export function Portfolio() {
           animate={isInView ? { opacity: 1 } : {}}
           transition={{ delay: 0.4, duration: 0.5 }}
           className="mt-6 text-xs italic"
-          style={{ color: 'rgba(225,224,204,0.25)' }}
+          style={{ color: 'var(--ink-3)' }}
         >
           * Projets présentés avec accord des clients ou à titre illustratif.
         </motion.p>

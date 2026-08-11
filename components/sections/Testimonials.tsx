@@ -84,7 +84,7 @@ export function Testimonials() {
 
   return (
     <section
-      className="py-20 sm:py-28 bg-black"
+      className="py-20 sm:py-28 bg-background"
       aria-labelledby="testimonials-heading"
     >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -99,7 +99,7 @@ export function Testimonials() {
         >
           <p
             className="text-[10px] font-semibold tracking-[0.22em] uppercase mb-5"
-            style={{ color: 'oklch(0.878 0.020 92 / 50%)' }}
+            style={{ color: 'var(--ink-2)' }}
           >
             Témoignages clients
           </p>
@@ -108,7 +108,7 @@ export function Testimonials() {
             className="font-display font-normal"
             style={{
               fontSize: 'clamp(2rem, 4.5vw, 4rem)',
-              color: '#E1E0CC',
+              color: 'var(--ink)',
               lineHeight: 1.05,
               letterSpacing: '-0.02em',
             }}
@@ -132,22 +132,22 @@ export function Testimonials() {
               role="listitem"
               className="flex flex-col rounded-2xl p-6 sm:p-7"
               style={{
-                backgroundColor: '#141414',
-                border: '1px solid rgba(255,255,255,0.05)',
+                backgroundColor: 'var(--surface-2)',
+                border: '1px solid var(--line)',
               }}
             >
               {/* Result badge */}
               <div
                 className="inline-flex self-start items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold mb-6"
                 style={{
-                  backgroundColor: 'oklch(0.878 0.020 92 / 10%)',
-                  border: '1px solid oklch(0.878 0.020 92 / 16%)',
-                  color: 'oklch(0.878 0.020 92 / 80%)',
+                  backgroundColor: 'var(--surface-3)',
+                  border: '1px solid var(--line)',
+                  color: 'var(--ink)',
                 }}
               >
                 <span
                   className="w-1 h-1 rounded-full shrink-0"
-                  style={{ backgroundColor: 'oklch(0.878 0.020 92 / 60%)' }}
+                  style={{ backgroundColor: 'var(--surface-3)' }}
                   aria-hidden
                 />
                 {t.result}
@@ -167,13 +167,13 @@ export function Testimonials() {
               </p>
 
               {/* Author */}
-              <footer className="flex items-center gap-3 pt-5" style={{ borderTop: '1px solid rgba(255,255,255,0.06)' }}>
+              <footer className="flex items-center gap-3 pt-5" style={{ borderTop: '1px solid var(--line)' }}>
                 <div
                   className="w-8 h-8 rounded-full flex items-center justify-center font-display font-bold text-[11px] shrink-0"
                   style={{
-                    backgroundColor: 'oklch(0.878 0.020 92 / 10%)',
-                    border: '1px solid oklch(0.878 0.020 92 / 16%)',
-                    color: 'oklch(0.878 0.020 92 / 70%)',
+                    backgroundColor: 'var(--surface-3)',
+                    border: '1px solid var(--line)',
+                    color: 'var(--ink)',
                   }}
                   aria-hidden
                 >
@@ -182,7 +182,7 @@ export function Testimonials() {
                 <div>
                   <p
                     className="text-sm font-semibold"
-                    style={{ color: 'oklch(0.893 0.022 92)' }}
+                    style={{ color: 'var(--ink)' }}
                   >
                     {t.name}
                   </p>

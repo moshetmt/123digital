@@ -80,8 +80,8 @@ function StepCard({ step, index }: { step: Step; index: number }) {
       transition={{ duration: 0.7, delay: index * 0.15, ease: EASE }}
       className="flex flex-col rounded-2xl"
       style={{
-        backgroundColor: '#212121',
-        border: '1px solid rgba(255,255,255,0.05)',
+        backgroundColor: 'var(--surface-2)',
+        border: '1px solid var(--line)',
         padding: '1.75rem',
         minHeight: '240px',
       }}
@@ -93,7 +93,7 @@ function StepCard({ step, index }: { step: Step; index: number }) {
             fontSize: '0.7rem',
             fontWeight: 700,
             letterSpacing: '0.1em',
-            color: 'rgba(225,224,204,0.35)',
+            color: 'var(--ink-3)',
           }}
         >
           {step.num}
@@ -103,14 +103,14 @@ function StepCard({ step, index }: { step: Step; index: number }) {
           style={{
             width: 36,
             height: 36,
-            backgroundColor: 'rgba(0,255,135,0.08)',
-            border: '1px solid rgba(0,255,135,0.16)',
+            backgroundColor: 'var(--brand-tint)',
+            border: '1px solid var(--brand-line)',
           }}
         >
           <Icon
             size={16}
             strokeWidth={1.6}
-            style={{ color: '#00FF87' }}
+            style={{ color: 'var(--brand)' }}
             aria-hidden
           />
         </div>
@@ -122,7 +122,7 @@ function StepCard({ step, index }: { step: Step; index: number }) {
         style={{
           fontSize: 'clamp(1.1rem, 2vw, 1.35rem)',
           letterSpacing: '-0.02em',
-          color: '#E1E0CC',
+          color: 'var(--ink)',
         }}
       >
         {step.title}
@@ -131,7 +131,7 @@ function StepCard({ step, index }: { step: Step; index: number }) {
       {/* Description */}
       <p
         className="text-sm leading-relaxed flex-1"
-        style={{ color: '#9ca3af' }}
+        style={{ color: 'var(--ink-2)' }}
       >
         {step.description}
       </p>
@@ -146,7 +146,7 @@ export function Process() {
   return (
     <section
       id="section-process"
-      className="bg-black"
+      className="bg-background"
       style={{ padding: '7rem 1.5rem' }}
       aria-labelledby="process-heading"
     >
@@ -162,11 +162,11 @@ export function Process() {
           {/* Eyebrow with green dot */}
           <div
             className="flex items-center gap-2 mb-5"
-            style={{ fontSize: '0.7rem', letterSpacing: '0.12em', textTransform: 'uppercase', color: 'rgba(225,224,204,0.7)', fontWeight: 700 }}
+            style={{ fontSize: '0.7rem', letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--ink)', fontWeight: 700 }}
           >
             <span
               className="w-1.5 h-1.5 rounded-full shrink-0"
-              style={{ backgroundColor: '#00FF87' }}
+              style={{ backgroundColor: 'var(--brand)' }}
               aria-hidden
             />
             Comment je travaille
@@ -176,7 +176,7 @@ export function Process() {
           <h2
             id="process-heading"
             className="font-display font-normal"
-            style={{ fontSize: 'clamp(2rem, 4.5vw, 4rem)', color: '#E1E0CC', lineHeight: 1.05, letterSpacing: '-0.02em' }}
+            style={{ fontSize: 'clamp(2rem, 4.5vw, 4rem)', color: 'var(--ink)', lineHeight: 1.05, letterSpacing: '-0.02em' }}
           >
             <WordPullUp text="Un processus en quatre actes." delay={0.05} />
           </h2>
@@ -187,7 +187,7 @@ export function Process() {
           style={{
             position: 'relative',
             height: 1,
-            backgroundColor: 'rgba(225,224,204,0.06)',
+            backgroundColor: 'var(--surface-3)',
             marginBottom: '2rem',
             overflow: 'hidden',
           }}
@@ -196,7 +196,7 @@ export function Process() {
             style={{
               position: 'absolute',
               inset: 0,
-              backgroundColor: '#00FF87',
+              backgroundColor: 'var(--brand)',
               transformOrigin: 'left',
               willChange: 'transform',
             }}

@@ -54,7 +54,7 @@ export default function MentionsLegalesPage() {
                 <strong style={{ color: '#E1E0CC' }}>Maurice Timsit</strong><br />
                 Consultant en croissance digitale — Entrepreneur individuel<br />
                 Siège social : Lyon (69), France<br />
-                Email : <a href="mailto:maurice@123digital.fr" style={{ color: '#00FF87' }}>maurice@123digital.fr</a><br />
+                Email : <a href="mailto:contact@123digital.fr" style={{ color: '#00FF87' }}>contact@123digital.fr</a><br />
                 SIRET : en cours d&apos;immatriculation
               </p>
             </section>
@@ -98,7 +98,7 @@ export default function MentionsLegalesPage() {
                 Les données collectées via les formulaires de contact (nom, email) sont utilisées uniquement pour répondre à vos demandes. Elles ne sont ni vendues ni transmises à des tiers. Conformément au RGPD et à la loi Informatique et Libertés, vous disposez d&apos;un droit d&apos;accès, de rectification et de suppression de vos données.
               </p>
               <p style={{ marginTop: '0.75rem' }}>
-                Pour exercer ces droits : <a href="mailto:maurice@123digital.fr" style={{ color: '#00FF87' }}>maurice@123digital.fr</a>
+                Pour exercer ces droits : <a href="mailto:contact@123digital.fr" style={{ color: '#00FF87' }}>contact@123digital.fr</a>
               </p>
             </section>
 

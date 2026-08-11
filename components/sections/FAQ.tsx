@@ -52,8 +52,8 @@ function FAQItem({
       transition={{ duration: 0.5, delay, ease: EASE }}
       style={{
         borderRadius: '0.75rem',
-        border: '1px solid rgba(255,255,255,0.06)',
-        backgroundColor: '#141414',
+        border: '1px solid var(--line)',
+        backgroundColor: 'var(--surface-2)',
         overflow: 'hidden',
       }}
     >
@@ -71,7 +71,7 @@ function FAQItem({
       >
         <span
           className="text-sm font-medium leading-snug flex-1"
-          style={{ color: '#E1E0CC' }}
+          style={{ color: 'var(--ink)' }}
         >
           {question}
         </span>
@@ -84,7 +84,7 @@ function FAQItem({
             flexShrink: 0,
             display: 'flex',
             alignItems: 'center',
-            color: open ? '#00FF87' : 'rgba(225,224,204,0.35)',
+            color: open ? 'var(--brand)' : 'var(--ink-3)',
             willChange: 'transform',
           }}
           aria-hidden
@@ -111,7 +111,7 @@ function FAQItem({
               className="text-sm leading-relaxed"
               style={{
                 padding: '0 1.25rem 1.25rem',
-                color: 'rgba(225,224,204,0.5)',
+                color: 'var(--ink-2)',
               }}
             >
               {answer}
@@ -131,7 +131,7 @@ export function FAQ() {
 
   return (
     <section
-      className="bg-black"
+      className="bg-background"
       style={{ padding: '7rem 1.5rem' }}
       aria-labelledby="faq-heading"
     >
@@ -153,13 +153,13 @@ export function FAQ() {
                 fontSize: '0.7rem',
                 letterSpacing: '0.12em',
                 textTransform: 'uppercase',
-                color: 'rgba(225,224,204,0.7)',
+                color: 'var(--ink)',
                 fontWeight: 700,
               }}
             >
               <span
                 className="w-1.5 h-1.5 rounded-full shrink-0"
-                style={{ backgroundColor: '#00FF87' }}
+                style={{ backgroundColor: 'var(--brand)' }}
                 aria-hidden
               />
               Questions fréquentes
@@ -171,7 +171,7 @@ export function FAQ() {
               className="font-display font-normal mb-6"
               style={{
                 fontSize: 'clamp(2rem, 4.5vw, 4rem)',
-                color: '#E1E0CC',
+                color: 'var(--ink)',
                 lineHeight: 1.05,
                 letterSpacing: '-0.02em',
               }}
@@ -181,7 +181,7 @@ export function FAQ() {
 
             <p
               className="text-sm leading-relaxed max-w-sm"
-              style={{ color: 'rgba(225,224,204,0.45)' }}
+              style={{ color: 'var(--ink-2)' }}
             >
               Vous ne trouvez pas ce que vous cherchez ? Contactez-moi directement ou
               réservez un audit gratuit — on répond à tout en 30 minutes.

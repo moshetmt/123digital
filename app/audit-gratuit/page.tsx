@@ -233,11 +233,11 @@ export default function AuditGratuitPage() {
           <p style={{ fontSize: '0.82rem', color: 'rgba(225,224,204,0.4)' }}>
             Ou écrivez-moi directement :{' '}
             <Link
-              href="mailto:maurice@123digital.fr"
+              href="mailto:contact@123digital.fr"
               className="hover:text-[#00FF87] transition-colors"
               style={{ color: 'rgba(225,224,204,0.55)', textDecoration: 'underline' }}
             >
-              maurice@123digital.fr
+              contact@123digital.fr
             </Link>
           </p>
         </div>

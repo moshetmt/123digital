@@ -208,46 +208,49 @@ export default function ServicesPage() {
                         {service.title}
                       </h2>
 
-                      <p className="mb-6" style={{ color: 'var(--ink-2)', fontSize: '0.95rem', lineHeight: 1.7 }}>
+                      <p className="mb-3" style={{ color: 'var(--ink-2)', fontSize: '0.9rem', lineHeight: 1.5 }}>
                         {service.description}
                       </p>
 
                       {detail && (
-                        <div className="mb-6">
+                        <div className="mb-3">
                           <p
                             style={{
-                              fontSize: '0.72rem',
+                              fontSize: '0.7rem',
                               letterSpacing: '0.08em',
                               textTransform: 'uppercase',
-                              color: 'var(--ink-3)',
-                              marginBottom: '0.75rem',
-                              fontWeight: 700,
+                              color: 'var(--brand)',
+                              marginBottom: '0.3rem',
+                              fontWeight: 800,
                             }}
                           >
                             Pour qui
                           </p>
-                          <p style={{ color: 'var(--ink-2)', fontSize: '0.9rem', lineHeight: 1.6 }}>
+                          <p style={{ color: 'var(--ink-2)', fontSize: '0.86rem', lineHeight: 1.45 }}>
                             {detail.pour}
                           </p>
                         </div>
                       )}
 
+                      {/* 2 colonnes des `sm`, le 5e element occupant toute la
+                          largeur : une liste de 5 en 2 colonnes laissait sinon
+                          une derniere ligne a un seul element. */}
                       {detail?.inclus && (
-                        <ul className="grid grid-cols-1 gap-y-1 mb-8">
+                        <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-5 gap-y-0.5 mb-4 [&>li:last-child]:sm:col-span-2">
                           {detail.inclus.map((item, i) => (
                             <li
                               key={i}
-                              className="flex items-center gap-2"
-                              style={{ fontSize: '0.85rem', color: 'var(--ink-2)' }}
+                              className="flex items-start gap-1.5"
+                              style={{ fontSize: '0.82rem', color: 'var(--ink-2)', lineHeight: 1.4 }}
                             >
-                              <span style={{ color: 'var(--brand)', flexShrink: 0 }}>→</span>
+                              <span style={{ color: 'var(--brand)', flexShrink: 0, fontWeight: 800 }}>→</span>
                               {item}
                             </li>
                           ))}
                         </ul>
                       )}
 
-                      <div className="flex gap-4 flex-wrap">
+                      <div className="flex gap-3 flex-wrap">
                         <Link
                           href={service.href}
                           className="inline-flex items-center gap-2 transition-colors duration-200"
@@ -331,21 +334,35 @@ export default function ServicesPage() {
           >
             Ce que vous vous demandez
           </h2>
-          <dl className="space-y-8">
+          {/* Accordion natif : la liste etait entierement depliee et pesait
+              1380 px sur telephone. Le schema FAQPage reste inchange, donc
+              les reponses restent lisibles par Google. */}
+          <div className="flex flex-col gap-1.5">
             {faqs.map(({ question, answer }, i) => (
-              <div key={i} style={{ borderTop: '1px solid var(--line)', paddingTop: '2rem' }}>
-                <dt
-                  className="font-display font-extrabold mb-4"
-                  style={{ fontSize: '1.1rem', color: 'var(--ink)' }}
+              <details
+                key={i}
+                className="group rounded-xl"
+                style={{ border: '1px solid var(--line)', backgroundColor: 'var(--surface-2)' }}
+              >
+                <summary
+                  className="flex items-center justify-between gap-3 cursor-pointer list-none font-extrabold"
+                  style={{ fontSize: '0.95rem', color: 'var(--ink)', padding: '0.85rem 1rem' }}
                 >
                   {question}
-                </dt>
-                <dd style={{ color: 'var(--ink-2)', lineHeight: 1.75, fontSize: '0.95rem' }}>
+                  <span
+                    aria-hidden
+                    className="shrink-0 transition-transform group-open:rotate-45"
+                    style={{ color: 'var(--brand)', fontSize: '1.2rem', lineHeight: 1 }}
+                  >
+                    +
+                  </span>
+                </summary>
+                <p style={{ color: 'var(--ink-2)', lineHeight: 1.55, fontSize: '0.88rem', padding: '0 1rem 0.9rem' }}>
                   {answer}
-                </dd>
-              </div>
+                </p>
+              </details>
             ))}
-          </dl>
+          </div>
         </div>
       </section>
 

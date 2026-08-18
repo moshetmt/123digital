@@ -102,10 +102,16 @@
   --dark-2:    oklch(0.196 0 0);            /* #141414 */
   --dark-3:    oklch(0.248 0 0);            /* #1E1E1E */
   --dark-line: oklch(1 0 0 / 11%);
-  --cream:     oklch(0.902 0.027 105);      /* #E1E0CC */
-  --cream-2:   oklch(0.902 0.027 105 / 80%);
-  --cream-3:   oklch(0.902 0.027 105 / 62%);
-  --neon:      oklch(0.876 0.229 152);      /* #00FF87 */
+  /* Refonte 18/08 : le crème (ancien logo) et le vert néon sont remplacés par
+     les 3 tons du logo « Le clic », éclaircis pour tenir sur fond noir.
+     --cream* deviennent des neutres froids ; --neon = alias de --vert-2. */
+  --cream:     oklch(0.940 0.004 150);           /* ≈#EDEFEC — texte sur sombre */
+  --cream-2:   oklch(0.940 0.004 150 / 80%);
+  --cream-3:   oklch(0.940 0.004 150 / 62%);
+  --vert-1:    oklch(0.62 0.105 155);            /* ton plein du logo, version fond noir */
+  --vert-2:    oklch(0.72 0.080 155);            /* ton 70 % */
+  --vert-3:    oklch(0.82 0.052 155);            /* ton 45 % */
+  --neon:      var(--vert-2);
   --neon-tint: oklch(0.876 0.229 152 / 14%);
 
   /* ── Mapping shadcn/ui ── */

@@ -74,7 +74,8 @@ export function Results({ lang = 'fr' }: { lang?: Locale }) {
                 fontWeight: 800,
                 fontSize: 'clamp(1.9rem, 3.8vw, 2.75rem)',
                 letterSpacing: '-0.02em',
-                color: 'var(--neon)',
+                /* Gradation des 3 tons du logo, comme les barres */
+                color: `var(--vert-${[3, 2, 1, 2][i % 4]})`,
               }}
             >
               <CountUp prefix={m.prefix} value={m.value} suffix={m.suffix} />

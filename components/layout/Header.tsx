@@ -58,7 +58,7 @@ function TrustBar({ lang }: { lang: Locale }) {
     >
       {d.trustLocation}
       <span style={{ color: 'var(--cream-3)', margin: '0 0.6em' }} aria-hidden>·</span>
-      <span style={{ color: 'var(--neon)', fontWeight: 800 }}>{d.trustProof}</span>{' '}
+      <span style={{ color: 'var(--vert-3)', fontWeight: 800 }}>{d.trustProof}</span>{' '}
       {d.trustSince}
       <span style={{ color: 'var(--cream-3)', margin: '0 0.6em' }} aria-hidden>·</span>
       {d.trustReply}

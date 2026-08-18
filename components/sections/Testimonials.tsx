@@ -190,7 +190,6 @@ export function Testimonials({ lang = 'fr' }: { lang?: 'fr' | 'en' }) {
                 className="text-sm leading-relaxed flex-1 mb-7 italic"
                 style={{
                   color: 'oklch(0.60 0 0)',
-                  fontFamily: 'var(--font-serif)',
                   fontSize: '0.95rem',
                   lineHeight: 1.6,
                 }}

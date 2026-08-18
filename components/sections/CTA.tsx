@@ -167,7 +167,7 @@ export function CTA({ lang = 'fr' }: { lang?: Locale }) {
   return (
     <section
       id="contact"
-      style={{ backgroundColor: 'var(--brand)', padding: '5rem 1.5rem' }}
+      style={{ backgroundColor: 'var(--brand)', padding: 'clamp(2.25rem, 6vw, 4.5rem) 1.5rem' }}
       aria-labelledby="contact-heading"
     >
       <div ref={ref} className="mx-auto max-w-6xl grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-start">
@@ -216,10 +216,12 @@ export function CTA({ lang = 'fr' }: { lang?: Locale }) {
                 transition={{ duration: 0.2, ease: EASE }}
                 onSubmit={handleSubmit}
                 noValidate
-                className="flex flex-col gap-3.5"
-                style={{ backgroundColor: 'var(--surface-2)', borderRadius: '1.25rem', padding: '1.75rem' }}
+                className="flex flex-col gap-2.5"
+                style={{ backgroundColor: 'var(--surface-2)', borderRadius: '1.25rem', padding: 'clamp(1.1rem, 4vw, 1.6rem)' }}
               >
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+                {/* Champs courts appaires des le telephone : le formulaire
+                    empilait 6 lignes pleine largeur, soit 1,4 ecran a lui seul. */}
+                <div className="grid grid-cols-2 gap-2.5">
                   <div>
                     <label style={labelStyle}>{d.firstName}</label>
                     <FormInput value={form.prenom} onChange={set('prenom')} placeholder={isEN ? 'John' : 'Jean'} hasError={errors.prenom} />
@@ -233,13 +235,15 @@ export function CTA({ lang = 'fr' }: { lang?: Locale }) {
                   <label style={labelStyle}>{d.emailLabel}</label>
                   <FormInput type="email" value={form.email} onChange={set('email')} placeholder={isEN ? 'you@company.com' : 'vous@entreprise.fr'} hasError={errors.email} />
                 </div>
-                <div>
-                  <label style={labelStyle}>{d.phoneLabel} <span style={{ opacity: 0.7, fontWeight: 500 }}>{d.optional}</span></label>
-                  <FormInput type="tel" value={form.tel} onChange={set('tel')} placeholder="06 12 34 56 78" />
-                </div>
-                <div>
-                  <label style={labelStyle}>{d.siteLabel} <span style={{ opacity: 0.7, fontWeight: 500 }}>{d.optional}</span></label>
-                  <FormInput value={form.site} onChange={set('site')} placeholder="https://" />
+                <div className="grid grid-cols-2 gap-2.5">
+                  <div>
+                    <label style={labelStyle}>{d.phoneLabel} <span style={{ opacity: 0.7, fontWeight: 500 }}>{d.optional}</span></label>
+                    <FormInput type="tel" value={form.tel} onChange={set('tel')} placeholder="06 12 34 56 78" />
+                  </div>
+                  <div>
+                    <label style={labelStyle}>{d.siteLabel} <span style={{ opacity: 0.7, fontWeight: 500 }}>{d.optional}</span></label>
+                    <FormInput value={form.site} onChange={set('site')} placeholder="https://" />
+                  </div>
                 </div>
                 <div>
                   <label style={labelStyle}>{d.needLabel}</label>
@@ -315,12 +319,14 @@ export function CTA({ lang = 'fr' }: { lang?: Locale }) {
           </AnimatePresence>
 
           {/* Réassurance */}
-          <div className="flex items-center justify-center gap-2 mt-5 flex-wrap">
+          {/* Grille 3 colonnes : en flex-wrap le 3e badge tombait seul sur une
+              2e ligne a 390 px, sur 3 pages. */}
+          <div className="grid grid-cols-3 gap-1.5 mt-4">
             {[d.reassurance1, d.reassurance2, d.reassurance3].map((label) => (
               <div
                 key={label}
-                className="inline-flex items-center gap-1.5"
-                style={{ border: '1px solid var(--on-brand)', color: 'var(--on-brand)', fontSize: '0.72rem', fontWeight: 600, padding: '0.4rem 0.75rem', borderRadius: 999 }}
+                className="inline-flex items-center justify-center gap-1 text-center"
+                style={{ border: '1px solid var(--on-brand)', color: 'var(--on-brand)', fontSize: '0.68rem', fontWeight: 600, padding: '0.35rem 0.4rem', borderRadius: 999, lineHeight: 1.2 }}
               >
                 <Check size={12} aria-hidden />
                 {label}

@@ -22,7 +22,7 @@ export default function MentionsLegalesPage() {
     <>
       <JsonLd schema={schemas} />
 
-      <section className="bg-background" style={{ padding: '9rem 1.5rem 6rem' }}>
+      <section className="bg-background" style={{ padding: 'clamp(2rem, 5vw, 3.5rem) 1.5rem clamp(2.25rem, 6vw, 4rem)' }}>
         <div className="mx-auto max-w-3xl">
           <div className="mb-6">
             <Breadcrumb

@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 
 export default function BlogPageEN() {
   return (
-    <div style={{ paddingTop: '5rem', padding: '8rem 1.5rem', textAlign: 'center' }}>
+    <div style={{ paddingTop: '5rem', padding: 'clamp(2rem, 5vw, 3.5rem) 1.5rem clamp(2.25rem, 6vw, 4rem)', textAlign: 'center' }}>
       <p style={{ color: 'var(--ink-2)', fontSize: '1rem' }}>Articles coming soon.</p>
     </div>
   )

@@ -118,7 +118,7 @@ export default function ServicesPage() {
       {/* Hero */}
       <section
         className="bg-background"
-        style={{ padding: '9rem 1.5rem 6rem' }}
+        style={{ padding: 'clamp(2rem, 5vw, 3.5rem) 1.5rem clamp(2.25rem, 6vw, 4rem)' }}
       >
         <div className="mx-auto max-w-5xl">
           <div className="mb-6">
@@ -154,7 +154,7 @@ export default function ServicesPage() {
             }}
           >
             Tous vos leviers digitaux,<br />
-            <em style={{ color: 'var(--brand)', fontStyle: 'italic', fontFamily: 'var(--font-serif)' }}>
+            <em style={{ color: 'var(--brand)', fontFamily: 'var(--font-serif)' }}>
               pilotés par un seul expert.
             </em>
           </h1>
@@ -171,7 +171,7 @@ export default function ServicesPage() {
       {/* Services grid */}
       <section
         className="bg-background"
-        style={{ padding: '4rem 1.5rem 6rem', borderTop: '1px solid var(--line)' }}
+        style={{ padding: 'clamp(2rem, 5vw, 3.5rem) 1.5rem clamp(2.25rem, 6vw, 4rem)', borderTop: '1px solid var(--line)' }}
       >
         <div className="mx-auto max-w-5xl">
           <div className="grid gap-px" style={{ backgroundColor: 'var(--line)' }}>
@@ -233,7 +233,7 @@ export default function ServicesPage() {
                       )}
 
                       {detail?.inclus && (
-                        <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-2 mb-8">
+                        <ul className="grid grid-cols-1 gap-y-1 mb-8">
                           {detail.inclus.map((item, i) => (
                             <li
                               key={i}
@@ -310,7 +310,7 @@ export default function ServicesPage() {
       {/* FAQ */}
       <section
         className="bg-background"
-        style={{ padding: '4rem 1.5rem 6rem', borderTop: '1px solid var(--line)' }}
+        style={{ padding: 'clamp(2rem, 5vw, 3.5rem) 1.5rem clamp(2.25rem, 6vw, 4rem)', borderTop: '1px solid var(--line)' }}
       >
         <div className="mx-auto max-w-3xl">
           <div
@@ -353,7 +353,7 @@ export default function ServicesPage() {
       <section
         className="bg-background"
         style={{
-          padding: '4rem 1.5rem 6rem',
+          padding: 'clamp(2rem, 5vw, 3.5rem) 1.5rem clamp(2.25rem, 6vw, 4rem)',
           borderTop: '1px solid var(--line)',
           textAlign: 'center',
         }}

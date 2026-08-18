@@ -2,11 +2,13 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
+import type { LucideIcon } from 'lucide-react'
+import { Briefcase, Coins, Gem, Hammer, Monitor, Rocket, Search, ShoppingBag, Smartphone, Sparkles, Stethoscope, TrendingUp, UtensilsCrossed, Wallet } from 'lucide-react'
 
 interface Question {
   id: string
   label: string
-  options: Array<{ value: string; label: string; emoji: string }>
+  options: Array<{ value: string; label: string; icon: LucideIcon }>
 }
 
 const questions: Question[] = [
@@ -14,32 +16,32 @@ const questions: Question[] = [
     id: 'secteur',
     label: 'Quel est votre secteur ?',
     options: [
-      { value: 'restaurant', label: 'Restaurant / Bar', emoji: '🍽️' },
-      { value: 'artisan', label: 'Artisan / BTP', emoji: '🔨' },
-      { value: 'commerce', label: 'Commerce / Boutique', emoji: '🛍️' },
-      { value: 'services', label: 'Services / Conseil', emoji: '💼' },
-      { value: 'medical', label: 'Santé / Médical', emoji: '🏥' },
-      { value: 'autre', label: 'Autre', emoji: '✦' },
+      { value: 'restaurant', label: 'Restaurant / Bar', icon: UtensilsCrossed },
+      { value: 'artisan', label: 'Artisan / BTP', icon: Hammer },
+      { value: 'commerce', label: 'Commerce / Boutique', icon: ShoppingBag },
+      { value: 'services', label: 'Services / Conseil', icon: Briefcase },
+      { value: 'medical', label: 'Santé / Médical', icon: Stethoscope },
+      { value: 'autre', label: 'Autre', icon: Sparkles },
     ],
   },
   {
     id: 'probleme',
     label: 'Quel est votre principal défi ?',
     options: [
-      { value: 'visibilite', label: 'Pas assez visible sur Google', emoji: '🔍' },
-      { value: 'site', label: 'Site web vieillissant', emoji: '💻' },
-      { value: 'leads', label: 'Pas assez de leads', emoji: '📈' },
-      { value: 'reseaux', label: 'Réseaux sociaux inexploités', emoji: '📱' },
+      { value: 'visibilite', label: 'Pas assez visible sur Google', icon: Search },
+      { value: 'site', label: 'Site web vieillissant', icon: Monitor },
+      { value: 'leads', label: 'Pas assez de leads', icon: TrendingUp },
+      { value: 'reseaux', label: 'Réseaux sociaux inexploités', icon: Smartphone },
     ],
   },
   {
     id: 'budget',
     label: 'Quel est votre budget mensuel envisagé ?',
     options: [
-      { value: 'small', label: 'Moins de 500 €', emoji: '💰' },
-      { value: 'medium', label: '500 — 1 500 €', emoji: '💰💰' },
-      { value: 'large', label: '1 500 — 3 000 €', emoji: '💰💰💰' },
-      { value: 'xl', label: 'Plus de 3 000 €', emoji: '🚀' },
+      { value: 'small', label: 'Moins de 500 €', icon: Wallet },
+      { value: 'medium', label: '500 — 1 500 €', icon: Coins },
+      { value: 'large', label: '1 500 — 3 000 €', icon: Gem },
+      { value: 'xl', label: 'Plus de 3 000 €', icon: Rocket },
     ],
   },
 ]
@@ -211,7 +213,7 @@ export function AuditSimulator() {
                   gap: '0.4rem',
                 }}
               >
-                <span style={{ fontSize: '1.3rem' }}>{option.emoji}</span>
+                <option.icon size={20} aria-hidden style={{ color: 'var(--brand)' }} />
                 <span style={{ fontSize: '0.82rem', fontWeight: 500, lineHeight: 1.3 }}>
                   {option.label}
                 </span>
@@ -236,7 +238,7 @@ export function AuditSimulator() {
                       fontSize: '0.72rem',
                     }}
                   >
-                    {opt.emoji} {opt.label}
+                    {opt.label}
                   </span>
                 ) : null
               })}
@@ -330,7 +332,7 @@ export function AuditSimulator() {
                     fontSize: '0.72rem',
                   }}
                 >
-                  {opt.emoji} {opt.label}
+                  {opt.label}
                 </span>
               ) : null
             })}

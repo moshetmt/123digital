@@ -297,7 +297,7 @@ export default async function VilleServicePage({ params }: PageProps) {
       <JsonLd schema={schemas} />
 
       {/* Hero */}
-      <section className="bg-background" style={{ padding: '9rem 1.5rem 6rem' }}>
+      <section className="bg-background" style={{ padding: 'clamp(2rem, 5vw, 3.5rem) 1.5rem clamp(2.25rem, 6vw, 4rem)' }}>
         <div className="mx-auto max-w-5xl">
           <div className="mb-6">
             <Breadcrumb
@@ -336,8 +336,6 @@ export default async function VilleServicePage({ params }: PageProps) {
             <em
               style={{
                 color: 'var(--brand)',
-                fontStyle: 'italic',
-                fontFamily: 'var(--font-serif)',
               }}
             >
               à {ville.nom}
@@ -368,7 +366,7 @@ export default async function VilleServicePage({ params }: PageProps) {
               >
                 {content.stat}
               </span>
-              <span style={{ fontSize: '0.85rem', color: 'var(--ink-2)' }}>
+              <span style={{ fontSize: '0.85rem', color: 'var(--brand)' }}>
                 {content.statLabel}
               </span>
             </div>
@@ -426,7 +424,7 @@ export default async function VilleServicePage({ params }: PageProps) {
       {/* Méthode / Étapes */}
       <section
         className="bg-background"
-        style={{ padding: '4rem 1.5rem 6rem', borderTop: '1px solid var(--line)' }}
+        style={{ padding: 'clamp(2rem, 5vw, 3.5rem) 1.5rem clamp(2.25rem, 6vw, 4rem)', borderTop: '1px solid var(--line)' }}
       >
         <div className="mx-auto max-w-5xl">
           <div
@@ -485,7 +483,7 @@ export default async function VilleServicePage({ params }: PageProps) {
       {/* FAQ */}
       <section
         className="bg-background"
-        style={{ padding: '4rem 1.5rem 6rem', borderTop: '1px solid var(--line)' }}
+        style={{ padding: 'clamp(2rem, 5vw, 3.5rem) 1.5rem clamp(2.25rem, 6vw, 4rem)', borderTop: '1px solid var(--line)' }}
       >
         <div className="mx-auto max-w-3xl">
           <div
@@ -524,7 +522,7 @@ export default async function VilleServicePage({ params }: PageProps) {
       {/* Autres services à la même ville */}
       <section
         className="bg-background"
-        style={{ padding: '4rem 1.5rem', borderTop: '1px solid var(--line)' }}
+        style={{ padding: 'clamp(2.25rem, 6vw, 4.5rem) 1.5rem', borderTop: '1px solid var(--line)' }}
       >
         <div className="mx-auto max-w-5xl">
           <p
@@ -602,7 +600,7 @@ export default async function VilleServicePage({ params }: PageProps) {
       {/* CTA final */}
       <section
         className="bg-background"
-        style={{ padding: '4rem 1.5rem 6rem', borderTop: '1px solid var(--line)', textAlign: 'center' }}
+        style={{ padding: 'clamp(2rem, 5vw, 3.5rem) 1.5rem clamp(2.25rem, 6vw, 4rem)', borderTop: '1px solid var(--line)', textAlign: 'center' }}
       >
         <div className="mx-auto max-w-2xl">
           <h2

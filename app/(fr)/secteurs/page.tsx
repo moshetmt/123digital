@@ -32,7 +32,7 @@ export default function SecteursPage() {
       <JsonLd schema={schemas} />
 
       {/* Hero */}
-      <section className="bg-background" style={{ padding: '9rem 1.5rem 6rem' }}>
+      <section className="bg-background" style={{ padding: 'clamp(2rem, 5vw, 3.5rem) 1.5rem clamp(2.25rem, 6vw, 4rem)' }}>
         <div className="mx-auto max-w-5xl">
           <div className="mb-6">
             <Breadcrumb
@@ -70,8 +70,6 @@ export default function SecteursPage() {
             <em
               style={{
                 color: 'var(--brand)',
-                fontStyle: 'italic',
-                fontFamily: 'var(--font-serif)',
               }}
             >
               Sa stratégie digitale.
@@ -90,7 +88,7 @@ export default function SecteursPage() {
       {/* Grille secteurs */}
       <section
         className="bg-background"
-        style={{ padding: '2rem 1.5rem 6rem', borderTop: '1px solid var(--line)' }}
+        style={{ padding: 'clamp(2rem, 5vw, 3.5rem) 1.5rem clamp(2.25rem, 6vw, 4rem)', borderTop: '1px solid var(--line)' }}
       >
         <div className="mx-auto max-w-5xl">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-px" style={{ backgroundColor: 'var(--line)' }}>
@@ -166,7 +164,7 @@ export default function SecteursPage() {
       {/* CTA */}
       <section
         className="bg-background"
-        style={{ padding: '4rem 1.5rem 6rem', borderTop: '1px solid var(--line)', textAlign: 'center' }}
+        style={{ padding: 'clamp(2rem, 5vw, 3.5rem) 1.5rem clamp(2.25rem, 6vw, 4rem)', borderTop: '1px solid var(--line)', textAlign: 'center' }}
       >
         <div className="mx-auto max-w-2xl">
           <h2

@@ -170,12 +170,14 @@ export function Hero({ lang = 'fr' }: { lang?: Locale }) {
             initial={{ opacity: 0, filter: 'blur(6px)' }}
             animate={isInView ? { opacity: 1, filter: 'blur(0px)' } : {}}
             transition={{ duration: 0.8, delay: 0.35 }}
-            className="flex flex-wrap items-center justify-center lg:justify-start gap-x-6 gap-y-2"
+            className="grid grid-cols-1 sm:grid-cols-3 gap-x-5 gap-y-1.5"
             role="list"
           >
+            {/* Grille a 3 colonnes des `sm` : en flex-wrap la 3e puce tombait
+                seule sur une 2e ligne des que la fenetre passait sous 1280 px. */}
             {checks.map((label) => (
-              <li key={label} className="flex items-center gap-1.75" style={{ fontSize: '0.85rem', fontWeight: 600, color: 'var(--ink-2)' }}>
-                <Check size={16} style={{ color: 'var(--brand)', flexShrink: 0 }} strokeWidth={3} aria-hidden />
+              <li key={label} className="flex items-start gap-1.5" style={{ fontSize: '0.82rem', fontWeight: 600, color: 'var(--ink-2)', lineHeight: 1.35 }}>
+                <Check size={15} style={{ color: 'var(--brand)', flexShrink: 0, marginTop: 2 }} strokeWidth={3} aria-hidden />
                 {label}
               </li>
             ))}

@@ -90,7 +90,7 @@ export default async function VillePage({ params }: PageProps) {
       <JsonLd schema={schemas} />
 
       {/* Hero */}
-      <section className="relative bg-background" style={{ padding: '9rem 1.5rem 6rem', overflow: 'hidden' }}>
+      <section className="relative bg-background" style={{ padding: 'clamp(2rem, 5vw, 3.5rem) 1.5rem clamp(2.25rem, 6vw, 4rem)', overflow: 'hidden' }}>
         <div className="absolute inset-0" aria-hidden>
           <Image
             src={`/images/villes/${ville.slug}.jpg`}
@@ -142,8 +142,6 @@ export default async function VillePage({ params }: PageProps) {
             <em
               style={{
                 color: 'var(--brand)',
-                fontStyle: 'italic',
-                fontFamily: 'var(--font-serif)',
               }}
             >
               à {ville.nom}
@@ -208,7 +206,7 @@ export default async function VillePage({ params }: PageProps) {
       {insight && (
         <section
           className="bg-background"
-          style={{ padding: '4rem 1.5rem 6rem', borderTop: '1px solid var(--line)' }}
+          style={{ padding: 'clamp(2rem, 5vw, 3.5rem) 1.5rem clamp(2.25rem, 6vw, 4rem)', borderTop: '1px solid var(--line)' }}
         >
           <div className="mx-auto max-w-5xl">
             <div
@@ -252,7 +250,7 @@ export default async function VillePage({ params }: PageProps) {
       {/* Services disponibles */}
       <section
         className="bg-background"
-        style={{ padding: '4rem 1.5rem 6rem', borderTop: '1px solid var(--line)' }}
+        style={{ padding: 'clamp(2rem, 5vw, 3.5rem) 1.5rem clamp(2.25rem, 6vw, 4rem)', borderTop: '1px solid var(--line)' }}
       >
         <div className="mx-auto max-w-5xl">
           <div
@@ -293,7 +291,7 @@ export default async function VillePage({ params }: PageProps) {
                   style={{ fontSize: '1.25rem', color: 'var(--ink)', lineHeight: 1.2 }}
                 >
                   {service.title}<br />
-                  <span style={{ fontSize: '0.9rem', color: 'var(--ink-2)' }}>à {ville.nom}</span>
+                  <span style={{ fontSize: '0.9rem', color: 'var(--brand)' }}>à {ville.nom}</span>
                 </h3>
                 <p style={{ fontSize: '0.88rem', color: 'var(--ink-2)', lineHeight: 1.65 }}>
                   {service.description}
@@ -313,7 +311,7 @@ export default async function VillePage({ params }: PageProps) {
       {/* Résultats concrets */}
       <section
         className="bg-background"
-        style={{ padding: '4rem 1.5rem', borderTop: '1px solid var(--line)' }}
+        style={{ padding: 'clamp(2.25rem, 6vw, 4.5rem) 1.5rem', borderTop: '1px solid var(--line)' }}
       >
         <div className="mx-auto max-w-5xl">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
@@ -342,7 +340,7 @@ export default async function VillePage({ params }: PageProps) {
       {/* FAQ */}
       <section
         className="bg-background"
-        style={{ padding: '4rem 1.5rem 6rem', borderTop: '1px solid var(--line)' }}
+        style={{ padding: 'clamp(2rem, 5vw, 3.5rem) 1.5rem clamp(2.25rem, 6vw, 4rem)', borderTop: '1px solid var(--line)' }}
       >
         <div className="mx-auto max-w-3xl">
           <div
@@ -462,7 +460,7 @@ export default async function VillePage({ params }: PageProps) {
       {/* CTA final */}
       <section
         className="bg-background"
-        style={{ padding: '4rem 1.5rem 6rem', borderTop: '1px solid var(--line)', textAlign: 'center' }}
+        style={{ padding: 'clamp(2rem, 5vw, 3.5rem) 1.5rem clamp(2.25rem, 6vw, 4rem)', borderTop: '1px solid var(--line)', textAlign: 'center' }}
       >
         <div className="mx-auto max-w-2xl">
           <h2

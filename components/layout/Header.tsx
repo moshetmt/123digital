@@ -47,20 +47,25 @@ function TrustBar({ lang }: { lang: Locale }) {
   const d = t(lang).header
   return (
     <div
-      className="text-center px-3"
+      className="text-center px-3 whitespace-nowrap overflow-hidden"
       style={{
         backgroundColor: 'var(--dark)',
         color: 'var(--cream)',
-        fontSize: '0.72rem',
+        fontSize: '0.7rem',
         fontWeight: 600,
-        padding: '0.5rem 0.75rem',
+        padding: '0.34rem 0.75rem',
+        lineHeight: 1.35,
       }}
     >
-      {d.trustLocation}
-      <span style={{ color: 'var(--cream-3)', margin: '0 0.6em' }} aria-hidden>·</span>
-      <span style={{ color: 'var(--vert-3)', fontWeight: 800 }}>{d.trustProof}</span>{' '}
-      {d.trustSince}
-      <span style={{ color: 'var(--cream-3)', margin: '0 0.6em' }} aria-hidden>·</span>
+      {/* Sur telephone le bandeau tenait sur 2 lignes (51 px). La zone
+          geographique et l'annee sont masquees sous 640 px : une seule ligne. */}
+      <span className="hidden sm:inline">
+        {d.trustLocation}
+        <span style={{ color: 'var(--cream-3)', margin: '0 0.6em' }} aria-hidden>·</span>
+      </span>
+      <span style={{ color: 'var(--vert-3)', fontWeight: 800 }}>{d.trustProof}</span>
+      <span className="hidden sm:inline"> {d.trustSince}</span>
+      <span style={{ color: 'var(--cream-3)', margin: '0 0.55em' }} aria-hidden>·</span>
       {d.trustReply}
     </div>
   )
@@ -126,9 +131,9 @@ export function Header({ lang = 'fr' }: { lang?: Locale }) {
                   >
                     <button
                       type="button"
-                      className="relative flex items-center gap-1 px-3 py-2 rounded-lg text-sm font-medium transition-colors duration-150"
+                      className="relative flex items-center gap-1 px-3 py-2 rounded-lg text-sm font-bold transition-colors duration-150"
                       style={{
-                        color: isActive(link.href) ? INK : INK_DIM,
+                        color: isActive(link.href) ? 'var(--brand)' : INK,
                       }}
                       aria-expanded={servicesOpen}
                       aria-haspopup="true"
@@ -171,17 +176,20 @@ export function Header({ lang = 'fr' }: { lang?: Locale }) {
                               onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = 'var(--surface-3)' }}
                               onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = 'transparent' }}
                             >
-                              <span className="mt-0.5 shrink-0" style={{ color: INK_FAINT }}>
-                                <ServiceIcon name={service.icon} size={14} />
+                              <span
+                                className="mt-0.5 shrink-0 grid place-items-center rounded-lg"
+                                style={{ color: 'var(--brand)', backgroundColor: 'var(--brand-tint)', width: 28, height: 28 }}
+                              >
+                                <ServiceIcon name={service.icon} size={15} />
                               </span>
                               <div>
                                 <p
-                                  className="text-sm font-medium leading-snug transition-colors"
-                                  style={{ color: INK_DIM }}
+                                  className="text-sm font-bold leading-snug transition-colors"
+                                  style={{ color: INK }}
                                 >
                                   {service.title}
                                 </p>
-                                <p className="text-xs leading-snug mt-0.5" style={{ color: INK_FAINT }}>
+                                <p className="text-xs leading-snug mt-0.5" style={{ color: INK_DIM }}>
                                   {service.shortDesc}
                                 </p>
                               </div>
@@ -196,8 +204,8 @@ export function Header({ lang = 'fr' }: { lang?: Locale }) {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="relative block px-3 py-2 rounded-lg text-sm font-medium transition-colors duration-150"
-                    style={{ color: isActive(link.href) ? INK : INK_DIM }}
+                    className="relative block px-3 py-2 rounded-lg text-sm font-bold transition-colors duration-150"
+                    style={{ color: isActive(link.href) ? 'var(--brand)' : INK }}
                   >
                     {link.label}
                   </Link>
@@ -208,14 +216,26 @@ export function Header({ lang = 'fr' }: { lang?: Locale }) {
 
           {/* ── Desktop CTA + lang toggle ── */}
           <div className="hidden lg:flex items-center gap-3 shrink-0">
-            {/* Lang switcher */}
-            <Link
-              href={d.langHref}
-              className="text-xs font-medium px-2 py-1 rounded border transition-colors"
-              style={{ borderColor: 'var(--line-strong)', color: INK_DIM }}
+            {/* Selecteur de langue segmente : la langue courante est marquee,
+                l'autre est cliquable. Remplace l'ancien bouton encadre. */}
+            <div
+              className="inline-flex items-center rounded-full p-0.5"
+              style={{ backgroundColor: 'var(--surface-3)' }}
             >
-              {d.lang}
-            </Link>
+              <span
+                className="rounded-full px-2.5 py-1 text-xs font-extrabold leading-none"
+                style={{ backgroundColor: 'var(--ink)', color: 'var(--on-brand)' }}
+              >
+                {lang.toUpperCase()}
+              </span>
+              <Link
+                href={d.langHref}
+                className="rounded-full px-2.5 py-1 text-xs font-extrabold leading-none transition-colors"
+                style={{ color: INK_DIM }}
+              >
+                {d.lang}
+              </Link>
+            </div>
             <a
               href={PHONE_TEL}
               className="inline-flex items-center gap-2 rounded-full font-bold text-sm transition-all duration-200 active:scale-[0.97]"

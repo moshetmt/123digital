@@ -126,7 +126,7 @@ export default function ConsultantDigitalLyonPage() {
       </section>
 
       {/* Pourquoi un consultant digital à Lyon */}
-      <section className="bg-background" style={{ padding: '6rem 1.5rem' }}>
+      <section className="bg-background" style={{ padding: 'clamp(2rem, 5vw, 3.5rem) 1.5rem clamp(2.25rem, 6vw, 4rem)' }}>
         <div className="mx-auto max-w-5xl">
           <h2
             className="font-display font-extrabold mb-8"
@@ -248,7 +248,7 @@ export default function ConsultantDigitalLyonPage() {
       </section>
 
       {/* CTA */}
-      <section className="bg-background" style={{ padding: '6rem 1.5rem', borderTop: '1px solid var(--line)' }}>
+      <section className="bg-background" style={{ padding: 'clamp(2rem, 5vw, 3.5rem) 1.5rem clamp(2.25rem, 6vw, 4rem)', borderTop: '1px solid var(--line)' }}>
         <div className="mx-auto max-w-2xl text-center">
           <h2
             className="font-display font-extrabold mb-4"

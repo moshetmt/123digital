@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import { Phone } from 'lucide-react'
 import { JsonLd } from '@/components/seo/JsonLd'
 import { Breadcrumb } from '@/components/layout/Breadcrumb'
 import { AuditSimulator } from '@/components/sections/AuditSimulator'
@@ -127,7 +128,7 @@ export default function AuditGratuitPage() {
       <JsonLd schema={schemas} />
 
       {/* Hero */}
-      <section className="bg-background" style={{ padding: '9rem 1.5rem 6rem' }}>
+      <section className="bg-background" style={{ padding: 'clamp(2rem, 5vw, 3.5rem) 1.5rem clamp(2.25rem, 6vw, 4rem)' }}>
         <div className="mx-auto max-w-5xl">
           <div className="mb-6">
             <Breadcrumb
@@ -165,8 +166,6 @@ export default function AuditGratuitPage() {
             <em
               style={{
                 color: 'var(--brand)',
-                fontStyle: 'italic',
-                fontFamily: 'var(--font-serif)',
               }}
             >
               offert.
@@ -191,20 +190,22 @@ export default function AuditGratuitPage() {
 
           {/* CTA principal */}
           <div
-            className="p-8 mb-8"
+            className="mb-6 rounded-2xl"
             style={{
-              backgroundColor: 'var(--brand-tint)',
-              border: '1px solid var(--brand-line)',
+              backgroundColor: 'var(--surface-2)',
+              border: '1px solid var(--line)',
+              boxShadow: '0 8px 30px var(--shadow-soft)',
               maxWidth: '480px',
+              padding: '1.35rem',
             }}
           >
             <p
-              className="font-display font-extrabold mb-6"
-              style={{ fontSize: '1.2rem', color: 'var(--ink)' }}
+              className="font-display font-extrabold mb-1.5"
+              style={{ fontSize: '1.1rem', color: 'var(--ink)' }}
             >
               Démarrez votre audit par téléphone
             </p>
-            <p style={{ fontSize: '0.85rem', color: 'var(--ink-2)', marginBottom: '1.5rem', lineHeight: 1.6 }}>
+            <p style={{ fontSize: '0.85rem', color: 'var(--ink-2)', marginBottom: '0.9rem', lineHeight: 1.5 }}>
               Un appel de 30 minutes suffit. Je prépare l&apos;analyse de votre site avant l&apos;échange.
             </p>
             <a
@@ -219,14 +220,16 @@ export default function AuditGratuitPage() {
                 backgroundColor: 'var(--brand)',
                 color: 'var(--on-brand)',
                 fontFamily: 'var(--font-heading)',
-                fontWeight: 600,
+                fontWeight: 800,
                 fontSize: '0.95rem',
                 padding: '1rem',
+                borderRadius: 999,
                 textDecoration: 'none',
                 letterSpacing: '-0.01em',
               }}
             >
-              📞 Appeler maintenant
+              <Phone size={17} aria-hidden />
+              Appeler maintenant
             </a>
             <p style={{ fontSize: '0.75rem', color: 'var(--ink-3)', marginTop: '0.75rem', textAlign: 'center' }}>
               +33 6 52 09 23 01 — disponible en semaine
@@ -253,7 +256,7 @@ export default function AuditGratuitPage() {
       {/* Ce que j'analyse */}
       <section
         className="bg-background"
-        style={{ padding: '4rem 1.5rem 6rem', borderTop: '1px solid var(--line)' }}
+        style={{ padding: 'clamp(2rem, 5vw, 3.5rem) 1.5rem clamp(2.25rem, 6vw, 4rem)', borderTop: '1px solid var(--line)' }}
       >
         <div className="mx-auto max-w-5xl">
           <div
@@ -273,7 +276,7 @@ export default function AuditGratuitPage() {
             style={{ fontSize: 'clamp(1.8rem, 3vw, 2.6rem)', color: 'var(--ink)', lineHeight: 1.1 }}
           >
             Une analyse complète<br />
-            <span style={{ color: 'var(--ink-2)' }}>en 30 minutes.</span>
+            <span style={{ color: 'var(--brand)' }}>en 30 minutes.</span>
           </h2>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-px" style={{ backgroundColor: 'var(--line)' }}>
@@ -308,7 +311,7 @@ export default function AuditGratuitPage() {
       {/* Simulateur interactif */}
       <section
         className="bg-background"
-        style={{ padding: '4rem 1.5rem', borderTop: '1px solid var(--line)' }}
+        style={{ padding: 'clamp(2.25rem, 6vw, 4.5rem) 1.5rem', borderTop: '1px solid var(--line)' }}
       >
         <div className="mx-auto max-w-5xl">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
@@ -345,7 +348,7 @@ export default function AuditGratuitPage() {
       {/* Les 4 étapes */}
       <section
         className="bg-background"
-        style={{ padding: '4rem 1.5rem 6rem', borderTop: '1px solid var(--line)' }}
+        style={{ padding: 'clamp(2rem, 5vw, 3.5rem) 1.5rem clamp(2.25rem, 6vw, 4rem)', borderTop: '1px solid var(--line)' }}
       >
         <div className="mx-auto max-w-5xl">
           <div
@@ -404,7 +407,7 @@ export default function AuditGratuitPage() {
       {/* FAQ */}
       <section
         className="bg-background"
-        style={{ padding: '4rem 1.5rem 6rem', borderTop: '1px solid var(--line)' }}
+        style={{ padding: 'clamp(2rem, 5vw, 3.5rem) 1.5rem clamp(2.25rem, 6vw, 4rem)', borderTop: '1px solid var(--line)' }}
       >
         <div className="mx-auto max-w-3xl">
           <div
@@ -443,7 +446,7 @@ export default function AuditGratuitPage() {
       {/* CTA final */}
       <section
         className="bg-background"
-        style={{ padding: '4rem 1.5rem 6rem', borderTop: '1px solid var(--line)', textAlign: 'center' }}
+        style={{ padding: 'clamp(2rem, 5vw, 3.5rem) 1.5rem clamp(2.25rem, 6vw, 4rem)', borderTop: '1px solid var(--line)', textAlign: 'center' }}
       >
         <div className="mx-auto max-w-2xl">
           <h2

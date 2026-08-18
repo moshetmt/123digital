@@ -34,19 +34,19 @@ function StepCard({ step, index }: { step: Step; index: number }) {
       animate={inView ? { opacity: 1, y: 0, filter: 'blur(0px)' } : {}}
       transition={{ duration: 0.6, delay: index * 0.08, ease: EASE }}
       className="rounded-2xl"
-      style={{ backgroundColor: 'var(--surface-2)', border: '1px solid var(--line)', padding: '1.25rem' }}
+      style={{ backgroundColor: 'var(--surface-2)', border: '1px solid var(--line)', padding: 'clamp(0.8rem, 3vw, 1.25rem)' }}
     >
       <div
-        className="flex items-center justify-center rounded-full mb-3"
-        style={{ width: 34, height: 34, backgroundColor: 'var(--brand)', color: 'var(--on-brand)', fontWeight: 800, fontSize: '0.9rem' }}
+        className="flex items-center justify-center rounded-full mb-2"
+        style={{ width: 28, height: 28, backgroundColor: 'var(--brand)', color: 'var(--on-brand)', fontWeight: 800, fontSize: '0.82rem' }}
         aria-hidden
       >
         {index + 1}
       </div>
-      <h3 style={{ fontFamily: 'var(--font-sans)', fontWeight: 800, fontSize: '1rem', color: 'var(--ink)', marginBottom: '0.3rem' }}>
+      <h3 style={{ fontFamily: 'var(--font-sans)', fontWeight: 800, fontSize: 'clamp(0.88rem, 3.2vw, 1rem)', color: 'var(--ink)', marginBottom: '0.25rem', lineHeight: 1.2 }}>
         {step.title}
       </h3>
-      <p style={{ fontSize: '0.85rem', color: 'var(--ink-2)', lineHeight: 1.5 }}>
+      <p style={{ fontSize: 'clamp(0.76rem, 2.6vw, 0.85rem)', color: 'var(--ink-2)', lineHeight: 1.4 }}>
         {step.desc}
       </p>
     </motion.div>
@@ -62,7 +62,7 @@ export function Process({ lang = 'fr' }: { lang?: Locale }) {
   return (
     <section
       id="section-process"
-      style={{ backgroundColor: 'var(--surface-3)', padding: '5rem 1.5rem' }}
+      style={{ backgroundColor: 'var(--surface-3)', padding: 'clamp(2.25rem, 6vw, 4.5rem) 1.5rem' }}
       aria-labelledby="process-heading"
     >
       <div className="mx-auto max-w-6xl" ref={ref}>
@@ -93,7 +93,8 @@ export function Process({ lang = 'fr' }: { lang?: Locale }) {
           </h2>
         </motion.div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        {/* 2 colonnes des le telephone : en 1 colonne les 4 etapes prenaient un ecran entier. */}
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-2.5 sm:gap-4">
           {steps.map((step, i) => (
             <StepCard key={step.title} step={step} index={i} />
           ))}

@@ -103,13 +103,13 @@ export function Footer({ lang = 'fr' }: { lang?: Locale }) {
 
         {/* Services */}
         <div>
-          <h4 style={{ fontSize: '0.72rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--ink)', marginBottom: '0.7rem' }}>
+          <h4 style={{ fontSize: '0.72rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--brand)', marginBottom: '0.7rem' }}>
             {d.servicesTitle}
           </h4>
           <ul className="flex flex-col gap-2">
             {services.map((service) => (
               <li key={service.id}>
-                <Link href={service.href} className="footer-link" style={{ color: 'var(--ink-2)', fontSize: '0.85rem' }}>
+                <Link href={service.href} className="footer-link" style={{ color: 'var(--ink)', fontSize: '0.85rem' }}>
                   {service.title}
                 </Link>
               </li>
@@ -119,20 +119,20 @@ export function Footer({ lang = 'fr' }: { lang?: Locale }) {
 
         {/* Résultats */}
         <div>
-          <h4 style={{ fontSize: '0.72rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--ink)', marginBottom: '0.7rem' }}>
+          <h4 style={{ fontSize: '0.72rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--brand)', marginBottom: '0.7rem' }}>
             {d.resultsTitle}
           </h4>
           <ul className="flex flex-col gap-2">
             {projects.map((project) => (
               <li key={project.id}>
-                <Link href={`${base}#resultats`} className="footer-link" style={{ color: 'var(--ink-2)', fontSize: '0.85rem' }}>
+                <Link href={`${base}#resultats`} className="footer-link" style={{ color: 'var(--ink)', fontSize: '0.85rem' }}>
                   {project.title}
                 </Link>
               </li>
             ))}
             {legalLinks.map((link) => (
               <li key={link.href}>
-                <Link href={link.href} className="footer-link" style={{ color: 'var(--ink-2)', fontSize: '0.85rem' }}>
+                <Link href={link.href} className="footer-link" style={{ color: 'var(--ink)', fontSize: '0.85rem' }}>
                   {link.label}
                 </Link>
               </li>
@@ -142,12 +142,12 @@ export function Footer({ lang = 'fr' }: { lang?: Locale }) {
 
         {/* Contact */}
         <div>
-          <h4 style={{ fontSize: '0.72rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--ink)', marginBottom: '0.7rem' }}>
+          <h4 style={{ fontSize: '0.72rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--brand)', marginBottom: '0.7rem' }}>
             {d.contactTitle}
           </h4>
           <ul className="flex flex-col gap-2">
-            <li><a href="tel:+33652092301" className="footer-link" style={{ color: 'var(--ink-2)', fontSize: '0.85rem' }}>06 52 09 23 01</a></li>
-            <li><a href="mailto:contact@123digital.fr" className="footer-link" style={{ color: 'var(--ink-2)', fontSize: '0.85rem' }}>contact@123digital.fr</a></li>
+            <li><a href="tel:+33652092301" className="footer-link" style={{ color: 'var(--ink)', fontSize: '0.85rem' }}>06 52 09 23 01</a></li>
+            <li><a href="mailto:contact@123digital.fr" className="footer-link" style={{ color: 'var(--ink)', fontSize: '0.85rem' }}>contact@123digital.fr</a></li>
             <li style={{ color: 'var(--ink-2)', fontSize: '0.85rem' }}>Lyon, France</li>
           </ul>
         </div>

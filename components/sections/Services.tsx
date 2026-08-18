@@ -43,15 +43,17 @@ function ServiceCard({ service, copy, index, learnMoreLabel }: { service: Servic
       animate={inView ? { opacity: 1, y: 0, filter: 'blur(0px)' } : {}}
       transition={{ duration: 0.6, delay: index * 0.08, ease: EASE }}
       className="rounded-2xl flex flex-col"
-      style={{ backgroundColor: 'var(--surface-2)', border: '1px solid var(--line)', boxShadow: '0 8px 30px var(--shadow-soft)', padding: '1.4rem' }}
+      style={{ backgroundColor: 'var(--surface-2)', border: '1px solid var(--line)', boxShadow: '0 8px 30px var(--shadow-soft)', padding: 'clamp(0.85rem, 3vw, 1.4rem)' }}
     >
-      <h3 style={{ fontFamily: 'var(--font-sans)', fontWeight: 800, fontSize: '1.05rem', color: 'var(--ink)', marginBottom: '0.4rem' }}>
+      <h3 style={{ fontFamily: 'var(--font-sans)', fontWeight: 800, fontSize: 'clamp(0.92rem, 3.4vw, 1.05rem)', color: 'var(--ink)', marginBottom: '0.3rem', lineHeight: 1.2 }}>
         {service.title}
       </h3>
-      <p style={{ fontSize: '0.87rem', color: 'var(--ink-2)', lineHeight: 1.55, marginBottom: '0.9rem', flex: 1 }}>
+      <p style={{ fontSize: 'clamp(0.78rem, 2.6vw, 0.87rem)', color: 'var(--ink-2)', lineHeight: 1.45, marginBottom: '0.7rem', flex: 1 }}>
         {copy.shortDesc}
       </p>
-      <div className="flex flex-wrap gap-1.5 mb-3">
+      {/* Les pastilles disparaissent sous 640 px : a 2 colonnes sur telephone
+          elles s'empilaient et doublaient la hauteur de chaque carte. */}
+      <div className="hidden sm:flex flex-wrap gap-1.5 mb-3">
         {copy.chips.map((chip) => (
           <span
             key={chip}
@@ -63,8 +65,8 @@ function ServiceCard({ service, copy, index, learnMoreLabel }: { service: Servic
       </div>
       <Link
         href={service.href}
-        className="text-sm font-bold w-fit"
-        style={{ color: 'var(--brand-strong)' }}
+        className="font-bold w-fit"
+        style={{ color: 'var(--brand-strong)', fontSize: 'clamp(0.78rem, 2.6vw, 0.875rem)' }}
       >
         {learnMoreLabel} →
       </Link>
@@ -84,7 +86,8 @@ function ServiceFamily({ title, ids, services, copy, learnMoreLabel, offset }: {
       <p style={{ fontSize: '0.72rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.09em', color: 'var(--ink-3)', marginBottom: '0.9rem' }}>
         {title}
       </p>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+      {/* 2 colonnes des le telephone : en 1 colonne la section faisait 2 ecrans. */}
+      <div className="grid grid-cols-2 lg:grid-cols-3 gap-2.5 sm:gap-4">
         {items.map((service, i) => (
           <ServiceCard key={service.id} service={service} copy={copy[service.id]} index={offset + i} learnMoreLabel={learnMoreLabel} />
         ))}
@@ -104,7 +107,7 @@ export function Services({ lang = 'fr' }: { lang?: Locale }) {
     <section
       id="section-services"
       aria-labelledby="services-heading"
-      style={{ backgroundColor: 'var(--surface)', padding: '5rem 1.5rem' }}
+      style={{ backgroundColor: 'var(--surface)', padding: 'clamp(2.25rem, 6vw, 4.5rem) 1.5rem' }}
     >
       <div className="mx-auto max-w-6xl" ref={ref}>
         <motion.div

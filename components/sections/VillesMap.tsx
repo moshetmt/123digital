@@ -196,7 +196,7 @@ export function VillesMap({ lang = 'fr' }: { lang?: 'fr' | 'en' }) {
             </Link>
           </div>
         ) : (
-          <p style={{ fontSize: '0.85rem', color: 'var(--ink-3)', fontStyle: 'italic', lineHeight: 1.5 }}>
+          <p style={{ fontSize: '0.85rem', color: 'var(--ink-3)', lineHeight: 1.5 }}>
             {lang === 'en' ? 'Tap or click a city on the map' : 'Touchez ou cliquez une ville sur la carte'}
           </p>
         )}

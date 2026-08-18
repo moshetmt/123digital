@@ -64,7 +64,7 @@ export function FAQ({ lang = 'fr' }: { lang?: Locale }) {
   const isInView = useInView(ref, { once: true, margin: '-100px' })
 
   return (
-    <section style={{ backgroundColor: 'var(--surface)', padding: '5rem 1.5rem' }} aria-labelledby="faq-heading">
+    <section style={{ backgroundColor: 'var(--surface)', padding: 'clamp(2.25rem, 6vw, 4.5rem) 1.5rem' }} aria-labelledby="faq-heading">
       <div className="mx-auto max-w-5xl">
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.4fr] gap-10 lg:gap-16">
           <motion.div

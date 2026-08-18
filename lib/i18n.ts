@@ -149,6 +149,26 @@ export const dict = {
       heading: 'Analysons votre présence digitale.',
       callBtn: 'Appeler maintenant',
     },
+    // ── Réalisations (refonte 18/08, densité + conversion) ──
+    caseStudiesPage: {
+      sectionHeading: 'Trois secteurs, la même méthode.',
+      sectionSub:     "Chaque résultat est vérifiable en ligne, sur le site du client.",
+      sameResultCta:  'Obtenir le même résultat',
+      finalHeading:   'Votre entreprise pourrait être la prochaine.',
+      finalBody:      "Un audit gratuit de 30 minutes pour commencer. Pas de jargon, pas de promesses irréalistes, juste un plan d'action adapté à votre situation.",
+      finalCtaBtn:    'Démarrer mon projet',
+    },
+    // ── Portfolio / Fondateur (refonte 18/08) ──
+    founderPage: {
+      kicker:              'Fondateur 123digital',
+      positioningHeading:  'Un interlocuteur, pas une agence.',
+      positioningBody:     "Chaque service du site, chaque page technique, chaque campagne publicitaire passe par les mêmes mains : les miennes. Pas d'intermédiaire, pas de sous-traitance, pas de compte confié à un junior.",
+      casesHeading:        'Résultats obtenus pour mes clients',
+      casesSub:            'Trois secteurs différents, la même exigence de résultat mesuré.',
+      finalHeading:        'Le même accompagnement, pour votre entreprise.',
+      finalBody:           'Un audit gratuit de 30 minutes pour commencer, sans jargon ni promesse irréaliste.',
+      finalCtaBtn:         'Démarrer mon projet',
+    },
   },
 
   en: {
@@ -298,6 +318,26 @@ export const dict = {
       badge:   'Free Audit',
       heading: "Let's analyse your digital presence.",
       callBtn: 'Call now',
+    },
+    // ── Case studies (rebuild 18/08, density + conversion) ──
+    caseStudiesPage: {
+      sectionHeading: 'Three sectors, one method.',
+      sectionSub:     "Every result below is verifiable online, on the client's own site.",
+      sameResultCta:  'Get the same result',
+      finalHeading:   'Your business could be next.',
+      finalBody:      'A free 30 minute audit to get started. No jargon, no unrealistic promises, just an action plan tailored to your situation.',
+      finalCtaBtn:    'Start my project',
+    },
+    // ── Portfolio / Founder (rebuild 18/08) ──
+    founderPage: {
+      kicker:              'Founder of 123digital',
+      positioningHeading:  'One point of contact, not an agency.',
+      positioningBody:     'Every service on the site, every technical page, every ad campaign goes through the same hands: mine. No middleman, no subcontracting, no account handed to a junior.',
+      casesHeading:        'Results delivered for clients',
+      casesSub:            'Three different sectors, the same standard of measured results.',
+      finalHeading:        'The same support, for your business.',
+      finalBody:           'A free 30 minute audit to get started, no jargon and no unrealistic promises.',
+      finalCtaBtn:         'Start my project',
     },
   },
 } as const

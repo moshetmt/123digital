@@ -274,7 +274,7 @@ export default async function BlogArticlePage({ params }: PageProps) {
       <JsonLd schema={schemas} />
 
       {/* Hero article */}
-      <section className="bg-background" style={{ padding: '9rem 1.5rem 4rem' }}>
+      <section className="bg-background" style={{ padding: 'clamp(2rem, 5vw, 3.5rem) 1.5rem clamp(2.25rem, 6vw, 4rem)' }}>
         <div className="mx-auto max-w-3xl">
           <div className="mb-6">
             <Breadcrumb
@@ -355,7 +355,7 @@ export default async function BlogArticlePage({ params }: PageProps) {
       {/* Contenu article */}
       <article
         className="bg-background"
-        style={{ padding: '2rem 1.5rem 6rem' }}
+        style={{ padding: 'clamp(2rem, 5vw, 3.5rem) 1.5rem clamp(2.25rem, 6vw, 4rem)' }}
       >
         <div className="mx-auto max-w-3xl">
           {article.contenu.map((section, i) => (
@@ -423,7 +423,7 @@ export default async function BlogArticlePage({ params }: PageProps) {
       {autresArticles.length > 0 && (
         <section
           className="bg-background"
-          style={{ padding: '4rem 1.5rem 6rem', borderTop: '1px solid var(--line)' }}
+          style={{ padding: 'clamp(2rem, 5vw, 3.5rem) 1.5rem clamp(2.25rem, 6vw, 4rem)', borderTop: '1px solid var(--line)' }}
         >
           <div className="mx-auto max-w-5xl">
             <div

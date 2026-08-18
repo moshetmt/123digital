@@ -99,7 +99,7 @@ const faqSchema = {
   })),
 }
 
-const sectionStyle = { padding: '4rem 1.5rem 6rem', borderTop: '1px solid var(--line)' }
+const sectionStyle = { padding: 'clamp(2rem, 5vw, 3.5rem) 1.5rem clamp(2.25rem, 6vw, 4rem)', borderTop: '1px solid var(--line)' }
 const labelStyle = {
   fontSize: '0.65rem',
   letterSpacing: '0.14em',
@@ -119,7 +119,7 @@ export default function PubliciteEnLignePage() {
       ]} />
 
       {/* Hero */}
-      <section className="bg-background" style={{ padding: '9rem 1.5rem 6rem' }}>
+      <section className="bg-background" style={{ padding: 'clamp(2rem, 5vw, 3.5rem) 1.5rem clamp(2.25rem, 6vw, 4rem)' }}>
         <div className="mx-auto max-w-4xl">
           <div className="flex items-center gap-2 mb-6" style={{ fontSize: '0.7rem', letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--ink-2)', fontWeight: 700 }}>
             <span className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: 'var(--brand)' }} />

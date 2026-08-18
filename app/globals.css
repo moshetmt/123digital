@@ -164,6 +164,9 @@
   body { @apply bg-background text-foreground font-sans antialiased; }
   /* Tous les titres en Plus Jakarta Sans, gras, comme la page d'accueil. */
   h1, h2, h3 { font-family: var(--font-sans); font-weight: 800; }
+  /* Les <em> des titres venaient de l'ancien site (accent italique serif).
+     La balise reste pour la semantique, l'italique disparait. */
+  h1 em, h2 em, h3 em, h1 i, h2 i, h3 i { font-style: normal; font-weight: 800; }
   h1, h2, h3, h4, h5, h6 { letter-spacing: -0.02em; }
 
   /* Text selection — vert profond */
@@ -203,10 +206,13 @@
     background-repeat: repeat;
   }
 
-  /* Accent editorial : l'italique reste, la famille suit la charte (plus de serif). */
+  /* Ancien accent editorial en italique serif. La charte du 18/08 n'a plus
+     d'italique : l'accent se porte desormais par la couleur et la graisse. */
   .italic-serif, .italic-serif * {
     font-family: var(--font-sans);
-    font-style: italic;
+    font-style: normal;
+    font-weight: 800;
+    color: var(--brand);
   }
 
   /* Filet vert sous un mot — accent typographique */

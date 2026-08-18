@@ -21,7 +21,7 @@ function ProjectCard({ project, index }: { project: PortfolioProject; index: num
       animate={inView ? { opacity: 1, y: 0, filter: 'blur(0px)' } : {}}
       transition={{ duration: 0.6, delay: index * 0.1, ease: EASE }}
       className="flex flex-col rounded-2xl"
-      style={{ backgroundColor: 'var(--surface-2)', border: '1px solid var(--line)', boxShadow: '0 8px 30px var(--shadow-soft)', padding: '1.5rem', gap: '0.65rem' }}
+      style={{ backgroundColor: 'var(--surface-2)', border: '1px solid var(--line)', boxShadow: '0 8px 30px var(--shadow-soft)', padding: 'clamp(1rem, 3.5vw, 1.5rem)', gap: '0.45rem' }}
     >
       <span style={{ fontSize: '0.7rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--ink-3)' }}>
         {project.sector}
@@ -42,7 +42,7 @@ function ProjectCard({ project, index }: { project: PortfolioProject; index: num
       >
         {project.results}
       </div>
-      <p style={{ fontSize: '0.85rem', color: 'var(--ink-2)', lineHeight: 1.55 }}>
+      <p style={{ fontSize: '0.82rem', color: 'var(--ink-2)', lineHeight: 1.45 }}>
         {project.description}
       </p>
       {domain && project.url && (
@@ -68,7 +68,7 @@ export function Portfolio({ lang = 'fr' }: { lang?: Locale }) {
   return (
     <section
       id="section-portfolio"
-      style={{ backgroundColor: 'var(--surface)', padding: '5rem 1.5rem' }}
+      style={{ backgroundColor: 'var(--surface)', padding: 'clamp(2.25rem, 6vw, 4.5rem) 1.5rem' }}
       aria-labelledby="portfolio-heading"
     >
       <div className="mx-auto max-w-6xl" ref={ref}>

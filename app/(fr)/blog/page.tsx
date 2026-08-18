@@ -35,7 +35,7 @@ export default function BlogPage() {
       <JsonLd schema={schemas} />
 
       {/* Hero */}
-      <section className="bg-background" style={{ padding: '9rem 1.5rem 6rem' }}>
+      <section className="bg-background" style={{ padding: 'clamp(2rem, 5vw, 3.5rem) 1.5rem clamp(2.25rem, 6vw, 4rem)' }}>
         <div className="mx-auto max-w-5xl">
           <div className="mb-6">
             <Breadcrumb
@@ -73,8 +73,6 @@ export default function BlogPage() {
             <em
               style={{
                 color: 'var(--brand)',
-                fontStyle: 'italic',
-                fontFamily: 'var(--font-serif)',
               }}
             >
               expliqué clairement.
@@ -134,7 +132,7 @@ export default function BlogPage() {
       {/* Liste articles */}
       <section
         className="bg-background"
-        style={{ padding: '3rem 1.5rem 6rem' }}
+        style={{ padding: 'clamp(2rem, 5vw, 3.5rem) 1.5rem clamp(2.25rem, 6vw, 4rem)' }}
       >
         <div className="mx-auto max-w-5xl">
           <div className="space-y-px" style={{ border: '1px solid var(--line)', borderBottom: 'none' }}>
@@ -263,7 +261,7 @@ export default function BlogPage() {
       {/* CTA newsletter/audit */}
       <section
         className="bg-background"
-        style={{ padding: '4rem 1.5rem 6rem', borderTop: '1px solid var(--line)', textAlign: 'center' }}
+        style={{ padding: 'clamp(2rem, 5vw, 3.5rem) 1.5rem clamp(2.25rem, 6vw, 4rem)', borderTop: '1px solid var(--line)', textAlign: 'center' }}
       >
         <div className="mx-auto max-w-2xl">
           <h2

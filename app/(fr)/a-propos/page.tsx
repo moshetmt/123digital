@@ -37,7 +37,7 @@ export default function AProposPage() {
       ]} />
 
       {/* Hero */}
-      <section className="relative bg-background" style={{ padding: '9rem 1.5rem 6rem', overflow: 'hidden' }}>
+      <section className="relative bg-background" style={{ padding: 'clamp(2rem, 5vw, 3.5rem) 1.5rem clamp(2.25rem, 6vw, 4rem)', overflow: 'hidden' }}>
         <div className="absolute inset-0" aria-hidden>
           <Image
             src="/images/hero.jpg"
@@ -61,7 +61,7 @@ export default function AProposPage() {
               </div>
               <h1 className="font-display font-extrabold mb-6" style={{ fontSize: 'clamp(2.4rem, 5vw, 4.5rem)', color: 'var(--ink)', lineHeight: 1.05, letterSpacing: '-0.025em' }}>
                 Maurice Timsit<br />
-                <span style={{ fontFamily: 'var(--font-serif)', fontStyle: 'italic', color: 'var(--ink-2)' }}>
+                <span style={{ color: 'var(--brand)' }}>
                   consultant digital à Lyon.
                 </span>
               </h1>
@@ -142,7 +142,7 @@ export default function AProposPage() {
       </section>
 
       {/* CTA */}
-      <section className="bg-background" style={{ padding: '6rem 1.5rem 8rem', borderTop: '1px solid var(--line)' }}>
+      <section className="bg-background" style={{ padding: 'clamp(2rem, 5vw, 3.5rem) 1.5rem clamp(2.25rem, 6vw, 4rem)', borderTop: '1px solid var(--line)' }}>
         <div className="mx-auto max-w-2xl text-center">
           <h2 className="font-display font-extrabold mb-4" style={{ fontSize: 'clamp(1.8rem, 4vw, 3rem)', color: 'var(--ink)', letterSpacing: '-0.025em' }}>
             Prêt à collaborer ?

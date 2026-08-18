@@ -52,7 +52,7 @@ export default function ContactPage() {
       <JsonLd schema={schemas} />
 
       {/* Hero */}
-      <section className="bg-background" style={{ padding: '9rem 1.5rem 6rem' }}>
+      <section className="bg-background" style={{ padding: 'clamp(2rem, 5vw, 3.5rem) 1.5rem clamp(2.25rem, 6vw, 4rem)' }}>
         <div className="mx-auto max-w-5xl">
           <div className="mb-6">
             <Breadcrumb
@@ -90,8 +90,6 @@ export default function ContactPage() {
             <em
               style={{
                 color: 'var(--brand)',
-                fontStyle: 'italic',
-                fontFamily: 'var(--font-serif)',
               }}
             >
               projet.
@@ -110,7 +108,7 @@ export default function ContactPage() {
       {/* Moyens de contact */}
       <section
         className="bg-background"
-        style={{ padding: '2rem 1.5rem 6rem', borderTop: '1px solid var(--line)' }}
+        style={{ padding: 'clamp(2rem, 5vw, 3.5rem) 1.5rem clamp(2.25rem, 6vw, 4rem)', borderTop: '1px solid var(--line)' }}
       >
         <div className="mx-auto max-w-5xl">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-px" style={{ backgroundColor: 'var(--line)' }}>
@@ -153,7 +151,7 @@ export default function ContactPage() {
       {/* Infos pratiques */}
       <section
         className="bg-background"
-        style={{ padding: '4rem 1.5rem 6rem', borderTop: '1px solid var(--line)' }}
+        style={{ padding: 'clamp(2rem, 5vw, 3.5rem) 1.5rem clamp(2.25rem, 6vw, 4rem)', borderTop: '1px solid var(--line)' }}
       >
         <div className="mx-auto max-w-5xl">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
@@ -173,7 +171,7 @@ export default function ContactPage() {
                 ].map((item, i) => (
                   <li key={i} className="flex items-start gap-3">
                     <span style={{ color: 'var(--brand)', flexShrink: 0, marginTop: '0.1rem' }}>→</span>
-                    <span style={{ fontSize: '0.9rem', color: 'var(--ink-2)', lineHeight: 1.6 }}>
+                    <span style={{ fontSize: '0.9rem', color: 'var(--brand)', lineHeight: 1.6 }}>
                       {item}
                     </span>
                   </li>

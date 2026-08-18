@@ -130,7 +130,7 @@ export default async function VillePage({ params }: PageProps) {
           </div>
 
           <h1
-            className="font-display font-normal mb-6"
+            className="font-display font-extrabold mb-6"
             style={{
               fontSize: 'clamp(2.6rem, 5vw, 5rem)',
               color: 'var(--ink)',
@@ -268,7 +268,7 @@ export default async function VillePage({ params }: PageProps) {
             Services disponibles à {ville.nom}
           </div>
           <h2
-            className="font-display font-normal mb-10"
+            className="font-display font-extrabold mb-10"
             style={{ fontSize: 'clamp(1.8rem, 3vw, 2.6rem)', color: 'var(--ink)', lineHeight: 1.1 }}
           >
             Ce que je fais pour votre<br />entreprise à {ville.nom}
@@ -289,7 +289,7 @@ export default async function VillePage({ params }: PageProps) {
                   {service.shortDesc}
                 </div>
                 <h3
-                  className="font-display font-normal mb-3 group-hover:text-[var(--brand)] transition-colors"
+                  className="font-display font-extrabold mb-3 group-hover:text-[var(--brand)] transition-colors"
                   style={{ fontSize: '1.25rem', color: 'var(--ink)', lineHeight: 1.2 }}
                 >
                   {service.title}<br />
@@ -325,7 +325,7 @@ export default async function VillePage({ params }: PageProps) {
             ].map(({ chiffre, label }) => (
               <div key={label} className="text-center">
                 <div
-                  className="font-display font-normal mb-2"
+                  className="font-display font-extrabold mb-2"
                   style={{ fontSize: 'clamp(2rem, 4vw, 3rem)', color: 'var(--brand)', lineHeight: 1 }}
                 >
                   {chiffre}
@@ -358,7 +358,7 @@ export default async function VillePage({ params }: PageProps) {
             Questions fréquentes
           </div>
           <h2
-            className="font-display font-normal mb-10"
+            className="font-display font-extrabold mb-10"
             style={{ fontSize: 'clamp(1.8rem, 3vw, 2.6rem)', color: 'var(--ink)', lineHeight: 1.1 }}
           >
             Consultant digital à {ville.nom} — vos questions
@@ -366,7 +366,7 @@ export default async function VillePage({ params }: PageProps) {
           <dl className="space-y-8">
             {faqs.map(({ question, answer }, i) => (
               <div key={i} style={{ borderTop: '1px solid var(--line)', paddingTop: '2rem' }}>
-                <dt className="font-display font-normal mb-3" style={{ fontSize: '1.05rem', color: 'var(--ink)' }}>
+                <dt className="font-display font-extrabold mb-3" style={{ fontSize: '1.05rem', color: 'var(--ink)' }}>
                   {question}
                 </dt>
                 <dd style={{ color: 'var(--ink-2)', lineHeight: 1.75, fontSize: '0.95rem' }}>
@@ -466,7 +466,7 @@ export default async function VillePage({ params }: PageProps) {
       >
         <div className="mx-auto max-w-2xl">
           <h2
-            className="font-display font-normal mb-4"
+            className="font-display font-extrabold mb-4"
             style={{ fontSize: 'clamp(1.8rem, 3.5vw, 2.8rem)', color: 'var(--ink)', lineHeight: 1.1 }}
           >
             Prêt à développer votre activité<br />à {ville.nom} ?

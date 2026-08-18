@@ -25,7 +25,7 @@ export default function CaseStudiesPage() {
             <span className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: 'var(--brand)' }} />
             {d.badge}
           </div>
-          <h1 className="font-display font-normal mb-6" style={{ fontSize: 'clamp(2.6rem, 5vw, 5rem)', color: 'var(--ink)', lineHeight: 1.05, letterSpacing: '-0.025em' }}>
+          <h1 className="font-display font-extrabold mb-6" style={{ fontSize: 'clamp(2.6rem, 5vw, 5rem)', color: 'var(--ink)', lineHeight: 1.05, letterSpacing: '-0.025em' }}>
             {d.heading1}<br />
             <em style={{ color: 'var(--brand)', fontStyle: 'italic', fontFamily: 'var(--font-serif)' }}>{d.heading2}</em>
           </h1>
@@ -41,7 +41,7 @@ export default function CaseStudiesPage() {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {d.stats.map(({ chiffre, label }) => (
               <div key={label} className="text-center">
-                <div className="font-display font-normal mb-2" style={{ fontSize: 'clamp(2rem, 4vw, 3rem)', color: 'var(--brand)', lineHeight: 1 }}>{chiffre}</div>
+                <div className="font-display font-extrabold mb-2" style={{ fontSize: 'clamp(2rem, 4vw, 3rem)', color: 'var(--brand)', lineHeight: 1 }}>{chiffre}</div>
                 <div style={{ fontSize: '0.78rem', color: 'var(--ink-2)', letterSpacing: '0.06em', textTransform: 'uppercase' }}>{label}</div>
               </div>
             ))}
@@ -60,14 +60,14 @@ export default function CaseStudiesPage() {
                     <div style={{ fontSize: '0.65rem', letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--brand)', fontWeight: 700, marginBottom: '0.4rem' }}>
                       {project.category}
                     </div>
-                    <h2 className="font-display font-normal" style={{ fontSize: '1.25rem', color: 'var(--ink)', lineHeight: 1.2 }}>{project.title}</h2>
+                    <h2 className="font-display font-extrabold" style={{ fontSize: '1.25rem', color: 'var(--ink)', lineHeight: 1.2 }}>{project.title}</h2>
                   </div>
                   <div style={{ padding: '0.25rem 0.7rem', border: '1px solid var(--line)', color: 'var(--ink-2)', fontSize: '0.7rem', flexShrink: 0 }}>
                     {project.sector}
                   </div>
                 </div>
                 <p style={{ fontSize: '0.88rem', color: 'var(--ink-2)', lineHeight: 1.65, marginBottom: '1.2rem' }}>{project.description}</p>
-                <div className="font-display font-normal" style={{ fontSize: '1rem', color: 'var(--brand)', marginBottom: '1rem' }}>✓ {project.results}</div>
+                <div className="font-display font-extrabold" style={{ fontSize: '1rem', color: 'var(--brand)', marginBottom: '1rem' }}>✓ {project.results}</div>
                 <div className="flex flex-wrap gap-2">
                   {project.tags.map((tag) => (
                     <span key={tag} style={{ padding: '0.2rem 0.6rem', backgroundColor: 'var(--surface-3)', border: '1px solid var(--line)', color: 'var(--ink-3)', fontSize: '0.72rem' }}>{tag}</span>
@@ -80,7 +80,7 @@ export default function CaseStudiesPage() {
               <div className="flex items-center justify-center h-full flex-col text-center gap-4" style={{ minHeight: '260px' }}>
                 <div style={{ width: '48px', height: '48px', border: '1px solid var(--brand-line)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--brand)', fontSize: '1.5rem' }}>+</div>
                 <div>
-                  <div className="font-display font-normal mb-2 group-hover:text-[var(--brand)] transition-colors" style={{ fontSize: '1.1rem', color: 'var(--ink)' }}>{d.yourProject}</div>
+                  <div className="font-display font-extrabold mb-2 group-hover:text-[var(--brand)] transition-colors" style={{ fontSize: '1.1rem', color: 'var(--ink)' }}>{d.yourProject}</div>
                   <div style={{ fontSize: '0.82rem', color: 'var(--ink-2)' }}>{d.auditCta}</div>
                 </div>
               </div>
@@ -92,7 +92,7 @@ export default function CaseStudiesPage() {
       {/* CTA */}
       <section className="bg-background" style={{ padding: '4rem 1.5rem 6rem', borderTop: '1px solid var(--line)', textAlign: 'center' }}>
         <div className="mx-auto max-w-2xl">
-          <h2 className="font-display font-normal mb-4" style={{ fontSize: 'clamp(1.8rem, 3.5vw, 2.8rem)', color: 'var(--ink)', lineHeight: 1.1 }}>
+          <h2 className="font-display font-extrabold mb-4" style={{ fontSize: 'clamp(1.8rem, 3.5vw, 2.8rem)', color: 'var(--ink)', lineHeight: 1.1 }}>
             {d.ctaHeading}
           </h2>
           <p style={{ color: 'var(--ink-2)', marginBottom: '2.5rem', lineHeight: 1.7 }}>{d.ctaBody}</p>

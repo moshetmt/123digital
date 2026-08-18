@@ -62,7 +62,7 @@ export function CountUp({ value, label, duration = 1800 }: CountUpProps) {
 
   const numberEl = (
     <div
-      className="font-display font-normal mb-2"
+      className="font-display font-extrabold mb-2"
       style={{ fontSize: 'clamp(2rem, 4vw, 3rem)', color: 'var(--brand)', lineHeight: 1 }}
     >
       {parsed ? `${parsed.prefix}${displayed}${parsed.suffix}` : value}

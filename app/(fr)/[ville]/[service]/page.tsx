@@ -324,7 +324,7 @@ export default async function VilleServicePage({ params }: PageProps) {
           </div>
 
           <h1
-            className="font-display font-normal mb-6"
+            className="font-display font-extrabold mb-6"
             style={{
               fontSize: 'clamp(2.4rem, 5vw, 4.5rem)',
               color: 'var(--ink)',
@@ -442,7 +442,7 @@ export default async function VilleServicePage({ params }: PageProps) {
             Ma méthode
           </div>
           <h2
-            className="font-display font-normal mb-10"
+            className="font-display font-extrabold mb-10"
             style={{ fontSize: 'clamp(1.8rem, 3vw, 2.6rem)', color: 'var(--ink)', lineHeight: 1.1 }}
           >
             {service.title} à {ville.nom}<br />
@@ -468,7 +468,7 @@ export default async function VilleServicePage({ params }: PageProps) {
                   {step.num}
                 </div>
                 <h3
-                  className="font-display font-normal mb-3"
+                  className="font-display font-extrabold mb-3"
                   style={{ fontSize: '1.1rem', color: 'var(--ink)' }}
                 >
                   {step.title}
@@ -501,7 +501,7 @@ export default async function VilleServicePage({ params }: PageProps) {
             Questions fréquentes
           </div>
           <h2
-            className="font-display font-normal mb-10"
+            className="font-display font-extrabold mb-10"
             style={{ fontSize: 'clamp(1.8rem, 3vw, 2.6rem)', color: 'var(--ink)', lineHeight: 1.1 }}
           >
             {service.title} à {ville.nom} —<br />vos questions
@@ -509,7 +509,7 @@ export default async function VilleServicePage({ params }: PageProps) {
           <dl className="space-y-8">
             {faqs.map(({ question, answer }, i) => (
               <div key={i} style={{ borderTop: '1px solid var(--line)', paddingTop: '2rem' }}>
-                <dt className="font-display font-normal mb-3" style={{ fontSize: '1.05rem', color: 'var(--ink)' }}>
+                <dt className="font-display font-extrabold mb-3" style={{ fontSize: '1.05rem', color: 'var(--ink)' }}>
                   {question}
                 </dt>
                 <dd style={{ color: 'var(--ink-2)', lineHeight: 1.75, fontSize: '0.95rem' }}>
@@ -606,7 +606,7 @@ export default async function VilleServicePage({ params }: PageProps) {
       >
         <div className="mx-auto max-w-2xl">
           <h2
-            className="font-display font-normal mb-4"
+            className="font-display font-extrabold mb-4"
             style={{ fontSize: 'clamp(1.8rem, 3.5vw, 2.8rem)', color: 'var(--ink)', lineHeight: 1.1 }}
           >
             Prêt à lancer votre projet<br />{service.title.toLowerCase()} à {ville.nom} ?

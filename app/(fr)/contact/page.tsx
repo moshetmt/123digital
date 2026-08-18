@@ -78,7 +78,7 @@ export default function ContactPage() {
           </div>
 
           <h1
-            className="font-display font-normal mb-6"
+            className="font-display font-extrabold mb-6"
             style={{
               fontSize: 'clamp(2.6rem, 5vw, 5rem)',
               color: 'var(--ink)',
@@ -136,7 +136,7 @@ export default function ContactPage() {
                   {moyen.label}
                 </div>
                 <div
-                  className="font-display font-normal group-hover:text-[var(--brand)] transition-colors mb-2"
+                  className="font-display font-extrabold group-hover:text-[var(--brand)] transition-colors mb-2"
                   style={{ fontSize: '1.1rem', color: 'var(--ink)' }}
                 >
                   {moyen.valeur}
@@ -159,7 +159,7 @@ export default function ContactPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
             <div>
               <h2
-                className="font-display font-normal mb-6"
+                className="font-display font-extrabold mb-6"
                 style={{ fontSize: 'clamp(1.6rem, 3vw, 2.2rem)', color: 'var(--ink)', lineHeight: 1.1 }}
               >
                 Ce que vous pouvez<br />attendre
@@ -183,7 +183,7 @@ export default function ContactPage() {
 
             <div>
               <h2
-                className="font-display font-normal mb-6"
+                className="font-display font-extrabold mb-6"
                 style={{ fontSize: 'clamp(1.6rem, 3vw, 2.2rem)', color: 'var(--ink)', lineHeight: 1.1 }}
               >
                 Basé à Lyon,<br />disponible partout

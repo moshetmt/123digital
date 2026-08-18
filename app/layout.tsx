@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from 'next'
-import { Fraunces, Plus_Jakarta_Sans } from 'next/font/google'
+import { Plus_Jakarta_Sans } from 'next/font/google'
 import Script from 'next/script'
 import './globals.css'
 import { JsonLd } from '@/components/seo/JsonLd'
@@ -11,20 +11,13 @@ import {
 } from '@/lib/schema'
 
 // ─── Fonts ────────────────────────────────────────────────────────────────────
-// Plus Jakarta Sans — corps, nav, boutons, formulaires (Google Fonts via next/font)
-// Fraunces — accents italiques éditoriaux (Google Fonts via next/font)
+// Plus Jakarta Sans, seule police du site depuis la charte du 18/08 : corps, nav,
+// boutons, formulaires ET titres. Fraunces a ete retiree (plus aucun usage).
 
 const jakarta = Plus_Jakarta_Sans({
   subsets: ['latin'],
   variable: '--font-jakarta',
   weight: ['400', '600', '700', '800'],
-  display: 'swap',
-})
-
-const fraunces = Fraunces({
-  subsets: ['latin'],
-  variable: '--font-fraunces',
-  style: ['normal', 'italic'],
   display: 'swap',
 })
 
@@ -125,7 +118,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html
       lang="fr"
-      className={`${jakarta.variable} ${fraunces.variable}`}
+      className={jakarta.variable}
       suppressHydrationWarning
     >
       <head>

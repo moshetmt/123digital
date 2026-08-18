@@ -125,7 +125,7 @@ export default function PubliciteEnLignePage() {
             <span className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: 'var(--brand)' }} />
             Service · Google Ads · Meta Ads
           </div>
-          <h1 className="font-display font-normal mb-6" style={{ fontSize: 'clamp(2.4rem, 5vw, 5rem)', color: 'var(--ink)', lineHeight: 1.05, letterSpacing: '-0.025em' }}>
+          <h1 className="font-display font-extrabold mb-6" style={{ fontSize: 'clamp(2.4rem, 5vw, 5rem)', color: 'var(--ink)', lineHeight: 1.05, letterSpacing: '-0.025em' }}>
             Publicité en ligne pour PME<br />
             <span style={{ color: 'var(--brand)' }}>ROI mesurable dès la 1ère semaine.</span>
           </h1>
@@ -152,7 +152,7 @@ export default function PubliciteEnLignePage() {
       <section className="bg-background" style={{ ...sectionStyle, paddingTop: '0' }}>
         <div className="mx-auto max-w-5xl">
           <div style={labelStyle}>Plateformes gérées</div>
-          <h2 className="font-display font-normal mb-10" style={{ fontSize: 'clamp(1.6rem, 3vw, 2.5rem)', color: 'var(--ink)', letterSpacing: '-0.02em' }}>
+          <h2 className="font-display font-extrabold mb-10" style={{ fontSize: 'clamp(1.6rem, 3vw, 2.5rem)', color: 'var(--ink)', letterSpacing: '-0.02em' }}>
             Publicité en ligne multi-canal pour PME
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -161,7 +161,7 @@ export default function PubliciteEnLignePage() {
                 <div style={{ width: 28, height: 28, borderRadius: '50%', backgroundColor: 'var(--brand-tint)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '0.75rem', color: 'var(--brand)' }}>
                   <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M20 6 9 17l-5-5" /></svg>
                 </div>
-                <h3 className="font-display font-normal text-base mb-2" style={{ color: 'var(--ink)' }}>{p.name}</h3>
+                <h3 className="font-display font-extrabold text-base mb-2" style={{ color: 'var(--ink)' }}>{p.name}</h3>
                 <p className="text-sm leading-relaxed" style={{ color: 'var(--ink-2)' }}>{p.desc}</p>
               </div>
             ))}
@@ -173,14 +173,14 @@ export default function PubliciteEnLignePage() {
       <section className="bg-background" style={sectionStyle}>
         <div className="mx-auto max-w-5xl">
           <div style={labelStyle}>Ma méthode</div>
-          <h2 className="font-display font-normal mb-10" style={{ fontSize: 'clamp(1.6rem, 3vw, 2.5rem)', color: 'var(--ink)', letterSpacing: '-0.02em' }}>
+          <h2 className="font-display font-extrabold mb-10" style={{ fontSize: 'clamp(1.6rem, 3vw, 2.5rem)', color: 'var(--ink)', letterSpacing: '-0.02em' }}>
             Campagnes publicitaires PME en 4 étapes
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-px" style={{ backgroundColor: 'var(--line)' }}>
             {steps.map((s) => (
               <div key={s.num} className="p-8" style={{ backgroundColor: 'var(--surface-2)' }}>
                 <div style={{ fontSize: '0.65rem', letterSpacing: '0.12em', color: 'var(--brand)', fontWeight: 700, marginBottom: '1rem' }}>{s.num}</div>
-                <h3 className="font-display font-normal mb-3" style={{ fontSize: '1.1rem', color: 'var(--ink)' }}>{s.title}</h3>
+                <h3 className="font-display font-extrabold mb-3" style={{ fontSize: '1.1rem', color: 'var(--ink)' }}>{s.title}</h3>
                 <p style={{ fontSize: '0.88rem', color: 'var(--ink-2)', lineHeight: 1.65 }}>{s.desc}</p>
               </div>
             ))}
@@ -192,7 +192,7 @@ export default function PubliciteEnLignePage() {
       <section className="bg-background" style={sectionStyle}>
         <div className="mx-auto max-w-5xl">
           <div style={labelStyle}>Investissement</div>
-          <h2 className="font-display font-normal mb-4" style={{ fontSize: 'clamp(1.6rem, 3vw, 2.5rem)', color: 'var(--ink)', letterSpacing: '-0.02em' }}>
+          <h2 className="font-display font-extrabold mb-4" style={{ fontSize: 'clamp(1.6rem, 3vw, 2.5rem)', color: 'var(--ink)', letterSpacing: '-0.02em' }}>
             Combien coûte la gestion de publicité en ligne pour une PME ?
           </h2>
           <p className="mb-10 max-w-2xl" style={{ color: 'var(--ink-2)', fontSize: '0.95rem', lineHeight: 1.7 }}>
@@ -206,7 +206,7 @@ export default function PubliciteEnLignePage() {
             {pricingTiers.map((t) => (
               <div key={t.label} className="rounded-2xl p-7" style={{ backgroundColor: 'var(--surface-2)', border: '1px solid var(--line)' }}>
                 <div style={{ fontSize: '0.65rem', letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--brand)', fontWeight: 700, marginBottom: '0.75rem' }}>{t.label}</div>
-                <div className="font-display font-normal mb-3" style={{ fontSize: '1.15rem', color: 'var(--ink)' }}>{t.price}</div>
+                <div className="font-display font-extrabold mb-3" style={{ fontSize: '1.15rem', color: 'var(--ink)' }}>{t.price}</div>
                 <p className="text-sm leading-relaxed mb-4" style={{ color: 'var(--ink-2)' }}>{t.desc}</p>
                 <div style={{ fontSize: '0.75rem', color: 'var(--ink-3)', fontWeight: 600 }}>{t.delay}</div>
               </div>
@@ -219,13 +219,13 @@ export default function PubliciteEnLignePage() {
       <section className="bg-background" style={sectionStyle}>
         <div className="mx-auto max-w-3xl">
           <div style={labelStyle}>Questions fréquentes</div>
-          <h2 className="font-display font-normal mb-10" style={{ fontSize: 'clamp(1.6rem, 3vw, 2.5rem)', color: 'var(--ink)', letterSpacing: '-0.02em' }}>
+          <h2 className="font-display font-extrabold mb-10" style={{ fontSize: 'clamp(1.6rem, 3vw, 2.5rem)', color: 'var(--ink)', letterSpacing: '-0.02em' }}>
             Publicité en ligne PME — vos questions
           </h2>
           <dl className="space-y-8">
             {faqs.map(({ question, answer }, i) => (
               <div key={i} style={{ borderTop: '1px solid var(--line)', paddingTop: '2rem' }}>
-                <dt className="font-display font-normal mb-3" style={{ fontSize: '1.05rem', color: 'var(--ink)' }}>{question}</dt>
+                <dt className="font-display font-extrabold mb-3" style={{ fontSize: '1.05rem', color: 'var(--ink)' }}>{question}</dt>
                 <dd style={{ color: 'var(--ink-2)', lineHeight: 1.75, fontSize: '0.95rem' }}>{answer}</dd>
               </div>
             ))}
@@ -260,7 +260,7 @@ export default function PubliciteEnLignePage() {
       {/* CTA final */}
       <section className="bg-background" style={{ padding: '4rem 1.5rem 7rem', borderTop: '1px solid var(--line)', textAlign: 'center' }}>
         <div className="mx-auto max-w-2xl">
-          <h2 className="font-display font-normal mb-4" style={{ fontSize: 'clamp(1.8rem, 4vw, 3rem)', color: 'var(--ink)', letterSpacing: '-0.025em' }}>
+          <h2 className="font-display font-extrabold mb-4" style={{ fontSize: 'clamp(1.8rem, 4vw, 3rem)', color: 'var(--ink)', letterSpacing: '-0.025em' }}>
             Des clients qualifiés<br />dès la première semaine.
           </h2>
           <p className="text-sm mb-8" style={{ color: 'var(--ink-2)' }}>Budget maîtrisé · Reporting hebdomadaire · Sans engagement long terme</p>

@@ -63,7 +63,7 @@ function RenderSection({ section }: { section: BlogSection }) {
       return (
         <div style={{ marginBottom: '2rem', marginTop: '3rem' }}>
           <h2
-            className="font-display font-normal mb-4"
+            className="font-display font-extrabold mb-4"
             style={{ fontSize: 'clamp(1.4rem, 2.5vw, 1.9rem)', color: 'var(--ink)', lineHeight: 1.2 }}
           >
             {section.titre}
@@ -80,7 +80,7 @@ function RenderSection({ section }: { section: BlogSection }) {
       return (
         <div style={{ marginBottom: '1.5rem', marginTop: '2rem' }}>
           <h3
-            className="font-display font-normal mb-3"
+            className="font-display font-extrabold mb-3"
             style={{ fontSize: '1.2rem', color: 'var(--ink)', lineHeight: 1.2 }}
           >
             {section.titre}
@@ -139,7 +139,7 @@ function RenderSection({ section }: { section: BlogSection }) {
           <dl className="space-y-6">
             {section.faqs?.map(({ question, reponse }, i) => (
               <div key={i} style={{ borderTop: '1px solid var(--line)', paddingTop: '1.5rem' }}>
-                <dt className="font-display font-normal mb-2" style={{ fontSize: '1rem', color: 'var(--ink)' }}>
+                <dt className="font-display font-extrabold mb-2" style={{ fontSize: '1rem', color: 'var(--ink)' }}>
                   {question}
                 </dt>
                 <dd style={{ color: 'var(--ink-2)', lineHeight: 1.75, fontSize: '0.9rem' }}>
@@ -195,7 +195,7 @@ function RenderSection({ section }: { section: BlogSection }) {
           }}
         >
           {section.titre && (
-            <p className="font-display font-normal mb-3" style={{ fontSize: '1.1rem', color: 'var(--ink)' }}>
+            <p className="font-display font-extrabold mb-3" style={{ fontSize: '1.1rem', color: 'var(--ink)' }}>
               {section.titre}
             </p>
           )}
@@ -311,7 +311,7 @@ export default async function BlogArticlePage({ params }: PageProps) {
           </div>
 
           <h1
-            className="font-display font-normal mb-6"
+            className="font-display font-extrabold mb-6"
             style={{
               fontSize: 'clamp(1.8rem, 4vw, 3rem)',
               color: 'var(--ink)',
@@ -373,7 +373,7 @@ export default async function BlogArticlePage({ params }: PageProps) {
             }}
           >
             <p
-              className="font-display font-normal mb-3"
+              className="font-display font-extrabold mb-3"
               style={{ fontSize: '1.3rem', color: 'var(--ink)' }}
             >
               Prêt à passer à l&apos;action ?
@@ -459,7 +459,7 @@ export default async function BlogArticlePage({ params }: PageProps) {
                     {a.categorie}
                   </div>
                   <h3
-                    className="font-display font-normal group-hover:text-[var(--brand)] transition-colors"
+                    className="font-display font-extrabold group-hover:text-[var(--brand)] transition-colors"
                     style={{ fontSize: '1rem', color: 'var(--ink)', lineHeight: 1.3, marginBottom: '0.5rem' }}
                   >
                     {a.titre}

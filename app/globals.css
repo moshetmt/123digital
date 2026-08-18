@@ -26,11 +26,13 @@
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
-  /* Plus Jakarta Sans — corps, nav, boutons, formulaires · Fraunces — titres + italiques */
+  /* Charte du 18/08 : Plus Jakarta Sans PARTOUT, titres compris. Les alias
+     heading/display/serif pointent tous dessus pour que les 28 pages qui les
+     utilisent suivent sans etre editees une par une. Fraunces est retire. */
   --font-sans:    var(--font-jakarta), ui-sans-serif, system-ui, -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
-  --font-heading: var(--font-fraunces), serif;
-  --font-display: var(--font-fraunces), serif;
-  --font-serif:   var(--font-fraunces), serif;
+  --font-heading: var(--font-sans);
+  --font-display: var(--font-sans);
+  --font-serif:   var(--font-sans);
   --font-mono: ui-monospace, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
   --radius-sm: calc(var(--radius) * 0.6);
   --radius-md: calc(var(--radius) * 0.8);
@@ -160,8 +162,8 @@
   * { @apply border-border outline-ring/50; }
   html { @apply scroll-smooth; }
   body { @apply bg-background text-foreground font-sans antialiased; }
-  /* Fraunces sur les titres seulement — tout le reste est en Switzer */
-  h1, h2, h3 { @apply font-heading; }
+  /* Tous les titres en Plus Jakarta Sans, gras, comme la page d'accueil. */
+  h1, h2, h3 { font-family: var(--font-sans); font-weight: 800; }
   h1, h2, h3, h4, h5, h6 { letter-spacing: -0.02em; }
 
   /* Text selection — vert profond */
@@ -201,9 +203,9 @@
     background-repeat: repeat;
   }
 
-  /* Italic accent — Fraunces éditorial */
+  /* Accent editorial : l'italique reste, la famille suit la charte (plus de serif). */
   .italic-serif, .italic-serif * {
-    font-family: var(--font-fraunces), serif;
+    font-family: var(--font-sans);
     font-style: italic;
   }
 

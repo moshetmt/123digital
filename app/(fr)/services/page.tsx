@@ -145,7 +145,7 @@ export default function ServicesPage() {
           </div>
 
           <h1
-            className="font-display font-normal mb-6"
+            className="font-display font-extrabold mb-6"
             style={{
               fontSize: 'clamp(2.8rem, 5.5vw, 5.5rem)',
               color: 'var(--ink)',
@@ -202,7 +202,7 @@ export default function ServicesPage() {
                       </div>
 
                       <h2
-                        className="font-display font-normal mb-3"
+                        className="font-display font-extrabold mb-3"
                         style={{ fontSize: 'clamp(1.5rem, 3vw, 2.2rem)', color: 'var(--ink)', lineHeight: 1.1 }}
                       >
                         {service.title}
@@ -326,7 +326,7 @@ export default function ServicesPage() {
             Questions fréquentes
           </div>
           <h2
-            className="font-display font-normal mb-10"
+            className="font-display font-extrabold mb-10"
             style={{ fontSize: 'clamp(1.8rem, 3.5vw, 2.8rem)', color: 'var(--ink)', lineHeight: 1.1 }}
           >
             Ce que vous vous demandez
@@ -335,7 +335,7 @@ export default function ServicesPage() {
             {faqs.map(({ question, answer }, i) => (
               <div key={i} style={{ borderTop: '1px solid var(--line)', paddingTop: '2rem' }}>
                 <dt
-                  className="font-display font-normal mb-4"
+                  className="font-display font-extrabold mb-4"
                   style={{ fontSize: '1.1rem', color: 'var(--ink)' }}
                 >
                   {question}
@@ -360,7 +360,7 @@ export default function ServicesPage() {
       >
         <div className="mx-auto max-w-2xl">
           <h2
-            className="font-display font-normal mb-4"
+            className="font-display font-extrabold mb-4"
             style={{ fontSize: 'clamp(1.8rem, 3.5vw, 2.8rem)', color: 'var(--ink)', lineHeight: 1.1 }}
           >
             Par où commencer ?

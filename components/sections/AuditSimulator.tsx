@@ -185,7 +185,7 @@ export function AuditSimulator() {
       {!isComplete && (
         <div>
           <h3
-            className="font-display font-normal mb-6"
+            className="font-display font-extrabold mb-6"
             style={{ fontSize: 'clamp(1.1rem, 2vw, 1.4rem)', color: 'var(--ink)', lineHeight: 1.2 }}
           >
             {currentQuestion.label}
@@ -270,7 +270,7 @@ export function AuditSimulator() {
           </div>
 
           <h3
-            className="font-display font-normal mb-4"
+            className="font-display font-extrabold mb-4"
             style={{ fontSize: '1.5rem', color: 'var(--brand)', lineHeight: 1.2 }}
           >
             {recommendation.titre}

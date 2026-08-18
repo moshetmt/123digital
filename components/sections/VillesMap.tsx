@@ -173,7 +173,7 @@ export function VillesMap({ lang = 'fr' }: { lang?: 'fr' | 'en' }) {
               <div style={{ fontSize: '0.62rem', letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--brand)', fontWeight: 700, marginBottom: '0.25rem' }}>
                 {activeVille.departement}
               </div>
-              <div className="font-display font-normal" style={{ fontSize: '1.3rem', color: 'var(--ink)' }}>
+              <div className="font-display font-extrabold" style={{ fontSize: '1.3rem', color: 'var(--ink)' }}>
                 {activeVille.nom}
               </div>
             </div>

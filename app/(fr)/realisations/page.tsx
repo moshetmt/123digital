@@ -64,7 +64,7 @@ export default function PortfolioPage() {
           </div>
 
           <h1
-            className="font-display font-normal mb-6"
+            className="font-display font-extrabold mb-6"
             style={{
               fontSize: 'clamp(2.6rem, 5vw, 5rem)',
               color: 'var(--ink)',
@@ -103,7 +103,7 @@ export default function PortfolioPage() {
             {stats.map(({ chiffre, label }) => (
               <div key={label} className="text-center">
                 <div
-                  className="font-display font-normal mb-2"
+                  className="font-display font-extrabold mb-2"
                   style={{ fontSize: 'clamp(2rem, 4vw, 3rem)', color: 'var(--brand)', lineHeight: 1 }}
                 >
                   {chiffre}
@@ -145,7 +145,7 @@ export default function PortfolioPage() {
                       {project.category}
                     </div>
                     <h2
-                      className="font-display font-normal"
+                      className="font-display font-extrabold"
                       style={{ fontSize: '1.25rem', color: 'var(--ink)', lineHeight: 1.2 }}
                     >
                       {project.title}
@@ -169,7 +169,7 @@ export default function PortfolioPage() {
                 </p>
 
                 <div
-                  className="font-display font-normal"
+                  className="font-display font-extrabold"
                   style={{
                     fontSize: '1rem',
                     color: 'var(--brand)',
@@ -227,7 +227,7 @@ export default function PortfolioPage() {
                 </div>
                 <div>
                   <div
-                    className="font-display font-normal mb-2 group-hover:text-[var(--brand)] transition-colors"
+                    className="font-display font-extrabold mb-2 group-hover:text-[var(--brand)] transition-colors"
                     style={{ fontSize: '1.1rem', color: 'var(--ink)' }}
                   >
                     Votre projet ici
@@ -249,7 +249,7 @@ export default function PortfolioPage() {
       >
         <div className="mx-auto max-w-2xl">
           <h2
-            className="font-display font-normal mb-4"
+            className="font-display font-extrabold mb-4"
             style={{ fontSize: 'clamp(1.8rem, 3.5vw, 2.8rem)', color: 'var(--ink)', lineHeight: 1.1 }}
           >
             Votre entreprise pourrait<br />être dans cette liste.

@@ -93,7 +93,7 @@ export default async function SecteurPage({ params }: PageProps) {
           </div>
 
           <h1
-            className="font-display font-normal mb-6"
+            className="font-display font-extrabold mb-6"
             style={{
               fontSize: 'clamp(2.6rem, 5vw, 5rem)',
               color: 'var(--ink)',
@@ -269,7 +269,7 @@ export default async function SecteurPage({ params }: PageProps) {
             Questions fréquentes
           </div>
           <h2
-            className="font-display font-normal mb-10"
+            className="font-display font-extrabold mb-10"
             style={{ fontSize: 'clamp(1.8rem, 3vw, 2.6rem)', color: 'var(--ink)', lineHeight: 1.1 }}
           >
             {secteur.nomPluriel} & digital —<br />vos questions
@@ -277,7 +277,7 @@ export default async function SecteurPage({ params }: PageProps) {
           <dl className="space-y-8">
             {secteur.faqs.map(({ question, reponse }, i) => (
               <div key={i} style={{ borderTop: '1px solid var(--line)', paddingTop: '2rem' }}>
-                <dt className="font-display font-normal mb-3" style={{ fontSize: '1.05rem', color: 'var(--ink)' }}>
+                <dt className="font-display font-extrabold mb-3" style={{ fontSize: '1.05rem', color: 'var(--ink)' }}>
                   {question}
                 </dt>
                 <dd style={{ color: 'var(--ink-2)', lineHeight: 1.75, fontSize: '0.95rem' }}>
@@ -308,7 +308,7 @@ export default async function SecteurPage({ params }: PageProps) {
             Zones d&apos;intervention
           </div>
           <h2
-            className="font-display font-normal mb-4"
+            className="font-display font-extrabold mb-4"
             style={{ fontSize: 'clamp(1.4rem, 2.5vw, 2rem)', color: 'var(--ink)', lineHeight: 1.2 }}
           >
             {secteur.nomPluriel} en Auvergne-Rhône-Alpes
@@ -388,7 +388,7 @@ export default async function SecteurPage({ params }: PageProps) {
       >
         <div className="mx-auto max-w-2xl">
           <h2
-            className="font-display font-normal mb-4"
+            className="font-display font-extrabold mb-4"
             style={{ fontSize: 'clamp(1.8rem, 3.5vw, 2.8rem)', color: 'var(--ink)', lineHeight: 1.1 }}
           >
             Développez votre {secteur.nom.toLowerCase()}<br />grâce au digital ?

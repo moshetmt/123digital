@@ -59,7 +59,7 @@ export default function AProposPage() {
                 <span className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: 'var(--brand)' }} />
                 Expert croissance digitale · Lyon
               </div>
-              <h1 className="font-display font-normal mb-6" style={{ fontSize: 'clamp(2.4rem, 5vw, 4.5rem)', color: 'var(--ink)', lineHeight: 1.05, letterSpacing: '-0.025em' }}>
+              <h1 className="font-display font-extrabold mb-6" style={{ fontSize: 'clamp(2.4rem, 5vw, 4.5rem)', color: 'var(--ink)', lineHeight: 1.05, letterSpacing: '-0.025em' }}>
                 Maurice Timsit<br />
                 <span style={{ fontFamily: 'var(--font-serif)', fontStyle: 'italic', color: 'var(--ink-2)' }}>
                   consultant digital à Lyon.
@@ -111,13 +111,13 @@ export default function AProposPage() {
       {/* Valeurs */}
       <section className="bg-background" style={{ padding: '0 1.5rem 6rem' }}>
         <div className="mx-auto max-w-5xl">
-          <h2 className="font-display font-normal mb-10" style={{ fontSize: 'clamp(1.6rem, 3vw, 2.5rem)', color: 'var(--ink)', letterSpacing: '-0.02em' }}>
+          <h2 className="font-display font-extrabold mb-10" style={{ fontSize: 'clamp(1.6rem, 3vw, 2.5rem)', color: 'var(--ink)', letterSpacing: '-0.02em' }}>
             Mon approche
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
             {values.map((v) => (
               <div key={v.title} className="rounded-2xl p-7" style={{ backgroundColor: 'var(--surface-2)', border: '1px solid var(--line)' }}>
-                <h3 className="font-display font-normal text-base mb-3" style={{ color: 'var(--ink)' }}>{v.title}</h3>
+                <h3 className="font-display font-extrabold text-base mb-3" style={{ color: 'var(--ink)' }}>{v.title}</h3>
                 <p className="text-sm leading-relaxed" style={{ color: 'var(--ink-2)' }}>{v.desc}</p>
               </div>
             ))}
@@ -128,7 +128,7 @@ export default function AProposPage() {
       {/* Expertise */}
       <section className="bg-background" style={{ padding: '0 1.5rem 6rem' }}>
         <div className="mx-auto max-w-5xl">
-          <h2 className="font-display font-normal mb-8" style={{ fontSize: 'clamp(1.6rem, 3vw, 2.5rem)', color: 'var(--ink)', letterSpacing: '-0.02em' }}>
+          <h2 className="font-display font-extrabold mb-8" style={{ fontSize: 'clamp(1.6rem, 3vw, 2.5rem)', color: 'var(--ink)', letterSpacing: '-0.02em' }}>
             Expertise technique
           </h2>
           <div className="flex flex-wrap gap-2">
@@ -144,7 +144,7 @@ export default function AProposPage() {
       {/* CTA */}
       <section className="bg-background" style={{ padding: '6rem 1.5rem 8rem', borderTop: '1px solid var(--line)' }}>
         <div className="mx-auto max-w-2xl text-center">
-          <h2 className="font-display font-normal mb-4" style={{ fontSize: 'clamp(1.8rem, 4vw, 3rem)', color: 'var(--ink)', letterSpacing: '-0.025em' }}>
+          <h2 className="font-display font-extrabold mb-4" style={{ fontSize: 'clamp(1.8rem, 4vw, 3rem)', color: 'var(--ink)', letterSpacing: '-0.025em' }}>
             Prêt à collaborer ?
           </h2>
           <p className="text-sm mb-8" style={{ color: 'var(--ink-2)' }}>

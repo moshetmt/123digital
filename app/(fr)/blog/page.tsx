@@ -61,7 +61,7 @@ export default function BlogPage() {
           </div>
 
           <h1
-            className="font-display font-normal mb-6"
+            className="font-display font-extrabold mb-6"
             style={{
               fontSize: 'clamp(2.6rem, 5vw, 5rem)',
               color: 'var(--ink)',
@@ -212,7 +212,7 @@ export default function BlogPage() {
                   </div>
 
                   <h2
-                    className="font-display font-normal mb-3 group-hover:text-[var(--brand)] transition-colors"
+                    className="font-display font-extrabold mb-3 group-hover:text-[var(--brand)] transition-colors"
                     style={{ fontSize: 'clamp(1.05rem, 2vw, 1.3rem)', color: 'var(--ink)', lineHeight: 1.25 }}
                   >
                     {article.titre}
@@ -267,7 +267,7 @@ export default function BlogPage() {
       >
         <div className="mx-auto max-w-2xl">
           <h2
-            className="font-display font-normal mb-4"
+            className="font-display font-extrabold mb-4"
             style={{ fontSize: 'clamp(1.8rem, 3.5vw, 2.8rem)', color: 'var(--ink)', lineHeight: 1.1 }}
           >
             Besoin d&apos;un regard expert<br />sur votre situation ?

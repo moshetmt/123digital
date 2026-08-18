@@ -34,7 +34,7 @@ export default function MentionsLegalesPage() {
           </div>
 
           <h1
-            className="font-display font-normal mb-12"
+            className="font-display font-extrabold mb-12"
             style={{ fontSize: 'clamp(2rem, 4vw, 3.5rem)', color: 'var(--ink)', lineHeight: 1.1 }}
           >
             Mentions légales
@@ -44,7 +44,7 @@ export default function MentionsLegalesPage() {
 
             <section>
               <h2
-                className="font-display font-normal mb-4"
+                className="font-display font-extrabold mb-4"
                 style={{ fontSize: '1.3rem', color: 'var(--ink)' }}
               >
                 Éditeur du site
@@ -61,7 +61,7 @@ export default function MentionsLegalesPage() {
 
             <section>
               <h2
-                className="font-display font-normal mb-4"
+                className="font-display font-extrabold mb-4"
                 style={{ fontSize: '1.3rem', color: 'var(--ink)' }}
               >
                 Hébergement
@@ -77,7 +77,7 @@ export default function MentionsLegalesPage() {
 
             <section>
               <h2
-                className="font-display font-normal mb-4"
+                className="font-display font-extrabold mb-4"
                 style={{ fontSize: '1.3rem', color: 'var(--ink)' }}
               >
                 Propriété intellectuelle
@@ -89,7 +89,7 @@ export default function MentionsLegalesPage() {
 
             <section>
               <h2
-                className="font-display font-normal mb-4"
+                className="font-display font-extrabold mb-4"
                 style={{ fontSize: '1.3rem', color: 'var(--ink)' }}
               >
                 Données personnelles & RGPD
@@ -104,7 +104,7 @@ export default function MentionsLegalesPage() {
 
             <section>
               <h2
-                className="font-display font-normal mb-4"
+                className="font-display font-extrabold mb-4"
                 style={{ fontSize: '1.3rem', color: 'var(--ink)' }}
               >
                 Cookies
@@ -116,7 +116,7 @@ export default function MentionsLegalesPage() {
 
             <section>
               <h2
-                className="font-display font-normal mb-4"
+                className="font-display font-extrabold mb-4"
                 style={{ fontSize: '1.3rem', color: 'var(--ink)' }}
               >
                 Responsabilité
@@ -128,7 +128,7 @@ export default function MentionsLegalesPage() {
 
             <section>
               <h2
-                className="font-display font-normal mb-4"
+                className="font-display font-extrabold mb-4"
                 style={{ fontSize: '1.3rem', color: 'var(--ink)' }}
               >
                 Droit applicable

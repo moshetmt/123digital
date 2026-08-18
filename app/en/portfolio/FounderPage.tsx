@@ -229,7 +229,7 @@ export function FounderPage() {
                 style={{
                   fontFamily: 'var(--font-heading)',
                   fontSize: 'clamp(2.8rem, 6vw, 6rem)',
-                  fontWeight: 500,
+                  fontWeight: 800,
                   letterSpacing: '-0.06em',
                   lineHeight: 0.92,
                   margin: 0,
@@ -370,7 +370,7 @@ export function FounderPage() {
                 <p className="font-mono" style={{ fontSize: '0.55rem', letterSpacing: '0.2em', color: `${SIG.green}80`, marginBottom: '0.2rem' }}>
                   CURRENTLY BUILDING
                 </p>
-                <p className="font-heading font-medium" style={{ fontSize: 'clamp(1.2rem, 3vw, 1.8rem)', letterSpacing: '-0.04em', lineHeight: 1.1 }}>
+                <p className="font-heading font-extrabold" style={{ fontSize: 'clamp(1.2rem, 3vw, 1.8rem)', letterSpacing: '-0.04em', lineHeight: 1.1 }}>
                   Actively seeking —<br />
                   <span style={{ color: SIG.green }}>Digital Marketing · Full-time</span>
                 </p>
@@ -425,7 +425,7 @@ export function FounderPage() {
               <div key={val} style={{ textAlign: 'center', borderRight: i < arr.length - 1 ? '1px solid var(--line)' : 'none', paddingRight: i < arr.length - 1 ? '1rem' : 0 }}>
                 <p className="font-heading" style={{
                   fontSize: 'clamp(2rem, 4.5vw, 3.25rem)',
-                  fontWeight: 500,
+                  fontWeight: 800,
                   letterSpacing: '-0.06em',
                   color: SIG.green,
                   lineHeight: 1,
@@ -452,7 +452,7 @@ export function FounderPage() {
           <SectionLabel>// POSITIONING</SectionLabel>
           <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '3rem' }} className="md:grid-cols-[1fr_1.6fr]">
             <div>
-              <h2 className="font-heading font-medium" style={{ fontSize: 'clamp(1.8rem, 4vw, 3rem)', letterSpacing: '-0.05em', lineHeight: 1, marginBottom: '0.5rem' }}>
+              <h2 className="font-heading font-extrabold" style={{ fontSize: 'clamp(1.8rem, 4vw, 3rem)', letterSpacing: '-0.05em', lineHeight: 1, marginBottom: '0.5rem' }}>
                 Not an agency.<br />
                 <span style={{ color: SIG.green }}>An operator.</span>
               </h2>
@@ -506,7 +506,7 @@ export function FounderPage() {
                   }}>
                     {cs.category}
                   </span>
-                  <h3 className="font-heading font-medium" style={{ fontSize: '1.2rem', letterSpacing: '-0.03em' }}>
+                  <h3 className="font-heading font-extrabold" style={{ fontSize: '1.2rem', letterSpacing: '-0.03em' }}>
                     {cs.client}
                   </h3>
                 </div>
@@ -588,7 +588,7 @@ export function FounderPage() {
                   <div style={{ display: 'flex', gap: '1.5rem', flexWrap: 'wrap' }}>
                     {cs.results.map((r) => (
                       <div key={r.metric}>
-                        <p className="font-heading font-medium" style={{ fontSize: '1.5rem', letterSpacing: '-0.04em', color: cs.color, lineHeight: 1 }}>
+                        <p className="font-heading font-extrabold" style={{ fontSize: '1.5rem', letterSpacing: '-0.04em', color: cs.color, lineHeight: 1 }}>
                           {r.metric}
                         </p>
                         <p className="font-mono" style={{ fontSize: '0.52rem', letterSpacing: '0.1em', color: 'var(--ink-3)', marginTop: '0.2rem' }}>
@@ -633,14 +633,14 @@ export function FounderPage() {
                     display: 'flex', alignItems: 'center', paddingLeft: '1.5rem',
                     borderBottom: '1px solid var(--line)',
                   }}>
-                    <span className="font-heading font-medium" style={{ fontSize: '1.5rem', letterSpacing: '-0.05em', color: proj.accentColor, opacity: 0.25 }}>
+                    <span className="font-heading font-extrabold" style={{ fontSize: '1.5rem', letterSpacing: '-0.05em', color: proj.accentColor, opacity: 0.25 }}>
                       {proj.name}
                     </span>
                   </div>
                 )}
 
                 <div style={{ padding: '1.5rem' }}>
-                  <h3 className="font-heading font-medium" style={{ fontSize: '1.05rem', letterSpacing: '-0.02em', marginBottom: '0.75rem' }}>
+                  <h3 className="font-heading font-extrabold" style={{ fontSize: '1.05rem', letterSpacing: '-0.02em', marginBottom: '0.75rem' }}>
                     {proj.name}
                   </h3>
 
@@ -737,7 +737,7 @@ export function FounderPage() {
                 <p className="font-mono" style={{ fontSize: '0.6rem', letterSpacing: '0.2em', color: SIG.green, marginBottom: '0.5rem' }}>
                   {step.label}
                 </p>
-                <h4 className="font-heading font-medium" style={{ fontSize: '0.95rem', letterSpacing: '-0.02em', marginBottom: '0.6rem' }}>
+                <h4 className="font-heading font-extrabold" style={{ fontSize: '0.95rem', letterSpacing: '-0.02em', marginBottom: '0.6rem' }}>
                   {step.title}
                 </h4>
                 <p className="font-sans" style={{ fontSize: '0.78rem', color: 'var(--ink-2)', lineHeight: 1.5 }}>
@@ -783,7 +783,7 @@ export function FounderPage() {
             <p className="font-mono" style={{ fontSize: '0.6rem', letterSpacing: '0.22em', color: `${SIG.green}80`, marginBottom: '1rem' }}>
               // STATUS · OPEN
             </p>
-            <h2 className="font-heading font-medium" style={{ fontSize: 'clamp(2rem, 5vw, 4rem)', letterSpacing: '-0.06em', color: 'var(--ink)', marginBottom: '0.75rem', lineHeight: 0.95 }}>
+            <h2 className="font-heading font-extrabold" style={{ fontSize: 'clamp(2rem, 5vw, 4rem)', letterSpacing: '-0.06em', color: 'var(--ink)', marginBottom: '0.75rem', lineHeight: 0.95 }}>
               Let&apos;s talk?
             </h2>
             <p className="font-sans" style={{ color: 'var(--ink-2)', marginBottom: '2rem', fontSize: '0.95rem' }}>

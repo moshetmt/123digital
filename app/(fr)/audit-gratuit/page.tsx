@@ -153,7 +153,7 @@ export default function AuditGratuitPage() {
           </div>
 
           <h1
-            className="font-display font-normal mb-6"
+            className="font-display font-extrabold mb-6"
             style={{
               fontSize: 'clamp(2.6rem, 5vw, 5rem)',
               color: 'var(--ink)',
@@ -199,7 +199,7 @@ export default function AuditGratuitPage() {
             }}
           >
             <p
-              className="font-display font-normal mb-6"
+              className="font-display font-extrabold mb-6"
               style={{ fontSize: '1.2rem', color: 'var(--ink)' }}
             >
               Démarrez votre audit par téléphone
@@ -269,7 +269,7 @@ export default function AuditGratuitPage() {
             Ce que je regarde
           </div>
           <h2
-            className="font-display font-normal mb-10"
+            className="font-display font-extrabold mb-10"
             style={{ fontSize: 'clamp(1.8rem, 3vw, 2.6rem)', color: 'var(--ink)', lineHeight: 1.1 }}
           >
             Une analyse complète<br />
@@ -284,7 +284,7 @@ export default function AuditGratuitPage() {
                 style={{ backgroundColor: 'var(--surface-2)' }}
               >
                 <h3
-                  className="font-display font-normal mb-4"
+                  className="font-display font-extrabold mb-4"
                   style={{ fontSize: '1.1rem', color: 'var(--brand)' }}
                 >
                   {bloc.titre}
@@ -326,7 +326,7 @@ export default function AuditGratuitPage() {
                 Pas encore prêt à réserver ?
               </div>
               <h2
-                className="font-display font-normal mb-4"
+                className="font-display font-extrabold mb-4"
                 style={{ fontSize: 'clamp(1.6rem, 3vw, 2.2rem)', color: 'var(--ink)', lineHeight: 1.1 }}
               >
                 Trouvez votre stratégie<br />en 3 questions.
@@ -361,7 +361,7 @@ export default function AuditGratuitPage() {
             Comment ça se passe
           </div>
           <h2
-            className="font-display font-normal mb-10"
+            className="font-display font-extrabold mb-10"
             style={{ fontSize: 'clamp(1.8rem, 3vw, 2.6rem)', color: 'var(--ink)', lineHeight: 1.1 }}
           >
             De la réservation<br />
@@ -387,7 +387,7 @@ export default function AuditGratuitPage() {
                   {etape.num}
                 </div>
                 <h3
-                  className="font-display font-normal mb-3"
+                  className="font-display font-extrabold mb-3"
                   style={{ fontSize: '1.1rem', color: 'var(--ink)' }}
                 >
                   {etape.titre}
@@ -420,7 +420,7 @@ export default function AuditGratuitPage() {
             Questions fréquentes
           </div>
           <h2
-            className="font-display font-normal mb-10"
+            className="font-display font-extrabold mb-10"
             style={{ fontSize: 'clamp(1.8rem, 3vw, 2.6rem)', color: 'var(--ink)', lineHeight: 1.1 }}
           >
             Tout ce que vous voulez savoir<br />sur l&apos;audit gratuit
@@ -428,7 +428,7 @@ export default function AuditGratuitPage() {
           <dl className="space-y-8">
             {faqs.map(({ q, a }, i) => (
               <div key={i} style={{ borderTop: '1px solid var(--line)', paddingTop: '2rem' }}>
-                <dt className="font-display font-normal mb-3" style={{ fontSize: '1.05rem', color: 'var(--ink)' }}>
+                <dt className="font-display font-extrabold mb-3" style={{ fontSize: '1.05rem', color: 'var(--ink)' }}>
                   {q}
                 </dt>
                 <dd style={{ color: 'var(--ink-2)', lineHeight: 1.75, fontSize: '0.95rem' }}>
@@ -447,7 +447,7 @@ export default function AuditGratuitPage() {
       >
         <div className="mx-auto max-w-2xl">
           <h2
-            className="font-display font-normal mb-4"
+            className="font-display font-extrabold mb-4"
             style={{ fontSize: 'clamp(1.8rem, 3.5vw, 2.8rem)', color: 'var(--ink)', lineHeight: 1.1 }}
           >
             Prêt à savoir ce qui bloque<br />votre croissance ?

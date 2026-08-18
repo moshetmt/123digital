@@ -90,7 +90,7 @@ export default function ConsultantDigitalLyonPage() {
           </div>
 
           <h1
-            className="font-display font-normal"
+            className="font-display font-extrabold"
             style={{ fontSize: 'clamp(2.4rem, 5vw, 5rem)', color: 'var(--ink)', lineHeight: 1.05, letterSpacing: '-0.025em', marginBottom: '1.5rem' }}
           >
             Consultant digital à Lyon<br />
@@ -129,7 +129,7 @@ export default function ConsultantDigitalLyonPage() {
       <section className="bg-background" style={{ padding: '6rem 1.5rem' }}>
         <div className="mx-auto max-w-5xl">
           <h2
-            className="font-display font-normal mb-8"
+            className="font-display font-extrabold mb-8"
             style={{ fontSize: 'clamp(1.8rem, 3.5vw, 3rem)', color: 'var(--ink)', letterSpacing: '-0.02em' }}
           >
             Pourquoi choisir un consultant digital<br />
@@ -148,7 +148,7 @@ export default function ConsultantDigitalLyonPage() {
                 style={{ backgroundColor: 'var(--surface-2)', border: '1px solid var(--line)' }}
               >
                 <div className="text-xs font-bold mb-4" style={{ color: 'var(--ink-3)', letterSpacing: '0.1em' }}>{item.num}</div>
-                <h3 className="font-display font-normal text-base mb-3" style={{ color: 'var(--ink)', letterSpacing: '-0.01em' }}>{item.title}</h3>
+                <h3 className="font-display font-extrabold text-base mb-3" style={{ color: 'var(--ink)', letterSpacing: '-0.01em' }}>{item.title}</h3>
                 <p className="text-sm leading-relaxed" style={{ color: 'var(--ink-2)' }}>{item.desc}</p>
               </div>
             ))}
@@ -168,7 +168,7 @@ export default function ConsultantDigitalLyonPage() {
       <section className="bg-background" style={{ padding: '0 1.5rem 6rem' }}>
         <div className="mx-auto max-w-5xl">
           <h2
-            className="font-display font-normal mb-10"
+            className="font-display font-extrabold mb-10"
             style={{ fontSize: 'clamp(1.8rem, 3.5vw, 3rem)', color: 'var(--ink)', letterSpacing: '-0.02em' }}
           >
             Services de croissance digitale<br />
@@ -184,7 +184,7 @@ export default function ConsultantDigitalLyonPage() {
                 style={{ backgroundColor: 'var(--surface-2)', border: '1px solid var(--line)' }}
               >
                 <h3
-                  className="font-display font-normal text-base mb-2 group-hover:text-[var(--ink)] transition-colors"
+                  className="font-display font-extrabold text-base mb-2 group-hover:text-[var(--ink)] transition-colors"
                   style={{ color: 'var(--ink)', letterSpacing: '-0.01em' }}
                 >
                   {s.title}
@@ -200,7 +200,7 @@ export default function ConsultantDigitalLyonPage() {
       <section className="bg-background" style={{ padding: '0 1.5rem 6rem' }}>
         <div className="mx-auto max-w-5xl">
           <h2
-            className="font-display font-normal mb-6"
+            className="font-display font-extrabold mb-6"
             style={{ fontSize: 'clamp(1.6rem, 3vw, 2.5rem)', color: 'var(--ink)', letterSpacing: '-0.02em' }}
           >
             Zones d&apos;intervention à Lyon et région
@@ -227,7 +227,7 @@ export default function ConsultantDigitalLyonPage() {
       <section className="bg-background" style={{ padding: '0 1.5rem 8rem' }}>
         <div className="mx-auto max-w-3xl">
           <h2
-            className="font-display font-normal mb-10"
+            className="font-display font-extrabold mb-10"
             style={{ fontSize: 'clamp(1.6rem, 3vw, 2.5rem)', color: 'var(--ink)', letterSpacing: '-0.02em' }}
           >
             Questions fréquentes
@@ -239,7 +239,7 @@ export default function ConsultantDigitalLyonPage() {
                 className="rounded-2xl p-6"
                 style={{ backgroundColor: 'var(--surface-2)', border: '1px solid var(--line)' }}
               >
-                <h3 className="font-display font-normal text-base mb-3" style={{ color: 'var(--ink)', letterSpacing: '-0.01em' }}>{q}</h3>
+                <h3 className="font-display font-extrabold text-base mb-3" style={{ color: 'var(--ink)', letterSpacing: '-0.01em' }}>{q}</h3>
                 <p className="text-sm leading-relaxed" style={{ color: 'var(--ink-2)' }}>{a}</p>
               </div>
             ))}
@@ -251,7 +251,7 @@ export default function ConsultantDigitalLyonPage() {
       <section className="bg-background" style={{ padding: '6rem 1.5rem', borderTop: '1px solid var(--line)' }}>
         <div className="mx-auto max-w-2xl text-center">
           <h2
-            className="font-display font-normal mb-4"
+            className="font-display font-extrabold mb-4"
             style={{ fontSize: 'clamp(2rem, 4vw, 3.5rem)', color: 'var(--ink)', letterSpacing: '-0.025em' }}
           >
             Prêt à développer votre PME à Lyon ?

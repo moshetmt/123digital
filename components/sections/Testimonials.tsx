@@ -137,7 +137,7 @@ export function Testimonials({ lang = 'fr' }: { lang?: 'fr' | 'en' }) {
           </p>
           <h2
             id="testimonials-heading"
-            className="font-display font-normal"
+            className="font-display font-extrabold"
             style={{
               fontSize: 'clamp(2rem, 4.5vw, 4rem)',
               color: 'var(--ink)',

@@ -58,7 +58,7 @@ export default function SecteursPage() {
           </div>
 
           <h1
-            className="font-display font-normal mb-6"
+            className="font-display font-extrabold mb-6"
             style={{
               fontSize: 'clamp(2.6rem, 5vw, 5rem)',
               color: 'var(--ink)',
@@ -117,7 +117,7 @@ export default function SecteursPage() {
                       {secteur.nomPluriel}
                     </div>
                     <h2
-                      className="font-display font-normal group-hover:text-[var(--brand)] transition-colors"
+                      className="font-display font-extrabold group-hover:text-[var(--brand)] transition-colors"
                       style={{ fontSize: '1.3rem', color: 'var(--ink)', lineHeight: 1.2 }}
                     >
                       {secteur.nom}
@@ -170,7 +170,7 @@ export default function SecteursPage() {
       >
         <div className="mx-auto max-w-2xl">
           <h2
-            className="font-display font-normal mb-4"
+            className="font-display font-extrabold mb-4"
             style={{ fontSize: 'clamp(1.8rem, 3.5vw, 2.8rem)', color: 'var(--ink)', lineHeight: 1.1 }}
           >
             Votre secteur n&apos;est pas dans la liste ?

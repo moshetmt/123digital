@@ -2,146 +2,52 @@
 
 import { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
-import { Search, Lightbulb, Rocket, TrendingUp, type LucideIcon } from 'lucide-react'
 import { t, type Locale } from '@/lib/i18n'
 
 const EASE = [0.22, 1, 0.36, 1] as [number, number, number, number]
-const PULL_EASE = [0.16, 1, 0.3, 1] as [number, number, number, number]
 
-interface Step {
-  num: string
-  Icon: LucideIcon
-  title: string
-  description: string
-}
+interface Step { title: string; desc: string }
 
 function getSteps(lang: 'fr' | 'en'): Step[] {
   if (lang === 'en') return [
-    { num: '01', Icon: Search,    title: 'Audit & Discovery',  description: 'Full analysis of your digital presence: website, SEO, advertising, social. Identifying blockers and quick-win growth opportunities.' },
-    { num: '02', Icon: Lightbulb, title: 'Custom Strategy',    description: 'Prioritised action plan tailored to your sector, budget and goals. No generic template — a real roadmap built around your business.' },
-    { num: '03', Icon: Rocket,    title: 'Execution',          description: 'Concrete implementation: development, optimisations, campaigns. I lead or co-lead depending on your preferences.' },
-    { num: '04', Icon: TrendingUp,title: 'Continuous Growth',  description: 'Performance analysis, regular adjustments and iterations. What works is amplified; what holds you back is fixed.' },
+    { title: 'Discovery call',       desc: '30 minutes, free. We talk about your business, your customers, what is holding you back.' },
+    { title: 'Costed action plan',   desc: 'A clear quote: what, how much, when, and what it should bring in.' },
+    { title: 'Implementation',       desc: 'I build, I launch, I steer. You keep running your business.' },
+    { title: 'Results every month',  desc: 'A monthly update in plain language: what was done, what it brought in.' },
   ]
   return [
-    { num: '01', Icon: Search,    title: 'Audit & Diagnostic',    description: 'Analyse complète de votre présence digitale : site, SEO, publicité, réseaux. Identification des freins et des opportunités de croissance rapide.' },
-    { num: '02', Icon: Lightbulb, title: 'Stratégie sur mesure',  description: "Plan d'action priorisé selon votre secteur, votre budget et vos objectifs. Pas de modèle générique — une vraie feuille de route." },
-    { num: '03', Icon: Rocket,    title: 'Exécution & Déploiement', description: 'Mise en œuvre concrète : développement, optimisations, campagnes. Je pilote ou co-pilote selon vos préférences.' },
-    { num: '04', Icon: TrendingUp,title: 'Optimisation continue', description: 'Analyse des performances, ajustements et itérations régulières. Ce qui fonctionne est amplifié, ce qui freine est corrigé.' },
+    { title: 'Appel découverte',        desc: '30 minutes, gratuit. On parle de votre métier, vos clients, ce qui bloque.' },
+    { title: "Plan d'action chiffré",   desc: 'Un devis clair : quoi, combien, quand, et ce que ça doit rapporter.' },
+    { title: 'Mise en œuvre',           desc: 'Je construis, je lance, je pilote. Vous continuez à faire tourner votre entreprise.' },
+    { title: 'Résultats chaque mois',   desc: 'Un point mensuel en français courant : ce qui a été fait, ce que ça a rapporté.' },
   ]
-}
-
-function WordPullUp({ text, delay = 0 }: { text: string; delay?: number }) {
-  const ref = useRef<HTMLSpanElement>(null)
-  const isInView = useInView(ref, { once: true, margin: '-10%' })
-  const words = text.split(' ')
-  return (
-    <span ref={ref} style={{ display: 'inline-flex', flexWrap: 'wrap', gap: '0.18em' }}>
-      {words.map((word, i) => (
-        <span key={i} style={{ display: 'inline-block', overflow: 'hidden' }}>
-          <motion.span
-            style={{ display: 'inline-block' }}
-            initial={{ y: '110%' }}
-            animate={isInView ? { y: 0 } : {}}
-            transition={{ duration: 0.85, ease: PULL_EASE, delay: delay + i * 0.07 }}
-          >
-            {word}
-          </motion.span>
-        </span>
-      ))}
-    </span>
-  )
-}
-
-// Italic accent pull-up — Fraunces
-function ItalicPullUp({ text, delay = 0 }: { text: string; delay?: number }) {
-  const ref = useRef<HTMLSpanElement>(null)
-  const isInView = useInView(ref, { once: true, margin: '-10%' })
-  const words = text.split(' ')
-  return (
-    <span ref={ref} style={{ display: 'inline-flex', flexWrap: 'wrap', gap: '0.18em', fontFamily: 'var(--font-serif)', fontStyle: 'italic' }}>
-      {words.map((word, i) => (
-        <span key={i} style={{ display: 'inline-block', overflow: 'hidden' }}>
-          <motion.span
-            style={{ display: 'inline-block' }}
-            initial={{ y: '110%' }}
-            animate={isInView ? { y: 0 } : {}}
-            transition={{ duration: 0.85, ease: PULL_EASE, delay: delay + i * 0.07 }}
-          >
-            {word}
-          </motion.span>
-        </span>
-      ))}
-    </span>
-  )
 }
 
 function StepCard({ step, index }: { step: Step; index: number }) {
   const ref = useRef<HTMLDivElement>(null)
   const inView = useInView(ref, { once: true, margin: '-10%' })
-  const { Icon } = step
 
   return (
     <motion.div
       ref={ref}
-      initial={{ opacity: 0, x: -30 }}
-      animate={inView ? { opacity: 1, x: 0 } : {}}
-      transition={{ duration: 0.7, delay: index * 0.15, ease: EASE }}
-      className="flex flex-col rounded-2xl"
-      style={{
-        backgroundColor: 'var(--surface-2)',
-        border: '1px solid var(--line)',
-        padding: '1.75rem',
-        minHeight: '240px',
-      }}
+      initial={{ opacity: 0, y: 16, filter: 'blur(6px)' }}
+      animate={inView ? { opacity: 1, y: 0, filter: 'blur(0px)' } : {}}
+      transition={{ duration: 0.6, delay: index * 0.08, ease: EASE }}
+      className="rounded-2xl"
+      style={{ backgroundColor: 'var(--surface-2)', border: '1px solid var(--line)', padding: '1.25rem' }}
     >
-      {/* Step number + icon row */}
-      <div className="flex items-center justify-between mb-5">
-        <span
-          style={{
-            fontSize: '0.7rem',
-            fontWeight: 700,
-            letterSpacing: '0.1em',
-            color: 'var(--ink-3)',
-          }}
-        >
-          {step.num}
-        </span>
-        <div
-          className="flex items-center justify-center rounded-xl"
-          style={{
-            width: 36,
-            height: 36,
-            backgroundColor: 'var(--brand-tint)',
-            border: '1px solid var(--brand-line)',
-          }}
-        >
-          <Icon
-            size={16}
-            strokeWidth={1.6}
-            style={{ color: 'var(--brand)' }}
-            aria-hidden
-          />
-        </div>
-      </div>
-
-      {/* Title */}
-      <h3
-        className="font-display font-normal mb-3 leading-tight"
-        style={{
-          fontSize: 'clamp(1.1rem, 2vw, 1.35rem)',
-          letterSpacing: '-0.02em',
-          color: 'var(--ink)',
-        }}
+      <div
+        className="flex items-center justify-center rounded-full mb-3"
+        style={{ width: 34, height: 34, backgroundColor: 'var(--brand)', color: 'var(--on-brand)', fontWeight: 800, fontSize: '0.9rem' }}
+        aria-hidden
       >
+        {index + 1}
+      </div>
+      <h3 style={{ fontFamily: 'var(--font-sans)', fontWeight: 800, fontSize: '1rem', color: 'var(--ink)', marginBottom: '0.3rem' }}>
         {step.title}
       </h3>
-
-      {/* Description */}
-      <p
-        className="text-sm leading-relaxed flex-1"
-        style={{ color: 'var(--ink-2)' }}
-      >
-        {step.description}
+      <p style={{ fontSize: '0.85rem', color: 'var(--ink-2)', lineHeight: 1.5 }}>
+        {step.desc}
       </p>
     </motion.div>
   )
@@ -156,74 +62,40 @@ export function Process({ lang = 'fr' }: { lang?: Locale }) {
   return (
     <section
       id="section-process"
-      className="bg-background"
-      style={{ padding: '7rem 1.5rem' }}
+      style={{ backgroundColor: 'var(--surface-3)', padding: '5rem 1.5rem' }}
       aria-labelledby="process-heading"
     >
-      <div className="mx-auto max-w-7xl" ref={ref}>
-
-        {/* Header */}
+      <div className="mx-auto max-w-6xl" ref={ref}>
         <motion.div
-          className="mb-14 sm:mb-16"
-          initial={{ opacity: 0 }}
-          animate={inView ? { opacity: 1 } : {}}
+          initial={{ opacity: 0, filter: 'blur(6px)' }}
+          animate={inView ? { opacity: 1, filter: 'blur(0px)' } : {}}
           transition={{ duration: 0.5 }}
+          className="mb-10"
         >
-          {/* Eyebrow with green dot */}
           <div
-            className="flex items-center gap-2 mb-5"
-            style={{ fontSize: '0.7rem', letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--ink-2)', fontWeight: 700 }}
+            className="mb-3"
+            style={{ fontSize: '0.72rem', letterSpacing: '0.1em', textTransform: 'uppercase', color: 'var(--brand-strong)', fontWeight: 800 }}
           >
-            <span
-              className="w-1.5 h-1.5 rounded-full shrink-0"
-              style={{ backgroundColor: 'var(--brand)' }}
-              aria-hidden
-            />
             {d.label}
           </div>
-
-          {/* Heading */}
           <h2
             id="process-heading"
-            className="font-display font-normal"
-            style={{ fontSize: 'clamp(2rem, 4.5vw, 4rem)', color: 'var(--ink)', lineHeight: 1.05, letterSpacing: '-0.02em' }}
+            style={{
+              fontFamily: 'var(--font-sans)',
+              fontWeight: 800,
+              fontSize: 'clamp(1.5rem, 3.2vw, 2.15rem)',
+              lineHeight: 1.15,
+              letterSpacing: '-0.01em',
+              color: 'var(--ink)',
+            }}
           >
-            <WordPullUp text={lang === 'en' ? 'A process in four' : 'Un processus en quatre'} delay={0.05} />
-            {' '}
-            <ItalicPullUp text={lang === 'en' ? 'acts.' : 'actes.'} delay={0.55} />
+            {d.heading}
           </h2>
         </motion.div>
 
-        {/* Connector line — draws left→right as section enters view */}
-        <div
-          style={{
-            position: 'relative',
-            height: 1,
-            backgroundColor: 'var(--surface-3)',
-            marginBottom: '2rem',
-            overflow: 'hidden',
-          }}
-        >
-          <motion.div
-            style={{
-              position: 'absolute',
-              inset: 0,
-              backgroundColor: 'var(--brand)',
-              transformOrigin: 'left',
-              willChange: 'transform',
-            }}
-            initial={{ scaleX: 0 }}
-            animate={inView ? { scaleX: 1 } : {}}
-            transition={{ duration: 1.2, delay: 0.15, ease: PULL_EASE }}
-          />
-        </div>
-
-        {/* 2×2 card grid — same style as Services */}
-        <div
-          className="grid grid-cols-1 sm:grid-cols-2 gap-3"
-        >
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {steps.map((step, i) => (
-            <StepCard key={step.num} step={step} index={i} />
+            <StepCard key={step.title} step={step} index={i} />
           ))}
         </div>
       </div>

@@ -1,5 +1,8 @@
+import Image from 'next/image'
 import Link from 'next/link'
 import { t, type Locale } from '@/lib/i18n'
+import { getServices } from '@/data/services'
+import { projects } from '@/data/portfolio'
 
 const LinkedinIcon = ({ size = 18 }: { size?: number }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor">
@@ -45,91 +48,43 @@ const socialLinks = [
   { href: 'mailto:contact@123digital.fr',               icon: MailIcon,       label: 'Email' },
 ]
 
-
-
 export function Footer({ lang = 'fr' }: { lang?: Locale }) {
   const d = t(lang).footer
   const base = lang === 'en' ? '/en' : ''
-  const navLinks = lang === 'en' ? [
-    { label: 'Services',     href: `${base}/services` },
+  const services = getServices(lang)
+
+  const legalLinks = lang === 'en' ? [
     { label: 'About',        href: `${base}/about` },
     { label: 'Blog',         href: `${base}/blog` },
     { label: 'Contact',      href: `${base}/contact` },
     { label: 'Legal notice', href: '/mentions-legales' },
   ] : [
-    { label: 'Services',                  href: '/services' },
-    { label: 'Réalisations',              href: '/realisations' },
-    { label: 'Blog',                      href: '/blog' },
-    { label: 'Secteurs',                  href: '/secteurs' },
-    { label: 'Consultant digital Lyon',   href: '/consultant-digital-lyon' },
-    { label: 'Audit gratuit',             href: '/audit-gratuit' },
-    { label: 'À propos',                  href: '/a-propos' },
-    { label: 'Contact',                   href: '/contact' },
-    { label: 'Mentions légales',          href: '/mentions-legales' },
+    { label: 'À propos',          href: '/a-propos' },
+    { label: 'Blog',              href: '/blog' },
+    { label: 'Audit gratuit',     href: '/audit-gratuit' },
+    { label: 'Mentions légales',  href: '/mentions-legales' },
   ]
+
   return (
     <footer
       aria-label="Pied de page"
       style={{
-        backgroundColor: 'var(--dark)',
-        borderTop: '1px solid var(--dark-line)',
-        padding: '3rem 1.5rem',
+        backgroundColor: 'var(--surface)',
+        borderTop: '1px solid var(--line)',
+        // Bas généreux : sur mobile, la CallBar fixe ne doit jamais couvrir la dernière ligne.
+        padding: '2.75rem 1.5rem 6.5rem',
       }}
     >
-      {/* Desktop: 3 colonnes | Mobile: 1 colonne */}
-      <div
-        className="mx-auto footer-grid"
-        style={{ maxWidth: '1280px' }}
-      >
-        {/* Brand + copyright */}
-        <div className="flex flex-col gap-1.5">
-          <Link
-            href={lang === 'en' ? '/en' : '/'}
-            aria-label="123 Digital"
-            className="font-display font-medium transition-opacity duration-200 hover:opacity-70 w-fit"
-            style={{ fontSize: '1.5rem', color: 'var(--cream)', letterSpacing: '-0.02em' }}
-          >
-            123 Digital
+      <div className="mx-auto footer-grid" style={{ maxWidth: '1280px' }}>
+        {/* Brand + tagline */}
+        <div className="flex flex-col gap-3" style={{ gridColumn: 'span 2' }}>
+          <Link href={lang === 'en' ? '/en' : '/'} aria-label="123 Digital" className="w-fit">
+            <Image src="/images/logo.svg" alt="123 Digital" width={140} height={29} style={{ height: 28, width: 'auto' }} />
           </Link>
-          <p style={{ color: 'var(--cream-3)', fontSize: '0.72rem' }}>
-            © {new Date().getFullYear()} Maurice Timsit. {d.rights}
+          <p style={{ color: 'var(--ink-2)', fontSize: '0.85rem', lineHeight: 1.6, maxWidth: '34ch' }}>
+            {d.tagline}
           </p>
-        </div>
-
-        {/* Nav links inline */}
-        <nav
-          aria-label="Navigation principale"
-          className="footer-nav flex flex-wrap items-center justify-center gap-x-3 gap-y-2"
-        >
-          {navLinks.map((link, i) => (
-            <span key={link.href} className="flex items-center gap-3">
-              <Link
-                href={link.href}
-                className="footer-link transition-colors duration-200"
-                style={{ color: 'var(--cream-2)', fontSize: '0.78rem' }}
-              >
-                {link.label}
-              </Link>
-              {i < navLinks.length - 1 && (
-                <span style={{ color: 'oklch(0.902 0.027 105 / 32%)', fontSize: '0.78rem' }} aria-hidden>·</span>
-              )}
-            </span>
-          ))}
-        </nav>
-
-        {/* Contact + Social */}
-        <div className="footer-contact flex flex-col gap-1" style={{ textAlign: 'right' }}>
-          <span style={{ color: 'var(--cream-3)', fontSize: '0.78rem' }}>
-            123digital.fr
-          </span>
-          <a
-            href="mailto:contact@123digital.fr"
-            className="footer-link transition-colors duration-200"
-            style={{ color: 'var(--cream-2)', fontSize: '0.78rem' }}
-          >
-            contact@123digital.fr
-          </a>
-          <div className="footer-social flex items-center gap-[16px] mt-3">
+          <div className="flex items-center gap-4 mt-1">
             {socialLinks.map(({ href, icon: Icon, label }) => (
               <a
                 key={href}
@@ -137,37 +92,96 @@ export function Footer({ lang = 'fr' }: { lang?: Locale }) {
                 aria-label={label}
                 target={href.startsWith('http') ? '_blank' : undefined}
                 rel={href.startsWith('http') ? 'noopener noreferrer' : undefined}
-                className="social-icon transition-colors duration-200"
-                style={{ color: 'var(--cream)' }}
+                className="social-icon"
+                style={{ color: 'var(--ink-3)' }}
               >
-                <Icon size={18} aria-hidden />
+                <Icon size={17} aria-hidden />
               </a>
             ))}
           </div>
         </div>
+
+        {/* Services */}
+        <div>
+          <h4 style={{ fontSize: '0.72rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--ink)', marginBottom: '0.7rem' }}>
+            {d.servicesTitle}
+          </h4>
+          <ul className="flex flex-col gap-2">
+            {services.map((service) => (
+              <li key={service.id}>
+                <Link href={service.href} className="footer-link" style={{ color: 'var(--ink-2)', fontSize: '0.85rem' }}>
+                  {service.title}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        {/* Résultats */}
+        <div>
+          <h4 style={{ fontSize: '0.72rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--ink)', marginBottom: '0.7rem' }}>
+            {d.resultsTitle}
+          </h4>
+          <ul className="flex flex-col gap-2">
+            {projects.map((project) => (
+              <li key={project.id}>
+                <Link href={`${base}#resultats`} className="footer-link" style={{ color: 'var(--ink-2)', fontSize: '0.85rem' }}>
+                  {project.title}
+                </Link>
+              </li>
+            ))}
+            {legalLinks.map((link) => (
+              <li key={link.href}>
+                <Link href={link.href} className="footer-link" style={{ color: 'var(--ink-2)', fontSize: '0.85rem' }}>
+                  {link.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        {/* Contact */}
+        <div>
+          <h4 style={{ fontSize: '0.72rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--ink)', marginBottom: '0.7rem' }}>
+            {d.contactTitle}
+          </h4>
+          <ul className="flex flex-col gap-2">
+            <li><a href="tel:+33652092301" className="footer-link" style={{ color: 'var(--ink-2)', fontSize: '0.85rem' }}>06 52 09 23 01</a></li>
+            <li><a href="mailto:contact@123digital.fr" className="footer-link" style={{ color: 'var(--ink-2)', fontSize: '0.85rem' }}>contact@123digital.fr</a></li>
+            <li style={{ color: 'var(--ink-2)', fontSize: '0.85rem' }}>Lyon, France</li>
+          </ul>
+        </div>
       </div>
 
-      {/* Responsive grid CSS */}
+      <div
+        className="mx-auto flex flex-col sm:flex-row items-center justify-between gap-2"
+        style={{ maxWidth: '1280px', marginTop: '2.25rem', paddingTop: '1.5rem', borderTop: '1px solid var(--line)' }}
+      >
+        <p style={{ color: 'var(--ink-3)', fontSize: '0.75rem' }}>
+          © {new Date().getFullYear()} Maurice Timsit. {d.rights}
+        </p>
+        <p style={{ color: 'var(--ink-3)', fontSize: '0.75rem' }}>123digital.fr</p>
+      </div>
+
       <style>{`
         .footer-grid {
           display: grid;
-          grid-template-columns: repeat(3, 1fr);
-          gap: 2rem;
-          align-items: center;
+          grid-template-columns: 2fr 1fr 1fr 1fr;
+          gap: 2.25rem;
         }
-        .footer-link { display: inline-flex; align-items: center; min-height: 44px; }
-        .footer-link:hover { color: var(--neon) !important; }
+        .footer-link { display: inline-flex; align-items: center; min-height: 28px; transition: color 0.2s ease; }
+        .footer-link:hover { color: var(--brand) !important; }
         .social-icon {
           display: inline-flex; align-items: center; justify-content: center;
-          min-width: 44px; min-height: 44px;
+          min-width: 32px; min-height: 32px;
+          transition: color 0.2s ease;
         }
-        .social-icon:hover { color: var(--neon) !important; }
-        @media (max-width: 720px) {
-          .footer-grid { grid-template-columns: 1fr; text-align: center; }
-          .footer-contact { text-align: center !important; align-items: center !important; }
-          .footer-contact a, .footer-contact span { text-align: center; }
-          .footer-nav { justify-content: center; }
-          .footer-social { justify-content: center; }
+        .social-icon:hover { color: var(--brand) !important; }
+        @media (max-width: 900px) {
+          .footer-grid { grid-template-columns: 1fr 1fr; }
+        }
+        @media (max-width: 560px) {
+          .footer-grid { grid-template-columns: 1fr; }
         }
       `}</style>
     </footer>

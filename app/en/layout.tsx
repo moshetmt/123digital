@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { BASE_URL } from '@/lib/schema'
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
+import { CallBar } from '@/components/layout/CallBar'
 
 export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),
@@ -28,6 +29,7 @@ export default function EnLayout({ children }: { children: React.ReactNode }) {
       <Header lang="en" />
       <main>{children}</main>
       <Footer lang="en" />
+      <CallBar lang="en" />
     </>
   )
 }

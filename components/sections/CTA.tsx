@@ -2,34 +2,13 @@
 
 import { useRef, useState } from 'react'
 import { motion, useInView, AnimatePresence } from 'framer-motion'
-import { ArrowRight } from 'lucide-react'
+import { Check } from 'lucide-react'
 import { t, type Locale } from '@/lib/i18n'
 
 const EASE = [0.22, 1, 0.36, 1] as [number, number, number, number]
-const PULL_EASE = [0.16, 1, 0.3, 1] as [number, number, number, number]
 
-// ── WordsPullUp ───────────────────────────────────────────────────────────────
-
-function WordsPullUp({ text, delay = 0 }: { text: string; delay?: number }) {
-  const ref = useRef<HTMLDivElement>(null)
-  const isInView = useInView(ref, { once: true, margin: '-10%' })
-  return (
-    <div ref={ref} style={{ display: 'inline-flex', flexWrap: 'wrap', justifyContent: 'center' }}>
-      {text.split(' ').map((word, i) => (
-        <span key={i} style={{ display: 'inline-block', overflow: 'hidden', paddingRight: '0.22em' }}>
-          <motion.span
-            style={{ display: 'inline-block', color: 'var(--cream)' }}
-            initial={{ y: '100%', opacity: 0 }}
-            animate={isInView ? { y: 0, opacity: 1 } : {}}
-            transition={{ duration: 0.9, delay: delay + i * 0.08, ease: PULL_EASE }}
-          >
-            {word}
-          </motion.span>
-        </span>
-      ))}
-    </div>
-  )
-}
+const PHONE_TEL = 'tel:+33652092301'
+const PHONE_DISPLAY = '06 52 09 23 01'
 
 // ── Form types ────────────────────────────────────────────────────────────────
 
@@ -37,44 +16,37 @@ interface FormState {
   prenom: string
   nom: string
   email: string
+  tel: string
   site: string
   besoin: string
   message: string
 }
 
 const BESOINS_FR = [
-  { value: 'site',     label: 'Création de site' },
-  { value: 'seo',      label: 'SEO' },
-  { value: 'ads',      label: 'Publicité en ligne' },
-  { value: 'branding', label: 'Branding' },
-  { value: 'full',     label: 'Accompagnement complet' },
+  { value: 'visibilite', label: 'Être mieux placé sur Google' },
+  { value: 'site',       label: 'Un site web (création ou refonte)' },
+  { value: 'ads',        label: 'De la publicité en ligne' },
+  { value: 'autre',      label: 'Autre / je ne sais pas encore' },
 ]
 
 const BESOINS_EN = [
-  { value: 'site',     label: 'Website creation' },
-  { value: 'seo',      label: 'SEO' },
-  { value: 'ads',      label: 'Online advertising' },
-  { value: 'branding', label: 'Branding' },
-  { value: 'full',     label: 'Full support' },
+  { value: 'visibilite', label: 'Rank better on Google' },
+  { value: 'site',       label: 'A website (new or redesign)' },
+  { value: 'ads',        label: 'Online advertising' },
+  { value: 'autre',      label: 'Other / not sure yet' },
 ]
-
-// Zone sombre — continuité de marque : crème + néon réservés à ces sections
-const FIELD = 'var(--dark-3)'
-const FIELD_FOCUS = 'oklch(0.295 0 0)'
-const FIELD_FOCUS_LINE = 'oklch(0.876 0.229 152 / 60%)'
-const FIELD_ERROR_LINE = 'oklch(0.68 0.19 25 / 70%)'
 
 const inputBase: React.CSSProperties = {
   width: '100%',
-  backgroundColor: FIELD,
-  border: '1px solid var(--dark-line)',
-  borderRadius: '0.85rem',
-  padding: '0.8rem 1rem',
-  color: 'var(--cream)',
+  backgroundColor: 'var(--surface)',
+  border: '1px solid var(--line)',
+  borderRadius: '0.7rem',
+  padding: '0.75rem 0.9rem',
+  color: 'var(--ink)',
   fontSize: '0.92rem',
   outline: 'none',
   fontFamily: 'inherit',
-  transition: 'border-color 0.2s ease, background 0.2s ease',
+  transition: 'border-color 0.2s ease',
 }
 
 function FormInput({
@@ -87,11 +59,7 @@ function FormInput({
   return (
     <input
       type={type} value={value} onChange={onChange} placeholder={placeholder}
-      style={{
-        ...inputBase,
-        borderColor: hasError ? FIELD_ERROR_LINE : focused ? FIELD_FOCUS_LINE : 'var(--dark-line)',
-        backgroundColor: focused ? FIELD_FOCUS : FIELD,
-      }}
+      style={{ ...inputBase, borderColor: hasError ? 'var(--destructive)' : focused ? 'var(--brand)' : 'var(--line)' }}
       onFocus={() => setFocused(true)} onBlur={() => setFocused(false)}
     />
   )
@@ -109,19 +77,18 @@ function FormSelect({
       value={value} onChange={onChange}
       style={{
         ...inputBase,
-        borderColor: hasError ? FIELD_ERROR_LINE : focused ? FIELD_FOCUS_LINE : 'var(--dark-line)',
-        backgroundColor: focused ? FIELD_FOCUS : FIELD,
+        borderColor: hasError ? 'var(--destructive)' : focused ? 'var(--brand)' : 'var(--line)',
         appearance: 'none',
-        backgroundImage: `url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8' fill='none'><path d='M1 1L6 6L11 1' stroke='%23E1E0CC' stroke-width='1.5' stroke-linecap='round'/></svg>")`,
+        backgroundImage: `url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8' fill='none'><path d='M1 1L6 6L11 1' stroke='%23666459' stroke-width='1.5' stroke-linecap='round'/></svg>")`,
         backgroundRepeat: 'no-repeat',
-        backgroundPosition: 'right 1rem center',
-        paddingRight: '2.5rem',
+        backgroundPosition: 'right 0.9rem center',
+        paddingRight: '2.4rem',
       }}
       onFocus={() => setFocused(true)} onBlur={() => setFocused(false)}
     >
-      <option value="" style={{ background: '#1E1E1E' }}>{placeholder}</option>
+      <option value="">{placeholder}</option>
       {options.map((b) => (
-        <option key={b.value} value={b.value} style={{ background: '#1E1E1E' }}>{b.label}</option>
+        <option key={b.value} value={b.value}>{b.label}</option>
       ))}
     </select>
   )
@@ -135,13 +102,8 @@ function FormTextarea({
   const [focused, setFocused] = useState(false)
   return (
     <textarea
-      rows={4} value={value} onChange={onChange} placeholder={placeholder}
-      style={{
-        ...inputBase,
-        borderColor: focused ? FIELD_FOCUS_LINE : 'var(--dark-line)',
-        backgroundColor: focused ? FIELD_FOCUS : FIELD,
-        resize: 'vertical',
-      }}
+      rows={3} value={value} onChange={onChange} placeholder={placeholder}
+      style={{ ...inputBase, borderColor: focused ? 'var(--brand)' : 'var(--line)', resize: 'vertical' }}
       onFocus={() => setFocused(true)} onBlur={() => setFocused(false)}
     />
   )
@@ -152,35 +114,12 @@ function FormTextarea({
 export function CTA({ lang = 'fr' }: { lang?: Locale }) {
   const d = t(lang).cta
   const isEN = lang === 'en'
-
-  const L = {
-    eyebrow:        isEN ? 'Free audit'                          : 'Audit gratuit',
-    firstName:      isEN ? 'First name'                          : 'Prénom',
-    lastName:       isEN ? 'Last name'                           : 'Nom',
-    emailLabel:     isEN ? 'Professional email'                  : 'Email professionnel',
-    siteLabel:      isEN ? 'Current website'                     : 'Site web actuel',
-    optional:       isEN ? '(optional)'                          : '(optionnel)',
-    needLabel:      isEN ? 'What is your main need?'             : 'Quel est votre besoin principal ?',
-    needPH:         isEN ? '— Choose —'                          : '— Choisir —',
-    messageLabel:   isEN ? 'Describe your project in 2-3 lines'  : 'Décrivez votre projet en 2-3 lignes',
-    sub1:           isEN ? 'Free audit'                          : 'Audit gratuit',
-    sub2:           isEN ? 'No commitment'                       : 'Sans engagement',
-    sub3:           isEN ? 'Reply within 24h'                    : 'Réponse sous 24h',
-    sending:        isEN ? 'Sending…'                            : 'Envoi en cours…',
-    sendError:      isEN ? 'Something went wrong. Please try again in a moment.' : 'L\'envoi a échoué. Réessayez dans un instant.',
-    successTitle:   isEN ? 'Request received.'                   : 'Demande reçue.',
-    successBody:    (prenom: string) => isEN
-      ? `Thank you${prenom ? ` ${prenom}` : ''}. I'll get back to you within 24h with an initial analysis of your project.`
-      : `Merci ${prenom}. Je reviens vers vous sous 24h avec une première analyse de votre projet.`,
-  }
-
   const besoins = isEN ? BESOINS_EN : BESOINS_FR
-  const reassurance = [L.sub1, L.sub2, L.sub3]
 
   const ref = useRef<HTMLDivElement>(null)
   const isInView = useInView(ref, { once: true, margin: '-100px' })
 
-  const [form, setForm] = useState<FormState>({ prenom: '', nom: '', email: '', site: '', besoin: '', message: '' })
+  const [form, setForm] = useState<FormState>({ prenom: '', nom: '', email: '', tel: '', site: '', besoin: '', message: '' })
   const [hp, setHp] = useState('')
   const [submitted, setSubmitted] = useState(false)
   const [loading, setLoading] = useState(false)
@@ -218,185 +157,177 @@ export function CTA({ lang = 'fr' }: { lang?: Locale }) {
   }
 
   const labelStyle: React.CSSProperties = {
-    fontSize: '0.7rem',
-    textTransform: 'uppercase',
-    letterSpacing: '0.1em',
-    color: 'var(--cream-2)',
+    fontSize: '0.75rem',
     fontWeight: 700,
+    color: 'var(--ink-2)',
     display: 'block',
-    marginBottom: '0.45rem',
+    marginBottom: '0.35rem',
   }
 
   return (
     <section
       id="contact"
-      className="relative overflow-hidden"
-      style={{ backgroundColor: 'var(--dark)', padding: '7rem 1.5rem' }}
+      style={{ backgroundColor: 'var(--brand)', padding: '5rem 1.5rem' }}
       aria-labelledby="contact-heading"
     >
-      {/* Grain clair + halo néon — réservés aux zones sombres */}
-      <div className="absolute inset-0 bg-noise-dark pointer-events-none" aria-hidden style={{ opacity: 0.14 }} />
-      <div
-        className="absolute inset-0 pointer-events-none"
-        aria-hidden
-        style={{ background: 'radial-gradient(80% 55% at 50% 0%, var(--neon-tint) 0%, transparent 60%)' }}
-      />
-      <style>{`
-        #contact input::placeholder,
-        #contact textarea::placeholder { color: var(--cream-3); opacity: 1; }
-      `}</style>
-
-      <div ref={ref} className="relative mx-auto text-center" style={{ maxWidth: '640px' }}>
-
-        {/* Eyebrow */}
+      <div ref={ref} className="mx-auto max-w-6xl grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-start">
+        {/* ── Texte gauche ── */}
         <motion.div
-          initial={{ opacity: 0 }} animate={isInView ? { opacity: 1 } : {}} transition={{ duration: 0.5 }}
-          className="flex items-center justify-center gap-2 mb-6"
-          style={{ fontSize: '0.7rem', letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--cream-2)', fontWeight: 700 }}
+          initial={{ opacity: 0, y: 16, filter: 'blur(6px)' }}
+          animate={isInView ? { opacity: 1, y: 0, filter: 'blur(0px)' } : {}}
+          transition={{ duration: 0.6, ease: EASE }}
         >
-          <span className="w-1.5 h-1.5 rounded-full shrink-0" style={{ backgroundColor: 'var(--neon)' }} aria-hidden />
-          {L.eyebrow}
+          <h2
+            id="contact-heading"
+            style={{
+              fontFamily: 'var(--font-sans)',
+              fontWeight: 800,
+              fontSize: 'clamp(1.7rem, 3.6vw, 2.4rem)',
+              lineHeight: 1.1,
+              letterSpacing: '-0.015em',
+              color: 'var(--on-brand)',
+              marginBottom: '0.9rem',
+            }}
+          >
+            {d.heading}
+          </h2>
+          <p style={{ color: 'var(--on-brand)', fontSize: '1rem', lineHeight: 1.6, maxWidth: '46ch', marginBottom: '1.25rem' }}>
+            {d.sub}
+          </p>
+          <p style={{ color: 'var(--on-brand)', fontSize: '0.92rem', fontWeight: 600 }}>
+            {d.altPhone}{' '}
+            <a href={PHONE_TEL} style={{ fontWeight: 800, textDecoration: 'underline' }}>
+              {PHONE_DISPLAY}
+            </a>
+          </p>
         </motion.div>
 
-        {/* Heading */}
-        <h2
-          id="contact-heading" className="font-display font-normal mb-4"
-          style={{ fontSize: 'clamp(2rem, 5vw, 3.6rem)', letterSpacing: '-0.03em', lineHeight: 1.05 }}
-        >
-          <WordsPullUp text={d.heading} delay={0.05} />
-        </h2>
-
-        {/* Sub */}
-        <motion.p
-          initial={{ opacity: 0 }} animate={isInView ? { opacity: 1 } : {}} transition={{ delay: 0.3, duration: 0.5 }}
-          className="mb-12" style={{ color: 'var(--cream-2)', fontSize: '1rem' }}
-        >
-          {L.sub1}
-          <span style={{ color: 'var(--neon)', margin: '0 0.4rem' }}>·</span>
-          {L.sub2}
-          <span style={{ color: 'var(--neon)', margin: '0 0.4rem' }}>·</span>
-          {L.sub3}
-        </motion.p>
-
-        {/* Form or success */}
+        {/* ── Formulaire ── */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }} animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ delay: 0.2, duration: 0.6, ease: EASE }}
+          initial={{ opacity: 0, y: 20, filter: 'blur(6px)' }}
+          animate={isInView ? { opacity: 1, y: 0, filter: 'blur(0px)' } : {}}
+          transition={{ delay: 0.15, duration: 0.6, ease: EASE }}
         >
           <AnimatePresence mode="wait" initial={false}>
-          {!submitted ? (
-            <motion.form
-              key="form"
-              exit={{ opacity: 0, y: -8 }}
-              transition={{ duration: 0.22, ease: EASE }}
-              onSubmit={handleSubmit} noValidate className="flex flex-col gap-4 text-left"
-              style={{
-                backgroundColor: 'var(--dark-2)',
-                border: '1px solid var(--dark-line)',
-                borderRadius: '1.5rem',
-                padding: '2rem',
-              }}
-            >
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div>
-                  <label style={labelStyle}>{L.firstName}</label>
-                  <FormInput value={form.prenom} onChange={set('prenom')} placeholder={isEN ? 'John' : 'Maurice'} hasError={errors.prenom} />
-                </div>
-                <div>
-                  <label style={labelStyle}>{L.lastName}</label>
-                  <FormInput value={form.nom} onChange={set('nom')} placeholder={isEN ? 'Smith' : 'Timsit'} hasError={errors.nom} />
-                </div>
-              </div>
-              <div>
-                <label style={labelStyle}>{L.emailLabel}</label>
-                <FormInput type="email" value={form.email} onChange={set('email')} placeholder={isEN ? 'you@company.com' : 'vous@entreprise.fr'} hasError={errors.email} />
-              </div>
-              <div>
-                <label style={labelStyle}>{L.siteLabel} <span style={{ opacity: 0.7 }}>{L.optional}</span></label>
-                <FormInput value={form.site} onChange={set('site')} placeholder="https://" />
-              </div>
-              <div>
-                <label style={labelStyle}>{L.needLabel}</label>
-                <FormSelect
-                  value={form.besoin}
-                  onChange={set('besoin') as React.ChangeEventHandler<HTMLSelectElement>}
-                  hasError={errors.besoin}
-                  options={besoins}
-                  placeholder={L.needPH}
-                />
-              </div>
-              <div>
-                <label style={labelStyle}>{L.messageLabel}</label>
-                <FormTextarea value={form.message} onChange={set('message') as React.ChangeEventHandler<HTMLTextAreaElement>} placeholder={d.messagePlaceholder} />
-              </div>
-              {/* Honeypot anti-spam : invisible et hors tabulation, un humain n'y écrit jamais */}
-              <div aria-hidden style={{ position: 'absolute', left: '-9999px', width: 1, height: 1, overflow: 'hidden' }}>
-                <input type="text" tabIndex={-1} autoComplete="off" value={hp} onChange={(e) => setHp(e.target.value)} placeholder="Ne pas remplir" />
-              </div>
-              <AnimatePresence>
-                {sendError && (
-                  <motion.p
-                    role="alert"
-                    initial={{ opacity: 0, y: -4 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0 }}
-                    transition={{ duration: 0.2, ease: EASE }}
-                    style={{ color: 'rgba(255,120,120,0.95)', fontSize: '0.85rem', margin: 0 }}
-                  >
-                    {L.sendError}
-                  </motion.p>
-                )}
-              </AnimatePresence>
-              <motion.button
-                type="submit" disabled={loading}
-                whileTap={{ scale: 0.97 }}
-                transition={{ duration: 0.14, ease: EASE }}
-                className="group flex items-center justify-between w-full rounded-full font-medium text-sm transition-all duration-300 disabled:opacity-50"
-                style={{ backgroundColor: 'var(--neon)', color: 'var(--dark)', padding: '0.75rem 0.75rem 0.75rem 1.5rem', border: 'none', cursor: loading ? 'not-allowed' : 'pointer', fontSize: '0.95rem' }}
+            {!submitted ? (
+              <motion.form
+                key="form"
+                exit={{ opacity: 0, y: -8 }}
+                transition={{ duration: 0.2, ease: EASE }}
+                onSubmit={handleSubmit}
+                noValidate
+                className="flex flex-col gap-3.5"
+                style={{ backgroundColor: 'var(--surface-2)', borderRadius: '1.25rem', padding: '1.75rem' }}
               >
-                <span>{loading ? L.sending : d.submit}</span>
-                <span className="flex items-center justify-center rounded-full transition-transform duration-300 group-hover:scale-110 shrink-0" style={{ width: 36, height: 36, backgroundColor: 'var(--dark)', color: 'var(--neon)' }}>
-                  <ArrowRight size={14} style={{ transform: 'rotate(-45deg)' }} aria-hidden />
-                </span>
-              </motion.button>
-            </motion.form>
-          ) : (
-            <motion.div
-              key="success"
-              initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, ease: EASE }}
-              className="flex flex-col items-center text-center"
-              style={{
-                backgroundColor: 'var(--dark-2)',
-                border: '1px solid var(--dark-line)',
-                borderRadius: '1.5rem',
-                padding: '3rem 2rem',
-              }}
-            >
-              <div className="flex items-center justify-center mb-5" style={{ width: 56, height: 56, borderRadius: '50%', backgroundColor: 'var(--neon-tint)', color: 'var(--neon)' }}>
-                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M20 6 9 17l-5-5" />
-                </svg>
-              </div>
-              <h3 className="font-display font-bold mb-2" style={{ color: 'var(--cream)', fontSize: '1.4rem' }}>{L.successTitle}</h3>
-              <p style={{ color: 'var(--cream-2)', fontSize: '0.9rem', lineHeight: 1.5 }}>{L.successBody(form.prenom)}</p>
-            </motion.div>
-          )}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+                  <div>
+                    <label style={labelStyle}>{d.firstName}</label>
+                    <FormInput value={form.prenom} onChange={set('prenom')} placeholder={isEN ? 'John' : 'Jean'} hasError={errors.prenom} />
+                  </div>
+                  <div>
+                    <label style={labelStyle}>{d.lastName}</label>
+                    <FormInput value={form.nom} onChange={set('nom')} placeholder={isEN ? 'Smith' : 'Dupont'} hasError={errors.nom} />
+                  </div>
+                </div>
+                <div>
+                  <label style={labelStyle}>{d.emailLabel}</label>
+                  <FormInput type="email" value={form.email} onChange={set('email')} placeholder={isEN ? 'you@company.com' : 'vous@entreprise.fr'} hasError={errors.email} />
+                </div>
+                <div>
+                  <label style={labelStyle}>{d.phoneLabel} <span style={{ opacity: 0.7, fontWeight: 500 }}>{d.optional}</span></label>
+                  <FormInput type="tel" value={form.tel} onChange={set('tel')} placeholder="06 12 34 56 78" />
+                </div>
+                <div>
+                  <label style={labelStyle}>{d.siteLabel} <span style={{ opacity: 0.7, fontWeight: 500 }}>{d.optional}</span></label>
+                  <FormInput value={form.site} onChange={set('site')} placeholder="https://" />
+                </div>
+                <div>
+                  <label style={labelStyle}>{d.needLabel}</label>
+                  <FormSelect
+                    value={form.besoin}
+                    onChange={set('besoin') as React.ChangeEventHandler<HTMLSelectElement>}
+                    hasError={errors.besoin}
+                    options={besoins}
+                    placeholder={d.needPH}
+                  />
+                </div>
+                <div>
+                  <label style={labelStyle}>{d.messageLabel} <span style={{ opacity: 0.7, fontWeight: 500 }}>{d.messageOptional}</span></label>
+                  <FormTextarea value={form.message} onChange={set('message') as React.ChangeEventHandler<HTMLTextAreaElement>} placeholder={d.messagePlaceholder} />
+                </div>
+
+                {/* Honeypot anti-spam : invisible et hors tabulation */}
+                <div aria-hidden style={{ position: 'absolute', left: '-9999px', width: 1, height: 1, overflow: 'hidden' }}>
+                  <input type="text" tabIndex={-1} autoComplete="off" value={hp} onChange={(e) => setHp(e.target.value)} placeholder="Ne pas remplir" />
+                </div>
+
+                <AnimatePresence>
+                  {sendError && (
+                    <motion.p
+                      role="alert"
+                      initial={{ opacity: 0, y: -4, filter: 'blur(6px)' }}
+                      animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+                      exit={{ opacity: 0 }}
+                      transition={{ duration: 0.2, ease: EASE }}
+                      style={{ color: 'var(--destructive)', fontSize: '0.85rem', margin: 0 }}
+                    >
+                      {d.sendError}
+                    </motion.p>
+                  )}
+                </AnimatePresence>
+
+                <motion.button
+                  type="submit"
+                  disabled={loading}
+                  whileTap={{ scale: 0.97 }}
+                  transition={{ duration: 0.14, ease: EASE }}
+                  className="w-full rounded-full font-bold disabled:opacity-50"
+                  style={{ backgroundColor: 'var(--brand)', color: 'var(--on-brand)', padding: '0.9rem', border: 'none', cursor: loading ? 'not-allowed' : 'pointer', fontSize: '0.95rem' }}
+                >
+                  {loading ? d.sending : d.submit}
+                </motion.button>
+              </motion.form>
+            ) : (
+              <motion.div
+                key="success"
+                initial={{ opacity: 0, y: 20, filter: 'blur(6px)' }}
+                animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+                transition={{ duration: 0.5, ease: EASE }}
+                className="flex flex-col items-center text-center"
+                style={{ backgroundColor: 'var(--surface-2)', borderRadius: '1.25rem', padding: '3rem 2rem' }}
+              >
+                <div
+                  className="flex items-center justify-center mb-5"
+                  style={{ width: 56, height: 56, borderRadius: '50%', backgroundColor: 'var(--brand-tint)', color: 'var(--brand)' }}
+                >
+                  <Check size={26} strokeWidth={2.5} aria-hidden />
+                </div>
+                <h3 style={{ fontFamily: 'var(--font-sans)', fontWeight: 800, fontSize: '1.3rem', color: 'var(--ink)', marginBottom: '0.5rem' }}>
+                  {d.successTitle}
+                </h3>
+                <p style={{ color: 'var(--ink-2)', fontSize: '0.9rem', lineHeight: 1.5 }}>
+                  {isEN
+                    ? `Thank you${form.prenom ? ` ${form.prenom}` : ''}. I'll call you back within 24h.`
+                    : `Merci ${form.prenom}. Je vous rappelle sous 24h.`}
+                </p>
+              </motion.div>
+            )}
           </AnimatePresence>
-        </motion.div>
 
-        {/* Reassurance pills */}
-        <motion.div
-          initial={{ opacity: 0 }} animate={isInView ? { opacity: 1 } : {}} transition={{ delay: 0.5, duration: 0.5 }}
-          className="flex items-center justify-center gap-2 mt-6 flex-wrap"
-        >
-          {reassurance.map((label) => (
-            <div key={label} className="inline-flex items-center gap-2" style={{ backgroundColor: 'var(--dark-3)', border: '1px solid var(--dark-line)', color: 'var(--cream-2)', fontSize: '0.72rem', padding: '0.45rem 0.85rem', borderRadius: '999px' }}>
-              <span style={{ color: 'var(--neon)', fontSize: '0.75rem' }}>✓</span>
-              {label}
-            </div>
-          ))}
+          {/* Réassurance */}
+          <div className="flex items-center justify-center gap-2 mt-5 flex-wrap">
+            {[d.reassurance1, d.reassurance2, d.reassurance3].map((label) => (
+              <div
+                key={label}
+                className="inline-flex items-center gap-1.5"
+                style={{ border: '1px solid var(--on-brand)', color: 'var(--on-brand)', fontSize: '0.72rem', fontWeight: 600, padding: '0.4rem 0.75rem', borderRadius: 999 }}
+              >
+                <Check size={12} aria-hidden />
+                {label}
+              </div>
+            ))}
+          </div>
         </motion.div>
-
       </div>
     </section>
   )

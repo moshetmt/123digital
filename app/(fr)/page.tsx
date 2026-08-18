@@ -9,7 +9,7 @@ import { FAQ }          from '@/components/sections/FAQ'
 import { CTA }          from '@/components/sections/CTA'
 import { Zones }        from '@/components/sections/Zones'
 import { JsonLd }       from '@/components/seo/JsonLd'
-import { faqPageSchema, BASE_URL } from '@/lib/schema'
+import { faqPageSchema } from '@/lib/schema'
 import { homeFaqs }     from '@/data/faq'
 
 export const metadata: Metadata = {}
@@ -19,32 +19,32 @@ export default function HomePage() {
     <>
       <JsonLd schema={faqPageSchema(homeFaqs)} />
 
-      {/* 1. Hero — impact immédiat, brand statement */}
+      {/* 1. Hero — fond ivoire, carte statut en direct */}
       <Hero />
 
-      {/* 2. Services — offre scannable avec détails */}
+      {/* 2. Services — 6 cartes, 2 familles */}
       <Services />
 
-      {/* 3. About — Maurice Timsit, scroll-reveal */}
-      <About />
-
-      {/* 4. Results — métriques CountUp + témoignage */}
+      {/* 3. Results — LA section sombre, 4 chiffres */}
       <Results />
 
-      {/* 5. Portfolio — cas clients concrets */}
+      {/* 4. Portfolio — cas clients (Clim69, Rhône Déconstruction, A+ Audition) */}
       <Portfolio />
 
-      {/* 5b. Zones — carte interactive ARA */}
-      <Zones />
-
-      {/* 6. Process — comment ça se passe */}
+      {/* 5. Process — méthode en 4 étapes */}
       <Process />
+
+      {/* 6. About — Maurice Timsit */}
+      <About />
 
       {/* 7. FAQ — objections */}
       <FAQ />
 
-      {/* 8. Contact — formulaire audit gratuit */}
+      {/* 8. CTA — LA bande verte, formulaire devis */}
       <CTA />
+
+      {/* 9. Zones — chips de villes */}
+      <Zones />
     </>
   )
 }

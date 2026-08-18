@@ -1,97 +1,90 @@
-import { VillesMap } from './VillesMap'
+'use client'
+
+import { useRef } from 'react'
+import Link from 'next/link'
+import { motion, useInView } from 'framer-motion'
+import { villesARA } from '@/data/villes'
 import { t, type Locale } from '@/lib/i18n'
+
+const EASE = [0.22, 1, 0.36, 1] as [number, number, number, number]
+
+// Les 9 premières villes ARA (priorité haute puis moyenne), dans l'ordre de data/villes.ts.
+const CHIP_VILLES = villesARA.slice(0, 9)
 
 export function Zones({ lang = 'fr' }: { lang?: Locale }) {
   const d = t(lang).zones
+  const ref = useRef<HTMLDivElement>(null)
+  const isInView = useInView(ref, { once: true, margin: '-10%' })
+
   return (
     <section
       id="zones"
-      className="bg-background"
-      style={{ padding: '7rem 1.5rem', borderTop: '1px solid var(--line)' }}
+      style={{ backgroundColor: 'var(--surface)', padding: '5rem 1.5rem', borderTop: '1px solid var(--line)' }}
     >
-      <div className="mx-auto max-w-5xl">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-          {/* Texte gauche */}
-          <div>
-            <div
-              className="flex items-center gap-2 mb-5"
-              style={{
-                fontSize: '0.7rem',
-                letterSpacing: '0.12em',
-                textTransform: 'uppercase',
-                color: 'var(--ink-2)',
-                fontWeight: 700,
-              }}
-            >
-              <span className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: 'var(--brand)' }} />
-              {d.label}
-            </div>
-
-            <h2
-              className="font-display font-normal mb-6"
-              style={{
-                fontSize: 'clamp(1.8rem, 3.5vw, 3rem)',
-                color: 'var(--ink)',
-                lineHeight: 1.05,
-                letterSpacing: '-0.025em',
-              }}
-            >
-  {lang === 'en' ? (
-              <>
-                Based in Lyon,<br />
-                <em style={{ color: 'var(--brand)', fontStyle: 'italic', fontFamily: 'var(--font-serif)' }}>available everywhere.</em>
-              </>
-            ) : (
-              <>
-                Ancré en ARA,<br />
-                <em style={{ color: 'var(--brand)', fontStyle: 'italic', fontFamily: 'var(--font-serif)' }}>disponible partout.</em>
-              </>
-            )}
-            </h2>
-
-            <p
-              style={{
-                color: 'var(--ink-2)',
-                lineHeight: 1.75,
-                fontSize: '0.95rem',
-                marginBottom: '1.5rem',
-              }}
-            >
-              {lang === 'en' ? "Based in Lyon, I primarily work with SMEs across the Auvergne-Rhône-Alpes region. 100% remote-friendly, I also work with businesses anywhere in France." : "Je suis basé à Lyon et j'accompagne prioritairement les PME d'Auvergne-Rhône-Alpes. 100% en distanciel, j'interviens également sur toute la France."}
-            </p>
-
-            <div className="space-y-3">
-              {[
-                ...(lang === 'en' ? [
-                  { label: 'Lyon & Metro', desc: 'Priority zone — fast turnaround' },
-                  { label: 'ARA Region', desc: '14 cities covered' },
-                  { label: 'All of France', desc: 'Fully remote' },
-                ] : [
-                  { label: 'Lyon & Métropole', desc: 'Présence prioritaire — délais réduits' },
-                  { label: 'Région ARA', desc: '14 villes couvertes' },
-                  { label: 'Toute la France', desc: 'En distanciel' },
-                ])
-              ].map((z) => (
-                <div
-                  key={z.label}
-                  className="flex items-center gap-3"
-                >
-                  <span style={{ color: 'var(--brand)', fontSize: '0.8rem' }}>→</span>
-                  <div>
-                    <span style={{ fontSize: '0.88rem', color: 'var(--ink)', fontWeight: 600 }}>{z.label}</span>
-                    <span style={{ fontSize: '0.82rem', color: 'var(--ink-2)', marginLeft: '0.5rem' }}>— {z.desc}</span>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Carte droite */}
-          <div>
-            <VillesMap lang={lang} />
-          </div>
+      <motion.div
+        ref={ref}
+        initial={{ opacity: 0, y: 16, filter: 'blur(6px)' }}
+        animate={isInView ? { opacity: 1, y: 0, filter: 'blur(0px)' } : {}}
+        transition={{ duration: 0.6, ease: EASE }}
+        className="mx-auto max-w-4xl text-center"
+      >
+        <div
+          className="mb-3"
+          style={{ fontSize: '0.72rem', letterSpacing: '0.1em', textTransform: 'uppercase', color: 'var(--brand-strong)', fontWeight: 800 }}
+        >
+          {d.label}
         </div>
-      </div>
+        <h2
+          style={{
+            fontFamily: 'var(--font-sans)',
+            fontWeight: 800,
+            fontSize: 'clamp(1.4rem, 3vw, 2rem)',
+            lineHeight: 1.2,
+            letterSpacing: '-0.01em',
+            color: 'var(--ink)',
+            marginBottom: '1.75rem',
+          }}
+        >
+          {d.heading}
+        </h2>
+
+        <div className="flex flex-wrap items-center justify-center gap-2">
+          {CHIP_VILLES.map((ville) => (
+            <Link
+              key={ville.slug}
+              href={`/${ville.slug}`}
+              className="chip-link"
+              style={{
+                backgroundColor: 'var(--surface-3)',
+                color: 'var(--ink-2)',
+                borderRadius: 999,
+                padding: '0.5rem 1rem',
+                fontSize: '0.85rem',
+                fontWeight: 600,
+              }}
+            >
+              {ville.nom}
+            </Link>
+          ))}
+          <span
+            style={{
+              backgroundColor: 'var(--brand-tint)',
+              color: 'var(--brand-strong)',
+              borderRadius: 999,
+              padding: '0.5rem 1rem',
+              fontSize: '0.85rem',
+              fontWeight: 700,
+            }}
+          >
+            {d.franceWide}
+          </span>
+        </div>
+      </motion.div>
+
+      <style>{`
+        .chip-link { transition: background-color 0.2s ease, color 0.2s ease; }
+        .chip-link:hover { background-color: var(--brand-tint) !important; color: var(--brand-strong) !important; }
+      `}</style>
     </section>
   )
 }

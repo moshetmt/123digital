@@ -2,21 +2,8 @@
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
 
-/* ── Switzer Variable — auto-hébergée, conforme CNIL ── */
-@font-face {
-  font-family: "Switzer";
-  src: url("/fonts/Switzer-Variable.woff2") format("woff2");
-  font-weight: 100 900;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Switzer";
-  src: url("/fonts/Switzer-VariableItalic.woff2") format("woff2");
-  font-weight: 100 900;
-  font-style: italic;
-  font-display: swap;
-}
+/* ── Plus Jakarta Sans — chargée via next/font/google dans app/layout.tsx,
+     exposée ici par la variable --font-jakarta (poids 400/600/700/800) ── */
 
 @custom-variant dark (&:is(.dark *));
 
@@ -39,8 +26,8 @@
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
-  /* Switzer — corps, nav, boutons, formulaires · Fraunces — titres + italiques */
-  --font-sans:    "Switzer", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+  /* Plus Jakarta Sans — corps, nav, boutons, formulaires · Fraunces — titres + italiques */
+  --font-sans:    var(--font-jakarta), ui-sans-serif, system-ui, -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
   --font-heading: var(--font-fraunces), serif;
   --font-display: var(--font-fraunces), serif;
   --font-serif:   var(--font-fraunces), serif;
@@ -81,28 +68,34 @@
 :root {
   color-scheme: light;
 
-  /* ── Surfaces claires ── */
-  --surface:       oklch(0.962 0.012 96);   /* #F5F3EA — fond de page */
-  --surface-2:     oklch(0.989 0.005 96);   /* #FCFBF8 — cartes */
-  --surface-3:     oklch(0.945 0.014 96);   /* #EFEDE3 — aplats secondaires */
-  --surface-alpha: oklch(0.962 0.012 96 / 93%);  /* en-tête au scroll — reste ivoire au-dessus des zones sombres */
+  /* ── Surfaces claires ──
+     Refonte 18/08 : bascule de l'ivoire chaud (teinte 96, famille crème, bannie)
+     vers l'ivoire froid légèrement vert de la maquette basique-v1 (#f5f6f2).
+     Les L restent identiques à ±0.006 : les ratios de contraste mesurés tiennent. */
+  --surface:       oklch(0.968 0.005 150);   /* ≈#F4F6F2 — fond de page */
+  --surface-2:     oklch(0.992 0.002 150);   /* ≈#FDFDFC — cartes */
+  --surface-3:     oklch(0.948 0.007 150);   /* ≈#EDF0EB — aplats secondaires */
+  --surface-alpha: oklch(0.968 0.005 150 / 93%);  /* en-tête au scroll — reste ivoire au-dessus des zones sombres */
 
   /* ── Encre ── */
-  --ink:    oklch(0.195 0.004 95);   /* #151513 — titres, texte fort */
-  --ink-2:  oklch(0.435 0.012 95);   /* #53514A — corps de texte */
-  --ink-3:  oklch(0.500 0.014 95);   /* #666459 — labels, légendes (4,7:1 sur --brand-tint) */
-  --ink-4:  oklch(0.660 0.014 95);   /* #959289 — décoratif non informatif */
+  --ink:    oklch(0.195 0.006 155);   /* ≈#131814 — titres, texte fort */
+  --ink-2:  oklch(0.435 0.010 155);   /* ≈#4F544F — corps de texte */
+  --ink-3:  oklch(0.500 0.012 155);   /* ≈#5E655F — labels, légendes (4,7:1 sur --brand-tint) */
+  --ink-4:  oklch(0.660 0.012 155);   /* ≈#8B958C — décoratif non informatif */
 
   /* ── Filets ── */
-  --line:        oklch(0.885 0.012 95);
-  --line-strong: oklch(0.820 0.014 95);
+  --line:        oklch(0.895 0.010 150);
+  --line-strong: oklch(0.830 0.012 150);
+
+  /* ── Ombre — teinte encre unique pour toutes les élévations de cartes ── */
+  --shadow-soft: oklch(0.30 0.02 155 / 10%);
 
   /* ── Vert profond — CTA et liens sur fond clair ── */
   --brand:        oklch(0.485 0.128 155);       /* ≈ #00713D — vert profond */
   --brand-strong: oklch(0.440 0.122 155);       /* #006532 — survol */
   --brand-tint:   oklch(0.485 0.128 155 / 10%);
   --brand-line:   oklch(0.485 0.128 155 / 30%);
-  --on-brand:     oklch(0.975 0.008 95);        /* #F8F7F1 */
+  --on-brand:     oklch(0.985 0.003 150);       /* ≈#FAFBFA */
 
   /* ── Zones sombres — continuité de marque ── */
   --dark:      oklch(0.145 0 0);            /* #0A0A0A */

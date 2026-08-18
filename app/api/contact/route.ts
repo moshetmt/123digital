@@ -10,11 +10,10 @@ import { NextResponse } from 'next/server'
 const MAX_LEN = 2000
 
 const BESOIN_LABELS: Record<string, string> = {
-  site: 'Création de site',
-  seo: 'SEO',
-  ads: 'Publicité en ligne',
-  branding: 'Branding',
-  full: 'Accompagnement complet',
+  visibilite: 'Être mieux placé sur Google',
+  site: 'Un site web (création ou refonte)',
+  ads: 'De la publicité en ligne',
+  autre: 'Autre / je ne sais pas encore',
 }
 
 function clean(value: unknown): string {
@@ -38,6 +37,7 @@ export async function POST(req: Request) {
   const prenom = clean(body.prenom)
   const nom = clean(body.nom)
   const email = clean(body.email)
+  const tel = clean(body.tel)
   const site = clean(body.site)
   const besoin = clean(body.besoin)
   const message = clean(body.message)
@@ -59,6 +59,7 @@ export async function POST(req: Request) {
     `Prénom : ${prenom}`,
     `Nom : ${nom}`,
     `Email : ${email}`,
+    `Téléphone : ${tel || '(non renseigné)'}`,
     `Site web : ${site || '(non renseigné)'}`,
     `Besoin : ${besoinLabel}`,
     '',

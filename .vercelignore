@@ -1,0 +1,16 @@
+# Ce que `vercel deploy` ne doit PAS televerser.
+# Attention : le .gitignore ne protege pas des deploiements, la CLI envoie le
+# contenu du dossier et non ce que git suit. Sans ce fichier, le cache de build
+# local (~71 Mo) partait a chaque deploiement et le build ne demarrait jamais.
+.next
+node_modules
+.git
+.claude
+.vercel
+
+# Maquettes de travail et sources du logo : jamais en production.
+_maquettes
+
+# Divers
+*.log
+.DS_Store

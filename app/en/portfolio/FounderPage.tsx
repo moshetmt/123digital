@@ -3,29 +3,29 @@
 import Image from 'next/image'
 
 const SIG = {
-  green:  '#00FF87',
-  orange: '#FF6B2B',
-  violet: '#9B59B6',
+  green:  'var(--brand)',
+  orange: '#A8410C',
+  violet: '#7B3E96',
 } as const
 
 function GlobalStyles() {
   return (
     <style>{`
       @keyframes f-blink { 0%,100%{opacity:1} 50%{opacity:0} }
-      .f-cursor { animation: f-blink 1s step-end infinite; color: #00FF87; }
+      .f-cursor { animation: f-blink 1s step-end infinite; color: var(--brand); }
       @keyframes fondateur-scanline {
         0%   { top: -2px; }
         100% { top: 100%; }
       }
       .f-scanline {
         position: absolute; left: 0; right: 0; height: 2px;
-        background: linear-gradient(transparent, rgba(255,255,255,0.02), transparent);
+        background: linear-gradient(transparent, var(--surface-3), transparent);
         animation: fondateur-scanline 10s linear infinite;
         pointer-events: none; z-index: 1;
       }
       .f-cta-primary:hover { opacity: 0.88; }
-      .f-cta-secondary:hover { background: rgba(255,255,255,0.05); }
-      @keyframes pulse { 0%, 100% { box-shadow: 0 0 0 0 rgba(0,255,135,0.1); } 50% { box-shadow: 0 0 0 12px rgba(0,255,135,0); } }
+      .f-cta-secondary:hover { background: var(--surface-3); }
+      @keyframes pulse { 0%, 100% { box-shadow: 0 0 0 0 var(--brand-line); } 50% { box-shadow: 0 0 0 12px var(--brand-line); } }
     `}</style>
   )
 }
@@ -36,8 +36,8 @@ function PixelGrid({ scanLine = false }: { scanLine?: boolean }) {
       <div aria-hidden style={{
         position: 'absolute', inset: 0, pointerEvents: 'none',
         backgroundImage: [
-          'linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px)',
-          'linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px)',
+          'linear-gradient(var(--surface-3) 1px, transparent 1px)',
+          'linear-gradient(90deg, var(--surface-3) 1px, transparent 1px)',
         ].join(', '),
         backgroundSize: '32px 32px',
       }} />
@@ -48,7 +48,7 @@ function PixelGrid({ scanLine = false }: { scanLine?: boolean }) {
 
 function SectionLabel({ children }: { children: React.ReactNode }) {
   return (
-    <div className="font-mono" style={{ fontSize: '0.58rem', letterSpacing: '0.25em', color: 'rgba(225,224,204,0.25)', marginBottom: '1.5rem' }}>
+    <div className="font-mono" style={{ fontSize: '0.58rem', letterSpacing: '0.25em', color: 'var(--ink-3)', marginBottom: '1.5rem' }}>
       {children}
     </div>
   )
@@ -56,9 +56,9 @@ function SectionLabel({ children }: { children: React.ReactNode }) {
 
 function MockSite({ url, accentColor }: { url: string; accentColor: string }) {
   return (
-    <div style={{ background: '#0d0d0d', border: `1px solid ${accentColor}18`, borderRadius: '6px 6px 0 0', overflow: 'hidden' }}>
+    <div style={{ background: 'var(--surface-2)', border: `1px solid ${accentColor}18`, borderRadius: '6px 6px 0 0', overflow: 'hidden' }}>
       <div style={{
-        background: '#161616',
+        background: 'var(--surface-3)',
         padding: '0.5rem 0.65rem',
         display: 'flex', alignItems: 'center', gap: '0.5rem',
         borderBottom: `1px solid ${accentColor}10`,
@@ -69,22 +69,22 @@ function MockSite({ url, accentColor }: { url: string; accentColor: string }) {
           ))}
         </div>
         <div style={{
-          flex: 1, background: '#0d0d0d', borderRadius: 3,
+          flex: 1, background: 'var(--surface-2)', borderRadius: 3,
           padding: '2px 8px',
           fontFamily: 'var(--font-mono)', fontSize: '0.47rem',
-          color: 'rgba(225,224,204,0.28)', letterSpacing: '0.04em',
+          color: 'var(--ink-3)', letterSpacing: '0.04em',
         }}>
           {url}
         </div>
       </div>
       <div style={{ padding: '0.65rem 0.75rem', display: 'flex', flexDirection: 'column', gap: '0.3rem' }}>
         <div style={{ height: 9, width: '55%', background: `${accentColor}28`, borderRadius: 2 }} />
-        <div style={{ height: 5, width: '88%', background: 'rgba(255,255,255,0.05)', borderRadius: 2 }} />
-        <div style={{ height: 5, width: '72%', background: 'rgba(255,255,255,0.05)', borderRadius: 2 }} />
-        <div style={{ height: 5, width: '80%', background: 'rgba(255,255,255,0.04)', borderRadius: 2 }} />
+        <div style={{ height: 5, width: '88%', background: 'var(--surface-3)', borderRadius: 2 }} />
+        <div style={{ height: 5, width: '72%', background: 'var(--surface-3)', borderRadius: 2 }} />
+        <div style={{ height: 5, width: '80%', background: 'var(--surface-3)', borderRadius: 2 }} />
         <div style={{ display: 'flex', gap: '0.3rem', marginTop: '0.2rem' }}>
           <div style={{ height: 16, width: 44, background: `${accentColor}35`, borderRadius: 2 }} />
-          <div style={{ height: 16, width: 32, background: 'rgba(255,255,255,0.04)', borderRadius: 2 }} />
+          <div style={{ height: 16, width: 32, background: 'var(--surface-3)', borderRadius: 2 }} />
         </div>
       </div>
     </div>
@@ -143,7 +143,7 @@ const PROJECTS = [
     stack: ['Next.js 16', 'Tailwind v4', 'Supabase', 'GPT-4'],
     objective: "Agency showcase + SEO blog. Architecture built for organic performance and AI automation.",
     result: '+2.3K organic visits/month in 8 months with zero ad spend.',
-    gradient: 'linear-gradient(135deg, rgba(0,255,135,0.12) 0%, rgba(0,255,135,0.02) 100%)' as string | null,
+    gradient: 'linear-gradient(135deg, var(--brand-line) 0%, var(--brand-line) 100%)' as string | null,
     accentColor: SIG.green,
   },
   {
@@ -155,7 +155,7 @@ const PROJECTS = [
     objective: "Construction/demolition showcase site in Lyon. Local SEO, geo-targeted pages by city, technical content strategy.",
     result: '+180% GSC impressions in 5 months — strong local visibility in the construction sector.',
     gradient: null as string | null,
-    accentColor: '#E8A84C',
+    accentColor: '#8A5A12',
   },
   {
     name: 'A+ Audition',
@@ -166,7 +166,7 @@ const PROJECTS = [
     objective: "Hearing clinic in Cannes. Local SEO + Doctolib integration. Site built to convert local searches.",
     result: "#1 local position for 'audioprothésiste Cannes' — 3 months after launch.",
     gradient: null as string | null,
-    accentColor: '#3B82F6',
+    accentColor: '#1D4ED8',
   },
 ]
 
@@ -201,7 +201,7 @@ const PROCESS_STEPS = [
 
 export function FounderPage() {
   return (
-    <div style={{ width: '100%', minHeight: '100vh', backgroundColor: '#080808', color: '#E1E0CC', position: 'relative', overflow: 'hidden' }}>
+    <div style={{ width: '100%', minHeight: '100vh', backgroundColor: 'var(--surface-2)', color: 'var(--ink)', position: 'relative', overflow: 'hidden' }}>
       <GlobalStyles />
 
       {/* ══════════════════════════════════════════
@@ -211,7 +211,7 @@ export function FounderPage() {
         <PixelGrid scanLine />
         <div aria-hidden style={{
           position: 'absolute', bottom: 0, left: 0, right: 0, height: '25%',
-          background: 'linear-gradient(to top, #080808, transparent)',
+          background: 'linear-gradient(to top, var(--surface-2), transparent)',
           pointerEvents: 'none', zIndex: 2,
         }} />
 
@@ -236,11 +236,11 @@ export function FounderPage() {
                   overflow: 'visible',
                 }}
               >
-                <span style={{ color: '#00FF87', display: 'block' }}>Founder-minded</span>
-                <span style={{ color: '#DEDBC8', display: 'block' }}>Growth Operator<span className="f-cursor">_</span></span>
+                <span style={{ color: 'var(--brand)', display: 'block' }}>Founder-minded</span>
+                <span style={{ color: 'var(--ink)', display: 'block' }}>Growth Operator<span className="f-cursor">_</span></span>
               </h1>
 
-              <p className="font-sans mb-4" style={{ fontSize: '0.95rem', color: 'rgba(225,224,204,0.55)', lineHeight: 1.55, maxWidth: '38ch' }}>
+              <p className="font-sans mb-4" style={{ fontSize: '0.95rem', color: 'var(--ink-2)', lineHeight: 1.55, maxWidth: '38ch' }}>
                 Digital Acquisition × AI — from audit to deployment, no intermediary. Founder of 123Digital, looking for a full-time role to execute at scale.
               </p>
 
@@ -256,10 +256,10 @@ export function FounderPage() {
                   { label: 'AVG. CONV.',    val: '×2.5' },
                 ].map(({ label, val }) => (
                   <div key={label}>
-                    <p className="font-mono mb-1" style={{ fontSize: '0.48rem', letterSpacing: '0.22em', color: 'rgba(225,224,204,0.28)' }}>
+                    <p className="font-mono mb-1" style={{ fontSize: '0.48rem', letterSpacing: '0.22em', color: 'var(--ink-3)' }}>
                       {label}
                     </p>
-                    <p className="font-mono font-bold" style={{ fontSize: '1.15rem', letterSpacing: '-0.02em', color: '#E1E0CC' }}>
+                    <p className="font-mono font-bold" style={{ fontSize: '1.15rem', letterSpacing: '-0.02em', color: 'var(--ink)' }}>
                       {val}
                     </p>
                   </div>
@@ -274,7 +274,7 @@ export function FounderPage() {
                   style={{
                     display: 'inline-flex', alignItems: 'center', gap: '0.4rem',
                     padding: '0.65rem 1.25rem',
-                    border: '1px solid rgba(0,255,135,0.35)',
+                    border: '1px solid var(--brand-line)',
                     borderRadius: 9999,
                     fontFamily: 'var(--font-mono)',
                     fontSize: '0.72rem', letterSpacing: '0.08em',
@@ -295,7 +295,7 @@ export function FounderPage() {
                     borderRadius: 9999,
                     fontFamily: 'var(--font-sans)',
                     fontSize: '0.85rem', fontWeight: 700,
-                    color: '#000',
+                    color: 'var(--on-brand)',
                     textDecoration: 'none',
                     transition: 'opacity 0.15s',
                   }}
@@ -324,13 +324,13 @@ export function FounderPage() {
                 />
                 <div style={{
                   position: 'absolute', bottom: 16, left: 16,
-                  background: 'rgba(8,8,8,0.88)',
-                  border: '1px solid rgba(255,255,255,0.1)',
+                  background: 'oklch(0.989 0.005 96 / 0.90)',
+                  border: '1px solid var(--line)',
                   borderRadius: 8,
                   padding: '0.6rem 0.9rem',
                   backdropFilter: 'blur(12px)',
                 }}>
-                  <p className="font-mono" style={{ fontSize: '0.5rem', letterSpacing: '0.2em', color: 'rgba(225,224,204,0.35)', marginBottom: '0.15rem' }}>
+                  <p className="font-mono" style={{ fontSize: '0.5rem', letterSpacing: '0.2em', color: 'var(--ink-3)', marginBottom: '0.15rem' }}>
                     STATUS
                   </p>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem' }}>
@@ -350,11 +350,11 @@ export function FounderPage() {
       {/* ══════════════════════════════════════════
           NOW
       ══════════════════════════════════════════ */}
-      <section className="pt-8 pb-14 md:pt-10 md:pb-20 px-6 md:px-10" style={{ borderTop: '1px solid rgba(255,255,255,0.05)' }}>
+      <section className="pt-8 pb-14 md:pt-10 md:pb-20 px-6 md:px-10" style={{ borderTop: '1px solid var(--line)' }}>
         <div className="mx-auto max-w-5xl">
           <SectionLabel>// NOW.status</SectionLabel>
           <div style={{
-            background: `linear-gradient(135deg, rgba(0,255,135,0.06) 0%, rgba(0,255,135,0.01) 100%)`,
+            background: `linear-gradient(135deg, var(--brand-tint) 0%, var(--brand-tint) 100%)`,
             border: `1px solid ${SIG.green}25`,
             borderRadius: 16,
             padding: '2rem',
@@ -378,12 +378,12 @@ export function FounderPage() {
             </div>
 
             {/* Details */}
-            <div style={{ borderLeft: '1px solid rgba(255,255,255,0.08)', paddingLeft: '1.5rem', display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
-              <p className="font-sans text-sm leading-relaxed" style={{ color: 'rgba(225,224,204,0.55)' }}>
+            <div style={{ borderLeft: '1px solid var(--line)', paddingLeft: '1.5rem', display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+              <p className="font-sans text-sm leading-relaxed" style={{ color: 'var(--ink-2)' }}>
                 {"Available for a "}
-                <strong style={{ color: '#E1E0CC' }}>Digital Marketing Coordinator</strong>
+                <strong style={{ color: 'var(--ink)' }}>Digital Marketing Coordinator</strong>
                 {" or "}
-                <strong style={{ color: '#E1E0CC' }}>Traffic Manager</strong>
+                <strong style={{ color: 'var(--ink)' }}>Traffic Manager</strong>
                 {" role — Lyon, Paris, full remote or relocation to Israel. Looking for an ambitious team where execution matters as much as strategy."}
               </p>
               <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap', marginTop: '0.25rem' }}>
@@ -409,9 +409,9 @@ export function FounderPage() {
           STATS BAR
       ══════════════════════════════════════════ */}
       <section style={{
-        background: 'rgba(0,255,135,0.025)',
-        borderTop: '1px solid rgba(0,255,135,0.08)',
-        borderBottom: '1px solid rgba(0,255,135,0.08)',
+        background: 'var(--brand-tint)',
+        borderTop: '1px solid var(--brand-line)',
+        borderBottom: '1px solid var(--brand-line)',
         padding: '2.5rem 1.5rem',
       }}>
         <div className="mx-auto max-w-5xl">
@@ -422,7 +422,7 @@ export function FounderPage() {
               { val: '12+',   label: 'sites deployed',        sub: 'since 2022' },
               { val: '4',     label: 'sectors served',        sub: 'NGO · local · construction · health' },
             ].map(({ val, label, sub }, i, arr) => (
-              <div key={val} style={{ textAlign: 'center', borderRight: i < arr.length - 1 ? '1px solid rgba(255,255,255,0.08)' : 'none', paddingRight: i < arr.length - 1 ? '1rem' : 0 }}>
+              <div key={val} style={{ textAlign: 'center', borderRight: i < arr.length - 1 ? '1px solid var(--line)' : 'none', paddingRight: i < arr.length - 1 ? '1rem' : 0 }}>
                 <p className="font-heading" style={{
                   fontSize: 'clamp(2rem, 4.5vw, 3.25rem)',
                   fontWeight: 500,
@@ -432,10 +432,10 @@ export function FounderPage() {
                 }}>
                   {val}
                 </p>
-                <p className="font-mono" style={{ fontSize: '0.58rem', letterSpacing: '0.1em', color: '#E1E0CC', marginTop: '0.35rem' }}>
+                <p className="font-mono" style={{ fontSize: '0.58rem', letterSpacing: '0.1em', color: 'var(--ink)', marginTop: '0.35rem' }}>
                   {label}
                 </p>
-                <p className="font-mono" style={{ fontSize: '0.46rem', letterSpacing: '0.08em', color: 'rgba(225,224,204,0.3)', marginTop: '0.15rem' }}>
+                <p className="font-mono" style={{ fontSize: '0.46rem', letterSpacing: '0.08em', color: 'var(--ink-3)', marginTop: '0.15rem' }}>
                   {sub}
                 </p>
               </div>
@@ -447,7 +447,7 @@ export function FounderPage() {
       {/* ══════════════════════════════════════════
           POSITIONING
       ══════════════════════════════════════════ */}
-      <section className="py-14 md:py-20 px-6 md:px-10" style={{ borderTop: '1px solid rgba(255,255,255,0.05)' }}>
+      <section className="py-14 md:py-20 px-6 md:px-10" style={{ borderTop: '1px solid var(--line)' }}>
         <div className="mx-auto max-w-5xl">
           <SectionLabel>// POSITIONING</SectionLabel>
           <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '3rem' }} className="md:grid-cols-[1fr_1.6fr]">
@@ -463,7 +463,7 @@ export function FounderPage() {
                 "What sets me apart: I sit at the intersection of marketing and tech. SEO, acquisition, analytics, but also web development (Next.js), AI automations (n8n, GPT-4), and advanced tracking. Where most profiles stop at the recommendation, I build the solution.",
                 "I'm now looking for a full-time Growth or Digital role to apply this mindset at scale. No meetings about meetings — measured, iterative, data-driven execution.",
               ].map((para, i) => (
-                <p key={i} className="font-sans text-sm leading-relaxed" style={{ color: 'rgba(225,224,204,0.58)' }}>
+                <p key={i} className="font-sans text-sm leading-relaxed" style={{ color: 'var(--ink-2)' }}>
                   {para}
                 </p>
               ))}
@@ -475,7 +475,7 @@ export function FounderPage() {
       {/* ══════════════════════════════════════════
           CASE STUDIES
       ══════════════════════════════════════════ */}
-      <section id="case-studies" className="py-14 md:py-20 px-6 md:px-10" style={{ borderTop: '1px solid rgba(255,255,255,0.05)' }}>
+      <section id="case-studies" className="py-14 md:py-20 px-6 md:px-10" style={{ borderTop: '1px solid var(--line)' }}>
         <div className="mx-auto max-w-5xl">
           <SectionLabel>// CASE_STUDIES.results</SectionLabel>
           <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '1.5rem' }} className="md:grid-cols-2">
@@ -483,9 +483,9 @@ export function FounderPage() {
               <div
                 key={cs.client}
                 style={{
-                  background: 'rgba(255,255,255,0.03)',
-                  border: '1px solid rgba(255,255,255,0.08)',
-                  borderTop: idx === 0 ? '2px solid #00FF87' : '2px solid rgba(255,255,255,0.15)',
+                  background: 'var(--surface-3)',
+                  border: '1px solid var(--line)',
+                  borderTop: idx === 0 ? '2px solid var(--brand)' : '2px solid var(--ink)',
                   borderRadius: 16,
                   padding: '28px',
                   display: 'flex',
@@ -513,34 +513,34 @@ export function FounderPage() {
 
                 {/* Problem */}
                 <div>
-                  <p className="font-mono" style={{ fontSize: '0.52rem', letterSpacing: '0.18em', color: 'rgba(225,224,204,0.3)', marginBottom: '0.3rem' }}>
+                  <p className="font-mono" style={{ fontSize: '0.52rem', letterSpacing: '0.18em', color: 'var(--ink-3)', marginBottom: '0.3rem' }}>
                     <span style={{ color: cs.color }}>{"▸ "}</span>{"PROBLEM"}
                   </p>
-                  <p className="font-sans text-xs leading-relaxed" style={{ color: 'rgba(225,224,204,0.55)' }}>
+                  <p className="font-sans text-xs leading-relaxed" style={{ color: 'var(--ink-2)' }}>
                     {cs.problem}
                   </p>
                 </div>
 
                 {/* Diagnostic */}
                 <div>
-                  <p className="font-mono" style={{ fontSize: '0.52rem', letterSpacing: '0.18em', color: 'rgba(225,224,204,0.3)', marginBottom: '0.3rem' }}>
+                  <p className="font-mono" style={{ fontSize: '0.52rem', letterSpacing: '0.18em', color: 'var(--ink-3)', marginBottom: '0.3rem' }}>
                     <span style={{ color: cs.color }}>{"▸ "}</span>{"DIAGNOSTIC"}
                   </p>
-                  <p className="font-sans text-xs leading-relaxed" style={{ color: 'rgba(225,224,204,0.55)' }}>
+                  <p className="font-sans text-xs leading-relaxed" style={{ color: 'var(--ink-2)' }}>
                     {cs.diagnostic}
                   </p>
                 </div>
 
                 {/* Actions */}
                 <div>
-                  <p className="font-mono" style={{ fontSize: '0.52rem', letterSpacing: '0.18em', color: 'rgba(225,224,204,0.3)', marginBottom: '0.4rem' }}>
+                  <p className="font-mono" style={{ fontSize: '0.52rem', letterSpacing: '0.18em', color: 'var(--ink-3)', marginBottom: '0.4rem' }}>
                     <span style={{ color: cs.color }}>{"▸ "}</span>{"ACTIONS"}
                   </p>
                   <div style={{ display: 'flex', flexDirection: 'column', gap: '0.25rem' }}>
                     {cs.actions.map((action) => (
                       <div key={action} style={{ display: 'flex', gap: '0.5rem', alignItems: 'flex-start' }}>
                         <span style={{ color: cs.color, flexShrink: 0, fontSize: '0.6rem', marginTop: '0.1rem' }}>→</span>
-                        <span className="font-sans" style={{ fontSize: '0.78rem', color: 'rgba(225,224,204,0.5)', lineHeight: 1.45 }}>
+                        <span className="font-sans" style={{ fontSize: '0.78rem', color: 'var(--ink-2)', lineHeight: 1.45 }}>
                           {action}
                         </span>
                       </div>
@@ -557,9 +557,9 @@ export function FounderPage() {
                       { value: '−40%', label: 'engagement 2026 vs 2024' },
                       { value: '13', label: 'documented blockers' },
                     ].map((m, i) => (
-                      <div key={i} style={{ padding: '12px 14px', background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.07)', borderRadius: 8 }}>
-                        <div style={{ fontFamily: 'var(--font-heading)', fontSize: '1.6rem', color: '#00FF87', letterSpacing: '-0.04em', lineHeight: 1 }}>{m.value}</div>
-                        <div style={{ fontFamily: 'var(--font-mono)', fontSize: '10px', color: 'rgba(255,255,255,0.4)', letterSpacing: '0.08em', marginTop: 4, textTransform: 'uppercase' }}>{m.label}</div>
+                      <div key={i} style={{ padding: '12px 14px', background: 'var(--surface-3)', border: '1px solid var(--line)', borderRadius: 8 }}>
+                        <div style={{ fontFamily: 'var(--font-heading)', fontSize: '1.6rem', color: 'var(--brand)', letterSpacing: '-0.04em', lineHeight: 1 }}>{m.value}</div>
+                        <div style={{ fontFamily: 'var(--font-mono)', fontSize: '10px', color: 'var(--ink)', letterSpacing: '0.08em', marginTop: 4, textTransform: 'uppercase' }}>{m.label}</div>
                       </div>
                     ))}
                   </div>
@@ -572,9 +572,9 @@ export function FounderPage() {
                       { value: '+180%', label: 'contact requests' },
                       { value: '4 months', label: 'time to results' },
                     ].map((m, i) => (
-                      <div key={i} style={{ padding: '12px 14px', background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.07)', borderRadius: 8 }}>
-                        <div style={{ fontFamily: 'var(--font-heading)', fontSize: '1.6rem', color: '#00FF87', letterSpacing: '-0.04em', lineHeight: 1 }}>{m.value}</div>
-                        <div style={{ fontFamily: 'var(--font-mono)', fontSize: '10px', color: 'rgba(255,255,255,0.4)', letterSpacing: '0.08em', marginTop: 4, textTransform: 'uppercase' }}>{m.label}</div>
+                      <div key={i} style={{ padding: '12px 14px', background: 'var(--surface-3)', border: '1px solid var(--line)', borderRadius: 8 }}>
+                        <div style={{ fontFamily: 'var(--font-heading)', fontSize: '1.6rem', color: 'var(--brand)', letterSpacing: '-0.04em', lineHeight: 1 }}>{m.value}</div>
+                        <div style={{ fontFamily: 'var(--font-mono)', fontSize: '10px', color: 'var(--ink)', letterSpacing: '0.08em', marginTop: 4, textTransform: 'uppercase' }}>{m.label}</div>
                       </div>
                     ))}
                   </div>
@@ -582,7 +582,7 @@ export function FounderPage() {
 
                 {/* Results */}
                 <div style={{ marginTop: 'auto' }}>
-                  <p className="font-mono" style={{ fontSize: '0.52rem', letterSpacing: '0.18em', color: 'rgba(225,224,204,0.3)', marginBottom: '0.75rem', paddingTop: '1rem', borderTop: `1px solid ${cs.color}20` }}>
+                  <p className="font-mono" style={{ fontSize: '0.52rem', letterSpacing: '0.18em', color: 'var(--ink-3)', marginBottom: '0.75rem', paddingTop: '1rem', borderTop: `1px solid ${cs.color}20` }}>
                     <span style={{ color: cs.color }}>{"▸ "}</span>{"RESULTS"}
                   </p>
                   <div style={{ display: 'flex', gap: '1.5rem', flexWrap: 'wrap' }}>
@@ -591,7 +591,7 @@ export function FounderPage() {
                         <p className="font-heading font-medium" style={{ fontSize: '1.5rem', letterSpacing: '-0.04em', color: cs.color, lineHeight: 1 }}>
                           {r.metric}
                         </p>
-                        <p className="font-mono" style={{ fontSize: '0.52rem', letterSpacing: '0.1em', color: 'rgba(225,224,204,0.35)', marginTop: '0.2rem' }}>
+                        <p className="font-mono" style={{ fontSize: '0.52rem', letterSpacing: '0.1em', color: 'var(--ink-3)', marginTop: '0.2rem' }}>
                           {r.label}
                         </p>
                       </div>
@@ -607,7 +607,7 @@ export function FounderPage() {
       {/* ══════════════════════════════════════════
           PROJECTS
       ══════════════════════════════════════════ */}
-      <section className="py-14 md:py-20 px-6 md:px-10" style={{ borderTop: '1px solid rgba(255,255,255,0.05)' }}>
+      <section className="py-14 md:py-20 px-6 md:px-10" style={{ borderTop: '1px solid var(--line)' }}>
         <div className="mx-auto max-w-5xl">
           <SectionLabel>// PROJECTS.build</SectionLabel>
           <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '1.25rem' }} className="md:grid-cols-2">
@@ -615,8 +615,8 @@ export function FounderPage() {
               <div
                 key={proj.name}
                 style={{
-                  background: 'rgba(255,255,255,0.03)',
-                  border: '1px solid rgba(255,255,255,0.08)',
+                  background: 'var(--surface-3)',
+                  border: '1px solid var(--line)',
                   borderRadius: 16,
                   overflow: 'hidden',
                 }}
@@ -631,7 +631,7 @@ export function FounderPage() {
                     height: 100,
                     background: proj.gradient ?? undefined,
                     display: 'flex', alignItems: 'center', paddingLeft: '1.5rem',
-                    borderBottom: '1px solid rgba(255,255,255,0.05)',
+                    borderBottom: '1px solid var(--line)',
                   }}>
                     <span className="font-heading font-medium" style={{ fontSize: '1.5rem', letterSpacing: '-0.05em', color: proj.accentColor, opacity: 0.25 }}>
                       {proj.name}
@@ -660,7 +660,7 @@ export function FounderPage() {
                     ))}
                   </div>
 
-                  <p className="font-sans" style={{ fontSize: '0.8rem', color: 'rgba(225,224,204,0.5)', lineHeight: 1.5, marginBottom: '0.75rem' }}>
+                  <p className="font-sans" style={{ fontSize: '0.8rem', color: 'var(--ink-2)', lineHeight: 1.5, marginBottom: '0.75rem' }}>
                     {proj.objective}
                   </p>
 
@@ -672,7 +672,7 @@ export function FounderPage() {
                   </div>
 
                   {proj.externalUrl && (
-                    <div style={{ marginTop: '1rem', paddingTop: '0.75rem', borderTop: '1px solid rgba(255,255,255,0.06)' }}>
+                    <div style={{ marginTop: '1rem', paddingTop: '0.75rem', borderTop: '1px solid var(--line)' }}>
                       <a
                         href={proj.externalUrl}
                         target="_blank"
@@ -681,12 +681,11 @@ export function FounderPage() {
                           fontFamily: 'var(--font-mono)',
                           fontSize: '11px',
                           letterSpacing: '2px',
-                          color: '#00FF87',
+                          color: 'var(--brand)',
                           textDecoration: 'none',
-                          opacity: 0.7,
                         }}
-                        onMouseEnter={(e) => (e.currentTarget.style.opacity = '1')}
-                        onMouseLeave={(e) => (e.currentTarget.style.opacity = '0.7')}
+                        onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--brand-strong)')}
+                        onMouseLeave={(e) => (e.currentTarget.style.color = 'var(--brand)')}
                       >
                         VISIT →
                       </a>
@@ -702,14 +701,14 @@ export function FounderPage() {
       {/* ══════════════════════════════════════════
           PROCESS
       ══════════════════════════════════════════ */}
-      <section className="py-14 md:py-20 px-6 md:px-10" style={{ borderTop: '1px solid rgba(255,255,255,0.05)' }}>
+      <section className="py-14 md:py-20 px-6 md:px-10" style={{ borderTop: '1px solid var(--line)' }}>
         <div className="mx-auto max-w-5xl">
           <SectionLabel>// PROCESS.flow</SectionLabel>
           <div style={{
             display: 'grid',
             gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))',
             gap: '0',
-            border: '1px solid rgba(255,255,255,0.08)',
+            border: '1px solid var(--line)',
             borderRadius: 16,
             overflow: 'hidden',
           }}>
@@ -718,8 +717,8 @@ export function FounderPage() {
                 key={step.step}
                 style={{
                   padding: '1.75rem 1.5rem',
-                  borderRight: i < PROCESS_STEPS.length - 1 ? '1px solid rgba(255,255,255,0.08)' : 'none',
-                  background: 'rgba(255,255,255,0.02)',
+                  borderRight: i < PROCESS_STEPS.length - 1 ? '1px solid var(--line)' : 'none',
+                  background: 'var(--surface-3)',
                   position: 'relative',
                   overflow: 'hidden',
                 }}
@@ -727,12 +726,12 @@ export function FounderPage() {
                 <div aria-hidden style={{
                   position: 'absolute', bottom: '-10px', right: '10px',
                   fontSize: '80px', opacity: 0.04,
-                  fontFamily: 'var(--font-heading)', color: '#00FF87',
+                  fontFamily: 'var(--font-heading)', color: 'var(--brand)',
                   lineHeight: 1, pointerEvents: 'none', userSelect: 'none',
                 }}>
                   {step.step}
                 </div>
-                <p className="font-mono" style={{ fontSize: '0.5rem', letterSpacing: '0.2em', color: 'rgba(225,224,204,0.2)', marginBottom: '0.75rem' }}>
+                <p className="font-mono" style={{ fontSize: '0.5rem', letterSpacing: '0.2em', color: 'var(--ink-3)', marginBottom: '0.75rem' }}>
                   {step.step}
                 </p>
                 <p className="font-mono" style={{ fontSize: '0.6rem', letterSpacing: '0.2em', color: SIG.green, marginBottom: '0.5rem' }}>
@@ -741,7 +740,7 @@ export function FounderPage() {
                 <h4 className="font-heading font-medium" style={{ fontSize: '0.95rem', letterSpacing: '-0.02em', marginBottom: '0.6rem' }}>
                   {step.title}
                 </h4>
-                <p className="font-sans" style={{ fontSize: '0.78rem', color: 'rgba(225,224,204,0.45)', lineHeight: 1.5 }}>
+                <p className="font-sans" style={{ fontSize: '0.78rem', color: 'var(--ink-2)', lineHeight: 1.5 }}>
                   {step.desc}
                 </p>
               </div>
@@ -753,17 +752,17 @@ export function FounderPage() {
       {/* ══════════════════════════════════════════
           STACK
       ══════════════════════════════════════════ */}
-      <section className="py-10 px-6 md:px-10" style={{ borderTop: '1px solid rgba(255,255,255,0.05)' }}>
+      <section className="py-10 px-6 md:px-10" style={{ borderTop: '1px solid var(--line)' }}>
         <div className="mx-auto max-w-5xl">
           <SectionLabel>// STACK.tools</SectionLabel>
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }}>
             {['GA4','GSC','GTM','LOOKER STUDIO','HUBSPOT','WORDPRESS','CHATGPT','CLAUDE','NEXT.JS','TAILWIND','N8N','CAL.COM'].map((tool) => (
               <span key={tool} className="font-mono" style={{
                 fontSize: '0.72rem', padding: '0.3rem 0.75rem',
-                border: '1px solid rgba(255,255,255,0.12)',
-                borderRadius: 4, color: '#DEDBC8',
+                border: '1px solid var(--line-strong)',
+                borderRadius: 4, color: 'var(--ink)',
                 letterSpacing: '0.08em',
-                background: 'rgba(255,255,255,0.02)',
+                background: 'var(--surface-3)',
               }}>
                 [ {tool} ]
               </span>
@@ -777,17 +776,17 @@ export function FounderPage() {
       ══════════════════════════════════════════ */}
       <section
         className="py-14 md:py-20 px-6 md:px-10"
-        style={{ background: 'rgba(0,255,135,0.02)', borderTop: '1px solid rgba(255,255,255,0.06)' }}
+        style={{ background: 'var(--brand-tint)', borderTop: '1px solid var(--line)' }}
       >
         <div className="mx-auto max-w-5xl" style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '3rem', alignItems: 'start' }}>
           <div style={{ maxWidth: '52rem', margin: '0 auto', textAlign: 'center', width: '100%' }}>
             <p className="font-mono" style={{ fontSize: '0.6rem', letterSpacing: '0.22em', color: `${SIG.green}80`, marginBottom: '1rem' }}>
               // STATUS · OPEN
             </p>
-            <h2 className="font-heading font-medium" style={{ fontSize: 'clamp(2rem, 5vw, 4rem)', letterSpacing: '-0.06em', color: '#DEDBC8', marginBottom: '0.75rem', lineHeight: 0.95 }}>
+            <h2 className="font-heading font-medium" style={{ fontSize: 'clamp(2rem, 5vw, 4rem)', letterSpacing: '-0.06em', color: 'var(--ink)', marginBottom: '0.75rem', lineHeight: 0.95 }}>
               Let&apos;s talk?
             </h2>
-            <p className="font-sans" style={{ color: 'rgba(225,224,204,0.5)', marginBottom: '2rem', fontSize: '0.95rem' }}>
+            <p className="font-sans" style={{ color: 'var(--ink-2)', marginBottom: '2rem', fontSize: '0.95rem' }}>
               A position, a project, an idea — I always reply.
             </p>
             <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', justifyContent: 'center' }}>
@@ -797,11 +796,11 @@ export function FounderPage() {
                 style={{
                   display: 'inline-flex', alignItems: 'center', gap: '0.4rem',
                   padding: '0.75rem 1.5rem',
-                  border: '1px solid rgba(255,255,255,0.18)',
+                  border: '1px solid var(--line-strong)',
                   borderRadius: 9999,
                   fontFamily: 'var(--font-mono)',
                   fontSize: '0.78rem', letterSpacing: '0.06em',
-                  color: '#DEDBC8',
+                  color: 'var(--ink)',
                   textDecoration: 'none',
                   transition: 'background 0.15s',
                 }}
@@ -818,7 +817,7 @@ export function FounderPage() {
                   borderRadius: 9999,
                   fontFamily: 'var(--font-sans)',
                   fontSize: '0.9rem', fontWeight: 700,
-                  color: '#000',
+                  color: 'var(--on-brand)',
                   textDecoration: 'none',
                   transition: 'opacity 0.15s',
                 }}
@@ -832,7 +831,7 @@ export function FounderPage() {
               marginTop: '2.5rem',
               display: 'flex', gap: '2rem', flexWrap: 'wrap', justifyContent: 'center',
               paddingTop: '2rem',
-              borderTop: '1px solid rgba(255,255,255,0.06)',
+              borderTop: '1px solid var(--line)',
             }}>
               {[
                 { label: 'EMAIL',    val: 'contact@123digital.fr',         href: 'mailto:contact@123digital.fr' },
@@ -840,15 +839,15 @@ export function FounderPage() {
                 { label: 'LOCATION', val: 'Lyon · Remote · Open to Israel', href: undefined },
               ].map(({ label, val, href }) => (
                 <div key={label} style={{ textAlign: 'left' }}>
-                  <p className="font-mono" style={{ fontSize: '0.48rem', letterSpacing: '0.2em', color: 'rgba(225,224,204,0.25)', marginBottom: '0.2rem' }}>
+                  <p className="font-mono" style={{ fontSize: '0.48rem', letterSpacing: '0.2em', color: 'var(--ink-3)', marginBottom: '0.2rem' }}>
                     {label}
                   </p>
                   {href ? (
-                    <a href={href} style={{ fontFamily: 'var(--font-mono)', fontSize: '0.72rem', color: '#DEDBC8', textDecoration: 'none', letterSpacing: '0.02em' }}>
+                    <a href={href} style={{ fontFamily: 'var(--font-mono)', fontSize: '0.72rem', color: 'var(--ink)', textDecoration: 'none', letterSpacing: '0.02em' }}>
                       {val}
                     </a>
                   ) : (
-                    <span className="font-mono" style={{ fontSize: '0.72rem', color: '#DEDBC8', letterSpacing: '0.02em' }}>{val}</span>
+                    <span className="font-mono" style={{ fontSize: '0.72rem', color: 'var(--ink)', letterSpacing: '0.02em' }}>{val}</span>
                   )}
                 </div>
               ))}

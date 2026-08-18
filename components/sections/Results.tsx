@@ -5,21 +5,10 @@ import { motion, useInView } from 'framer-motion'
 import { t, type Locale } from '@/lib/i18n'
 
 const EASE = [0.22, 1, 0.36, 1] as [number, number, number, number]
-const PULL_EASE = [0.16, 1, 0.3, 1] as [number, number, number, number]
 
 // ── CountUp ───────────────────────────────────────────────────────────────────
 
-function CountUp({
-  value,
-  prefix = '',
-  suffix = '',
-  duration = 2000,
-}: {
-  value: number
-  prefix?: string
-  suffix?: string
-  duration?: number
-}) {
+function CountUp({ prefix = '', value, suffix = '', duration = 1600 }: { prefix?: string; value: number; suffix?: string; duration?: number }) {
   const ref = useRef<HTMLSpanElement>(null)
   const isInView = useInView(ref, { once: true, margin: '-15%' })
   const [display, setDisplay] = useState(0)
@@ -29,123 +18,35 @@ function CountUp({
     const start = performance.now()
     let raf: number
     const tick = (now: number) => {
-      const t = Math.min((now - start) / duration, 1)
-      const eased = 1 - Math.pow(1 - t, 3)
-      const val = value * eased
-      setDisplay(Number.isInteger(value) ? Math.round(val) : parseFloat(val.toFixed(1)))
-      if (t < 1) raf = requestAnimationFrame(tick)
+      const progress = Math.min((now - start) / duration, 1)
+      const eased = 1 - Math.pow(1 - progress, 3)
+      setDisplay(Math.round(value * eased))
+      if (progress < 1) raf = requestAnimationFrame(tick)
       else setDisplay(value)
     }
     raf = requestAnimationFrame(tick)
     return () => cancelAnimationFrame(raf)
   }, [isInView, value, duration])
 
-  const formatted = Number.isInteger(value) ? Math.round(display) : display.toFixed(1)
-  return <span ref={ref}>{prefix}{formatted}{suffix}</span>
+  return <span ref={ref}>{prefix}{display}{suffix}</span>
 }
 
-// ── WordsPullUp ───────────────────────────────────────────────────────────────
-
-function WordsPullUp({ text, delay = 0 }: { text: string; delay?: number }) {
-  const ref = useRef<HTMLDivElement>(null)
-  const isInView = useInView(ref, { once: true, margin: '-10%' })
-  return (
-    <div ref={ref} style={{ display: 'inline-flex', flexWrap: 'wrap', justifyContent: 'center' }}>
-      {text.split(' ').map((word, i) => (
-        <span key={i} style={{ display: 'inline-block', overflow: 'hidden', paddingRight: '0.22em' }}>
-          <motion.span
-            style={{ display: 'inline-block' }}
-            initial={{ y: '100%', opacity: 0 }}
-            animate={isInView ? { y: 0, opacity: 1 } : {}}
-            transition={{ duration: 0.9, delay: delay + i * 0.08, ease: PULL_EASE }}
-          >
-            {word}
-          </motion.span>
-        </span>
-      ))}
-    </div>
-  )
-}
-
-// ── MetricCard — extracted component so hooks are called at top level ─────────
-
-interface Metric {
-  prefix: string
-  value: number
-  suffix: string
-  desc: string
-}
-
-function MetricCard({ m, index }: { m: Metric; index: number }) {
-  const ref = useRef<HTMLDivElement>(null)
-  const inView = useInView(ref, { once: true, margin: '-15%' })
-
-  return (
-    <motion.div
-      ref={ref}
-      initial={{ opacity: 0, y: 24 }}
-      animate={inView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.7, delay: index * 0.1, ease: EASE }}
-      className="relative overflow-hidden"
-      style={{ backgroundColor: '#101010', borderRadius: '1.25rem', padding: '2rem 1.75rem' }}
-    >
-      {/* Number — electric green */}
-      <div
-        className="font-display font-bold mb-3"
-        style={{
-          fontSize: 'clamp(2.6rem, 5vw, 3.6rem)',
-          color: '#00FF87',
-          letterSpacing: '-0.04em',
-          lineHeight: 1,
-          fontFeatureSettings: '"tnum"',
-        }}
-      >
-        <CountUp value={m.value} prefix={m.prefix} suffix={m.suffix} />
-      </div>
-
-      {/* Description */}
-      <div style={{ color: '#9ca3af', fontSize: '0.82rem', lineHeight: 1.4, minHeight: '2.4em' }}>
-        {m.desc}
-      </div>
-
-      {/* Green bar */}
-      <div
-        className="mt-5 overflow-hidden"
-        style={{ height: 2, backgroundColor: 'rgba(255,255,255,0.05)', borderRadius: 2 }}
-      >
-        <motion.div
-          initial={{ width: 0 }}
-          animate={inView ? { width: '70%' } : {}}
-          transition={{ duration: 1.2, delay: index * 0.1 + 0.4, ease: EASE }}
-          style={{
-            height: '100%',
-            background: 'linear-gradient(to right, #00FF87, rgba(0,255,135,0.2))',
-            borderRadius: 2,
-          }}
-        />
-      </div>
-    </motion.div>
-  )
-}
-
-// ── Data ──────────────────────────────────────────────────────────────────────
+interface Metric { prefix: string; value: number; suffix: string; caption: string }
 
 function getMetrics(lang: 'fr' | 'en'): Metric[] {
   if (lang === 'en') return [
-    { prefix: '+', value: 150, suffix: '%', desc: 'average organic traffic growth' },
-    { prefix: '×', value: 3,   suffix: '',  desc: 'average advertising return on investment' },
-    { prefix: '',  value: 72,  suffix: 'h', desc: 'to deliver your first website version' },
-    { prefix: '',  value: 100, suffix: '%', desc: 'satisfied clients — or refunded' },
+    { prefix: 'x', value: 13,  suffix: '',  caption: '€1,000 invested in advertising, €13,000 net profit (Clim69)' },
+    { prefix: '+', value: 180, suffix: '%', caption: 'local visibility in 5 months (Rhône Déconstruction)' },
+    { prefix: '+', value: 240, suffix: '%', caption: 'organic traffic (A+ Audition, Cannes)' },
+    { prefix: '',  value: 50,  suffix: '+', caption: 'businesses supported since 2017' },
   ]
   return [
-    { prefix: '+', value: 150, suffix: '%', desc: 'croissance trafic organique moyenne' },
-    { prefix: '×', value: 3,   suffix: '',  desc: 'retour sur investissement publicitaire moyen' },
-    { prefix: '',  value: 72,  suffix: 'h', desc: 'pour livrer votre première version de site' },
-    { prefix: '',  value: 100, suffix: '%', desc: 'clients satisfaits — ou remboursés' },
+    { prefix: 'x', value: 13,  suffix: '',  caption: '1 000 € de publicité investis, 13 000 € de bénéfice net (Clim69)' },
+    { prefix: '+', value: 180, suffix: '%', caption: 'de visibilité locale en 5 mois (Rhône Déconstruction)' },
+    { prefix: '+', value: 240, suffix: '%', caption: 'de trafic organique (A+ Audition, Cannes)' },
+    { prefix: '',  value: 50,  suffix: '+', caption: 'entreprises accompagnées depuis 2017' },
   ]
 }
-
-// ── Results ───────────────────────────────────────────────────────────────────
 
 export function Results({ lang = 'fr' }: { lang?: Locale }) {
   const d = t(lang).results
@@ -156,103 +57,34 @@ export function Results({ lang = 'fr' }: { lang?: Locale }) {
   return (
     <section
       id="resultats"
-      className="bg-black"
-      style={{ padding: '7rem 1.5rem' }}
-      aria-labelledby="results-heading"
+      style={{ backgroundColor: 'var(--dark)', padding: '4rem 1.5rem' }}
+      aria-label={d.label}
     >
-      <div className="mx-auto max-w-7xl" ref={ref}>
-
-        {/* Eyebrow */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={inView ? { opacity: 1 } : {}}
-          transition={{ duration: 0.5 }}
-          className="flex items-center gap-2 mb-5"
-          style={{ fontSize: '0.7rem', letterSpacing: '0.12em', textTransform: 'uppercase', color: 'rgba(225,224,204,0.7)', fontWeight: 700 }}
-        >
-          <span className="w-1.5 h-1.5 rounded-full shrink-0" style={{ backgroundColor: '#00FF87' }} aria-hidden />
-          {d.label}
-        </motion.div>
-
-        {/* Heading */}
-        <h2
-          id="results-heading"
-          className="font-display text-center mx-auto mb-20"
-          style={{
-            fontSize: 'clamp(1.8rem, 4vw, 3rem)',
-            fontWeight: 500,
-            color: '#E1E0CC',
-            letterSpacing: '-0.025em',
-            maxWidth: '22ch',
-            lineHeight: 1.05,
-          }}
-        >
-          <WordsPullUp text={d.heading} delay={0.1} />
-        </h2>
-
-        {/* Metrics grid */}
-        <div
-          className="grid gap-4 mb-20"
-          style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))' }}
-        >
-          {metrics.map((m, i) => (
-            <MetricCard key={i} m={m} index={i} />
-          ))}
-        </div>
-
-        {/* Testimonial */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ delay: 0.5, duration: 0.7, ease: EASE }}
-          className="relative mx-auto"
-          style={{ backgroundColor: '#212121', borderRadius: '1.25rem', padding: '2.5rem 2rem', maxWidth: '720px' }}
-        >
-          {/* Green italic quote mark */}
-          <div
-            className="absolute"
-            style={{
-              fontFamily: 'var(--font-serif)',
-              fontStyle: 'italic',
-              fontSize: '5rem',
-              color: 'rgba(0,255,135,0.4)',
-              lineHeight: 0.6,
-              top: '1.25rem',
-              left: '1.5rem',
-            }}
-            aria-hidden
+      <div className="mx-auto max-w-6xl grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 text-center" ref={ref}>
+        {metrics.map((m, i) => (
+          <motion.div
+            key={i}
+            initial={{ opacity: 0, y: 16, filter: 'blur(6px)' }}
+            animate={inView ? { opacity: 1, y: 0, filter: 'blur(0px)' } : {}}
+            transition={{ duration: 0.6, delay: i * 0.1, ease: EASE }}
           >
-            &ldquo;
-          </div>
-
-          <p
-            style={{
-              fontFamily: 'var(--font-serif)',
-              fontStyle: 'italic',
-              color: 'rgba(225,224,204,0.9)',
-              fontSize: '1.35rem',
-              lineHeight: 1.4,
-              margin: '0 0 1.75rem',
-              paddingLeft: '1rem',
-            }}
-          >
-            {lang === 'en'
-              ? 'Maurice transformed our brochure site into a real business tool. In 3 months, our traffic doubled and our quote requests tripled.'
-              : 'Maurice a transformé notre site vitrine en vrai outil commercial. En 3 mois, notre trafic a doublé et nos demandes de devis ont triplé.'}
-          </p>
-
-          <div className="flex items-center gap-3" style={{ paddingLeft: '1rem' }}>
             <div
-              className="shrink-0"
-              style={{ width: 36, height: 36, borderRadius: '50%', background: 'linear-gradient(135deg, #DEDBC8, #6e6c5c)' }}
-              aria-hidden
-            />
-            <div>
-              <div style={{ color: '#E1E0CC', fontSize: '0.85rem', fontWeight: 700 }}>{lang === 'en' ? 'Managing Director' : 'Gérant'}</div>
-              <div style={{ color: '#9ca3af', fontSize: '0.75rem' }}>{lang === 'en' ? 'B2B Services Company' : 'Entreprise de services B2B'}</div>
+              style={{
+                fontFamily: 'var(--font-sans)',
+                fontWeight: 800,
+                fontSize: 'clamp(1.9rem, 3.8vw, 2.75rem)',
+                letterSpacing: '-0.02em',
+                /* Gradation des 3 tons du logo, comme les barres */
+                color: `var(--vert-${[3, 2, 1, 2][i % 4]})`,
+              }}
+            >
+              <CountUp prefix={m.prefix} value={m.value} suffix={m.suffix} />
             </div>
-          </div>
-        </motion.div>
+            <p style={{ fontSize: '0.82rem', color: 'var(--cream-2)', lineHeight: 1.45, marginTop: '0.4rem' }}>
+              {m.caption}
+            </p>
+          </motion.div>
+        ))}
       </div>
     </section>
   )

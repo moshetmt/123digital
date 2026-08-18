@@ -77,29 +77,29 @@ export default function ConsultantDigitalLyonPage() {
 
       {/* Hero */}
       <section
-        className="bg-black"
+        className="bg-background"
         style={{ padding: '9rem 1.5rem 7rem' }}
       >
         <div className="mx-auto max-w-4xl">
           <div
             className="flex items-center gap-2 mb-6"
-            style={{ fontSize: '0.7rem', letterSpacing: '0.12em', textTransform: 'uppercase', color: 'rgba(225,224,204,0.7)', fontWeight: 700 }}
+            style={{ fontSize: '0.7rem', letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--ink-2)', fontWeight: 700 }}
           >
-            <span className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: '#00FF87' }} />
+            <span className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: 'var(--brand)' }} />
             Lyon · Auvergne-Rhône-Alpes
           </div>
 
           <h1
             className="font-display font-normal"
-            style={{ fontSize: 'clamp(2.4rem, 5vw, 5rem)', color: '#E1E0CC', lineHeight: 1.05, letterSpacing: '-0.025em', marginBottom: '1.5rem' }}
+            style={{ fontSize: 'clamp(2.4rem, 5vw, 5rem)', color: 'var(--ink)', lineHeight: 1.05, letterSpacing: '-0.025em', marginBottom: '1.5rem' }}
           >
             Consultant digital à Lyon<br />
-            <span style={{ color: '#00FF87' }}>pour votre PME.</span>
+            <span style={{ color: 'var(--brand)' }}>pour votre PME.</span>
           </h1>
 
           <p
             className="text-base leading-relaxed mb-8 max-w-2xl"
-            style={{ color: 'rgba(225,224,204,0.65)' }}
+            style={{ color: 'var(--ink-2)' }}
           >
             Vous êtes dirigeant d&apos;une PME ou TPE à Lyon et vous voulez attirer plus de clients
             en ligne ? Je vous aide à construire une présence digitale qui génère des leads qualifiés
@@ -110,14 +110,14 @@ export default function ConsultantDigitalLyonPage() {
             <Link
               href="/audit-gratuit"
               className="inline-flex items-center justify-center gap-2 rounded-full font-medium text-sm h-12 px-8 transition-all duration-300 hover:gap-3"
-              style={{ backgroundColor: '#DEDBC8', color: '#000' }}
+              style={{ backgroundColor: 'var(--brand)', color: 'var(--on-brand)' }}
             >
               Audit gratuit — 30 min
             </Link>
             <Link
               href="/services"
               className="inline-flex items-center justify-center gap-2 rounded-full font-medium text-sm h-12 px-8 transition-all duration-300"
-              style={{ border: '1px solid rgba(255,255,255,0.15)', color: 'rgba(225,224,204,0.8)' }}
+              style={{ border: '1px solid var(--line-strong)', color: 'var(--ink)' }}
             >
               Voir tous les services
             </Link>
@@ -126,14 +126,14 @@ export default function ConsultantDigitalLyonPage() {
       </section>
 
       {/* Pourquoi un consultant digital à Lyon */}
-      <section className="bg-black" style={{ padding: '6rem 1.5rem' }}>
+      <section className="bg-background" style={{ padding: '6rem 1.5rem' }}>
         <div className="mx-auto max-w-5xl">
           <h2
             className="font-display font-normal mb-8"
-            style={{ fontSize: 'clamp(1.8rem, 3.5vw, 3rem)', color: '#E1E0CC', letterSpacing: '-0.02em' }}
+            style={{ fontSize: 'clamp(1.8rem, 3.5vw, 3rem)', color: 'var(--ink)', letterSpacing: '-0.02em' }}
           >
             Pourquoi choisir un consultant digital<br />
-            <span style={{ color: '#00FF87' }}>plutôt qu&apos;une agence à Lyon ?</span>
+            <span style={{ color: 'var(--brand)' }}>plutôt qu&apos;une agence à Lyon ?</span>
           </h2>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -145,19 +145,19 @@ export default function ConsultantDigitalLyonPage() {
               <div
                 key={item.num}
                 className="rounded-2xl p-7"
-                style={{ backgroundColor: '#212121', border: '1px solid rgba(255,255,255,0.05)' }}
+                style={{ backgroundColor: 'var(--surface-2)', border: '1px solid var(--line)' }}
               >
-                <div className="text-xs font-bold mb-4" style={{ color: 'rgba(225,224,204,0.35)', letterSpacing: '0.1em' }}>{item.num}</div>
-                <h3 className="font-display font-normal text-base mb-3" style={{ color: '#E1E0CC', letterSpacing: '-0.01em' }}>{item.title}</h3>
-                <p className="text-sm leading-relaxed" style={{ color: '#9ca3af' }}>{item.desc}</p>
+                <div className="text-xs font-bold mb-4" style={{ color: 'var(--ink-3)', letterSpacing: '0.1em' }}>{item.num}</div>
+                <h3 className="font-display font-normal text-base mb-3" style={{ color: 'var(--ink)', letterSpacing: '-0.01em' }}>{item.title}</h3>
+                <p className="text-sm leading-relaxed" style={{ color: 'var(--ink-2)' }}>{item.desc}</p>
               </div>
             ))}
           </div>
 
           <Link
             href="/blog/consultant-digital-ou-agence-lyon"
-            className="inline-flex items-center gap-2 mt-8 text-sm font-medium transition-colors hover:text-[#00FF87]"
-            style={{ color: 'rgba(225,224,204,0.6)' }}
+            className="inline-flex items-center gap-2 mt-8 text-sm font-medium transition-colors hover:text-[var(--brand)]"
+            style={{ color: 'var(--ink-2)' }}
           >
             Lire le comparatif complet agence vs consultant à Lyon →
           </Link>
@@ -165,14 +165,14 @@ export default function ConsultantDigitalLyonPage() {
       </section>
 
       {/* Services */}
-      <section className="bg-black" style={{ padding: '0 1.5rem 6rem' }}>
+      <section className="bg-background" style={{ padding: '0 1.5rem 6rem' }}>
         <div className="mx-auto max-w-5xl">
           <h2
             className="font-display font-normal mb-10"
-            style={{ fontSize: 'clamp(1.8rem, 3.5vw, 3rem)', color: '#E1E0CC', letterSpacing: '-0.02em' }}
+            style={{ fontSize: 'clamp(1.8rem, 3.5vw, 3rem)', color: 'var(--ink)', letterSpacing: '-0.02em' }}
           >
             Services de croissance digitale<br />
-            <span style={{ color: '#00FF87' }}>pour PME à Lyon</span>
+            <span style={{ color: 'var(--brand)' }}>pour PME à Lyon</span>
           </h2>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
@@ -181,15 +181,15 @@ export default function ConsultantDigitalLyonPage() {
                 key={s.href}
                 href={s.href}
                 className="group flex flex-col rounded-2xl p-6 transition-all duration-300 hover:opacity-90"
-                style={{ backgroundColor: '#141414', border: '1px solid rgba(255,255,255,0.05)' }}
+                style={{ backgroundColor: 'var(--surface-2)', border: '1px solid var(--line)' }}
               >
                 <h3
-                  className="font-display font-normal text-base mb-2 group-hover:text-white transition-colors"
-                  style={{ color: '#E1E0CC', letterSpacing: '-0.01em' }}
+                  className="font-display font-normal text-base mb-2 group-hover:text-[var(--ink)] transition-colors"
+                  style={{ color: 'var(--ink)', letterSpacing: '-0.01em' }}
                 >
                   {s.title}
                 </h3>
-                <p className="text-sm leading-relaxed" style={{ color: '#9ca3af' }}>{s.desc}</p>
+                <p className="text-sm leading-relaxed" style={{ color: 'var(--ink-2)' }}>{s.desc}</p>
               </Link>
             ))}
           </div>
@@ -197,15 +197,15 @@ export default function ConsultantDigitalLyonPage() {
       </section>
 
       {/* Zones d'intervention */}
-      <section className="bg-black" style={{ padding: '0 1.5rem 6rem' }}>
+      <section className="bg-background" style={{ padding: '0 1.5rem 6rem' }}>
         <div className="mx-auto max-w-5xl">
           <h2
             className="font-display font-normal mb-6"
-            style={{ fontSize: 'clamp(1.6rem, 3vw, 2.5rem)', color: '#E1E0CC', letterSpacing: '-0.02em' }}
+            style={{ fontSize: 'clamp(1.6rem, 3vw, 2.5rem)', color: 'var(--ink)', letterSpacing: '-0.02em' }}
           >
             Zones d&apos;intervention à Lyon et région
           </h2>
-          <p className="text-sm mb-8" style={{ color: 'rgba(225,224,204,0.5)' }}>
+          <p className="text-sm mb-8" style={{ color: 'var(--ink-2)' }}>
             Consultant digital 100% distanciel — j&apos;accompagne les PME sur toute la métropole lyonnaise
             et la région Auvergne-Rhône-Alpes, ainsi que toute la France.
           </p>
@@ -214,7 +214,7 @@ export default function ConsultantDigitalLyonPage() {
               <span
                 key={zone}
                 className="px-3 py-1.5 rounded-full text-xs font-medium"
-                style={{ backgroundColor: 'rgba(0,255,135,0.07)', color: 'rgba(0,255,135,0.7)', border: '1px solid rgba(0,255,135,0.15)' }}
+                style={{ backgroundColor: 'var(--brand-tint)', color: 'var(--brand)', border: '1px solid var(--brand-line)' }}
               >
                 {zone}
               </span>
@@ -224,11 +224,11 @@ export default function ConsultantDigitalLyonPage() {
       </section>
 
       {/* FAQ */}
-      <section className="bg-black" style={{ padding: '0 1.5rem 8rem' }}>
+      <section className="bg-background" style={{ padding: '0 1.5rem 8rem' }}>
         <div className="mx-auto max-w-3xl">
           <h2
             className="font-display font-normal mb-10"
-            style={{ fontSize: 'clamp(1.6rem, 3vw, 2.5rem)', color: '#E1E0CC', letterSpacing: '-0.02em' }}
+            style={{ fontSize: 'clamp(1.6rem, 3vw, 2.5rem)', color: 'var(--ink)', letterSpacing: '-0.02em' }}
           >
             Questions fréquentes
           </h2>
@@ -237,10 +237,10 @@ export default function ConsultantDigitalLyonPage() {
               <div
                 key={q}
                 className="rounded-2xl p-6"
-                style={{ backgroundColor: '#141414', border: '1px solid rgba(255,255,255,0.05)' }}
+                style={{ backgroundColor: 'var(--surface-2)', border: '1px solid var(--line)' }}
               >
-                <h3 className="font-display font-normal text-base mb-3" style={{ color: '#E1E0CC', letterSpacing: '-0.01em' }}>{q}</h3>
-                <p className="text-sm leading-relaxed" style={{ color: '#9ca3af' }}>{a}</p>
+                <h3 className="font-display font-normal text-base mb-3" style={{ color: 'var(--ink)', letterSpacing: '-0.01em' }}>{q}</h3>
+                <p className="text-sm leading-relaxed" style={{ color: 'var(--ink-2)' }}>{a}</p>
               </div>
             ))}
           </div>
@@ -248,21 +248,21 @@ export default function ConsultantDigitalLyonPage() {
       </section>
 
       {/* CTA */}
-      <section className="bg-black" style={{ padding: '6rem 1.5rem', borderTop: '1px solid rgba(255,255,255,0.05)' }}>
+      <section className="bg-background" style={{ padding: '6rem 1.5rem', borderTop: '1px solid var(--line)' }}>
         <div className="mx-auto max-w-2xl text-center">
           <h2
             className="font-display font-normal mb-4"
-            style={{ fontSize: 'clamp(2rem, 4vw, 3.5rem)', color: '#E1E0CC', letterSpacing: '-0.025em' }}
+            style={{ fontSize: 'clamp(2rem, 4vw, 3.5rem)', color: 'var(--ink)', letterSpacing: '-0.025em' }}
           >
             Prêt à développer votre PME à Lyon ?
           </h2>
-          <p className="text-sm mb-8" style={{ color: 'rgba(225,224,204,0.55)' }}>
+          <p className="text-sm mb-8" style={{ color: 'var(--ink-2)' }}>
             Audit gratuit · Sans engagement · Réponse sous 24h
           </p>
           <Link
             href="/audit-gratuit"
             className="inline-flex items-center gap-2 rounded-full font-medium text-sm h-12 px-8 transition-all duration-300"
-            style={{ backgroundColor: '#DEDBC8', color: '#000' }}
+            style={{ backgroundColor: 'var(--brand)', color: 'var(--on-brand)' }}
           >
             Obtenir mon audit gratuit
           </Link>

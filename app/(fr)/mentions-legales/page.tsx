@@ -22,7 +22,7 @@ export default function MentionsLegalesPage() {
     <>
       <JsonLd schema={schemas} />
 
-      <section className="bg-black" style={{ padding: '9rem 1.5rem 6rem' }}>
+      <section className="bg-background" style={{ padding: '9rem 1.5rem 6rem' }}>
         <div className="mx-auto max-w-3xl">
           <div className="mb-6">
             <Breadcrumb
@@ -35,26 +35,26 @@ export default function MentionsLegalesPage() {
 
           <h1
             className="font-display font-normal mb-12"
-            style={{ fontSize: 'clamp(2rem, 4vw, 3.5rem)', color: '#E1E0CC', lineHeight: 1.1 }}
+            style={{ fontSize: 'clamp(2rem, 4vw, 3.5rem)', color: 'var(--ink)', lineHeight: 1.1 }}
           >
             Mentions légales
           </h1>
 
-          <div className="space-y-10" style={{ color: 'rgba(225,224,204,0.7)', lineHeight: 1.8, fontSize: '0.92rem' }}>
+          <div className="space-y-10" style={{ color: 'var(--ink-2)', lineHeight: 1.8, fontSize: '0.92rem' }}>
 
             <section>
               <h2
                 className="font-display font-normal mb-4"
-                style={{ fontSize: '1.3rem', color: '#E1E0CC' }}
+                style={{ fontSize: '1.3rem', color: 'var(--ink)' }}
               >
                 Éditeur du site
               </h2>
               <p>
                 Le site 123digital.fr est édité par :<br />
-                <strong style={{ color: '#E1E0CC' }}>Maurice Timsit</strong><br />
+                <strong style={{ color: 'var(--ink)' }}>Maurice Timsit</strong><br />
                 Consultant en croissance digitale — Entrepreneur individuel<br />
                 Siège social : Lyon (69), France<br />
-                Email : <a href="mailto:contact@123digital.fr" style={{ color: '#00FF87' }}>contact@123digital.fr</a><br />
+                Email : <a href="mailto:contact@123digital.fr" style={{ color: 'var(--brand)' }}>contact@123digital.fr</a><br />
                 SIRET : en cours d&apos;immatriculation
               </p>
             </section>
@@ -62,23 +62,23 @@ export default function MentionsLegalesPage() {
             <section>
               <h2
                 className="font-display font-normal mb-4"
-                style={{ fontSize: '1.3rem', color: '#E1E0CC' }}
+                style={{ fontSize: '1.3rem', color: 'var(--ink)' }}
               >
                 Hébergement
               </h2>
               <p>
                 Ce site est hébergé par :<br />
-                <strong style={{ color: '#E1E0CC' }}>Vercel Inc.</strong><br />
+                <strong style={{ color: 'var(--ink)' }}>Vercel Inc.</strong><br />
                 340 Pine Street, Suite 701<br />
                 San Francisco, CA 94104, États-Unis<br />
-                <a href="https://vercel.com" target="_blank" rel="noopener noreferrer" style={{ color: '#00FF87' }}>vercel.com</a>
+                <a href="https://vercel.com" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--brand)' }}>vercel.com</a>
               </p>
             </section>
 
             <section>
               <h2
                 className="font-display font-normal mb-4"
-                style={{ fontSize: '1.3rem', color: '#E1E0CC' }}
+                style={{ fontSize: '1.3rem', color: 'var(--ink)' }}
               >
                 Propriété intellectuelle
               </h2>
@@ -90,7 +90,7 @@ export default function MentionsLegalesPage() {
             <section>
               <h2
                 className="font-display font-normal mb-4"
-                style={{ fontSize: '1.3rem', color: '#E1E0CC' }}
+                style={{ fontSize: '1.3rem', color: 'var(--ink)' }}
               >
                 Données personnelles & RGPD
               </h2>
@@ -98,14 +98,14 @@ export default function MentionsLegalesPage() {
                 Les données collectées via les formulaires de contact (nom, email) sont utilisées uniquement pour répondre à vos demandes. Elles ne sont ni vendues ni transmises à des tiers. Conformément au RGPD et à la loi Informatique et Libertés, vous disposez d&apos;un droit d&apos;accès, de rectification et de suppression de vos données.
               </p>
               <p style={{ marginTop: '0.75rem' }}>
-                Pour exercer ces droits : <a href="mailto:contact@123digital.fr" style={{ color: '#00FF87' }}>contact@123digital.fr</a>
+                Pour exercer ces droits : <a href="mailto:contact@123digital.fr" style={{ color: 'var(--brand)' }}>contact@123digital.fr</a>
               </p>
             </section>
 
             <section>
               <h2
                 className="font-display font-normal mb-4"
-                style={{ fontSize: '1.3rem', color: '#E1E0CC' }}
+                style={{ fontSize: '1.3rem', color: 'var(--ink)' }}
               >
                 Cookies
               </h2>
@@ -117,7 +117,7 @@ export default function MentionsLegalesPage() {
             <section>
               <h2
                 className="font-display font-normal mb-4"
-                style={{ fontSize: '1.3rem', color: '#E1E0CC' }}
+                style={{ fontSize: '1.3rem', color: 'var(--ink)' }}
               >
                 Responsabilité
               </h2>
@@ -129,7 +129,7 @@ export default function MentionsLegalesPage() {
             <section>
               <h2
                 className="font-display font-normal mb-4"
-                style={{ fontSize: '1.3rem', color: '#E1E0CC' }}
+                style={{ fontSize: '1.3rem', color: 'var(--ink)' }}
               >
                 Droit applicable
               </h2>
@@ -138,7 +138,7 @@ export default function MentionsLegalesPage() {
               </p>
             </section>
 
-            <p style={{ fontSize: '0.8rem', color: 'rgba(225,224,204,0.35)', marginTop: '3rem', borderTop: '1px solid rgba(225,224,204,0.06)', paddingTop: '1.5rem' }}>
+            <p style={{ fontSize: '0.8rem', color: 'var(--ink-3)', marginTop: '3rem', borderTop: '1px solid var(--line)', paddingTop: '1.5rem' }}>
               Dernière mise à jour : mai 2026
             </p>
           </div>

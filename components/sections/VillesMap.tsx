@@ -34,12 +34,12 @@ function getRadius(priority: VillePoint['priority']) {
 }
 
 function getColor(slug: string, active: string | null, priority: VillePoint['priority']) {
-  if (slug === active) return '#00FF87'
+  if (slug === active) return 'var(--brand)'
   return priority === 'high'
-    ? 'rgba(225,224,204,0.8)'
+    ? 'var(--ink)'
     : priority === 'medium'
-      ? 'rgba(225,224,204,0.5)'
-      : 'rgba(225,224,204,0.3)'
+      ? 'var(--ink-2)'
+      : 'var(--ink-3)'
 }
 
 export function VillesMap({ lang = 'fr' }: { lang?: 'fr' | 'en' }) {
@@ -55,7 +55,7 @@ export function VillesMap({ lang = 'fr' }: { lang?: 'fr' | 'en' }) {
     <div className="relative" style={{ maxWidth: '640px', margin: '0 auto' }}>
 
       {/* Carte SVG */}
-      <div style={{ position: 'relative', border: '1px solid rgba(225,224,204,0.08)', backgroundColor: '#0d0d0d' }}>
+      <div style={{ position: 'relative', border: '1px solid var(--line)', backgroundColor: 'var(--surface-2)' }}>
         <svg
           viewBox="0 0 100 80"
           style={{ width: '100%', display: 'block', touchAction: 'manipulation' }}
@@ -64,8 +64,8 @@ export function VillesMap({ lang = 'fr' }: { lang?: 'fr' | 'en' }) {
           {/* Fond région */}
           <path
             d="M10,10 L20,5 L40,3 L60,5 L80,10 L90,25 L88,50 L80,70 L60,75 L40,78 L20,72 L8,55 L6,35 Z"
-            fill="rgba(225,224,204,0.02)"
-            stroke="rgba(225,224,204,0.06)"
+            fill="var(--ink-4)"
+            stroke="var(--ink-4)"
             strokeWidth="0.5"
           />
 
@@ -77,7 +77,7 @@ export function VillesMap({ lang = 'fr' }: { lang?: 'fr' | 'en' }) {
                 key={`line-${v.slug}`}
                 x1={lyon.x} y1={lyon.y}
                 x2={v.x}    y2={v.y}
-                stroke={v.slug === active ? 'rgba(0,255,135,0.3)' : 'rgba(225,224,204,0.04)'}
+                stroke={v.slug === active ? 'var(--brand-line)' : 'var(--ink-4)'}
                 strokeWidth="0.3"
                 strokeDasharray="1,2"
               />
@@ -104,8 +104,8 @@ export function VillesMap({ lang = 'fr' }: { lang?: 'fr' | 'en' }) {
                   <circle
                     cx={ville.x} cy={ville.y}
                     r={r + 4}
-                    fill="rgba(0,255,135,0.1)"
-                    stroke="rgba(0,255,135,0.3)"
+                    fill="var(--brand-line)"
+                    stroke="var(--brand-line)"
                     strokeWidth="0.5"
                   />
                 )}
@@ -124,7 +124,7 @@ export function VillesMap({ lang = 'fr' }: { lang?: 'fr' | 'en' }) {
                     y={ville.y + 1}
                     style={{
                       fontSize: '3.5px',
-                      fill: isActive ? '#00FF87' : 'rgba(225,224,204,0.6)',
+                      fill: isActive ? 'var(--brand)' : 'var(--ink-2)',
                       fontFamily: 'var(--font-sans)',
                       userSelect: 'none',
                       pointerEvents: 'none',
@@ -141,17 +141,17 @@ export function VillesMap({ lang = 'fr' }: { lang?: 'fr' | 'en' }) {
         {/* Légende */}
         <div style={{ position: 'absolute', bottom: '1rem', right: '1rem', display: 'flex', flexDirection: 'column', gap: '0.35rem' }}>
           {(lang === 'en' ? [
-            { label: 'High priority',   color: 'rgba(225,224,204,0.8)', size: 8 },
-            { label: 'Mid priority',    color: 'rgba(225,224,204,0.5)', size: 6 },
-            { label: 'Lower priority',  color: 'rgba(225,224,204,0.3)', size: 4 },
+            { label: 'High priority',   color: 'var(--ink)', size: 8 },
+            { label: 'Mid priority',    color: 'var(--ink-2)', size: 6 },
+            { label: 'Lower priority',  color: 'var(--ink-3)', size: 4 },
           ] : [
-            { label: 'Priorité haute',   color: 'rgba(225,224,204,0.8)', size: 8 },
-            { label: 'Priorité moyenne', color: 'rgba(225,224,204,0.5)', size: 6 },
-            { label: 'Priorité basse',   color: 'rgba(225,224,204,0.3)', size: 4 },
+            { label: 'Priorité haute',   color: 'var(--ink)', size: 8 },
+            { label: 'Priorité moyenne', color: 'var(--ink-2)', size: 6 },
+            { label: 'Priorité basse',   color: 'var(--ink-3)', size: 4 },
           ]).map((l) => (
             <div key={l.label} className="flex items-center gap-2">
               <div style={{ width: l.size, height: l.size, borderRadius: '50%', backgroundColor: l.color, flexShrink: 0 }} />
-              <span style={{ fontSize: '0.62rem', color: 'rgba(225,224,204,0.35)' }}>{l.label}</span>
+              <span style={{ fontSize: '0.62rem', color: 'var(--ink-3)' }}>{l.label}</span>
             </div>
           ))}
         </div>
@@ -162,18 +162,18 @@ export function VillesMap({ lang = 'fr' }: { lang?: 'fr' | 'en' }) {
         style={{
           minHeight: '90px',
           padding: '1.25rem 1.5rem',
-          border: '1px solid rgba(225,224,204,0.08)',
+          border: '1px solid var(--line)',
           borderTop: 'none',
-          backgroundColor: '#0d0d0d',
+          backgroundColor: 'var(--surface-2)',
         }}
       >
         {activeVille ? (
           <div className="flex items-center justify-between gap-4">
             <div>
-              <div style={{ fontSize: '0.62rem', letterSpacing: '0.12em', textTransform: 'uppercase', color: '#00FF87', fontWeight: 700, marginBottom: '0.25rem' }}>
+              <div style={{ fontSize: '0.62rem', letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--brand)', fontWeight: 700, marginBottom: '0.25rem' }}>
                 {activeVille.departement}
               </div>
-              <div className="font-display font-normal" style={{ fontSize: '1.3rem', color: '#E1E0CC' }}>
+              <div className="font-display font-normal" style={{ fontSize: '1.3rem', color: 'var(--ink)' }}>
                 {activeVille.nom}
               </div>
             </div>
@@ -181,8 +181,8 @@ export function VillesMap({ lang = 'fr' }: { lang?: 'fr' | 'en' }) {
               href={`/${activeVille.slug}`}
               style={{
                 padding: '0.6rem 1.2rem',
-                backgroundColor: '#00FF87',
-                color: '#080808',
+                backgroundColor: 'var(--brand)',
+                color: 'var(--on-brand)',
                 fontSize: '0.75rem',
                 fontWeight: 700,
                 letterSpacing: '0.08em',
@@ -196,7 +196,7 @@ export function VillesMap({ lang = 'fr' }: { lang?: 'fr' | 'en' }) {
             </Link>
           </div>
         ) : (
-          <p style={{ fontSize: '0.85rem', color: 'rgba(225,224,204,0.35)', fontStyle: 'italic', lineHeight: 1.5 }}>
+          <p style={{ fontSize: '0.85rem', color: 'var(--ink-3)', fontStyle: 'italic', lineHeight: 1.5 }}>
             {lang === 'en' ? 'Tap or click a city on the map' : 'Touchez ou cliquez une ville sur la carte'}
           </p>
         )}
@@ -211,8 +211,8 @@ export function VillesMap({ lang = 'fr' }: { lang?: 'fr' | 'en' }) {
               href={`/${ville.slug}`}
               style={{
                 padding: '0.35rem 0.85rem',
-                border: `1px solid ${active === ville.slug ? '#00FF87' : 'rgba(225,224,204,0.12)'}`,
-                color: active === ville.slug ? '#00FF87' : 'rgba(225,224,204,0.5)',
+                border: `1px solid ${active === ville.slug ? 'var(--brand)' : 'var(--ink-3)'}`,
+                color: active === ville.slug ? 'var(--brand)' : 'var(--ink-2)',
                 fontSize: '0.78rem',
                 textDecoration: 'none',
                 transition: 'all 0.15s ease',

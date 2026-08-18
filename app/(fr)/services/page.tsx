@@ -117,7 +117,7 @@ export default function ServicesPage() {
 
       {/* Hero */}
       <section
-        className="bg-black"
+        className="bg-background"
         style={{ padding: '9rem 1.5rem 6rem' }}
       >
         <div className="mx-auto max-w-5xl">
@@ -136,11 +136,11 @@ export default function ServicesPage() {
               fontSize: '0.7rem',
               letterSpacing: '0.12em',
               textTransform: 'uppercase',
-              color: 'rgba(225,224,204,0.7)',
+              color: 'var(--ink-2)',
               fontWeight: 700,
             }}
           >
-            <span className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: '#00FF87' }} />
+            <span className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: 'var(--brand)' }} />
             Ce que je fais pour vous
           </div>
 
@@ -148,20 +148,20 @@ export default function ServicesPage() {
             className="font-display font-normal mb-6"
             style={{
               fontSize: 'clamp(2.8rem, 5.5vw, 5.5rem)',
-              color: '#E1E0CC',
+              color: 'var(--ink)',
               lineHeight: 1.05,
               letterSpacing: '-0.025em',
             }}
           >
             Tous vos leviers digitaux,<br />
-            <em style={{ color: '#00FF87', fontStyle: 'italic', fontFamily: 'var(--font-serif)' }}>
+            <em style={{ color: 'var(--brand)', fontStyle: 'italic', fontFamily: 'var(--font-serif)' }}>
               pilotés par un seul expert.
             </em>
           </h1>
 
           <p
             className="text-base leading-relaxed max-w-2xl"
-            style={{ color: 'rgba(225,224,204,0.65)' }}
+            style={{ color: 'var(--ink-2)' }}
           >
             SEO, site web, publicité, branding, réseaux, automatisation. Pas besoin de coordonner 6 prestataires différents — tout est pensé ensemble, par quelqu&apos;un qui connaît votre activité de A à Z.
           </p>
@@ -170,18 +170,18 @@ export default function ServicesPage() {
 
       {/* Services grid */}
       <section
-        className="bg-black"
-        style={{ padding: '4rem 1.5rem 6rem', borderTop: '1px solid rgba(225,224,204,0.06)' }}
+        className="bg-background"
+        style={{ padding: '4rem 1.5rem 6rem', borderTop: '1px solid var(--line)' }}
       >
         <div className="mx-auto max-w-5xl">
-          <div className="grid gap-px" style={{ backgroundColor: 'rgba(225,224,204,0.06)' }}>
+          <div className="grid gap-px" style={{ backgroundColor: 'var(--line)' }}>
             {services.map((service) => {
               const detail = serviceMap[service.id]
               return (
                 <article
                   key={service.id}
                   className="group relative"
-                  style={{ backgroundColor: '#080808' }}
+                  style={{ backgroundColor: 'var(--surface-2)' }}
                 >
                   <div
                     className="grid gap-8 p-8 md:p-10"
@@ -194,7 +194,7 @@ export default function ServicesPage() {
                           fontSize: '0.65rem',
                           letterSpacing: '0.14em',
                           textTransform: 'uppercase',
-                          color: '#00FF87',
+                          color: 'var(--brand)',
                           fontWeight: 700,
                         }}
                       >
@@ -203,12 +203,12 @@ export default function ServicesPage() {
 
                       <h2
                         className="font-display font-normal mb-3"
-                        style={{ fontSize: 'clamp(1.5rem, 3vw, 2.2rem)', color: '#E1E0CC', lineHeight: 1.1 }}
+                        style={{ fontSize: 'clamp(1.5rem, 3vw, 2.2rem)', color: 'var(--ink)', lineHeight: 1.1 }}
                       >
                         {service.title}
                       </h2>
 
-                      <p className="mb-6" style={{ color: 'rgba(225,224,204,0.6)', fontSize: '0.95rem', lineHeight: 1.7 }}>
+                      <p className="mb-6" style={{ color: 'var(--ink-2)', fontSize: '0.95rem', lineHeight: 1.7 }}>
                         {service.description}
                       </p>
 
@@ -219,14 +219,14 @@ export default function ServicesPage() {
                               fontSize: '0.72rem',
                               letterSpacing: '0.08em',
                               textTransform: 'uppercase',
-                              color: 'rgba(225,224,204,0.4)',
+                              color: 'var(--ink-3)',
                               marginBottom: '0.75rem',
                               fontWeight: 700,
                             }}
                           >
                             Pour qui
                           </p>
-                          <p style={{ color: 'rgba(225,224,204,0.65)', fontSize: '0.9rem', lineHeight: 1.6 }}>
+                          <p style={{ color: 'var(--ink-2)', fontSize: '0.9rem', lineHeight: 1.6 }}>
                             {detail.pour}
                           </p>
                         </div>
@@ -238,9 +238,9 @@ export default function ServicesPage() {
                             <li
                               key={i}
                               className="flex items-center gap-2"
-                              style={{ fontSize: '0.85rem', color: 'rgba(225,224,204,0.65)' }}
+                              style={{ fontSize: '0.85rem', color: 'var(--ink-2)' }}
                             >
-                              <span style={{ color: '#00FF87', flexShrink: 0 }}>→</span>
+                              <span style={{ color: 'var(--brand)', flexShrink: 0 }}>→</span>
                               {item}
                             </li>
                           ))}
@@ -253,8 +253,8 @@ export default function ServicesPage() {
                           className="inline-flex items-center gap-2 transition-colors duration-200"
                           style={{
                             padding: '0.65rem 1.5rem',
-                            backgroundColor: '#00FF87',
-                            color: '#080808',
+                            backgroundColor: 'var(--brand)',
+                            color: 'var(--on-brand)',
                             fontSize: '0.8rem',
                             fontWeight: 700,
                             letterSpacing: '0.06em',
@@ -265,11 +265,11 @@ export default function ServicesPage() {
                         </Link>
                         <Link
                           href="/audit-gratuit"
-                          className="inline-flex items-center gap-2 transition-colors duration-200 hover:border-[#00FF87] hover:text-[#00FF87]"
+                          className="inline-flex items-center gap-2 transition-colors duration-200 hover:border-[var(--brand)] hover:text-[var(--brand)]"
                           style={{
                             padding: '0.65rem 1.5rem',
-                            border: '1px solid rgba(225,224,204,0.2)',
-                            color: 'rgba(225,224,204,0.7)',
+                            border: '1px solid var(--line)',
+                            color: 'var(--ink-2)',
                             fontSize: '0.8rem',
                             fontWeight: 700,
                             letterSpacing: '0.06em',
@@ -309,8 +309,8 @@ export default function ServicesPage() {
 
       {/* FAQ */}
       <section
-        className="bg-black"
-        style={{ padding: '4rem 1.5rem 6rem', borderTop: '1px solid rgba(225,224,204,0.06)' }}
+        className="bg-background"
+        style={{ padding: '4rem 1.5rem 6rem', borderTop: '1px solid var(--line)' }}
       >
         <div className="mx-auto max-w-3xl">
           <div
@@ -318,7 +318,7 @@ export default function ServicesPage() {
               fontSize: '0.65rem',
               letterSpacing: '0.14em',
               textTransform: 'uppercase',
-              color: 'rgba(225,224,204,0.5)',
+              color: 'var(--ink-2)',
               fontWeight: 700,
               marginBottom: '1.5rem',
             }}
@@ -327,20 +327,20 @@ export default function ServicesPage() {
           </div>
           <h2
             className="font-display font-normal mb-10"
-            style={{ fontSize: 'clamp(1.8rem, 3.5vw, 2.8rem)', color: '#E1E0CC', lineHeight: 1.1 }}
+            style={{ fontSize: 'clamp(1.8rem, 3.5vw, 2.8rem)', color: 'var(--ink)', lineHeight: 1.1 }}
           >
             Ce que vous vous demandez
           </h2>
           <dl className="space-y-8">
             {faqs.map(({ question, answer }, i) => (
-              <div key={i} style={{ borderTop: '1px solid rgba(225,224,204,0.08)', paddingTop: '2rem' }}>
+              <div key={i} style={{ borderTop: '1px solid var(--line)', paddingTop: '2rem' }}>
                 <dt
                   className="font-display font-normal mb-4"
-                  style={{ fontSize: '1.1rem', color: '#E1E0CC' }}
+                  style={{ fontSize: '1.1rem', color: 'var(--ink)' }}
                 >
                   {question}
                 </dt>
-                <dd style={{ color: 'rgba(225,224,204,0.65)', lineHeight: 1.75, fontSize: '0.95rem' }}>
+                <dd style={{ color: 'var(--ink-2)', lineHeight: 1.75, fontSize: '0.95rem' }}>
                   {answer}
                 </dd>
               </div>
@@ -351,21 +351,21 @@ export default function ServicesPage() {
 
       {/* CTA */}
       <section
-        className="bg-black"
+        className="bg-background"
         style={{
           padding: '4rem 1.5rem 6rem',
-          borderTop: '1px solid rgba(225,224,204,0.06)',
+          borderTop: '1px solid var(--line)',
           textAlign: 'center',
         }}
       >
         <div className="mx-auto max-w-2xl">
           <h2
             className="font-display font-normal mb-4"
-            style={{ fontSize: 'clamp(1.8rem, 3.5vw, 2.8rem)', color: '#E1E0CC', lineHeight: 1.1 }}
+            style={{ fontSize: 'clamp(1.8rem, 3.5vw, 2.8rem)', color: 'var(--ink)', lineHeight: 1.1 }}
           >
             Par où commencer ?
           </h2>
-          <p style={{ color: 'rgba(225,224,204,0.6)', marginBottom: '2.5rem', lineHeight: 1.7 }}>
+          <p style={{ color: 'var(--ink-2)', marginBottom: '2.5rem', lineHeight: 1.7 }}>
             Un audit gratuit de 30 minutes pour identifier les 3 actions les plus rentables pour votre activité. Sans engagement, sans jargon.
           </p>
           <Link
@@ -373,8 +373,8 @@ export default function ServicesPage() {
             style={{
               display: 'inline-block',
               padding: '1rem 2.5rem',
-              backgroundColor: '#00FF87',
-              color: '#080808',
+              backgroundColor: 'var(--brand)',
+              color: 'var(--on-brand)',
               fontSize: '0.85rem',
               fontWeight: 700,
               letterSpacing: '0.08em',

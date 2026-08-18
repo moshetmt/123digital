@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { JsonLd } from '@/components/seo/JsonLd'
 import { Breadcrumb } from '@/components/layout/Breadcrumb'
+import { CTA } from '@/components/sections/CTA'
 import { BASE_URL, breadcrumbSchema, contactPageSchema } from '@/lib/schema'
 
 export const metadata: Metadata = {
@@ -51,7 +52,7 @@ export default function ContactPage() {
       <JsonLd schema={schemas} />
 
       {/* Hero */}
-      <section className="bg-black" style={{ padding: '9rem 1.5rem 6rem' }}>
+      <section className="bg-background" style={{ padding: '9rem 1.5rem 6rem' }}>
         <div className="mx-auto max-w-5xl">
           <div className="mb-6">
             <Breadcrumb
@@ -68,11 +69,11 @@ export default function ContactPage() {
               fontSize: '0.7rem',
               letterSpacing: '0.12em',
               textTransform: 'uppercase',
-              color: 'rgba(225,224,204,0.7)',
+              color: 'var(--ink-2)',
               fontWeight: 700,
             }}
           >
-            <span className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: '#00FF87' }} />
+            <span className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: 'var(--brand)' }} />
             Réponse sous 24h
           </div>
 
@@ -80,7 +81,7 @@ export default function ContactPage() {
             className="font-display font-normal mb-6"
             style={{
               fontSize: 'clamp(2.6rem, 5vw, 5rem)',
-              color: '#E1E0CC',
+              color: 'var(--ink)',
               lineHeight: 1.05,
               letterSpacing: '-0.025em',
             }}
@@ -88,7 +89,7 @@ export default function ContactPage() {
             Parlons de votre<br />
             <em
               style={{
-                color: '#00FF87',
+                color: 'var(--brand)',
                 fontStyle: 'italic',
                 fontFamily: 'var(--font-serif)',
               }}
@@ -99,7 +100,7 @@ export default function ContactPage() {
 
           <p
             className="text-base leading-relaxed max-w-2xl"
-            style={{ color: 'rgba(225,224,204,0.65)' }}
+            style={{ color: 'var(--ink-2)' }}
           >
             Que vous ayez un projet précis ou juste une question, je suis disponible pour en discuter. La meilleure façon de commencer est l&apos;audit gratuit de 30 minutes — pas de commercial, juste de l&apos;utile.
           </p>
@@ -108,11 +109,11 @@ export default function ContactPage() {
 
       {/* Moyens de contact */}
       <section
-        className="bg-black"
-        style={{ padding: '2rem 1.5rem 6rem', borderTop: '1px solid rgba(225,224,204,0.06)' }}
+        className="bg-background"
+        style={{ padding: '2rem 1.5rem 6rem', borderTop: '1px solid var(--line)' }}
       >
         <div className="mx-auto max-w-5xl">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-px" style={{ backgroundColor: 'rgba(225,224,204,0.06)' }}>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-px" style={{ backgroundColor: 'var(--line)' }}>
             {moyensDeContact.map((moyen) => (
               <Link
                 key={moyen.label}
@@ -120,14 +121,14 @@ export default function ContactPage() {
                 target={moyen.href.startsWith('http') ? '_blank' : undefined}
                 rel={moyen.href.startsWith('http') ? 'noopener noreferrer' : undefined}
                 className="group block p-8"
-                style={{ backgroundColor: '#080808' }}
+                style={{ backgroundColor: 'var(--surface-2)' }}
               >
                 <div
                   style={{
                     fontSize: '0.65rem',
                     letterSpacing: '0.12em',
                     textTransform: 'uppercase',
-                    color: '#00FF87',
+                    color: 'var(--brand)',
                     fontWeight: 700,
                     marginBottom: '0.75rem',
                   }}
@@ -135,12 +136,12 @@ export default function ContactPage() {
                   {moyen.label}
                 </div>
                 <div
-                  className="font-display font-normal group-hover:text-[#00FF87] transition-colors mb-2"
-                  style={{ fontSize: '1.1rem', color: '#E1E0CC' }}
+                  className="font-display font-normal group-hover:text-[var(--brand)] transition-colors mb-2"
+                  style={{ fontSize: '1.1rem', color: 'var(--ink)' }}
                 >
                   {moyen.valeur}
                 </div>
-                <div style={{ fontSize: '0.82rem', color: 'rgba(225,224,204,0.5)' }}>
+                <div style={{ fontSize: '0.82rem', color: 'var(--ink-2)' }}>
                   {moyen.desc}
                 </div>
               </Link>
@@ -151,15 +152,15 @@ export default function ContactPage() {
 
       {/* Infos pratiques */}
       <section
-        className="bg-black"
-        style={{ padding: '4rem 1.5rem 6rem', borderTop: '1px solid rgba(225,224,204,0.06)' }}
+        className="bg-background"
+        style={{ padding: '4rem 1.5rem 6rem', borderTop: '1px solid var(--line)' }}
       >
         <div className="mx-auto max-w-5xl">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
             <div>
               <h2
                 className="font-display font-normal mb-6"
-                style={{ fontSize: 'clamp(1.6rem, 3vw, 2.2rem)', color: '#E1E0CC', lineHeight: 1.1 }}
+                style={{ fontSize: 'clamp(1.6rem, 3vw, 2.2rem)', color: 'var(--ink)', lineHeight: 1.1 }}
               >
                 Ce que vous pouvez<br />attendre
               </h2>
@@ -171,8 +172,8 @@ export default function ContactPage() {
                   'Une proposition claire si on décide de travailler ensemble',
                 ].map((item, i) => (
                   <li key={i} className="flex items-start gap-3">
-                    <span style={{ color: '#00FF87', flexShrink: 0, marginTop: '0.1rem' }}>→</span>
-                    <span style={{ fontSize: '0.9rem', color: 'rgba(225,224,204,0.65)', lineHeight: 1.6 }}>
+                    <span style={{ color: 'var(--brand)', flexShrink: 0, marginTop: '0.1rem' }}>→</span>
+                    <span style={{ fontSize: '0.9rem', color: 'var(--ink-2)', lineHeight: 1.6 }}>
                       {item}
                     </span>
                   </li>
@@ -183,20 +184,24 @@ export default function ContactPage() {
             <div>
               <h2
                 className="font-display font-normal mb-6"
-                style={{ fontSize: 'clamp(1.6rem, 3vw, 2.2rem)', color: '#E1E0CC', lineHeight: 1.1 }}
+                style={{ fontSize: 'clamp(1.6rem, 3vw, 2.2rem)', color: 'var(--ink)', lineHeight: 1.1 }}
               >
                 Basé à Lyon,<br />disponible partout
               </h2>
-              <p style={{ fontSize: '0.9rem', color: 'rgba(225,224,204,0.65)', lineHeight: 1.7 }}>
+              <p style={{ fontSize: '0.9rem', color: 'var(--ink-2)', lineHeight: 1.7 }}>
                 Je travaille principalement avec des entreprises d&apos;Auvergne-Rhône-Alpes (Lyon, Grenoble, Saint-Étienne, Annecy, Chambéry, Clermont-Ferrand) mais j&apos;interviens sur toute la France en 100% distanciel.
               </p>
-              <p style={{ fontSize: '0.9rem', color: 'rgba(225,224,204,0.65)', lineHeight: 1.7, marginTop: '1rem' }}>
+              <p style={{ fontSize: '0.9rem', color: 'var(--ink-2)', lineHeight: 1.7, marginTop: '1rem' }}>
                 Les réunions se tiennent par visioconférence (Google Meet). Les projets avancent sans déplacements inutiles.
               </p>
             </div>
           </div>
         </div>
       </section>
+
+      {/* Formulaire — P0-3 de l'audit UX : la meta de la page promettait un
+          formulaire de contact qui n'existait pas */}
+      <CTA />
     </>
   )
 }

@@ -3,198 +3,61 @@
 import { useRef } from 'react'
 import Link from 'next/link'
 import { motion, useInView } from 'framer-motion'
-import { ArrowRight } from 'lucide-react'
-import type { Variants } from 'framer-motion'
-import { projects } from '@/data/portfolio'
+import { ArrowRight, ArrowUpRight } from 'lucide-react'
+import { projects, type PortfolioProject } from '@/data/portfolio'
 import { t, type Locale } from '@/lib/i18n'
 
 const EASE = [0.22, 1, 0.36, 1] as [number, number, number, number]
-const PULL_EASE = [0.16, 1, 0.3, 1] as [number, number, number, number]
 
-// ── Parse results string into metric + sub-description ────────────────────────
-// "+320% de visibilité locale en 4 mois" → { metric: "+320%", sub: "de visibilité locale en 4 mois" }
-// "ROAS 4,2x — Communauté Instagram ×3"  → { metric: "ROAS 4,2x", sub: "Communauté Instagram ×3" }
-
-function parseResult(results: string): { metric: string; sub: string } {
-  if (results.includes('—')) {
-    const [a, b] = results.split('—')
-    return { metric: a.trim(), sub: b?.trim() ?? '' }
-  }
-  const match = results.match(/^([+×]?[\d,.]+\s*[%×xhm]?)/)
-  if (match) {
-    return { metric: match[1].trim(), sub: results.slice(match[0].length).trim() }
-  }
-  return { metric: results, sub: '' }
-}
-
-// ── WordPullUp ────────────────────────────────────────────────────────────────
-
-// Italic accent pull-up — Fraunces
-function ItalicPullUp({ text, delay = 0 }: { text: string; delay?: number }) {
-  const ref = useRef<HTMLSpanElement>(null)
-  const isInView = useInView(ref, { once: true, margin: '-10%' })
-  const words = text.split(' ')
-  return (
-    <span ref={ref} style={{ display: 'inline-flex', flexWrap: 'wrap', gap: '0.18em', fontFamily: 'var(--font-serif)', fontStyle: 'italic' }}>
-      {words.map((word, i) => (
-        <span key={i} style={{ display: 'inline-block', overflow: 'hidden' }}>
-          <motion.span
-            style={{ display: 'inline-block' }}
-            initial={{ y: '110%' }}
-            animate={isInView ? { y: 0 } : {}}
-            transition={{ duration: 0.85, ease: PULL_EASE, delay: delay + i * 0.07 }}
-          >
-            {word}
-          </motion.span>
-        </span>
-      ))}
-    </span>
-  )
-}
-
-function WordPullUp({ text, delay = 0 }: { text: string; delay?: number }) {
-  const ref = useRef<HTMLSpanElement>(null)
-  const isInView = useInView(ref, { once: true, margin: '-10%' })
-  const words = text.split(' ')
-  return (
-    <span ref={ref} style={{ display: 'inline-flex', flexWrap: 'wrap', gap: '0.18em' }}>
-      {words.map((word, i) => (
-        <span key={i} style={{ display: 'inline-block', overflow: 'hidden' }}>
-          <motion.span
-            style={{ display: 'inline-block' }}
-            initial={{ y: '110%' }}
-            animate={isInView ? { y: 0 } : {}}
-            transition={{ duration: 0.85, ease: PULL_EASE, delay: delay + i * 0.07 }}
-          >
-            {word}
-          </motion.span>
-        </span>
-      ))}
-    </span>
-  )
-}
-
-// ── Project card ─────────────────────────────────────────────────────────────
-
-function ProjectCard({ project, index }: { project: typeof projects[0]; index: number }) {
+function ProjectCard({ project, index }: { project: PortfolioProject; index: number }) {
   const ref = useRef<HTMLDivElement>(null)
   const inView = useInView(ref, { once: true, margin: '-10%' })
-  const { metric, sub } = parseResult(project.results)
+  const domain = project.url ? project.url.replace(/^https?:\/\//, '').replace(/\/$/, '') : null
 
   return (
     <motion.article
       ref={ref}
-      initial={{ opacity: 0, rotate: -3, y: 20 }}
-      animate={inView ? { opacity: 1, rotate: 0, y: 0 } : {}}
-      whileHover={{
-        scale: 1.02,
-        boxShadow: '0 0 0 1px rgba(0,255,135,0.12), 0 24px 48px rgba(0,0,0,0.5)',
-      }}
-      transition={{ duration: 0.65, delay: index * 0.12, ease: EASE }}
-      role="listitem"
-      className="flex flex-col rounded-2xl relative overflow-hidden"
-      style={{
-        backgroundColor: '#212121',
-        border: '1px solid rgba(255,255,255,0.05)',
-        padding: '1.75rem',
-        minHeight: '280px',
-        willChange: 'transform',
-        cursor: 'default',
-      }}
+      initial={{ opacity: 0, y: 18, filter: 'blur(6px)' }}
+      animate={inView ? { opacity: 1, y: 0, filter: 'blur(0px)' } : {}}
+      transition={{ duration: 0.6, delay: index * 0.1, ease: EASE }}
+      className="flex flex-col rounded-2xl"
+      style={{ backgroundColor: 'var(--surface-2)', border: '1px solid var(--line)', boxShadow: '0 8px 30px var(--shadow-soft)', padding: '1.5rem', gap: '0.65rem' }}
     >
-      {/* Hover overlay — monte du bas */}
-      <motion.div
-        className="absolute inset-x-0 bottom-0 pointer-events-none"
-        initial={{ y: '100%', opacity: 0 }}
-        whileHover={{ y: '0%', opacity: 1 }}
-        transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-        style={{
-          height: '40%',
-          background: 'linear-gradient(to top, rgba(0,255,135,0.06) 0%, transparent 100%)',
-        }}
-        aria-hidden
-      />
-      {/* Metric — vert #00FF87 comme Results, font-bold cohérent */}
-      <div className="mb-5">
-        <p
-          className="font-display font-bold leading-none"
-          style={{
-            fontSize: 'clamp(1.8rem, 3.5vw, 2.6rem)',
-            color: '#00FF87',
-            letterSpacing: '-0.04em',
-            fontFeatureSettings: '"tnum"',
-            marginBottom: '0.25rem',
-          }}
-        >
-          {metric}
-        </p>
-        {sub && (
-          <p style={{ fontSize: '0.72rem', color: '#9ca3af' }}>
-            {sub}
-          </p>
-        )}
-      </div>
-
-      {/* Sector */}
-      <span
-        style={{
-          fontSize: '0.65rem',
-          fontWeight: 700,
-          letterSpacing: '0.14em',
-          textTransform: 'uppercase',
-          color: 'rgba(225,224,204,0.4)',
-          display: 'block',
-          marginBottom: '0.5rem',
-        }}
-      >
+      <span style={{ fontSize: '0.7rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--ink-3)' }}>
         {project.sector}
       </span>
-
-      {/* Title */}
-      <h3
-        className="font-display font-normal leading-snug"
-        style={{
-          fontSize: 'clamp(1rem, 1.5vw, 1.25rem)',
-          letterSpacing: '-0.01em',
-          color: '#E1E0CC',
-          marginBottom: '0.75rem',
-        }}
-      >
+      <h3 style={{ fontFamily: 'var(--font-sans)', fontWeight: 800, fontSize: '1.1rem', color: 'var(--ink)' }}>
         {project.title}
       </h3>
-
-      {/* Description */}
-      <p
-        className="text-xs leading-relaxed flex-1"
-        style={{ color: '#9ca3af' }}
+      <div
+        style={{
+          backgroundColor: 'var(--brand-tint)',
+          color: 'var(--brand-strong)',
+          borderRadius: 12,
+          padding: '0.6rem 0.85rem',
+          fontSize: '0.87rem',
+          fontWeight: 700,
+          width: 'fit-content',
+        }}
       >
+        {project.results}
+      </div>
+      <p style={{ fontSize: '0.85rem', color: 'var(--ink-2)', lineHeight: 1.55 }}>
         {project.description}
       </p>
-
-      {/* Tags */}
-      <div className="flex flex-wrap gap-1.5 pt-4">
-        {project.tags.map((tag) => (
-          <span
-            key={tag}
-            className="inline-block px-2.5 py-0.5 rounded-full text-[10px] font-medium"
-            style={{
-              backgroundColor: 'rgba(0,255,135,0.08)',
-              color: 'rgba(0,255,135,0.6)',
-            }}
-          >
-            {tag}
-          </span>
-        ))}
-      </div>
+      {domain && project.url && (
+        <a
+          href={project.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-1 text-sm font-bold mt-1"
+          style={{ color: 'var(--brand-strong)' }}
+        >
+          {domain} <ArrowUpRight size={14} aria-hidden />
+        </a>
+      )}
     </motion.article>
   )
-}
-
-// ── Portfolio section ─────────────────────────────────────────────────────────
-
-const container: Variants = {
-  hidden: { opacity: 0 },
-  visible: { opacity: 1, transition: { staggerChildren: 0.1 } },
 }
 
 export function Portfolio({ lang = 'fr' }: { lang?: Locale }) {
@@ -205,77 +68,54 @@ export function Portfolio({ lang = 'fr' }: { lang?: Locale }) {
   return (
     <section
       id="section-portfolio"
-      className="bg-black"
-      style={{ padding: '7rem 1.5rem' }}
+      style={{ backgroundColor: 'var(--surface)', padding: '5rem 1.5rem' }}
       aria-labelledby="portfolio-heading"
     >
-      <div className="mx-auto max-w-7xl" ref={ref}>
-
-        {/* Header */}
+      <div className="mx-auto max-w-6xl" ref={ref}>
         <motion.div
-          initial={{ opacity: 0 }}
-          animate={isInView ? { opacity: 1 } : {}}
+          initial={{ opacity: 0, filter: 'blur(6px)' }}
+          animate={isInView ? { opacity: 1, filter: 'blur(0px)' } : {}}
           transition={{ duration: 0.5 }}
-          className="mb-14 sm:mb-20 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-8"
+          className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6 mb-10"
         >
           <div>
-            {/* Eyebrow with green dot */}
             <div
-              className="flex items-center gap-2 mb-5"
-              style={{ fontSize: '0.7rem', letterSpacing: '0.12em', textTransform: 'uppercase', color: 'rgba(225,224,204,0.7)', fontWeight: 700 }}
+              className="mb-3"
+              style={{ fontSize: '0.72rem', letterSpacing: '0.1em', textTransform: 'uppercase', color: 'var(--brand-strong)', fontWeight: 800 }}
             >
-              <span
-                className="w-1.5 h-1.5 rounded-full shrink-0"
-                style={{ backgroundColor: '#00FF87' }}
-                aria-hidden
-              />
               {d.label}
             </div>
-
-            {/* Heading — word pull-up bicolore */}
             <h2
               id="portfolio-heading"
-              className="font-display font-normal"
-              style={{ fontSize: 'clamp(2rem, 4.5vw, 4rem)', color: '#E1E0CC', lineHeight: 1.05, letterSpacing: '-0.02em' }}
+              style={{
+                fontFamily: 'var(--font-sans)',
+                fontWeight: 800,
+                fontSize: 'clamp(1.5rem, 3.2vw, 2.15rem)',
+                lineHeight: 1.15,
+                letterSpacing: '-0.01em',
+                color: 'var(--ink)',
+                maxWidth: '30ch',
+              }}
             >
-              <WordPullUp text={d.heading1} delay={0.05} />
-              {' '}
-              <ItalicPullUp text={d.heading2} delay={0.45} />
+              {d.heading}
             </h2>
           </div>
 
           <Link
-            href={lang === "en" ? "/en/realisations" : "/realisations"}
-            className="inline-flex items-center gap-2 text-sm font-medium transition-opacity duration-200 hover:opacity-60 shrink-0"
-            style={{ color: 'rgba(225,224,204,0.55)' }}
+            href={lang === 'en' ? '/en/realisations' : '/realisations'}
+            className="inline-flex items-center gap-2 text-sm font-bold shrink-0"
+            style={{ color: 'var(--ink-2)' }}
           >
             {d.cta}
             <ArrowRight size={14} aria-hidden />
           </Link>
         </motion.div>
 
-        {/* Cards */}
-        <motion.div
-          variants={container}
-          initial="hidden"
-          animate={isInView ? 'visible' : 'hidden'}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"
-          role="list"
-        >
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           {projects.map((project, i) => (
             <ProjectCard key={project.id} project={project} index={i} />
           ))}
-        </motion.div>
-
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={isInView ? { opacity: 1 } : {}}
-          transition={{ delay: 0.4, duration: 0.5 }}
-          className="mt-6 text-xs italic"
-          style={{ color: 'rgba(225,224,204,0.25)' }}
-        >
-          * Projets présentés avec accord des clients ou à titre illustratif.
-        </motion.p>
+        </div>
       </div>
     </section>
   )

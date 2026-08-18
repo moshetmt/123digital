@@ -9,7 +9,7 @@ import { FAQ }       from '@/components/sections/FAQ'
 import { CTA }       from '@/components/sections/CTA'
 import { Zones }     from '@/components/sections/Zones'
 import { JsonLd }    from '@/components/seo/JsonLd'
-import { faqPageSchema, BASE_URL } from '@/lib/schema'
+import { faqPageSchema } from '@/lib/schema'
 import { getHomeFaqs } from '@/data/faq'
 import { BASE_URL as BU } from '@/lib/schema'
 
@@ -28,13 +28,13 @@ export default function HomePageEN() {
       <JsonLd schema={faqPageSchema(getHomeFaqs('en'))} />
       <Hero lang="en" />
       <Services lang="en" />
-      <About lang="en" />
       <Results lang="en" />
       <Portfolio lang="en" />
-      <Zones lang="en" />
       <Process lang="en" />
+      <About lang="en" />
       <FAQ lang="en" />
       <CTA lang="en" />
+      <Zones lang="en" />
     </>
   )
 }

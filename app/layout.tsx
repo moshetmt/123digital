@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from 'next'
-import { Fraunces } from 'next/font/google'
+import { Fraunces, Plus_Jakarta_Sans } from 'next/font/google'
 import Script from 'next/script'
 import './globals.css'
 import { JsonLd } from '@/components/seo/JsonLd'
@@ -11,8 +11,15 @@ import {
 } from '@/lib/schema'
 
 // ─── Fonts ────────────────────────────────────────────────────────────────────
-// Switzer — @font-face dans globals.css (public/fonts/, conforme CNIL)
+// Plus Jakarta Sans — corps, nav, boutons, formulaires (Google Fonts via next/font)
 // Fraunces — accents italiques éditoriaux (Google Fonts via next/font)
+
+const jakarta = Plus_Jakarta_Sans({
+  subsets: ['latin'],
+  variable: '--font-jakarta',
+  weight: ['400', '600', '700', '800'],
+  display: 'swap',
+})
 
 const fraunces = Fraunces({
   subsets: ['latin'],
@@ -99,6 +106,9 @@ export const metadata: Metadata = {
   },
 
   manifest: '/site.webmanifest',
+  icons: {
+    icon: '/images/favicon.svg',
+  },
   other: { 'theme-color': '#000000' },
 }
 
@@ -115,7 +125,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html
       lang="fr"
-      className={fraunces.variable}
+      className={`${jakarta.variable} ${fraunces.variable}`}
       suppressHydrationWarning
     >
       <head>
@@ -130,6 +140,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           function gtag(){dataLayer.push(arguments);}
           gtag('js', new Date());
           gtag('config', 'G-96F0VT9FDY');
+        `}</Script>
+        {/* Microsoft Clarity */}
+        <Script id="ms-clarity" strategy="afterInteractive">{`
+          (function(c,l,a,r,i,t,y){
+            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+          })(window, document, "clarity", "script", "xu0d6yenai");
         `}</Script>
       </body>
     </html>

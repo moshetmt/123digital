@@ -90,7 +90,7 @@ export default async function VillePage({ params }: PageProps) {
       <JsonLd schema={schemas} />
 
       {/* Hero */}
-      <section className="relative bg-black" style={{ padding: '9rem 1.5rem 6rem', overflow: 'hidden' }}>
+      <section className="relative bg-background" style={{ padding: '9rem 1.5rem 6rem', overflow: 'hidden' }}>
         <div className="absolute inset-0" aria-hidden>
           <Image
             src={`/images/villes/${ville.slug}.jpg`}
@@ -102,7 +102,7 @@ export default async function VillePage({ params }: PageProps) {
           />
           <div
             className="absolute inset-0"
-            style={{ background: 'linear-gradient(180deg, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.7) 60%, #000 100%)' }}
+            style={{ background: 'linear-gradient(180deg, oklch(0.962 0.012 96 / 0.30) 0%, oklch(0.962 0.012 96 / 0.62) 55%, var(--surface) 100%)' }}
           />
         </div>
         <div className="relative mx-auto max-w-5xl">
@@ -121,11 +121,11 @@ export default async function VillePage({ params }: PageProps) {
               fontSize: '0.7rem',
               letterSpacing: '0.12em',
               textTransform: 'uppercase',
-              color: 'rgba(225,224,204,0.7)',
+              color: 'var(--ink-2)',
               fontWeight: 700,
             }}
           >
-            <span className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: '#00FF87' }} />
+            <span className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: 'var(--brand)' }} />
             {ville.region} · {ville.departement}
           </div>
 
@@ -133,7 +133,7 @@ export default async function VillePage({ params }: PageProps) {
             className="font-display font-normal mb-6"
             style={{
               fontSize: 'clamp(2.6rem, 5vw, 5rem)',
-              color: '#E1E0CC',
+              color: 'var(--ink)',
               lineHeight: 1.05,
               letterSpacing: '-0.025em',
             }}
@@ -141,7 +141,7 @@ export default async function VillePage({ params }: PageProps) {
             Consultant digital<br />
             <em
               style={{
-                color: '#00FF87',
+                color: 'var(--brand)',
                 fontStyle: 'italic',
                 fontFamily: 'var(--font-serif)',
               }}
@@ -152,13 +152,13 @@ export default async function VillePage({ params }: PageProps) {
 
           <p
             className="text-base leading-relaxed mb-4 max-w-2xl"
-            style={{ color: 'rgba(225,224,204,0.65)' }}
+            style={{ color: 'var(--ink-2)' }}
           >
             Maurice Timsit accompagne les PME de {ville.nom} ({ville.description}) dans leur croissance digitale : site web qui convertit, SEO local, publicité Google et Meta, branding et automatisation. Un seul interlocuteur, des résultats mesurables.
           </p>
           <p
             className="text-sm max-w-2xl"
-            style={{ color: 'rgba(225,224,204,0.45)', lineHeight: 1.7 }}
+            style={{ color: 'var(--ink-2)', lineHeight: 1.7 }}
           >
             {ville.population.toLocaleString('fr-FR')} habitants · {ville.departement} · {ville.region}.{' '}
             Les entreprises de {ville.nom} cherchent un{' '}
@@ -174,8 +174,8 @@ export default async function VillePage({ params }: PageProps) {
               style={{
                 display: 'inline-block',
                 padding: '0.85rem 2rem',
-                backgroundColor: '#00FF87',
-                color: '#080808',
+                backgroundColor: 'var(--brand)',
+                color: 'var(--on-brand)',
                 fontSize: '0.82rem',
                 fontWeight: 700,
                 letterSpacing: '0.08em',
@@ -186,12 +186,12 @@ export default async function VillePage({ params }: PageProps) {
             </Link>
             <Link
               href="/a-propos"
-              className="hover:border-[#00FF87] hover:text-[#00FF87] transition-colors"
+              className="hover:border-[var(--brand)] hover:text-[var(--brand)] transition-colors"
               style={{
                 display: 'inline-block',
                 padding: '0.85rem 2rem',
-                border: '1px solid rgba(225,224,204,0.2)',
-                color: 'rgba(225,224,204,0.7)',
+                border: '1px solid var(--line)',
+                color: 'var(--ink-2)',
                 fontSize: '0.82rem',
                 fontWeight: 700,
                 letterSpacing: '0.08em',
@@ -207,8 +207,8 @@ export default async function VillePage({ params }: PageProps) {
       {/* Marché local — contenu unique pour les villes prioritaires */}
       {insight && (
         <section
-          className="bg-black"
-          style={{ padding: '4rem 1.5rem 6rem', borderTop: '1px solid rgba(225,224,204,0.06)' }}
+          className="bg-background"
+          style={{ padding: '4rem 1.5rem 6rem', borderTop: '1px solid var(--line)' }}
         >
           <div className="mx-auto max-w-5xl">
             <div
@@ -216,7 +216,7 @@ export default async function VillePage({ params }: PageProps) {
                 fontSize: '0.65rem',
                 letterSpacing: '0.14em',
                 textTransform: 'uppercase',
-                color: 'rgba(225,224,204,0.5)',
+                color: 'var(--ink-2)',
                 fontWeight: 700,
                 marginBottom: '1.5rem',
               }}
@@ -224,7 +224,7 @@ export default async function VillePage({ params }: PageProps) {
               Le marché à {ville.nom}
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-              <p style={{ color: 'rgba(225,224,204,0.65)', lineHeight: 1.75, fontSize: '0.95rem' }}>
+              <p style={{ color: 'var(--ink-2)', lineHeight: 1.75, fontSize: '0.95rem' }}>
                 {insight.marche}
               </p>
               <div>
@@ -233,14 +233,14 @@ export default async function VillePage({ params }: PageProps) {
                     fontSize: '0.7rem',
                     letterSpacing: '0.1em',
                     textTransform: 'uppercase',
-                    color: '#00FF87',
+                    color: 'var(--brand)',
                     fontWeight: 700,
                     marginBottom: '0.75rem',
                   }}
                 >
                   Mon approche à {ville.nom}
                 </div>
-                <p style={{ color: 'rgba(225,224,204,0.65)', lineHeight: 1.75, fontSize: '0.95rem' }}>
+                <p style={{ color: 'var(--ink-2)', lineHeight: 1.75, fontSize: '0.95rem' }}>
                   {insight.angle}
                 </p>
               </div>
@@ -251,8 +251,8 @@ export default async function VillePage({ params }: PageProps) {
 
       {/* Services disponibles */}
       <section
-        className="bg-black"
-        style={{ padding: '4rem 1.5rem 6rem', borderTop: '1px solid rgba(225,224,204,0.06)' }}
+        className="bg-background"
+        style={{ padding: '4rem 1.5rem 6rem', borderTop: '1px solid var(--line)' }}
       >
         <div className="mx-auto max-w-5xl">
           <div
@@ -260,7 +260,7 @@ export default async function VillePage({ params }: PageProps) {
               fontSize: '0.65rem',
               letterSpacing: '0.14em',
               textTransform: 'uppercase',
-              color: 'rgba(225,224,204,0.5)',
+              color: 'var(--ink-2)',
               fontWeight: 700,
               marginBottom: '1.5rem',
             }}
@@ -269,38 +269,38 @@ export default async function VillePage({ params }: PageProps) {
           </div>
           <h2
             className="font-display font-normal mb-10"
-            style={{ fontSize: 'clamp(1.8rem, 3vw, 2.6rem)', color: '#E1E0CC', lineHeight: 1.1 }}
+            style={{ fontSize: 'clamp(1.8rem, 3vw, 2.6rem)', color: 'var(--ink)', lineHeight: 1.1 }}
           >
             Ce que je fais pour votre<br />entreprise à {ville.nom}
           </h2>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px" style={{ backgroundColor: 'rgba(225,224,204,0.06)' }}>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px" style={{ backgroundColor: 'var(--line)' }}>
             {services.map((service) => (
               <Link
                 key={service.id}
                 href={`/${ville.slug}/${service.id}`}
                 className="group block p-8"
-                style={{ backgroundColor: '#080808' }}
+                style={{ backgroundColor: 'var(--surface-2)' }}
               >
                 <div
-                  className="mb-4 group-hover:text-[#00FF87] transition-colors"
-                  style={{ fontSize: '0.65rem', letterSpacing: '0.12em', textTransform: 'uppercase', color: '#00FF87', fontWeight: 700 }}
+                  className="mb-4 group-hover:text-[var(--brand)] transition-colors"
+                  style={{ fontSize: '0.65rem', letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--brand)', fontWeight: 700 }}
                 >
                   {service.shortDesc}
                 </div>
                 <h3
-                  className="font-display font-normal mb-3 group-hover:text-[#00FF87] transition-colors"
-                  style={{ fontSize: '1.25rem', color: '#E1E0CC', lineHeight: 1.2 }}
+                  className="font-display font-normal mb-3 group-hover:text-[var(--brand)] transition-colors"
+                  style={{ fontSize: '1.25rem', color: 'var(--ink)', lineHeight: 1.2 }}
                 >
                   {service.title}<br />
-                  <span style={{ fontSize: '0.9rem', color: 'rgba(225,224,204,0.5)' }}>à {ville.nom}</span>
+                  <span style={{ fontSize: '0.9rem', color: 'var(--ink-2)' }}>à {ville.nom}</span>
                 </h3>
-                <p style={{ fontSize: '0.88rem', color: 'rgba(225,224,204,0.6)', lineHeight: 1.65 }}>
+                <p style={{ fontSize: '0.88rem', color: 'var(--ink-2)', lineHeight: 1.65 }}>
                   {service.description}
                 </p>
                 <div
-                  className="mt-4 group-hover:text-[#00FF87] transition-colors"
-                  style={{ fontSize: '0.75rem', letterSpacing: '0.08em', color: 'rgba(225,224,204,0.4)', textTransform: 'uppercase', fontWeight: 700 }}
+                  className="mt-4 group-hover:text-[var(--brand)] transition-colors"
+                  style={{ fontSize: '0.75rem', letterSpacing: '0.08em', color: 'var(--ink-3)', textTransform: 'uppercase', fontWeight: 700 }}
                 >
                   En savoir plus →
                 </div>
@@ -312,8 +312,8 @@ export default async function VillePage({ params }: PageProps) {
 
       {/* Résultats concrets */}
       <section
-        className="bg-black"
-        style={{ padding: '4rem 1.5rem', borderTop: '1px solid rgba(225,224,204,0.06)' }}
+        className="bg-background"
+        style={{ padding: '4rem 1.5rem', borderTop: '1px solid var(--line)' }}
       >
         <div className="mx-auto max-w-5xl">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
@@ -326,11 +326,11 @@ export default async function VillePage({ params }: PageProps) {
               <div key={label} className="text-center">
                 <div
                   className="font-display font-normal mb-2"
-                  style={{ fontSize: 'clamp(2rem, 4vw, 3rem)', color: '#00FF87', lineHeight: 1 }}
+                  style={{ fontSize: 'clamp(2rem, 4vw, 3rem)', color: 'var(--brand)', lineHeight: 1 }}
                 >
                   {chiffre}
                 </div>
-                <div style={{ fontSize: '0.78rem', color: 'rgba(225,224,204,0.55)', letterSpacing: '0.06em', textTransform: 'uppercase' }}>
+                <div style={{ fontSize: '0.78rem', color: 'var(--ink-2)', letterSpacing: '0.06em', textTransform: 'uppercase' }}>
                   {label}
                 </div>
               </div>
@@ -341,8 +341,8 @@ export default async function VillePage({ params }: PageProps) {
 
       {/* FAQ */}
       <section
-        className="bg-black"
-        style={{ padding: '4rem 1.5rem 6rem', borderTop: '1px solid rgba(225,224,204,0.06)' }}
+        className="bg-background"
+        style={{ padding: '4rem 1.5rem 6rem', borderTop: '1px solid var(--line)' }}
       >
         <div className="mx-auto max-w-3xl">
           <div
@@ -350,7 +350,7 @@ export default async function VillePage({ params }: PageProps) {
               fontSize: '0.65rem',
               letterSpacing: '0.14em',
               textTransform: 'uppercase',
-              color: 'rgba(225,224,204,0.5)',
+              color: 'var(--ink-2)',
               fontWeight: 700,
               marginBottom: '1.5rem',
             }}
@@ -359,17 +359,17 @@ export default async function VillePage({ params }: PageProps) {
           </div>
           <h2
             className="font-display font-normal mb-10"
-            style={{ fontSize: 'clamp(1.8rem, 3vw, 2.6rem)', color: '#E1E0CC', lineHeight: 1.1 }}
+            style={{ fontSize: 'clamp(1.8rem, 3vw, 2.6rem)', color: 'var(--ink)', lineHeight: 1.1 }}
           >
             Consultant digital à {ville.nom} — vos questions
           </h2>
           <dl className="space-y-8">
             {faqs.map(({ question, answer }, i) => (
-              <div key={i} style={{ borderTop: '1px solid rgba(225,224,204,0.08)', paddingTop: '2rem' }}>
-                <dt className="font-display font-normal mb-3" style={{ fontSize: '1.05rem', color: '#E1E0CC' }}>
+              <div key={i} style={{ borderTop: '1px solid var(--line)', paddingTop: '2rem' }}>
+                <dt className="font-display font-normal mb-3" style={{ fontSize: '1.05rem', color: 'var(--ink)' }}>
                   {question}
                 </dt>
-                <dd style={{ color: 'rgba(225,224,204,0.65)', lineHeight: 1.75, fontSize: '0.95rem' }}>
+                <dd style={{ color: 'var(--ink-2)', lineHeight: 1.75, fontSize: '0.95rem' }}>
                   {answer}
                 </dd>
               </div>
@@ -380,8 +380,8 @@ export default async function VillePage({ params }: PageProps) {
 
       {/* Secteurs accompagnés */}
       <section
-        className="bg-black"
-        style={{ padding: '3rem 1.5rem 4rem', borderTop: '1px solid rgba(225,224,204,0.06)' }}
+        className="bg-background"
+        style={{ padding: '3rem 1.5rem 4rem', borderTop: '1px solid var(--line)' }}
       >
         <div className="mx-auto max-w-5xl">
           <p
@@ -389,7 +389,7 @@ export default async function VillePage({ params }: PageProps) {
               fontSize: '0.7rem',
               letterSpacing: '0.1em',
               textTransform: 'uppercase',
-              color: 'rgba(225,224,204,0.4)',
+              color: 'var(--ink-3)',
               marginBottom: '1rem',
               fontWeight: 700,
             }}
@@ -401,11 +401,11 @@ export default async function VillePage({ params }: PageProps) {
               <Link
                 key={s.slug}
                 href={`/secteurs/${s.slug}`}
-                className="hover:text-[#00FF87] hover:border-[#00FF87] transition-colors"
+                className="hover:text-[var(--brand)] hover:border-[var(--brand)] transition-colors"
                 style={{
                   padding: '0.4rem 0.9rem',
-                  border: '1px solid rgba(225,224,204,0.12)',
-                  color: 'rgba(225,224,204,0.55)',
+                  border: '1px solid var(--line)',
+                  color: 'var(--ink-2)',
                   fontSize: '0.8rem',
                 }}
               >
@@ -419,8 +419,8 @@ export default async function VillePage({ params }: PageProps) {
       {/* Villes proches (interlinking) */}
       {isARA && (
         <section
-          className="bg-black"
-          style={{ padding: '3rem 1.5rem', borderTop: '1px solid rgba(225,224,204,0.06)' }}
+          className="bg-background"
+          style={{ padding: '3rem 1.5rem', borderTop: '1px solid var(--line)' }}
         >
           <div className="mx-auto max-w-5xl">
             <p
@@ -428,7 +428,7 @@ export default async function VillePage({ params }: PageProps) {
                 fontSize: '0.7rem',
                 letterSpacing: '0.1em',
                 textTransform: 'uppercase',
-                color: 'rgba(225,224,204,0.4)',
+                color: 'var(--ink-3)',
                 marginBottom: '1rem',
                 fontWeight: 700,
               }}
@@ -443,11 +443,11 @@ export default async function VillePage({ params }: PageProps) {
                   <Link
                     key={v.slug}
                     href={`/${v.slug}`}
-                    className="hover:text-[#00FF87] hover:border-[#00FF87] transition-colors"
+                    className="hover:text-[var(--brand)] hover:border-[var(--brand)] transition-colors"
                     style={{
                       padding: '0.4rem 0.9rem',
-                      border: '1px solid rgba(225,224,204,0.12)',
-                      color: 'rgba(225,224,204,0.55)',
+                      border: '1px solid var(--line)',
+                      color: 'var(--ink-2)',
                       fontSize: '0.8rem',
                     }}
                   >
@@ -461,17 +461,17 @@ export default async function VillePage({ params }: PageProps) {
 
       {/* CTA final */}
       <section
-        className="bg-black"
-        style={{ padding: '4rem 1.5rem 6rem', borderTop: '1px solid rgba(225,224,204,0.06)', textAlign: 'center' }}
+        className="bg-background"
+        style={{ padding: '4rem 1.5rem 6rem', borderTop: '1px solid var(--line)', textAlign: 'center' }}
       >
         <div className="mx-auto max-w-2xl">
           <h2
             className="font-display font-normal mb-4"
-            style={{ fontSize: 'clamp(1.8rem, 3.5vw, 2.8rem)', color: '#E1E0CC', lineHeight: 1.1 }}
+            style={{ fontSize: 'clamp(1.8rem, 3.5vw, 2.8rem)', color: 'var(--ink)', lineHeight: 1.1 }}
           >
             Prêt à développer votre activité<br />à {ville.nom} ?
           </h2>
-          <p style={{ color: 'rgba(225,224,204,0.6)', marginBottom: '2.5rem', lineHeight: 1.7 }}>
+          <p style={{ color: 'var(--ink-2)', marginBottom: '2.5rem', lineHeight: 1.7 }}>
             Un audit gratuit de 30 minutes pour identifier les 3 actions les plus rentables pour votre entreprise. Sans engagement, sans jargon.
           </p>
           <Link
@@ -479,8 +479,8 @@ export default async function VillePage({ params }: PageProps) {
             style={{
               display: 'inline-block',
               padding: '1rem 2.5rem',
-              backgroundColor: '#00FF87',
-              color: '#080808',
+              backgroundColor: 'var(--brand)',
+              color: 'var(--on-brand)',
               fontSize: '0.85rem',
               fontWeight: 700,
               letterSpacing: '0.08em',

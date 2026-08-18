@@ -27,7 +27,7 @@ export function Breadcrumb({ items }: BreadcrumbProps) {
           fontSize: '0.7rem',
           letterSpacing: '0.1em',
           textTransform: 'uppercase',
-          color: 'rgba(225,224,204,0.5)',
+          color: 'var(--ink-2)',
           fontFamily: 'var(--font-sans)',
           fontWeight: 700,
         }}
@@ -37,12 +37,12 @@ export function Breadcrumb({ items }: BreadcrumbProps) {
           return (
             <span key={index} className="flex items-center gap-1.5">
               {index > 0 && (
-                <span aria-hidden="true" style={{ color: 'rgba(225,224,204,0.3)' }}>/</span>
+                <span aria-hidden="true" style={{ color: 'var(--ink-3)' }}>/</span>
               )}
               {item.href && !isLast ? (
                 <Link
                   href={item.href}
-                  className="hover:text-[#00FF87] transition-colors duration-200"
+                  className="hover:text-[var(--brand)] transition-colors duration-200"
                   style={{ color: 'inherit' }}
                 >
                   {item.label}
@@ -50,7 +50,7 @@ export function Breadcrumb({ items }: BreadcrumbProps) {
               ) : (
                 <span
                   aria-current={isLast ? 'page' : undefined}
-                  style={{ color: isLast ? 'rgba(225,224,204,0.8)' : 'inherit' }}
+                  style={{ color: isLast ? 'var(--ink)' : 'inherit' }}
                 >
                   {item.label}
                 </span>

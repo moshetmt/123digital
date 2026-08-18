@@ -47,10 +47,10 @@ function RenderSection({ section }: { section: BlogSection }) {
         <p
           className="text-base leading-relaxed"
           style={{
-            color: 'rgba(225,224,204,0.75)',
+            color: 'var(--ink)',
             fontSize: '1.05rem',
             lineHeight: 1.8,
-            borderLeft: '3px solid #00FF87',
+            borderLeft: '3px solid var(--brand)',
             paddingLeft: '1.5rem',
             marginBottom: '2.5rem',
           }}
@@ -64,12 +64,12 @@ function RenderSection({ section }: { section: BlogSection }) {
         <div style={{ marginBottom: '2rem', marginTop: '3rem' }}>
           <h2
             className="font-display font-normal mb-4"
-            style={{ fontSize: 'clamp(1.4rem, 2.5vw, 1.9rem)', color: '#E1E0CC', lineHeight: 1.2 }}
+            style={{ fontSize: 'clamp(1.4rem, 2.5vw, 1.9rem)', color: 'var(--ink)', lineHeight: 1.2 }}
           >
             {section.titre}
           </h2>
           {section.texte && (
-            <p style={{ color: 'rgba(225,224,204,0.65)', lineHeight: 1.8, fontSize: '0.95rem' }}>
+            <p style={{ color: 'var(--ink-2)', lineHeight: 1.8, fontSize: '0.95rem' }}>
               {section.texte}
             </p>
           )}
@@ -81,12 +81,12 @@ function RenderSection({ section }: { section: BlogSection }) {
         <div style={{ marginBottom: '1.5rem', marginTop: '2rem' }}>
           <h3
             className="font-display font-normal mb-3"
-            style={{ fontSize: '1.2rem', color: '#E1E0CC', lineHeight: 1.2 }}
+            style={{ fontSize: '1.2rem', color: 'var(--ink)', lineHeight: 1.2 }}
           >
             {section.titre}
           </h3>
           {section.texte && (
-            <p style={{ color: 'rgba(225,224,204,0.65)', lineHeight: 1.8, fontSize: '0.95rem' }}>
+            <p style={{ color: 'var(--ink-2)', lineHeight: 1.8, fontSize: '0.95rem' }}>
               {section.texte}
             </p>
           )}
@@ -95,7 +95,7 @@ function RenderSection({ section }: { section: BlogSection }) {
 
     case 'paragraphe':
       return (
-        <p style={{ color: 'rgba(225,224,204,0.65)', lineHeight: 1.8, fontSize: '0.95rem', marginBottom: '1.5rem' }}>
+        <p style={{ color: 'var(--ink-2)', lineHeight: 1.8, fontSize: '0.95rem', marginBottom: '1.5rem' }}>
           {section.texte}
         </p>
       )
@@ -104,15 +104,15 @@ function RenderSection({ section }: { section: BlogSection }) {
       return (
         <div style={{ marginBottom: '2rem' }}>
           {section.titre && (
-            <p style={{ fontWeight: 700, color: '#E1E0CC', marginBottom: '0.75rem', fontSize: '0.9rem' }}>
+            <p style={{ fontWeight: 700, color: 'var(--ink)', marginBottom: '0.75rem', fontSize: '0.9rem' }}>
               {section.titre}
             </p>
           )}
           <ul className="space-y-3">
             {section.items?.map((item, i) => (
               <li key={i} className="flex items-start gap-3">
-                <span style={{ color: '#00FF87', flexShrink: 0, marginTop: '0.1rem' }}>→</span>
-                <span style={{ fontSize: '0.9rem', color: 'rgba(225,224,204,0.65)', lineHeight: 1.6 }}>
+                <span style={{ color: 'var(--brand)', flexShrink: 0, marginTop: '0.1rem' }}>→</span>
+                <span style={{ fontSize: '0.9rem', color: 'var(--ink-2)', lineHeight: 1.6 }}>
                   {item}
                 </span>
               </li>
@@ -129,7 +129,7 @@ function RenderSection({ section }: { section: BlogSection }) {
               fontSize: '0.65rem',
               letterSpacing: '0.14em',
               textTransform: 'uppercase',
-              color: 'rgba(225,224,204,0.5)',
+              color: 'var(--ink-2)',
               fontWeight: 700,
               marginBottom: '1.5rem',
             }}
@@ -138,11 +138,11 @@ function RenderSection({ section }: { section: BlogSection }) {
           </div>
           <dl className="space-y-6">
             {section.faqs?.map(({ question, reponse }, i) => (
-              <div key={i} style={{ borderTop: '1px solid rgba(225,224,204,0.08)', paddingTop: '1.5rem' }}>
-                <dt className="font-display font-normal mb-2" style={{ fontSize: '1rem', color: '#E1E0CC' }}>
+              <div key={i} style={{ borderTop: '1px solid var(--line)', paddingTop: '1.5rem' }}>
+                <dt className="font-display font-normal mb-2" style={{ fontSize: '1rem', color: 'var(--ink)' }}>
                   {question}
                 </dt>
-                <dd style={{ color: 'rgba(225,224,204,0.6)', lineHeight: 1.75, fontSize: '0.9rem' }}>
+                <dd style={{ color: 'var(--ink-2)', lineHeight: 1.75, fontSize: '0.9rem' }}>
                   {reponse}
                 </dd>
               </div>
@@ -158,8 +158,8 @@ function RenderSection({ section }: { section: BlogSection }) {
             marginBottom: '2rem',
             marginTop: '3rem',
             padding: '1.5rem 2rem',
-            backgroundColor: 'rgba(0,255,135,0.04)',
-            border: '1px solid rgba(0,255,135,0.15)',
+            backgroundColor: 'var(--brand-tint)',
+            border: '1px solid var(--brand-line)',
           }}
         >
           <div
@@ -167,7 +167,7 @@ function RenderSection({ section }: { section: BlogSection }) {
               fontSize: '0.65rem',
               letterSpacing: '0.14em',
               textTransform: 'uppercase',
-              color: '#00FF87',
+              color: 'var(--brand)',
               fontWeight: 700,
               marginBottom: '1rem',
             }}
@@ -176,7 +176,7 @@ function RenderSection({ section }: { section: BlogSection }) {
           </div>
           <ul className="space-y-2">
             {section.items?.map((item, i) => (
-              <li key={i} style={{ fontSize: '0.88rem', color: 'rgba(225,224,204,0.7)', lineHeight: 1.6 }}>
+              <li key={i} style={{ fontSize: '0.88rem', color: 'var(--ink-2)', lineHeight: 1.6 }}>
                 {item}
               </li>
             ))}
@@ -190,17 +190,17 @@ function RenderSection({ section }: { section: BlogSection }) {
           style={{
             marginBottom: '2rem',
             padding: '2rem',
-            border: '1px solid rgba(225,224,204,0.1)',
+            border: '1px solid var(--line)',
             textAlign: 'center',
           }}
         >
           {section.titre && (
-            <p className="font-display font-normal mb-3" style={{ fontSize: '1.1rem', color: '#E1E0CC' }}>
+            <p className="font-display font-normal mb-3" style={{ fontSize: '1.1rem', color: 'var(--ink)' }}>
               {section.titre}
             </p>
           )}
           {section.texte && (
-            <p style={{ fontSize: '0.88rem', color: 'rgba(225,224,204,0.6)', marginBottom: '1.5rem' }}>
+            <p style={{ fontSize: '0.88rem', color: 'var(--ink-2)', marginBottom: '1.5rem' }}>
               {section.texte}
             </p>
           )}
@@ -209,8 +209,8 @@ function RenderSection({ section }: { section: BlogSection }) {
             style={{
               display: 'inline-block',
               padding: '0.75rem 1.75rem',
-              backgroundColor: '#00FF87',
-              color: '#080808',
+              backgroundColor: 'var(--brand)',
+              color: 'var(--on-brand)',
               fontSize: '0.8rem',
               fontWeight: 700,
               letterSpacing: '0.08em',
@@ -274,7 +274,7 @@ export default async function BlogArticlePage({ params }: PageProps) {
       <JsonLd schema={schemas} />
 
       {/* Hero article */}
-      <section className="bg-black" style={{ padding: '9rem 1.5rem 4rem' }}>
+      <section className="bg-background" style={{ padding: '9rem 1.5rem 4rem' }}>
         <div className="mx-auto max-w-3xl">
           <div className="mb-6">
             <Breadcrumb
@@ -292,20 +292,20 @@ export default async function BlogArticlePage({ params }: PageProps) {
                 fontSize: '0.65rem',
                 letterSpacing: '0.12em',
                 textTransform: 'uppercase',
-                color: '#00FF87',
+                color: 'var(--brand)',
                 fontWeight: 700,
               }}
             >
               {article.categorie}
             </span>
-            <span style={{ color: 'rgba(225,224,204,0.35)', fontSize: '0.8rem' }}>
+            <span style={{ color: 'var(--ink-3)', fontSize: '0.8rem' }}>
               {new Date(article.datePublication).toLocaleDateString('fr-FR', {
                 day: '2-digit',
                 month: 'long',
                 year: 'numeric',
               })}
             </span>
-            <span style={{ color: 'rgba(225,224,204,0.35)', fontSize: '0.8rem' }}>
+            <span style={{ color: 'var(--ink-3)', fontSize: '0.8rem' }}>
               {article.tempsLecture} min de lecture
             </span>
           </div>
@@ -314,7 +314,7 @@ export default async function BlogArticlePage({ params }: PageProps) {
             className="font-display font-normal mb-6"
             style={{
               fontSize: 'clamp(1.8rem, 4vw, 3rem)',
-              color: '#E1E0CC',
+              color: 'var(--ink)',
               lineHeight: 1.1,
               letterSpacing: '-0.02em',
             }}
@@ -324,10 +324,10 @@ export default async function BlogArticlePage({ params }: PageProps) {
 
           <p
             style={{
-              color: 'rgba(225,224,204,0.6)',
+              color: 'var(--ink-2)',
               lineHeight: 1.7,
               fontSize: '1rem',
-              borderBottom: '1px solid rgba(225,224,204,0.06)',
+              borderBottom: '1px solid var(--line)',
               paddingBottom: '2rem',
             }}
           >
@@ -337,7 +337,7 @@ export default async function BlogArticlePage({ params }: PageProps) {
       </section>
 
       {/* Image de couverture */}
-      <section className="bg-black" style={{ padding: '0 1.5rem 3rem' }}>
+      <section className="bg-background" style={{ padding: '0 1.5rem 3rem' }}>
         <div className="mx-auto max-w-3xl">
           <div style={{ position: 'relative', width: '100%', aspectRatio: '1200 / 628', overflow: 'hidden' }}>
             <Image
@@ -354,7 +354,7 @@ export default async function BlogArticlePage({ params }: PageProps) {
 
       {/* Contenu article */}
       <article
-        className="bg-black"
+        className="bg-background"
         style={{ padding: '2rem 1.5rem 6rem' }}
       >
         <div className="mx-auto max-w-3xl">
@@ -367,18 +367,18 @@ export default async function BlogArticlePage({ params }: PageProps) {
             style={{
               marginTop: '4rem',
               padding: '2.5rem',
-              backgroundColor: 'rgba(0,255,135,0.04)',
-              border: '1px solid rgba(0,255,135,0.2)',
+              backgroundColor: 'var(--brand-tint)',
+              border: '1px solid var(--brand-line)',
               textAlign: 'center',
             }}
           >
             <p
               className="font-display font-normal mb-3"
-              style={{ fontSize: '1.3rem', color: '#E1E0CC' }}
+              style={{ fontSize: '1.3rem', color: 'var(--ink)' }}
             >
               Prêt à passer à l&apos;action ?
             </p>
-            <p style={{ fontSize: '0.88rem', color: 'rgba(225,224,204,0.6)', marginBottom: '1.5rem', lineHeight: 1.6 }}>
+            <p style={{ fontSize: '0.88rem', color: 'var(--ink-2)', marginBottom: '1.5rem', lineHeight: 1.6 }}>
               Un audit gratuit de 30 minutes pour voir où vous en êtes et ce qui peut changer rapidement.
             </p>
             <Link
@@ -386,8 +386,8 @@ export default async function BlogArticlePage({ params }: PageProps) {
               style={{
                 display: 'inline-block',
                 padding: '0.85rem 2rem',
-                backgroundColor: '#00FF87',
-                color: '#080808',
+                backgroundColor: 'var(--brand)',
+                color: 'var(--on-brand)',
                 fontSize: '0.82rem',
                 fontWeight: 700,
                 letterSpacing: '0.08em',
@@ -399,15 +399,15 @@ export default async function BlogArticlePage({ params }: PageProps) {
           </div>
 
           {/* Tags */}
-          <div style={{ marginTop: '3rem', borderTop: '1px solid rgba(225,224,204,0.06)', paddingTop: '1.5rem' }}>
+          <div style={{ marginTop: '3rem', borderTop: '1px solid var(--line)', paddingTop: '1.5rem' }}>
             <div className="flex flex-wrap gap-2">
               {article.tags.map((tag) => (
                 <span
                   key={tag}
                   style={{
                     padding: '0.25rem 0.65rem',
-                    border: '1px solid rgba(225,224,204,0.1)',
-                    color: 'rgba(225,224,204,0.4)',
+                    border: '1px solid var(--line)',
+                    color: 'var(--ink-3)',
                     fontSize: '0.75rem',
                   }}
                 >
@@ -422,8 +422,8 @@ export default async function BlogArticlePage({ params }: PageProps) {
       {/* Articles similaires */}
       {autresArticles.length > 0 && (
         <section
-          className="bg-black"
-          style={{ padding: '4rem 1.5rem 6rem', borderTop: '1px solid rgba(225,224,204,0.06)' }}
+          className="bg-background"
+          style={{ padding: '4rem 1.5rem 6rem', borderTop: '1px solid var(--line)' }}
         >
           <div className="mx-auto max-w-5xl">
             <div
@@ -431,27 +431,27 @@ export default async function BlogArticlePage({ params }: PageProps) {
                 fontSize: '0.65rem',
                 letterSpacing: '0.14em',
                 textTransform: 'uppercase',
-                color: 'rgba(225,224,204,0.5)',
+                color: 'var(--ink-2)',
                 fontWeight: 700,
                 marginBottom: '2rem',
               }}
             >
               Autres articles
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-px" style={{ backgroundColor: 'rgba(225,224,204,0.06)' }}>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-px" style={{ backgroundColor: 'var(--line)' }}>
               {autresArticles.map((a) => (
                 <Link
                   key={a.slug}
                   href={`/blog/${a.slug}`}
                   className="group block p-6"
-                  style={{ backgroundColor: '#080808' }}
+                  style={{ backgroundColor: 'var(--surface-2)' }}
                 >
                   <div
                     style={{
                       fontSize: '0.62rem',
                       letterSpacing: '0.1em',
                       textTransform: 'uppercase',
-                      color: '#00FF87',
+                      color: 'var(--brand)',
                       fontWeight: 700,
                       marginBottom: '0.5rem',
                     }}
@@ -459,12 +459,12 @@ export default async function BlogArticlePage({ params }: PageProps) {
                     {a.categorie}
                   </div>
                   <h3
-                    className="font-display font-normal group-hover:text-[#00FF87] transition-colors"
-                    style={{ fontSize: '1rem', color: '#E1E0CC', lineHeight: 1.3, marginBottom: '0.5rem' }}
+                    className="font-display font-normal group-hover:text-[var(--brand)] transition-colors"
+                    style={{ fontSize: '1rem', color: 'var(--ink)', lineHeight: 1.3, marginBottom: '0.5rem' }}
                   >
                     {a.titre}
                   </h3>
-                  <div style={{ fontSize: '0.75rem', color: 'rgba(225,224,204,0.4)' }}>
+                  <div style={{ fontSize: '0.75rem', color: 'var(--ink-3)' }}>
                     {a.tempsLecture} min →
                   </div>
                 </Link>

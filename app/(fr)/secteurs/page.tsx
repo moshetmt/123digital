@@ -32,7 +32,7 @@ export default function SecteursPage() {
       <JsonLd schema={schemas} />
 
       {/* Hero */}
-      <section className="bg-black" style={{ padding: '9rem 1.5rem 6rem' }}>
+      <section className="bg-background" style={{ padding: '9rem 1.5rem 6rem' }}>
         <div className="mx-auto max-w-5xl">
           <div className="mb-6">
             <Breadcrumb
@@ -49,11 +49,11 @@ export default function SecteursPage() {
               fontSize: '0.7rem',
               letterSpacing: '0.12em',
               textTransform: 'uppercase',
-              color: 'rgba(225,224,204,0.7)',
+              color: 'var(--ink-2)',
               fontWeight: 700,
             }}
           >
-            <span className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: '#00FF87' }} />
+            <span className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: 'var(--brand)' }} />
             Expertise sectorielle
           </div>
 
@@ -61,7 +61,7 @@ export default function SecteursPage() {
             className="font-display font-normal mb-6"
             style={{
               fontSize: 'clamp(2.6rem, 5vw, 5rem)',
-              color: '#E1E0CC',
+              color: 'var(--ink)',
               lineHeight: 1.05,
               letterSpacing: '-0.025em',
             }}
@@ -69,7 +69,7 @@ export default function SecteursPage() {
             Votre secteur.<br />
             <em
               style={{
-                color: '#00FF87',
+                color: 'var(--brand)',
                 fontStyle: 'italic',
                 fontFamily: 'var(--font-serif)',
               }}
@@ -80,7 +80,7 @@ export default function SecteursPage() {
 
           <p
             className="text-base leading-relaxed max-w-2xl"
-            style={{ color: 'rgba(225,224,204,0.65)' }}
+            style={{ color: 'var(--ink-2)' }}
           >
             Chaque secteur a ses propres codes, ses propres clients et ses propres leviers de croissance. Je ne propose pas de solutions génériques — j&apos;adapte chaque stratégie aux réalités de votre métier.
           </p>
@@ -89,17 +89,17 @@ export default function SecteursPage() {
 
       {/* Grille secteurs */}
       <section
-        className="bg-black"
-        style={{ padding: '2rem 1.5rem 6rem', borderTop: '1px solid rgba(225,224,204,0.06)' }}
+        className="bg-background"
+        style={{ padding: '2rem 1.5rem 6rem', borderTop: '1px solid var(--line)' }}
       >
         <div className="mx-auto max-w-5xl">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-px" style={{ backgroundColor: 'rgba(225,224,204,0.06)' }}>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-px" style={{ backgroundColor: 'var(--line)' }}>
             {secteurs.map((secteur) => (
               <Link
                 key={secteur.slug}
                 href={`/secteurs/${secteur.slug}`}
                 className="group block p-8"
-                style={{ backgroundColor: '#080808' }}
+                style={{ backgroundColor: 'var(--surface-2)' }}
               >
                 <div className="flex items-start gap-4 mb-4">
                   <span style={{ fontSize: '2rem' }}>{secteur.emoji}</span>
@@ -109,7 +109,7 @@ export default function SecteursPage() {
                         fontSize: '0.65rem',
                         letterSpacing: '0.12em',
                         textTransform: 'uppercase',
-                        color: '#00FF87',
+                        color: 'var(--brand)',
                         fontWeight: 700,
                         marginBottom: '0.4rem',
                       }}
@@ -117,15 +117,15 @@ export default function SecteursPage() {
                       {secteur.nomPluriel}
                     </div>
                     <h2
-                      className="font-display font-normal group-hover:text-[#00FF87] transition-colors"
-                      style={{ fontSize: '1.3rem', color: '#E1E0CC', lineHeight: 1.2 }}
+                      className="font-display font-normal group-hover:text-[var(--brand)] transition-colors"
+                      style={{ fontSize: '1.3rem', color: 'var(--ink)', lineHeight: 1.2 }}
                     >
                       {secteur.nom}
                     </h2>
                   </div>
                 </div>
 
-                <p style={{ fontSize: '0.88rem', color: 'rgba(225,224,204,0.6)', lineHeight: 1.65, marginBottom: '1.2rem' }}>
+                <p style={{ fontSize: '0.88rem', color: 'var(--ink-2)', lineHeight: 1.65, marginBottom: '1.2rem' }}>
                   {secteur.description}
                 </p>
 
@@ -135,8 +135,8 @@ export default function SecteursPage() {
                       key={i}
                       style={{
                         padding: '0.25rem 0.6rem',
-                        border: '1px solid rgba(225,224,204,0.1)',
-                        color: 'rgba(225,224,204,0.45)',
+                        border: '1px solid var(--line)',
+                        color: 'var(--ink-2)',
                         fontSize: '0.72rem',
                       }}
                     >
@@ -146,11 +146,11 @@ export default function SecteursPage() {
                 </div>
 
                 <div
-                  className="group-hover:text-[#00FF87] transition-colors"
+                  className="group-hover:text-[var(--brand)] transition-colors"
                   style={{
                     fontSize: '0.75rem',
                     letterSpacing: '0.08em',
-                    color: 'rgba(225,224,204,0.4)',
+                    color: 'var(--ink-3)',
                     textTransform: 'uppercase',
                     fontWeight: 700,
                   }}
@@ -165,17 +165,17 @@ export default function SecteursPage() {
 
       {/* CTA */}
       <section
-        className="bg-black"
-        style={{ padding: '4rem 1.5rem 6rem', borderTop: '1px solid rgba(225,224,204,0.06)', textAlign: 'center' }}
+        className="bg-background"
+        style={{ padding: '4rem 1.5rem 6rem', borderTop: '1px solid var(--line)', textAlign: 'center' }}
       >
         <div className="mx-auto max-w-2xl">
           <h2
             className="font-display font-normal mb-4"
-            style={{ fontSize: 'clamp(1.8rem, 3.5vw, 2.8rem)', color: '#E1E0CC', lineHeight: 1.1 }}
+            style={{ fontSize: 'clamp(1.8rem, 3.5vw, 2.8rem)', color: 'var(--ink)', lineHeight: 1.1 }}
           >
             Votre secteur n&apos;est pas dans la liste ?
           </h2>
-          <p style={{ color: 'rgba(225,224,204,0.6)', marginBottom: '2.5rem', lineHeight: 1.7 }}>
+          <p style={{ color: 'var(--ink-2)', marginBottom: '2.5rem', lineHeight: 1.7 }}>
             J&apos;accompagne les PME de tous secteurs. Prenons 30 minutes pour explorer ensemble comment développer votre activité en ligne.
           </p>
           <Link
@@ -183,8 +183,8 @@ export default function SecteursPage() {
             style={{
               display: 'inline-block',
               padding: '1rem 2.5rem',
-              backgroundColor: '#00FF87',
-              color: '#080808',
+              backgroundColor: 'var(--brand)',
+              color: 'var(--on-brand)',
               fontSize: '0.85rem',
               fontWeight: 700,
               letterSpacing: '0.08em',

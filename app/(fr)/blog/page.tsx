@@ -35,7 +35,7 @@ export default function BlogPage() {
       <JsonLd schema={schemas} />
 
       {/* Hero */}
-      <section className="bg-black" style={{ padding: '9rem 1.5rem 6rem' }}>
+      <section className="bg-background" style={{ padding: '9rem 1.5rem 6rem' }}>
         <div className="mx-auto max-w-5xl">
           <div className="mb-6">
             <Breadcrumb
@@ -52,11 +52,11 @@ export default function BlogPage() {
               fontSize: '0.7rem',
               letterSpacing: '0.12em',
               textTransform: 'uppercase',
-              color: 'rgba(225,224,204,0.7)',
+              color: 'var(--ink-2)',
               fontWeight: 700,
             }}
           >
-            <span className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: '#00FF87' }} />
+            <span className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: 'var(--brand)' }} />
             Marketing digital · PME · Sans jargon
           </div>
 
@@ -64,7 +64,7 @@ export default function BlogPage() {
             className="font-display font-normal mb-6"
             style={{
               fontSize: 'clamp(2.6rem, 5vw, 5rem)',
-              color: '#E1E0CC',
+              color: 'var(--ink)',
               lineHeight: 1.05,
               letterSpacing: '-0.025em',
             }}
@@ -72,7 +72,7 @@ export default function BlogPage() {
             Le digital pour PME,<br />
             <em
               style={{
-                color: '#00FF87',
+                color: 'var(--brand)',
                 fontStyle: 'italic',
                 fontFamily: 'var(--font-serif)',
               }}
@@ -83,7 +83,7 @@ export default function BlogPage() {
 
           <p
             className="text-base leading-relaxed max-w-2xl"
-            style={{ color: 'rgba(225,224,204,0.65)' }}
+            style={{ color: 'var(--ink-2)' }}
           >
             Des guides pratiques sur le SEO, la publicité en ligne, la création de site et l&apos;automatisation. Écrits pour des chefs d&apos;entreprise, pas pour des développeurs.
           </p>
@@ -92,17 +92,17 @@ export default function BlogPage() {
 
       {/* Catégories */}
       <section
-        className="bg-black"
-        style={{ padding: '1.5rem 1.5rem 0', borderTop: '1px solid rgba(225,224,204,0.06)' }}
+        className="bg-background"
+        style={{ padding: '1.5rem 1.5rem 0', borderTop: '1px solid var(--line)' }}
       >
         <div className="mx-auto max-w-5xl">
           <div className="flex flex-wrap gap-3">
             <span
               style={{
                 padding: '0.35rem 0.9rem',
-                backgroundColor: 'rgba(0,255,135,0.1)',
-                border: '1px solid rgba(0,255,135,0.3)',
-                color: '#00FF87',
+                backgroundColor: 'var(--brand-tint)',
+                border: '1px solid var(--brand-line)',
+                color: 'var(--brand)',
                 fontSize: '0.75rem',
                 fontWeight: 700,
                 letterSpacing: '0.06em',
@@ -116,8 +116,8 @@ export default function BlogPage() {
                 key={cat}
                 style={{
                   padding: '0.35rem 0.9rem',
-                  border: '1px solid rgba(225,224,204,0.12)',
-                  color: 'rgba(225,224,204,0.55)',
+                  border: '1px solid var(--line)',
+                  color: 'var(--ink-2)',
                   fontSize: '0.75rem',
                   letterSpacing: '0.06em',
                   textTransform: 'uppercase',
@@ -133,19 +133,19 @@ export default function BlogPage() {
 
       {/* Liste articles */}
       <section
-        className="bg-black"
+        className="bg-background"
         style={{ padding: '3rem 1.5rem 6rem' }}
       >
         <div className="mx-auto max-w-5xl">
-          <div className="space-y-px" style={{ border: '1px solid rgba(225,224,204,0.06)', borderBottom: 'none' }}>
+          <div className="space-y-px" style={{ border: '1px solid var(--line)', borderBottom: 'none' }}>
             {articlesTriees.map((article) => (
               <Link
                 key={article.slug}
                 href={`/blog/${article.slug}`}
                 className="group flex flex-col sm:flex-row sm:items-start gap-6 p-8"
                 style={{
-                  backgroundColor: '#080808',
-                  borderBottom: '1px solid rgba(225,224,204,0.06)',
+                  backgroundColor: 'var(--surface-2)',
+                  borderBottom: '1px solid var(--line)',
                 }}
               >
                 <div
@@ -172,7 +172,7 @@ export default function BlogPage() {
                       fontSize: '0.65rem',
                       letterSpacing: '0.1em',
                       textTransform: 'uppercase',
-                      color: 'rgba(225,224,204,0.4)',
+                      color: 'var(--ink-3)',
                       fontWeight: 700,
                       whiteSpace: 'nowrap',
                     }}
@@ -186,7 +186,7 @@ export default function BlogPage() {
                   <div
                     style={{
                       fontSize: '0.7rem',
-                      color: '#00FF87',
+                      color: 'var(--brand)',
                       fontWeight: 700,
                       marginTop: '0.4rem',
                       letterSpacing: '0.06em',
@@ -203,7 +203,7 @@ export default function BlogPage() {
                       fontSize: '0.65rem',
                       letterSpacing: '0.1em',
                       textTransform: 'uppercase',
-                      color: 'rgba(225,224,204,0.45)',
+                      color: 'var(--ink-2)',
                       fontWeight: 700,
                       marginBottom: '0.5rem',
                     }}
@@ -212,13 +212,13 @@ export default function BlogPage() {
                   </div>
 
                   <h2
-                    className="font-display font-normal mb-3 group-hover:text-[#00FF87] transition-colors"
-                    style={{ fontSize: 'clamp(1.05rem, 2vw, 1.3rem)', color: '#E1E0CC', lineHeight: 1.25 }}
+                    className="font-display font-normal mb-3 group-hover:text-[var(--brand)] transition-colors"
+                    style={{ fontSize: 'clamp(1.05rem, 2vw, 1.3rem)', color: 'var(--ink)', lineHeight: 1.25 }}
                   >
                     {article.titre}
                   </h2>
 
-                  <p style={{ fontSize: '0.87rem', color: 'rgba(225,224,204,0.55)', lineHeight: 1.6 }}>
+                  <p style={{ fontSize: '0.87rem', color: 'var(--ink-2)', lineHeight: 1.6 }}>
                     {article.description}
                   </p>
 
@@ -228,9 +228,9 @@ export default function BlogPage() {
                         key={tag}
                         style={{
                           padding: '0.15rem 0.5rem',
-                          backgroundColor: 'rgba(225,224,204,0.04)',
-                          border: '1px solid rgba(225,224,204,0.07)',
-                          color: 'rgba(225,224,204,0.35)',
+                          backgroundColor: 'var(--surface-3)',
+                          border: '1px solid var(--line)',
+                          color: 'var(--ink-3)',
                           fontSize: '0.7rem',
                         }}
                       >
@@ -241,10 +241,10 @@ export default function BlogPage() {
                 </div>
 
                 <div
-                  className="group-hover:text-[#00FF87] transition-colors"
+                  className="group-hover:text-[var(--brand)] transition-colors"
                   style={{
                     fontSize: '0.75rem',
-                    color: 'rgba(225,224,204,0.3)',
+                    color: 'var(--ink-3)',
                     fontWeight: 700,
                     letterSpacing: '0.08em',
                     textTransform: 'uppercase',
@@ -262,17 +262,17 @@ export default function BlogPage() {
 
       {/* CTA newsletter/audit */}
       <section
-        className="bg-black"
-        style={{ padding: '4rem 1.5rem 6rem', borderTop: '1px solid rgba(225,224,204,0.06)', textAlign: 'center' }}
+        className="bg-background"
+        style={{ padding: '4rem 1.5rem 6rem', borderTop: '1px solid var(--line)', textAlign: 'center' }}
       >
         <div className="mx-auto max-w-2xl">
           <h2
             className="font-display font-normal mb-4"
-            style={{ fontSize: 'clamp(1.8rem, 3.5vw, 2.8rem)', color: '#E1E0CC', lineHeight: 1.1 }}
+            style={{ fontSize: 'clamp(1.8rem, 3.5vw, 2.8rem)', color: 'var(--ink)', lineHeight: 1.1 }}
           >
             Besoin d&apos;un regard expert<br />sur votre situation ?
           </h2>
-          <p style={{ color: 'rgba(225,224,204,0.6)', marginBottom: '2.5rem', lineHeight: 1.7 }}>
+          <p style={{ color: 'var(--ink-2)', marginBottom: '2.5rem', lineHeight: 1.7 }}>
             Ces articles vous donnent les bases — mais chaque entreprise est différente. Un audit gratuit de 30 minutes pour analyser votre cas spécifique.
           </p>
           <Link
@@ -280,8 +280,8 @@ export default function BlogPage() {
             style={{
               display: 'inline-block',
               padding: '1rem 2.5rem',
-              backgroundColor: '#00FF87',
-              color: '#080808',
+              backgroundColor: 'var(--brand)',
+              color: 'var(--on-brand)',
               fontSize: '0.85rem',
               fontWeight: 700,
               letterSpacing: '0.08em',

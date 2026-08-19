@@ -1,0 +1,507 @@
+# Audit SEO technique de 123digital.fr
+
+210 pages fabriquees analysees.
+
+## Defauts
+
+
+### aucun hreflang (210)
+
+- a-propos
+- albertville
+- annecy
+- annemasse
+- audit-gratuit
+- blog
+- bordeaux
+- bourg-en-bresse
+- chambery
+- clermont-ferrand
+- consultant-digital-lyon
+- contact
+- en
+- grenoble
+- index
+- lille
+- lyon
+- macon
+- marseille
+- mentions-legales
+- nantes
+- nice
+- oyonnax
+- paris
+- portfolio
+- realisations
+- rennes
+- roanne
+- saint-etienne
+- secteurs
+- services
+- strasbourg
+- thonon-les-bains
+- toulouse
+- valence
+- villeurbanne
+- albertville/automatisation-marketing
+- albertville/branding
+- albertville/community-management
+- albertville/creation-site-web
+- albertville/publicite-en-ligne
+- albertville/seo
+- annecy/automatisation-marketing
+- annecy/branding
+- annecy/community-management
+- annecy/creation-site-web
+- annecy/publicite-en-ligne
+- annecy/seo
+- annemasse/automatisation-marketing
+- annemasse/branding
+- annemasse/community-management
+- annemasse/creation-site-web
+- annemasse/publicite-en-ligne
+- annemasse/seo
+- blog/automatisation-marketing-pme-debutant
+- blog/consultant-digital-ou-agence-lyon
+- blog/google-ads-pme-debuter
+- blog/google-business-profile-guide-pme
+- blog/refonte-site-web-quand-pourquoi
+- blog/seo-local-pme-guide-complet
+- blog/site-web-pme-prix-guide
+- bordeaux/automatisation-marketing
+- bordeaux/branding
+- bordeaux/community-management
+- bordeaux/creation-site-web
+- bordeaux/publicite-en-ligne
+- bordeaux/seo
+- bourg-en-bresse/automatisation-marketing
+- bourg-en-bresse/branding
+- bourg-en-bresse/community-management
+- bourg-en-bresse/creation-site-web
+- bourg-en-bresse/publicite-en-ligne
+- bourg-en-bresse/seo
+- chambery/automatisation-marketing
+- chambery/branding
+- chambery/community-management
+- chambery/creation-site-web
+- chambery/publicite-en-ligne
+- chambery/seo
+- clermont-ferrand/automatisation-marketing
+- clermont-ferrand/branding
+- clermont-ferrand/community-management
+- clermont-ferrand/creation-site-web
+- clermont-ferrand/publicite-en-ligne
+- clermont-ferrand/seo
+- en/about
+- en/audit
+- en/blog
+- en/contact
+- en/portfolio
+- en/realisations
+- en/services
+- grenoble/automatisation-marketing
+- grenoble/branding
+- grenoble/community-management
+- grenoble/creation-site-web
+- grenoble/publicite-en-ligne
+- grenoble/seo
+- lille/automatisation-marketing
+- lille/branding
+- lille/community-management
+- lille/creation-site-web
+- lille/publicite-en-ligne
+- lille/seo
+- lyon/automatisation-marketing
+- lyon/branding
+- lyon/community-management
+- lyon/creation-site-web
+- lyon/publicite-en-ligne
+- lyon/seo
+- macon/automatisation-marketing
+- macon/branding
+- macon/community-management
+- macon/creation-site-web
+- macon/publicite-en-ligne
+- macon/seo
+- marseille/automatisation-marketing
+- marseille/branding
+- marseille/community-management
+- marseille/creation-site-web
+- marseille/publicite-en-ligne
+- marseille/seo
+- nantes/automatisation-marketing
+- nantes/branding
+- nantes/community-management
+- nantes/creation-site-web
+- nantes/publicite-en-ligne
+- nantes/seo
+- nice/automatisation-marketing
+- nice/branding
+- nice/community-management
+- nice/creation-site-web
+- nice/publicite-en-ligne
+- nice/seo
+- oyonnax/automatisation-marketing
+- oyonnax/branding
+- oyonnax/community-management
+- oyonnax/creation-site-web
+- oyonnax/publicite-en-ligne
+- oyonnax/seo
+- paris/automatisation-marketing
+- paris/branding
+- paris/community-management
+- paris/creation-site-web
+- paris/publicite-en-ligne
+- paris/seo
+- rennes/automatisation-marketing
+- rennes/branding
+- rennes/community-management
+- rennes/creation-site-web
+- rennes/publicite-en-ligne
+- rennes/seo
+- roanne/automatisation-marketing
+- roanne/branding
+- roanne/community-management
+- roanne/creation-site-web
+- roanne/publicite-en-ligne
+- roanne/seo
+- saint-etienne/automatisation-marketing
+- saint-etienne/branding
+- saint-etienne/community-management
+- saint-etienne/creation-site-web
+- saint-etienne/publicite-en-ligne
+- saint-etienne/seo
+- secteurs/agence-immobiliere
+- secteurs/artisan-btp
+- secteurs/cabinet-comptable
+- secteurs/cabinet-juridique
+- secteurs/cabinet-medical
+- secteurs/commerce-de-proximite
+- secteurs/entreprise-transport
+- secteurs/garage-automobile
+- secteurs/restaurant
+- secteurs/salon-beaute
+- services/automatisation-marketing
+- services/branding
+- services/community-management
+- services/creation-site-web
+- services/publicite-en-ligne
+- services/seo
+- strasbourg/automatisation-marketing
+- strasbourg/branding
+- strasbourg/community-management
+- strasbourg/creation-site-web
+- strasbourg/publicite-en-ligne
+- strasbourg/seo
+- thonon-les-bains/automatisation-marketing
+- thonon-les-bains/branding
+- thonon-les-bains/community-management
+- thonon-les-bains/creation-site-web
+- thonon-les-bains/publicite-en-ligne
+- thonon-les-bains/seo
+- toulouse/automatisation-marketing
+- toulouse/branding
+- toulouse/community-management
+- toulouse/creation-site-web
+- toulouse/publicite-en-ligne
+- toulouse/seo
+- valence/automatisation-marketing
+- valence/branding
+- valence/community-management
+- valence/creation-site-web
+- valence/publicite-en-ligne
+- valence/seo
+- villeurbanne/automatisation-marketing
+- villeurbanne/branding
+- villeurbanne/community-management
+- villeurbanne/creation-site-web
+- villeurbanne/publicite-en-ligne
+- villeurbanne/seo
+
+### meta description hors 110-165 car. (169)
+
+- albertville (166)
+- bourg-en-bresse (170)
+- clermont-ferrand (171)
+- mentions-legales (93)
+- saint-etienne (168)
+- services (188)
+- thonon-les-bains (171)
+- villeurbanne (167)
+- albertville/automatisation-marketing (195)
+- albertville/branding (196)
+- albertville/community-management (194)
+- albertville/creation-site-web (194)
+- albertville/publicite-en-ligne (185)
+- albertville/seo (199)
+- annecy/automatisation-marketing (190)
+- annecy/branding (191)
+- annecy/community-management (189)
+- annecy/creation-site-web (189)
+- annecy/publicite-en-ligne (180)
+- annecy/seo (194)
+- annemasse/automatisation-marketing (193)
+- annemasse/branding (194)
+- annemasse/community-management (192)
+- annemasse/creation-site-web (192)
+- annemasse/publicite-en-ligne (183)
+- annemasse/seo (197)
+- blog/automatisation-marketing-pme-debutant (177)
+- blog/consultant-digital-ou-agence-lyon (177)
+- blog/seo-local-pme-guide-complet (177)
+- bordeaux/automatisation-marketing (192)
+- bordeaux/branding (193)
+- bordeaux/community-management (191)
+- bordeaux/creation-site-web (191)
+- bordeaux/publicite-en-ligne (182)
+- bordeaux/seo (196)
+- bourg-en-bresse/automatisation-marketing (199)
+- bourg-en-bresse/branding (200)
+- bourg-en-bresse/community-management (198)
+- bourg-en-bresse/creation-site-web (198)
+- bourg-en-bresse/publicite-en-ligne (189)
+- bourg-en-bresse/seo (203)
+- chambery/automatisation-marketing (192)
+- chambery/branding (193)
+- chambery/community-management (191)
+- chambery/creation-site-web (191)
+- chambery/publicite-en-ligne (182)
+- chambery/seo (196)
+- clermont-ferrand/automatisation-marketing (200)
+- clermont-ferrand/branding (201)
+- clermont-ferrand/community-management (199)
+- clermont-ferrand/creation-site-web (199)
+- clermont-ferrand/publicite-en-ligne (190)
+- clermont-ferrand/seo (204)
+- en/audit (106)
+- en/blog (89)
+- en/contact (95)
+- en/realisations (87)
+- grenoble/automatisation-marketing (192)
+- grenoble/branding (193)
+- grenoble/community-management (191)
+- grenoble/creation-site-web (191)
+- grenoble/publicite-en-ligne (182)
+- grenoble/seo (196)
+- lille/automatisation-marketing (189)
+- lille/branding (190)
+- lille/community-management (188)
+- lille/creation-site-web (188)
+- lille/publicite-en-ligne (179)
+- lille/seo (193)
+- lyon/automatisation-marketing (188)
+- lyon/branding (189)
+- lyon/community-management (187)
+- lyon/creation-site-web (187)
+- lyon/publicite-en-ligne (178)
+- lyon/seo (192)
+- macon/automatisation-marketing (189)
+- macon/branding (190)
+- macon/community-management (188)
+- macon/creation-site-web (188)
+- macon/publicite-en-ligne (179)
+- macon/seo (193)
+- marseille/automatisation-marketing (193)
+- marseille/branding (194)
+- marseille/community-management (192)
+- marseille/creation-site-web (192)
+- marseille/publicite-en-ligne (183)
+- marseille/seo (197)
+- nantes/automatisation-marketing (190)
+- nantes/branding (191)
+- nantes/community-management (189)
+- nantes/creation-site-web (189)
+- nantes/publicite-en-ligne (180)
+- nantes/seo (194)
+- nice/automatisation-marketing (188)
+- nice/branding (189)
+- nice/community-management (187)
+- nice/creation-site-web (187)
+- nice/publicite-en-ligne (178)
+- nice/seo (192)
+- oyonnax/automatisation-marketing (191)
+- oyonnax/branding (192)
+- oyonnax/community-management (190)
+- oyonnax/creation-site-web (190)
+- oyonnax/publicite-en-ligne (181)
+- oyonnax/seo (195)
+- paris/automatisation-marketing (189)
+- paris/branding (190)
+- paris/community-management (188)
+- paris/creation-site-web (188)
+- paris/publicite-en-ligne (179)
+- paris/seo (193)
+- rennes/automatisation-marketing (190)
+- rennes/branding (191)
+- rennes/community-management (189)
+- rennes/creation-site-web (189)
+- rennes/publicite-en-ligne (180)
+- rennes/seo (194)
+- roanne/automatisation-marketing (190)
+- roanne/branding (191)
+- roanne/community-management (189)
+- roanne/creation-site-web (189)
+- roanne/publicite-en-ligne (180)
+- roanne/seo (194)
+- saint-etienne/automatisation-marketing (197)
+- saint-etienne/branding (198)
+- saint-etienne/community-management (196)
+- saint-etienne/creation-site-web (196)
+- saint-etienne/publicite-en-ligne (187)
+- saint-etienne/seo (201)
+- secteurs/agence-immobiliere (282)
+- secteurs/artisan-btp (229)
+- secteurs/cabinet-comptable (259)
+- secteurs/cabinet-juridique (245)
+- secteurs/cabinet-medical (228)
+- secteurs/commerce-de-proximite (242)
+- secteurs/entreprise-transport (256)
+- secteurs/garage-automobile (253)
+- secteurs/restaurant (240)
+- secteurs/salon-beaute (244)
+- strasbourg/automatisation-marketing (194)
+- strasbourg/branding (195)
+- strasbourg/community-management (193)
+- strasbourg/creation-site-web (193)
+- strasbourg/publicite-en-ligne (184)
+- strasbourg/seo (198)
+- thonon-les-bains/automatisation-marketing (200)
+- thonon-les-bains/branding (201)
+- thonon-les-bains/community-management (199)
+- thonon-les-bains/creation-site-web (199)
+- thonon-les-bains/publicite-en-ligne (190)
+- thonon-les-bains/seo (204)
+- toulouse/automatisation-marketing (192)
+- toulouse/branding (193)
+- toulouse/community-management (191)
+- toulouse/creation-site-web (191)
+- toulouse/publicite-en-ligne (182)
+- toulouse/seo (196)
+- valence/automatisation-marketing (191)
+- valence/branding (192)
+- valence/community-management (190)
+- valence/creation-site-web (190)
+- valence/publicite-en-ligne (181)
+- valence/seo (195)
+- villeurbanne/automatisation-marketing (196)
+- villeurbanne/branding (197)
+- villeurbanne/community-management (195)
+- villeurbanne/creation-site-web (195)
+- villeurbanne/publicite-en-ligne (186)
+- villeurbanne/seo (200)
+
+### images sans alt (25)
+
+- a-propos (1/3)
+- albertville (1/3)
+- annecy (1/3)
+- annemasse (1/3)
+- bordeaux (1/3)
+- bourg-en-bresse (1/3)
+- chambery (1/3)
+- clermont-ferrand (1/3)
+- grenoble (1/3)
+- lille (1/3)
+- lyon (1/3)
+- macon (1/3)
+- marseille (1/3)
+- nantes (1/3)
+- nice (1/3)
+- oyonnax (1/3)
+- paris (1/3)
+- rennes (1/3)
+- roanne (1/3)
+- saint-etienne (1/3)
+- strasbourg (1/3)
+- thonon-les-bains (1/3)
+- toulouse (1/3)
+- valence (1/3)
+- villeurbanne (1/3)
+
+### title > 60 car. (23)
+
+- consultant-digital-lyon (61)
+- lyon (62)
+- secteurs (68)
+- blog/automatisation-marketing-pme-debutant (106)
+- blog/consultant-digital-ou-agence-lyon (89)
+- blog/google-ads-pme-debuter (86)
+- blog/google-business-profile-guide-pme (106)
+- blog/refonte-site-web-quand-pourquoi (98)
+- blog/seo-local-pme-guide-complet (94)
+- blog/site-web-pme-prix-guide (83)
+- en/about (63)
+- en/services (74)
+- secteurs/agence-immobiliere (70)
+- secteurs/artisan-btp (62)
+- secteurs/cabinet-comptable (69)
+- secteurs/cabinet-juridique (69)
+- secteurs/cabinet-medical (67)
+- secteurs/commerce-de-proximite (72)
+- secteurs/entreprise-transport (74)
+- secteurs/garage-automobile (69)
+- secteurs/restaurant (61)
+- secteurs/salon-beaute (66)
+- services/branding (61)
+
+### AUCUN H1 (5)
+
+- en/about
+- en/audit
+- en/blog
+- en/contact
+- en/services
+
+### moins de 300 mots (4)
+
+- en/about (222)
+- en/audit (182)
+- en/blog (101)
+- en/contact (180)
+
+### meta descriptions IDENTIQUES (1)
+
+- 3 pages : en/portfolio, index, portfolio
+
+## Duplication entre pages geographiques
+
+- 77.3 % : albertville/publicite-en-ligne / annemasse/publicite-en-ligne
+- 77.1 % : albertville/publicite-en-ligne / bourg-en-bresse/publicite-en-ligne
+- 76.0 % : albertville/publicite-en-ligne / annecy/publicite-en-ligne
+- 75.9 % : annecy/publicite-en-ligne / annemasse/publicite-en-ligne
+- 75.8 % : albertville/publicite-en-ligne / chambery/publicite-en-ligne
+- 75.7 % : annemasse/publicite-en-ligne / bourg-en-bresse/publicite-en-ligne
+- 75.6 % : bordeaux/publicite-en-ligne / lille/publicite-en-ligne
+- 75.4 % : albertville/publicite-en-ligne / clermont-ferrand/publicite-en-ligne
+- 75.4 % : albertville/branding / annemasse/branding
+- 75.3 % : annecy/publicite-en-ligne / clermont-ferrand/publicite-en-ligne
+- 75.3 % : albertville/seo / annemasse/seo
+- 75.1 % : albertville/publicite-en-ligne / grenoble/publicite-en-ligne
+- 75.1 % : albertville/branding / bourg-en-bresse/branding
+- 75.1 % : albertville/automatisation-marketing / annemasse/automatisation-marketing
+- 75.0 % : annecy/publicite-en-ligne / grenoble/publicite-en-ligne
+- 75.0 % : albertville/seo / bourg-en-bresse/seo
+- 74.8 % : albertville/automatisation-marketing / bourg-en-bresse/automatisation-marketing
+- 74.7 % : clermont-ferrand/publicite-en-ligne / grenoble/publicite-en-ligne
+- 74.7 % : annecy/publicite-en-ligne / chambery/publicite-en-ligne
+- 74.5 % : albertville/publicite-en-ligne / lyon/publicite-en-ligne
+- 74.4 % : annecy/publicite-en-ligne / bourg-en-bresse/publicite-en-ligne
+- 74.4 % : annemasse/publicite-en-ligne / clermont-ferrand/publicite-en-ligne
+- 74.4 % : annecy/publicite-en-ligne / lyon/publicite-en-ligne
+- 74.2 % : annecy/seo / annemasse/seo
+- 74.2 % : albertville/branding / annecy/branding
+- 74.1 % : annemasse/publicite-en-ligne / chambery/publicite-en-ligne
+- 74.1 % : annemasse/publicite-en-ligne / grenoble/publicite-en-ligne
+- 74.1 % : annecy/branding / annemasse/branding
+- 74.0 % : albertville/branding / chambery/branding
+- 74.0 % : annecy/seo / clermont-ferrand/seo
+- 73.9 % : albertville/seo / clermont-ferrand/seo
+- 73.9 % : bourg-en-bresse/publicite-en-ligne / clermont-ferrand/publicite-en-ligne
+- 73.9 % : albertville/seo / annecy/seo
+- 73.8 % : albertville/automatisation-marketing / annecy/automatisation-marketing
+- 73.8 % : chambery/publicite-en-ligne / grenoble/publicite-en-ligne
+- 73.8 % : chambery/publicite-en-ligne / clermont-ferrand/publicite-en-ligne
+- 73.8 % : annemasse/branding / bourg-en-bresse/branding
+- 73.8 % : annemasse/seo / bourg-en-bresse/seo
+- 73.8 % : annecy/automatisation-marketing / annemasse/automatisation-marketing
+- 73.7 % : albertville/seo / chambery/seo

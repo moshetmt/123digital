@@ -268,3 +268,30 @@
   html { scroll-behavior: auto; }
   .shimmer::after { animation: none; }
 }
+
+/* ─── CV interactif (/portfolio, /en/portfolio) ────────────────────────────
+   Survol des cartes de realisation : la capture avance legerement, la carte
+   se souleve. Neutralise si l'utilisateur a demande moins d'animation. */
+.cv-card {
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+.cv-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 16px 44px var(--shadow-soft);
+}
+.cv-shot {
+  transition: transform 0.35s ease;
+}
+.cv-card:hover .cv-shot {
+  transform: scale(1.03);
+}
+@media (prefers-reduced-motion: reduce) {
+  .cv-card,
+  .cv-shot {
+    transition: none;
+  }
+  .cv-card:hover,
+  .cv-card:hover .cv-shot {
+    transform: none;
+  }
+}

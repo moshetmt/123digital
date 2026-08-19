@@ -148,6 +148,7 @@ export function CTA({ lang = 'fr' }: { lang?: Locale }) {
         body: JSON.stringify({ ...form, hp }),
       })
       if (!res.ok) throw new Error('send_failed')
+      window.gtag?.('event', 'generate_lead', { method: 'formulaire_audit' })
       setSubmitted(true)
     } catch {
       setSendError(true)
@@ -318,17 +319,17 @@ export function CTA({ lang = 'fr' }: { lang?: Locale }) {
             )}
           </AnimatePresence>
 
-          {/* Réassurance */}
-          {/* Grille 3 colonnes : en flex-wrap le 3e badge tombait seul sur une
-              2e ligne a 390 px, sur 3 pages. */}
-          <div className="grid grid-cols-3 gap-1.5 mt-4">
+          {/* Réassurance : 3 pastilles sur une seule rangee, chacune sur UNE
+              ligne. `whitespace-nowrap` + taille fluide : le libelle ne se
+              coupe jamais en deux, meme a 360 px. */}
+          <div className="grid grid-cols-3 gap-1 sm:gap-1.5 mt-4">
             {[d.reassurance1, d.reassurance2, d.reassurance3].map((label) => (
               <div
                 key={label}
-                className="inline-flex items-center justify-center gap-1 text-center"
-                style={{ border: '1px solid var(--on-brand)', color: 'var(--on-brand)', fontSize: '0.68rem', fontWeight: 600, padding: '0.35rem 0.4rem', borderRadius: 999, lineHeight: 1.2 }}
+                className="inline-flex items-center justify-center gap-1 text-center whitespace-nowrap overflow-hidden"
+                style={{ border: '1px solid var(--on-brand)', color: 'var(--on-brand)', fontSize: 'clamp(0.56rem, 2.1vw, 0.72rem)', fontWeight: 600, padding: '0.35rem 0.3rem', borderRadius: 999, lineHeight: 1.2 }}
               >
-                <Check size={12} aria-hidden />
+                <Check size={11} className="shrink-0" aria-hidden />
                 {label}
               </div>
             ))}

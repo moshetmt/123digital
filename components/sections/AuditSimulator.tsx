@@ -132,7 +132,9 @@ export function AuditSimulator() {
       style={{
         backgroundColor: 'var(--surface-2)',
         border: '1px solid var(--line)',
-        padding: '2.5rem',
+        borderRadius: '1.25rem',
+        boxShadow: '0 8px 30px var(--shadow-soft)',
+        padding: 'clamp(1.25rem, 4vw, 2.25rem)',
         maxWidth: '640px',
         margin: '0 auto',
       }}
@@ -201,7 +203,8 @@ export function AuditSimulator() {
                 onMouseEnter={() => setHoveredOption(option.value)}
                 onMouseLeave={() => setHoveredOption(null)}
                 style={{
-                  padding: '1rem',
+                  padding: '0.85rem 0.75rem',
+                  borderRadius: '0.85rem',
                   border: `1px solid ${hoveredOption === option.value ? 'var(--brand)' : 'var(--ink-3)'}`,
                   backgroundColor: hoveredOption === option.value ? 'var(--brand-tint)' : 'transparent',
                   color: hoveredOption === option.value ? 'var(--ink)' : 'var(--ink-2)',
@@ -232,6 +235,7 @@ export function AuditSimulator() {
                     key={q.id}
                     style={{
                       padding: '0.25rem 0.65rem',
+                      borderRadius: 999,
                       backgroundColor: 'var(--brand-tint)',
                       border: '1px solid var(--brand-line)',
                       color: 'var(--brand)',
@@ -287,6 +291,7 @@ export function AuditSimulator() {
               href="/audit-gratuit"
               style={{
                 display: 'inline-block',
+                borderRadius: 999,
                 padding: '0.85rem 1.75rem',
                 backgroundColor: 'var(--brand)',
                 color: 'var(--on-brand)',
@@ -303,6 +308,7 @@ export function AuditSimulator() {
               onClick={handleReset}
               style={{
                 padding: '0.85rem 1.75rem',
+                borderRadius: 999,
                 border: '1px solid var(--line)',
                 color: 'var(--ink-2)',
                 fontSize: '0.82rem',
@@ -327,6 +333,7 @@ export function AuditSimulator() {
                   key={q.id}
                   style={{
                     padding: '0.25rem 0.65rem',
+                    borderRadius: 999,
                     border: '1px solid var(--line)',
                     color: 'var(--ink-3)',
                     fontSize: '0.72rem',

@@ -2,7 +2,7 @@ export interface SecteurData {
   slug: string
   nom: string
   nomPluriel: string
-  emoji: string
+  icon: string
   description: string
   problemes: string[]
   solutions: string[]
@@ -16,7 +16,7 @@ export const secteurs: SecteurData[] = [
     slug: 'restaurant',
     nom: 'Restaurant',
     nomPluriel: 'Restaurants',
-    emoji: '🍽️',
+    icon: 'UtensilsCrossed',
     description: 'Remplissez vos tables grâce à une présence digitale qui donne faim — site web appétissant, réservations en ligne et avis clients gérés.',
     problemes: [
       'Tables vides en semaine malgré une bonne cuisine',
@@ -63,7 +63,7 @@ export const secteurs: SecteurData[] = [
     slug: 'cabinet-medical',
     nom: 'Cabinet médical',
     nomPluriel: 'Cabinets médicaux',
-    emoji: '🏥',
+    icon: 'Stethoscope',
     description: 'Facilitez la prise de rendez-vous, renforcez votre crédibilité en ligne et réduisez les no-shows — pour vous concentrer sur vos patients.',
     problemes: [
       'Secrétariat submergé d\'appels pour des rendez-vous',
@@ -110,7 +110,7 @@ export const secteurs: SecteurData[] = [
     slug: 'artisan-btp',
     nom: 'Artisan BTP',
     nomPluriel: 'Artisans BTP',
-    emoji: '🔨',
+    icon: 'Hammer',
     description: 'Votre téléphone qui sonne en continu avec des chantiers qualifiés — sans dépendre des comparateurs qui vendent vos leads à 5 concurrents.',
     problemes: [
       'Dépendance aux leads achetés sur des plateformes (Houzz, Bark...)',
@@ -157,7 +157,7 @@ export const secteurs: SecteurData[] = [
     slug: 'commerce-de-proximite',
     nom: 'Commerce de proximité',
     nomPluriel: 'Commerces de proximité',
-    emoji: '🛍️',
+    icon: 'ShoppingBag',
     description: 'Ramenez les clients dans votre boutique et vendez aussi en ligne — sans sacrifier votre relationnel qui fait votre force.',
     problemes: [
       'Concurrence d\'Amazon et des grandes enseignes en ligne',
@@ -204,7 +204,7 @@ export const secteurs: SecteurData[] = [
     slug: 'cabinet-juridique',
     nom: 'Cabinet juridique',
     nomPluriel: 'Cabinets juridiques',
-    emoji: '⚖️',
+    icon: 'Scale',
     description: 'Attirez des clients qualifiés prêts à payer pour votre expertise — pas des curieux qui veulent juste un conseil gratuit.',
     problemes: [
       'Site web vieillissant qui ne reflète pas la qualité du cabinet',
@@ -251,7 +251,7 @@ export const secteurs: SecteurData[] = [
     slug: 'agence-immobiliere',
     nom: 'Agence immobilière',
     nomPluriel: 'Agences immobilières',
-    emoji: '🏡',
+    icon: 'Home',
     description: 'Captez les vendeurs et acheteurs en ligne avant qu\'ils contactent vos concurrents — et construisez une réputation locale incontournable.',
     problemes: [
       'Dépendance aux grands portails (SeLoger, Leboncoin) qui absorbent les leads',
@@ -298,7 +298,7 @@ export const secteurs: SecteurData[] = [
     slug: 'garage-automobile',
     nom: 'Garage automobile',
     nomPluriel: 'Garages automobiles',
-    emoji: '🔧',
+    icon: 'Wrench',
     description: 'Remplissez votre atelier et fidélisez vos clients pour l\'entretien annuel — grâce à une présence locale imparable sur Google.',
     problemes: [
       'Concurrence des chaînes nationales (Norauto, Midas) mieux référencées',
@@ -345,7 +345,7 @@ export const secteurs: SecteurData[] = [
     slug: 'salon-beaute',
     nom: 'Salon de beauté',
     nomPluriel: 'Salons de beauté',
-    emoji: '💅',
+    icon: 'Sparkles',
     description: 'Agenda toujours plein, zéro no-show — avec un site qui prend les réservations et des réseaux qui font rêver vos clientes.',
     problemes: [
       'Agenda avec des créneaux vides impossibles à remplir en urgence',
@@ -392,7 +392,7 @@ export const secteurs: SecteurData[] = [
     slug: 'cabinet-comptable',
     nom: 'Cabinet comptable',
     nomPluriel: 'Cabinets comptables',
-    emoji: '📊',
+    icon: 'BarChart3',
     description: 'Attirez des entrepreneurs qui cherchent un expert-comptable de confiance en ligne — pas juste le moins cher.',
     problemes: [
       'Site web inexistant ou qui ne génère aucun contact',
@@ -439,7 +439,7 @@ export const secteurs: SecteurData[] = [
     slug: 'entreprise-transport',
     nom: 'Entreprise de transport',
     nomPluriel: 'Entreprises de transport',
-    emoji: '🚛',
+    icon: 'Truck',
     description: 'Obtenez des demandes de devis qualifiées en ligne et construisez une réputation de fiabilité qui justifie vos tarifs.',
     problemes: [
       'Site web inexistant ou non référencé localement',

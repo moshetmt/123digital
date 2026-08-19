@@ -171,6 +171,7 @@ export default async function VillePage({ params }: PageProps) {
               href="/audit-gratuit"
               style={{
                 display: 'inline-block',
+                borderRadius: 999,
                 padding: '0.85rem 2rem',
                 backgroundColor: 'var(--brand)',
                 color: 'var(--on-brand)',
@@ -407,7 +408,7 @@ export default async function VillePage({ params }: PageProps) {
                   fontSize: '0.8rem',
                 }}
               >
-                {s.emoji} {s.nom}
+                {s.nom}
               </Link>
             ))}
           </div>
@@ -476,6 +477,7 @@ export default async function VillePage({ params }: PageProps) {
             href="/audit-gratuit"
             style={{
               display: 'inline-block',
+              borderRadius: 999,
               padding: '1rem 2.5rem',
               backgroundColor: 'var(--brand)',
               color: 'var(--on-brand)',

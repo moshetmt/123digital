@@ -277,6 +277,7 @@ export default function BlogPage() {
             href="/audit-gratuit"
             style={{
               display: 'inline-block',
+              borderRadius: 999,
               padding: '1rem 2.5rem',
               backgroundColor: 'var(--brand)',
               color: 'var(--on-brand)',

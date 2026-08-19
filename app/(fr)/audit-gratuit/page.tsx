@@ -183,7 +183,7 @@ export default function AuditGratuitPage() {
             className="flex flex-wrap gap-4 mb-8"
             style={{ fontSize: '0.8rem', color: 'var(--ink-2)' }}
           >
-            {['✓ Aucune carte bancaire', '✓ Pas de relance commerciale', '✓ Résultats actionnables'].map((item) => (
+            {['Aucune carte bancaire', 'Pas de relance commerciale', 'Résultats actionnables'].map((item) => (
               <span key={item}>{item}</span>
             ))}
           </div>
@@ -368,7 +368,7 @@ export default function AuditGratuitPage() {
             style={{ fontSize: 'clamp(1.8rem, 3vw, 2.6rem)', color: 'var(--ink)', lineHeight: 1.1 }}
           >
             De la réservation<br />
-            <span style={{ color: 'var(--ink-2)' }}>au plan d&apos;action.</span>
+            <span style={{ color: 'var(--brand)' }}>au plan d&apos;action.</span>
           </h2>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-px" style={{ backgroundColor: 'var(--line)' }}>
@@ -471,12 +471,13 @@ export default function AuditGratuitPage() {
               fontWeight: 600,
               fontSize: '1rem',
               padding: '14px 28px',
-              borderRadius: '4px',
+              borderRadius: 999,
               textDecoration: 'none',
               letterSpacing: '-0.01em',
             }}
           >
-            📞 Appeler maintenant
+            <Phone size={17} aria-hidden />
+              Appeler maintenant
           </a>
         </div>
       </section>

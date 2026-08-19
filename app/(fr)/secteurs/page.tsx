@@ -1,9 +1,32 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import {
+  UtensilsCrossed, Stethoscope, Hammer, ShoppingBag, Scale,
+  Home, Wrench, Sparkles, BarChart3, Truck, type LucideIcon,
+} from 'lucide-react'
 import { JsonLd } from '@/components/seo/JsonLd'
 import { Breadcrumb } from '@/components/layout/Breadcrumb'
 import { BASE_URL, breadcrumbSchema, localBusinessSchema } from '@/lib/schema'
 import { secteurs } from '@/data/secteurs'
+
+// Correspondance nom d'icone -> composant lucide (catalogue icones.js.org).
+// Regle du proprietaire : jamais d'emoji dans l'interface.
+const ICONES: Record<string, LucideIcon> = {
+  UtensilsCrossed, Stethoscope, Hammer, ShoppingBag, Scale,
+  Home, Wrench, Sparkles, BarChart3, Truck,
+}
+
+function SecteurIcon({ name }: { name: string }) {
+  const Icon = ICONES[name] ?? Sparkles
+  return (
+    <span
+      className="grid place-items-center rounded-xl shrink-0"
+      style={{ width: 42, height: 42, backgroundColor: 'var(--brand-tint)', color: 'var(--brand)' }}
+    >
+      <Icon size={21} aria-hidden />
+    </span>
+  )
+}
 
 export const metadata: Metadata = {
   title: 'Croissance digitale par secteur d\'activité — PME & TPE | 123 Digital',
@@ -91,16 +114,16 @@ export default function SecteursPage() {
         style={{ padding: 'clamp(2rem, 5vw, 3.5rem) 1.5rem clamp(2.25rem, 6vw, 4rem)', borderTop: '1px solid var(--line)' }}
       >
         <div className="mx-auto max-w-5xl">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-px" style={{ backgroundColor: 'var(--line)' }}>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
             {secteurs.map((secteur) => (
               <Link
                 key={secteur.slug}
                 href={`/secteurs/${secteur.slug}`}
-                className="group block p-8"
-                style={{ backgroundColor: 'var(--surface-2)' }}
+                className="group block rounded-2xl"
+                style={{ backgroundColor: 'var(--surface-2)', border: '1px solid var(--line)', boxShadow: '0 8px 30px var(--shadow-soft)', padding: 'clamp(1.1rem, 3.5vw, 1.75rem)' }}
               >
                 <div className="flex items-start gap-4 mb-4">
-                  <span style={{ fontSize: '2rem' }}>{secteur.emoji}</span>
+                  <SecteurIcon name={secteur.icon} />
                   <div>
                     <div
                       style={{
@@ -180,6 +203,7 @@ export default function SecteursPage() {
             href="/audit-gratuit"
             style={{
               display: 'inline-block',
+              borderRadius: 999,
               padding: '1rem 2.5rem',
               backgroundColor: 'var(--brand)',
               color: 'var(--on-brand)',

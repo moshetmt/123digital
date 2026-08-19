@@ -69,19 +69,19 @@ export function Footer({ lang = 'fr' }: { lang?: Locale }) {
     <footer
       aria-label="Pied de page"
       style={{
-        backgroundColor: 'var(--surface)',
-        borderTop: '1px solid var(--line)',
+        // Degrade des trois tons du logo (jeton --footer-grad).
+        background: 'var(--footer-grad)',
         // Bas généreux : sur mobile, la CallBar fixe ne doit jamais couvrir la dernière ligne.
-        padding: '2.75rem 1.5rem 6.5rem',
+        padding: '2.5rem 1.5rem 6.5rem',
       }}
     >
       <div className="mx-auto footer-grid" style={{ maxWidth: '1280px' }}>
         {/* Brand + tagline */}
         <div className="flex flex-col gap-3" style={{ gridColumn: 'span 2' }}>
           <Link href={lang === 'en' ? '/en' : '/'} aria-label="123 Digital" className="w-fit">
-            <Image src="/images/logo.svg" alt="123 Digital" width={140} height={29} style={{ height: 28, width: 'auto' }} />
+            <Image src="/images/logo-fond-sombre.svg" alt="123 Digital" width={140} height={29} style={{ height: 28, width: 'auto' }} />
           </Link>
-          <p style={{ color: 'var(--ink-2)', fontSize: '0.85rem', lineHeight: 1.6, maxWidth: '34ch' }}>
+          <p style={{ color: 'var(--cream-2)', fontSize: '0.85rem', lineHeight: 1.6, maxWidth: '34ch' }}>
             {d.tagline}
           </p>
           <div className="flex items-center gap-4 mt-1">
@@ -93,7 +93,7 @@ export function Footer({ lang = 'fr' }: { lang?: Locale }) {
                 target={href.startsWith('http') ? '_blank' : undefined}
                 rel={href.startsWith('http') ? 'noopener noreferrer' : undefined}
                 className="social-icon"
-                style={{ color: 'var(--ink-3)' }}
+                style={{ color: 'var(--cream-3)' }}
               >
                 <Icon size={17} aria-hidden />
               </a>
@@ -103,13 +103,13 @@ export function Footer({ lang = 'fr' }: { lang?: Locale }) {
 
         {/* Services */}
         <div>
-          <h4 style={{ fontSize: '0.72rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--brand)', marginBottom: '0.7rem' }}>
+          <h4 style={{ fontSize: '0.72rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--vert-3)', marginBottom: '0.7rem' }}>
             {d.servicesTitle}
           </h4>
           <ul className="flex flex-col gap-2">
             {services.map((service) => (
               <li key={service.id}>
-                <Link href={service.href} className="footer-link" style={{ color: 'var(--ink)', fontSize: '0.85rem' }}>
+                <Link href={service.href} className="footer-link" style={{ color: 'var(--cream)', fontSize: '0.85rem' }}>
                   {service.title}
                 </Link>
               </li>
@@ -119,20 +119,20 @@ export function Footer({ lang = 'fr' }: { lang?: Locale }) {
 
         {/* Résultats */}
         <div>
-          <h4 style={{ fontSize: '0.72rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--brand)', marginBottom: '0.7rem' }}>
+          <h4 style={{ fontSize: '0.72rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--vert-3)', marginBottom: '0.7rem' }}>
             {d.resultsTitle}
           </h4>
           <ul className="flex flex-col gap-2">
             {projects.map((project) => (
               <li key={project.id}>
-                <Link href={`${base}#resultats`} className="footer-link" style={{ color: 'var(--ink)', fontSize: '0.85rem' }}>
+                <Link href={`${base}#resultats`} className="footer-link" style={{ color: 'var(--cream)', fontSize: '0.85rem' }}>
                   {project.title}
                 </Link>
               </li>
             ))}
             {legalLinks.map((link) => (
               <li key={link.href}>
-                <Link href={link.href} className="footer-link" style={{ color: 'var(--ink)', fontSize: '0.85rem' }}>
+                <Link href={link.href} className="footer-link" style={{ color: 'var(--cream)', fontSize: '0.85rem' }}>
                   {link.label}
                 </Link>
               </li>
@@ -142,25 +142,25 @@ export function Footer({ lang = 'fr' }: { lang?: Locale }) {
 
         {/* Contact */}
         <div>
-          <h4 style={{ fontSize: '0.72rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--brand)', marginBottom: '0.7rem' }}>
+          <h4 style={{ fontSize: '0.72rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--vert-3)', marginBottom: '0.7rem' }}>
             {d.contactTitle}
           </h4>
           <ul className="flex flex-col gap-2">
-            <li><a href="tel:+33652092301" className="footer-link" style={{ color: 'var(--ink)', fontSize: '0.85rem' }}>06 52 09 23 01</a></li>
-            <li><a href="mailto:contact@123digital.fr" className="footer-link" style={{ color: 'var(--ink)', fontSize: '0.85rem' }}>contact@123digital.fr</a></li>
-            <li style={{ color: 'var(--ink-2)', fontSize: '0.85rem' }}>Lyon, France</li>
+            <li><a href="tel:+33652092301" className="footer-link" style={{ color: 'var(--cream)', fontSize: '0.85rem' }}>06 52 09 23 01</a></li>
+            <li><a href="mailto:contact@123digital.fr" className="footer-link" style={{ color: 'var(--cream)', fontSize: '0.85rem' }}>contact@123digital.fr</a></li>
+            <li style={{ color: 'var(--cream-2)', fontSize: '0.85rem' }}>Lyon, France</li>
           </ul>
         </div>
       </div>
 
       <div
         className="mx-auto flex flex-col sm:flex-row items-center justify-between gap-2"
-        style={{ maxWidth: '1280px', marginTop: '2.25rem', paddingTop: '1.5rem', borderTop: '1px solid var(--line)' }}
+        style={{ maxWidth: '1280px', marginTop: '2.25rem', paddingTop: '1.5rem', borderTop: '1px solid rgba(255,255,255,0.12)' }}
       >
-        <p style={{ color: 'var(--ink-3)', fontSize: '0.75rem' }}>
+        <p style={{ color: 'var(--cream-3)', fontSize: '0.75rem' }}>
           © {new Date().getFullYear()} Maurice Timsit. {d.rights}
         </p>
-        <p style={{ color: 'var(--ink-3)', fontSize: '0.75rem' }}>123digital.fr</p>
+        <p style={{ color: 'var(--cream-3)', fontSize: '0.75rem' }}>123digital.fr</p>
       </div>
 
       <style>{`
@@ -170,13 +170,13 @@ export function Footer({ lang = 'fr' }: { lang?: Locale }) {
           gap: 2.25rem;
         }
         .footer-link { display: inline-flex; align-items: center; min-height: 28px; transition: color 0.2s ease; }
-        .footer-link:hover { color: var(--brand) !important; }
+        .footer-link:hover { color: var(--vert-3) !important; }
         .social-icon {
           display: inline-flex; align-items: center; justify-content: center;
           min-width: 32px; min-height: 32px;
           transition: color 0.2s ease;
         }
-        .social-icon:hover { color: var(--brand) !important; }
+        .social-icon:hover { color: var(--vert-3) !important; }
         @media (max-width: 900px) {
           .footer-grid { grid-template-columns: 1fr 1fr; }
         }

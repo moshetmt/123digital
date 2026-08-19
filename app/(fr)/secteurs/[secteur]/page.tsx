@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
+import { Check, X } from 'lucide-react'
 import { JsonLd } from '@/components/seo/JsonLd'
 import { Breadcrumb } from '@/components/layout/Breadcrumb'
 import { BASE_URL, breadcrumbSchema, localBusinessSchema } from '@/lib/schema'
@@ -89,7 +90,7 @@ export default async function SecteurPage({ params }: PageProps) {
             }}
           >
             <span className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: 'var(--brand)' }} />
-            {secteur.emoji} Secteur · {secteur.nom}
+            Secteur · {secteur.nom}
           </div>
 
           <h1
@@ -123,6 +124,7 @@ export default async function SecteurPage({ params }: PageProps) {
               href="/audit-gratuit"
               style={{
                 display: 'inline-block',
+                borderRadius: 999,
                 padding: '0.85rem 2rem',
                 backgroundColor: 'var(--brand)',
                 color: 'var(--on-brand)',
@@ -177,8 +179,8 @@ export default async function SecteurPage({ params }: PageProps) {
               <ul className="space-y-4">
                 {secteur.problemes.map((probleme, i) => (
                   <li key={i} className="flex items-start gap-3">
-                    <span style={{ color: 'var(--ink-3)', marginTop: '0.1rem', flexShrink: 0 }}>✕</span>
-                    <span style={{ fontSize: '0.9rem', color: 'var(--brand)', lineHeight: 1.6 }}>
+                    <X size={16} strokeWidth={3} aria-hidden style={{ color: 'var(--ink-3)', marginTop: '0.15rem', flexShrink: 0 }} />
+                    <span style={{ fontSize: '0.9rem', color: 'var(--ink-2)', lineHeight: 1.6 }}>
                       {probleme}
                     </span>
                   </li>
@@ -202,7 +204,7 @@ export default async function SecteurPage({ params }: PageProps) {
               <ul className="space-y-4">
                 {secteur.solutions.map((solution, i) => (
                   <li key={i} className="flex items-start gap-3">
-                    <span style={{ color: 'var(--brand)', marginTop: '0.1rem', flexShrink: 0 }}>✓</span>
+                    <Check size={16} strokeWidth={3} aria-hidden style={{ color: 'var(--brand)', marginTop: '0.15rem', flexShrink: 0 }} />
                     <span style={{ fontSize: '0.9rem', color: 'var(--ink-2)', lineHeight: 1.6 }}>
                       {solution}
                     </span>
@@ -372,7 +374,7 @@ export default async function SecteurPage({ params }: PageProps) {
                   fontSize: '0.8rem',
                 }}
               >
-                {s.emoji} {s.nom}
+                {s.nom}
               </Link>
             ))}
           </div>
@@ -398,6 +400,7 @@ export default async function SecteurPage({ params }: PageProps) {
             href="/audit-gratuit"
             style={{
               display: 'inline-block',
+              borderRadius: 999,
               padding: '1rem 2.5rem',
               backgroundColor: 'var(--brand)',
               color: 'var(--on-brand)',

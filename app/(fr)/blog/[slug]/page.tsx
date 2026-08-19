@@ -208,6 +208,7 @@ function RenderSection({ section }: { section: BlogSection }) {
             href="/audit-gratuit"
             style={{
               display: 'inline-block',
+              borderRadius: 999,
               padding: '0.75rem 1.75rem',
               backgroundColor: 'var(--brand)',
               color: 'var(--on-brand)',
@@ -385,6 +386,7 @@ export default async function BlogArticlePage({ params }: PageProps) {
               href="/audit-gratuit"
               style={{
                 display: 'inline-block',
+                borderRadius: 999,
                 padding: '0.85rem 2rem',
                 backgroundColor: 'var(--brand)',
                 color: 'var(--on-brand)',

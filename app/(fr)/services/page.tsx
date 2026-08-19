@@ -256,12 +256,13 @@ export default function ServicesPage() {
                           className="inline-flex items-center gap-2 transition-colors duration-200"
                           style={{
                             padding: '0.65rem 1.5rem',
+                            borderRadius: 999,
                             backgroundColor: 'var(--brand)',
                             color: 'var(--on-brand)',
                             fontSize: '0.8rem',
-                            fontWeight: 700,
-                            letterSpacing: '0.06em',
-                            textTransform: 'uppercase',
+                            fontWeight: 800,
+                            letterSpacing: '0.04em',
+                            whiteSpace: 'nowrap',
                           }}
                         >
                           En savoir plus
@@ -389,6 +390,7 @@ export default function ServicesPage() {
             href="/audit-gratuit"
             style={{
               display: 'inline-block',
+              borderRadius: 999,
               padding: '1rem 2.5rem',
               backgroundColor: 'var(--brand)',
               color: 'var(--on-brand)',

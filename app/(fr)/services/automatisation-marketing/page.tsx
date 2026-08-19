@@ -225,14 +225,19 @@ export default function AutomatisationMarketingPage() {
           <h2 className="font-display font-extrabold mb-10" style={{ fontSize: 'clamp(1.6rem, 3vw, 2.5rem)', color: 'var(--ink)', letterSpacing: '-0.02em' }}>
             Automatisation marketing PME — vos questions
           </h2>
-          <dl className="space-y-8">
+          {/* Accordeon natif : la liste depliee pesait environ 1000 px sur
+              telephone. Le schema FAQPage de la page reste inchange. */}
+          <div className="flex flex-col gap-1.5">
             {faqs.map(({ question, answer }, i) => (
-              <div key={i} style={{ borderTop: '1px solid var(--line)', paddingTop: '2rem' }}>
-                <dt className="font-display font-extrabold mb-3" style={{ fontSize: '1.05rem', color: 'var(--ink)' }}>{question}</dt>
-                <dd style={{ color: 'var(--ink-2)', lineHeight: 1.75, fontSize: '0.95rem' }}>{answer}</dd>
-              </div>
+              <details key={i} className="group rounded-xl" style={{ border: '1px solid var(--line)', backgroundColor: 'var(--surface-2)' }}>
+                <summary className="flex items-center justify-between gap-3 cursor-pointer list-none font-extrabold" style={{ fontSize: '0.95rem', color: 'var(--ink)', padding: '0.85rem 1rem' }}>
+                  {question}
+                  <span aria-hidden className="shrink-0 transition-transform group-open:rotate-45" style={{ color: 'var(--brand)', fontSize: '1.2rem', lineHeight: 1 }}>+</span>
+                </summary>
+                <p style={{ color: 'var(--ink-2)', lineHeight: 1.55, fontSize: '0.88rem', padding: '0 1rem 0.9rem' }}>{answer}</p>
+              </details>
             ))}
-          </dl>
+          </div>
         </div>
       </section>
 

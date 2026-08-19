@@ -189,6 +189,7 @@ export function VillesMap({ lang = 'fr' }: { lang?: 'fr' | 'en' }) {
                 textTransform: 'uppercase',
                 flexShrink: 0,
                 display: 'inline-block',
+                borderRadius: 999,
                 textDecoration: 'none',
               }}
             >

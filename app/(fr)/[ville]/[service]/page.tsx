@@ -390,6 +390,7 @@ export default async function VilleServicePage({ params }: PageProps) {
               href="/audit-gratuit"
               style={{
                 display: 'inline-block',
+                borderRadius: 999,
                 padding: '0.85rem 2rem',
                 backgroundColor: 'var(--brand)',
                 color: 'var(--on-brand)',
@@ -444,7 +445,7 @@ export default async function VilleServicePage({ params }: PageProps) {
             style={{ fontSize: 'clamp(1.8rem, 3vw, 2.6rem)', color: 'var(--ink)', lineHeight: 1.1 }}
           >
             {service.title} à {ville.nom}<br />
-            <span style={{ color: 'var(--ink-2)' }}>en 4 étapes.</span>
+            <span style={{ color: 'var(--brand)' }}>en 4 étapes.</span>
           </h2>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-px" style={{ backgroundColor: 'var(--line)' }}>
@@ -616,6 +617,7 @@ export default async function VilleServicePage({ params }: PageProps) {
             href="/audit-gratuit"
             style={{
               display: 'inline-block',
+              borderRadius: 999,
               padding: '1rem 2.5rem',
               backgroundColor: 'var(--brand)',
               color: 'var(--on-brand)',

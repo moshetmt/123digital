@@ -238,7 +238,7 @@ export function Header({ lang = 'fr' }: { lang?: Locale }) {
             </div>
             <a
               href={PHONE_TEL}
-              className="inline-flex items-center gap-2 rounded-full font-bold text-sm transition-all duration-200 active:scale-[0.97]"
+              className="inline-flex items-center gap-2 rounded-full font-bold text-sm transition-all duration-200 active:scale-[0.97] whitespace-nowrap"
               style={{ backgroundColor: 'var(--brand)', color: 'var(--on-brand)', padding: '0.55rem 1.15rem' }}
             >
               <Phone size={14} aria-hidden />

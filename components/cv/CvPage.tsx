@@ -40,9 +40,25 @@ export function CvPage({ locale }: { locale: CvLocale }) {
         style={{ backgroundColor: 'var(--surface-alpha)', backdropFilter: 'blur(10px)', borderBottom: '1px solid var(--line)' }}
       >
         <div className="mx-auto max-w-4xl flex items-center justify-between gap-4" style={{ padding: '0.7rem 1.5rem' }}>
-          <span className="font-sans font-extrabold truncate" style={{ fontSize: '0.95rem', color: 'var(--ink)', letterSpacing: '-0.01em' }}>
-            {identity.name}
-          </span>
+          {/* Le logo reste, le nom vient s'y accrocher : la page appartient au
+              site, elle n'est pas une page isolee sans provenance. */}
+          <Link href={c.nav.backHref} className="flex items-center gap-2 min-w-0" aria-label={`123 Digital, ${identity.name}`}>
+            <Image
+              src="/images/logo.svg"
+              alt="123 Digital"
+              width={140}
+              height={29}
+              style={{ height: 26, width: 'auto' }}
+              priority
+              unoptimized
+            />
+            <span
+              className="truncate"
+              style={{ fontSize: '0.82rem', color: 'var(--ink-2)', fontWeight: 600, borderLeft: '1px solid var(--line-strong)', paddingLeft: '0.6rem' }}
+            >
+              by {identity.name}
+            </span>
+          </Link>
 
           <div className="flex items-center gap-2 sm:gap-4 shrink-0">
             <a

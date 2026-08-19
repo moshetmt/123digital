@@ -11,9 +11,9 @@ const EASE = [0.16, 1, 0.3, 1] as [number, number, number, number]
 const PHONE_TEL = 'tel:+33652092301'
 
 // ── Pong de fond ──────────────────────────────────────────────────────────────
-// Banniere retournee (validee le 19/08) : le vert du logo passe en fond, tout
-// le texte passe en blanc, et une partie de Pong tourne derriere, en blanc.
-// Aucun fichier n'est charge : le canvas reste transparent et laisse voir le
+// Banniere retournee (validee le 19/08) : le vert du logo passe en fond, tout le
+// texte passe en blanc, et une partie de Pong tourne derriere, en blanc. Aucun
+// fichier n'est charge : les canvas restent transparents et laissent voir le
 // degrade CSS, ce qui coute zero octet et ne touche pas au LCP.
 //
 // Trois regles imposees par l'operateur :
@@ -22,8 +22,15 @@ const PHONE_TEL = 'tel:+33652092301'
 //      identique sur un ecran 60 Hz ou 120 Hz ;
 //   3. les deux raquettes sont independantes — chacune tire sa destination, sa
 //      vitesse et son moment de depart separement, aucune ne suit l'autre.
-// La balle rebondit aussi sur les bords : l'echange ne s'interrompt jamais,
-// meme quand une raquette n'est pas au rendez-vous.
+// La balle rebondit aussi sur les bords : l'echange ne s'interrompt jamais, meme
+// quand une raquette n'est pas au rendez-vous.
+//
+// Inversion sur le bouton blanc : le canvas de fond est sous le texte, il ne
+// peut donc pas se voir a travers un bouton opaque. La scene est dessinee une
+// seconde fois, en vert, dans un canvas place A L'INTERIEUR du bouton, decale de
+// la distance qui separe le bouton du haut de la banniere. Le bouton, qui coupe
+// ce qui deborde, sert de pochoir : la balle traverse et change de couleur pile
+// sur le bord de la pastille.
 
 const BALL_SPEED = 150   // px/s
 const PADDLE_SPEED = 260 // px/s — regle par simulation : 2 interceptions sur 3
@@ -31,20 +38,34 @@ const BALL_R = 6
 const PADDLE_W = 7
 const MARGIN = 14
 const WHITE = 'oklch(0.985 0.003 150)'
+const GREEN = 'oklch(0.395 0.112 155)'
 
-function PongBackground() {
-  const canvasRef = useRef<HTMLCanvasElement>(null)
+export function Hero({ lang = 'fr' }: { lang?: Locale }) {
+  const d = t(lang).hero
+  const ref = useRef<HTMLElement>(null)
+  const bgRef = useRef<HTMLCanvasElement>(null)
+  const holeRef = useRef<HTMLCanvasElement>(null)
+  const buttonRef = useRef<HTMLAnchorElement>(null)
+  const isInView = useInView(ref, { once: true, margin: '-10%' })
 
   useEffect(() => {
-    const canvas = canvasRef.current
-    const ctx = canvas?.getContext('2d')
-    if (!canvas || !ctx) return
+    const section = ref.current
+    const bg = bgRef.current
+    const hole = holeRef.current
+    const button = buttonRef.current
+    const bgCtx = bg?.getContext('2d')
+    const holeCtx = hole?.getContext('2d')
+    if (!section || !bg || !hole || !button || !bgCtx || !holeCtx) return
 
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
     let w = 0
     let h = 0
+    let dpr = 1
+    let offsetX = 0
+    let offsetY = 0
     let raf: number | null = null
     let last = 0
+    let sinceMeasure = 0
     let onScreen = true
     let started = false
 
@@ -68,14 +89,30 @@ function PongBackground() {
       p.speed = PADDLE_SPEED * (0.55 + Math.random() * 0.95)
     }
 
+    // Position du bouton dans le repere de la banniere. Recalculee au
+    // redimensionnement et deux fois par seconde : une police qui finit de
+    // charger ou un texte qui passe sur deux lignes deplace la pastille.
+    function measureHole() {
+      const heroBox = section!.getBoundingClientRect()
+      const buttonBox = button!.getBoundingClientRect()
+      offsetX = heroBox.left - buttonBox.left
+      offsetY = heroBox.top - buttonBox.top
+
+      const bw = Math.max(buttonBox.width, 1)
+      const bh = Math.max(buttonBox.height, 1)
+      hole!.width = Math.round(bw * dpr)
+      hole!.height = Math.round(bh * dpr)
+      holeCtx!.setTransform(dpr, 0, 0, dpr, 0, 0)
+    }
+
     function layout() {
-      const rect = canvas!.getBoundingClientRect()
-      const dpr = Math.min(window.devicePixelRatio || 1, 2)
+      const rect = bg!.getBoundingClientRect()
+      dpr = Math.min(window.devicePixelRatio || 1, 2)
       w = Math.max(rect.width, 1)
       h = Math.max(rect.height, 1)
-      canvas!.width = Math.round(w * dpr)
-      canvas!.height = Math.round(h * dpr)
-      ctx!.setTransform(dpr, 0, 0, dpr, 0, 0)
+      bg!.width = Math.round(w * dpr)
+      bg!.height = Math.round(h * dpr)
+      bgCtx!.setTransform(dpr, 0, 0, dpr, 0, 0)
 
       pads.forEach((p) => {
         p.height = Math.max(52, Math.min(104, h * 0.19))
@@ -95,27 +132,45 @@ function PongBackground() {
           p.y = Math.max(p.height / 2, Math.min(h - p.height / 2, p.y))
         })
       }
+
+      measureHole()
+    }
+
+    // Une seule description de la scene, peinte dans les deux canvas : en blanc
+    // sur le vert, en vert dans la fenetre du bouton. Le decalage aligne les
+    // deux reperes, la balle reste donc une seule et meme balle.
+    function paint(ctx: CanvasRenderingContext2D, color: string, dx: number, dy: number) {
+      ctx.save()
+      ctx.translate(dx, dy)
+
+      ctx.strokeStyle = color
+      ctx.globalAlpha = 0.22
+      ctx.lineWidth = 2
+      ctx.setLineDash([7, 13])
+      ctx.beginPath()
+      ctx.moveTo(w / 2, 0)
+      ctx.lineTo(w / 2, h)
+      ctx.stroke()
+      ctx.setLineDash([])
+      ctx.globalAlpha = 1
+
+      ctx.fillStyle = color
+      ctx.fillRect(MARGIN, pads[0].y - pads[0].height / 2, PADDLE_W, pads[0].height)
+      ctx.fillRect(w - MARGIN - PADDLE_W, pads[1].y - pads[1].height / 2, PADDLE_W, pads[1].height)
+
+      ctx.beginPath()
+      ctx.arc(ball.x, ball.y, BALL_R, 0, Math.PI * 2)
+      ctx.fill()
+
+      ctx.restore()
     }
 
     function draw() {
-      ctx!.clearRect(0, 0, w, h)
+      bgCtx!.clearRect(0, 0, w, h)
+      paint(bgCtx!, WHITE, 0, 0)
 
-      ctx!.strokeStyle = 'oklch(0.985 0.003 150 / 22%)'
-      ctx!.lineWidth = 2
-      ctx!.setLineDash([7, 13])
-      ctx!.beginPath()
-      ctx!.moveTo(w / 2, 0)
-      ctx!.lineTo(w / 2, h)
-      ctx!.stroke()
-      ctx!.setLineDash([])
-
-      ctx!.fillStyle = WHITE
-      ctx!.fillRect(MARGIN, pads[0].y - pads[0].height / 2, PADDLE_W, pads[0].height)
-      ctx!.fillRect(w - MARGIN - PADDLE_W, pads[1].y - pads[1].height / 2, PADDLE_W, pads[1].height)
-
-      ctx!.beginPath()
-      ctx!.arc(ball.x, ball.y, BALL_R, 0, Math.PI * 2)
-      ctx!.fill()
+      holeCtx!.clearRect(0, 0, hole!.width, hole!.height)
+      paint(holeCtx!, GREEN, offsetX, offsetY)
     }
 
     function update(dt: number) {
@@ -176,6 +231,13 @@ function PongBackground() {
     function frame(now: number) {
       const dt = Math.min((now - last) / 1000, 0.05)
       last = now
+
+      sinceMeasure += dt
+      if (sinceMeasure > 0.5) {
+        sinceMeasure = 0
+        measureHole()
+      }
+
       update(dt)
       draw()
       raf = requestAnimationFrame(frame)
@@ -218,7 +280,7 @@ function PongBackground() {
       },
       { threshold: 0.1 },
     )
-    observer.observe(canvas)
+    observer.observe(bg)
 
     if (!reduced) play()
 
@@ -229,37 +291,6 @@ function PongBackground() {
       document.removeEventListener('visibilitychange', onVisibility)
     }
   }, [])
-
-  return (
-    <canvas
-      ref={canvasRef}
-      aria-hidden
-      className="pointer-events-none absolute inset-0 -z-20 h-full w-full"
-    />
-  )
-}
-
-// « Google » est le seul mot mis en valeur du titre : c'est le mot que le
-// visiteur cherche des yeux. Decoupage sur la chaine traduite plutot que deux
-// cles i18n, pour que le titre reste une phrase entiere dans le fichier.
-function highlightGoogle(text: string): ReactNode {
-  const parts = text.split('Google')
-  if (parts.length === 1) return text
-
-  return parts.map((part, i) => (
-    <span key={i}>
-      {i > 0 && <span style={{ color: 'var(--vert-pale)' }}>Google</span>}
-      {part}
-    </span>
-  ))
-}
-
-// ── Hero ──────────────────────────────────────────────────────────────────────
-
-export function Hero({ lang = 'fr' }: { lang?: Locale }) {
-  const d = t(lang).hero
-  const ref = useRef<HTMLDivElement>(null)
-  const isInView = useInView(ref, { once: true, margin: '-10%' })
 
   const checks = [d.check1, d.check2, d.check3]
 
@@ -278,7 +309,11 @@ export function Hero({ lang = 'fr' }: { lang?: Locale }) {
       }}
       aria-label="Section hero"
     >
-      <PongBackground />
+      <canvas
+        ref={bgRef}
+        aria-hidden
+        className="pointer-events-none absolute inset-0 -z-20 h-full w-full"
+      />
 
       {/* Voile vert, pas noir : il assombrit a peine le centre pour que le texte
           blanc reste net quand la balle passe derriere, et laisse les bords
@@ -335,11 +370,13 @@ export function Hero({ lang = 'fr' }: { lang?: Locale }) {
             transition={{ duration: 0.8, delay: 0.2, ease: EASE }}
             className="flex flex-wrap items-center justify-center gap-3.5 mb-6"
           >
-            {/* Boutons inverses : le vert est passe en fond, l'appel devient
-                donc blanc sur vert pour rester l'element le plus contraste. */}
+            {/* Boutons inverses : le vert est passe en fond, l'appel devient donc
+                blanc sur vert. `overflow-hidden` fait de la pastille le pochoir
+                qui decoupe la balle verte. */}
             <a
+              ref={buttonRef}
               href={PHONE_TEL}
-              className="inline-flex items-center gap-2 rounded-full font-bold"
+              className="relative inline-flex items-center gap-2 overflow-hidden rounded-full font-bold"
               style={{
                 backgroundColor: 'var(--on-brand)',
                 color: 'var(--brand-deep)',
@@ -347,8 +384,11 @@ export function Hero({ lang = 'fr' }: { lang?: Locale }) {
                 boxShadow: '0 2px 14px oklch(0.145 0 0 / 22%)',
               }}
             >
-              <Phone size={16} aria-hidden />
-              {d.ctaCall}
+              <canvas ref={holeRef} aria-hidden className="pointer-events-none absolute inset-0" />
+              <span className="relative z-10 inline-flex items-center gap-2">
+                <Phone size={16} aria-hidden />
+                {d.ctaCall}
+              </span>
             </a>
             <Link
               href="#contact"
@@ -397,4 +437,19 @@ export function Hero({ lang = 'fr' }: { lang?: Locale }) {
       </div>
     </section>
   )
+}
+
+// « Google » est le seul mot mis en valeur du titre : c'est le mot que le
+// visiteur cherche des yeux. Decoupage sur la chaine traduite plutot que deux
+// cles i18n, pour que le titre reste une phrase entiere dans le fichier.
+function highlightGoogle(text: string): ReactNode {
+  const parts = text.split('Google')
+  if (parts.length === 1) return text
+
+  return parts.map((part, i) => (
+    <span key={i}>
+      {i > 0 && <span style={{ color: 'var(--vert-pale)' }}>Google</span>}
+      {part}
+    </span>
+  ))
 }

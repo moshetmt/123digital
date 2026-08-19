@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import { Phone } from 'lucide-react'
+import { Phone, Check, ArrowRight } from 'lucide-react'
 import { JsonLd } from '@/components/seo/JsonLd'
 import { Breadcrumb } from '@/components/layout/Breadcrumb'
 import { AuditSimulator } from '@/components/sections/AuditSimulator'
@@ -180,11 +180,14 @@ export default function AuditGratuitPage() {
           </p>
 
           <div
-            className="flex flex-wrap gap-4 mb-8"
-            style={{ fontSize: '0.8rem', color: 'var(--ink-2)' }}
+            className="flex flex-wrap gap-x-5 gap-y-1.5 mb-6"
+            style={{ fontSize: '0.82rem', color: 'var(--ink-2)', fontWeight: 600 }}
           >
             {['Aucune carte bancaire', 'Pas de relance commerciale', 'Résultats actionnables'].map((item) => (
-              <span key={item}>{item}</span>
+              <span key={item} className="inline-flex items-center gap-1.5">
+                <Check size={15} strokeWidth={3} aria-hidden style={{ color: 'var(--brand)', flexShrink: 0 }} />
+                {item}
+              </span>
             ))}
           </div>
 
@@ -203,7 +206,7 @@ export default function AuditGratuitPage() {
               className="font-display font-extrabold mb-1.5"
               style={{ fontSize: '1.1rem', color: 'var(--ink)' }}
             >
-              Démarrez votre audit par téléphone
+              Démarrez votre audit
             </p>
             <p style={{ fontSize: '0.85rem', color: 'var(--ink-2)', marginBottom: '0.9rem', lineHeight: 1.5 }}>
               Un appel de 30 minutes suffit. Je prépare l&apos;analyse de votre site avant l&apos;échange.
@@ -231,8 +234,32 @@ export default function AuditGratuitPage() {
               <Phone size={17} aria-hidden />
               Appeler maintenant
             </a>
+            {/* Second chemin : la page promettait un audit sans aucun moyen de
+                le demander en ligne. Ce bouton mene au formulaire de la page. */}
+            <Link
+              href="#contact"
+              className="hover:opacity-85 transition-opacity"
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: '8px',
+                width: '100%',
+                marginTop: '0.6rem',
+                border: '2px solid var(--line-strong)',
+                color: 'var(--ink)',
+                fontWeight: 800,
+                fontSize: '0.92rem',
+                padding: '0.85rem 1rem',
+                borderRadius: 999,
+                textDecoration: 'none',
+              }}
+            >
+              Demander par écrit
+              <ArrowRight size={16} aria-hidden />
+            </Link>
             <p style={{ fontSize: '0.75rem', color: 'var(--ink-3)', marginTop: '0.75rem', textAlign: 'center' }}>
-              +33 6 52 09 23 01 — disponible en semaine
+              06 52 09 23 01, disponible en semaine
             </p>
           </div>
 

@@ -202,10 +202,22 @@ export function Header({ lang = 'fr' }: { lang?: Locale }) {
                 </li>
               ) : (
                 <li key={link.href}>
+                  {/* L'audit gratuit est la page de conversion : elle sort du
+                      lot en pastille contour, au lieu d'etre le dernier lien
+                      de la rangee, indistinct des autres. */}
                   <Link
                     href={link.href}
-                    className="relative block px-3 py-2 rounded-lg text-sm font-bold transition-colors duration-150"
-                    style={{ color: isActive(link.href) ? 'var(--brand)' : INK }}
+                    className={cn(
+                      'relative block text-sm font-bold transition-colors duration-150',
+                      link.href.includes('audit')
+                        ? 'ml-1 px-3.5 py-1.5 rounded-full border-2'
+                        : 'px-3 py-2 rounded-lg',
+                    )}
+                    style={
+                      link.href.includes('audit')
+                        ? { color: 'var(--brand)', borderColor: 'var(--brand-line)', backgroundColor: 'var(--brand-tint)' }
+                        : { color: isActive(link.href) ? 'var(--brand)' : INK }
+                    }
                   >
                     {link.label}
                   </Link>

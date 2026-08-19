@@ -18,15 +18,14 @@ name: Deployer 123digital.fr
 # recents ignores a cote. D'ou l'etape `promote`, qui deplace reellement le
 # domaine, et la verification par alias qui est la seule preuve qui vaut.
 
+# 🔑 AUCUN CHAMP OBLIGATOIRE, VOLONTAIREMENT. Un `choice` en `required: true`
+# laisse le bouton « Run workflow » GRISE dans l'application GitHub mobile tant
+# qu'on n'a pas ouvert le selecteur et re-choisi la valeur affichee, ce qui n'est
+# pas devinable (constate le 19/08 sur iPhone). Comme le menu n'avait qu'une
+# seule option, il ne protegeait rien : la vraie confirmation, c'est le fait
+# d'appuyer sur le bouton. Ne pas re-ajouter de champ obligatoire ici.
 on:
   workflow_dispatch:
-    inputs:
-      confirmation:
-        description: "Deployer sur 123digital.fr en production ?"
-        type: choice
-        options:
-          - "oui, en production"
-        required: true
 
   # Pour deployer automatiquement a chaque push sur master, decommenter ces
   # 4 lignes. Laisse commente par defaut : tout commit partirait en ligne,

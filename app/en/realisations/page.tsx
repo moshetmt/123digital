@@ -21,10 +21,10 @@ export const metadata: Metadata = {
   },
 }
 
-// The 4 real metrics, identical to the Results bar on the homepage (Results.tsx).
-// Do not invent others: only these are verified.
+// The 3 real metrics, identical to the Results bar on the homepage (Results.tsx).
+// Do not invent others: only these are verified. Clim69 no longer has a figure
+// here: the client does not want their amounts made public.
 const metrics = [
-  { value: '19', caption: 'local pages live for an air-conditioning installer (Clim69)' },
   { value: '+180%', caption: 'local visibility in 5 months (Rhône Déconstruction)' },
   { value: '+240%', caption: 'organic traffic (A+ Audition, Cannes)' },
   { value: '50+', caption: 'businesses supported since 2017' },
@@ -113,9 +113,11 @@ export default function CaseStudiesPage() {
         aria-label={d.results.label}
         style={{ backgroundColor: 'var(--dark)', padding: 'clamp(2.25rem, 6vw, 3.5rem) 1.5rem' }}
       >
-        <div className="mx-auto max-w-6xl grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 text-center">
+        <div className="mx-auto max-w-6xl grid grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 text-center">
           {metrics.map((m, i) => (
-            <div key={m.caption}>
+            /* Three figures on a 2-column grid: the last one spans the full
+               width so it does not sit alone in a half row. */
+            <div key={m.caption} className={i === metrics.length - 1 ? 'col-span-2 lg:col-span-1' : undefined}>
               <div
                 className="font-sans font-extrabold"
                 style={{ fontSize: 'clamp(1.9rem, 3.8vw, 2.75rem)', letterSpacing: '-0.02em', color: `var(--vert-${[3, 2, 1, 2][i % 4]})` }}

@@ -22,10 +22,10 @@ export const metadata: Metadata = {
   },
 }
 
-// Les 4 métriques réelles, identiques à la bande Résultats de l'accueil (Results.tsx).
-// Ne pas en inventer d'autres : seules celles-ci sont vérifiées.
+// Les 3 métriques réelles, identiques à la bande Résultats de l'accueil (Results.tsx).
+// Ne pas en inventer d'autres : seules celles-ci sont vérifiées. Clim69 n'a plus
+// de chiffre ici : le client refuse que ses montants soient publics.
 const metrics = [
-  { value: '19', caption: 'pages locales en ligne pour un installateur de climatisation (Clim69)' },
   { value: '+180%', caption: 'de visibilité locale en 5 mois (Rhône Déconstruction)' },
   { value: '+240%', caption: 'de trafic organique (A+ Audition, Cannes)' },
   { value: '50+', caption: 'entreprises accompagnées depuis 2017' },
@@ -117,9 +117,11 @@ export default function PortfolioPage() {
         aria-label={d.results.label}
         style={{ backgroundColor: 'var(--dark)', padding: 'clamp(2.25rem, 6vw, 3.5rem) 1.5rem' }}
       >
-        <div className="mx-auto max-w-6xl grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 text-center">
+        <div className="mx-auto max-w-6xl grid grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 text-center">
           {metrics.map((m, i) => (
-            <div key={m.caption}>
+            /* Trois chiffres sur une grille a 2 colonnes : le dernier prend
+               toute la largeur pour ne pas rester seul dans un demi-rang. */
+            <div key={m.caption} className={i === metrics.length - 1 ? 'col-span-2 lg:col-span-1' : undefined}>
               <div
                 className="font-sans font-extrabold"
                 style={{ fontSize: 'clamp(1.9rem, 3.8vw, 2.75rem)', letterSpacing: '-0.02em', color: `var(--vert-${[3, 2, 1, 2][i % 4]})` }}

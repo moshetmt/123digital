@@ -52,7 +52,11 @@ export async function POST(req: Request) {
     return NextResponse.json({ ok: false }, { status: 503 })
   }
 
-  const to = process.env.CONTACT_TO || 'mochetimsit@gmail.com'
+  // Destinataire par defaut = l'adresse proprietaire du compte Resend.
+  // Tant que le domaine 123digital.fr n'est pas verifie chez Resend, l'expediteur
+  // de secours onboarding@resend.dev ne peut livrer QU'A cette adresse : viser
+  // une autre boite ferait echouer chaque demande.
+  const to = process.env.CONTACT_TO || 'contact@123digital.fr'
   const besoinLabel = BESOIN_LABELS[besoin] || besoin
 
   const text = [

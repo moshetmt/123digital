@@ -441,7 +441,7 @@ export default async function VilleServicePage({ params }: PageProps) {
             Ma méthode
           </div>
           <h2
-            className="font-display font-extrabold mb-10"
+            className="font-display font-extrabold mb-5 sm:mb-10"
             style={{ fontSize: 'clamp(1.8rem, 3vw, 2.6rem)', color: 'var(--ink)', lineHeight: 1.1 }}
           >
             {service.title} à {ville.nom}<br />
@@ -452,7 +452,7 @@ export default async function VilleServicePage({ params }: PageProps) {
             {content.steps.map((step) => (
               <div
                 key={step.num}
-                className="p-8"
+                className="p-3 sm:p-6 rounded-xl"
                 style={{ backgroundColor: 'var(--surface-2)' }}
               >
                 <div
@@ -500,7 +500,7 @@ export default async function VilleServicePage({ params }: PageProps) {
             Questions fréquentes
           </div>
           <h2
-            className="font-display font-extrabold mb-10"
+            className="font-display font-extrabold mb-5 sm:mb-10"
             style={{ fontSize: 'clamp(1.8rem, 3vw, 2.6rem)', color: 'var(--ink)', lineHeight: 1.1 }}
           >
             {service.title} à {ville.nom} —<br />vos questions

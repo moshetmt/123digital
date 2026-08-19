@@ -222,8 +222,8 @@ export default async function VillePage({ params }: PageProps) {
             >
               Le marché à {ville.nom}
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-              <p style={{ color: 'var(--ink-2)', lineHeight: 1.75, fontSize: '0.95rem' }}>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-10">
+              <p style={{ color: 'var(--ink-2)', lineHeight: 1.6, fontSize: '0.95rem' }}>
                 {insight.marche}
               </p>
               <div>
@@ -239,7 +239,7 @@ export default async function VillePage({ params }: PageProps) {
                 >
                   Mon approche à {ville.nom}
                 </div>
-                <p style={{ color: 'var(--ink-2)', lineHeight: 1.75, fontSize: '0.95rem' }}>
+                <p style={{ color: 'var(--ink-2)', lineHeight: 1.6, fontSize: '0.95rem' }}>
                   {insight.angle}
                 </p>
               </div>
@@ -267,18 +267,18 @@ export default async function VillePage({ params }: PageProps) {
             Services disponibles à {ville.nom}
           </div>
           <h2
-            className="font-display font-extrabold mb-10"
+            className="font-display font-extrabold mb-5 sm:mb-10"
             style={{ fontSize: 'clamp(1.8rem, 3vw, 2.6rem)', color: 'var(--ink)', lineHeight: 1.1 }}
           >
             Ce que je fais pour votre<br />entreprise à {ville.nom}
           </h2>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px" style={{ backgroundColor: 'var(--line)' }}>
+          <div className="grid grid-cols-2 lg:grid-cols-3 gap-2" style={{ backgroundColor: 'var(--line)' }}>
             {services.map((service) => (
               <Link
                 key={service.id}
                 href={`/${ville.slug}/${service.id}`}
-                className="group block p-8"
+                className="group block p-3 sm:p-6 rounded-xl"
                 style={{ backgroundColor: 'var(--surface-2)' }}
               >
                 <div
@@ -357,7 +357,7 @@ export default async function VillePage({ params }: PageProps) {
             Questions fréquentes
           </div>
           <h2
-            className="font-display font-extrabold mb-10"
+            className="font-display font-extrabold mb-5 sm:mb-10"
             style={{ fontSize: 'clamp(1.8rem, 3vw, 2.6rem)', color: 'var(--ink)', lineHeight: 1.1 }}
           >
             Consultant digital à {ville.nom} — vos questions

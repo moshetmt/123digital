@@ -1,0 +1,160 @@
+name: Deployer 123digital.fr
+
+# Bouton de deploiement utilisable depuis un telephone.
+# GitHub app ou github.com -> Actions -> "Deployer 123digital.fr" -> Run workflow.
+#
+# Ce workflow deploie l'ETAT POUSSE du depot, pas le disque du PC. Tout ce qui
+# n'est pas commite ET pousse ne part pas.
+#
+# Prerequis, une seule fois : secret VERCEL_TOKEN dans
+# https://github.com/moshetmt/123digital/settings/secrets/actions
+# Jeton a creer sur https://vercel.com/account/tokens depuis le compte qui
+# possede le projet (equipe 123digital-s-projects, utilisateur contact-6562).
+#
+# 🔑 CE WORKFLOW FAIT DEUX CHOSES, PAS UNE, ET LA SECONDE EST LA PLUS IMPORTANTE.
+# Constate le 19/08/2026 : `vercel deploy --prod` cree bien un deploiement de
+# production, Vercel repond "Success"... et le domaine ne bouge pas. 123digital.fr
+# etait epingle par alias sur un vieux deploiement, avec neuf deploiements plus
+# recents ignores a cote. D'ou l'etape `promote`, qui deplace reellement le
+# domaine, et la verification par alias qui est la seule preuve qui vaut.
+
+on:
+  workflow_dispatch:
+    inputs:
+      confirmation:
+        description: "Deployer sur 123digital.fr en production ?"
+        type: choice
+        options:
+          - "oui, en production"
+        required: true
+
+  # Pour deployer automatiquement a chaque push sur master, decommenter ces
+  # 4 lignes. Laisse commente par defaut : tout commit partirait en ligne,
+  # y compris un travail en cours.
+  # push:
+  #   branches:
+  #     - master
+
+concurrency:
+  group: deploy-123digital
+  cancel-in-progress: false
+
+jobs:
+  deployer:
+    name: Deployer en production
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      VERCEL_ORG_ID: team_AAyEbhOHUEGFM6XQ82iiIx3s
+      VERCEL_PROJECT_ID: prj_GAeDMlkYVZY0hUT6QifcEnuzUbOH
+
+    steps:
+      - name: Recuperer le depot
+        uses: actions/checkout@v4
+
+      - name: Installer Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Verifier que le jeton Vercel est present
+        run: |
+          if [ -z "${{ secrets.VERCEL_TOKEN }}" ]; then
+            echo "::error::Secret VERCEL_TOKEN absent. Le creer sur https://vercel.com/account/tokens puis l ajouter dans Settings > Secrets and variables > Actions."
+            exit 1
+          fi
+
+      # Vercel remonte jusqu'au .git du depot et attribue le deploiement a
+      # l'auteur du dernier commit. Si cet email n'appartient pas a l'equipe, il
+      # refuse en conseillant `git config --global user.email`, message qui envoie
+      # sur une fausse piste. Deployer une copie sans .git supprime la question.
+      - name: Copier le projet hors du depot (sans metadonnees git)
+        run: |
+          set -eu
+          rm -rf "$RUNNER_TEMP/deploiement"
+          mkdir -p "$RUNNER_TEMP/deploiement"
+          cp -a . "$RUNNER_TEMP/deploiement/"
+          rm -rf "$RUNNER_TEMP/deploiement/.git" "$RUNNER_TEMP/deploiement/.vercel"
+          if [ -e "$RUNNER_TEMP/deploiement/.git" ]; then
+            echo "::error::.git toujours present dans la copie, Vercel refuserait le deploiement."
+            exit 1
+          fi
+          echo "Copie prete. .vercelignore : $([ -f "$RUNNER_TEMP/deploiement/.vercelignore" ] && echo present || echo ABSENT)"
+
+      - name: Deployer
+        id: deploiement
+        working-directory: ${{ runner.temp }}/deploiement
+        run: |
+          set -o pipefail
+          npx --yes vercel@latest deploy --prod --yes \
+            --token="${{ secrets.VERCEL_TOKEN }}" 2>&1 | tee sortie-vercel.txt
+          url=$(grep -oE 'https://123digital-[a-z0-9]+-123digital-s-projects\.vercel\.app' sortie-vercel.txt | tail -1)
+          if [ -z "$url" ]; then
+            echo "::error::URL de deploiement introuvable dans la sortie Vercel."
+            exit 1
+          fi
+          echo "url=$url" >> "$GITHUB_OUTPUT"
+          echo "Deploiement cree : $url"
+
+      # L'etape qui manquait. Sans elle le site public ne change pas, quoi que
+      # dise Vercel.
+      - name: Pointer le domaine sur ce deploiement
+        run: |
+          set -eu
+          npx --yes vercel@latest promote "${{ steps.deploiement.outputs.url }}" \
+            --yes --token="${{ secrets.VERCEL_TOKEN }}"
+
+      - name: Verifier que le domaine sert bien ce deploiement
+        run: |
+          set -u
+          attendu="${{ steps.deploiement.outputs.url }}"
+          attendu="${attendu#https://}"
+          echo "Attendu : $attendu"
+          sleep 8
+          alias_sortie=$(npx --yes vercel@latest alias ls --token="${{ secrets.VERCEL_TOKEN }}" 2>&1 || true)
+          echec=0
+          for domaine in "123digital.fr" "www.123digital.fr"; do
+            ligne=$(echo "$alias_sortie" | grep -E "[[:space:]]$domaine[[:space:]]" || true)
+            if echo "$ligne" | grep -q "$attendu"; then
+              echo "OK   $domaine pointe sur le nouveau deploiement"
+            else
+              echo "::error::$domaine ne pointe PAS sur $attendu. Ligne lue : $ligne"
+              echec=1
+            fi
+          done
+          exit $echec
+
+      - name: Verifier les pages cles en ligne
+        run: |
+          echec=0
+          controler() {
+            obtenu=$(curl -s -o /dev/null -w "%{http_code}" --max-time 25 "https://123digital.fr$1")
+            if [ "$obtenu" = "$2" ]; then
+              echo "OK   $1 -> $obtenu"
+            else
+              echo "::error::ECHEC $1 -> $obtenu (attendu $2)"
+              echec=1
+            fi
+          }
+          controler "/" 200
+          controler "/services" 200
+          controler "/realisations" 200
+          controler "/contact" 200
+          controler "/sitemap.xml" 200
+          controler "/robots.txt" 200
+          exit $echec
+
+      - name: Recapitulatif
+        if: always()
+        run: |
+          {
+            echo "## Deploiement 123digital.fr"
+            echo ""
+            echo "- Commit deploye : \`${GITHUB_SHA:0:7}\`"
+            echo "- Deploiement : ${{ steps.deploiement.outputs.url }}"
+            echo "- Site : https://123digital.fr"
+            echo ""
+            echo "### Rollback"
+            echo "Vercel > projet 123digital > Deployments > un deploiement precedent > Promote to Production."
+            echo "Le bouton Promote est ce qui deplace le domaine ; un simple redeploiement ne suffit pas."
+          } >> "$GITHUB_STEP_SUMMARY"

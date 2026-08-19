@@ -1,101 +1,257 @@
 'use client'
 
-import { useRef, useSyncExternalStore } from 'react'
+import { useEffect, useRef, type ReactNode } from 'react'
 import Link from 'next/link'
 import { motion, useInView } from 'framer-motion'
-import { Phone, Check, CircleCheck, Clock } from 'lucide-react'
+import { Phone, Check } from 'lucide-react'
 import { t, type Locale } from '@/lib/i18n'
 
 const EASE = [0.16, 1, 0.3, 1] as [number, number, number, number]
 
 const PHONE_TEL = 'tel:+33652092301'
-const PHONE_DISPLAY = '06 52 09 23 01'
 
-// ── Statut « En direct » — même logique que la maquette validée : ─────────────
-// fermé du vendredi 15h30 au samedi 23h30, heure de Paris. `useSyncExternalStore`
-// lit l'horloge du navigateur (un système externe à React) : snapshot serveur
-// stable à "ouvert" pour le HTML statique, snapshot client réel une fois monté,
-// resynchronisé chaque minute — sans jamais appeler setState dans un effet.
+// ── Pong de fond ──────────────────────────────────────────────────────────────
+// Banniere retournee (validee le 19/08) : le vert du logo passe en fond, tout
+// le texte passe en blanc, et une partie de Pong tourne derriere, en blanc.
+// Aucun fichier n'est charge : le canvas reste transparent et laisse voir le
+// degrade CSS, ce qui coute zero octet et ne touche pas au LCP.
+//
+// Trois regles imposees par l'operateur :
+//   1. aucune trainee — on efface au lieu de repeindre ;
+//   2. vitesse d'arcade, exprimee en pixels par seconde et non par image, donc
+//      identique sur un ecran 60 Hz ou 120 Hz ;
+//   3. les deux raquettes sont independantes — chacune tire sa destination, sa
+//      vitesse et son moment de depart separement, aucune ne suit l'autre.
+// La balle rebondit aussi sur les bords : l'echange ne s'interrompt jamais,
+// meme quand une raquette n'est pas au rendez-vous.
 
-function computeClosed(): boolean {
-  const now = new Date(new Date().toLocaleString('en-US', { timeZone: 'Europe/Paris' }))
-  const day = now.getDay()
-  const minutes = now.getHours() * 60 + now.getMinutes()
-  return (day === 5 && minutes >= 930) || (day === 6 && minutes < 1410)
-}
+const BALL_SPEED = 150   // px/s
+const PADDLE_SPEED = 260 // px/s — regle par simulation : 2 interceptions sur 3
+const BALL_R = 6
+const PADDLE_W = 7
+const MARGIN = 14
+const WHITE = 'oklch(0.985 0.003 150)'
 
-function subscribeToClock(callback: () => void) {
-  const id = setInterval(callback, 60_000)
-  return () => clearInterval(id)
-}
+function PongBackground() {
+  const canvasRef = useRef<HTMLCanvasElement>(null)
 
-function getServerClosedSnapshot() {
-  return false
-}
+  useEffect(() => {
+    const canvas = canvasRef.current
+    const ctx = canvas?.getContext('2d')
+    if (!canvas || !ctx) return
 
-function StatusCardAncienne({ lang }: { lang: Locale }) {
-  const d = t(lang).hero
-  const isClosed = useSyncExternalStore(subscribeToClock, computeClosed, getServerClosedSnapshot)
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    let w = 0
+    let h = 0
+    let raf: number | null = null
+    let last = 0
+    let onScreen = true
+    let started = false
+
+    const ball = { x: 0, y: 0, angle: 0 }
+    const pads = [
+      { y: 0, target: 0, height: 0, wait: 0, speed: PADDLE_SPEED },
+      { y: 0, target: 0, height: 0, wait: 0, speed: PADDLE_SPEED },
+    ]
+
+    function newTarget(p: (typeof pads)[number]) {
+      const half = p.height / 2
+      // Trois fois sur quatre la raquette vise la hauteur ou se trouve la balle,
+      // une fois sur quatre elle part au hasard. Sans cette part d'interet, a
+      // cette vitesse elle ne toucherait presque plus rien.
+      const base =
+        Math.random() < 0.25
+          ? Math.random() * h
+          : ball.y + (Math.random() - 0.5) * h * 0.18
+      p.target = Math.max(half, Math.min(h - half, base))
+      p.wait = 0.3 + Math.random() * 1.1
+      p.speed = PADDLE_SPEED * (0.55 + Math.random() * 0.95)
+    }
+
+    function layout() {
+      const rect = canvas!.getBoundingClientRect()
+      const dpr = Math.min(window.devicePixelRatio || 1, 2)
+      w = Math.max(rect.width, 1)
+      h = Math.max(rect.height, 1)
+      canvas!.width = Math.round(w * dpr)
+      canvas!.height = Math.round(h * dpr)
+      ctx!.setTransform(dpr, 0, 0, dpr, 0, 0)
+
+      pads.forEach((p) => {
+        p.height = Math.max(52, Math.min(104, h * 0.19))
+      })
+
+      if (!started) {
+        started = true
+        ball.x = w / 2
+        ball.y = h / 2
+        ball.angle = (Math.random() < 0.5 ? 0 : Math.PI) + (Math.random() - 0.5) * 0.9
+        pads.forEach((p, i) => {
+          p.y = h * (i === 0 ? 0.35 : 0.65)
+          newTarget(p)
+        })
+      } else {
+        pads.forEach((p) => {
+          p.y = Math.max(p.height / 2, Math.min(h - p.height / 2, p.y))
+        })
+      }
+    }
+
+    function draw() {
+      ctx!.clearRect(0, 0, w, h)
+
+      ctx!.strokeStyle = 'oklch(0.985 0.003 150 / 22%)'
+      ctx!.lineWidth = 2
+      ctx!.setLineDash([7, 13])
+      ctx!.beginPath()
+      ctx!.moveTo(w / 2, 0)
+      ctx!.lineTo(w / 2, h)
+      ctx!.stroke()
+      ctx!.setLineDash([])
+
+      ctx!.fillStyle = WHITE
+      ctx!.fillRect(MARGIN, pads[0].y - pads[0].height / 2, PADDLE_W, pads[0].height)
+      ctx!.fillRect(w - MARGIN - PADDLE_W, pads[1].y - pads[1].height / 2, PADDLE_W, pads[1].height)
+
+      ctx!.beginPath()
+      ctx!.arc(ball.x, ball.y, BALL_R, 0, Math.PI * 2)
+      ctx!.fill()
+    }
+
+    function update(dt: number) {
+      ball.angle += (Math.random() - 0.5) * 0.25 * dt
+
+      // Garde-fou : sans lui la derive aleatoire finit par rendre la course
+      // verticale et la balle fait l'ascenseur au milieu de la banniere.
+      const vx = Math.cos(ball.angle)
+      if (Math.abs(vx) < 0.32) {
+        ball.angle = Math.atan2(Math.sin(ball.angle), vx < 0 ? -0.32 : 0.32)
+      }
+
+      ball.x += Math.cos(ball.angle) * BALL_SPEED * dt
+      ball.y += Math.sin(ball.angle) * BALL_SPEED * dt
+
+      if (ball.y < BALL_R) {
+        ball.y = BALL_R
+        ball.angle = -ball.angle + (Math.random() - 0.5) * 0.15
+      }
+      if (ball.y > h - BALL_R) {
+        ball.y = h - BALL_R
+        ball.angle = -ball.angle + (Math.random() - 0.5) * 0.15
+      }
+
+      const faces = [MARGIN + PADDLE_W, w - MARGIN - PADDLE_W]
+      pads.forEach((p, i) => {
+        const goingLeft = Math.cos(ball.angle) < 0
+        const towardThis = i === 0 ? goingLeft : !goingLeft
+        const inFront = Math.abs(ball.y - p.y) < p.height / 2 + BALL_R
+        const reached = i === 0 ? ball.x - BALL_R < faces[0] : ball.x + BALL_R > faces[1]
+
+        if (towardThis && reached && inFront) {
+          ball.x = i === 0 ? faces[0] + BALL_R : faces[1] - BALL_R
+          ball.angle = Math.PI - ball.angle + ((ball.y - p.y) / p.height) * 0.55
+        }
+      })
+
+      if (ball.x < BALL_R) {
+        ball.x = BALL_R
+        ball.angle = Math.PI - ball.angle
+      }
+      if (ball.x > w - BALL_R) {
+        ball.x = w - BALL_R
+        ball.angle = Math.PI - ball.angle
+      }
+
+      pads.forEach((p) => {
+        p.wait -= dt
+        if (p.wait <= 0 && Math.abs(p.target - p.y) < 2) newTarget(p)
+        const step = p.speed * dt
+        p.y =
+          Math.abs(p.target - p.y) <= step
+            ? p.target
+            : p.y + Math.sign(p.target - p.y) * step
+      })
+    }
+
+    function frame(now: number) {
+      const dt = Math.min((now - last) / 1000, 0.05)
+      last = now
+      update(dt)
+      draw()
+      raf = requestAnimationFrame(frame)
+    }
+
+    function play() {
+      if (raf !== null || !onScreen || document.hidden || reduced) return
+      last = performance.now()
+      raf = requestAnimationFrame(frame)
+    }
+
+    function pause() {
+      if (raf !== null) {
+        cancelAnimationFrame(raf)
+        raf = null
+      }
+    }
+
+    function onResize() {
+      layout()
+      draw()
+    }
+
+    function onVisibility() {
+      if (document.hidden) pause()
+      else play()
+    }
+
+    layout()
+    draw()
+
+    window.addEventListener('resize', onResize)
+    document.addEventListener('visibilitychange', onVisibility)
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        onScreen = entries[0].isIntersecting
+        if (onScreen) play()
+        else pause()
+      },
+      { threshold: 0.1 },
+    )
+    observer.observe(canvas)
+
+    if (!reduced) play()
+
+    return () => {
+      pause()
+      observer.disconnect()
+      window.removeEventListener('resize', onResize)
+      document.removeEventListener('visibilitychange', onVisibility)
+    }
+  }, [])
 
   return (
-    <div
-      className="rounded-3xl"
-      style={{
-        backgroundColor: 'var(--surface-2)',
-        border: '1px solid var(--line)',
-        boxShadow: '0 8px 30px var(--shadow-soft)',
-        padding: 'clamp(1rem, 3.5vw, 1.5rem)',
-      }}
-    >
-      <div className="flex items-center justify-between mb-2.5 sm:mb-4">
-        <span style={{ fontSize: '0.7rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--ink-3)' }}>
-          {d.statusCity}
-        </span>
-        <span
-          style={{
-            backgroundColor: 'var(--brand-tint)',
-            color: 'var(--brand-strong)',
-            borderRadius: 999,
-            padding: '0.25rem 0.6rem',
-            fontSize: '0.65rem',
-            fontWeight: 800,
-            textTransform: 'uppercase',
-            letterSpacing: '0.08em',
-          }}
-        >
-          {d.statusLive}
-        </span>
-      </div>
-
-      <div className="flex items-center gap-2 mb-1.5">
-        {isClosed ? (
-          <Clock size={18} style={{ color: 'var(--ink-4)' }} strokeWidth={2} aria-hidden />
-        ) : (
-          <CircleCheck size={18} style={{ color: 'var(--brand)' }} strokeWidth={2} aria-hidden />
-        )}
-        <span style={{ fontSize: '1.5rem', fontWeight: 800, letterSpacing: '-0.01em', color: 'var(--ink)' }}>
-          {isClosed ? d.statusClosed : d.statusOpen}
-        </span>
-      </div>
-      <p style={{ fontSize: '0.82rem', color: 'var(--ink-2)', marginBottom: '0.8rem', lineHeight: 1.4 }}>
-        {isClosed ? d.statusClosedNote : d.statusOpenNote}
-      </p>
-
-      <a
-        href={PHONE_TEL}
-        className="flex items-center justify-center gap-2 w-full rounded-full font-bold whitespace-nowrap"
-        style={{ backgroundColor: 'var(--brand)', color: 'var(--on-brand)', padding: '0.75rem', fontSize: '0.98rem' }}
-      >
-        <Phone size={16} aria-hidden />
-        {PHONE_DISPLAY}
-      </a>
-      {/* Le detail des horaires est masque sur telephone : trois lignes de
-          texte fin pour une information deja portee par "Ouvert" au-dessus. */}
-      <p className="hidden sm:block" style={{ fontSize: '0.75rem', color: 'var(--ink-3)', textAlign: 'center', marginTop: '0.85rem', lineHeight: 1.5 }}>
-        {d.statusHours}
-      </p>
-    </div>
+    <canvas
+      ref={canvasRef}
+      aria-hidden
+      className="pointer-events-none absolute inset-0 -z-20 h-full w-full"
+    />
   )
+}
+
+// « Google » est le seul mot mis en valeur du titre : c'est le mot que le
+// visiteur cherche des yeux. Decoupage sur la chaine traduite plutot que deux
+// cles i18n, pour que le titre reste une phrase entiere dans le fichier.
+function highlightGoogle(text: string): ReactNode {
+  const parts = text.split('Google')
+  if (parts.length === 1) return text
+
+  return parts.map((part, i) => (
+    <span key={i}>
+      {i > 0 && <span style={{ color: 'var(--vert-pale)' }}>Google</span>}
+      {part}
+    </span>
+  ))
 }
 
 // ── Hero ──────────────────────────────────────────────────────────────────────
@@ -112,47 +268,29 @@ export function Hero({ lang = 'fr' }: { lang?: Locale }) {
       ref={ref}
       id="section-hero"
       className="relative isolate overflow-hidden"
-      style={{ backgroundColor: 'var(--surface)', padding: 'clamp(1.5rem, 5vw, 4rem) 1.5rem' }}
+      style={{
+        padding: 'clamp(1.5rem, 5vw, 4rem) 1.5rem',
+        color: 'var(--on-brand)',
+        background:
+          'radial-gradient(120% 85% at 12% 0%, var(--brand-light) 0%, transparent 58%), ' +
+          'radial-gradient(110% 90% at 92% 100%, var(--brand-deep) 0%, transparent 62%), ' +
+          'var(--brand)',
+      }}
       aria-label="Section hero"
     >
-      {/* ── Fond de banniere ──────────────────────────────────────────────
-          La banniere avait le meme blanc que le reste de la page et ne se
-          detachait pas. Deux couches :
-          1. une video muette en boucle si `public/videos/hero.mp4` existe ;
-          2. un degrade de marque en dessous, qui sert de repli et reste
-             visible si le fichier manque ou si le visiteur economise ses
-             donnees. Le voile clair par-dessus garantit la lisibilite du
-             texte en encre, quelle que soit la video posee. */}
-      <div aria-hidden className="absolute inset-0 -z-10">
-        <div
-          className="absolute inset-0"
-          style={{
-            background:
-              'radial-gradient(120% 90% at 15% 0%, var(--brand-tint) 0%, transparent 55%), ' +
-              'radial-gradient(90% 80% at 100% 100%, var(--surface-3) 0%, transparent 60%), ' +
-              'var(--surface)',
-          }}
-        />
-        <video
-          className="absolute inset-0 h-full w-full object-cover motion-reduce:hidden"
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="none"
-          poster="/images/hero-poster.jpg"
-          style={{ opacity: 0.34 }}
-        >
-          <source src="/videos/hero.mp4" type="video/mp4" />
-        </video>
-        <div
-          className="absolute inset-0"
-          style={{
-            background:
-              'linear-gradient(180deg, oklch(0.968 0.005 150 / 0.62) 0%, oklch(0.968 0.005 150 / 0.80) 60%, var(--surface) 100%)',
-          }}
-        />
-      </div>
+      <PongBackground />
+
+      {/* Voile vert, pas noir : il assombrit a peine le centre pour que le texte
+          blanc reste net quand la balle passe derriere, et laisse les bords
+          libres pour les raquettes. */}
+      <div
+        aria-hidden
+        className="absolute inset-0 -z-10"
+        style={{
+          background:
+            'radial-gradient(88% 58% at 50% 46%, oklch(0.395 0.112 155 / 72%) 0%, oklch(0.395 0.112 155 / 34%) 58%, oklch(0.395 0.112 155 / 0%) 100%)',
+        }}
+      />
 
       <div className="relative mx-auto max-w-4xl">
         <div className="text-center">
@@ -167,12 +305,12 @@ export function Hero({ lang = 'fr' }: { lang?: Locale }) {
               fontSize: 'clamp(1.9rem, 4.6vw, 3.25rem)',
               lineHeight: 1.08,
               letterSpacing: '-0.015em',
-              color: 'var(--ink)',
+              color: 'var(--on-brand)',
               maxWidth: '19ch',
               marginBottom: '1rem',
             }}
           >
-            {d.h1}
+            {highlightGoogle(d.h1)}
           </motion.h1>
 
           <motion.p
@@ -180,7 +318,13 @@ export function Hero({ lang = 'fr' }: { lang?: Locale }) {
             animate={isInView ? { y: 0, opacity: 1, filter: 'blur(0px)' } : {}}
             transition={{ duration: 0.8, delay: 0.1, ease: EASE }}
             className="mx-auto"
-            style={{ fontSize: 'clamp(0.95rem, 3.2vw, 1.1rem)', color: 'var(--ink-2)', maxWidth: '58ch', marginBottom: 'clamp(1rem, 4vw, 1.75rem)', lineHeight: 1.5 }}
+            style={{
+              fontSize: 'clamp(0.95rem, 3.2vw, 1.1rem)',
+              color: 'oklch(0.985 0.003 150 / 86%)',
+              maxWidth: '58ch',
+              marginBottom: 'clamp(1rem, 4vw, 1.75rem)',
+              lineHeight: 1.5,
+            }}
           >
             {d.sub}
           </motion.p>
@@ -191,10 +335,17 @@ export function Hero({ lang = 'fr' }: { lang?: Locale }) {
             transition={{ duration: 0.8, delay: 0.2, ease: EASE }}
             className="flex flex-wrap items-center justify-center gap-3.5 mb-6"
           >
+            {/* Boutons inverses : le vert est passe en fond, l'appel devient
+                donc blanc sur vert pour rester l'element le plus contraste. */}
             <a
               href={PHONE_TEL}
               className="inline-flex items-center gap-2 rounded-full font-bold"
-              style={{ backgroundColor: 'var(--brand)', color: 'var(--on-brand)', padding: '0.9rem 1.6rem', boxShadow: '0 2px 10px var(--brand-line)' }}
+              style={{
+                backgroundColor: 'var(--on-brand)',
+                color: 'var(--brand-deep)',
+                padding: '0.9rem 1.6rem',
+                boxShadow: '0 2px 14px oklch(0.145 0 0 / 22%)',
+              }}
             >
               <Phone size={16} aria-hidden />
               {d.ctaCall}
@@ -202,7 +353,11 @@ export function Hero({ lang = 'fr' }: { lang?: Locale }) {
             <Link
               href="#contact"
               className="inline-flex items-center gap-2 rounded-full font-bold"
-              style={{ border: '2px solid var(--line-strong)', color: 'var(--ink)', padding: '0.8rem 1.5rem' }}
+              style={{
+                border: '2px solid oklch(0.985 0.003 150 / 55%)',
+                color: 'var(--on-brand)',
+                padding: '0.8rem 1.5rem',
+              }}
             >
               {d.ctaQuote}
             </Link>
@@ -218,8 +373,22 @@ export function Hero({ lang = 'fr' }: { lang?: Locale }) {
             {/* Grille a 3 colonnes des `sm` : en flex-wrap la 3e puce tombait
                 seule sur une 2e ligne des que la fenetre passait sous 1280 px. */}
             {checks.map((label) => (
-              <li key={label} className="flex items-start gap-1.5" style={{ fontSize: '0.82rem', fontWeight: 600, color: 'var(--ink-2)', lineHeight: 1.35 }}>
-                <Check size={15} style={{ color: 'var(--brand)', flexShrink: 0, marginTop: 2 }} strokeWidth={3} aria-hidden />
+              <li
+                key={label}
+                className="flex items-start gap-1.5"
+                style={{
+                  fontSize: '0.82rem',
+                  fontWeight: 600,
+                  color: 'oklch(0.985 0.003 150 / 86%)',
+                  lineHeight: 1.35,
+                }}
+              >
+                <Check
+                  size={15}
+                  style={{ color: 'var(--on-brand)', flexShrink: 0, marginTop: 2 }}
+                  strokeWidth={3}
+                  aria-hidden
+                />
                 {label}
               </li>
             ))}

@@ -98,6 +98,12 @@
   --brand-tint:   oklch(0.485 0.128 155 / 10%);
   --brand-line:   oklch(0.485 0.128 155 / 30%);
   --on-brand:     oklch(0.985 0.003 150);       /* ≈#FAFBFA */
+  /* Deux nuances de la meme teinte, uniquement pour le degrade de la
+     banniere d'accueil : clair en haut a gauche, profond en bas a droite.
+     --vert-pale sert au seul mot mis en valeur du titre, sur ce fond vert. */
+  --brand-deep:   oklch(0.395 0.112 155);
+  --brand-light:  oklch(0.560 0.135 155);
+  --vert-pale:    oklch(0.900 0.070 155);
 
   /* ── Zones sombres — continuité de marque ── */
   --dark:      oklch(0.145 0 0);            /* #0A0A0A */

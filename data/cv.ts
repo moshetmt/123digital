@@ -4,9 +4,10 @@
  * Page destinee aux recruteurs uniquement : elle est en `noindex`, absente du
  * sitemap et non liee depuis le Header ou le Footer. Ne pas l'y ajouter.
  *
- * Source de verite : le CV PDF de Maurice Timsit (public/cv-maurice-timsit-fr.pdf).
- * Les chiffres ci-dessous doivent rester identiques a ceux du PDF, un recruteur
- * compare les deux. Si le PDF change, ce fichier change avec lui.
+ * Source de verite : les deux PDF servis depuis /public, dates du 05 et du
+ * 09/06/2026. Intitules, dates, chiffres et libelles ci-dessous sont recopies
+ * de ces fichiers. Un recruteur ouvre la page et le PDF cote a cote : si le
+ * PDF change, ce fichier change avec lui, sinon les deux se contredisent.
  */
 
 export type CvLocale = 'fr' | 'en'
@@ -24,7 +25,7 @@ export interface CvProject {
   role: string
   /** Le resultat le plus fort, affiche en pastille sur la carte */
   headline: string
-  /** 3 puces detaillant la mission */
+  /** 3 a 4 puces detaillant la mission */
   bullets: string[]
   stack: string[]
   /** Cles de filtre, doivent exister dans `work.filters` */
@@ -36,7 +37,9 @@ export interface CvExperience {
   role: string
   org: string
   period: string
-  /** `freelance`, liste de clients... affiche sous l'organisation */
+  /** Phrase de cadrage, en italique dans le PDF */
+  context?: string
+  /** Liste de clients, mention `freelance`... affichee sous l'organisation */
   note?: string
   bullets: string[]
 }
@@ -75,6 +78,9 @@ export interface CvContent {
   intro: {
     kicker: string
     body: string
+    traitsLabel: string
+    /** Premier element : le style AssessFirst, mis en avant */
+    traits: string[]
   }
   stats: CvStat[]
   work: {
@@ -120,9 +126,9 @@ export interface CvContent {
 const fr: CvContent = {
   identity: {
     name: 'Maurice Timsit',
-    role: 'Marketing digital · SEO · Analytics · IA et automatisation',
-    availability: 'Disponible · CDI',
-    location: 'Lyon · Paris · Remote',
+    role: 'Chargé de marketing digital · SEO · Contenu · Analytics · IA',
+    availability: 'Ouvert aux opportunités',
+    location: 'Lyon, France',
     email: 'mochetimsit@gmail.com',
     phone: '06 52 09 23 01',
     phoneHref: 'tel:+33652092301',
@@ -138,22 +144,31 @@ const fr: CvContent = {
   },
   intro: {
     kicker: 'Portfolio interactif',
-    body: "Profil marketing digital oriente execution : SEO, contenu, tracking et reporting. J'utilise l'IA au quotidien pour chercher, produire plus vite, analyser des donnees et automatiser des workflows. Les cinq projets ci-dessous sont en ligne, cliquables et verifiables.",
+    body: "Profil en marketing digital orienté exécution, avec une expertise solide en SEO, contenu, tracking et reporting. J'utilise l'IA au quotidien pour rechercher, produire plus vite, analyser des données et automatiser des workflows. Les cinq sites ci-dessous sont en ligne, cliquables et vérifiables.",
+    traitsLabel: 'Personnalité',
+    traits: [
+      'Promoteur (AssessFirst)',
+      'Proactif',
+      'Fédérateur',
+      'Orienté résultats',
+      'Adaptable',
+      'Force de proposition',
+    ],
   },
   stats: [
-    { value: '+48%', label: 'de trafic organique en un an, Fondation France-Israël' },
-    { value: '525 000', label: 'impressions Search Console sur la periode' },
-    { value: '+340%', label: 'de trafic organique, meilleur resultat client' },
-    { value: '12+', label: 'sites deployes depuis 2022' },
+    { value: '+48%', label: 'de trafic qualifié, Fondation France-Israël' },
+    { value: '525 000', label: 'impressions Search Console sur la période' },
+    { value: '+340%', label: 'de trafic organique, meilleur résultat client' },
+    { value: '12+', label: 'sites déployés' },
   ],
   work: {
     heading: 'Ce que j’ai construit',
-    sub: 'Cinq sites en production. Cliquez une carte pour le detail de la mission, le bouton pour ouvrir le site.',
+    sub: 'Cinq sites en production. Cliquez une carte pour le détail de la mission, le bouton pour ouvrir le site.',
     filterAll: 'Tout',
     filters: [
       { key: 'seo', label: 'SEO' },
-      { key: 'ads', label: 'Publicite' },
-      { key: 'web', label: 'Creation web' },
+      { key: 'ads', label: 'Publicité' },
+      { key: 'web', label: 'Création web' },
       { key: 'data', label: 'Analytics' },
     ],
     openSite: 'Ouvrir le site',
@@ -166,13 +181,13 @@ const fr: CvContent = {
         id: '123digital',
         name: '123digital.fr',
         context: 'Projet personnel · Lyon',
-        role: 'Conception, developpement et SEO',
-        headline: '212 pages, concu et code de bout en bout',
+        role: 'Conception, développement et SEO',
+        headline: '212 pages, conçu et codé de bout en bout',
         bullets: [
-          'Site developpe sous Next.js 15 et React, sans CMS ni template achete.',
-          'Architecture SEO a 212 pages : services, secteurs, villes, blog, avec sitemap genere et donnees structurees.',
-          'Systeme de design en variables CSS, contrastes verifies AA sur toute la palette.',
-          'Deploiement continu sur Vercel depuis GitHub.',
+          'Site développé sous Next.js 15 et React, sans CMS ni template acheté.',
+          'Architecture SEO à 212 pages : services, secteurs, villes, blog, avec sitemap généré et données structurées.',
+          'Système de design en variables CSS, contrastes vérifiés AA sur toute la palette.',
+          'Déploiement continu sur Vercel depuis GitHub.',
         ],
         stack: ['Next.js', 'React', 'Tailwind', 'Vercel', 'Search Console'],
         disciplines: ['web', 'seo'],
@@ -181,13 +196,14 @@ const fr: CvContent = {
       {
         id: 'fondation',
         name: 'Fondation France-Israël',
-        context: 'Fondation reconnue d’utilite publique · Paris',
-        role: 'Charge de marketing digital',
-        headline: '+48% de trafic organique, 7 682 clics',
+        context: 'Fondation · Paris',
+        role: 'Chargé de marketing digital',
+        headline: '+48% de trafic qualifié, 7 682 clics',
         bullets: [
-          'Pilotage SEO et analytics : +48% de trafic, 525 000 impressions Search Console, 7 682 clics organiques.',
-          'Production de contenus et coordination editoriale : +40% d’engagement, 30% de temps de production en moins grace a l’IA.',
-          'Reporting mensuel GA4 et Search Console, avec recommandations SEO et editoriales.',
+          'Reporting mensuel GA4 et Search Console : +48% de trafic qualifié, 525 000 impressions GSC, 7 682 clics.',
+          'Production de contenus et coordination des publications : +40% d’engagement.',
+          'Analyse des performances sur deux outils analytics, recommandations SEO et contenu.',
+          'Intégration de l’IA pour la veille, la rédaction et le reporting : 30% de temps de production en moins.',
         ],
         stack: ['GA4', 'Search Console', 'Tag Manager', 'Looker Studio', 'WordPress'],
         disciplines: ['seo', 'data'],
@@ -198,11 +214,11 @@ const fr: CvContent = {
         name: 'Clim69',
         context: 'Climatisation · Villeurbanne',
         role: 'Google Ads et refonte du site',
-        headline: 'Chaque euro de publicite en rapporte plusieurs',
+        headline: 'Chaque euro de publicité en rapporte plusieurs',
         bullets: [
-          'Compte Google Ads monte de zero : structure, mots-cles, negatifs, enchere sur conversion.',
-          'Refonte complete du site et 19 pages locales pour couvrir la zone d’intervention.',
-          'Suivi des appels et des demandes de devis, verifie chaque jour.',
+          'Compte Google Ads monté de zéro : structure, mots-clés, négatifs, enchère sur conversion.',
+          'Refonte complète du site et 19 pages locales pour couvrir la zone d’intervention.',
+          'Suivi des appels et des demandes de devis, vérifié chaque jour.',
         ],
         stack: ['Google Ads', 'GA4', 'Tag Manager', 'Next.js'],
         disciplines: ['ads', 'web'],
@@ -211,13 +227,13 @@ const fr: CvContent = {
       {
         id: 'rhone-deconstruction',
         name: 'Rhône Déconstruction',
-        context: 'BTP et demolition · Lyon',
-        role: 'Creation du site et SEO local',
-        headline: '+180% d’impressions en 5 mois, +30% de leads',
+        context: 'BTP et démolition · Lyon',
+        role: 'Création du site et SEO local',
+        headline: '+180% d’impressions GSC en 5 mois',
         bullets: [
-          'Creation du site vitrine pour une entreprise de demolition en Auvergne-Rhone-Alpes.',
-          'Strategie SEO locale : +180% d’impressions Search Console en cinq mois.',
-          '+30% de demandes entrantes sur la meme periode.',
+          'Création du site vitrine pour une entreprise de démolition en Auvergne-Rhône-Alpes.',
+          'Stratégie SEO locale : +180% d’impressions Search Console en cinq mois.',
+          'Suivi des positions et des requêtes chantier par chantier.',
         ],
         stack: ['SEO local', 'WordPress', 'Search Console'],
         disciplines: ['web', 'seo'],
@@ -226,12 +242,12 @@ const fr: CvContent = {
       {
         id: 'aplus-audition',
         name: 'A+ Audition',
-        context: 'Sante et audioprothese · Cannes',
+        context: 'Santé et audioprothèse · Cannes',
         role: 'Refonte et SEO local',
-        headline: '1re position sur « audioprothesiste Cannes » en 3 mois',
+        headline: '1re position locale sur Google en 3 mois',
         bullets: [
-          'Refonte du site d’un cabinet d’audioprothese, avec mise en avant des aides auditives remboursees.',
-          'Optimisation SEO locale : premiere position sur la requete principale en trois mois.',
+          'Refonte du site d’un cabinet d’audioprothèse, avec mise en avant des aides auditives remboursées.',
+          'Optimisation SEO locale : première position sur la requête principale en trois mois.',
           'Parcours de prise de rendez-vous pour le bilan auditif.',
         ],
         stack: ['SEO local', 'WordPress', 'Search Console'],
@@ -247,33 +263,61 @@ const fr: CvContent = {
         role: 'Chargé de marketing digital',
         org: 'Fondation France-Israël',
         period: 'janv. 2024 → aujourd’hui',
+        context:
+          'Structure établie de longue date, j’ai modernisé l’approche digitale en introduisant des outils d’analytics et l’IA dans des process jusque-là peu structurés.',
         bullets: [
-          'Pilotage SEO et analytics : +48% de trafic, 525 000 impressions Search Console, 7 682 clics organiques.',
-          'Production de contenus et coordination editoriale : +40% d’engagement, 30% de temps de production en moins via l’IA.',
-          'Reporting mensuel GA4 et Search Console, recommandations SEO et contenu.',
-        ],
-      },
-      {
-        role: 'Consultant digital indépendant',
-        org: 'Freelance / 123Digital',
-        period: '2022 → aujourd’hui',
-        note: 'Fondation France-Israël · Rhône Déconstruction · A+ Audition · Clim69',
-        bullets: [
-          'Meilleur resultat : +340% de trafic organique, conversion multipliee par 2,5, plus de 12 sites deployes.',
-          'Rhône Déconstruction : +180% d’impressions Search Console en cinq mois, +30% de leads.',
-          'A+ Audition : premiere position locale sur « audioprothesiste Cannes » en trois mois.',
+          'Reporting mensuel GA4 et Search Console : +48% de trafic qualifié, 525 000 impressions GSC, 7 682 clics.',
+          'Production de contenus et coordination des publications : +40% d’engagement.',
+          'Analyse des performances sur deux outils analytics, recommandations SEO et contenu.',
+          'Intégration de l’IA pour la veille, la rédaction et le reporting : 30% de temps de production en moins.',
         ],
       },
       {
         role: 'Coordinateur projets et social media',
         org: 'Chabad On Campus',
         period: 'févr. 2017 → aujourd’hui',
-        note: 'freelance',
+        context:
+          'Environnement associatif et bénévole, j’ai professionnalisé la communication digitale et structuré l’acquisition sur le long terme.',
         bullets: [
-          'Organisation d’evenements jusqu’a 500 participants : cadrage, budget, execution.',
-          'Animation des reseaux sociaux : portee multipliee par 2, +25% d’inscriptions, 1 000 abonnes Instagram et TikTok.',
-          'Optimisation du tunnel d’acquisition : engagement passe de 2,1% a 5,4%.',
+          'Coordination d’événements étudiants jusqu’à 500 participants.',
+          'Animation des réseaux sociaux : portée multipliée par 2, 1 000 abonnés Instagram et TikTok, engagement de 2,1% à 5,4%.',
+          'Coordination terrain et communication : +25% d’inscriptions.',
         ],
+      },
+      {
+        role: 'Consultant digital indépendant',
+        org: '123Digital',
+        period: '2017 → aujourd’hui',
+        context: 'Accompagnement de structures variées de A à Z, de l’audit jusqu’aux résultats mesurables.',
+        bullets: [
+          '4 à 5 clients par trimestre : PME, associations, startups, dont Rhône Déconstruction et A+ Audition.',
+          'Audits SEO et refonte de contenus : +20% à +50% de trafic organique, +340% sur le meilleur résultat.',
+          'Stratégies d’acquisition de A à Z : +30% de leads en moyenne, conversion multipliée par 2,5, tableaux de bord Looker Studio et GA4.',
+          'Rhône Déconstruction : +180% d’impressions GSC en cinq mois. A+ Audition : 1re position locale en trois mois. Plus de 12 sites livrés.',
+        ],
+      },
+      {
+        role: 'Coordinateur événementiel',
+        org: 'Missions internationales',
+        period: '2019 → aujourd’hui',
+        context: 'Expériences variées en coordination événementielle et hospitality à l’international.',
+        bullets: [
+          'Organisation d’événements corporate et de séjours internationaux : Maroc, Portugal, Espagne, Italie, Suisse, Hongrie.',
+        ],
+      },
+      {
+        role: 'Digital manager',
+        org: 'EasyBazar',
+        period: 'févr. 2022 → sept. 2022',
+        bullets: [
+          'Gestion des plateformes de vente en ligne Amazon et WordPress, optimisation des fiches produits, reporting de performance.',
+        ],
+      },
+      {
+        role: 'Chargé de développement digital',
+        org: 'SoftySoft',
+        period: 'mars 2022 → mai 2022',
+        bullets: ['Animation LinkedIn, création de contenus et développement de la notoriété digitale.'],
       },
     ],
   },
@@ -282,29 +326,32 @@ const fr: CvContent = {
     toolsLabel: 'Outils',
     tools: [
       'GA4',
-      'Search Console',
-      'Tag Manager',
+      'Google Search Console',
+      'Google Tag Manager',
       'Looker Studio',
-      'Google Ads',
       'HubSpot CRM',
       'WordPress',
       'Next.js',
-      'Tailwind',
       'n8n',
-      'ChatGPT / Claude',
+      'Tailwind',
+      'ChatGPT',
+      'Claude',
     ],
     skillsLabel: 'Compétences',
     items: [
       'SEO on-page',
-      'SEO local',
       'Content marketing',
+      'Google Ads',
+      'Meta Ads',
+      'Social media',
       'Web analytics',
       'Reporting KPI',
-      'Acquisition digitale',
-      'Growth marketing',
       'Marketing ops',
       'Workflows IA',
-      'Social media',
+      'AI-assisted coding',
+      'Growth marketing',
+      'Acquisition digitale',
+      'Traffic management',
     ],
   },
   education: {
@@ -313,10 +360,9 @@ const fr: CvContent = {
       {
         degree: 'Master 2 Marketing digital',
         school: 'INSEEC MSc',
-        period: '2023 – 2024',
+        period: '2022 – 2024',
         detail: 'Mémoire : « L’impact de la digitalisation sur la performance des TPE/PME »',
       },
-      { degree: 'Master 1 Marketing digital', school: 'INSEEC MSc', period: '2022 – 2023' },
       { degree: 'Licence Marketing et vente', school: 'Montpellier Management', period: '2020 – 2021' },
       { degree: 'BTS NDRC', school: 'CNED', period: '2018 – 2020' },
     ],
@@ -329,7 +375,7 @@ const fr: CvContent = {
   },
   contact: {
     heading: 'Parlons du poste.',
-    body: 'Disponible pour un CDI a Lyon, Paris ou en remote. Reponse sous 24 heures.',
+    body: 'Basé à Lyon, ouvert aux opportunités. Réponse sous 24 heures.',
     emailCta: 'Écrire un mail',
     linkedinCta: 'Profil LinkedIn',
     pdfCta: 'Télécharger le CV',
@@ -341,9 +387,9 @@ const fr: CvContent = {
 const en: CvContent = {
   identity: {
     name: 'Maurice Timsit',
-    role: 'Digital marketing · SEO · Analytics · AI and automation',
-    availability: 'Open to full-time roles',
-    location: 'Lyon · Paris · Remote',
+    role: 'Digital Marketing Coordinator · SEO · Content · Analytics · AI',
+    availability: 'Open to opportunities',
+    location: 'Lyon, France · open to relocation to Israel or the US',
     email: 'mochetimsit@gmail.com',
     phone: '+33 6 52 09 23 01',
     phoneHref: 'tel:+33652092301',
@@ -359,13 +405,15 @@ const en: CvContent = {
   },
   intro: {
     kicker: 'Interactive portfolio',
-    body: 'Execution-focused digital marketing profile: SEO, content, tracking and reporting. I use AI daily to research, ship faster, analyse data and automate workflows. The five projects below are live, clickable and verifiable.',
+    body: 'Execution-focused digital marketing profile with solid expertise in SEO, content, tracking and reporting. I use AI daily to research faster, produce content, analyze data and automate workflows. The five sites below are live, clickable and verifiable.',
+    traitsLabel: 'Personality',
+    traits: ['Promoter (AssessFirst)', 'Proactive', 'Team-builder', 'Results-driven', 'Adaptable', 'Self-starter'],
   },
   stats: [
-    { value: '+48%', label: 'organic traffic in one year, Fondation France-Israël' },
+    { value: '+48%', label: 'qualified traffic, France-Israel Foundation' },
     { value: '525,000', label: 'Search Console impressions over the period' },
     { value: '+340%', label: 'organic traffic, best client result' },
-    { value: '12+', label: 'websites shipped since 2022' },
+    { value: '12+', label: 'websites shipped' },
   ],
   work: {
     heading: 'What I have built',
@@ -401,14 +449,15 @@ const en: CvContent = {
       },
       {
         id: 'fondation',
-        name: 'Fondation France-Israël',
-        context: 'Public-interest foundation · Paris',
-        role: 'Digital marketing manager',
-        headline: '+48% organic traffic, 7,682 clicks',
+        name: 'France-Israel Foundation',
+        context: 'Foundation · Paris',
+        role: 'Digital Marketing Coordinator',
+        headline: '+48% qualified traffic, 7,682 clicks',
         bullets: [
-          'SEO and analytics ownership: +48% traffic, 525,000 Search Console impressions, 7,682 organic clicks.',
-          'Content production and editorial coordination: +40% engagement, 30% less production time using AI.',
-          'Monthly GA4 and Search Console reporting, with SEO and editorial recommendations.',
+          'Monthly GA4 and Search Console reporting: +48% qualified traffic, 525,000 GSC impressions, 7,682 clicks.',
+          'Content production and publication coordination: +40% engagement.',
+          'Performance analysis across two analytics tools, SEO and content recommendations.',
+          'AI integration for research, writing and reporting: 30% less production time.',
         ],
         stack: ['GA4', 'Search Console', 'Tag Manager', 'Looker Studio', 'WordPress'],
         disciplines: ['seo', 'data'],
@@ -434,11 +483,11 @@ const en: CvContent = {
         name: 'Rhône Déconstruction',
         context: 'Construction and demolition · Lyon',
         role: 'Site build and local SEO',
-        headline: '+180% impressions in 5 months, +30% leads',
+        headline: '+180% GSC impressions in 5 months',
         bullets: [
           'Built the site for a demolition company operating across Auvergne-Rhône-Alpes.',
           'Local SEO strategy: +180% Search Console impressions in five months.',
-          '+30% inbound requests over the same period.',
+          'Position and query tracking, project by project.',
         ],
         stack: ['Local SEO', 'WordPress', 'Search Console'],
         disciplines: ['web', 'seo'],
@@ -449,7 +498,7 @@ const en: CvContent = {
         name: 'A+ Audition',
         context: 'Healthcare and hearing aids · Cannes',
         role: 'Rebuild and local SEO',
-        headline: 'Rank 1 on « audioprothésiste Cannes » in 3 months',
+        headline: '#1 local Google result in 3 months',
         bullets: [
           'Rebuilt the site of a hearing-aid practice, highlighting reimbursed devices.',
           'Local SEO work: first position on the main query within three months.',
@@ -462,39 +511,67 @@ const en: CvContent = {
     ],
   },
   experience: {
-    heading: 'Experience',
+    heading: 'Work experience',
     items: [
       {
-        role: 'Digital marketing manager',
-        org: 'Fondation France-Israël',
-        period: 'Jan 2024 → present',
+        role: 'Digital Marketing Coordinator',
+        org: 'France-Israel Foundation',
+        period: 'Jan. 2024 → present',
+        context:
+          'Long-established organization: I modernized the digital approach by introducing analytics tools and AI into previously unstructured processes.',
         bullets: [
-          'SEO and analytics ownership: +48% traffic, 525,000 Search Console impressions, 7,682 organic clicks.',
-          'Content production and editorial coordination: +40% engagement, 30% less production time using AI.',
-          'Monthly GA4 and Search Console reporting, SEO and content recommendations.',
+          'Monthly GA4 and Search Console reporting: +48% qualified traffic, 525,000 GSC impressions, 7,682 clicks.',
+          'Content production and publication coordination: +40% engagement.',
+          'Performance analysis across two analytics tools, SEO and content recommendations.',
+          'AI integration for research, writing and reporting: 30% less production time.',
         ],
       },
       {
-        role: 'Independent digital consultant',
-        org: 'Freelance / 123Digital',
-        period: '2022 → present',
-        note: 'Fondation France-Israël · Rhône Déconstruction · A+ Audition · Clim69',
-        bullets: [
-          'Best result: +340% organic traffic, conversion up 2.5x, 12+ sites shipped.',
-          'Rhône Déconstruction: +180% Search Console impressions in five months, +30% leads.',
-          'A+ Audition: rank 1 locally on « audioprothésiste Cannes » within three months.',
-        ],
-      },
-      {
-        role: 'Project and social media coordinator',
+        role: 'Project and Social Media Coordinator',
         org: 'Chabad On Campus',
-        period: 'Feb 2017 → present',
-        note: 'freelance',
+        period: 'Feb. 2017 → present',
+        context:
+          'Non-profit volunteer environment: I professionalized digital communications and built a long-term acquisition structure.',
         bullets: [
-          'Ran events for up to 500 attendees: scoping, budget, execution.',
-          'Social media: reach doubled, +25% sign-ups, 1,000 Instagram and TikTok followers.',
-          'Acquisition funnel: engagement from 2.1% to 5.4%.',
+          'Coordinated student events with up to 500 attendees.',
+          'Social media management: reach doubled, 1,000 Instagram and TikTok followers, engagement from 2.1% to 5.4%.',
+          'Field coordination and communications: +25% registrations.',
         ],
+      },
+      {
+        role: 'Independent Digital Consultant',
+        org: '123Digital',
+        period: '2017 → present',
+        context: 'End-to-end support for diverse clients, from audit to measurable results.',
+        bullets: [
+          '4 to 5 clients per quarter: SMBs, nonprofits, startups, including Rhône Déconstruction and A+ Audition.',
+          'SEO audits and content revamps: +20% to +50% organic traffic, +340% best result.',
+          'Full acquisition strategies: +30% average leads, 2.5x average conversion, Looker Studio and GA4 dashboards.',
+          'Rhône Déconstruction: +180% GSC impressions in five months. A+ Audition: #1 local Google result in three months. 12+ sites shipped.',
+        ],
+      },
+      {
+        role: 'Event Coordinator',
+        org: 'International assignments',
+        period: '2019 → present',
+        context: 'Varied experience in corporate event coordination and international hospitality.',
+        bullets: [
+          'Corporate events and international programs: Morocco, Portugal, Spain, Italy, Switzerland, Hungary.',
+        ],
+      },
+      {
+        role: 'Digital Manager',
+        org: 'EasyBazar',
+        period: 'Feb. 2022 → Sept. 2022',
+        bullets: [
+          'E-commerce platform management on Amazon and WordPress, product listing optimization, performance reporting.',
+        ],
+      },
+      {
+        role: 'Digital Development Manager',
+        org: 'SoftySoft',
+        period: 'Mar. 2022 → May 2022',
+        bullets: ['LinkedIn management, content creation and digital brand awareness development.'],
       },
     ],
   },
@@ -503,43 +580,45 @@ const en: CvContent = {
     toolsLabel: 'Tools',
     tools: [
       'GA4',
-      'Search Console',
-      'Tag Manager',
+      'Google Search Console',
+      'Google Tag Manager',
       'Looker Studio',
-      'Google Ads',
       'HubSpot CRM',
       'WordPress',
       'Next.js',
-      'Tailwind',
       'n8n',
-      'ChatGPT / Claude',
+      'Tailwind',
+      'ChatGPT',
+      'Claude',
     ],
     skillsLabel: 'Skills',
     items: [
       'On-page SEO',
-      'Local SEO',
       'Content marketing',
+      'Google Ads',
+      'Meta Ads',
+      'Social media',
       'Web analytics',
       'KPI reporting',
-      'Digital acquisition',
-      'Growth marketing',
       'Marketing ops',
       'AI workflows',
-      'Social media',
+      'AI-assisted coding',
+      'Growth marketing',
+      'Digital acquisition',
+      'Traffic management',
     ],
   },
   education: {
     heading: 'Education',
     items: [
       {
-        degree: 'MSc Digital Marketing, year 2',
+        degree: 'MSc Digital Marketing',
         school: 'INSEEC MSc',
-        period: '2023 – 2024',
-        detail: 'Thesis: "The impact of digitalisation on the performance of small businesses"',
+        period: '2022 – 2024',
+        detail: 'Thesis: "The impact of digitalization on SMB performance"',
       },
-      { degree: 'MSc Digital Marketing, year 1', school: 'INSEEC MSc', period: '2022 – 2023' },
-      { degree: 'BSc Marketing and Sales', school: 'Montpellier Management', period: '2020 – 2021' },
-      { degree: 'Two-year sales diploma (BTS NDRC)', school: 'CNED', period: '2018 – 2020' },
+      { degree: 'Bachelor in Marketing and Sales', school: 'Montpellier Management', period: '2020 – 2021' },
+      { degree: 'BTS NDRC (Sales)', school: 'CNED', period: '2018 – 2020' },
     ],
     languagesLabel: 'Languages',
     languages: [
@@ -550,7 +629,7 @@ const en: CvContent = {
   },
   contact: {
     heading: 'Let us talk about the role.',
-    body: 'Open to a permanent role in Lyon, Paris or remote. I reply within 24 hours.',
+    body: 'Based in Lyon, open to relocation to Israel or the US. I reply within 24 hours.',
     emailCta: 'Send an email',
     linkedinCta: 'LinkedIn profile',
     pdfCta: 'Download the resume',

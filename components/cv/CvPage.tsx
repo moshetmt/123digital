@@ -135,9 +135,34 @@ export function CvPage({ locale }: { locale: CvLocale }) {
             </div>
           </div>
 
-          <p className="max-w-3xl" style={{ color: 'var(--ink-2)', lineHeight: 1.7, margin: '1.75rem 0 1.5rem' }}>
+          <p className="max-w-3xl" style={{ color: 'var(--ink-2)', lineHeight: 1.7, margin: '1.75rem 0 1.25rem' }}>
             {c.intro.body}
           </p>
+
+          {/* Personnalite : le premier trait est le style AssessFirst, il porte
+              plus que les suivants et se distingue visuellement. */}
+          <div className="flex flex-wrap items-center gap-x-2 gap-y-1.5" style={{ marginBottom: '1.5rem' }}>
+            <span
+              style={{ fontSize: '0.66rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.09em', color: 'var(--ink-3)' }}
+            >
+              {c.intro.traitsLabel}
+            </span>
+            {c.intro.traits.map((trait, i) => (
+              <span
+                key={trait}
+                style={{
+                  fontSize: '0.78rem',
+                  fontWeight: i === 0 ? 700 : 600,
+                  color: i === 0 ? 'var(--brand-strong)' : 'var(--ink-2)',
+                  backgroundColor: i === 0 ? 'var(--brand-tint)' : 'var(--surface-3)',
+                  borderRadius: 999,
+                  padding: '0.25rem 0.7rem',
+                }}
+              >
+                {trait}
+              </span>
+            ))}
+          </div>
 
           <div className="flex flex-wrap gap-3">
             <a
@@ -232,9 +257,14 @@ export function CvPage({ locale }: { locale: CvLocale }) {
                 </div>
 
                 <div>
-                  <h3 className="font-sans font-extrabold" style={{ fontSize: '1.1rem', color: 'var(--ink)', lineHeight: 1.25, marginBottom: '0.55rem' }}>
+                  <h3 className="font-sans font-extrabold" style={{ fontSize: '1.1rem', color: 'var(--ink)', lineHeight: 1.25, marginBottom: item.context ? '0.35rem' : '0.55rem' }}>
                     {item.role}
                   </h3>
+                  {item.context ? (
+                    <p style={{ fontSize: '0.83rem', color: 'var(--ink-3)', lineHeight: 1.55, fontStyle: 'italic', marginBottom: '0.6rem' }}>
+                      {item.context}
+                    </p>
+                  ) : null}
                   <ul className="flex flex-col gap-1.5" style={{ listStyle: 'none', padding: 0, margin: 0 }}>
                     {item.bullets.map((bullet) => (
                       <li key={bullet} className="flex gap-2.5" style={{ fontSize: '0.88rem', color: 'var(--ink-2)', lineHeight: 1.6 }}>

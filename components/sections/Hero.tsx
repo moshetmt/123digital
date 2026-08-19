@@ -13,8 +13,8 @@ const PHONE_TEL = 'tel:+33652092301'
 // ── Pong de fond ──────────────────────────────────────────────────────────────
 // Banniere retournee (validee le 19/08) : le vert du logo passe en fond, tout le
 // texte passe en blanc, et une partie de Pong tourne derriere, en blanc. Aucun
-// fichier n'est charge : les canvas restent transparents et laissent voir le
-// degrade CSS, ce qui coute zero octet et ne touche pas au LCP.
+// fichier n'est charge : le canvas reste transparent et laisse voir le degrade
+// CSS, ce qui coute zero octet et ne touche pas au LCP.
 //
 // Trois regles imposees par l'operateur :
 //   1. aucune trainee — on efface au lieu de repeindre ;
@@ -25,47 +25,35 @@ const PHONE_TEL = 'tel:+33652092301'
 // La balle rebondit aussi sur les bords : l'echange ne s'interrompt jamais, meme
 // quand une raquette n'est pas au rendez-vous.
 //
-// Inversion sur le bouton blanc : le canvas de fond est sous le texte, il ne
-// peut donc pas se voir a travers un bouton opaque. La scene est dessinee une
-// seconde fois, en vert, dans un canvas place A L'INTERIEUR du bouton, decale de
-// la distance qui separe le bouton du haut de la banniere. Le bouton, qui coupe
-// ce qui deborde, sert de pochoir : la balle traverse et change de couleur pile
-// sur le bord de la pastille.
+// La balle est une loupe, choisie le 19/08 contre le logo Google et un G
+// typographique : elle dit la recherche sans emprunter une marque deposee, et
+// son trait reste lisible en mouvement la ou quatre couleurs se brouillent.
+// L'inversion de couleur dans le bouton blanc a ete essayee puis retiree le
+// 20/08 : l'operateur la trouve laide. Ne pas la remettre.
 
 const BALL_SPEED = 150   // px/s
 const PADDLE_SPEED = 260 // px/s — regle par simulation : 2 interceptions sur 3
-const BALL_R = 10
+const BALL_R = 30        // triple du premier reglage : a 10, la loupe etait illisible sur telephone
 const PADDLE_W = 7
 const MARGIN = 14
 const WHITE = 'oklch(0.985 0.003 150)'
-const GREEN = 'oklch(0.395 0.112 155)'
 
 export function Hero({ lang = 'fr' }: { lang?: Locale }) {
   const d = t(lang).hero
   const ref = useRef<HTMLElement>(null)
-  const bgRef = useRef<HTMLCanvasElement>(null)
-  const holeRef = useRef<HTMLCanvasElement>(null)
-  const buttonRef = useRef<HTMLAnchorElement>(null)
+  const canvasRef = useRef<HTMLCanvasElement>(null)
   const isInView = useInView(ref, { once: true, margin: '-10%' })
 
   useEffect(() => {
-    const section = ref.current
-    const bg = bgRef.current
-    const hole = holeRef.current
-    const button = buttonRef.current
-    const bgCtx = bg?.getContext('2d')
-    const holeCtx = hole?.getContext('2d')
-    if (!section || !bg || !hole || !button || !bgCtx || !holeCtx) return
+    const canvas = canvasRef.current
+    const ctx = canvas?.getContext('2d')
+    if (!canvas || !ctx) return
 
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
     let w = 0
     let h = 0
-    let dpr = 1
-    let offsetX = 0
-    let offsetY = 0
     let raf: number | null = null
     let last = 0
-    let sinceMeasure = 0
     let onScreen = true
     let started = false
 
@@ -89,30 +77,14 @@ export function Hero({ lang = 'fr' }: { lang?: Locale }) {
       p.speed = PADDLE_SPEED * (0.55 + Math.random() * 0.95)
     }
 
-    // Position du bouton dans le repere de la banniere. Recalculee au
-    // redimensionnement et deux fois par seconde : une police qui finit de
-    // charger ou un texte qui passe sur deux lignes deplace la pastille.
-    function measureHole() {
-      const heroBox = section!.getBoundingClientRect()
-      const buttonBox = button!.getBoundingClientRect()
-      offsetX = heroBox.left - buttonBox.left
-      offsetY = heroBox.top - buttonBox.top
-
-      const bw = Math.max(buttonBox.width, 1)
-      const bh = Math.max(buttonBox.height, 1)
-      hole!.width = Math.round(bw * dpr)
-      hole!.height = Math.round(bh * dpr)
-      holeCtx!.setTransform(dpr, 0, 0, dpr, 0, 0)
-    }
-
     function layout() {
-      const rect = bg!.getBoundingClientRect()
-      dpr = Math.min(window.devicePixelRatio || 1, 2)
+      const rect = canvas!.getBoundingClientRect()
+      const dpr = Math.min(window.devicePixelRatio || 1, 2)
       w = Math.max(rect.width, 1)
       h = Math.max(rect.height, 1)
-      bg!.width = Math.round(w * dpr)
-      bg!.height = Math.round(h * dpr)
-      bgCtx!.setTransform(dpr, 0, 0, dpr, 0, 0)
+      canvas!.width = Math.round(w * dpr)
+      canvas!.height = Math.round(h * dpr)
+      ctx!.setTransform(dpr, 0, 0, dpr, 0, 0)
 
       pads.forEach((p) => {
         p.height = Math.max(52, Math.min(104, h * 0.19))
@@ -132,58 +104,39 @@ export function Hero({ lang = 'fr' }: { lang?: Locale }) {
           p.y = Math.max(p.height / 2, Math.min(h - p.height / 2, p.y))
         })
       }
-
-      measureHole()
-    }
-
-    // Une seule description de la scene, peinte dans les deux canvas : en blanc
-    // sur le vert, en vert dans la fenetre du bouton. Le decalage aligne les
-    // deux reperes, la balle reste donc une seule et meme balle.
-    function paint(ctx: CanvasRenderingContext2D, color: string, dx: number, dy: number) {
-      ctx.save()
-      ctx.translate(dx, dy)
-
-      ctx.strokeStyle = color
-      ctx.globalAlpha = 0.22
-      ctx.lineWidth = 2
-      ctx.setLineDash([7, 13])
-      ctx.beginPath()
-      ctx.moveTo(w / 2, 0)
-      ctx.lineTo(w / 2, h)
-      ctx.stroke()
-      ctx.setLineDash([])
-      ctx.globalAlpha = 1
-
-      ctx.fillStyle = color
-      ctx.fillRect(MARGIN, pads[0].y - pads[0].height / 2, PADDLE_W, pads[0].height)
-      ctx.fillRect(w - MARGIN - PADDLE_W, pads[1].y - pads[1].height / 2, PADDLE_W, pads[1].height)
-
-      // La balle est une loupe, choisie le 19/08 contre le logo Google et un G
-      // typographique : elle dit la recherche sans emprunter une marque, et son
-      // trait reste lisible en mouvement la ou quatre couleurs se brouillent.
-      ctx.save()
-      ctx.translate(ball.x, ball.y)
-      ctx.strokeStyle = color
-      ctx.lineWidth = Math.max(2, BALL_R * 0.28)
-      ctx.lineCap = 'round'
-      ctx.beginPath()
-      ctx.arc(-BALL_R * 0.18, -BALL_R * 0.18, BALL_R * 0.62, 0, Math.PI * 2)
-      ctx.stroke()
-      ctx.beginPath()
-      ctx.moveTo(BALL_R * 0.26, BALL_R * 0.26)
-      ctx.lineTo(BALL_R * 0.78, BALL_R * 0.78)
-      ctx.stroke()
-      ctx.restore()
-
-      ctx.restore()
     }
 
     function draw() {
-      bgCtx!.clearRect(0, 0, w, h)
-      paint(bgCtx!, WHITE, 0, 0)
+      ctx!.clearRect(0, 0, w, h)
 
-      holeCtx!.clearRect(0, 0, hole!.width, hole!.height)
-      paint(holeCtx!, GREEN, offsetX, offsetY)
+      ctx!.strokeStyle = WHITE
+      ctx!.globalAlpha = 0.22
+      ctx!.lineWidth = 2
+      ctx!.setLineDash([7, 13])
+      ctx!.beginPath()
+      ctx!.moveTo(w / 2, 0)
+      ctx!.lineTo(w / 2, h)
+      ctx!.stroke()
+      ctx!.setLineDash([])
+      ctx!.globalAlpha = 1
+
+      ctx!.fillStyle = WHITE
+      ctx!.fillRect(MARGIN, pads[0].y - pads[0].height / 2, PADDLE_W, pads[0].height)
+      ctx!.fillRect(w - MARGIN - PADDLE_W, pads[1].y - pads[1].height / 2, PADDLE_W, pads[1].height)
+
+      ctx!.save()
+      ctx!.translate(ball.x, ball.y)
+      ctx!.strokeStyle = WHITE
+      ctx!.lineWidth = Math.max(2, BALL_R * 0.22)
+      ctx!.lineCap = 'round'
+      ctx!.beginPath()
+      ctx!.arc(-BALL_R * 0.18, -BALL_R * 0.18, BALL_R * 0.62, 0, Math.PI * 2)
+      ctx!.stroke()
+      ctx!.beginPath()
+      ctx!.moveTo(BALL_R * 0.26, BALL_R * 0.26)
+      ctx!.lineTo(BALL_R * 0.78, BALL_R * 0.78)
+      ctx!.stroke()
+      ctx!.restore()
     }
 
     function update(dt: number) {
@@ -244,13 +197,6 @@ export function Hero({ lang = 'fr' }: { lang?: Locale }) {
     function frame(now: number) {
       const dt = Math.min((now - last) / 1000, 0.05)
       last = now
-
-      sinceMeasure += dt
-      if (sinceMeasure > 0.5) {
-        sinceMeasure = 0
-        measureHole()
-      }
-
       update(dt)
       draw()
       raf = requestAnimationFrame(frame)
@@ -293,7 +239,7 @@ export function Hero({ lang = 'fr' }: { lang?: Locale }) {
       },
       { threshold: 0.1 },
     )
-    observer.observe(bg)
+    observer.observe(canvas)
 
     if (!reduced) play()
 
@@ -323,13 +269,13 @@ export function Hero({ lang = 'fr' }: { lang?: Locale }) {
       aria-label="Section hero"
     >
       <canvas
-        ref={bgRef}
+        ref={canvasRef}
         aria-hidden
         className="pointer-events-none absolute inset-0 -z-20 h-full w-full"
       />
 
       {/* Voile vert, pas noir : il assombrit a peine le centre pour que le texte
-          blanc reste net quand la balle passe derriere, et laisse les bords
+          blanc reste net quand la loupe passe derriere, et laisse les bords
           libres pour les raquettes. */}
       <div
         aria-hidden
@@ -384,12 +330,10 @@ export function Hero({ lang = 'fr' }: { lang?: Locale }) {
             className="flex flex-wrap items-center justify-center gap-3.5 mb-6"
           >
             {/* Boutons inverses : le vert est passe en fond, l'appel devient donc
-                blanc sur vert. `overflow-hidden` fait de la pastille le pochoir
-                qui decoupe la balle verte. */}
+                blanc sur vert pour rester l'element le plus contraste. */}
             <a
-              ref={buttonRef}
               href={PHONE_TEL}
-              className="relative inline-flex items-center gap-2 overflow-hidden rounded-full font-bold"
+              className="inline-flex items-center gap-2 rounded-full font-bold"
               style={{
                 backgroundColor: 'var(--on-brand)',
                 color: 'var(--brand-deep)',
@@ -397,11 +341,8 @@ export function Hero({ lang = 'fr' }: { lang?: Locale }) {
                 boxShadow: '0 2px 14px oklch(0.145 0 0 / 22%)',
               }}
             >
-              <canvas ref={holeRef} aria-hidden className="pointer-events-none absolute inset-0" />
-              <span className="relative z-10 inline-flex items-center gap-2">
-                <Phone size={16} aria-hidden />
-                {d.ctaCall}
-              </span>
+              <Phone size={16} aria-hidden />
+              {d.ctaCall}
             </a>
             <Link
               href="#contact"

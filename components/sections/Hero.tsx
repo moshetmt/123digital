@@ -28,7 +28,10 @@ export function Hero({ lang = 'fr' }: { lang?: Locale }) {
       id="section-hero"
       className="relative isolate overflow-hidden"
       style={{
-        padding: 'clamp(1.5rem, 5vw, 4rem) 1.5rem',
+        padding: 'clamp(2.5rem, 6vw, 5rem) 1.5rem',
+        minHeight: 'clamp(480px, 72vh, 700px)',
+        display: 'flex',
+        alignItems: 'center',
         color: 'var(--on-brand)',
         background:
           'radial-gradient(120% 85% at 12% 0%, var(--brand-light) 0%, transparent 58%), ' +
@@ -51,7 +54,7 @@ export function Hero({ lang = 'fr' }: { lang?: Locale }) {
         }}
       />
 
-      <div className="relative mx-auto max-w-4xl">
+      <div className="relative mx-auto w-full max-w-4xl">
         <div className="text-center">
           <motion.h1
             initial={{ y: 16, opacity: 0, filter: 'blur(6px)' }}

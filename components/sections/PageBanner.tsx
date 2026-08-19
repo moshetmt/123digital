@@ -55,7 +55,10 @@ export function PageBanner({
     <section
       className="relative isolate overflow-hidden"
       style={{
-        padding: 'clamp(1.5rem, 5vw, 3.5rem) 1.5rem clamp(1.75rem, 5vw, 3.5rem)',
+        padding: 'clamp(2.25rem, 6vw, 4.5rem) 1.5rem',
+        minHeight: 'clamp(340px, 48vh, 520px)',
+        display: 'flex',
+        alignItems: 'center',
         color: 'var(--on-brand)',
         background:
           'radial-gradient(120% 85% at 12% 0%, var(--brand-light) 0%, transparent 58%), ' +
@@ -92,7 +95,7 @@ export function PageBanner({
         }}
       />
 
-      <div className={`relative mx-auto max-w-4xl ${centered ? 'text-center' : ''}`}>
+      <div className={`relative mx-auto w-full max-w-4xl ${centered ? 'text-center' : ''}`}>
         {breadcrumb && <div className="mb-4">{breadcrumb}</div>}
 
         <h1

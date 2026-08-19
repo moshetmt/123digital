@@ -136,18 +136,21 @@ function RenderSection({ section }: { section: BlogSection }) {
           >
             Questions fréquentes
           </div>
-          <dl className="space-y-6">
+          {/* Accordeon natif : la liste depliee allongeait l'article sans
+              raison. Le schema FAQPage de la page reste inchange. */}
+          <div className="flex flex-col gap-1.5">
             {section.faqs?.map(({ question, reponse }, i) => (
-              <div key={i} style={{ borderTop: '1px solid var(--line)', paddingTop: '1.5rem' }}>
-                <dt className="font-display font-extrabold mb-2" style={{ fontSize: '1rem', color: 'var(--ink)' }}>
+              <details key={i} className="group rounded-xl" style={{ border: '1px solid var(--line)', backgroundColor: 'var(--surface-2)' }}>
+                <summary className="flex items-center justify-between gap-3 cursor-pointer list-none font-extrabold" style={{ fontSize: '0.92rem', color: 'var(--ink)', padding: '0.8rem 1rem' }}>
                   {question}
-                </dt>
-                <dd style={{ color: 'var(--ink-2)', lineHeight: 1.75, fontSize: '0.9rem' }}>
+                  <span aria-hidden className="shrink-0 transition-transform group-open:rotate-45" style={{ color: 'var(--brand)', fontSize: '1.2rem', lineHeight: 1 }}>+</span>
+                </summary>
+                <p style={{ color: 'var(--ink-2)', lineHeight: 1.55, fontSize: '0.86rem', padding: '0 1rem 0.85rem' }}>
                   {reponse}
-                </dd>
-              </div>
+                </p>
+              </details>
             ))}
-          </dl>
+          </div>
         </div>
       )
 

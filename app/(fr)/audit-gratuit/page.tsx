@@ -428,18 +428,21 @@ export default function AuditGratuitPage() {
           >
             Tout ce que vous voulez savoir<br />sur l&apos;audit gratuit
           </h2>
-          <dl className="space-y-8">
+          {/* Accordeon natif : la liste depliee pesait environ 1000 px sur
+              telephone. Le schema FAQPage de la page reste inchange. */}
+          <div className="flex flex-col gap-1.5">
             {faqs.map(({ q, a }, i) => (
-              <div key={i} style={{ borderTop: '1px solid var(--line)', paddingTop: '2rem' }}>
-                <dt className="font-display font-extrabold mb-3" style={{ fontSize: '1.05rem', color: 'var(--ink)' }}>
+              <details key={i} className="group rounded-xl" style={{ border: '1px solid var(--line)', backgroundColor: 'var(--surface-2)' }}>
+                <summary className="flex items-center justify-between gap-3 cursor-pointer list-none font-extrabold" style={{ fontSize: '0.95rem', color: 'var(--ink)', padding: '0.85rem 1rem' }}>
                   {q}
-                </dt>
-                <dd style={{ color: 'var(--ink-2)', lineHeight: 1.75, fontSize: '0.95rem' }}>
+                  <span aria-hidden className="shrink-0 transition-transform group-open:rotate-45" style={{ color: 'var(--brand)', fontSize: '1.2rem', lineHeight: 1 }}>+</span>
+                </summary>
+                <p style={{ color: 'var(--ink-2)', lineHeight: 1.55, fontSize: '0.88rem', padding: '0 1rem 0.9rem' }}>
                   {a}
-                </dd>
-              </div>
+                </p>
+              </details>
             ))}
-          </dl>
+          </div>
         </div>
       </section>
 

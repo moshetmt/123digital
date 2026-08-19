@@ -117,7 +117,7 @@ export function Header({ lang = 'fr' }: { lang?: Locale }) {
             className="flex items-center shrink-0"
             aria-label="123 Digital, accueil"
           >
-            <Image src="/images/logo.svg" alt="123 Digital" width={166} height={34} style={{ height: 34, width: 'auto' }} priority />
+            <Image src="/images/logo.svg" alt="123 Digital" width={166} height={34} style={{ height: 34, width: 'auto' }} priority unoptimized />
           </Link>
 
           {/* ── Desktop nav ── */}
@@ -285,7 +285,9 @@ export function Header({ lang = 'fr' }: { lang?: Locale }) {
                   className="flex items-center mb-8"
                   onClick={() => setMobileOpen(false)}
                 >
-                  <Image src="/images/logo.svg" alt="123 Digital" width={150} height={31} style={{ height: 31, width: 'auto' }} />
+                  {/* `unoptimized` : le logo est un SVG, l'optimiseur d'images
+                      le rendait cassé dans le panneau mobile. */}
+                  <Image src="/images/logo.svg" alt="123 Digital" width={150} height={31} unoptimized style={{ height: 31, width: 'auto' }} />
                 </Link>
 
                 {/* Mobile links */}
@@ -293,9 +295,9 @@ export function Header({ lang = 'fr' }: { lang?: Locale }) {
                   <Link
                     href={lang === 'en' ? '/en' : '/'}
                     onClick={() => setMobileOpen(false)}
-                    className="block px-3 py-2.5 rounded-xl text-sm font-medium transition-colors"
+                    className="block px-3 py-2.5 rounded-xl text-[0.95rem] font-bold transition-colors"
                     style={{
-                      color: pathname === '/' || pathname === '/en' ? INK : INK_DIM,
+                      color: pathname === '/' || pathname === '/en' ? 'var(--brand)' : INK,
                       backgroundColor: pathname === '/' || pathname === '/en' ? 'var(--brand-tint)' : 'transparent',
                     }}
                   >
@@ -307,9 +309,9 @@ export function Header({ lang = 'fr' }: { lang?: Locale }) {
                       <Link
                         href={link.href}
                         onClick={() => !link.hasDropdown && setMobileOpen(false)}
-                        className="block px-3 py-2.5 rounded-xl text-sm font-medium transition-colors"
+                        className="block px-3 py-2.5 rounded-xl text-[0.95rem] font-bold transition-colors"
                         style={{
-                          color: isActive(link.href) ? INK : INK_DIM,
+                          color: isActive(link.href) ? 'var(--brand)' : INK,
                           backgroundColor: isActive(link.href) ? 'var(--brand-tint)' : 'transparent',
                         }}
                       >
@@ -326,10 +328,15 @@ export function Header({ lang = 'fr' }: { lang?: Locale }) {
                               key={service.id}
                               href={service.href}
                               onClick={() => setMobileOpen(false)}
-                              className="flex items-center gap-2 py-1.5 px-2 rounded-lg text-xs transition-colors"
-                              style={{ color: INK_FAINT }}
+                              className="flex items-center gap-2 py-1.5 px-2 rounded-lg text-[0.82rem] font-semibold transition-colors"
+                              style={{ color: INK_DIM }}
                             >
-                              <ServiceIcon name={service.icon} size={11} />
+                              <span
+                                className="grid place-items-center rounded-md shrink-0"
+                                style={{ width: 20, height: 20, backgroundColor: 'var(--brand-tint)', color: 'var(--brand)' }}
+                              >
+                                <ServiceIcon name={service.icon} size={12} />
+                              </span>
                               {service.title}
                             </Link>
                           ))}

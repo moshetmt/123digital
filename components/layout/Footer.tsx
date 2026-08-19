@@ -79,7 +79,7 @@ export function Footer({ lang = 'fr' }: { lang?: Locale }) {
         {/* Brand + tagline */}
         <div className="flex flex-col gap-3" style={{ gridColumn: 'span 2' }}>
           <Link href={lang === 'en' ? '/en' : '/'} aria-label="123 Digital" className="w-fit">
-            <Image src="/images/logo-fond-sombre.svg" alt="123 Digital" width={140} height={29} style={{ height: 28, width: 'auto' }} />
+            <Image src="/images/logo-fond-sombre.svg" alt="123 Digital" width={140} height={29} style={{ height: 28, width: 'auto' }} unoptimized />
           </Link>
           <p style={{ color: 'var(--cream-2)', fontSize: '0.85rem', lineHeight: 1.6, maxWidth: '34ch' }}>
             {d.tagline}

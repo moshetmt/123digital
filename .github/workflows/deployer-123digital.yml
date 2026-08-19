@@ -97,11 +97,29 @@ jobs:
 
       # L'etape qui manquait. Sans elle le site public ne change pas, quoi que
       # dise Vercel.
+      # Deux issues sont normales, et la seconde a fait echouer le workflow a sa
+      # premiere execution le 19/08 :
+      #   - le domaine pointait ailleurs  -> promote le deplace, c'est le cas qui
+      #     justifie cette etape (constate le 19/08, neuf deploiements ignores) ;
+      #   - le domaine pointait deja ici  -> Vercel repond 409 « already the
+      #     current production deployment ». Il n'y a rien a faire, ce n'est pas
+      #     une erreur, et l'etape suivante le verifiera de toute facon.
       - name: Pointer le domaine sur ce deploiement
         run: |
-          set -eu
-          npx --yes vercel@latest promote "${{ steps.deploiement.outputs.url }}" \
-            --yes --token="${{ secrets.VERCEL_TOKEN }}"
+          set -u
+          if sortie=$(npx --yes vercel@latest promote "${{ steps.deploiement.outputs.url }}" \
+               --yes --token="${{ secrets.VERCEL_TOKEN }}" 2>&1); then
+            echo "$sortie"
+            echo "Domaine repointe sur le nouveau deploiement."
+          else
+            echo "$sortie"
+            if echo "$sortie" | grep -qi "already the current production deployment"; then
+              echo "Le domaine pointait deja sur ce deploiement, rien a repointer. Cas nominal."
+            else
+              echo "::error::La promotion a echoue pour une autre raison que le 409 attendu."
+              exit 1
+            fi
+          fi
 
       - name: Verifier que le domaine sert bien ce deploiement
         run: |

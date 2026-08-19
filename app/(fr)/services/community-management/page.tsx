@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { PageBanner, BannerCta, BannerCtaLine } from '@/components/sections/PageBanner'
+import { BlocsDepliants } from '@/components/ui/BlocsDepliants'
 import { JsonLd } from '@/components/seo/JsonLd'
 import { BASE_URL, serviceSchema, breadcrumbSchema } from '@/lib/schema'
 
@@ -144,17 +145,9 @@ export default function CommunityManagementPage() {
           <h2 className="font-display font-extrabold mb-5 sm:mb-10" style={{ fontSize: 'clamp(1.6rem, 3vw, 2.5rem)', color: 'var(--ink)', letterSpacing: '-0.02em' }}>
             Réseaux sociaux PME : les bons canaux, pas tous les canaux
           </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-            {platforms.map((p) => (
-              <div key={p.name} className="rounded-2xl p-4 sm:p-6" style={{ backgroundColor: 'var(--surface-2)', border: '1px solid var(--line)' }}>
-                <div style={{ width: 28, height: 28, borderRadius: '50%', backgroundColor: 'var(--brand-tint)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '0.75rem', color: 'var(--brand)' }}>
-                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M20 6 9 17l-5-5" /></svg>
-                </div>
-                <h3 className="font-display font-extrabold text-base mb-2" style={{ color: 'var(--ink)' }}>{p.name}</h3>
-                <p className="text-sm leading-relaxed" style={{ color: 'var(--ink-2)' }}>{p.desc}</p>
-              </div>
-            ))}
-          </div>
+          <BlocsDepliants
+            items={platforms.map((p) => ({ titre: p.name, texte: p.desc }))}
+          />
         </div>
       </section>
 
@@ -165,15 +158,9 @@ export default function CommunityManagementPage() {
           <h2 className="font-display font-extrabold mb-5 sm:mb-10" style={{ fontSize: 'clamp(1.6rem, 3vw, 2.5rem)', color: 'var(--ink)', letterSpacing: '-0.02em' }}>
             Gestion de vos réseaux sociaux en 4 étapes
           </h2>
-          <div className="grid grid-cols-2 gap-2" style={{ backgroundColor: 'var(--line)' }}>
-            {steps.map((s) => (
-              <div key={s.num} className="p-3 sm:p-6 rounded-xl" style={{ backgroundColor: 'var(--surface-2)' }}>
-                <div style={{ fontSize: '0.65rem', letterSpacing: '0.12em', color: 'var(--brand)', fontWeight: 700, marginBottom: '1rem' }}>{s.num}</div>
-                <h3 className="font-display font-extrabold mb-3" style={{ fontSize: '1.1rem', color: 'var(--ink)' }}>{s.title}</h3>
-                <p style={{ fontSize: '0.88rem', color: 'var(--ink-2)', lineHeight: 1.65 }}>{s.desc}</p>
-              </div>
-            ))}
-          </div>
+          <BlocsDepliants
+            items={steps.map((s) => ({ etiquette: s.num, titre: s.title, texte: s.desc }))}
+          />
         </div>
       </section>
 

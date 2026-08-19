@@ -1,3 +1,5 @@
+import { PageBanner } from '@/components/sections/PageBanner'
+
 /**
  * Hero des pages anglaises.
  *
@@ -12,6 +14,10 @@
  * qui dit ce que le visiteur y trouve, et de quoi tenir devant une page
  * française équivalente. Le texte est propre à chaque page, jamais un gabarit
  * rempli avec le nom de la page.
+ *
+ * Depuis le 20/08 il n'est plus qu'un adaptateur : le rendu vient de
+ * `PageBanner`, la bannière verte partagée par tout le site. Les cinq pages
+ * anglaises suivent donc automatiquement les évolutions de la version française.
  */
 type Props = {
   kicker: string
@@ -22,78 +28,27 @@ type Props = {
 
 export function PageHeroEn({ kicker, title, intro, points }: Props) {
   return (
-    <section
-      style={{
-        backgroundColor: 'var(--surface)',
-        padding: 'clamp(1.5rem, 5vw, 3rem) 1.5rem clamp(1rem, 3vw, 2rem)',
-        borderBottom: '1px solid var(--line)',
-      }}
-    >
-      <div className="mx-auto max-w-3xl">
-        <div
-          className="mb-3 flex items-center gap-2"
-          style={{
-            fontSize: '0.7rem',
-            letterSpacing: '0.12em',
-            textTransform: 'uppercase',
-            color: 'var(--ink-2)',
-            fontWeight: 700,
-          }}
+    <PageBanner eyebrow={kicker} title={title} sub={intro}>
+      {points && points.length > 0 && (
+        <ul
+          className="mt-4 grid grid-cols-1 gap-2 sm:grid-cols-3"
+          style={{ fontSize: '0.85rem', color: 'oklch(0.985 0.003 150 / 88%)', lineHeight: 1.45 }}
         >
-          <span
-            className="h-1.5 w-1.5 rounded-full"
-            style={{ backgroundColor: 'var(--brand)' }}
-            aria-hidden
-          />
-          {kicker}
-        </div>
-
-        <h1
-          style={{
-            fontFamily: 'var(--font-sans)',
-            fontWeight: 800,
-            fontSize: 'clamp(1.75rem, 4.2vw, 2.75rem)',
-            lineHeight: 1.1,
-            letterSpacing: '-0.015em',
-            color: 'var(--ink)',
-            marginBottom: '0.9rem',
-          }}
-        >
-          {title}
-        </h1>
-
-        <p
-          style={{
-            fontSize: 'clamp(0.95rem, 3vw, 1.08rem)',
-            color: 'var(--ink-2)',
-            lineHeight: 1.55,
-            maxWidth: '62ch',
-          }}
-        >
-          {intro}
-        </p>
-
-        {points && points.length > 0 && (
-          <ul
-            className="mt-5 grid grid-cols-1 gap-2 sm:grid-cols-3"
-            style={{ fontSize: '0.88rem', color: 'var(--ink-2)', lineHeight: 1.45 }}
-          >
-            {points.map((p) => (
-              <li
-                key={p}
-                className="rounded-xl"
-                style={{
-                  backgroundColor: 'var(--surface-2)',
-                  border: '1px solid var(--line)',
-                  padding: '0.75rem 0.9rem',
-                }}
-              >
-                {p}
-              </li>
-            ))}
-          </ul>
-        )}
-      </div>
-    </section>
+          {points.map((p) => (
+            <li
+              key={p}
+              className="rounded-xl"
+              style={{
+                backgroundColor: 'oklch(0.985 0.003 150 / 12%)',
+                border: '1px solid oklch(0.985 0.003 150 / 22%)',
+                padding: '0.7rem 0.85rem',
+              }}
+            >
+              {p}
+            </li>
+          ))}
+        </ul>
+      )}
+    </PageBanner>
   )
 }

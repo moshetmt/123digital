@@ -4,7 +4,6 @@ import { useRef, useSyncExternalStore } from 'react'
 import Link from 'next/link'
 import { motion, useInView } from 'framer-motion'
 import { Phone, Check, CircleCheck, Clock } from 'lucide-react'
-import { projects } from '@/data/portfolio'
 import { t, type Locale } from '@/lib/i18n'
 
 const EASE = [0.16, 1, 0.3, 1] as [number, number, number, number]
@@ -32,65 +31,6 @@ function subscribeToClock(callback: () => void) {
 
 function getServerClosedSnapshot() {
   return false
-}
-
-// ── Carte de preuve ───────────────────────────────────────────────────────────
-// Remplace l'ancienne carte « Ouvert / En direct ». Motif importe de depann69,
-// ou la disponibilite immediate EST la question d'achat. Pour du conseil, non :
-// personne ne choisit son consultant selon qu'il decroche a la seconde.
-// Ce qui convertit, d'apres les donnees : les resultats clients chiffres et
-// verifiables (les etudes de cas sectorielles convertissent jusqu'a 5 fois
-// mieux que des promesses generiques). On montre donc les 3 dossiers reels.
-function ProofCard({ lang }: { lang: Locale }) {
-  const d = t(lang).hero
-  return (
-    <div
-      className="rounded-3xl"
-      style={{
-        backgroundColor: 'var(--surface-2)',
-        border: '1px solid var(--line)',
-        boxShadow: '0 8px 30px var(--shadow-soft)',
-        padding: 'clamp(1rem, 3.5vw, 1.5rem)',
-      }}
-    >
-      <div className="flex items-center justify-between mb-3">
-        <span style={{ fontSize: '0.7rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--ink-3)' }}>
-          {lang === 'en' ? 'Client results' : 'Résultats clients'}
-        </span>
-        <span
-          style={{
-            backgroundColor: 'var(--brand-tint)', color: 'var(--brand-strong)', borderRadius: 999,
-            padding: '0.25rem 0.6rem', fontSize: '0.65rem', fontWeight: 800,
-            textTransform: 'uppercase', letterSpacing: '0.08em',
-          }}
-        >
-          {lang === 'en' ? 'Verifiable' : 'Vérifiables'}
-        </span>
-      </div>
-
-      {/* Chiffre court par dossier : decouper `results` automatiquement
-          amputait la punchline de Clim69 (le benefice net). */}
-      <ul className="flex flex-col gap-2 mb-4">
-        {projects.slice(0, 3).map((p) => (
-          <li key={p.id} className="flex items-baseline justify-between gap-3">
-            <span style={{ fontSize: '0.84rem', fontWeight: 700, color: 'var(--ink)' }}>{p.title}</span>
-            <span style={{ fontSize: '0.84rem', fontWeight: 800, color: 'var(--brand-strong)', textAlign: 'right', whiteSpace: 'nowrap' }}>
-              {p.metric ?? p.results}
-            </span>
-          </li>
-        ))}
-      </ul>
-
-      <a
-        href={PHONE_TEL}
-        className="flex items-center justify-center gap-2 w-full rounded-full font-bold whitespace-nowrap"
-        style={{ backgroundColor: 'var(--brand)', color: 'var(--on-brand)', padding: '0.75rem', fontSize: '0.98rem' }}
-      >
-        <Phone size={16} aria-hidden />
-        {PHONE_DISPLAY}
-      </a>
-    </div>
-  )
 }
 
 function StatusCardAncienne({ lang }: { lang: Locale }) {
@@ -214,13 +154,13 @@ export function Hero({ lang = 'fr' }: { lang?: Locale }) {
         />
       </div>
 
-      <div className="relative mx-auto max-w-7xl grid grid-cols-1 lg:grid-cols-[1fr_360px] gap-5 lg:gap-14 items-center">
-        <div className="text-center lg:text-left">
+      <div className="relative mx-auto max-w-4xl">
+        <div className="text-center">
           <motion.h1
             initial={{ y: 16, opacity: 0, filter: 'blur(6px)' }}
             animate={isInView ? { y: 0, opacity: 1, filter: 'blur(0px)' } : {}}
             transition={{ duration: 0.8, ease: EASE }}
-            className="mx-auto lg:mx-0"
+            className="mx-auto"
             style={{
               fontFamily: 'var(--font-sans)',
               fontWeight: 800,
@@ -239,7 +179,7 @@ export function Hero({ lang = 'fr' }: { lang?: Locale }) {
             initial={{ y: 16, opacity: 0, filter: 'blur(6px)' }}
             animate={isInView ? { y: 0, opacity: 1, filter: 'blur(0px)' } : {}}
             transition={{ duration: 0.8, delay: 0.1, ease: EASE }}
-            className="mx-auto lg:mx-0"
+            className="mx-auto"
             style={{ fontSize: 'clamp(0.95rem, 3.2vw, 1.1rem)', color: 'var(--ink-2)', maxWidth: '58ch', marginBottom: 'clamp(1rem, 4vw, 1.75rem)', lineHeight: 1.5 }}
           >
             {d.sub}
@@ -249,7 +189,7 @@ export function Hero({ lang = 'fr' }: { lang?: Locale }) {
             initial={{ y: 16, opacity: 0, filter: 'blur(6px)' }}
             animate={isInView ? { y: 0, opacity: 1, filter: 'blur(0px)' } : {}}
             transition={{ duration: 0.8, delay: 0.2, ease: EASE }}
-            className="flex flex-wrap items-center justify-center lg:justify-start gap-3.5 mb-6"
+            className="flex flex-wrap items-center justify-center gap-3.5 mb-6"
           >
             <a
               href={PHONE_TEL}
@@ -285,14 +225,6 @@ export function Hero({ lang = 'fr' }: { lang?: Locale }) {
             ))}
           </motion.ul>
         </div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 20, filter: 'blur(6px)' }}
-          animate={isInView ? { opacity: 1, y: 0, filter: 'blur(0px)' } : {}}
-          transition={{ duration: 0.8, delay: 0.25, ease: EASE }}
-        >
-          <ProofCard lang={lang} />
-        </motion.div>
       </div>
     </section>
   )

@@ -5,6 +5,12 @@ import { languesPour } from '@/data/hreflang'
 export const metadata: Metadata = {
   title: 'Blog — Digital Growth Tips | 123 Digital Lyon',
   description: 'Articles and guides on SEO, web design, online advertising and digital strategy for SMEs.',
+  // 🔴 Cette page GARDE son noindex, contrairement au reste de /en.
+  // Les 9 articles de data/blog.ts sont tous en francais : un index
+  // anglais qui ne liste que des articles francais est une coquille.
+  // A rouvrir le jour ou un article est traduit, en ajoutant en meme
+  // temps la paire ['/blog', '/en/blog'] dans data/hreflang.ts.
+  robots: { index: false, follow: true },
   alternates: {
     canonical: `${BASE_URL}/en/blog`,
     ...languesPour('/en/blog'),

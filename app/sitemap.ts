@@ -2,6 +2,7 @@ import type { MetadataRoute } from 'next'
 import { BASE_URL } from '@/lib/schema'
 import { allVilles, villesARA } from '@/data/villes'
 import { estIndexable } from '@/data/indexation'
+import { PAGES_EN_INDEXABLES } from '@/data/hreflang'
 import { services } from '@/data/services'
 import { secteurs } from '@/data/secteurs'
 import { articles } from '@/data/blog'
@@ -73,5 +74,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }
   }
 
-  return [...staticRoutes, ...villeRoutes, ...villeServiceRoutes]
+  // Version anglaise, ouverte le 19/08. Liste derivee de `data/hreflang.ts`,
+  // donc impossible d'y declarer une page qu'on met par ailleurs en `noindex`.
+  const enRoutes: MetadataRoute.Sitemap = PAGES_EN_INDEXABLES.map((chemin) => ({
+    url: `${BASE_URL}${chemin}`,
+    lastModified: now,
+    changeFrequency: 'monthly' as const,
+    priority: chemin === '/en' ? 0.8 : 0.6,
+  }))
+
+  return [...staticRoutes, ...villeRoutes, ...villeServiceRoutes, ...enRoutes]
 }

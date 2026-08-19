@@ -34,7 +34,7 @@ const PHONE_TEL = 'tel:+33652092301'
 
 const BALL_SPEED = 150   // px/s
 const PADDLE_SPEED = 260 // px/s — regle par simulation : 2 interceptions sur 3
-const BALL_R = 6
+const BALL_R = 10
 const PADDLE_W = 7
 const MARGIN = 14
 const WHITE = 'oklch(0.985 0.003 150)'
@@ -158,9 +158,22 @@ export function Hero({ lang = 'fr' }: { lang?: Locale }) {
       ctx.fillRect(MARGIN, pads[0].y - pads[0].height / 2, PADDLE_W, pads[0].height)
       ctx.fillRect(w - MARGIN - PADDLE_W, pads[1].y - pads[1].height / 2, PADDLE_W, pads[1].height)
 
+      // La balle est une loupe, choisie le 19/08 contre le logo Google et un G
+      // typographique : elle dit la recherche sans emprunter une marque, et son
+      // trait reste lisible en mouvement la ou quatre couleurs se brouillent.
+      ctx.save()
+      ctx.translate(ball.x, ball.y)
+      ctx.strokeStyle = color
+      ctx.lineWidth = Math.max(2, BALL_R * 0.28)
+      ctx.lineCap = 'round'
       ctx.beginPath()
-      ctx.arc(ball.x, ball.y, BALL_R, 0, Math.PI * 2)
-      ctx.fill()
+      ctx.arc(-BALL_R * 0.18, -BALL_R * 0.18, BALL_R * 0.62, 0, Math.PI * 2)
+      ctx.stroke()
+      ctx.beginPath()
+      ctx.moveTo(BALL_R * 0.26, BALL_R * 0.26)
+      ctx.lineTo(BALL_R * 0.78, BALL_R * 0.78)
+      ctx.stroke()
+      ctx.restore()
 
       ctx.restore()
     }

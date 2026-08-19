@@ -6,12 +6,13 @@ import { Breadcrumb } from '@/components/layout/Breadcrumb'
 import { AuditSimulator } from '@/components/sections/AuditSimulator'
 import { CTA } from '@/components/sections/CTA'
 import { BASE_URL, breadcrumbSchema, auditPageSchema } from '@/lib/schema'
+import { languesPour } from '@/data/hreflang'
 
 export const metadata: Metadata = {
   title: 'Audit digital gratuit Lyon — 30 min sans engagement',
   description:
     'Audit digital gratuit de 30 min avec Maurice Timsit. SEO, UX et publicité : pourquoi votre site PME ne convertit pas. Réservez votre créneau gratuit.',
-  alternates: { canonical: `${BASE_URL}/audit-gratuit` },
+  alternates: { canonical: `${BASE_URL}/audit-gratuit`, ...languesPour('/audit-gratuit') },
   openGraph: {
     title: 'Audit digital gratuit 30 min | 123 Digital',
     description:

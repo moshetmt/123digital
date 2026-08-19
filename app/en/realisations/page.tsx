@@ -6,6 +6,7 @@ import { Breadcrumb } from '@/components/layout/Breadcrumb'
 import { BASE_URL, breadcrumbSchema, localBusinessSchema } from '@/lib/schema'
 import { projects } from '@/data/portfolio'
 import { t } from '@/lib/i18n'
+import { languesPour } from '@/data/hreflang'
 
 const PHONE_TEL = 'tel:+33652092301'
 const PHONE_DISPLAY = '06 52 09 23 01'
@@ -17,7 +18,7 @@ export const metadata: Metadata = {
   description: d.realisations.description,
   alternates: {
     canonical: `${BASE_URL}/en/realisations`,
-    languages: { 'fr': `${BASE_URL}/realisations`, 'en': `${BASE_URL}/en/realisations` },
+    ...languesPour('/en/realisations'),
   },
 }
 

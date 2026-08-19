@@ -5,12 +5,13 @@ import { JsonLd } from '@/components/seo/JsonLd'
 import { Breadcrumb } from '@/components/layout/Breadcrumb'
 import { BASE_URL, breadcrumbSchema, serviceSchema } from '@/lib/schema'
 import { services } from '@/data/services'
+import { languesPour } from '@/data/hreflang'
 
 export const metadata: Metadata = {
   title: 'Services digitaux Lyon — SEO, Web & Ads | 123 Digital',
   description:
     'Services digitaux pour PME à Lyon et en Auvergne-Rhône-Alpes : SEO, création de site, Google Ads, branding et automatisation. Un seul expert, une stratégie cohérente pour votre croissance.',
-  alternates: { canonical: `${BASE_URL}/services` },
+  alternates: { canonical: `${BASE_URL}/services`, ...languesPour('/services') },
   openGraph: {
     title: 'Services digitaux pour PME | 123 Digital Lyon',
     description: 'SEO, création site web, Google Ads, branding et automatisation à Lyon : un seul expert, des résultats mesurables pour votre PME.',

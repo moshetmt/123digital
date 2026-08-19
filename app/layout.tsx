@@ -103,7 +103,16 @@ export const metadata: Metadata = {
 
   alternates: {
     canonical: BASE_URL,
-    languages: { 'fr-FR': BASE_URL },
+    // 🔴 PAS de `languages` ici. Ce qui s'y trouvait, `{ 'fr-FR': BASE_URL }`,
+    // causait deux defauts a lui seul (constates le 19/08 dans le HTML fabrique) :
+    //   1. il FUITAIT sur toute page qui ne redefinit pas `alternates`, si bien
+    //      que /portfolio annonçait que sa version francaise etait la page
+    //      d'accueil. C'est faux, et une declaration fausse vaut moins que rien.
+    //   2. il utilisait le code `fr-FR` pour https://123digital.fr, alors que les
+    //      pages /en declarent `fr` pour cette MEME URL. Deux codes differents
+    //      pour une meme page suffisent a faire jeter tout le groupe par Google.
+    // Le hreflang se declare page par page, via `languesPour` de data/hreflang.ts,
+    // qui derive les deux cotes de la meme table et garantit la reciprocite.
   },
 
   manifest: '/site.webmanifest',

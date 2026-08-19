@@ -3,12 +3,13 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { JsonLd } from '@/components/seo/JsonLd'
 import { BASE_URL, personSchema, breadcrumbSchema } from '@/lib/schema'
+import { languesPour } from '@/data/hreflang'
 
 export const metadata: Metadata = {
   title: 'À propos — Maurice Timsit, expert digital Lyon',
   description:
     "Maurice Timsit, consultant digital Lyon spécialisé PME : SEO, site web, Google Ads. 8 ans d'expérience au service de votre croissance. Échangeons.",
-  alternates: { canonical: `${BASE_URL}/a-propos` },
+  alternates: { canonical: `${BASE_URL}/a-propos`, ...languesPour('/a-propos') },
 }
 
 const expertise = [

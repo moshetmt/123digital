@@ -11,8 +11,19 @@ import { Zones }        from '@/components/sections/Zones'
 import { JsonLd }       from '@/components/seo/JsonLd'
 import { faqPageSchema } from '@/lib/schema'
 import { homeFaqs }     from '@/data/faq'
+import { BASE_URL }     from '@/lib/schema'
+import { languesPour }  from '@/data/hreflang'
 
-export const metadata: Metadata = {}
+// La page d'accueil n'avait AUCUN `alternates` propre, donc elle heritait de
+// celui du layout racine et ne declarait aucune jumelle, alors que /en pointait
+// vers elle. Une paire ou un seul cote parle est jetee par Google : la page la
+// plus importante du site etait precisement celle qui manquait a l'appel.
+export const metadata: Metadata = {
+  alternates: {
+    canonical: BASE_URL,
+    ...languesPour('/'),
+  },
+}
 
 export default function HomePage() {
   return (

@@ -5,12 +5,13 @@ import { JsonLd } from '@/components/seo/JsonLd'
 import { Breadcrumb } from '@/components/layout/Breadcrumb'
 import { BASE_URL, breadcrumbSchema } from '@/lib/schema'
 import { articles, categories } from '@/data/blog'
+import { languesPour } from '@/data/hreflang'
 
 export const metadata: Metadata = {
   title: 'Blog — Conseils marketing digital pour PME | 123 Digital',
   description:
     "Guides pratiques SEO, création de site web, Google Ads et automatisation pour PME. Conseils concrets par Maurice Timsit, consultant digital à Lyon.",
-  alternates: { canonical: `${BASE_URL}/blog` },
+  alternates: { canonical: `${BASE_URL}/blog`, ...languesPour('/blog') },
   openGraph: {
     title: 'Blog — Conseils marketing digital PME | 123 Digital',
     description: 'Articles pratiques sur le SEO, Google Ads et la croissance digitale pour les PME.',

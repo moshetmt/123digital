@@ -153,12 +153,12 @@ export default function CommunityManagementPage() {
       <section className="bg-background" style={{ ...sectionStyle, paddingTop: '0' }}>
         <div className="mx-auto max-w-5xl">
           <div style={labelStyle}>Plateformes gérées</div>
-          <h2 className="font-display font-extrabold mb-10" style={{ fontSize: 'clamp(1.6rem, 3vw, 2.5rem)', color: 'var(--ink)', letterSpacing: '-0.02em' }}>
+          <h2 className="font-display font-extrabold mb-5 sm:mb-10" style={{ fontSize: 'clamp(1.6rem, 3vw, 2.5rem)', color: 'var(--ink)', letterSpacing: '-0.02em' }}>
             Réseaux sociaux PME : les bons canaux, pas tous les canaux
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             {platforms.map((p) => (
-              <div key={p.name} className="rounded-2xl p-7" style={{ backgroundColor: 'var(--surface-2)', border: '1px solid var(--line)' }}>
+              <div key={p.name} className="rounded-2xl p-4 sm:p-6" style={{ backgroundColor: 'var(--surface-2)', border: '1px solid var(--line)' }}>
                 <div style={{ width: 28, height: 28, borderRadius: '50%', backgroundColor: 'var(--brand-tint)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '0.75rem', color: 'var(--brand)' }}>
                   <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M20 6 9 17l-5-5" /></svg>
                 </div>
@@ -174,12 +174,12 @@ export default function CommunityManagementPage() {
       <section className="bg-background" style={sectionStyle}>
         <div className="mx-auto max-w-5xl">
           <div style={labelStyle}>Ma méthode</div>
-          <h2 className="font-display font-extrabold mb-10" style={{ fontSize: 'clamp(1.6rem, 3vw, 2.5rem)', color: 'var(--ink)', letterSpacing: '-0.02em' }}>
+          <h2 className="font-display font-extrabold mb-5 sm:mb-10" style={{ fontSize: 'clamp(1.6rem, 3vw, 2.5rem)', color: 'var(--ink)', letterSpacing: '-0.02em' }}>
             Gestion de vos réseaux sociaux en 4 étapes
           </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-px" style={{ backgroundColor: 'var(--line)' }}>
+          <div className="grid grid-cols-2 gap-2" style={{ backgroundColor: 'var(--line)' }}>
             {steps.map((s) => (
-              <div key={s.num} className="p-8" style={{ backgroundColor: 'var(--surface-2)' }}>
+              <div key={s.num} className="p-3 sm:p-6 rounded-xl" style={{ backgroundColor: 'var(--surface-2)' }}>
                 <div style={{ fontSize: '0.65rem', letterSpacing: '0.12em', color: 'var(--brand)', fontWeight: 700, marginBottom: '1rem' }}>{s.num}</div>
                 <h3 className="font-display font-extrabold mb-3" style={{ fontSize: '1.1rem', color: 'var(--ink)' }}>{s.title}</h3>
                 <p style={{ fontSize: '0.88rem', color: 'var(--ink-2)', lineHeight: 1.65 }}>{s.desc}</p>
@@ -203,7 +203,7 @@ export default function CommunityManagementPage() {
           </p>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
             {pricingTiers.map((t) => (
-              <div key={t.label} className="rounded-2xl p-7" style={{ backgroundColor: 'var(--surface-2)', border: '1px solid var(--line)' }}>
+              <div key={t.label} className="rounded-2xl p-4 sm:p-6" style={{ backgroundColor: 'var(--surface-2)', border: '1px solid var(--line)' }}>
                 <div style={{ fontSize: '0.65rem', letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--brand)', fontWeight: 700, marginBottom: '0.75rem' }}>{t.label}</div>
                 <div className="font-display font-extrabold mb-3" style={{ fontSize: '1.3rem', color: 'var(--ink)' }}>{t.price}</div>
                 <p className="text-sm leading-relaxed mb-4" style={{ color: 'var(--ink-2)' }}>{t.desc}</p>
@@ -218,7 +218,7 @@ export default function CommunityManagementPage() {
       <section className="bg-background" style={sectionStyle}>
         <div className="mx-auto max-w-3xl">
           <div style={labelStyle}>Questions fréquentes</div>
-          <h2 className="font-display font-extrabold mb-10" style={{ fontSize: 'clamp(1.6rem, 3vw, 2.5rem)', color: 'var(--ink)', letterSpacing: '-0.02em' }}>
+          <h2 className="font-display font-extrabold mb-5 sm:mb-10" style={{ fontSize: 'clamp(1.6rem, 3vw, 2.5rem)', color: 'var(--ink)', letterSpacing: '-0.02em' }}>
             Community management PME — vos questions
           </h2>
           {/* Accordeon natif : la liste depliee pesait environ 1000 px sur

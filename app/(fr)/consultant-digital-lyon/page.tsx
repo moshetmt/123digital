@@ -78,7 +78,7 @@ export default function ConsultantDigitalLyonPage() {
       {/* Hero */}
       <section
         className="bg-background"
-        style={{ padding: '9rem 1.5rem 7rem' }}
+        style={{ padding: 'clamp(1.75rem, 5vw, 3.5rem) 1.5rem clamp(2rem, 6vw, 4rem)' }}
       >
         <div className="mx-auto max-w-4xl">
           <div

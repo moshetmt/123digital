@@ -49,10 +49,10 @@ function RenderSection({ section }: { section: BlogSection }) {
           style={{
             color: 'var(--ink)',
             fontSize: '1.05rem',
-            lineHeight: 1.8,
+            lineHeight: 1.65,
             borderLeft: '3px solid var(--brand)',
             paddingLeft: '1.5rem',
-            marginBottom: '2.5rem',
+            marginBottom: 'clamp(1.2rem, 4vw, 2rem)',
           }}
         >
           {section.texte}
@@ -61,7 +61,7 @@ function RenderSection({ section }: { section: BlogSection }) {
 
     case 'h2':
       return (
-        <div style={{ marginBottom: '2rem', marginTop: '3rem' }}>
+        <div style={{ marginBottom: 'clamp(1rem, 3.5vw, 1.6rem)', marginTop: 'clamp(1.6rem, 5vw, 2.5rem)' }}>
           <h2
             className="font-display font-extrabold mb-4"
             style={{ fontSize: 'clamp(1.4rem, 2.5vw, 1.9rem)', color: 'var(--ink)', lineHeight: 1.2 }}
@@ -69,7 +69,7 @@ function RenderSection({ section }: { section: BlogSection }) {
             {section.titre}
           </h2>
           {section.texte && (
-            <p style={{ color: 'var(--ink-2)', lineHeight: 1.8, fontSize: '0.95rem' }}>
+            <p style={{ color: 'var(--ink-2)', lineHeight: 1.65, fontSize: '0.95rem' }}>
               {section.texte}
             </p>
           )}
@@ -78,7 +78,7 @@ function RenderSection({ section }: { section: BlogSection }) {
 
     case 'h3':
       return (
-        <div style={{ marginBottom: '1.5rem', marginTop: '2rem' }}>
+        <div style={{ marginBottom: 'clamp(0.8rem, 3vw, 1.2rem)', marginTop: 'clamp(1.2rem, 4vw, 1.8rem)' }}>
           <h3
             className="font-display font-extrabold mb-3"
             style={{ fontSize: '1.2rem', color: 'var(--ink)', lineHeight: 1.2 }}
@@ -86,7 +86,7 @@ function RenderSection({ section }: { section: BlogSection }) {
             {section.titre}
           </h3>
           {section.texte && (
-            <p style={{ color: 'var(--ink-2)', lineHeight: 1.8, fontSize: '0.95rem' }}>
+            <p style={{ color: 'var(--ink-2)', lineHeight: 1.65, fontSize: '0.95rem' }}>
               {section.texte}
             </p>
           )}
@@ -95,20 +95,20 @@ function RenderSection({ section }: { section: BlogSection }) {
 
     case 'paragraphe':
       return (
-        <p style={{ color: 'var(--ink-2)', lineHeight: 1.8, fontSize: '0.95rem', marginBottom: '1.5rem' }}>
+        <p style={{ color: 'var(--ink-2)', lineHeight: 1.65, fontSize: '0.95rem', marginBottom: '1.5rem' }}>
           {section.texte}
         </p>
       )
 
     case 'liste':
       return (
-        <div style={{ marginBottom: '2rem' }}>
+        <div style={{ marginBottom: 'clamp(1rem, 3.5vw, 1.6rem)' }}>
           {section.titre && (
             <p style={{ fontWeight: 700, color: 'var(--ink)', marginBottom: '0.75rem', fontSize: '0.9rem' }}>
               {section.titre}
             </p>
           )}
-          <ul className="space-y-3">
+          <ul className="space-y-1.5 sm:space-y-3">
             {section.items?.map((item, i) => (
               <li key={i} className="flex items-start gap-3">
                 <span style={{ color: 'var(--brand)', flexShrink: 0, marginTop: '0.1rem' }}>→</span>
@@ -123,7 +123,7 @@ function RenderSection({ section }: { section: BlogSection }) {
 
     case 'faq':
       return (
-        <div style={{ marginBottom: '2.5rem', marginTop: '3rem' }}>
+        <div style={{ marginBottom: 'clamp(1.2rem, 4vw, 2rem)', marginTop: 'clamp(1.6rem, 5vw, 2.5rem)' }}>
           <div
             style={{
               fontSize: '0.65rem',
@@ -158,9 +158,10 @@ function RenderSection({ section }: { section: BlogSection }) {
       return (
         <div
           style={{
-            marginBottom: '2rem',
-            marginTop: '3rem',
-            padding: '1.5rem 2rem',
+            marginBottom: 'clamp(1rem, 3.5vw, 1.6rem)',
+            marginTop: 'clamp(1.4rem, 5vw, 2.5rem)',
+            padding: 'clamp(1rem, 4vw, 1.5rem)',
+            borderRadius: '1rem',
             backgroundColor: 'var(--brand-tint)',
             border: '1px solid var(--brand-line)',
           }}
@@ -191,9 +192,12 @@ function RenderSection({ section }: { section: BlogSection }) {
       return (
         <div
           style={{
-            marginBottom: '2rem',
-            padding: '2rem',
+            marginBottom: 'clamp(1rem, 3.5vw, 1.6rem)',
+            padding: 'clamp(1.1rem, 4vw, 1.75rem)',
+            borderRadius: '1rem',
             border: '1px solid var(--line)',
+            backgroundColor: 'var(--surface-2)',
+            boxShadow: '0 8px 30px var(--shadow-soft)',
             textAlign: 'center',
           }}
         >

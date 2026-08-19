@@ -145,12 +145,12 @@ export default function SeoPage() {
       <section className="bg-background" style={{ ...sectionStyle, paddingTop: '0' }}>
         <div className="mx-auto max-w-5xl">
           <div style={labelStyle}>Ma méthode SEO</div>
-          <h2 className="font-display font-extrabold mb-10" style={{ fontSize: 'clamp(1.6rem, 3vw, 2.5rem)', color: 'var(--ink)', letterSpacing: '-0.02em' }}>
+          <h2 className="font-display font-extrabold mb-5 sm:mb-10" style={{ fontSize: 'clamp(1.6rem, 3vw, 2.5rem)', color: 'var(--ink)', letterSpacing: '-0.02em' }}>
             Référencement naturel PME en 4 étapes
           </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-px" style={{ backgroundColor: 'var(--line)' }}>
+          <div className="grid grid-cols-2 gap-2" style={{ backgroundColor: 'var(--line)' }}>
             {steps.map((s) => (
-              <div key={s.num} className="p-8" style={{ backgroundColor: 'var(--surface-2)' }}>
+              <div key={s.num} className="p-3 sm:p-6 rounded-xl" style={{ backgroundColor: 'var(--surface-2)' }}>
                 <div style={{ fontSize: '0.65rem', letterSpacing: '0.12em', color: 'var(--brand)', fontWeight: 700, marginBottom: '1rem' }}>{s.num}</div>
                 <h3 className="font-display font-extrabold mb-3" style={{ fontSize: '1.1rem', color: 'var(--ink)' }}>{s.title}</h3>
                 <p style={{ fontSize: '0.88rem', color: 'var(--ink-2)', lineHeight: 1.65 }}>{s.desc}</p>
@@ -164,10 +164,10 @@ export default function SeoPage() {
       <section className="bg-background" style={sectionStyle}>
         <div className="mx-auto max-w-5xl">
           <div style={labelStyle}>Ce qui est inclus</div>
-          <h2 className="font-display font-extrabold mb-10" style={{ fontSize: 'clamp(1.6rem, 3vw, 2.5rem)', color: 'var(--ink)', letterSpacing: '-0.02em' }}>
+          <h2 className="font-display font-extrabold mb-5 sm:mb-10" style={{ fontSize: 'clamp(1.6rem, 3vw, 2.5rem)', color: 'var(--ink)', letterSpacing: '-0.02em' }}>
             Un SEO PME complet, sans zone grise
           </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+          <div className="grid grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-3">
             {[
               { title: 'Audit SEO technique', desc: 'Vitesse, Core Web Vitals, indexation, balises, structure de liens — tout ce que Google évalue en coulisses.' },
               { title: 'Stratégie de mots-clés locaux', desc: 'Requêtes ciblées que vos clients tapent réellement, avec volume et concurrence analysés.' },
@@ -202,7 +202,7 @@ export default function SeoPage() {
           </p>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
             {pricingTiers.map((t) => (
-              <div key={t.label} className="rounded-2xl p-7" style={{ backgroundColor: 'var(--surface-2)', border: '1px solid var(--line)' }}>
+              <div key={t.label} className="rounded-2xl p-4 sm:p-6" style={{ backgroundColor: 'var(--surface-2)', border: '1px solid var(--line)' }}>
                 <div style={{ fontSize: '0.65rem', letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--brand)', fontWeight: 700, marginBottom: '0.75rem' }}>{t.label}</div>
                 <div className="font-display font-extrabold mb-3" style={{ fontSize: '1.3rem', color: 'var(--ink)' }}>{t.price}</div>
                 <p className="text-sm leading-relaxed mb-4" style={{ color: 'var(--ink-2)' }}>{t.desc}</p>
@@ -217,7 +217,7 @@ export default function SeoPage() {
       <section className="bg-background" style={sectionStyle}>
         <div className="mx-auto max-w-3xl">
           <div style={labelStyle}>Questions fréquentes</div>
-          <h2 className="font-display font-extrabold mb-10" style={{ fontSize: 'clamp(1.6rem, 3vw, 2.5rem)', color: 'var(--ink)', letterSpacing: '-0.02em' }}>
+          <h2 className="font-display font-extrabold mb-5 sm:mb-10" style={{ fontSize: 'clamp(1.6rem, 3vw, 2.5rem)', color: 'var(--ink)', letterSpacing: '-0.02em' }}>
             SEO pour PME — vos questions
           </h2>
           {/* Accordeon natif : la liste depliee pesait environ 1000 px sur

@@ -29,7 +29,7 @@ export const projects: PortfolioProject[] = [
     // Le client ne veut pas que ses montants soient publics. Le resultat est
     // donc exprime en rapport, jamais en euros : ne pas remettre les montants,
     // et ne pas se contenter de « rentable », qui est le minimum attendu.
-    results: 'Chaque euro de publicité en rapporte plusieurs, appels et devis suivis chaque mois',
+    results: 'Chaque euro de publicité en rapporte plusieurs, appels et devis suivis chaque jour',
     metric: 'Pub qui rapporte',
     tags: ['Google Ads', 'Refonte web', 'SEO local', 'Villeurbanne'],
     featured: true,

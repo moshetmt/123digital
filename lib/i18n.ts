@@ -159,16 +159,6 @@ export const dict = {
       finalCtaBtn:    'Démarrer mon projet',
     },
     // ── Portfolio / Fondateur (refonte 18/08) ──
-    founderPage: {
-      kicker:              'Fondateur 123digital',
-      positioningHeading:  'Un interlocuteur, pas une agence.',
-      positioningBody:     "Chaque service du site, chaque page technique, chaque campagne publicitaire passe par les mêmes mains : les miennes. Pas d'intermédiaire, pas de sous-traitance, pas de compte confié à un junior.",
-      casesHeading:        'Résultats obtenus pour mes clients',
-      casesSub:            'Trois secteurs différents, la même exigence de résultat mesuré.',
-      finalHeading:        'Le même accompagnement, pour votre entreprise.',
-      finalBody:           'Un audit gratuit de 30 minutes pour commencer, sans jargon ni promesse irréaliste.',
-      finalCtaBtn:         'Démarrer mon projet',
-    },
   },
 
   en: {
@@ -329,16 +319,6 @@ export const dict = {
       finalCtaBtn:    'Start my project',
     },
     // ── Portfolio / Founder (rebuild 18/08) ──
-    founderPage: {
-      kicker:              'Founder of 123digital',
-      positioningHeading:  'One point of contact, not an agency.',
-      positioningBody:     'Every service on the site, every technical page, every ad campaign goes through the same hands: mine. No middleman, no subcontracting, no account handed to a junior.',
-      casesHeading:        'Results delivered for clients',
-      casesSub:            'Three different sectors, the same standard of measured results.',
-      finalHeading:        'The same support, for your business.',
-      finalBody:           'A free 30 minute audit to get started, no jargon and no unrealistic promises.',
-      finalCtaBtn:         'Start my project',
-    },
   },
 } as const
 

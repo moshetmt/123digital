@@ -6,6 +6,7 @@ import { JsonLd } from '@/components/seo/JsonLd'
 import { Breadcrumb } from '@/components/layout/Breadcrumb'
 import { BASE_URL, breadcrumbSchema, localBusinessSchema } from '@/lib/schema'
 import { allVilles, villesARA, villeInsights } from '@/data/villes'
+import { estIndexable } from '@/data/indexation'
 import { services } from '@/data/services'
 import { secteurs } from '@/data/secteurs'
 
@@ -29,6 +30,10 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     title,
     description,
     alternates: { canonical: `${BASE_URL}/${villeSlug}` },
+    // Les pages geographiques sans demande mesuree sortent de l'index. La liste
+    // vient de Search Console, pas d'une intuition : cf. data/indexation.ts.
+    // `follow` reste vrai pour ne pas couper le maillage vers les pages gardees.
+    ...(estIndexable(`/${villeSlug}`) ? {} : { robots: { index: false, follow: true } }),
     openGraph: {
       title,
       description,

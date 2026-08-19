@@ -1,6 +1,7 @@
 import type { MetadataRoute } from 'next'
 import { BASE_URL } from '@/lib/schema'
 import { allVilles, villesARA } from '@/data/villes'
+import { estIndexable } from '@/data/indexation'
 import { services } from '@/data/services'
 import { secteurs } from '@/data/secteurs'
 import { articles } from '@/data/blog'
@@ -41,13 +42,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
     })),
   ]
 
-  // Pages villes — priorité selon importance
-  const villeRoutes: MetadataRoute.Sitemap = allVilles.map((ville) => ({
-    url: `${BASE_URL}/${ville.slug}`,
-    lastModified: now,
-    changeFrequency: 'monthly' as const,
-    priority: ville.priority === 'high' ? 0.9 : ville.priority === 'medium' ? 0.8 : 0.7,
-  }))
+  // Pages villes — priorité selon importance.
+  // 🔑 Filtrées par `estIndexable` : une page en `noindex` qui figure quand même
+  // au sitemap est un signal contradictoire, on déclare à Google une page qu'on
+  // lui demande d'ignorer. Les deux suivent la même liste, `data/indexation.ts`.
+  const villeRoutes: MetadataRoute.Sitemap = allVilles
+    .filter((ville) => estIndexable(`/${ville.slug}`))
+    .map((ville) => ({
+      url: `${BASE_URL}/${ville.slug}`,
+      lastModified: now,
+      changeFrequency: 'monthly' as const,
+      priority: ville.priority === 'high' ? 0.9 : ville.priority === 'medium' ? 0.8 : 0.7,
+    }))
 
   // Pages ville + service — priorité selon ville
   const villeServiceRoutes: MetadataRoute.Sitemap = []
@@ -57,6 +63,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       ? ville.priority === 'high' ? 0.85 : 0.75
       : 0.65
     for (const service of services) {
+      if (!estIndexable(`/${ville.slug}/${service.id}`)) continue
       villeServiceRoutes.push({
         url: `${BASE_URL}/${ville.slug}/${service.id}`,
         lastModified: now,

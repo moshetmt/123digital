@@ -5,6 +5,7 @@ import { JsonLd } from '@/components/seo/JsonLd'
 import { Breadcrumb } from '@/components/layout/Breadcrumb'
 import { BASE_URL, breadcrumbSchema, localBusinessSchema, serviceSchema } from '@/lib/schema'
 import { allVilles, villesARA, villeInsights } from '@/data/villes'
+import { estIndexable } from '@/data/indexation'
 import { services } from '@/data/services'
 
 interface PageProps {
@@ -240,6 +241,11 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     title,
     description,
     alternates: { canonical: `${BASE_URL}/${villeSlug}/${serviceSlug}` },
+    // Meme regle que les pages ville : sans demande mesuree, la page sort de
+    // l'index. 131 des 168 pages geographiques sont dans ce cas au 19/08.
+    ...(estIndexable(`/${villeSlug}/${serviceSlug}`)
+      ? {}
+      : { robots: { index: false, follow: true } }),
     openGraph: {
       title,
       description,

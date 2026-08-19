@@ -1,0 +1,169 @@
+﻿decision,chemin,impressions,clics,position,motif,ville,service
+garder,/bourg-en-bresse,2326,2,37.7,>= 30 impressions,bourg-en-bresse,
+garder,/annecy/creation-site-web,354,0,15.8,>= 30 impressions,annecy,creation-site-web
+garder,/rennes,108,0,16.6,>= 30 impressions,rennes,
+garder,/rennes/branding,91,0,14.4,>= 30 impressions,rennes,branding
+garder,/lyon/branding,88,0,55.3,>= 30 impressions,lyon,branding
+garder,/bordeaux/creation-site-web,75,0,35.1,>= 30 impressions,bordeaux,creation-site-web
+garder,/saint-etienne/creation-site-web,66,0,15.9,>= 30 impressions,saint-etienne,creation-site-web
+garder,/oyonnax/publicite-en-ligne,63,0,28.4,>= 30 impressions,oyonnax,publicite-en-ligne
+garder,/valence/automatisation-marketing,60,0,16.4,>= 30 impressions,valence,automatisation-marketing
+garder,/oyonnax/community-management,60,0,9.5,>= 30 impressions,oyonnax,community-management
+garder,/albertville/creation-site-web,56,0,17.6,>= 30 impressions,albertville,creation-site-web
+garder,/marseille/branding,49,0,43.1,>= 30 impressions,marseille,branding
+garder,/toulouse/creation-site-web,42,0,31.2,>= 30 impressions,toulouse,creation-site-web
+garder,/saint-etienne/community-management,41,0,11.6,>= 30 impressions,saint-etienne,community-management
+garder,/marseille/automatisation-marketing,41,0,5.1,>= 30 impressions,marseille,automatisation-marketing
+garder,/bourg-en-bresse/community-management,39,0,13.4,>= 30 impressions,bourg-en-bresse,community-management
+garder,/clermont-ferrand/publicite-en-ligne,38,0,2.5,>= 30 impressions,clermont-ferrand,publicite-en-ligne
+garder,/roanne/seo,38,0,27.0,>= 30 impressions,roanne,seo
+garder,/toulouse,37,0,37.5,>= 30 impressions,toulouse,
+garder,/nantes/branding,37,0,27.0,>= 30 impressions,nantes,branding
+garder,/nantes/creation-site-web,36,0,26.3,>= 30 impressions,nantes,creation-site-web
+garder,/paris,35,0,70.2,>= 30 impressions,paris,
+garder,/annemasse/seo,34,0,23.6,>= 30 impressions,annemasse,seo
+garder,/macon/seo,31,0,32.4,>= 30 impressions,macon,seo
+garder,/nantes,26,0,19.2,page parente d'une page gardee (maillage),nantes,
+garder,/bordeaux,6,0,36,page parente d'une page gardee (maillage),bordeaux,
+garder,/marseille,3,0,15.7,page parente d'une page gardee (maillage),marseille,
+garder,/lyon,0,0,,page parente d'une page gardee (maillage),lyon,
+garder,/saint-etienne,0,0,,page parente d'une page gardee (maillage),saint-etienne,
+garder,/clermont-ferrand,0,0,,page parente d'une page gardee (maillage),clermont-ferrand,
+garder,/annecy,0,0,,page parente d'une page gardee (maillage),annecy,
+garder,/valence,0,0,,page parente d'une page gardee (maillage),valence,
+garder,/annemasse,0,0,,page parente d'une page gardee (maillage),annemasse,
+garder,/roanne,0,0,,page parente d'une page gardee (maillage),roanne,
+garder,/oyonnax,0,0,,page parente d'une page gardee (maillage),oyonnax,
+garder,/macon,0,0,,page parente d'une page gardee (maillage),macon,
+garder,/albertville,0,0,,page parente d'une page gardee (maillage),albertville,
+noindex,/strasbourg/branding,29,0,35.3,29 impression(s) en 90 j,strasbourg,branding
+noindex,/roanne/community-management,22,0,10.2,22 impression(s) en 90 j,roanne,community-management
+noindex,/oyonnax/seo,22,0,16.3,22 impression(s) en 90 j,oyonnax,seo
+noindex,/strasbourg/seo,19,0,38.9,19 impression(s) en 90 j,strasbourg,seo
+noindex,/nice/creation-site-web,19,0,28.7,19 impression(s) en 90 j,nice,creation-site-web
+noindex,/villeurbanne/seo,17,0,41.5,17 impression(s) en 90 j,villeurbanne,seo
+noindex,/rennes/automatisation-marketing,16,0,38.1,16 impression(s) en 90 j,rennes,automatisation-marketing
+noindex,/lille,14,0,21.6,14 impression(s) en 90 j,lille,
+noindex,/grenoble/branding,13,0,42.5,13 impression(s) en 90 j,grenoble,branding
+noindex,/saint-etienne/branding,13,0,12.2,13 impression(s) en 90 j,saint-etienne,branding
+noindex,/annemasse/creation-site-web,13,0,15.8,13 impression(s) en 90 j,annemasse,creation-site-web
+noindex,/annemasse/branding,12,0,27.2,12 impression(s) en 90 j,annemasse,branding
+noindex,/roanne/creation-site-web,12,0,68.3,12 impression(s) en 90 j,roanne,creation-site-web
+noindex,/oyonnax/branding,12,0,34.2,12 impression(s) en 90 j,oyonnax,branding
+noindex,/paris/publicite-en-ligne,11,0,15.5,11 impression(s) en 90 j,paris,publicite-en-ligne
+noindex,/toulouse/automatisation-marketing,11,0,34.8,11 impression(s) en 90 j,toulouse,automatisation-marketing
+noindex,/strasbourg,10,0,61.7,10 impression(s) en 90 j,strasbourg,
+noindex,/albertville/seo,10,0,35.3,10 impression(s) en 90 j,albertville,seo
+noindex,/lyon/creation-site-web,9,0,24.7,9 impression(s) en 90 j,lyon,creation-site-web
+noindex,/oyonnax/automatisation-marketing,9,0,21.3,9 impression(s) en 90 j,oyonnax,automatisation-marketing
+noindex,/nice,8,1,27.8,8 impression(s) en 90 j,nice,
+noindex,/clermont-ferrand/community-management,8,0,14.6,8 impression(s) en 90 j,clermont-ferrand,community-management
+noindex,/annemasse/community-management,8,0,3.6,8 impression(s) en 90 j,annemasse,community-management
+noindex,/marseille/community-management,8,0,8.9,8 impression(s) en 90 j,marseille,community-management
+noindex,/strasbourg/creation-site-web,8,0,77.1,8 impression(s) en 90 j,strasbourg,creation-site-web
+noindex,/nice/community-management,8,0,28.6,8 impression(s) en 90 j,nice,community-management
+noindex,/lyon/automatisation-marketing,7,0,26.3,7 impression(s) en 90 j,lyon,automatisation-marketing
+noindex,/nice/seo,7,0,58.9,7 impression(s) en 90 j,nice,seo
+noindex,/grenoble/creation-site-web,6,0,40.2,6 impression(s) en 90 j,grenoble,creation-site-web
+noindex,/chambery/seo,6,0,18.5,6 impression(s) en 90 j,chambery,seo
+noindex,/villeurbanne/creation-site-web,6,0,11.7,6 impression(s) en 90 j,villeurbanne,creation-site-web
+noindex,/bourg-en-bresse/branding,6,0,19.8,6 impression(s) en 90 j,bourg-en-bresse,branding
+noindex,/grenoble/automatisation-marketing,5,0,39,5 impression(s) en 90 j,grenoble,automatisation-marketing
+noindex,/clermont-ferrand/automatisation-marketing,5,0,42.8,5 impression(s) en 90 j,clermont-ferrand,automatisation-marketing
+noindex,/marseille/creation-site-web,5,0,38,5 impression(s) en 90 j,marseille,creation-site-web
+noindex,/toulouse/branding,5,0,25.8,5 impression(s) en 90 j,toulouse,branding
+noindex,/bordeaux/publicite-en-ligne,5,0,25.2,5 impression(s) en 90 j,bordeaux,publicite-en-ligne
+noindex,/bordeaux/community-management,5,0,4.8,5 impression(s) en 90 j,bordeaux,community-management
+noindex,/nantes/community-management,5,0,24.8,5 impression(s) en 90 j,nantes,community-management
+noindex,/lyon/seo,4,0,21.5,4 impression(s) en 90 j,lyon,seo
+noindex,/chambery/community-management,4,0,10.8,4 impression(s) en 90 j,chambery,community-management
+noindex,/roanne/branding,4,0,32.5,4 impression(s) en 90 j,roanne,branding
+noindex,/macon/branding,4,0,23.5,4 impression(s) en 90 j,macon,branding
+noindex,/strasbourg/publicite-en-ligne,4,0,35.2,4 impression(s) en 90 j,strasbourg,publicite-en-ligne
+noindex,/lyon/publicite-en-ligne,3,0,23,3 impression(s) en 90 j,lyon,publicite-en-ligne
+noindex,/annecy/branding,3,0,28.7,3 impression(s) en 90 j,annecy,branding
+noindex,/valence/creation-site-web,3,0,32.3,3 impression(s) en 90 j,valence,creation-site-web
+noindex,/valence/community-management,3,0,8,3 impression(s) en 90 j,valence,community-management
+noindex,/macon/publicite-en-ligne,3,0,57,3 impression(s) en 90 j,macon,publicite-en-ligne
+noindex,/paris/creation-site-web,3,0,44.7,3 impression(s) en 90 j,paris,creation-site-web
+noindex,/toulouse/community-management,3,0,19,3 impression(s) en 90 j,toulouse,community-management
+noindex,/bordeaux/automatisation-marketing,3,0,10.3,3 impression(s) en 90 j,bordeaux,automatisation-marketing
+noindex,/nantes/seo,3,0,49.3,3 impression(s) en 90 j,nantes,seo
+noindex,/saint-etienne/automatisation-marketing,2,0,25.5,2 impression(s) en 90 j,saint-etienne,automatisation-marketing
+noindex,/clermont-ferrand/seo,2,0,54,2 impression(s) en 90 j,clermont-ferrand,seo
+noindex,/villeurbanne/branding,2,0,21,2 impression(s) en 90 j,villeurbanne,branding
+noindex,/roanne/publicite-en-ligne,2,0,7,2 impression(s) en 90 j,roanne,publicite-en-ligne
+noindex,/macon/community-management,2,0,6,2 impression(s) en 90 j,macon,community-management
+noindex,/albertville/publicite-en-ligne,2,0,23.5,2 impression(s) en 90 j,albertville,publicite-en-ligne
+noindex,/albertville/community-management,2,0,2.5,2 impression(s) en 90 j,albertville,community-management
+noindex,/paris/community-management,2,0,3.5,2 impression(s) en 90 j,paris,community-management
+noindex,/marseille/seo,2,0,43.5,2 impression(s) en 90 j,marseille,seo
+noindex,/toulouse/publicite-en-ligne,2,0,9.5,2 impression(s) en 90 j,toulouse,publicite-en-ligne
+noindex,/bordeaux/seo,2,0,62,2 impression(s) en 90 j,bordeaux,seo
+noindex,/rennes/community-management,2,0,76.5,2 impression(s) en 90 j,rennes,community-management
+noindex,/grenoble/publicite-en-ligne,1,0,3,1 impression(s) en 90 j,grenoble,publicite-en-ligne
+noindex,/saint-etienne/seo,1,0,45,1 impression(s) en 90 j,saint-etienne,seo
+noindex,/annecy/seo,1,0,56,1 impression(s) en 90 j,annecy,seo
+noindex,/annecy/automatisation-marketing,1,0,44,1 impression(s) en 90 j,annecy,automatisation-marketing
+noindex,/chambery/creation-site-web,1,0,11,1 impression(s) en 90 j,chambery,creation-site-web
+noindex,/villeurbanne/community-management,1,0,35,1 impression(s) en 90 j,villeurbanne,community-management
+noindex,/thonon-les-bains/creation-site-web,1,0,60,1 impression(s) en 90 j,thonon-les-bains,creation-site-web
+noindex,/thonon-les-bains/branding,1,0,1,1 impression(s) en 90 j,thonon-les-bains,branding
+noindex,/roanne/automatisation-marketing,1,0,8,1 impression(s) en 90 j,roanne,automatisation-marketing
+noindex,/macon/creation-site-web,1,0,51,1 impression(s) en 90 j,macon,creation-site-web
+noindex,/paris/branding,1,0,33,1 impression(s) en 90 j,paris,branding
+noindex,/toulouse/seo,1,0,75,1 impression(s) en 90 j,toulouse,seo
+noindex,/nantes/automatisation-marketing,1,0,22,1 impression(s) en 90 j,nantes,automatisation-marketing
+noindex,/lille/seo,1,0,73,1 impression(s) en 90 j,lille,seo
+noindex,/lille/branding,1,0,63,1 impression(s) en 90 j,lille,branding
+noindex,/rennes/publicite-en-ligne,1,0,76,1 impression(s) en 90 j,rennes,publicite-en-ligne
+noindex,/nice/branding,1,0,17,1 impression(s) en 90 j,nice,branding
+noindex,/nice/automatisation-marketing,1,0,50,1 impression(s) en 90 j,nice,automatisation-marketing
+noindex,/grenoble,0,0,,0 impression(s) en 90 j,grenoble,
+noindex,/chambery,0,0,,0 impression(s) en 90 j,chambery,
+noindex,/villeurbanne,0,0,,0 impression(s) en 90 j,villeurbanne,
+noindex,/thonon-les-bains,0,0,,0 impression(s) en 90 j,thonon-les-bains,
+noindex,/lyon/community-management,0,0,,0 impression(s) en 90 j,lyon,community-management
+noindex,/grenoble/seo,0,0,,0 impression(s) en 90 j,grenoble,seo
+noindex,/grenoble/community-management,0,0,,0 impression(s) en 90 j,grenoble,community-management
+noindex,/saint-etienne/publicite-en-ligne,0,0,,0 impression(s) en 90 j,saint-etienne,publicite-en-ligne
+noindex,/clermont-ferrand/creation-site-web,0,0,,0 impression(s) en 90 j,clermont-ferrand,creation-site-web
+noindex,/clermont-ferrand/branding,0,0,,0 impression(s) en 90 j,clermont-ferrand,branding
+noindex,/annecy/publicite-en-ligne,0,0,,0 impression(s) en 90 j,annecy,publicite-en-ligne
+noindex,/annecy/community-management,0,0,,0 impression(s) en 90 j,annecy,community-management
+noindex,/chambery/publicite-en-ligne,0,0,,0 impression(s) en 90 j,chambery,publicite-en-ligne
+noindex,/chambery/branding,0,0,,0 impression(s) en 90 j,chambery,branding
+noindex,/chambery/automatisation-marketing,0,0,,0 impression(s) en 90 j,chambery,automatisation-marketing
+noindex,/valence/seo,0,0,,0 impression(s) en 90 j,valence,seo
+noindex,/valence/publicite-en-ligne,0,0,,0 impression(s) en 90 j,valence,publicite-en-ligne
+noindex,/valence/branding,0,0,,0 impression(s) en 90 j,valence,branding
+noindex,/villeurbanne/publicite-en-ligne,0,0,,0 impression(s) en 90 j,villeurbanne,publicite-en-ligne
+noindex,/villeurbanne/automatisation-marketing,0,0,,0 impression(s) en 90 j,villeurbanne,automatisation-marketing
+noindex,/bourg-en-bresse/creation-site-web,0,0,,0 impression(s) en 90 j,bourg-en-bresse,creation-site-web
+noindex,/bourg-en-bresse/seo,0,0,,0 impression(s) en 90 j,bourg-en-bresse,seo
+noindex,/bourg-en-bresse/publicite-en-ligne,0,0,,0 impression(s) en 90 j,bourg-en-bresse,publicite-en-ligne
+noindex,/bourg-en-bresse/automatisation-marketing,0,0,,0 impression(s) en 90 j,bourg-en-bresse,automatisation-marketing
+noindex,/annemasse/publicite-en-ligne,0,0,,0 impression(s) en 90 j,annemasse,publicite-en-ligne
+noindex,/annemasse/automatisation-marketing,0,0,,0 impression(s) en 90 j,annemasse,automatisation-marketing
+noindex,/thonon-les-bains/seo,0,0,,0 impression(s) en 90 j,thonon-les-bains,seo
+noindex,/thonon-les-bains/publicite-en-ligne,0,0,,0 impression(s) en 90 j,thonon-les-bains,publicite-en-ligne
+noindex,/thonon-les-bains/community-management,0,0,,0 impression(s) en 90 j,thonon-les-bains,community-management
+noindex,/thonon-les-bains/automatisation-marketing,0,0,,0 impression(s) en 90 j,thonon-les-bains,automatisation-marketing
+noindex,/oyonnax/creation-site-web,0,0,,0 impression(s) en 90 j,oyonnax,creation-site-web
+noindex,/macon/automatisation-marketing,0,0,,0 impression(s) en 90 j,macon,automatisation-marketing
+noindex,/albertville/branding,0,0,,0 impression(s) en 90 j,albertville,branding
+noindex,/albertville/automatisation-marketing,0,0,,0 impression(s) en 90 j,albertville,automatisation-marketing
+noindex,/paris/seo,0,0,,0 impression(s) en 90 j,paris,seo
+noindex,/paris/automatisation-marketing,0,0,,0 impression(s) en 90 j,paris,automatisation-marketing
+noindex,/marseille/publicite-en-ligne,0,0,,0 impression(s) en 90 j,marseille,publicite-en-ligne
+noindex,/bordeaux/branding,0,0,,0 impression(s) en 90 j,bordeaux,branding
+noindex,/nantes/publicite-en-ligne,0,0,,0 impression(s) en 90 j,nantes,publicite-en-ligne
+noindex,/lille/creation-site-web,0,0,,0 impression(s) en 90 j,lille,creation-site-web
+noindex,/lille/publicite-en-ligne,0,0,,0 impression(s) en 90 j,lille,publicite-en-ligne
+noindex,/lille/community-management,0,0,,0 impression(s) en 90 j,lille,community-management
+noindex,/lille/automatisation-marketing,0,0,,0 impression(s) en 90 j,lille,automatisation-marketing
+noindex,/strasbourg/community-management,0,0,,0 impression(s) en 90 j,strasbourg,community-management
+noindex,/strasbourg/automatisation-marketing,0,0,,0 impression(s) en 90 j,strasbourg,automatisation-marketing
+noindex,/rennes/creation-site-web,0,0,,0 impression(s) en 90 j,rennes,creation-site-web
+noindex,/rennes/seo,0,0,,0 impression(s) en 90 j,rennes,seo
+noindex,/nice/publicite-en-ligne,0,0,,0 impression(s) en 90 j,nice,publicite-en-ligne

@@ -4,12 +4,18 @@ import { useRef } from 'react'
 import Link from 'next/link'
 import { motion, useInView } from 'framer-motion'
 import { villesARA } from '@/data/villes'
+import { estIndexable } from '@/data/indexation'
 import { t, type Locale } from '@/lib/i18n'
 
 const EASE = [0.22, 1, 0.36, 1] as [number, number, number, number]
 
-// Les 9 premières villes ARA (priorité haute puis moyenne), dans l'ordre de data/villes.ts.
-const CHIP_VILLES = villesARA.slice(0, 9)
+// Les villes ARA encore indexables, dans l'ordre de data/villes.ts, plafonnées à 9.
+// 🔑 Le filtre n'est pas cosmétique : depuis le 19/08, Grenoble, Chambéry et
+// Villeurbanne sont en `noindex` faute de demande mesurée. Les lier depuis la
+// page d'accueil enverrait les visiteurs, et le maillage interne, vers des pages
+// qu'on a décidé de retirer de l'index. Cette liste et `data/indexation.ts`
+// doivent toujours dire la même chose.
+const CHIP_VILLES = villesARA.filter((v) => estIndexable(`/${v.slug}`)).slice(0, 9)
 
 export function Zones({ lang = 'fr' }: { lang?: Locale }) {
   const d = t(lang).zones

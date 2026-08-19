@@ -68,7 +68,7 @@ export function Portfolio({ lang = 'fr' }: { lang?: Locale }) {
   return (
     <section
       id="section-portfolio"
-      style={{ backgroundColor: 'var(--surface)', padding: 'clamp(2.25rem, 6vw, 4.5rem) 1.5rem' }}
+      style={{ backgroundColor: 'var(--surface)', padding: 'clamp(1.6rem, 5vw, 4.5rem) 1.5rem' }}
       aria-labelledby="portfolio-heading"
     >
       <div className="mx-auto max-w-6xl" ref={ref}>
@@ -76,7 +76,7 @@ export function Portfolio({ lang = 'fr' }: { lang?: Locale }) {
           initial={{ opacity: 0, filter: 'blur(6px)' }}
           animate={isInView ? { opacity: 1, filter: 'blur(0px)' } : {}}
           transition={{ duration: 0.5 }}
-          className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6 mb-10"
+          className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-3 sm:gap-6 mb-5 sm:mb-10"
         >
           <div>
             <div

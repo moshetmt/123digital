@@ -82,7 +82,7 @@ function ServiceFamily({ title, ids, services, copy, learnMoreLabel, offset }: {
     .filter((s): s is ServiceData => Boolean(s))
 
   return (
-    <div className="mb-8 last:mb-0">
+    <div className="mb-5 sm:mb-8 last:mb-0">
       <p style={{ fontSize: '0.72rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.09em', color: 'var(--ink-3)', marginBottom: '0.9rem' }}>
         {title}
       </p>
@@ -107,7 +107,7 @@ export function Services({ lang = 'fr' }: { lang?: Locale }) {
     <section
       id="section-services"
       aria-labelledby="services-heading"
-      style={{ backgroundColor: 'var(--surface)', padding: 'clamp(2.25rem, 6vw, 4.5rem) 1.5rem' }}
+      style={{ backgroundColor: 'var(--surface)', padding: 'clamp(1.6rem, 5vw, 4.5rem) 1.5rem' }}
     >
       <div className="mx-auto max-w-6xl" ref={ref}>
         <motion.div
@@ -134,7 +134,7 @@ export function Services({ lang = 'fr' }: { lang?: Locale }) {
         >
           {d.heading}
         </h2>
-        <p style={{ color: 'var(--ink-2)', maxWidth: '60ch', marginBottom: '2.5rem' }}>{d.sub}</p>
+        <p style={{ color: 'var(--ink-2)', maxWidth: '60ch', marginBottom: 'clamp(1.1rem, 4vw, 2.5rem)' }}>{d.sub}</p>
 
         <ServiceFamily title={d.familyAttract} ids={ATTRACT_IDS} services={services} copy={copy} learnMoreLabel={d.learnMore} offset={0} />
         <ServiceFamily title={d.familyConvert} ids={CONVERT_IDS} services={services} copy={copy} learnMoreLabel={d.learnMore} offset={3} />

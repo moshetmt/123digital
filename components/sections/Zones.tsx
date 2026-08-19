@@ -19,7 +19,7 @@ export function Zones({ lang = 'fr' }: { lang?: Locale }) {
   return (
     <section
       id="zones"
-      style={{ backgroundColor: 'var(--surface)', padding: 'clamp(2.25rem, 6vw, 4.5rem) 1.5rem', borderTop: '1px solid var(--line)' }}
+      style={{ backgroundColor: 'var(--surface)', padding: 'clamp(1.6rem, 5vw, 4.5rem) 1.5rem', borderTop: '1px solid var(--line)' }}
     >
       <motion.div
         ref={ref}

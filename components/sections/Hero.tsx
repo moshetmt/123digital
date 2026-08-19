@@ -44,10 +44,10 @@ function StatusCard({ lang }: { lang: Locale }) {
         backgroundColor: 'var(--surface-2)',
         border: '1px solid var(--line)',
         boxShadow: '0 8px 30px var(--shadow-soft)',
-        padding: '1.5rem',
+        padding: 'clamp(1rem, 3.5vw, 1.5rem)',
       }}
     >
-      <div className="flex items-center justify-between mb-4">
+      <div className="flex items-center justify-between mb-2.5 sm:mb-4">
         <span style={{ fontSize: '0.7rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--ink-3)' }}>
           {d.statusCity}
         </span>
@@ -77,19 +77,21 @@ function StatusCard({ lang }: { lang: Locale }) {
           {isClosed ? d.statusClosed : d.statusOpen}
         </span>
       </div>
-      <p style={{ fontSize: '0.85rem', color: 'var(--ink-2)', marginBottom: '1.15rem' }}>
+      <p style={{ fontSize: '0.82rem', color: 'var(--ink-2)', marginBottom: '0.8rem', lineHeight: 1.4 }}>
         {isClosed ? d.statusClosedNote : d.statusOpenNote}
       </p>
 
       <a
         href={PHONE_TEL}
-        className="flex items-center justify-center gap-2 w-full rounded-full font-bold"
-        style={{ backgroundColor: 'var(--brand)', color: 'var(--on-brand)', padding: '0.85rem', fontSize: '1rem' }}
+        className="flex items-center justify-center gap-2 w-full rounded-full font-bold whitespace-nowrap"
+        style={{ backgroundColor: 'var(--brand)', color: 'var(--on-brand)', padding: '0.75rem', fontSize: '0.98rem' }}
       >
         <Phone size={16} aria-hidden />
         {PHONE_DISPLAY}
       </a>
-      <p style={{ fontSize: '0.75rem', color: 'var(--ink-3)', textAlign: 'center', marginTop: '0.85rem', lineHeight: 1.5 }}>
+      {/* Le detail des horaires est masque sur telephone : trois lignes de
+          texte fin pour une information deja portee par "Ouvert" au-dessus. */}
+      <p className="hidden sm:block" style={{ fontSize: '0.75rem', color: 'var(--ink-3)', textAlign: 'center', marginTop: '0.85rem', lineHeight: 1.5 }}>
         {d.statusHours}
       </p>
     </div>
@@ -109,10 +111,10 @@ export function Hero({ lang = 'fr' }: { lang?: Locale }) {
     <section
       ref={ref}
       id="section-hero"
-      style={{ backgroundColor: 'var(--surface)', padding: 'clamp(2.5rem, 6vw, 4rem) 1.5rem' }}
+      style={{ backgroundColor: 'var(--surface)', padding: 'clamp(1.5rem, 5vw, 4rem) 1.5rem' }}
       aria-label="Section hero"
     >
-      <div className="mx-auto max-w-7xl grid grid-cols-1 lg:grid-cols-[1fr_360px] gap-10 lg:gap-14 items-center">
+      <div className="mx-auto max-w-7xl grid grid-cols-1 lg:grid-cols-[1fr_360px] gap-5 lg:gap-14 items-center">
         <div className="text-center lg:text-left">
           <motion.h1
             initial={{ y: 16, opacity: 0, filter: 'blur(6px)' }}
@@ -138,7 +140,7 @@ export function Hero({ lang = 'fr' }: { lang?: Locale }) {
             animate={isInView ? { y: 0, opacity: 1, filter: 'blur(0px)' } : {}}
             transition={{ duration: 0.8, delay: 0.1, ease: EASE }}
             className="mx-auto lg:mx-0"
-            style={{ fontSize: '1.1rem', color: 'var(--ink-2)', maxWidth: '58ch', marginBottom: '1.75rem' }}
+            style={{ fontSize: 'clamp(0.95rem, 3.2vw, 1.1rem)', color: 'var(--ink-2)', maxWidth: '58ch', marginBottom: 'clamp(1rem, 4vw, 1.75rem)', lineHeight: 1.5 }}
           >
             {d.sub}
           </motion.p>

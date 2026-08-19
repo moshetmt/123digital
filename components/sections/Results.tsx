@@ -57,7 +57,7 @@ export function Results({ lang = 'fr' }: { lang?: Locale }) {
   return (
     <section
       id="resultats"
-      style={{ backgroundColor: 'var(--dark)', padding: 'clamp(2.25rem, 6vw, 4.5rem) 1.5rem' }}
+      style={{ backgroundColor: 'var(--dark)', padding: 'clamp(1.6rem, 5vw, 4.5rem) 1.5rem' }}
       aria-label={d.label}
     >
       <div className="mx-auto max-w-6xl grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 text-center" ref={ref}>

@@ -168,10 +168,10 @@ export function CTA({ lang = 'fr' }: { lang?: Locale }) {
   return (
     <section
       id="contact"
-      style={{ backgroundColor: 'var(--brand)', padding: 'clamp(2.25rem, 6vw, 4.5rem) 1.5rem' }}
+      style={{ backgroundColor: 'var(--brand)', padding: 'clamp(1.6rem, 5vw, 4.5rem) 1.5rem' }}
       aria-labelledby="contact-heading"
     >
-      <div ref={ref} className="mx-auto max-w-6xl grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-start">
+      <div ref={ref} className="mx-auto max-w-6xl grid grid-cols-1 lg:grid-cols-2 gap-5 lg:gap-14 items-start">
         {/* ── Texte gauche ── */}
         <motion.div
           initial={{ opacity: 0, y: 16, filter: 'blur(6px)' }}
@@ -187,12 +187,12 @@ export function CTA({ lang = 'fr' }: { lang?: Locale }) {
               lineHeight: 1.1,
               letterSpacing: '-0.015em',
               color: 'var(--on-brand)',
-              marginBottom: '0.9rem',
+              marginBottom: '0.6rem',
             }}
           >
             {d.heading}
           </h2>
-          <p style={{ color: 'var(--on-brand)', fontSize: '1rem', lineHeight: 1.6, maxWidth: '46ch', marginBottom: '1.25rem' }}>
+          <p style={{ color: 'var(--on-brand)', fontSize: 'clamp(0.92rem, 3vw, 1rem)', lineHeight: 1.5, maxWidth: '46ch', marginBottom: '0.75rem' }}>
             {d.sub}
           </p>
           <p style={{ color: 'var(--on-brand)', fontSize: '0.92rem', fontWeight: 600 }}>

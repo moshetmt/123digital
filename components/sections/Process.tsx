@@ -62,7 +62,7 @@ export function Process({ lang = 'fr' }: { lang?: Locale }) {
   return (
     <section
       id="section-process"
-      style={{ backgroundColor: 'var(--surface-3)', padding: 'clamp(2.25rem, 6vw, 4.5rem) 1.5rem' }}
+      style={{ backgroundColor: 'var(--surface-3)', padding: 'clamp(1.6rem, 5vw, 4.5rem) 1.5rem' }}
       aria-labelledby="process-heading"
     >
       <div className="mx-auto max-w-6xl" ref={ref}>
@@ -70,7 +70,7 @@ export function Process({ lang = 'fr' }: { lang?: Locale }) {
           initial={{ opacity: 0, filter: 'blur(6px)' }}
           animate={inView ? { opacity: 1, filter: 'blur(0px)' } : {}}
           transition={{ duration: 0.5 }}
-          className="mb-10"
+          className="mb-5 sm:mb-10"
         >
           <div
             className="mb-3"

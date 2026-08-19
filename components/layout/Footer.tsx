@@ -71,8 +71,9 @@ export function Footer({ lang = 'fr' }: { lang?: Locale }) {
       style={{
         // Degrade des trois tons du logo (jeton --footer-grad).
         background: 'var(--footer-grad)',
-        // Bas généreux : sur mobile, la CallBar fixe ne doit jamais couvrir la dernière ligne.
-        padding: '2.5rem 1.5rem 6.5rem',
+        // Les boutons flottants sont en bas a droite et ne couvrent plus toute
+        // la largeur : la reserve de 6,5rem n'a plus lieu d'etre.
+        padding: '2.5rem 1.5rem clamp(2.5rem, 8vw, 3.5rem)',
       }}
     >
       <div className="mx-auto footer-grid" style={{ maxWidth: '1280px' }}>

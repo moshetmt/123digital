@@ -121,8 +121,8 @@ export default function BrandingPage() {
       ]} />
 
       <PageBanner
+        icone="palette"
         image={{ src: '/images/services/branding.jpg', priority: true }}
-        eyebrow="Service · Branding & identité"
         title="Branding & identité visuelle PME. Une image qui inspire confiance."
         highlight="Une image qui inspire confiance."
         sub="Votre identité visuelle est le premier filtre de confiance de vos prospects. Des identités de marque cohérentes sur tous les supports, du site web aux réseaux sociaux."

@@ -118,6 +118,7 @@ export default function ServicesPage() {
       <JsonLd schema={schemas} />
 
       <PageBanner
+        icone="layers"
         breadcrumb={
           <Breadcrumb
             tone="vert"
@@ -127,7 +128,6 @@ export default function ServicesPage() {
             ]}
           />
         }
-        eyebrow="Ce que je fais pour vous"
         title="Tous vos leviers digitaux, pilotés par un seul expert."
         highlight="pilotés par un seul expert."
         sub="SEO, site web, publicité, branding, réseaux, automatisation. Pas besoin de coordonner six prestataires : tout est pensé ensemble, par quelqu&apos;un qui connaît votre activité de A à Z."

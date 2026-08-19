@@ -77,7 +77,7 @@ export default function ConsultantDigitalLyonPage() {
       <JsonLd schema={jsonLd} />
 
       <PageBanner
-        eyebrow="Lyon · Auvergne-Rhône-Alpes"
+        icone="map-pin"
         title="Consultant digital à Lyon"
         highlight="à Lyon"
         sub="Vous dirigez une PME ou une TPE à Lyon et vous voulez attirer plus de clients en ligne ? Site web, SEO, publicité, branding et automatisation, sous un seul expert."

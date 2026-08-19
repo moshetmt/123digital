@@ -56,6 +56,7 @@ export default function SecteursPage() {
       <JsonLd schema={schemas} />
 
       <PageBanner
+        icone="store"
         breadcrumb={
           <Breadcrumb
             tone="vert"
@@ -65,7 +66,6 @@ export default function SecteursPage() {
             ]}
           />
         }
-        eyebrow="Expertise sectorielle"
         title="Votre secteur. Sa stratégie digitale."
         highlight="Sa stratégie digitale."
         sub="Chaque secteur a ses codes, ses clients et ses leviers de croissance. Pas de solution générique : j&apos;adapte chaque stratégie aux réalités de votre métier."

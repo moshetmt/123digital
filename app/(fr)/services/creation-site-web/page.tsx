@@ -123,8 +123,8 @@ export default function CreationSiteWebPage() {
       ]} />
 
       <PageBanner
+        icone="code-xml"
         image={{ src: '/images/services/creation-site-web.jpg', priority: true }}
-        eyebrow="Service · Création web"
         title="Création de site web PME qui convertit vos visiteurs."
         highlight="qui convertit vos visiteurs."
         sub="Votre site web est votre meilleur commercial, disponible 24 h/24. Des sites sur mesure pour les PME : rapides, optimisés SEO, pensés pour transformer un visiteur en client."

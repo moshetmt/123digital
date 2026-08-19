@@ -123,8 +123,8 @@ export default function AutomatisationMarketingPage() {
       ]} />
 
       <PageBanner
+        icone="zap"
         image={{ src: '/images/services/automatisation-marketing.jpg', priority: true }}
-        eyebrow="Service · Automatisation marketing"
         title="Automatisation marketing PME. Des leads même quand vous dormez."
         highlight="Des leads même quand vous dormez."
         sub="Des systèmes qui travaillent pour votre PME 24 h/24 : qualification des leads, nurturing par email, CRM structuré. Votre pipeline tourne pendant que vous faites votre métier."

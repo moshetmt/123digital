@@ -121,6 +121,7 @@ export default async function VillePage({ params }: PageProps) {
       <JsonLd schema={schemas} />
 
       <PageBanner
+        icone="map-pin"
         image={{ src: `/images/villes/${ville.slug}.jpg`, priority: true }}
         breadcrumb={
           <Breadcrumb
@@ -130,8 +131,7 @@ export default async function VillePage({ params }: PageProps) {
               { label: `${ville.nom}` },
             ]}
           />
-        }
-        eyebrow={`${ville.region} · ${ville.departement}`}
+        }
         title={`Consultant digital à ${ville.nom}`}
         highlight={`à ${ville.nom}`}
         sub={`Maurice Timsit accompagne les PME de ${ville.nom} (${ville.description}) dans leur croissance digitale : site web qui convertit, SEO local, publicité Google et Meta, branding et automatisation. Un seul interlocuteur, des résultats mesurables.`}

@@ -114,8 +114,8 @@ export default function SeoPage() {
       ]} />
 
       <PageBanner
+        icone="search"
         image={{ src: '/images/services/seo.jpg', priority: true }}
-        eyebrow="Service · SEO & Référencement"
         title="SEO & référencement naturel. 1ère page Google pour votre PME."
         highlight="1ère page Google pour votre PME."
         sub="Le premier résultat Google capte 32 % des clics. Je positionne votre PME en tête des recherches de vos clients : du trafic qualifié, durable, sans dépendre de la publicité."

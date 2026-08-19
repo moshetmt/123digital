@@ -130,6 +130,7 @@ export default function AuditGratuitPage() {
       <JsonLd schema={schemas} />
 
       <PageBanner
+        icone="search"
         breadcrumb={
           <Breadcrumb
             tone="vert"
@@ -139,7 +140,6 @@ export default function AuditGratuitPage() {
             ]}
           />
         }
-        eyebrow="Gratuit · Sans engagement · 30 minutes"
         title="Votre audit digital offert."
         highlight="offert."
         sub="En 30 minutes, j&apos;identifie pourquoi votre site ne génère pas autant de clients qu&apos;il le devrait, et je vous donne les trois actions prioritaires pour changer ça. Analyse concrète, pas de discours commercial."

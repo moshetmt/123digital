@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import { JsonLd } from '@/components/seo/JsonLd'
 import { PageBanner, BannerCta, BannerCtaLine } from '@/components/sections/PageBanner'
+import type { NomIcone } from '@/lib/icones-pong'
 import { Breadcrumb } from '@/components/layout/Breadcrumb'
 import { BASE_URL, breadcrumbSchema, localBusinessSchema, serviceSchema } from '@/lib/schema'
 import { allVilles, villesARA, villeInsights } from '@/data/villes'
@@ -260,6 +261,17 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 // ─── Page ─────────────────────────────────────────────────────────────────────
 
+// L icone qui rebondit dans la banniere dit le sujet de la page : loupe pour le
+// referencement, palette pour le branding, eclair pour l automatisation.
+const ICONE_PAR_SERVICE: Record<string, NomIcone> = {
+  seo: 'search',
+  'creation-site-web': 'code-xml',
+  'publicite-en-ligne': 'megaphone',
+  branding: 'palette',
+  'community-management': 'message-circle',
+  'automatisation-marketing': 'zap',
+}
+
 export default async function VilleServicePage({ params }: PageProps) {
   const { ville: villeSlug, service: serviceSlug } = await params
   const ville = allVilles.find((v) => v.slug === villeSlug)
@@ -307,6 +319,7 @@ export default async function VilleServicePage({ params }: PageProps) {
       <JsonLd schema={schemas} />
 
       <PageBanner
+        icone={ICONE_PAR_SERVICE[service.id] ?? 'search'}
         image={{ src: `/images/services/${service.id}.jpg`, priority: true }}
         breadcrumb={
           <Breadcrumb
@@ -318,7 +331,6 @@ export default async function VilleServicePage({ params }: PageProps) {
             ]}
           />
         }
-        eyebrow={`${service.shortDesc} · ${ville.nom}`}
         title={`${service.title} à ${ville.nom}`}
         highlight={`à ${ville.nom}`}
         sub={content.intro(ville.nom)}

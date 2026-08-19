@@ -39,8 +39,8 @@ export default function AProposPage() {
       ]} />
 
       <PageBanner
+        icone="user-round"
         image={{ src: '/images/hero.jpg', priority: true }}
-        eyebrow="Expert croissance digitale · Lyon"
         title="Maurice Timsit, consultant digital à Lyon."
         highlight="consultant digital à Lyon."
         sub="Depuis 8 ans, j&apos;aide les PME et les entrepreneurs à construire une présence digitale qui travaille pour eux. Pas une agence, pas un junior : un expert senior qui connaît votre dossier."

@@ -37,6 +37,7 @@ export default function BlogPage() {
       <JsonLd schema={schemas} />
 
       <PageBanner
+        icone="pen-line"
         breadcrumb={
           <Breadcrumb
             tone="vert"
@@ -46,7 +47,6 @@ export default function BlogPage() {
             ]}
           />
         }
-        eyebrow="Marketing digital · PME · Sans jargon"
         title="Le digital pour PME, expliqué clairement."
         highlight="expliqué clairement."
         sub="Des guides pratiques sur le SEO, la publicité en ligne, la création de site et l&apos;automatisation. Écrits pour des chefs d&apos;entreprise, pas pour des développeurs."

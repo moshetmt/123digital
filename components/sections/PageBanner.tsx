@@ -2,6 +2,7 @@ import type { ReactNode } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { PongCanvas } from '@/components/sections/PongCanvas'
+import type { NomIcone } from '@/lib/icones-pong'
 
 // ── Banniere de page ──────────────────────────────────────────────────────────
 // Avant le 20/08, chaque page ecrivait sa propre banniere a la main : seize
@@ -13,8 +14,8 @@ import { PongCanvas } from '@/components/sections/PongCanvas'
 // valeur du titre passe en vert pale.
 
 interface PageBannerProps {
-  /** Sur-titre court, en capitales : « Service · Google Ads · Meta Ads ». */
-  eyebrow?: string
+  /** Icone portee par la balle du Pong : le sujet de la page. */
+  icone?: NomIcone
   /** Titre de la page. Le h1 unique. */
   title: string
   /** Mot ou fin de phrase a detacher en vert pale, s'il apparait dans le titre. */
@@ -37,7 +38,7 @@ interface PageBannerProps {
 }
 
 export function PageBanner({
-  eyebrow,
+  icone,
   title,
   highlight,
   sub,
@@ -72,12 +73,12 @@ export function PageBanner({
             fill
             priority={image.priority}
             sizes="100vw"
-            style={{ objectFit: 'cover', opacity: 0.4, filter: 'grayscale(0.2)' }}
+            style={{ objectFit: 'cover', opacity: 0.16, filter: 'grayscale(0.6) brightness(0.75)' }}
           />
         </div>
       )}
 
-      <PongCanvas ballRadius={ballRadius} />
+      <PongCanvas ballRadius={ballRadius} icone={icone} />
 
       {/* Voile vert, pas noir : il assombrit a peine le centre pour que le texte
           blanc reste net quand la loupe passe derriere, et laisse les bords
@@ -93,26 +94,6 @@ export function PageBanner({
 
       <div className={`relative mx-auto max-w-4xl ${centered ? 'text-center' : ''}`}>
         {breadcrumb && <div className="mb-4">{breadcrumb}</div>}
-
-        {eyebrow && (
-          <div
-            className={`inline-flex items-center gap-2 mb-3 ${centered ? '' : ''}`}
-            style={{
-              fontSize: '0.68rem',
-              letterSpacing: '0.12em',
-              textTransform: 'uppercase',
-              color: 'oklch(0.985 0.003 150 / 78%)',
-              fontWeight: 800,
-            }}
-          >
-            <span
-              className="w-1.5 h-1.5 rounded-full"
-              style={{ backgroundColor: 'var(--vert-pale)' }}
-              aria-hidden
-            />
-            {eyebrow}
-          </div>
-        )}
 
         <h1
           className={centered ? 'mx-auto' : ''}

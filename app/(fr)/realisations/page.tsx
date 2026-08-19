@@ -50,6 +50,7 @@ export default function PortfolioPage() {
       <JsonLd schema={schemas} />
 
       <PageBanner
+        icone="trophy"
         breadcrumb={
           <Breadcrumb
             tone="vert"
@@ -59,7 +60,6 @@ export default function PortfolioPage() {
             ]}
           />
         }
-        eyebrow={d.realisations.badge}
         title={`${d.realisations.heading1} ${d.realisations.heading2}`}
         highlight={d.realisations.heading2}
         sub={d.realisations.intro}

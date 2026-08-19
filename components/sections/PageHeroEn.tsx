@@ -26,9 +26,9 @@ type Props = {
   points?: readonly string[]
 }
 
-export function PageHeroEn({ kicker, title, intro, points }: Props) {
+export function PageHeroEn({ title, intro, points }: Props) {
   return (
-    <PageBanner eyebrow={kicker} title={title} sub={intro}>
+    <PageBanner title={title} sub={intro}>
       {points && points.length > 0 && (
         <ul
           className="mt-4 grid grid-cols-1 gap-2 sm:grid-cols-3"

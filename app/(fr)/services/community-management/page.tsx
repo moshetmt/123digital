@@ -121,8 +121,8 @@ export default function CommunityManagementPage() {
       ]} />
 
       <PageBanner
+        icone="message-circle"
         image={{ src: '/images/services/community-management.jpg', priority: true }}
-        eyebrow="Service · Social media PME"
         title="Community management PME. Une audience qui achète."
         highlight="Une audience qui achète."
         sub="Vos réseaux sociaux gérés par un expert. Contenu régulier, stratégie orientée conversion plutôt que likes. Une communauté locale qui vous reconnaît et vous recommande."

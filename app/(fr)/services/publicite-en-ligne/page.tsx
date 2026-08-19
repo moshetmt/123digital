@@ -121,8 +121,8 @@ export default function PubliciteEnLignePage() {
       ]} />
 
       <PageBanner
+        icone="megaphone"
         image={{ src: '/images/services/publicite-en-ligne.jpg', priority: true }}
-        eyebrow="Service · Google Ads · Meta Ads"
         title="Publicité en ligne pour PME. ROI mesurable dès la 1ère semaine."
         highlight="ROI mesurable dès la 1ère semaine."
         sub="Google Ads et Meta Ads pilotés par la donnée. Chaque euro investi est tracé, optimisé et justifié. Fini les campagnes qui brûlent le budget sans résultat."

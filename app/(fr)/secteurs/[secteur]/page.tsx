@@ -68,6 +68,7 @@ export default async function SecteurPage({ params }: PageProps) {
       <JsonLd schema={schemas} />
 
       <PageBanner
+        icone="store"
         breadcrumb={
           <Breadcrumb
             tone="vert"
@@ -77,8 +78,7 @@ export default async function SecteurPage({ params }: PageProps) {
               { label: secteur.nom },
             ]}
           />
-        }
-        eyebrow={`Secteur · ${secteur.nom}`}
+        }
         title={`Marketing digital pour les ${secteur.nomPluriel.toLowerCase()}`}
         highlight={`pour les ${secteur.nomPluriel.toLowerCase()}`}
         sub={secteur.description}

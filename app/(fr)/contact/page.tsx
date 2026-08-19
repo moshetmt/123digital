@@ -54,6 +54,7 @@ export default function ContactPage() {
       <JsonLd schema={schemas} />
 
       <PageBanner
+        icone="phone"
         breadcrumb={
           <Breadcrumb
             tone="vert"
@@ -63,7 +64,6 @@ export default function ContactPage() {
             ]}
           />
         }
-        eyebrow="Réponse sous 24 h"
         title="Parlons de votre projet."
         highlight="projet."
         sub="Que vous ayez un projet précis ou juste une question, je suis disponible pour en discuter. La meilleure façon de commencer reste l&apos;audit gratuit de 30 minutes : pas de commercial, juste de l&apos;utile."

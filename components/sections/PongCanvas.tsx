@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useRef } from 'react'
+import { ICONES, type NomIcone } from '@/lib/icones-pong'
 
 // ── Pong de fond ──────────────────────────────────────────────────────────────
 // Le decor anime des bannieres : une partie de Pong sans fin, dessinee au trait
@@ -26,7 +27,67 @@ const PADDLE_W = 7
 const MARGIN = 14
 const WHITE = 'oklch(0.985 0.003 150)'
 
-export function PongCanvas({ ballRadius = 30 }: { ballRadius?: number }) {
+// Rejoue une icone lucide dans le canvas. Les icones sont decrites dans un
+// carre de 24 sur 24 avec un trait de 2 : on met l'echelle a la taille de la
+// balle et le trait suit.
+function dessinerIcone(ctx: CanvasRenderingContext2D, nom: NomIcone, rayon: number) {
+  const echelle = (rayon * 2) / 24
+  ctx.save()
+  ctx.scale(echelle, echelle)
+  ctx.translate(-12, -12)
+  ctx.lineWidth = 2
+  ctx.lineCap = 'round'
+  ctx.lineJoin = 'round'
+
+  for (const noeud of ICONES[nom]) {
+    if (noeud.t === 'path') {
+      ctx.stroke(new Path2D(String(noeud.d)))
+    } else if (noeud.t === 'circle') {
+      ctx.beginPath()
+      ctx.arc(Number(noeud.cx), Number(noeud.cy), Number(noeud.r), 0, Math.PI * 2)
+      // Les pastilles pleines de lucide portent fill="currentColor".
+      if (noeud.fill) ctx.fill()
+      else ctx.stroke()
+    } else if (noeud.t === 'line') {
+      ctx.beginPath()
+      ctx.moveTo(Number(noeud.x1), Number(noeud.y1))
+      ctx.lineTo(Number(noeud.x2), Number(noeud.y2))
+      ctx.stroke()
+    } else if (noeud.t === 'rect') {
+      ctx.beginPath()
+      ctx.roundRect(
+        Number(noeud.x),
+        Number(noeud.y),
+        Number(noeud.width),
+        Number(noeud.height),
+        Number(noeud.rx ?? 0),
+      )
+      ctx.stroke()
+    } else if (noeud.t === 'polyline' || noeud.t === 'polygon') {
+      const points = String(noeud.points)
+        .trim()
+        .split(/\s+/)
+        .map(Number)
+      ctx.beginPath()
+      for (let i = 0; i < points.length; i += 2) {
+        if (i === 0) ctx.moveTo(points[0], points[1])
+        else ctx.lineTo(points[i], points[i + 1])
+      }
+      if (noeud.t === 'polygon') ctx.closePath()
+      ctx.stroke()
+    }
+  }
+
+  ctx.restore()
+}
+
+export function PongCanvas({
+  ballRadius = 30,
+  icone = 'search',
+}: {
+  ballRadius?: number
+  icone?: NomIcone
+}) {
   const canvasRef = useRef<HTMLCanvasElement>(null)
 
   useEffect(() => {
@@ -110,18 +171,13 @@ export function PongCanvas({ ballRadius = 30 }: { ballRadius?: number }) {
       ctx!.fillRect(MARGIN, pads[0].y - pads[0].height / 2, PADDLE_W, pads[0].height)
       ctx!.fillRect(w - MARGIN - PADDLE_W, pads[1].y - pads[1].height / 2, PADDLE_W, pads[1].height)
 
+      // La balle porte l'icone du sujet de la page : loupe pour le
+      // referencement, palette pour le branding, eclair pour l'automatisation.
       ctx!.save()
       ctx!.translate(ball.x, ball.y)
       ctx!.strokeStyle = WHITE
-      ctx!.lineWidth = Math.max(2, R * 0.22)
-      ctx!.lineCap = 'round'
-      ctx!.beginPath()
-      ctx!.arc(-R * 0.18, -R * 0.18, R * 0.62, 0, Math.PI * 2)
-      ctx!.stroke()
-      ctx!.beginPath()
-      ctx!.moveTo(R * 0.26, R * 0.26)
-      ctx!.lineTo(R * 0.78, R * 0.78)
-      ctx!.stroke()
+      ctx!.fillStyle = WHITE
+      dessinerIcone(ctx!, icone, R)
       ctx!.restore()
     }
 
@@ -235,7 +291,7 @@ export function PongCanvas({ ballRadius = 30 }: { ballRadius?: number }) {
       window.removeEventListener('resize', onResize)
       document.removeEventListener('visibilitychange', onVisibility)
     }
-  }, [ballRadius])
+  }, [ballRadius, icone])
 
   return (
     <canvas

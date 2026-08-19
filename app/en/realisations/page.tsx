@@ -24,7 +24,7 @@ export const metadata: Metadata = {
 // The 4 real metrics, identical to the Results bar on the homepage (Results.tsx).
 // Do not invent others: only these are verified.
 const metrics = [
-  { value: 'x13', caption: '€1,000 invested in advertising, €13,000 net profit (Clim69)' },
+  { value: '19', caption: 'local pages live for an air-conditioning installer (Clim69)' },
   { value: '+180%', caption: 'local visibility in 5 months (Rhône Déconstruction)' },
   { value: '+240%', caption: 'organic traffic (A+ Audition, Cannes)' },
   { value: '50+', caption: 'businesses supported since 2017' },

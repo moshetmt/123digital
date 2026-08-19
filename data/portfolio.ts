@@ -26,8 +26,10 @@ export const projects: PortfolioProject[] = [
     sector: 'Climatisation · Villeurbanne',
     description:
       'Compte Google Ads monté de zéro, refonte du site, 19 pages locales, suivi des appels et devis.',
-    results: '1 000 € investis, 13 000 € de bénéfice net (ROI x13)',
-    metric: 'ROI x13',
+    // Le client ne veut pas que ses chiffres d'argent soient publics :
+    // resultat exprime sans montant ni multiple. Ne pas les remettre.
+    results: 'Campagne Google Ads rentable, appels et devis suivis chaque mois',
+    metric: 'Pub rentable',
     tags: ['Google Ads', 'Refonte web', 'SEO local', 'Villeurbanne'],
     featured: true,
     url: 'https://clim69.fr',

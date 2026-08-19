@@ -35,13 +35,13 @@ interface Metric { prefix: string; value: number; suffix: string; caption: strin
 
 function getMetrics(lang: 'fr' | 'en'): Metric[] {
   if (lang === 'en') return [
-    { prefix: 'x', value: 13,  suffix: '',  caption: '€1,000 invested in advertising, €13,000 net profit (Clim69)' },
+    { prefix: '',  value: 19,  suffix: '',  caption: 'local pages live for an air-conditioning installer (Clim69)' },
     { prefix: '+', value: 180, suffix: '%', caption: 'local visibility in 5 months (Rhône Déconstruction)' },
     { prefix: '+', value: 240, suffix: '%', caption: 'organic traffic (A+ Audition, Cannes)' },
     { prefix: '',  value: 50,  suffix: '+', caption: 'businesses supported since 2017' },
   ]
   return [
-    { prefix: 'x', value: 13,  suffix: '',  caption: '1 000 € de publicité investis, 13 000 € de bénéfice net (Clim69)' },
+    { prefix: '',  value: 19,  suffix: '',  caption: 'pages locales en ligne pour un installateur de climatisation (Clim69)' },
     { prefix: '+', value: 180, suffix: '%', caption: 'de visibilité locale en 5 mois (Rhône Déconstruction)' },
     { prefix: '+', value: 240, suffix: '%', caption: 'de trafic organique (A+ Audition, Cannes)' },
     { prefix: '',  value: 50,  suffix: '+', caption: 'entreprises accompagnées depuis 2017' },

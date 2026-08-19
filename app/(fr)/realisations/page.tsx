@@ -25,7 +25,7 @@ export const metadata: Metadata = {
 // Les 4 métriques réelles, identiques à la bande Résultats de l'accueil (Results.tsx).
 // Ne pas en inventer d'autres : seules celles-ci sont vérifiées.
 const metrics = [
-  { value: 'x13', caption: '1 000 € de publicité investis, 13 000 € de bénéfice net (Clim69)' },
+  { value: '19', caption: 'pages locales en ligne pour un installateur de climatisation (Clim69)' },
   { value: '+180%', caption: 'de visibilité locale en 5 mois (Rhône Déconstruction)' },
   { value: '+240%', caption: 'de trafic organique (A+ Audition, Cannes)' },
   { value: '50+', caption: 'entreprises accompagnées depuis 2017' },

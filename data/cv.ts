@@ -79,7 +79,16 @@ export interface CvContent {
     kicker: string
     body: string
     traitsLabel: string
-    /** Premier element : le style AssessFirst, mis en avant */
+    /** Nom du profil restitue par le test, mis en avant */
+    traitsProfile: string
+    /**
+     * D'ou vient le profil. Un trait de personnalite affirme sans source se lit
+     * comme de l'auto-evaluation : ici c'est le resultat d'un test passe, la
+     * mention de l'editeur est ce qui lui donne son poids.
+     */
+    traitsSource: string
+    /** Lien vers le profil complet chez l'editeur, si disponible */
+    traitsSourceUrl?: string
     traits: string[]
   }
   stats: CvStat[]
@@ -146,14 +155,9 @@ const fr: CvContent = {
     kicker: 'Portfolio interactif',
     body: "Profil en marketing digital orienté exécution, avec une expertise solide en SEO, contenu, tracking et reporting. J'utilise l'IA au quotidien pour rechercher, produire plus vite, analyser des données et automatiser des workflows. Les cinq sites ci-dessous sont en ligne, cliquables et vérifiables.",
     traitsLabel: 'Personnalité',
-    traits: [
-      'Promoteur (AssessFirst)',
-      'Proactif',
-      'Fédérateur',
-      'Orienté résultats',
-      'Adaptable',
-      'Force de proposition',
-    ],
+    traitsProfile: 'Profil Promoteur',
+    traitsSource: 'Résultat du test AssessFirst',
+    traits: ['Proactif', 'Fédérateur', 'Orienté résultats', 'Adaptable', 'Force de proposition'],
   },
   stats: [
     { value: '+48%', label: 'de trafic qualifié, Fondation France-Israël' },
@@ -407,7 +411,9 @@ const en: CvContent = {
     kicker: 'Interactive portfolio',
     body: 'Execution-focused digital marketing profile with solid expertise in SEO, content, tracking and reporting. I use AI daily to research faster, produce content, analyze data and automate workflows. The five sites below are live, clickable and verifiable.',
     traitsLabel: 'Personality',
-    traits: ['Promoter (AssessFirst)', 'Proactive', 'Team-builder', 'Results-driven', 'Adaptable', 'Self-starter'],
+    traitsProfile: 'Promoter profile',
+    traitsSource: 'Result of the AssessFirst assessment',
+    traits: ['Proactive', 'Team-builder', 'Results-driven', 'Adaptable', 'Self-starter'],
   },
   stats: [
     { value: '+48%', label: 'qualified traffic, France-Israel Foundation' },

@@ -4,11 +4,15 @@ import { ArrowUpRight, Download, Mail, MapPin, Phone } from 'lucide-react'
 import { cvContent, type CvLocale } from '@/data/cv'
 import { CvWork } from './CvWork'
 
-/** lucide-react 1.x ne fournit plus les logos de marque, d'ou ce glyphe local. */
+/**
+ * lucide-react 1.x ne fournit plus les logos de marque, d'ou ce glyphe local.
+ * Trace officiel du logo LinkedIn : le carre plein avec le « in » evide, pas
+ * un « in » flottant.
+ */
 function LinkedinGlyph({ size = 16 }: { size?: number }) {
   return (
     <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" aria-hidden focusable="false">
-      <path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM2.5 9.5h5V21h-5V9.5ZM10 9.5h4.8v1.57h.07a5.26 5.26 0 0 1 4.73-2.6c5.06 0 6 3.33 6 7.66V21h-5v-4.87c0-1.16-.02-2.66-1.62-2.66-1.62 0-1.87 1.27-1.87 2.58V21h-5V9.5Z" />
+      <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.225 0z" />
     </svg>
   )
 }
@@ -139,29 +143,57 @@ export function CvPage({ locale }: { locale: CvLocale }) {
             {c.intro.body}
           </p>
 
-          {/* Personnalite : le premier trait est le style AssessFirst, il porte
-              plus que les suivants et se distingue visuellement. */}
-          <div className="flex flex-wrap items-center gap-x-2 gap-y-1.5" style={{ marginBottom: '1.5rem' }}>
+          {/* Personnalite : le profil vient d'un test passe chez un editeur, la
+              source est affichee avec lui. Sans elle, un recruteur lit ces
+              qualificatifs comme de l'auto-evaluation. */}
+          <div style={{ marginBottom: '1.5rem' }}>
             <span
-              style={{ fontSize: '0.66rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.09em', color: 'var(--ink-3)' }}
+              className="block"
+              style={{ fontSize: '0.66rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.09em', color: 'var(--ink-3)', marginBottom: '0.5rem' }}
             >
               {c.intro.traitsLabel}
             </span>
-            {c.intro.traits.map((trait, i) => (
+
+            <div className="flex flex-wrap items-center gap-x-2 gap-y-1.5">
               <span
-                key={trait}
                 style={{
                   fontSize: '0.78rem',
-                  fontWeight: i === 0 ? 700 : 600,
-                  color: i === 0 ? 'var(--brand-strong)' : 'var(--ink-2)',
-                  backgroundColor: i === 0 ? 'var(--brand-tint)' : 'var(--surface-3)',
+                  fontWeight: 700,
+                  color: 'var(--brand-strong)',
+                  backgroundColor: 'var(--brand-tint)',
+                  border: '1px solid var(--brand-line)',
                   borderRadius: 999,
-                  padding: '0.25rem 0.7rem',
+                  padding: '0.25rem 0.75rem',
                 }}
               >
-                {trait}
+                {c.intro.traitsProfile}
               </span>
-            ))}
+              {c.intro.traits.map((trait) => (
+                <span
+                  key={trait}
+                  style={{
+                    fontSize: '0.78rem',
+                    fontWeight: 600,
+                    color: 'var(--ink-2)',
+                    backgroundColor: 'var(--surface-3)',
+                    borderRadius: 999,
+                    padding: '0.25rem 0.7rem',
+                  }}
+                >
+                  {trait}
+                </span>
+              ))}
+            </div>
+
+            <p style={{ fontSize: '0.75rem', color: 'var(--ink-3)', marginTop: '0.55rem' }}>
+              {c.intro.traitsSourceUrl ? (
+                <a href={c.intro.traitsSourceUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1" style={{ color: 'var(--brand-strong)', fontWeight: 600 }}>
+                  {c.intro.traitsSource} <ArrowUpRight size={12} aria-hidden />
+                </a>
+              ) : (
+                c.intro.traitsSource
+              )}
+            </p>
           </div>
 
           <div className="flex flex-wrap gap-3">

@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { JsonLd } from '@/components/seo/JsonLd'
+import { PageBanner, BannerCta, BannerCtaLine } from '@/components/sections/PageBanner'
 import { Breadcrumb } from '@/components/layout/Breadcrumb'
 import { CTA } from '@/components/sections/CTA'
 import { BASE_URL, breadcrumbSchema, contactPageSchema } from '@/lib/schema'
@@ -52,59 +53,22 @@ export default function ContactPage() {
     <>
       <JsonLd schema={schemas} />
 
-      {/* Hero */}
-      <section className="bg-background" style={{ padding: 'clamp(2rem, 5vw, 3.5rem) 1.5rem clamp(2.25rem, 6vw, 4rem)' }}>
-        <div className="mx-auto max-w-5xl">
-          <div className="mb-6">
-            <Breadcrumb
-              items={[
-                { label: 'Accueil', href: '/' },
-                { label: 'Contact' },
-              ]}
-            />
-          </div>
-
-          <div
-            className="inline-flex items-center gap-2 mb-6"
-            style={{
-              fontSize: '0.7rem',
-              letterSpacing: '0.12em',
-              textTransform: 'uppercase',
-              color: 'var(--ink-2)',
-              fontWeight: 700,
-            }}
-          >
-            <span className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: 'var(--brand)' }} />
-            Réponse sous 24h
-          </div>
-
-          <h1
-            className="font-display font-extrabold mb-6"
-            style={{
-              fontSize: 'clamp(2.6rem, 5vw, 5rem)',
-              color: 'var(--ink)',
-              lineHeight: 1.05,
-              letterSpacing: '-0.025em',
-            }}
-          >
-            Parlons de votre<br />
-            <em
-              style={{
-                color: 'var(--brand)',
-              }}
-            >
-              projet.
-            </em>
-          </h1>
-
-          <p
-            className="text-base leading-relaxed max-w-2xl"
-            style={{ color: 'var(--ink-2)' }}
-          >
-            Que vous ayez un projet précis ou juste une question, je suis disponible pour en discuter. La meilleure façon de commencer est l&apos;audit gratuit de 30 minutes — pas de commercial, juste de l&apos;utile.
-          </p>
-        </div>
-      </section>
+      <PageBanner
+        breadcrumb={
+          <Breadcrumb
+            tone="vert"
+            items={[
+              { label: 'Accueil', href: '/' },
+              { label: 'Contact' },
+            ]}
+          />
+        }
+        eyebrow="Réponse sous 24 h"
+        title="Parlons de votre projet."
+        highlight="projet."
+        sub="Que vous ayez un projet précis ou juste une question, je suis disponible pour en discuter. La meilleure façon de commencer reste l&apos;audit gratuit de 30 minutes : pas de commercial, juste de l&apos;utile."
+        actions={<BannerCta href="/audit-gratuit">Réserver l&apos;audit gratuit</BannerCta>}
+      />
 
       {/* Moyens de contact */}
       <section

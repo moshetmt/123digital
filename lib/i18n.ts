@@ -29,7 +29,11 @@ export const dict = {
       h1:              'Vos clients vous cherchent sur Google. Faites-vous trouver.',
       sub:             'Sites web, référencement et publicité en ligne pour les artisans, commerces et PME. Un interlocuteur unique à Lyon, des résultats mesurés chaque mois, expliqués sans jargon.',
       ctaCall:         'Appeler maintenant',
+      // Libelles courts : sur telephone, les deux boutons ne tiennent cote a
+      // cote qu a cette longueur. Au-dela de 640 px on revient aux longs.
+      ctaCallShort:    'Appeler',
       ctaQuote:        'Demander un devis gratuit',
+      ctaQuoteShort:   'Devis gratuit',
       check1:          'Un seul interlocuteur, zéro sous-traitance',
       check2:          'Devis clair avant tout engagement',
       check3:          'Résultats mesurés chaque mois',
@@ -189,7 +193,9 @@ export const dict = {
       h1:              'Your customers are searching for you on Google. Get found.',
       sub:             'Websites, SEO and online advertising for tradespeople, shops and SMEs. One dedicated contact in Lyon, results measured every month, explained without jargon.',
       ctaCall:         'Call now',
+      ctaCallShort:    'Call',
       ctaQuote:        'Request a free quote',
+      ctaQuoteShort:   'Free quote',
       check1:          'One dedicated contact, zero subcontracting',
       check2:          'Clear quote before any commitment',
       check3:          'Results measured every month',

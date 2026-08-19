@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { Phone, ArrowRight, ArrowUpRight, Check } from 'lucide-react'
 import { JsonLd } from '@/components/seo/JsonLd'
+import { PageBanner, BannerCta, BannerCtaLine } from '@/components/sections/PageBanner'
 import { Breadcrumb } from '@/components/layout/Breadcrumb'
 import { BASE_URL, breadcrumbSchema, localBusinessSchema } from '@/lib/schema'
 import { projects } from '@/data/portfolio'
@@ -48,69 +49,27 @@ export default function PortfolioPage() {
     <>
       <JsonLd schema={schemas} />
 
-      {/* Hero — CTA visible dès le premier écran */}
-      <section
-        id="realisations-hero"
-        className="bg-background"
-        style={{ padding: 'clamp(1.75rem, 5vw, 3rem) 1.5rem clamp(2rem, 5vw, 3rem)' }}
-      >
-        <div className="mx-auto max-w-5xl">
-          <div className="mb-5">
-            <Breadcrumb
-              items={[
-                { label: d.nav.home, href: '/' },
-                { label: d.nav.realisations },
-              ]}
-            />
-          </div>
-
-          <div
-            className="inline-flex items-center gap-2 mb-4"
-            style={{ fontSize: '0.7rem', letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--brand-strong)', fontWeight: 800 }}
-          >
-            <span className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: 'var(--brand)' }} />
-            {d.realisations.badge}
-          </div>
-
-          <h1
-            className="font-sans font-extrabold mb-4"
-            style={{ fontSize: 'clamp(2.2rem, 4.6vw, 3.6rem)', color: 'var(--ink)', lineHeight: 1.06, letterSpacing: '-0.02em', maxWidth: '18ch' }}
-          >
-            {d.realisations.heading1}{' '}
-            <span style={{ color: 'var(--brand)' }}>{d.realisations.heading2}</span>
-          </h1>
-
-          <p className="text-base leading-relaxed max-w-xl mb-6" style={{ color: 'var(--ink-2)' }}>
-            {d.realisations.intro}
-          </p>
-
-          <div className="flex flex-wrap gap-3 mb-5">
-            <a
-              href={PHONE_TEL}
-              className="inline-flex items-center gap-2 rounded-full font-bold transition-colors"
-              style={{ backgroundColor: 'var(--brand)', color: 'var(--on-brand)', padding: '0.85rem 1.5rem', fontSize: '0.92rem' }}
-            >
-              <Phone size={16} aria-hidden /> {PHONE_DISPLAY}
-            </a>
-            <Link
-              href="/audit-gratuit"
-              className="inline-flex items-center gap-2 rounded-full font-bold transition-colors hover:bg-[var(--surface-3)]"
-              style={{ border: '2px solid var(--line-strong)', color: 'var(--ink)', padding: '0.8rem 1.4rem', fontSize: '0.92rem' }}
-            >
-              {d.hero.ctaQuote} <ArrowRight size={15} aria-hidden />
-            </Link>
-          </div>
-
-          <ul className="flex flex-wrap gap-x-6 gap-y-2" style={{ listStyle: 'none', padding: 0, margin: 0 }}>
-            {[d.hero.check1, d.hero.check2, d.hero.check3].map((check) => (
-              <li key={check} className="inline-flex items-center gap-1.5" style={{ fontSize: '0.82rem', fontWeight: 600, color: 'var(--ink-2)' }}>
-                <Check size={15} style={{ color: 'var(--brand)', flexShrink: 0 }} aria-hidden />
-                {check}
-              </li>
-            ))}
-          </ul>
-        </div>
-      </section>
+      <PageBanner
+        breadcrumb={
+          <Breadcrumb
+            tone="vert"
+            items={[
+              { label: d.nav.home, href: '/' },
+              { label: d.nav.realisations },
+            ]}
+          />
+        }
+        eyebrow={d.realisations.badge}
+        title={`${d.realisations.heading1} ${d.realisations.heading2}`}
+        highlight={d.realisations.heading2}
+        sub={d.realisations.intro}
+        actions={
+          <>
+            <BannerCta href={PHONE_TEL}>{PHONE_DISPLAY}</BannerCta>
+            <BannerCtaLine href="/audit-gratuit">{d.hero.ctaQuote}</BannerCtaLine>
+          </>
+        }
+      />
 
       {/* Preuve — unique section sombre de la page, gradation des 3 tons du logo */}
       <section

@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { JsonLd } from '@/components/seo/JsonLd'
+import { PageBanner, BannerCta, BannerCtaLine } from '@/components/sections/PageBanner'
 import { BASE_URL, serviceSchema, breadcrumbSchema } from '@/lib/schema'
 
 export const metadata: Metadata = {
@@ -75,55 +76,18 @@ export default function ConsultantDigitalLyonPage() {
     <>
       <JsonLd schema={jsonLd} />
 
-      {/* Hero */}
-      <section
-        className="bg-background"
-        style={{ padding: 'clamp(1.75rem, 5vw, 3.5rem) 1.5rem clamp(2rem, 6vw, 4rem)' }}
-      >
-        <div className="mx-auto max-w-4xl">
-          <div
-            className="flex items-center gap-2 mb-6"
-            style={{ fontSize: '0.7rem', letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--ink-2)', fontWeight: 700 }}
-          >
-            <span className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: 'var(--brand)' }} />
-            Lyon · Auvergne-Rhône-Alpes
-          </div>
-
-          <h1
-            className="font-display font-extrabold"
-            style={{ fontSize: 'clamp(2.4rem, 5vw, 5rem)', color: 'var(--ink)', lineHeight: 1.05, letterSpacing: '-0.025em', marginBottom: '1.5rem' }}
-          >
-            Consultant digital à Lyon<br />
-            <span style={{ color: 'var(--brand)' }}>pour votre PME.</span>
-          </h1>
-
-          <p
-            className="text-base leading-relaxed mb-8 max-w-2xl"
-            style={{ color: 'var(--ink-2)' }}
-          >
-            Vous êtes dirigeant d&apos;une PME ou TPE à Lyon et vous voulez attirer plus de clients
-            en ligne ? Je vous aide à construire une présence digitale qui génère des leads qualifiés
-            — site web, SEO, publicité, branding et automatisation, sous un seul expert.
-          </p>
-
-          <div className="flex flex-col sm:flex-row gap-3">
-            <Link
-              href="/audit-gratuit"
-              className="inline-flex items-center justify-center gap-2 rounded-full font-medium text-sm h-12 px-8 transition-all duration-300 hover:gap-3"
-              style={{ backgroundColor: 'var(--brand)', color: 'var(--on-brand)' }}
-            >
-              Audit gratuit — 30 min
-            </Link>
-            <Link
-              href="/services"
-              className="inline-flex items-center justify-center gap-2 rounded-full font-medium text-sm h-12 px-8 transition-all duration-300"
-              style={{ border: '1px solid var(--line-strong)', color: 'var(--ink)' }}
-            >
-              Voir tous les services
-            </Link>
-          </div>
-        </div>
-      </section>
+      <PageBanner
+        eyebrow="Lyon · Auvergne-Rhône-Alpes"
+        title="Consultant digital à Lyon"
+        highlight="à Lyon"
+        sub="Vous dirigez une PME ou une TPE à Lyon et vous voulez attirer plus de clients en ligne ? Site web, SEO, publicité, branding et automatisation, sous un seul expert."
+        actions={
+          <>
+            <BannerCta href="/audit-gratuit">Audit gratuit 30 min</BannerCta>
+            <BannerCtaLine href="/services">Voir les services</BannerCtaLine>
+          </>
+        }
+      />
 
       {/* Pourquoi un consultant digital à Lyon */}
       <section className="bg-background" style={{ padding: 'clamp(2rem, 5vw, 3.5rem) 1.5rem clamp(2.25rem, 6vw, 4rem)' }}>

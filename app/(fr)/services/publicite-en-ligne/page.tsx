@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import { PageBanner, BannerCta, BannerCtaLine } from '@/components/sections/PageBanner'
 import { JsonLd } from '@/components/seo/JsonLd'
 import { BASE_URL, serviceSchema, breadcrumbSchema } from '@/lib/schema'
 
@@ -118,38 +119,22 @@ export default function PubliciteEnLignePage() {
         faqSchema,
       ]} />
 
-      {/* Hero */}
-      <section className="bg-background" style={{ padding: 'clamp(2rem, 5vw, 3.5rem) 1.5rem clamp(2.25rem, 6vw, 4rem)' }}>
-        <div className="mx-auto max-w-4xl">
-          <div className="flex items-center gap-2 mb-6" style={{ fontSize: '0.7rem', letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--ink-2)', fontWeight: 700 }}>
-            <span className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: 'var(--brand)' }} />
-            Service · Google Ads · Meta Ads
-          </div>
-          <h1 className="font-display font-extrabold mb-6" style={{ fontSize: 'clamp(2.4rem, 5vw, 5rem)', color: 'var(--ink)', lineHeight: 1.05, letterSpacing: '-0.025em' }}>
-            Publicité en ligne pour PME<br />
-            <span style={{ color: 'var(--brand)' }}>ROI mesurable dès la 1ère semaine.</span>
-          </h1>
-          <p className="text-base leading-relaxed mb-4 max-w-2xl" style={{ color: 'var(--ink-2)' }}>
-            Google Ads et Meta Ads pilotés par la donnée. Chaque euro investi est tracé,
-            optimisé et justifié. Fini les campagnes qui brûlent le budget sans résultat.
-          </p>
-          <div className="flex items-center gap-3 mb-8">
-            <span className="text-2xl font-display font-bold" style={{ color: 'var(--brand)' }}>×3</span>
-            <span className="text-sm" style={{ color: 'var(--ink-2)' }}>retour sur investissement publicitaire moyen</span>
-          </div>
-          <div className="flex gap-4 flex-wrap">
-            <Link href="/audit-gratuit" className="inline-flex items-center gap-2 rounded-full font-medium text-sm h-12 px-8" style={{ backgroundColor: 'var(--brand)', color: 'var(--on-brand)' }}>
-              Audit campagnes gratuit
-            </Link>
-            <Link href="/services/seo" className="inline-flex items-center gap-2 rounded-full font-medium text-sm h-12 px-8 hover:border-[var(--brand)] hover:text-[var(--brand)] transition-colors" style={{ border: '1px solid var(--line)', color: 'var(--ink-2)' }}>
-              Voir aussi le SEO →
-            </Link>
-          </div>
-        </div>
-      </section>
+      <PageBanner
+        image={{ src: '/images/services/publicite-en-ligne.jpg', priority: true }}
+        eyebrow="Service · Google Ads · Meta Ads"
+        title="Publicité en ligne pour PME. ROI mesurable dès la 1ère semaine."
+        highlight="ROI mesurable dès la 1ère semaine."
+        sub="Google Ads et Meta Ads pilotés par la donnée. Chaque euro investi est tracé, optimisé et justifié. Fini les campagnes qui brûlent le budget sans résultat."
+        actions={
+          <>
+            <BannerCta href="/audit-gratuit">Audit campagnes gratuit</BannerCta>
+            <BannerCtaLine href="/services/seo">Voir aussi le SEO</BannerCtaLine>
+          </>
+        }
+      />
 
       {/* Plateformes */}
-      <section className="bg-background" style={{ ...sectionStyle, paddingTop: '0' }}>
+      <section className="bg-background" style={{ ...sectionStyle, borderTop: 0 }}>
         <div className="mx-auto max-w-5xl">
           <div style={labelStyle}>Plateformes gérées</div>
           <h2 className="font-display font-extrabold mb-5 sm:mb-10" style={{ fontSize: 'clamp(1.6rem, 3vw, 2.5rem)', color: 'var(--ink)', letterSpacing: '-0.02em' }}>

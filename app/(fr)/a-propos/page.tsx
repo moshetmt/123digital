@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
 import { JsonLd } from '@/components/seo/JsonLd'
+import { PageBanner, BannerCta, BannerCtaLine } from '@/components/sections/PageBanner'
 import { BASE_URL, personSchema, breadcrumbSchema } from '@/lib/schema'
 import { languesPour } from '@/data/hreflang'
 
@@ -37,77 +38,24 @@ export default function AProposPage() {
         breadcrumbSchema([{ name: 'Accueil', path: '/' }, { name: 'À propos', path: '/a-propos' }]),
       ]} />
 
-      {/* Hero */}
-      <section className="relative bg-background" style={{ padding: 'clamp(2rem, 5vw, 3.5rem) 1.5rem clamp(2.25rem, 6vw, 4rem)', overflow: 'hidden' }}>
-        <div className="absolute inset-0" aria-hidden>
-          <Image
-            src="/images/hero.jpg"
-            alt=""
-            fill
-            priority
-            sizes="100vw"
-            style={{ objectFit: 'cover', opacity: 0.45 }}
-          />
-          <div
-            className="absolute inset-0"
-            style={{ background: 'linear-gradient(180deg, oklch(0.962 0.012 96 / 0.28) 0%, oklch(0.962 0.012 96 / 0.60) 55%, var(--surface) 100%)' }}
-          />
-        </div>
-        <div className="relative mx-auto max-w-5xl">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-            <div>
-              <div className="flex items-center gap-2 mb-6" style={{ fontSize: '0.7rem', letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--ink-2)', fontWeight: 700 }}>
-                <span className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: 'var(--brand)' }} />
-                Expert croissance digitale · Lyon
-              </div>
-              <h1 className="font-display font-extrabold mb-6" style={{ fontSize: 'clamp(2.4rem, 5vw, 4.5rem)', color: 'var(--ink)', lineHeight: 1.05, letterSpacing: '-0.025em' }}>
-                Maurice Timsit<br />
-                <span style={{ color: 'var(--brand)' }}>
-                  consultant digital à Lyon.
-                </span>
-              </h1>
-              <p className="text-base leading-relaxed mb-6" style={{ color: 'var(--ink-2)' }}>
-                Depuis 8 ans, j&apos;aide les PME et entrepreneurs à construire une présence digitale
-                qui travaille pour eux. Pas une agence, pas un junior — un expert senior qui connaît
-                votre dossier et qui est personnellement investi dans vos résultats.
-              </p>
-              <p className="text-base leading-relaxed mb-8" style={{ color: 'var(--ink-2)' }}>
-                Basé à Lyon, j&apos;accompagne des entreprises de la métropole lyonnaise et de toute
-                la France. Mon approche : comprendre votre business avant de toucher au digital.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-3">
-                <Link href="/#contact" className="inline-flex items-center justify-center gap-2 rounded-full font-medium text-sm h-12 px-8" style={{ backgroundColor: 'var(--brand)', color: 'var(--on-brand)' }}>
-                  Discutons de votre projet
-                </Link>
-                <a
-                  href="https://www.linkedin.com/in/mauricetimsit/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-2 rounded-full font-medium text-sm h-12 px-8 transition-all duration-300"
-                  style={{ border: '1px solid var(--line-strong)', color: 'var(--ink)' }}
-                >
-                  LinkedIn →
-                </a>
-              </div>
-            </div>
-
-            {/* Stats */}
-            <div className="grid grid-cols-2 gap-3">
-              {[
-                { num: '8+', label: 'ans d\'expérience' },
-                { num: '60+', label: 'projets livrés' },
-                { num: '100%', label: 'projets en délais' },
-                { num: 'Lyon', label: 'basé à' },
-              ].map((s) => (
-                <div key={s.label} className="rounded-2xl p-6 text-center" style={{ backgroundColor: 'var(--surface-2)', border: '1px solid var(--line)' }}>
-                  <div className="font-display font-bold mb-1" style={{ fontSize: 'clamp(1.8rem, 4vw, 2.4rem)', color: 'var(--brand)', letterSpacing: '-0.03em' }}>{s.num}</div>
-                  <div className="text-xs" style={{ color: 'var(--ink-2)' }}>{s.label}</div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
+      <PageBanner
+        image={{ src: '/images/hero.jpg', priority: true }}
+        eyebrow="Expert croissance digitale · Lyon"
+        title="Maurice Timsit, consultant digital à Lyon."
+        highlight="consultant digital à Lyon."
+        sub="Depuis 8 ans, j&apos;aide les PME et les entrepreneurs à construire une présence digitale qui travaille pour eux. Pas une agence, pas un junior : un expert senior qui connaît votre dossier."
+        actions={
+          <>
+            <BannerCta href="/#contact">Discutons de votre projet</BannerCta>
+            <BannerCtaLine href="https://www.linkedin.com/in/mauricetimsit/">LinkedIn</BannerCtaLine>
+          </>
+        }
+      >
+        <p style={{ marginTop: '1rem', fontSize: '0.85rem', lineHeight: 1.65, maxWidth: '62ch', color: 'oklch(0.985 0.003 150 / 78%)' }}>
+          Basé à Lyon, j&apos;accompagne des entreprises de la métropole et de toute la France.
+          Mon approche : comprendre votre activité avant de toucher au digital.
+        </p>
+      </PageBanner>
 
       {/* Valeurs */}
       <section className="bg-background" style={{ padding: '0 1.5rem 6rem' }}>

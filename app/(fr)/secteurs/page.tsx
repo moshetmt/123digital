@@ -5,6 +5,7 @@ import {
   Home, Wrench, Sparkles, BarChart3, Truck, type LucideIcon,
 } from 'lucide-react'
 import { JsonLd } from '@/components/seo/JsonLd'
+import { PageBanner, BannerCta, BannerCtaLine } from '@/components/sections/PageBanner'
 import { Breadcrumb } from '@/components/layout/Breadcrumb'
 import { BASE_URL, breadcrumbSchema, localBusinessSchema } from '@/lib/schema'
 import { secteurs } from '@/data/secteurs'
@@ -54,59 +55,22 @@ export default function SecteursPage() {
     <>
       <JsonLd schema={schemas} />
 
-      {/* Hero */}
-      <section className="bg-background" style={{ padding: 'clamp(2rem, 5vw, 3.5rem) 1.5rem clamp(2.25rem, 6vw, 4rem)' }}>
-        <div className="mx-auto max-w-5xl">
-          <div className="mb-6">
-            <Breadcrumb
-              items={[
-                { label: 'Accueil', href: '/' },
-                { label: 'Secteurs d\'activité' },
-              ]}
-            />
-          </div>
-
-          <div
-            className="inline-flex items-center gap-2 mb-6"
-            style={{
-              fontSize: '0.7rem',
-              letterSpacing: '0.12em',
-              textTransform: 'uppercase',
-              color: 'var(--ink-2)',
-              fontWeight: 700,
-            }}
-          >
-            <span className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: 'var(--brand)' }} />
-            Expertise sectorielle
-          </div>
-
-          <h1
-            className="font-display font-extrabold mb-6"
-            style={{
-              fontSize: 'clamp(2.6rem, 5vw, 5rem)',
-              color: 'var(--ink)',
-              lineHeight: 1.05,
-              letterSpacing: '-0.025em',
-            }}
-          >
-            Votre secteur.<br />
-            <em
-              style={{
-                color: 'var(--brand)',
-              }}
-            >
-              Sa stratégie digitale.
-            </em>
-          </h1>
-
-          <p
-            className="text-base leading-relaxed max-w-2xl"
-            style={{ color: 'var(--ink-2)' }}
-          >
-            Chaque secteur a ses propres codes, ses propres clients et ses propres leviers de croissance. Je ne propose pas de solutions génériques — j&apos;adapte chaque stratégie aux réalités de votre métier.
-          </p>
-        </div>
-      </section>
+      <PageBanner
+        breadcrumb={
+          <Breadcrumb
+            tone="vert"
+            items={[
+              { label: 'Accueil', href: '/' },
+              { label: "Secteurs d'activité" },
+            ]}
+          />
+        }
+        eyebrow="Expertise sectorielle"
+        title="Votre secteur. Sa stratégie digitale."
+        highlight="Sa stratégie digitale."
+        sub="Chaque secteur a ses codes, ses clients et ses leviers de croissance. Pas de solution générique : j&apos;adapte chaque stratégie aux réalités de votre métier."
+        actions={<BannerCta href="/audit-gratuit">Audit gratuit 30 min</BannerCta>}
+      />
 
       {/* Grille secteurs */}
       <section

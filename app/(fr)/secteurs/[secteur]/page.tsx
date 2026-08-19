@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import { Check, X } from 'lucide-react'
 import { JsonLd } from '@/components/seo/JsonLd'
+import { PageBanner, BannerCta, BannerCtaLine } from '@/components/sections/PageBanner'
 import { Breadcrumb } from '@/components/layout/Breadcrumb'
 import { BASE_URL, breadcrumbSchema, localBusinessSchema } from '@/lib/schema'
 import { secteurs, getSecteurBySlug } from '@/data/secteurs'
@@ -66,95 +67,28 @@ export default async function SecteurPage({ params }: PageProps) {
     <>
       <JsonLd schema={schemas} />
 
-      {/* Hero */}
-      <section className="bg-background" style={{ padding: 'clamp(2rem, 5vw, 3.5rem) 1.5rem clamp(2.25rem, 6vw, 4rem)' }}>
-        <div className="mx-auto max-w-5xl">
-          <div className="mb-6">
-            <Breadcrumb
-              items={[
-                { label: 'Accueil', href: '/' },
-                { label: 'Secteurs', href: '/secteurs' },
-                { label: secteur.nom },
-              ]}
-            />
-          </div>
-
-          <div
-            className="inline-flex items-center gap-2 mb-6"
-            style={{
-              fontSize: '0.7rem',
-              letterSpacing: '0.12em',
-              textTransform: 'uppercase',
-              color: 'var(--ink-2)',
-              fontWeight: 700,
-            }}
-          >
-            <span className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: 'var(--brand)' }} />
-            Secteur · {secteur.nom}
-          </div>
-
-          <h1
-            className="font-display font-extrabold mb-6"
-            style={{
-              fontSize: 'clamp(2.6rem, 5vw, 5rem)',
-              color: 'var(--ink)',
-              lineHeight: 1.05,
-              letterSpacing: '-0.025em',
-            }}
-          >
-            Marketing digital<br />
-            <em
-              style={{
-                color: 'var(--brand)',
-              }}
-            >
-              pour les {secteur.nomPluriel.toLowerCase()}
-            </em>
-          </h1>
-
-          <p
-            className="text-base leading-relaxed mb-8 max-w-2xl"
-            style={{ color: 'var(--ink-2)' }}
-          >
-            {secteur.description}
-          </p>
-
-          <div className="flex gap-4 flex-wrap">
-            <Link
-              href="/audit-gratuit"
-              style={{
-                display: 'inline-block',
-                borderRadius: 999,
-                padding: '0.85rem 2rem',
-                backgroundColor: 'var(--brand)',
-                color: 'var(--on-brand)',
-                fontSize: '0.82rem',
-                fontWeight: 700,
-                letterSpacing: '0.08em',
-                textTransform: 'uppercase',
-              }}
-            >
-              Audit gratuit 30 min
-            </Link>
-            <Link
-              href="/secteurs"
-              className="hover:border-[var(--brand)] hover:text-[var(--brand)] transition-colors"
-              style={{
-                display: 'inline-block',
-                padding: '0.85rem 2rem',
-                border: '1px solid var(--line)',
-                color: 'var(--ink-2)',
-                fontSize: '0.82rem',
-                fontWeight: 700,
-                letterSpacing: '0.08em',
-                textTransform: 'uppercase',
-              }}
-            >
-              ← Tous les secteurs
-            </Link>
-          </div>
-        </div>
-      </section>
+      <PageBanner
+        breadcrumb={
+          <Breadcrumb
+            tone="vert"
+            items={[
+              { label: 'Accueil', href: '/' },
+              { label: 'Secteurs', href: '/secteurs' },
+              { label: secteur.nom },
+            ]}
+          />
+        }
+        eyebrow={`Secteur · ${secteur.nom}`}
+        title={`Marketing digital pour les ${secteur.nomPluriel.toLowerCase()}`}
+        highlight={`pour les ${secteur.nomPluriel.toLowerCase()}`}
+        sub={secteur.description}
+        actions={
+          <>
+            <BannerCta href="/audit-gratuit">Audit gratuit 30 min</BannerCta>
+            <BannerCtaLine href="/secteurs">Tous les secteurs</BannerCtaLine>
+          </>
+        }
+      />
 
       {/* Problèmes identifiés */}
       <section

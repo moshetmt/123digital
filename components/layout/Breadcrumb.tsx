@@ -9,9 +9,15 @@ interface BreadcrumbItem {
 
 interface BreadcrumbProps {
   items: BreadcrumbItem[]
+  /** `vert` pour le fil pose sur la banniere verte : tout passe en blanc. */
+  tone?: 'clair' | 'vert'
 }
 
-export function Breadcrumb({ items }: BreadcrumbProps) {
+export function Breadcrumb({ items, tone = 'clair' }: BreadcrumbProps) {
+  const surVert = tone === 'vert'
+  const couleurBase = surVert ? 'oklch(0.985 0.003 150 / 72%)' : 'var(--ink-2)'
+  const couleurSeparateur = surVert ? 'oklch(0.985 0.003 150 / 45%)' : 'var(--ink-3)'
+  const couleurActuelle = surVert ? 'var(--on-brand)' : 'var(--ink)'
   const schemaItems = items.map((item, i) => ({
     name: item.label,
     path: item.href ?? `/${items.slice(1, i + 1).map(it => it.label.toLowerCase().replace(/\s+/g, '-')).join('/')}`,
@@ -27,7 +33,7 @@ export function Breadcrumb({ items }: BreadcrumbProps) {
           fontSize: '0.7rem',
           letterSpacing: '0.1em',
           textTransform: 'uppercase',
-          color: 'var(--ink-2)',
+          color: couleurBase,
           fontFamily: 'var(--font-sans)',
           fontWeight: 700,
         }}
@@ -37,7 +43,7 @@ export function Breadcrumb({ items }: BreadcrumbProps) {
           return (
             <span key={index} className="flex items-center gap-1.5">
               {index > 0 && (
-                <span aria-hidden="true" style={{ color: 'var(--ink-3)' }}>/</span>
+                <span aria-hidden="true" style={{ color: couleurSeparateur }}>/</span>
               )}
               {item.href && !isLast ? (
                 <Link
@@ -50,7 +56,7 @@ export function Breadcrumb({ items }: BreadcrumbProps) {
               ) : (
                 <span
                   aria-current={isLast ? 'page' : undefined}
-                  style={{ color: isLast ? 'var(--ink)' : 'inherit' }}
+                  style={{ color: isLast ? couleurActuelle : 'inherit' }}
                 >
                   {item.label}
                 </span>

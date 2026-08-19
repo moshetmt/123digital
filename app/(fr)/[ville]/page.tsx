@@ -1,8 +1,8 @@
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
-import Image from 'next/image'
 import Link from 'next/link'
 import { JsonLd } from '@/components/seo/JsonLd'
+import { PageBanner, BannerCta, BannerCtaLine } from '@/components/sections/PageBanner'
 import { Breadcrumb } from '@/components/layout/Breadcrumb'
 import { BASE_URL, breadcrumbSchema, localBusinessSchema } from '@/lib/schema'
 import { allVilles, villesARA, villeInsights } from '@/data/villes'
@@ -120,119 +120,47 @@ export default async function VillePage({ params }: PageProps) {
     <>
       <JsonLd schema={schemas} />
 
-      {/* Hero */}
-      <section className="relative bg-background" style={{ padding: 'clamp(2rem, 5vw, 3.5rem) 1.5rem clamp(2.25rem, 6vw, 4rem)', overflow: 'hidden' }}>
-        <div className="absolute inset-0" aria-hidden>
-          <Image
-            src={`/images/villes/${ville.slug}.jpg`}
-            alt=""
-            fill
-            priority
-            sizes="100vw"
-            style={{ objectFit: 'cover', opacity: 0.5 }}
+      <PageBanner
+        image={{ src: `/images/villes/${ville.slug}.jpg`, priority: true }}
+        breadcrumb={
+          <Breadcrumb
+            tone="vert"
+            items={[
+              { label: 'Accueil', href: '/' },
+              { label: `${ville.nom}` },
+            ]}
           />
-          <div
-            className="absolute inset-0"
-            style={{ background: 'linear-gradient(180deg, oklch(0.962 0.012 96 / 0.30) 0%, oklch(0.962 0.012 96 / 0.62) 55%, var(--surface) 100%)' }}
-          />
-        </div>
-        <div className="relative mx-auto max-w-5xl">
-          <div className="mb-6">
-            <Breadcrumb
-              items={[
-                { label: 'Accueil', href: '/' },
-                { label: `${ville.nom}` },
-              ]}
-            />
-          </div>
-
-          <div
-            className="inline-flex items-center gap-2 mb-6"
-            style={{
-              fontSize: '0.7rem',
-              letterSpacing: '0.12em',
-              textTransform: 'uppercase',
-              color: 'var(--ink-2)',
-              fontWeight: 700,
-            }}
-          >
-            <span className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: 'var(--brand)' }} />
-            {ville.region} · {ville.departement}
-          </div>
-
-          <h1
-            className="font-display font-extrabold mb-6"
-            style={{
-              fontSize: 'clamp(2.6rem, 5vw, 5rem)',
-              color: 'var(--ink)',
-              lineHeight: 1.05,
-              letterSpacing: '-0.025em',
-            }}
-          >
-            Consultant digital<br />
-            <em
-              style={{
-                color: 'var(--brand)',
-              }}
-            >
-              à {ville.nom}
-            </em>
-          </h1>
-
-          <p
-            className="text-base leading-relaxed mb-4 max-w-2xl"
-            style={{ color: 'var(--ink-2)' }}
-          >
-            Maurice Timsit accompagne les PME de {ville.nom} ({ville.description}) dans leur croissance digitale : site web qui convertit, SEO local, publicité Google et Meta, branding et automatisation. Un seul interlocuteur, des résultats mesurables.
-          </p>
-          <p
-            className="text-sm max-w-2xl"
-            style={{ color: 'var(--ink-2)', lineHeight: 1.7 }}
-          >
-            {ville.population.toLocaleString('fr-FR')} habitants · {ville.departement} · {ville.region}.{' '}
-            Les entreprises de {ville.nom} cherchent un{' '}
-            {ville.keywords[0] ?? `consultant digital à ${ville.nom}`}
-            {ville.keywords[2] ? `, un expert en ${ville.keywords[2]}` : ''} ou un accompagnement
-            complet pour se démarquer en ligne. Je connais les spécificités de ce marché et
-            j&apos;adapte chaque stratégie à la taille et au secteur de votre entreprise.
-          </p>
-
-          <div className="flex gap-4 flex-wrap mt-8">
-            <Link
-              href="/audit-gratuit"
-              style={{
-                display: 'inline-block',
-                borderRadius: 999,
-                padding: '0.85rem 2rem',
-                backgroundColor: 'var(--brand)',
-                color: 'var(--on-brand)',
-                fontSize: '0.82rem',
-                fontWeight: 700,
-                letterSpacing: '0.08em',
-                textTransform: 'uppercase',
-              }}
-            >
-              Audit gratuit 30 min
-            </Link>
-            <Link
-              href="/a-propos"
-              className="hover:border-[var(--brand)] hover:text-[var(--brand)] transition-colors"
-              style={{
-                display: 'inline-block',
-                padding: '0.85rem 2rem',
-                border: '1px solid var(--line)',
-                color: 'var(--ink-2)',
-                fontSize: '0.82rem',
-                fontWeight: 700,
-                letterSpacing: '0.08em',
-                textTransform: 'uppercase',
-              }}
-            >
-              Qui suis-je ?
-            </Link>
-          </div>
-        </div>
-      </section>
+        }
+        eyebrow={`${ville.region} · ${ville.departement}`}
+        title={`Consultant digital à ${ville.nom}`}
+        highlight={`à ${ville.nom}`}
+        sub={`Maurice Timsit accompagne les PME de ${ville.nom} (${ville.description}) dans leur croissance digitale : site web qui convertit, SEO local, publicité Google et Meta, branding et automatisation. Un seul interlocuteur, des résultats mesurables.`}
+        actions={
+          <>
+            <BannerCta href="/audit-gratuit">Audit gratuit 30 min</BannerCta>
+            <BannerCtaLine href="/a-propos">Qui suis-je ?</BannerCtaLine>
+          </>
+        }
+      >
+        {/* Paragraphe de contexte local : c'est lui qui distingue une page ville
+            d'une autre aux yeux de Google. Il reste dans la banniere, en blanc. */}
+        <p
+          style={{
+            marginTop: '1.1rem',
+            fontSize: '0.85rem',
+            lineHeight: 1.65,
+            maxWidth: '62ch',
+            color: 'oklch(0.985 0.003 150 / 78%)',
+          }}
+        >
+          {ville.population.toLocaleString('fr-FR')} habitants · {ville.departement} · {ville.region}.{' '}
+          Les entreprises de {ville.nom} cherchent un{' '}
+          {ville.keywords[0] ?? `consultant digital à ${ville.nom}`}
+          {ville.keywords[2] ? `, un expert en ${ville.keywords[2]}` : ''} ou un accompagnement
+          complet pour se démarquer en ligne. Je connais les spécificités de ce marché et
+          j&apos;adapte chaque stratégie à la taille et au secteur de votre entreprise.
+        </p>
+      </PageBanner>
 
       {/* Marché local — contenu unique pour les villes prioritaires */}
       {insight && (

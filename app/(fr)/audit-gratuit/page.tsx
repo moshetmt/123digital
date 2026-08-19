@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { Phone, Check, ArrowRight } from 'lucide-react'
 import { JsonLd } from '@/components/seo/JsonLd'
+import { PageBanner, BannerCta, BannerCtaLine } from '@/components/sections/PageBanner'
 import { Breadcrumb } from '@/components/layout/Breadcrumb'
 import { AuditSimulator } from '@/components/sections/AuditSimulator'
 import { CTA } from '@/components/sections/CTA'
@@ -128,154 +129,21 @@ export default function AuditGratuitPage() {
     <>
       <JsonLd schema={schemas} />
 
-      {/* Hero */}
-      <section className="bg-background" style={{ padding: 'clamp(2rem, 5vw, 3.5rem) 1.5rem clamp(2.25rem, 6vw, 4rem)' }}>
-        <div className="mx-auto max-w-5xl">
-          <div className="mb-6">
-            <Breadcrumb
-              items={[
-                { label: 'Accueil', href: '/' },
-                { label: 'Audit gratuit' },
-              ]}
-            />
-          </div>
-
-          <div
-            className="inline-flex items-center gap-2 mb-6"
-            style={{
-              fontSize: '0.7rem',
-              letterSpacing: '0.12em',
-              textTransform: 'uppercase',
-              color: 'var(--ink-2)',
-              fontWeight: 700,
-            }}
-          >
-            <span className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: 'var(--brand)' }} />
-            Gratuit · Sans engagement · 30 minutes
-          </div>
-
-          <h1
-            className="font-display font-extrabold mb-6"
-            style={{
-              fontSize: 'clamp(2.6rem, 5vw, 5rem)',
-              color: 'var(--ink)',
-              lineHeight: 1.05,
-              letterSpacing: '-0.025em',
-            }}
-          >
-            Votre audit digital<br />
-            <em
-              style={{
-                color: 'var(--brand)',
-              }}
-            >
-              offert.
-            </em>
-          </h1>
-
-          <p
-            className="text-base leading-relaxed mb-4 max-w-2xl"
-            style={{ color: 'var(--ink-2)' }}
-          >
-            En 30 minutes, j&apos;identifie pourquoi votre site ne génère pas autant de clients qu&apos;il le devrait — et je vous donne les 3 actions prioritaires pour changer ça. Analyse concrète, pas de discours commercial.
-          </p>
-
-          <div
-            className="flex flex-wrap gap-x-5 gap-y-1.5 mb-6"
-            style={{ fontSize: '0.82rem', color: 'var(--ink-2)', fontWeight: 600 }}
-          >
-            {['Aucune carte bancaire', 'Pas de relance commerciale', 'Résultats actionnables'].map((item) => (
-              <span key={item} className="inline-flex items-center gap-1.5">
-                <Check size={15} strokeWidth={3} aria-hidden style={{ color: 'var(--brand)', flexShrink: 0 }} />
-                {item}
-              </span>
-            ))}
-          </div>
-
-          {/* CTA principal */}
-          <div
-            className="mb-6 rounded-2xl"
-            style={{
-              backgroundColor: 'var(--surface-2)',
-              border: '1px solid var(--line)',
-              boxShadow: '0 8px 30px var(--shadow-soft)',
-              maxWidth: '480px',
-              padding: '1.35rem',
-            }}
-          >
-            <p
-              className="font-display font-extrabold mb-1.5"
-              style={{ fontSize: '1.1rem', color: 'var(--ink)' }}
-            >
-              Démarrez votre audit
-            </p>
-            <p style={{ fontSize: '0.85rem', color: 'var(--ink-2)', marginBottom: '0.9rem', lineHeight: 1.5 }}>
-              Un appel de 30 minutes suffit. Je prépare l&apos;analyse de votre site avant l&apos;échange.
-            </p>
-            <a
-              href="tel:+33652092301"
-              className="hover:opacity-85 transition-opacity"
-              style={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                gap: '8px',
-                width: '100%',
-                backgroundColor: 'var(--brand)',
-                color: 'var(--on-brand)',
-                fontFamily: 'var(--font-heading)',
-                fontWeight: 800,
-                fontSize: '0.95rem',
-                padding: '1rem',
-                borderRadius: 999,
-                textDecoration: 'none',
-                letterSpacing: '-0.01em',
-              }}
-            >
-              <Phone size={17} aria-hidden />
-              Appeler maintenant
-            </a>
-            {/* Second chemin : la page promettait un audit sans aucun moyen de
-                le demander en ligne. Ce bouton mene au formulaire de la page. */}
-            <Link
-              href="#contact"
-              className="hover:opacity-85 transition-opacity"
-              style={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                gap: '8px',
-                width: '100%',
-                marginTop: '0.6rem',
-                border: '2px solid var(--line-strong)',
-                color: 'var(--ink)',
-                fontWeight: 800,
-                fontSize: '0.92rem',
-                padding: '0.85rem 1rem',
-                borderRadius: 999,
-                textDecoration: 'none',
-              }}
-            >
-              Demander par écrit
-              <ArrowRight size={16} aria-hidden />
-            </Link>
-            <p style={{ fontSize: '0.75rem', color: 'var(--ink-3)', marginTop: '0.75rem', textAlign: 'center' }}>
-              06 52 09 23 01, disponible en semaine
-            </p>
-          </div>
-
-          <p style={{ fontSize: '0.82rem', color: 'var(--ink-3)' }}>
-            Ou écrivez-moi directement :{' '}
-            <Link
-              href="mailto:contact@123digital.fr"
-              className="hover:text-[var(--brand)] transition-colors"
-              style={{ color: 'var(--ink-2)', textDecoration: 'underline' }}
-            >
-              contact@123digital.fr
-            </Link>
-          </p>
-        </div>
-      </section>
+      <PageBanner
+        breadcrumb={
+          <Breadcrumb
+            tone="vert"
+            items={[
+              { label: 'Accueil', href: '/' },
+              { label: 'Audit gratuit' },
+            ]}
+          />
+        }
+        eyebrow="Gratuit · Sans engagement · 30 minutes"
+        title="Votre audit digital offert."
+        highlight="offert."
+        sub="En 30 minutes, j&apos;identifie pourquoi votre site ne génère pas autant de clients qu&apos;il le devrait, et je vous donne les trois actions prioritaires pour changer ça. Analyse concrète, pas de discours commercial."
+      />
 
       {/* Formulaire d'audit — P0-2 de l'audit UX : la page vers laquelle tous
           les CTA convergent doit permettre d'agir sans téléphoner */}

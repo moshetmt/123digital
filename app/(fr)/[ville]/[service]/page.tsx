@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import { JsonLd } from '@/components/seo/JsonLd'
+import { PageBanner, BannerCta, BannerCtaLine } from '@/components/sections/PageBanner'
 import { Breadcrumb } from '@/components/layout/Breadcrumb'
 import { BASE_URL, breadcrumbSchema, localBusinessSchema, serviceSchema } from '@/lib/schema'
 import { allVilles, villesARA, villeInsights } from '@/data/villes'
@@ -305,131 +306,59 @@ export default async function VilleServicePage({ params }: PageProps) {
     <>
       <JsonLd schema={schemas} />
 
-      {/* Hero */}
-      <section className="bg-background" style={{ padding: 'clamp(2rem, 5vw, 3.5rem) 1.5rem clamp(2.25rem, 6vw, 4rem)' }}>
-        <div className="mx-auto max-w-5xl">
-          <div className="mb-6">
-            <Breadcrumb
-              items={[
-                { label: 'Accueil', href: '/' },
-                { label: `${ville.nom}`, href: `/${ville.slug}` },
-                { label: service.title },
-              ]}
-            />
-          </div>
-
-          <div
-            className="inline-flex items-center gap-2 mb-6"
-            style={{
-              fontSize: '0.7rem',
-              letterSpacing: '0.12em',
-              textTransform: 'uppercase',
-              color: 'var(--ink-2)',
-              fontWeight: 700,
-            }}
-          >
-            <span className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: 'var(--brand)' }} />
-            {service.shortDesc} · {ville.nom}
-          </div>
-
-          <h1
-            className="font-display font-extrabold mb-6"
-            style={{
-              fontSize: 'clamp(2.4rem, 5vw, 4.5rem)',
-              color: 'var(--ink)',
-              lineHeight: 1.05,
-              letterSpacing: '-0.025em',
-            }}
-          >
-            {service.title}<br />
-            <em
-              style={{
-                color: 'var(--brand)',
-              }}
-            >
-              à {ville.nom}
-            </em>
-          </h1>
-
-          <p
-            className="text-base leading-relaxed mb-6 max-w-2xl"
-            style={{ color: 'var(--ink-2)' }}
-          >
-            {content.intro(ville.nom)}
+      <PageBanner
+        image={{ src: `/images/services/${service.id}.jpg`, priority: true }}
+        breadcrumb={
+          <Breadcrumb
+            tone="vert"
+            items={[
+              { label: 'Accueil', href: '/' },
+              { label: `${ville.nom}`, href: `/${ville.slug}` },
+              { label: service.title },
+            ]}
+          />
+        }
+        eyebrow={`${service.shortDesc} · ${ville.nom}`}
+        title={`${service.title} à ${ville.nom}`}
+        highlight={`à ${ville.nom}`}
+        sub={content.intro(ville.nom)}
+        actions={
+          <>
+            <BannerCta href="/audit-gratuit">Audit gratuit 30 min</BannerCta>
+            <BannerCtaLine href={`/${ville.slug}`}>Retour {ville.nom}</BannerCtaLine>
+          </>
+        }
+      >
+        {/* Angle local et chiffre cle : ce sont eux qui distinguent cette page
+            des 143 autres croisements ville x service aux yeux de Google. */}
+        {insight && (
+          <p style={{ marginTop: '1rem', fontSize: '0.85rem', lineHeight: 1.65, maxWidth: '62ch', color: 'oklch(0.985 0.003 150 / 78%)' }}>
+            {insight.angle}
           </p>
-
-          {insight && (
-            <p
-              className="text-sm leading-relaxed mb-6 max-w-2xl"
-              style={{ color: 'var(--ink-2)' }}
-            >
-              {insight.angle}
-            </p>
-          )}
-
-          <div className="flex items-center gap-4 mb-8 flex-wrap">
-            <div className="flex items-center gap-3">
-              <span
-                className="font-display font-bold"
-                style={{ fontSize: '2rem', color: 'var(--brand)' }}
-              >
-                {content.stat}
-              </span>
-              <span style={{ fontSize: '0.85rem', color: 'var(--brand)' }}>
-                {content.statLabel}
-              </span>
-            </div>
-            <div
-              style={{
-                padding: '0.35rem 0.9rem',
-                border: '1px solid var(--brand-line)',
-                color: 'var(--brand)',
-                fontSize: '0.72rem',
-                fontWeight: 700,
-                letterSpacing: '0.08em',
-                textTransform: 'uppercase',
-              }}
-            >
-              {content.promise}
-            </div>
-          </div>
-
-          <div className="flex gap-4 flex-wrap">
-            <Link
-              href="/audit-gratuit"
-              style={{
-                display: 'inline-block',
-                borderRadius: 999,
-                padding: '0.85rem 2rem',
-                backgroundColor: 'var(--brand)',
-                color: 'var(--on-brand)',
-                fontSize: '0.82rem',
-                fontWeight: 700,
-                letterSpacing: '0.08em',
-                textTransform: 'uppercase',
-              }}
-            >
-              Audit gratuit 30 min
-            </Link>
-            <Link
-              href={`/${ville.slug}`}
-              className="hover:border-[var(--brand)] hover:text-[var(--brand)] transition-colors"
-              style={{
-                display: 'inline-block',
-                padding: '0.85rem 2rem',
-                border: '1px solid var(--line)',
-                color: 'var(--ink-2)',
-                fontSize: '0.82rem',
-                fontWeight: 700,
-                letterSpacing: '0.08em',
-                textTransform: 'uppercase',
-              }}
-            >
-              ← Retour {ville.nom}
-            </Link>
-          </div>
+        )}
+        <div className="flex flex-wrap items-center gap-3" style={{ marginTop: '1.1rem' }}>
+          <span style={{ fontSize: '1.6rem', fontWeight: 800, color: 'var(--vert-pale)' }}>
+            {content.stat}
+          </span>
+          <span style={{ fontSize: '0.85rem', color: 'oklch(0.985 0.003 150 / 82%)' }}>
+            {content.statLabel}
+          </span>
+          <span
+            style={{
+              padding: '0.3rem 0.8rem',
+              borderRadius: 999,
+              border: '1px solid oklch(0.985 0.003 150 / 40%)',
+              color: 'var(--on-brand)',
+              fontSize: '0.68rem',
+              fontWeight: 800,
+              letterSpacing: '0.08em',
+              textTransform: 'uppercase',
+            }}
+          >
+            {content.promise}
+          </span>
         </div>
-      </section>
+      </PageBanner>
 
       {/* Méthode / Étapes */}
       <section

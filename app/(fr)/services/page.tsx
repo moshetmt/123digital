@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
 import { JsonLd } from '@/components/seo/JsonLd'
+import { PageBanner, BannerCta, BannerCtaLine } from '@/components/sections/PageBanner'
 import { Breadcrumb } from '@/components/layout/Breadcrumb'
 import { BASE_URL, breadcrumbSchema, serviceSchema } from '@/lib/schema'
 import { services } from '@/data/services'
@@ -116,58 +117,27 @@ export default function ServicesPage() {
     <>
       <JsonLd schema={schemas} />
 
-      {/* Hero */}
-      <section
-        className="bg-background"
-        style={{ padding: 'clamp(2rem, 5vw, 3.5rem) 1.5rem clamp(2.25rem, 6vw, 4rem)' }}
-      >
-        <div className="mx-auto max-w-5xl">
-          <div className="mb-6">
-            <Breadcrumb
-              items={[
-                { label: 'Accueil', href: '/' },
-                { label: 'Services' },
-              ]}
-            />
-          </div>
-
-          <div
-            className="inline-flex items-center gap-2 mb-6"
-            style={{
-              fontSize: '0.7rem',
-              letterSpacing: '0.12em',
-              textTransform: 'uppercase',
-              color: 'var(--ink-2)',
-              fontWeight: 700,
-            }}
-          >
-            <span className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: 'var(--brand)' }} />
-            Ce que je fais pour vous
-          </div>
-
-          <h1
-            className="font-display font-extrabold mb-6"
-            style={{
-              fontSize: 'clamp(2.8rem, 5.5vw, 5.5rem)',
-              color: 'var(--ink)',
-              lineHeight: 1.05,
-              letterSpacing: '-0.025em',
-            }}
-          >
-            Tous vos leviers digitaux,<br />
-            <em style={{ color: 'var(--brand)', fontFamily: 'var(--font-serif)' }}>
-              pilotés par un seul expert.
-            </em>
-          </h1>
-
-          <p
-            className="text-base leading-relaxed max-w-2xl"
-            style={{ color: 'var(--ink-2)' }}
-          >
-            SEO, site web, publicité, branding, réseaux, automatisation. Pas besoin de coordonner 6 prestataires différents — tout est pensé ensemble, par quelqu&apos;un qui connaît votre activité de A à Z.
-          </p>
-        </div>
-      </section>
+      <PageBanner
+        breadcrumb={
+          <Breadcrumb
+            tone="vert"
+            items={[
+              { label: 'Accueil', href: '/' },
+              { label: 'Services' },
+            ]}
+          />
+        }
+        eyebrow="Ce que je fais pour vous"
+        title="Tous vos leviers digitaux, pilotés par un seul expert."
+        highlight="pilotés par un seul expert."
+        sub="SEO, site web, publicité, branding, réseaux, automatisation. Pas besoin de coordonner six prestataires : tout est pensé ensemble, par quelqu&apos;un qui connaît votre activité de A à Z."
+        actions={
+          <>
+            <BannerCta href="/audit-gratuit">Audit gratuit 30 min</BannerCta>
+            <BannerCtaLine href="/realisations">Voir les réalisations</BannerCtaLine>
+          </>
+        }
+      />
 
       {/* Services grid */}
       <section

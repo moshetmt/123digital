@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import { PageBanner, BannerCta, BannerCtaLine } from '@/components/sections/PageBanner'
 import { JsonLd } from '@/components/seo/JsonLd'
 import { BASE_URL, serviceSchema, breadcrumbSchema } from '@/lib/schema'
 
@@ -118,35 +119,22 @@ export default function BrandingPage() {
         faqSchema,
       ]} />
 
-      {/* Hero */}
-      <section className="bg-background" style={{ padding: 'clamp(2rem, 5vw, 3.5rem) 1.5rem clamp(2.25rem, 6vw, 4rem)' }}>
-        <div className="mx-auto max-w-4xl">
-          <div className="flex items-center gap-2 mb-6" style={{ fontSize: '0.7rem', letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--ink-2)', fontWeight: 700 }}>
-            <span className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: 'var(--brand)' }} />
-            Service · Branding & Identité
-          </div>
-          <h1 className="font-display font-extrabold mb-6" style={{ fontSize: 'clamp(2.4rem, 5vw, 5rem)', color: 'var(--ink)', lineHeight: 1.05, letterSpacing: '-0.025em' }}>
-            Branding & identité visuelle PME<br />
-            <span style={{ color: 'var(--brand)' }}>une image qui inspire confiance.</span>
-          </h1>
-          <p className="text-base leading-relaxed mb-8 max-w-2xl" style={{ color: 'var(--ink-2)' }}>
-            Votre identité visuelle est le premier filtre de confiance de vos prospects. Je crée
-            des identités de marque mémorables pour les PME — cohérentes sur tous les supports,
-            du site web aux réseaux sociaux en passant par les supports print.
-          </p>
-          <div className="flex gap-4 flex-wrap">
-            <Link href="/audit-gratuit" className="inline-flex items-center gap-2 rounded-full font-medium text-sm h-12 px-8" style={{ backgroundColor: 'var(--brand)', color: 'var(--on-brand)' }}>
-              Discuter de mon projet
-            </Link>
-            <Link href="/realisations" className="inline-flex items-center gap-2 rounded-full font-medium text-sm h-12 px-8 hover:border-[var(--brand)] hover:text-[var(--brand)] transition-colors" style={{ border: '1px solid var(--line)', color: 'var(--ink-2)' }}>
-              Voir les réalisations →
-            </Link>
-          </div>
-        </div>
-      </section>
+      <PageBanner
+        image={{ src: '/images/services/branding.jpg', priority: true }}
+        eyebrow="Service · Branding & identité"
+        title="Branding & identité visuelle PME. Une image qui inspire confiance."
+        highlight="Une image qui inspire confiance."
+        sub="Votre identité visuelle est le premier filtre de confiance de vos prospects. Des identités de marque cohérentes sur tous les supports, du site web aux réseaux sociaux."
+        actions={
+          <>
+            <BannerCta href="/audit-gratuit">Discuter de mon projet</BannerCta>
+            <BannerCtaLine href="/realisations">Voir les réalisations</BannerCtaLine>
+          </>
+        }
+      ></PageBanner>
 
       {/* Livrables */}
-      <section className="bg-background" style={{ ...sectionStyle, paddingTop: '0' }}>
+      <section className="bg-background" style={{ ...sectionStyle, borderTop: 0 }}>
         <div className="mx-auto max-w-5xl">
           <div style={labelStyle}>Ce que vous recevez</div>
           <h2 className="font-display font-extrabold mb-5 sm:mb-10" style={{ fontSize: 'clamp(1.6rem, 3vw, 2.5rem)', color: 'var(--ink)', letterSpacing: '-0.02em' }}>

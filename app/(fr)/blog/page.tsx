@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
 import { JsonLd } from '@/components/seo/JsonLd'
+import { PageBanner, BannerCta, BannerCtaLine } from '@/components/sections/PageBanner'
 import { Breadcrumb } from '@/components/layout/Breadcrumb'
 import { BASE_URL, breadcrumbSchema } from '@/lib/schema'
 import { articles, categories } from '@/data/blog'
@@ -35,59 +36,22 @@ export default function BlogPage() {
     <>
       <JsonLd schema={schemas} />
 
-      {/* Hero */}
-      <section className="bg-background" style={{ padding: 'clamp(2rem, 5vw, 3.5rem) 1.5rem clamp(2.25rem, 6vw, 4rem)' }}>
-        <div className="mx-auto max-w-5xl">
-          <div className="mb-6">
-            <Breadcrumb
-              items={[
-                { label: 'Accueil', href: '/' },
-                { label: 'Blog' },
-              ]}
-            />
-          </div>
-
-          <div
-            className="inline-flex items-center gap-2 mb-6"
-            style={{
-              fontSize: '0.7rem',
-              letterSpacing: '0.12em',
-              textTransform: 'uppercase',
-              color: 'var(--ink-2)',
-              fontWeight: 700,
-            }}
-          >
-            <span className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: 'var(--brand)' }} />
-            Marketing digital · PME · Sans jargon
-          </div>
-
-          <h1
-            className="font-display font-extrabold mb-6"
-            style={{
-              fontSize: 'clamp(2.6rem, 5vw, 5rem)',
-              color: 'var(--ink)',
-              lineHeight: 1.05,
-              letterSpacing: '-0.025em',
-            }}
-          >
-            Le digital pour PME,<br />
-            <em
-              style={{
-                color: 'var(--brand)',
-              }}
-            >
-              expliqué clairement.
-            </em>
-          </h1>
-
-          <p
-            className="text-base leading-relaxed max-w-2xl"
-            style={{ color: 'var(--ink-2)' }}
-          >
-            Des guides pratiques sur le SEO, la publicité en ligne, la création de site et l&apos;automatisation. Écrits pour des chefs d&apos;entreprise, pas pour des développeurs.
-          </p>
-        </div>
-      </section>
+      <PageBanner
+        breadcrumb={
+          <Breadcrumb
+            tone="vert"
+            items={[
+              { label: 'Accueil', href: '/' },
+              { label: 'Blog' },
+            ]}
+          />
+        }
+        eyebrow="Marketing digital · PME · Sans jargon"
+        title="Le digital pour PME, expliqué clairement."
+        highlight="expliqué clairement."
+        sub="Des guides pratiques sur le SEO, la publicité en ligne, la création de site et l&apos;automatisation. Écrits pour des chefs d&apos;entreprise, pas pour des développeurs."
+        actions={<BannerCta href="/audit-gratuit">Audit gratuit 30 min</BannerCta>}
+      />
 
       {/* Catégories */}
       <section

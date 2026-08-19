@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import { PageBanner, BannerCta, BannerCtaLine } from '@/components/sections/PageBanner'
 import { JsonLd } from '@/components/seo/JsonLd'
 import { BASE_URL, serviceSchema, breadcrumbSchema } from '@/lib/schema'
 
@@ -111,38 +112,26 @@ export default function SeoPage() {
         faqSchema,
       ]} />
 
-      {/* Hero */}
-      <section className="bg-background" style={{ padding: 'clamp(2rem, 5vw, 3.5rem) 1.5rem clamp(2.25rem, 6vw, 4rem)' }}>
-        <div className="mx-auto max-w-4xl">
-          <div className="flex items-center gap-2 mb-6" style={{ fontSize: '0.7rem', letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--ink-2)', fontWeight: 700 }}>
-            <span className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: 'var(--brand)' }} />
-            Service · SEO & Référencement
-          </div>
-          <h1 className="font-display font-extrabold mb-6" style={{ fontSize: 'clamp(2.4rem, 5vw, 5rem)', color: 'var(--ink)', lineHeight: 1.05, letterSpacing: '-0.025em' }}>
-            SEO & Référencement naturel<br />
-            <span style={{ color: 'var(--brand)' }}>1ère page Google pour votre PME.</span>
-          </h1>
-          <p className="text-base leading-relaxed mb-4 max-w-2xl" style={{ color: 'var(--ink-2)' }}>
-            Le premier résultat Google capte 32% des clics. Je positionne votre PME en tête
-            des recherches de vos clients — trafic qualifié, durable, sans dépendre de la publicité.
-          </p>
-          <div className="flex items-center gap-3 mb-8">
-            <span className="text-2xl font-display font-bold" style={{ color: 'var(--brand)' }}>+150%</span>
-            <span className="text-sm" style={{ color: 'var(--ink-2)' }}>trafic organique moyen après 6 mois</span>
-          </div>
-          <div className="flex gap-4 flex-wrap">
-            <Link href="/audit-gratuit" className="inline-flex items-center gap-2 rounded-full font-medium text-sm h-12 px-8" style={{ backgroundColor: 'var(--brand)', color: 'var(--on-brand)' }}>
-              Audit SEO gratuit
-            </Link>
-            <Link href="/services/creation-site-web" className="inline-flex items-center gap-2 rounded-full font-medium text-sm h-12 px-8 hover:border-[var(--brand)] hover:text-[var(--brand)] transition-colors" style={{ border: '1px solid var(--line)', color: 'var(--ink-2)' }}>
-              Créer d&apos;abord votre site →
-            </Link>
-          </div>
-        </div>
-      </section>
+      <PageBanner
+        image={{ src: '/images/services/seo.jpg', priority: true }}
+        eyebrow="Service · SEO & Référencement"
+        title="SEO & référencement naturel. 1ère page Google pour votre PME."
+        highlight="1ère page Google pour votre PME."
+        sub="Le premier résultat Google capte 32 % des clics. Je positionne votre PME en tête des recherches de vos clients : du trafic qualifié, durable, sans dépendre de la publicité."
+        actions={
+          <>
+            <BannerCta href="/audit-gratuit">Audit SEO gratuit</BannerCta>
+            <BannerCtaLine href="/services/creation-site-web">Créer d&apos;abord votre site</BannerCtaLine>
+          </>
+        }
+      >
+        <p style={{ marginTop: '1rem', fontSize: '0.85rem', fontWeight: 600, color: 'oklch(0.985 0.003 150 / 78%)' }}>
+          +150 % de trafic organique en moyenne après 6 mois
+        </p>
+      </PageBanner>
 
       {/* Méthodologie */}
-      <section className="bg-background" style={{ ...sectionStyle, paddingTop: '0' }}>
+      <section className="bg-background" style={{ ...sectionStyle, borderTop: 0 }}>
         <div className="mx-auto max-w-5xl">
           <div style={labelStyle}>Ma méthode SEO</div>
           <h2 className="font-display font-extrabold mb-5 sm:mb-10" style={{ fontSize: 'clamp(1.6rem, 3vw, 2.5rem)', color: 'var(--ink)', letterSpacing: '-0.02em' }}>

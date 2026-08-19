@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import { PageBanner, BannerCta, BannerCtaLine } from '@/components/sections/PageBanner'
 import { JsonLd } from '@/components/seo/JsonLd'
 import { BASE_URL, serviceSchema, breadcrumbSchema } from '@/lib/schema'
 
@@ -120,39 +121,26 @@ export default function AutomatisationMarketingPage() {
         faqSchema,
       ]} />
 
-      {/* Hero */}
-      <section className="bg-background" style={{ padding: 'clamp(2rem, 5vw, 3.5rem) 1.5rem clamp(2.25rem, 6vw, 4rem)' }}>
-        <div className="mx-auto max-w-4xl">
-          <div className="flex items-center gap-2 mb-6" style={{ fontSize: '0.7rem', letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--ink-2)', fontWeight: 700 }}>
-            <span className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: 'var(--brand)' }} />
-            Service · Automatisation Marketing
-          </div>
-          <h1 className="font-display font-extrabold mb-6" style={{ fontSize: 'clamp(2.4rem, 5vw, 5rem)', color: 'var(--ink)', lineHeight: 1.05, letterSpacing: '-0.025em' }}>
-            Automatisation marketing PME<br />
-            <span style={{ color: 'var(--brand)' }}>des leads même quand vous dormez.</span>
-          </h1>
-          <p className="text-base leading-relaxed mb-4 max-w-2xl" style={{ color: 'var(--ink-2)' }}>
-            Je construis des systèmes marketing qui travaillent pour votre PME 24h/24.
-            Qualification automatique des leads, nurturing par email, CRM structuré —
-            votre pipeline commercial tourne en autonomie pendant que vous faites votre métier.
-          </p>
-          <div className="flex items-center gap-3 mb-8">
-            <span className="text-2xl font-display font-bold" style={{ color: 'var(--brand)' }}>10h</span>
-            <span className="text-sm" style={{ color: 'var(--ink-2)' }}>gagnées par semaine en moyenne</span>
-          </div>
-          <div className="flex gap-4 flex-wrap">
-            <Link href="/audit-gratuit" className="inline-flex items-center gap-2 rounded-full font-medium text-sm h-12 px-8" style={{ backgroundColor: 'var(--brand)', color: 'var(--on-brand)' }}>
-              Voir comment ça fonctionne
-            </Link>
-            <Link href="/blog/automatisation-marketing-pme-debutant" className="inline-flex items-center gap-2 rounded-full font-medium text-sm h-12 px-8 hover:border-[var(--brand)] hover:text-[var(--brand)] transition-colors" style={{ border: '1px solid var(--line)', color: 'var(--ink-2)' }}>
-              Lire le guide →
-            </Link>
-          </div>
-        </div>
-      </section>
+      <PageBanner
+        image={{ src: '/images/services/automatisation-marketing.jpg', priority: true }}
+        eyebrow="Service · Automatisation marketing"
+        title="Automatisation marketing PME. Des leads même quand vous dormez."
+        highlight="Des leads même quand vous dormez."
+        sub="Des systèmes qui travaillent pour votre PME 24 h/24 : qualification des leads, nurturing par email, CRM structuré. Votre pipeline tourne pendant que vous faites votre métier."
+        actions={
+          <>
+            <BannerCta href="/audit-gratuit">Voir comment ça fonctionne</BannerCta>
+            <BannerCtaLine href="/blog/automatisation-marketing-pme-debutant">Lire le guide</BannerCtaLine>
+          </>
+        }
+      >
+        <p style={{ marginTop: '1rem', fontSize: '0.85rem', fontWeight: 600, color: 'oklch(0.985 0.003 150 / 78%)' }}>
+          10 h gagnées par semaine en moyenne
+        </p>
+      </PageBanner>
 
       {/* Ce qu'on automatise */}
-      <section className="bg-background" style={{ ...sectionStyle, paddingTop: '0' }}>
+      <section className="bg-background" style={{ ...sectionStyle, borderTop: 0 }}>
         <div className="mx-auto max-w-5xl">
           <div style={labelStyle}>Ce qu&apos;on automatise</div>
           <h2 className="font-display font-extrabold mb-5 sm:mb-10" style={{ fontSize: 'clamp(1.6rem, 3vw, 2.5rem)', color: 'var(--ink)', letterSpacing: '-0.02em' }}>

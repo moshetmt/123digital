@@ -8,7 +8,11 @@ export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),
   title: {
     default: '123 Digital Lyon — Digital Growth Expert for SMEs',
-    template: '%s | 123 Digital Lyon',
+    // Meme correctif que le layout francais : les pages /en finissent deja par
+    // « | 123 Digital » ou « | 123 Digital Lyon », ce gabarit en rajoutait un
+    // second. Le title de /en/services faisait 93 caracteres dont la marque
+    // deux fois. Ne pas y remettre de suffixe.
+    template: '%s',
   },
   description:
     'Maurice Timsit, digital consultant based in Lyon: SEO, web design, online advertising and automation for SMEs. Free 30-min audit, no commitment.',

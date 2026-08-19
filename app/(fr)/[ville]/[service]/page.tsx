@@ -234,7 +234,10 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const service = services.find((s) => s.id === serviceSlug)
   if (!ville || !service) return {}
 
-  const title = `${service.title} ${ville.nom} — Expert PME | 123 Digital`
+  // Format court : « Branding & Identité Bourg-en-Bresse — Expert PME |
+  // 123 Digital » depassait 60 caracteres et Google coupait la marque. On garde
+  // le service et la ville, qui sont ce que la requete contient.
+  const title = `${service.title} à ${ville.nom} | 123 Digital`
   const description = `Maurice Timsit, expert en ${service.title.toLowerCase()} à ${ville.nom}. ${service.description} Audit gratuit 30 min, sans engagement.`
 
   return {

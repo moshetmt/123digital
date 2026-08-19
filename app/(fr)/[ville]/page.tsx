@@ -23,8 +23,34 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const ville = allVilles.find((v) => v.slug === villeSlug)
   if (!ville) return {}
 
-  const title = `Consultant Digital ${ville.nom} — Expert Croissance PME | 123 Digital`
-  const description = `Maurice Timsit, expert en croissance digitale à ${ville.nom} : création de site web, SEO, Google Ads et automatisation pour PME. Audit gratuit 30 min, sans engagement.`
+  // 🔴 LYON EST UN CAS PARTICULIER, ET C'EST MESURE.
+  // Au 19/08, `/lyon` et `/consultant-digital-lyon` portaient un title
+  // STRICTEMENT IDENTIQUE. Deux pages pour une requete : Google n'en a choisi
+  // aucune, les deux font ZERO impression, et il sert `/bourg-en-bresse` sur
+  // 31 requetes lyonnaises a la place.
+  // Les donnees montrent deux familles distinctes, toutes deux captees par la
+  // mauvaise page : « consultant / cabinet / conseil » et « agence ». On donne
+  // donc une page a chacune plutot que de les faire se concurrencer :
+  //   /consultant-digital-lyon -> « consultant digital lyon » (URL = requete)
+  //   /lyon                    -> « agence digitale lyon », famille qui pese
+  //                               `agence transformation digitale lyon`,
+  //                               `agence growth hacking lyon`,
+  //                               `agence conseil digital lyon`,
+  //                               `agence performance digitale lyon`.
+  // ⛔ Ne pas realigner les deux titles : c'est precisement ce qui les rendait
+  // invisibles.
+  const estLyon = villeSlug === 'lyon'
+  const title = estLyon
+    ? 'Agence digitale Lyon : SEO, site web, Google Ads | 123 Digital'
+    // Format court, volontairement. L'ancien, « Consultant Digital {Ville} —
+    // Expert Croissance PME | 123 Digital », faisait 72 caracteres sur
+    // Bourg-en-Bresse : Google coupait la marque ET une partie du qualificatif.
+    // Ici on garde ce que la requete contient vraiment, « consultant digital »
+    // plus le nom de la ville, et rien de plus.
+    : `Consultant digital à ${ville.nom} | 123 Digital`
+  const description = estLyon
+    ? 'Agence digitale à Lyon pour PME : référencement, création de site, publicité en ligne et automatisation. Audit gratuit de 30 min, sans engagement.'
+    : `Maurice Timsit, expert en croissance digitale à ${ville.nom} : création de site web, SEO, Google Ads et automatisation pour PME. Audit gratuit 30 min, sans engagement.`
 
   return {
     title,

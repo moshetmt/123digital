@@ -28,7 +28,15 @@ export const metadata: Metadata = {
 
   title: {
     default: '123 Digital Lyon — Expert en Croissance Digitale pour PME',
-    template: '%s | 123 Digital Lyon',
+    // 🔴 PAS DE SUFFIXE ICI. Mesure du 19/08 sur les 212 pages fabriquees :
+    // 199 portaient « 123 Digital » DEUX fois et 204 depassaient 60 caracteres
+    // (mediane 76, maximum 125), parce que chaque page finit deja par
+    // « | 123 Digital » et que ce gabarit rajoutait « | 123 Digital Lyon »
+    // par-dessus. Google coupe vers 60 : ce qui etait tronque en resultat de
+    // recherche, c'etait la marque repetee.
+    // ⛔ Ne pas y remettre de suffixe. La marque se met dans le title de la
+    // page, une seule fois, ou nulle part.
+    template: '%s',
   },
 
   description:

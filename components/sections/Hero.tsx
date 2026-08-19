@@ -4,6 +4,7 @@ import { useRef, useSyncExternalStore } from 'react'
 import Link from 'next/link'
 import { motion, useInView } from 'framer-motion'
 import { Phone, Check, CircleCheck, Clock } from 'lucide-react'
+import { projects } from '@/data/portfolio'
 import { t, type Locale } from '@/lib/i18n'
 
 const EASE = [0.16, 1, 0.3, 1] as [number, number, number, number]
@@ -33,7 +34,66 @@ function getServerClosedSnapshot() {
   return false
 }
 
-function StatusCard({ lang }: { lang: Locale }) {
+// ── Carte de preuve ───────────────────────────────────────────────────────────
+// Remplace l'ancienne carte « Ouvert / En direct ». Motif importe de depann69,
+// ou la disponibilite immediate EST la question d'achat. Pour du conseil, non :
+// personne ne choisit son consultant selon qu'il decroche a la seconde.
+// Ce qui convertit, d'apres les donnees : les resultats clients chiffres et
+// verifiables (les etudes de cas sectorielles convertissent jusqu'a 5 fois
+// mieux que des promesses generiques). On montre donc les 3 dossiers reels.
+function ProofCard({ lang }: { lang: Locale }) {
+  const d = t(lang).hero
+  return (
+    <div
+      className="rounded-3xl"
+      style={{
+        backgroundColor: 'var(--surface-2)',
+        border: '1px solid var(--line)',
+        boxShadow: '0 8px 30px var(--shadow-soft)',
+        padding: 'clamp(1rem, 3.5vw, 1.5rem)',
+      }}
+    >
+      <div className="flex items-center justify-between mb-3">
+        <span style={{ fontSize: '0.7rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--ink-3)' }}>
+          {lang === 'en' ? 'Client results' : 'Résultats clients'}
+        </span>
+        <span
+          style={{
+            backgroundColor: 'var(--brand-tint)', color: 'var(--brand-strong)', borderRadius: 999,
+            padding: '0.25rem 0.6rem', fontSize: '0.65rem', fontWeight: 800,
+            textTransform: 'uppercase', letterSpacing: '0.08em',
+          }}
+        >
+          {lang === 'en' ? 'Verifiable' : 'Vérifiables'}
+        </span>
+      </div>
+
+      {/* Chiffre court par dossier : decouper `results` automatiquement
+          amputait la punchline de Clim69 (le benefice net). */}
+      <ul className="flex flex-col gap-2 mb-4">
+        {projects.slice(0, 3).map((p) => (
+          <li key={p.id} className="flex items-baseline justify-between gap-3">
+            <span style={{ fontSize: '0.84rem', fontWeight: 700, color: 'var(--ink)' }}>{p.title}</span>
+            <span style={{ fontSize: '0.84rem', fontWeight: 800, color: 'var(--brand-strong)', textAlign: 'right', whiteSpace: 'nowrap' }}>
+              {p.metric ?? p.results}
+            </span>
+          </li>
+        ))}
+      </ul>
+
+      <a
+        href={PHONE_TEL}
+        className="flex items-center justify-center gap-2 w-full rounded-full font-bold whitespace-nowrap"
+        style={{ backgroundColor: 'var(--brand)', color: 'var(--on-brand)', padding: '0.75rem', fontSize: '0.98rem' }}
+      >
+        <Phone size={16} aria-hidden />
+        {PHONE_DISPLAY}
+      </a>
+    </div>
+  )
+}
+
+function StatusCardAncienne({ lang }: { lang: Locale }) {
   const d = t(lang).hero
   const isClosed = useSyncExternalStore(subscribeToClock, computeClosed, getServerClosedSnapshot)
 
@@ -111,10 +171,50 @@ export function Hero({ lang = 'fr' }: { lang?: Locale }) {
     <section
       ref={ref}
       id="section-hero"
+      className="relative isolate overflow-hidden"
       style={{ backgroundColor: 'var(--surface)', padding: 'clamp(1.5rem, 5vw, 4rem) 1.5rem' }}
       aria-label="Section hero"
     >
-      <div className="mx-auto max-w-7xl grid grid-cols-1 lg:grid-cols-[1fr_360px] gap-5 lg:gap-14 items-center">
+      {/* ── Fond de banniere ──────────────────────────────────────────────
+          La banniere avait le meme blanc que le reste de la page et ne se
+          detachait pas. Deux couches :
+          1. une video muette en boucle si `public/videos/hero.mp4` existe ;
+          2. un degrade de marque en dessous, qui sert de repli et reste
+             visible si le fichier manque ou si le visiteur economise ses
+             donnees. Le voile clair par-dessus garantit la lisibilite du
+             texte en encre, quelle que soit la video posee. */}
+      <div aria-hidden className="absolute inset-0 -z-10">
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              'radial-gradient(120% 90% at 15% 0%, var(--brand-tint) 0%, transparent 55%), ' +
+              'radial-gradient(90% 80% at 100% 100%, var(--surface-3) 0%, transparent 60%), ' +
+              'var(--surface)',
+          }}
+        />
+        <video
+          className="absolute inset-0 h-full w-full object-cover motion-reduce:hidden"
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="none"
+          poster="/images/hero-poster.jpg"
+          style={{ opacity: 0.34 }}
+        >
+          <source src="/videos/hero.mp4" type="video/mp4" />
+        </video>
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              'linear-gradient(180deg, oklch(0.968 0.005 150 / 0.62) 0%, oklch(0.968 0.005 150 / 0.80) 60%, var(--surface) 100%)',
+          }}
+        />
+      </div>
+
+      <div className="relative mx-auto max-w-7xl grid grid-cols-1 lg:grid-cols-[1fr_360px] gap-5 lg:gap-14 items-center">
         <div className="text-center lg:text-left">
           <motion.h1
             initial={{ y: 16, opacity: 0, filter: 'blur(6px)' }}
@@ -191,7 +291,7 @@ export function Hero({ lang = 'fr' }: { lang?: Locale }) {
           animate={isInView ? { opacity: 1, y: 0, filter: 'blur(0px)' } : {}}
           transition={{ duration: 0.8, delay: 0.25, ease: EASE }}
         >
-          <StatusCard lang={lang} />
+          <ProofCard lang={lang} />
         </motion.div>
       </div>
     </section>

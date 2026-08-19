@@ -5,6 +5,10 @@ export interface PortfolioProject {
   sector: string
   description: string
   results: string
+  /** Version courte du resultat, pour les emplacements etroits (carte de
+   *  preuve du hero). Decouper `results` automatiquement amputait la
+   *  punchline la plus forte. */
+  metric?: string
   tags: string[]
   featured: boolean
   screenshot?: string
@@ -23,6 +27,7 @@ export const projects: PortfolioProject[] = [
     description:
       'Compte Google Ads monté de zéro, refonte du site, 19 pages locales, suivi des appels et devis.',
     results: '1 000 € investis, 13 000 € de bénéfice net (ROI x13)',
+    metric: 'ROI x13',
     tags: ['Google Ads', 'Refonte web', 'SEO local', 'Villeurbanne'],
     featured: true,
     url: 'https://clim69.fr',
@@ -35,6 +40,7 @@ export const projects: PortfolioProject[] = [
     description:
       'Création du site vitrine et stratégie SEO local pour une entreprise de démolition et déconstruction basée à Lyon, visant à capter des chantiers en Auvergne-Rhône-Alpes.',
     results: '+180% de visibilité locale, 1ère position sur les requêtes clés à Lyon',
+    metric: '+180% visibilité',
     tags: ['SEO local', 'Création web', 'BTP', 'Lyon'],
     featured: true,
     url: 'https://rhone-deconstruction.fr',
@@ -47,6 +53,7 @@ export const projects: PortfolioProject[] = [
     description:
       "Refonte du site et optimisation SEO local pour un cabinet d'audioprothèse à Cannes, avec mise en avant des aides auditives remboursées et des services de bilan auditif.",
     results: '+240% de trafic organique, Top 3 sur les requêtes audioprothèse Cannes',
+    metric: '+240% trafic',
     tags: ['SEO local', 'Création web', 'Santé', 'Cannes'],
     featured: true,
     url: 'https://aplusaudition.fr',

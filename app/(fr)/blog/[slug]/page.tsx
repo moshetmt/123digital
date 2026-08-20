@@ -6,6 +6,7 @@ import { JsonLd } from '@/components/seo/JsonLd'
 import { Breadcrumb } from '@/components/layout/Breadcrumb'
 import { BASE_URL, breadcrumbSchema, articleSchema } from '@/lib/schema'
 import { articles, getArticleBySlug, type BlogSection } from '@/data/blog'
+import { CTA } from '@/components/sections/CTA'
 
 interface PageProps {
   params: Promise<{ slug: string }>
@@ -482,6 +483,8 @@ export default async function BlogArticlePage({ params }: PageProps) {
           </div>
         </section>
       )}
+      {/* Formulaire — composant unique CTA.tsx, partage par tout le site */}
+      <CTA />
     </>
   )
 }

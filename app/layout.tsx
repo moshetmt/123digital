@@ -3,6 +3,7 @@ import { Plus_Jakarta_Sans } from 'next/font/google'
 import Script from 'next/script'
 import './globals.css'
 import { JsonLd } from '@/components/seo/JsonLd'
+import { LeadSource } from '@/components/analytics/LeadSource'
 import {
   BASE_URL,
   personSchema,
@@ -143,6 +144,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </head>
       <body className="min-h-screen bg-background text-foreground font-sans antialiased">
         {children}
+        {/* Provenance des leads (gclid, utm) memorisee des la premiere page vue */}
+        <LeadSource />
         {/* Google Analytics */}
         <Script src="https://www.googletagmanager.com/gtag/js?id=G-96F0VT9FDY" strategy="afterInteractive" />
         <Script id="ga4" strategy="afterInteractive">{`

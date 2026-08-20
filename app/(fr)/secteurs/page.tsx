@@ -5,10 +5,11 @@ import {
   Home, Wrench, Sparkles, BarChart3, Truck, type LucideIcon,
 } from 'lucide-react'
 import { JsonLd } from '@/components/seo/JsonLd'
-import { PageBanner, BannerCta, BannerCtaLine } from '@/components/sections/PageBanner'
+import { PageBanner, BannerCta } from '@/components/sections/PageBanner'
 import { Breadcrumb } from '@/components/layout/Breadcrumb'
 import { BASE_URL, breadcrumbSchema, localBusinessSchema } from '@/lib/schema'
 import { secteurs } from '@/data/secteurs'
+import { CTA } from '@/components/sections/CTA'
 
 // Correspondance nom d'icone -> composant lucide (catalogue icones.js.org).
 // Regle du proprietaire : jamais d'emoji dans l'interface.
@@ -148,39 +149,8 @@ export default function SecteursPage() {
         </div>
       </section>
 
-      {/* CTA */}
-      <section
-        className="bg-background"
-        style={{ padding: 'clamp(2rem, 5vw, 3.5rem) 1.5rem clamp(2.25rem, 6vw, 4rem)', borderTop: '1px solid var(--line)', textAlign: 'center' }}
-      >
-        <div className="mx-auto max-w-2xl">
-          <h2
-            className="font-display font-extrabold mb-4"
-            style={{ fontSize: 'clamp(1.8rem, 3.5vw, 2.8rem)', color: 'var(--ink)', lineHeight: 1.1 }}
-          >
-            Votre secteur n&apos;est pas dans la liste ?
-          </h2>
-          <p style={{ color: 'var(--ink-2)', marginBottom: '2.5rem', lineHeight: 1.7 }}>
-            J&apos;accompagne les PME de tous secteurs. Prenons 30 minutes pour explorer ensemble comment développer votre activité en ligne.
-          </p>
-          <Link
-            href="/audit-gratuit"
-            style={{
-              display: 'inline-block',
-              borderRadius: 999,
-              padding: '1rem 2.5rem',
-              backgroundColor: 'var(--brand)',
-              color: 'var(--on-brand)',
-              fontSize: '0.85rem',
-              fontWeight: 700,
-              letterSpacing: '0.08em',
-              textTransform: 'uppercase',
-            }}
-          >
-            Audit gratuit 30 min
-          </Link>
-        </div>
-      </section>
+      {/* Formulaire — composant unique CTA.tsx, partage par tout le site */}
+      <CTA />
     </>
   )
 }

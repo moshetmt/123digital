@@ -4,6 +4,7 @@ import { useRef, useState } from 'react'
 import { motion, useInView, AnimatePresence } from 'framer-motion'
 import { Check } from 'lucide-react'
 import { t, type Locale } from '@/lib/i18n'
+import { readLeadSource } from '@/lib/lead-source'
 
 const EASE = [0.22, 1, 0.36, 1] as [number, number, number, number]
 
@@ -142,10 +143,20 @@ export function CTA({ lang = 'fr' }: { lang?: Locale }) {
     setSendError(false)
     setLoading(true)
     try {
+      // Page de soumission + provenance memorisee au premier clic : les deux
+      // colonnes qui rendent le Sheet exploitable pour piloter les campagnes.
+      const { source, landing } = readLeadSource()
       const res = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ ...form, hp }),
+        body: JSON.stringify({
+          ...form,
+          hp,
+          page: window.location.pathname,
+          landing,
+          source,
+          lang,
+        }),
       })
       if (!res.ok) throw new Error('send_failed')
       window.gtag?.('event', 'generate_lead', { method: 'formulaire_audit' })

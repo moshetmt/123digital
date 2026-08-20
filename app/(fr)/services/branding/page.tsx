@@ -4,6 +4,7 @@ import { PageBanner, BannerCta, BannerCtaLine } from '@/components/sections/Page
 import { BlocsDepliants } from '@/components/ui/BlocsDepliants'
 import { JsonLd } from '@/components/seo/JsonLd'
 import { BASE_URL, serviceSchema, breadcrumbSchema } from '@/lib/schema'
+import { CTA } from '@/components/sections/CTA'
 
 export const metadata: Metadata = {
   title: 'Branding & Identité Visuelle PME — Logo & Charte | 123Digital',
@@ -232,18 +233,8 @@ export default function BrandingPage() {
         </div>
       </section>
 
-      {/* CTA final */}
-      <section className="bg-background" style={{ padding: '4rem 1.5rem 7rem', borderTop: '1px solid var(--line)', textAlign: 'center' }}>
-        <div className="mx-auto max-w-2xl">
-          <h2 className="font-display font-extrabold mb-4" style={{ fontSize: 'clamp(1.8rem, 4vw, 3rem)', color: 'var(--ink)', letterSpacing: '-0.025em' }}>
-            Une identité qui vous ressemble<br />et que vos clients n&apos;oublieront pas.
-          </h2>
-          <p className="text-sm mb-8" style={{ color: 'var(--ink-2)' }}>Fichiers sources inclus · Vous êtes propriétaire · Livraison en 3 semaines</p>
-          <Link href="/audit-gratuit" className="inline-flex items-center gap-2 rounded-full font-medium text-sm h-12 px-8" style={{ backgroundColor: 'var(--brand)', color: 'var(--on-brand)' }}>
-            Démarrer mon projet branding
-          </Link>
-        </div>
-      </section>
+      {/* Formulaire — composant unique CTA.tsx, partage par tout le site */}
+      <CTA />
     </>
   )
 }

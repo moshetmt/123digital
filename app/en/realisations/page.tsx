@@ -7,6 +7,7 @@ import { BASE_URL, breadcrumbSchema, localBusinessSchema } from '@/lib/schema'
 import { projects } from '@/data/portfolio'
 import { t } from '@/lib/i18n'
 import { languesPour } from '@/data/hreflang'
+import { CTA } from '@/components/sections/CTA'
 
 const PHONE_TEL = 'tel:+33652092301'
 const PHONE_DISPLAY = '06 52 09 23 01'
@@ -212,38 +213,8 @@ export default function CaseStudiesPage() {
       </section>
 
       {/* Final CTA — the page's one solid green block */}
-      <section
-        id="realisations-cta"
-        style={{ backgroundColor: 'var(--brand)', padding: 'clamp(2.5rem, 6vw, 4rem) 1.5rem', textAlign: 'center' }}
-      >
-        <div className="mx-auto max-w-2xl">
-          <h2
-            className="font-sans font-extrabold mb-3"
-            style={{ fontSize: 'clamp(1.7rem, 3.4vw, 2.6rem)', color: 'var(--on-brand)', lineHeight: 1.12 }}
-          >
-            {d.caseStudiesPage.finalHeading}
-          </h2>
-          <p style={{ color: 'oklch(0.985 0.003 150 / 88%)', marginBottom: '2rem', lineHeight: 1.65, maxWidth: '48ch', marginLeft: 'auto', marginRight: 'auto' }}>
-            {d.caseStudiesPage.finalBody}
-          </p>
-          <div className="flex flex-wrap justify-center gap-3">
-            <a
-              href={PHONE_TEL}
-              className="inline-flex items-center gap-2 rounded-full font-bold"
-              style={{ backgroundColor: 'var(--on-brand)', color: 'var(--brand-strong)', padding: '0.85rem 1.5rem', fontSize: '0.92rem' }}
-            >
-              <Phone size={16} aria-hidden /> {PHONE_DISPLAY}
-            </a>
-            <Link
-              href="/en/audit"
-              className="inline-flex items-center gap-2 rounded-full font-bold"
-              style={{ border: '2px solid oklch(0.985 0.003 150 / 55%)', color: 'var(--on-brand)', padding: '0.8rem 1.4rem', fontSize: '0.92rem' }}
-            >
-              {d.caseStudiesPage.finalCtaBtn} <ArrowRight size={15} aria-hidden />
-            </Link>
-          </div>
-        </div>
-      </section>
+      {/* Formulaire — composant unique CTA.tsx, partage par tout le site */}
+      <CTA lang="en" />
     </>
   )
 }

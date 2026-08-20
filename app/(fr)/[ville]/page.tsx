@@ -9,6 +9,7 @@ import { allVilles, villesARA, villeInsights } from '@/data/villes'
 import { estIndexable } from '@/data/indexation'
 import { services } from '@/data/services'
 import { secteurs } from '@/data/secteurs'
+import { CTA } from '@/components/sections/CTA'
 
 interface PageProps {
   params: Promise<{ ville: string }>
@@ -131,7 +132,8 @@ export default async function VillePage({ params }: PageProps) {
               { label: `${ville.nom}` },
             ]}
           />
-        }
+        }
+
         title={`Consultant digital à ${ville.nom}`}
         highlight={`à ${ville.nom}`}
         sub={`Maurice Timsit accompagne les PME de ${ville.nom} (${ville.description}) dans leur croissance digitale : site web qui convertit, SEO local, publicité Google et Meta, branding et automatisation. Un seul interlocuteur, des résultats mesurables.`}
@@ -420,39 +422,8 @@ export default async function VillePage({ params }: PageProps) {
         </section>
       )}
 
-      {/* CTA final */}
-      <section
-        className="bg-background"
-        style={{ padding: 'clamp(2rem, 5vw, 3.5rem) 1.5rem clamp(2.25rem, 6vw, 4rem)', borderTop: '1px solid var(--line)', textAlign: 'center' }}
-      >
-        <div className="mx-auto max-w-2xl">
-          <h2
-            className="font-display font-extrabold mb-4"
-            style={{ fontSize: 'clamp(1.8rem, 3.5vw, 2.8rem)', color: 'var(--ink)', lineHeight: 1.1 }}
-          >
-            Prêt à développer votre activité<br />à {ville.nom} ?
-          </h2>
-          <p style={{ color: 'var(--ink-2)', marginBottom: '2.5rem', lineHeight: 1.7 }}>
-            Un audit gratuit de 30 minutes pour identifier les 3 actions les plus rentables pour votre entreprise. Sans engagement, sans jargon.
-          </p>
-          <Link
-            href="/audit-gratuit"
-            style={{
-              display: 'inline-block',
-              borderRadius: 999,
-              padding: '1rem 2.5rem',
-              backgroundColor: 'var(--brand)',
-              color: 'var(--on-brand)',
-              fontSize: '0.85rem',
-              fontWeight: 700,
-              letterSpacing: '0.08em',
-              textTransform: 'uppercase',
-            }}
-          >
-            Demander mon audit gratuit
-          </Link>
-        </div>
-      </section>
+      {/* Formulaire — composant unique CTA.tsx, partage par tout le site */}
+      <CTA />
     </>
   )
 }

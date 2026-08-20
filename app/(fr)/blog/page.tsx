@@ -2,11 +2,12 @@ import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
 import { JsonLd } from '@/components/seo/JsonLd'
-import { PageBanner, BannerCta, BannerCtaLine } from '@/components/sections/PageBanner'
+import { PageBanner, BannerCta } from '@/components/sections/PageBanner'
 import { Breadcrumb } from '@/components/layout/Breadcrumb'
 import { BASE_URL, breadcrumbSchema } from '@/lib/schema'
 import { articles, categories } from '@/data/blog'
 import { languesPour } from '@/data/hreflang'
+import { CTA } from '@/components/sections/CTA'
 
 export const metadata: Metadata = {
   title: 'Blog — Conseils marketing digital pour PME | 123 Digital',
@@ -223,39 +224,8 @@ export default function BlogPage() {
         </div>
       </section>
 
-      {/* CTA newsletter/audit */}
-      <section
-        className="bg-background"
-        style={{ padding: 'clamp(2rem, 5vw, 3.5rem) 1.5rem clamp(2.25rem, 6vw, 4rem)', borderTop: '1px solid var(--line)', textAlign: 'center' }}
-      >
-        <div className="mx-auto max-w-2xl">
-          <h2
-            className="font-display font-extrabold mb-4"
-            style={{ fontSize: 'clamp(1.8rem, 3.5vw, 2.8rem)', color: 'var(--ink)', lineHeight: 1.1 }}
-          >
-            Besoin d&apos;un regard expert<br />sur votre situation ?
-          </h2>
-          <p style={{ color: 'var(--ink-2)', marginBottom: '2.5rem', lineHeight: 1.7 }}>
-            Ces articles vous donnent les bases — mais chaque entreprise est différente. Un audit gratuit de 30 minutes pour analyser votre cas spécifique.
-          </p>
-          <Link
-            href="/audit-gratuit"
-            style={{
-              display: 'inline-block',
-              borderRadius: 999,
-              padding: '1rem 2.5rem',
-              backgroundColor: 'var(--brand)',
-              color: 'var(--on-brand)',
-              fontSize: '0.85rem',
-              fontWeight: 700,
-              letterSpacing: '0.08em',
-              textTransform: 'uppercase',
-            }}
-          >
-            Audit gratuit 30 min
-          </Link>
-        </div>
-      </section>
+      {/* Formulaire — composant unique CTA.tsx, partage par tout le site */}
+      <CTA />
     </>
   )
 }

@@ -5,6 +5,7 @@ import { JsonLd } from '@/components/seo/JsonLd'
 import { PageBanner, BannerCta, BannerCtaLine } from '@/components/sections/PageBanner'
 import { BASE_URL, personSchema, breadcrumbSchema } from '@/lib/schema'
 import { languesPour } from '@/data/hreflang'
+import { CTA } from '@/components/sections/CTA'
 
 export const metadata: Metadata = {
   title: 'À propos — Maurice Timsit, expert digital Lyon',
@@ -90,20 +91,8 @@ export default function AProposPage() {
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="bg-background" style={{ padding: 'clamp(2rem, 5vw, 3.5rem) 1.5rem clamp(2.25rem, 6vw, 4rem)', borderTop: '1px solid var(--line)' }}>
-        <div className="mx-auto max-w-2xl text-center">
-          <h2 className="font-display font-extrabold mb-4" style={{ fontSize: 'clamp(1.8rem, 4vw, 3rem)', color: 'var(--ink)', letterSpacing: '-0.025em' }}>
-            Prêt à collaborer ?
-          </h2>
-          <p className="text-sm mb-8" style={{ color: 'var(--ink-2)' }}>
-            Audit gratuit · 30 min · Sans engagement
-          </p>
-          <Link href="/#contact" className="inline-flex items-center gap-2 rounded-full font-medium text-sm h-12 px-8" style={{ backgroundColor: 'var(--brand)', color: 'var(--on-brand)' }}>
-            Prendre contact
-          </Link>
-        </div>
-      </section>
+      {/* Formulaire — composant unique CTA.tsx, partage par tout le site */}
+      <CTA />
     </>
   )
 }

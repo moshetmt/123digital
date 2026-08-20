@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { JsonLd } from '@/components/seo/JsonLd'
 import { PageBanner, BannerCta, BannerCtaLine } from '@/components/sections/PageBanner'
 import { BASE_URL, serviceSchema, breadcrumbSchema } from '@/lib/schema'
+import { CTA } from '@/components/sections/CTA'
 
 export const metadata: Metadata = {
   title: 'Consultant Digital Lyon — Expert Croissance PME | 123 Digital',
@@ -211,27 +212,8 @@ export default function ConsultantDigitalLyonPage() {
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="bg-background" style={{ padding: 'clamp(2rem, 5vw, 3.5rem) 1.5rem clamp(2.25rem, 6vw, 4rem)', borderTop: '1px solid var(--line)' }}>
-        <div className="mx-auto max-w-2xl text-center">
-          <h2
-            className="font-display font-extrabold mb-4"
-            style={{ fontSize: 'clamp(2rem, 4vw, 3.5rem)', color: 'var(--ink)', letterSpacing: '-0.025em' }}
-          >
-            Prêt à développer votre PME à Lyon ?
-          </h2>
-          <p className="text-sm mb-8" style={{ color: 'var(--ink-2)' }}>
-            Audit gratuit · Sans engagement · Réponse sous 24h
-          </p>
-          <Link
-            href="/audit-gratuit"
-            className="inline-flex items-center gap-2 rounded-full font-medium text-sm h-12 px-8 transition-all duration-300"
-            style={{ backgroundColor: 'var(--brand)', color: 'var(--on-brand)' }}
-          >
-            Obtenir mon audit gratuit
-          </Link>
-        </div>
-      </section>
+      {/* Formulaire — composant unique CTA.tsx, partage par tout le site */}
+      <CTA />
     </>
   )
 }

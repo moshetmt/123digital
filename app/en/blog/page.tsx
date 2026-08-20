@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { BASE_URL } from '@/lib/schema'
 import { languesPour } from '@/data/hreflang'
+import { CTA } from '@/components/sections/CTA'
 
 export const metadata: Metadata = {
   title: 'Blog — Digital Growth Tips | 123 Digital Lyon',
@@ -19,8 +20,12 @@ export const metadata: Metadata = {
 
 export default function BlogPageEN() {
   return (
-    <div style={{ paddingTop: '5rem', padding: 'clamp(2rem, 5vw, 3.5rem) 1.5rem clamp(2.25rem, 6vw, 4rem)', textAlign: 'center' }}>
-      <p style={{ color: 'var(--ink-2)', fontSize: '1rem' }}>Articles coming soon.</p>
-    </div>
+    <>
+      <div style={{ paddingTop: '5rem', padding: 'clamp(2rem, 5vw, 3.5rem) 1.5rem clamp(2.25rem, 6vw, 4rem)', textAlign: 'center' }}>
+        <p style={{ color: 'var(--ink-2)', fontSize: '1rem' }}>Articles coming soon.</p>
+      </div>
+      {/* Formulaire — composant unique CTA.tsx, partage par tout le site */}
+      <CTA lang="en" />
+    </>
   )
 }

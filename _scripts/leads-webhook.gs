@@ -43,6 +43,7 @@ var HEADERS = [
   'Montant € HT',
   'Date signature',
   'Prêt pour Ads',
+  'Atterrissage',
 ]
 
 var STATUTS = ['Nouveau', 'Contacté', 'RDV pris', 'Devis envoyé', 'Signé', 'Perdu']
@@ -105,6 +106,7 @@ function appendLead(body) {
     '', // Montant € HT
     '', // Date signature
     '', // Prêt pour Ads
+    str(body.landing),
   ])
 
   var row = sheet.getLastRow()
@@ -150,7 +152,7 @@ function writeHeaders(sheet) {
   sheet.setFrozenRows(1)
   sheet.setRowHeight(1, 34)
 
-  var widths = [140, 110, 130, 210, 130, 180, 150, 320, 200, 260, 120, 120, 120, 120]
+  var widths = [140, 110, 130, 210, 130, 180, 150, 320, 200, 260, 120, 120, 120, 120, 200]
   for (var i = 0; i < widths.length; i++) sheet.setColumnWidth(i + 1, widths[i])
 
   // Liste déroulante sur Statut : la colonne sert de pipeline commercial.
@@ -195,7 +197,8 @@ function refreshDashboard() {
     var r = rows[i]
     var date = r[0] instanceof Date ? r[0] : null
     if (date) {
-      var key = Utilities.formatDate(date, Session.getScriptTimeZone(), 'dd/MM')
+      // Cle triable (yyyy-MM-dd) : 'dd/MM' placerait 02/08 avant 19/07.
+      var key = Utilities.formatDate(date, Session.getScriptTimeZone(), 'yyyy-MM-dd')
       byDay[key] = (byDay[key] || 0) + 1
       var days = (today - date) / 86400000
       if (days <= 7) last7++
@@ -230,7 +233,10 @@ function refreshDashboard() {
   dash.getRange(4, 1, kpis.length, 1).setFontWeight('bold')
   dash.getRange(8, 2).setNumberFormat('#,##0.00 €')
 
-  writeBlock(dash, 10, 1, 'Leads par jour', sortEntries(byDay, true), ['Jour', 'Leads'])
+  var jours = sortEntries(byDay, true).map(function (e) {
+    return [e[0].slice(8, 10) + '/' + e[0].slice(5, 7), e[1]]
+  })
+  writeBlock(dash, 10, 1, 'Leads par jour', jours, ['Jour', 'Leads'])
   writeBlock(dash, 10, 4, 'Répartition par besoin', sortEntries(byNeed, false), ['Besoin', 'Nombre'])
   writeBlock(dash, 10, 7, 'Pages qui convertissent', sortEntries(byPage, false), ['Page', 'Leads'])
 

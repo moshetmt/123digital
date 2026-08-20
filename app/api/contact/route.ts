@@ -35,6 +35,7 @@ interface Lead {
   besoinLabel: string
   message: string
   page: string
+  landing: string
   source: string
 }
 
@@ -73,9 +74,10 @@ export async function POST(req: Request) {
     besoin,
     besoinLabel: BESOIN_LABELS[besoin] || besoin,
     message: clean(body.message),
-    // La page d'atterrissage est ajoutée quand elle diffère de la page du
-    // formulaire : c'est elle qui a été achetée en publicité.
-    page: landing && landing !== page ? `${page} (arrivée : ${landing})` : page,
+    // Page du formulaire et page d'arrivée restent deux colonnes distinctes :
+    // les fusionner casserait le regroupement « pages qui convertissent ».
+    page,
+    landing: landing && landing !== page ? landing : '',
     source: clean(body.source) || 'direct',
   }
 
@@ -113,6 +115,7 @@ async function appendToSheet(lead: Lead): Promise<boolean> {
         besoin: lead.besoinLabel,
         message: lead.message,
         page: lead.page,
+        landing: lead.landing,
         source: lead.source,
       }),
       signal: AbortSignal.timeout(15000),
@@ -153,6 +156,7 @@ async function sendEmail(lead: Lead): Promise<boolean> {
     `Site web : ${lead.site || '(non renseigné)'}`,
     `Besoin : ${lead.besoinLabel}`,
     `Page : ${lead.page}`,
+    `Arrivée : ${lead.landing || '(même page)'}`,
     `Source : ${lead.source}`,
     '',
     'Message :',

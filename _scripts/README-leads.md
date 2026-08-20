@@ -20,9 +20,15 @@ suivi commercial à droite.
 ## Colonnes du Sheet
 
 `Date · Prénom · Nom · Email · Téléphone · Site web · Besoin · Message · Page ·
-Source · Statut · Montant € HT · Date signature · Prêt pour Ads`
+Source · Statut · Montant € HT · Date signature · Prêt pour Ads · Atterrissage`
 
-Les quatre dernières se remplissent à la main : `Statut` est une liste déroulante
+`Page` est la page où le formulaire a été rempli, `Atterrissage` la page d'arrivée
+sur le site quand elle diffère. Deux colonnes plutôt qu'une chaîne composite :
+sinon le regroupement « pages qui convertissent » compterait `/contact` et
+`/contact (arrivée : /lyon)` comme deux pages distinctes.
+
+`Statut`, `Montant € HT`, `Date signature` et `Prêt pour Ads` se remplissent à la
+main : `Statut` est une liste déroulante
 (Nouveau, Contacté, RDV pris, Devis envoyé, Signé, Perdu) et `Prêt pour Ads` une
 case à cocher, pour repérer les leads à remonter en conversions hors ligne vers
 Google Ads.

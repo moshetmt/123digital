@@ -76,7 +76,7 @@ export default function ContactPage() {
         style={{ padding: 'clamp(2rem, 5vw, 3.5rem) 1.5rem clamp(2.25rem, 6vw, 4rem)', borderTop: '1px solid var(--line)' }}
       >
         <div className="mx-auto max-w-5xl">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-px" style={{ backgroundColor: 'var(--line)' }}>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-2.5 sm:gap-4">
             {moyensDeContact.map((moyen) => (
               <Link
                 key={moyen.label}

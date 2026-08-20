@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { JsonLd } from '@/components/seo/JsonLd'
 import { FaqListe } from '@/components/sections/FaqListe'
 import { PageBanner, BannerCta, BannerCtaLine } from '@/components/sections/PageBanner'
+import { GrilleCartes, BandeChiffres } from '@/components/sections/Grilles'
 import { Breadcrumb } from '@/components/layout/Breadcrumb'
 import { BASE_URL, breadcrumbSchema, localBusinessSchema } from '@/lib/schema'
 import { allVilles, villesARA, villeInsights } from '@/data/villes'
@@ -235,70 +236,25 @@ export default async function VillePage({ params }: PageProps) {
             Ce que je fais pour votre<br />entreprise à {ville.nom}
           </h2>
 
-          <div className="grid grid-cols-2 lg:grid-cols-3 gap-2" style={{ backgroundColor: 'var(--line)' }}>
-            {services.map((service) => (
-              <Link
-                key={service.id}
-                href={`/${ville.slug}/${service.id}`}
-                className="group block p-3 sm:p-6 rounded-xl"
-                style={{ backgroundColor: 'var(--surface-2)' }}
-              >
-                <div
-                  className="mb-4 group-hover:text-[var(--brand)] transition-colors"
-                  style={{ fontSize: '0.65rem', letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--brand)', fontWeight: 700 }}
-                >
-                  {service.shortDesc}
-                </div>
-                <h3
-                  className="font-display font-extrabold mb-3 group-hover:text-[var(--brand)] transition-colors"
-                  style={{ fontSize: '1.25rem', color: 'var(--ink)', lineHeight: 1.2 }}
-                >
-                  {service.title}<br />
-                  <span style={{ fontSize: '0.9rem', color: 'var(--brand)' }}>à {ville.nom}</span>
-                </h3>
-                <p style={{ fontSize: '0.88rem', color: 'var(--ink-2)', lineHeight: 1.65 }}>
-                  {service.description}
-                </p>
-                <div
-                  className="mt-4 group-hover:text-[var(--brand)] transition-colors"
-                  style={{ fontSize: '0.75rem', letterSpacing: '0.08em', color: 'var(--ink-3)', textTransform: 'uppercase', fontWeight: 700 }}
-                >
-                  En savoir plus →
-                </div>
-              </Link>
-            ))}
-          </div>
+          <GrilleCartes
+            items={services.map((service) => ({
+              href: `/${ville.slug}/${service.id}`,
+              titre: `${service.title} à ${ville.nom}`,
+              texte: service.description,
+            }))}
+          />
         </div>
       </section>
 
-      {/* Résultats concrets */}
-      <section
-        className="bg-background"
-        style={{ padding: 'clamp(2.25rem, 6vw, 4.5rem) 1.5rem', borderTop: '1px solid var(--line)' }}
-      >
-        <div className="mx-auto max-w-5xl">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            {[
-              { chiffre: '60+', label: 'Projets réalisés' },
-              { chiffre: '8 ans', label: 'D\'expérience' },
-              { chiffre: '94%', label: 'Clients satisfaits' },
-              { chiffre: '3–6 mois', label: 'Pour voir les résultats SEO' },
-            ].map(({ chiffre, label }) => (
-              <div key={label} className="text-center">
-                <div
-                  className="font-display font-extrabold mb-2"
-                  style={{ fontSize: 'clamp(2rem, 4vw, 3rem)', color: 'var(--brand)', lineHeight: 1 }}
-                >
-                  {chiffre}
-                </div>
-                <div style={{ fontSize: '0.78rem', color: 'var(--ink-2)', letterSpacing: '0.06em', textTransform: 'uppercase' }}>
-                  {label}
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* Chiffres : meme bande sombre que l accueil, seul aplat noir de la page */}
+      <BandeChiffres
+        items={[
+          { valeur: '60+', legende: 'Projets réalisés' },
+          { valeur: '8 ans', legende: "D'expérience" },
+          { valeur: '94%', legende: 'Clients satisfaits' },
+          { valeur: '3–6 mois', legende: 'Pour voir les résultats SEO' },
+        ]}
+      />
 
       {/* FAQ */}
       <section
@@ -355,7 +311,7 @@ export default async function VillePage({ params }: PageProps) {
                 href={`/secteurs/${s.slug}`}
                 className="hover:text-[var(--brand)] hover:border-[var(--brand)] transition-colors"
                 style={{
-                  padding: '0.4rem 0.9rem',
+                  borderRadius: 999, padding: '0.4rem 0.9rem',
                   border: '1px solid var(--line)',
                   color: 'var(--ink-2)',
                   fontSize: '0.8rem',
@@ -397,7 +353,7 @@ export default async function VillePage({ params }: PageProps) {
                     href={`/${v.slug}`}
                     className="hover:text-[var(--brand)] hover:border-[var(--brand)] transition-colors"
                     style={{
-                      padding: '0.4rem 0.9rem',
+                      borderRadius: 999, padding: '0.4rem 0.9rem',
                       border: '1px solid var(--line)',
                       color: 'var(--ink-2)',
                       fontSize: '0.8rem',

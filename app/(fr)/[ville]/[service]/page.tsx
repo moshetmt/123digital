@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { JsonLd } from '@/components/seo/JsonLd'
 import { FaqListe } from '@/components/sections/FaqListe'
 import { PageBanner, BannerCta, BannerCtaLine } from '@/components/sections/PageBanner'
+import { GrilleEtapes, GrilleCartes } from '@/components/sections/Grilles'
 import type { NomIcone } from '@/lib/icones-pong'
 import { Breadcrumb } from '@/components/layout/Breadcrumb'
 import { BASE_URL, breadcrumbSchema, localBusinessSchema, serviceSchema } from '@/lib/schema'
@@ -400,36 +401,9 @@ export default async function VilleServicePage({ params }: PageProps) {
             <span style={{ color: 'var(--brand)' }}>en 4 étapes.</span>
           </h2>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-px" style={{ backgroundColor: 'var(--line)' }}>
-            {content.steps.map((step) => (
-              <div
-                key={step.num}
-                className="p-3 sm:p-6 rounded-xl"
-                style={{ backgroundColor: 'var(--surface-2)' }}
-              >
-                <div
-                  style={{
-                    fontSize: '0.65rem',
-                    letterSpacing: '0.12em',
-                    color: 'var(--ink-3)',
-                    fontWeight: 700,
-                    marginBottom: '1rem',
-                  }}
-                >
-                  {step.num}
-                </div>
-                <h3
-                  className="font-display font-extrabold mb-3"
-                  style={{ fontSize: '1.1rem', color: 'var(--ink)' }}
-                >
-                  {step.title}
-                </h3>
-                <p style={{ fontSize: '0.88rem', color: 'var(--ink-2)', lineHeight: 1.65 }}>
-                  {step.desc.replace('${v}', ville.nom)}
-                </p>
-              </div>
-            ))}
-          </div>
+          <GrilleEtapes
+            items={content.steps.map((step) => ({ titre: step.title, texte: step.desc.replace('${v}', ville.nom) }))}
+          />
         </div>
       </section>
 
@@ -488,7 +462,7 @@ export default async function VilleServicePage({ params }: PageProps) {
                 href={`/${ville.slug}/${s.id}`}
                 className="hover:text-[var(--brand)] hover:border-[var(--brand)] transition-colors"
                 style={{
-                  padding: '0.4rem 0.9rem',
+                  borderRadius: 999, padding: '0.4rem 0.9rem',
                   border: '1px solid var(--line)',
                   color: 'var(--ink-2)',
                   fontSize: '0.8rem',
@@ -527,7 +501,7 @@ export default async function VilleServicePage({ params }: PageProps) {
                   href={`/${v.slug}/${service.id}`}
                   className="hover:text-[var(--brand)] hover:border-[var(--brand)] transition-colors"
                   style={{
-                    padding: '0.4rem 0.9rem',
+                    borderRadius: 999, padding: '0.4rem 0.9rem',
                     border: '1px solid var(--line)',
                     color: 'var(--ink-2)',
                     fontSize: '0.8rem',

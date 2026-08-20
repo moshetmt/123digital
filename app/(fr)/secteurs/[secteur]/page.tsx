@@ -171,12 +171,12 @@ export default async function SecteurPage({ params }: PageProps) {
           >
             Résultats concrets
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-px" style={{ backgroundColor: 'var(--line)' }}>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-2.5 sm:gap-4">
             {secteur.resultats.map((resultat, i) => (
               <div
                 key={i}
-                className="p-6"
-                style={{ backgroundColor: 'var(--surface-2)' }}
+                className="rounded-2xl"
+                style={{ backgroundColor: 'var(--surface-2)', border: '1px solid var(--line)', boxShadow: '0 8px 30px var(--shadow-soft)', padding: 'clamp(0.9rem, 3vw, 1.4rem)' }}
               >
                 <p style={{ fontSize: '0.9rem', color: 'var(--ink)', lineHeight: 1.6 }}>
                   {resultat}
@@ -258,7 +258,7 @@ export default async function SecteurPage({ params }: PageProps) {
                 href={`/${v.slug}`}
                 className="hover:text-[var(--brand)] hover:border-[var(--brand)] transition-colors"
                 style={{
-                  padding: '0.4rem 0.9rem',
+                  borderRadius: 999, padding: '0.4rem 0.9rem',
                   border: '1px solid var(--line)',
                   color: 'var(--ink-2)',
                   fontSize: '0.8rem',
@@ -296,7 +296,7 @@ export default async function SecteurPage({ params }: PageProps) {
                 href={`/secteurs/${s.slug}`}
                 className="hover:text-[var(--brand)] hover:border-[var(--brand)] transition-colors"
                 style={{
-                  padding: '0.4rem 0.9rem',
+                  borderRadius: 999, padding: '0.4rem 0.9rem',
                   border: '1px solid var(--line)',
                   color: 'var(--ink-2)',
                   fontSize: '0.8rem',

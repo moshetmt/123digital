@@ -404,7 +404,7 @@ export default async function BlogArticlePage({ params }: PageProps) {
                 <span
                   key={tag}
                   style={{
-                    padding: '0.25rem 0.65rem',
+                    borderRadius: 999, padding: '0.25rem 0.65rem',
                     border: '1px solid var(--line)',
                     color: 'var(--ink-3)',
                     fontSize: '0.75rem',
@@ -437,7 +437,7 @@ export default async function BlogArticlePage({ params }: PageProps) {
             >
               Autres articles
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-px" style={{ backgroundColor: 'var(--line)' }}>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-2.5 sm:gap-4">
               {autresArticles.map((a) => (
                 <Link
                   key={a.slug}

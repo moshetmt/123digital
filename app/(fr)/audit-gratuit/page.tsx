@@ -176,12 +176,12 @@ export default function AuditGratuitPage() {
             <span style={{ color: 'var(--brand)' }}>en 30 minutes.</span>
           </h2>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-px" style={{ backgroundColor: 'var(--line)' }}>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 sm:gap-4">
             {ceQueJanalysee.map((bloc) => (
               <div
                 key={bloc.titre}
-                className="p-8"
-                style={{ backgroundColor: 'var(--surface-2)' }}
+                className="rounded-2xl"
+                style={{ backgroundColor: 'var(--surface-2)', border: '1px solid var(--line)', boxShadow: '0 8px 30px var(--shadow-soft)', padding: 'clamp(1rem, 3vw, 1.6rem)' }}
               >
                 <h3
                   className="font-display font-extrabold mb-4"
@@ -268,12 +268,12 @@ export default function AuditGratuitPage() {
             <span style={{ color: 'var(--brand)' }}>au plan d&apos;action.</span>
           </h2>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-px" style={{ backgroundColor: 'var(--line)' }}>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 sm:gap-4">
             {etapes.map((etape) => (
               <div
                 key={etape.num}
-                className="p-8"
-                style={{ backgroundColor: 'var(--surface-2)' }}
+                className="rounded-2xl"
+                style={{ backgroundColor: 'var(--surface-2)', border: '1px solid var(--line)', boxShadow: '0 8px 30px var(--shadow-soft)', padding: 'clamp(1rem, 3vw, 1.6rem)' }}
               >
                 <div
                   style={{

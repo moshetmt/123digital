@@ -1,6 +1,7 @@
 'use client'
 
 import { useRef } from 'react'
+import Link from 'next/link'
 import { motion, useInView } from 'framer-motion'
 
 // ── Grilles de contenu ────────────────────────────────────────────────────────
@@ -15,6 +16,9 @@ import { motion, useInView } from 'framer-motion'
 const EASE = [0.22, 1, 0.36, 1] as [number, number, number, number]
 
 interface Carte {
+  /** Rend la carte cliquable, avec le lien de fin comme sur l accueil. */
+  href?: string
+  lienLabel?: string
   titre: string
   texte: string
   /** Pastilles courtes, masquees sur telephone comme sur l'accueil. */
@@ -98,6 +102,16 @@ function CarteCompacte({ carte, index, accent }: { carte: Carte; index: number; 
             </span>
           ))}
         </div>
+      )}
+
+      {carte.href && (
+        <Link
+          href={carte.href}
+          className="font-bold w-fit"
+          style={{ color: 'var(--brand-strong)', fontSize: 'clamp(0.78rem, 2.6vw, 0.875rem)', marginTop: '0.7rem' }}
+        >
+          {carte.lienLabel ?? 'En savoir plus'} →
+        </Link>
       )}
 
       {carte.note && (

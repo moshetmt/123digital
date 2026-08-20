@@ -147,7 +147,7 @@ export default function ServicesPage() {
         style={{ padding: 'clamp(2rem, 5vw, 3.5rem) 1.5rem clamp(2.25rem, 6vw, 4rem)', borderTop: '1px solid var(--line)' }}
       >
         <div className="mx-auto max-w-5xl">
-          <div className="grid gap-px" style={{ backgroundColor: 'var(--line)' }}>
+          <div className="grid gap-2.5 sm:gap-4">
             {services.map((service) => {
               const detail = serviceMap[service.id]
               return (
@@ -244,7 +244,7 @@ export default function ServicesPage() {
                           href="/audit-gratuit"
                           className="inline-flex items-center gap-2 transition-colors duration-200 hover:border-[var(--brand)] hover:text-[var(--brand)]"
                           style={{
-                            padding: '0.65rem 1.5rem',
+                            borderRadius: 999, padding: '0.65rem 1.5rem',
                             border: '1px solid var(--line)',
                             color: 'var(--ink-2)',
                             fontSize: '0.8rem',

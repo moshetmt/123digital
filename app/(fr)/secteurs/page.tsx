@@ -120,7 +120,7 @@ export default function SecteursPage() {
                     <span
                       key={i}
                       style={{
-                        padding: '0.25rem 0.6rem',
+                        borderRadius: 999, padding: '0.25rem 0.6rem',
                         border: '1px solid var(--line)',
                         color: 'var(--ink-2)',
                         fontSize: '0.72rem',

@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server'
+import { leadEmailHtml, leadEmailSubject, leadEmailText } from '@/lib/lead-email'
 
 /**
  * Réception du formulaire d'audit (composant CTA, présent sur toutes les pages
@@ -148,21 +149,6 @@ async function sendEmail(lead: Lead): Promise<boolean> {
   // une autre boite ferait echouer chaque demande.
   const to = process.env.CONTACT_TO || 'contact@123digital.fr'
 
-  const text = [
-    `Prénom : ${lead.prenom}`,
-    `Nom : ${lead.nom}`,
-    `Email : ${lead.email}`,
-    `Téléphone : ${lead.tel || '(non renseigné)'}`,
-    `Site web : ${lead.site || '(non renseigné)'}`,
-    `Besoin : ${lead.besoinLabel}`,
-    `Page : ${lead.page}`,
-    `Arrivée : ${lead.landing || '(même page)'}`,
-    `Source : ${lead.source}`,
-    '',
-    'Message :',
-    lead.message || '(vide)',
-  ].join('\n')
-
   try {
     const res = await fetch('https://api.resend.com/emails', {
       method: 'POST',
@@ -176,8 +162,11 @@ async function sendEmail(lead: Lead): Promise<boolean> {
         from: '123digital.fr <onboarding@resend.dev>',
         to: [to],
         reply_to: lead.email,
-        subject: `Demande d'audit — ${lead.prenom} ${lead.nom} (${lead.besoinLabel})`,
-        text,
+        subject: leadEmailSubject(lead),
+        html: leadEmailHtml(lead),
+        // Version texte pour les clients qui refusent le HTML, et pour éviter
+        // qu'un message sans alternative parte en indésirable.
+        text: leadEmailText(lead),
       }),
       signal: AbortSignal.timeout(15000),
     })

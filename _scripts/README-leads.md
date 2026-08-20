@@ -34,7 +34,17 @@ case à cocher, pour repérer les leads à remonter en conversions hors ligne ve
 Google Ads.
 
 L'onglet Tableau de bord affiche le total, les 7 et 30 derniers jours, les
-signatures, le CA signé, puis les leads par jour, par besoin et par page.
+signatures et le CA signé en cartes, puis les leads par jour, par besoin et par
+page, avec un histogramme et un anneau.
+
+## Mise en forme
+
+`styliserLeads()` pose toute l'apparence de l'onglet Leads : en-tête vert de la
+charte figé, trois premières colonnes figées, lignes alternées, statuts colorés
+par mise en forme conditionnelle, filtre sur l'en-tête, formats de date et de
+montant. La fonction est relançable : chaque élément est remplacé, jamais
+empilé. Elle tourne à l'installation via `setupSheet()`, et couvre les 1000
+lignes du classeur, donc les leads suivants héritent du style sans traitement.
 
 ## Installation du webhook (une fois)
 

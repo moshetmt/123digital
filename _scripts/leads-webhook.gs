@@ -28,6 +28,17 @@ var SHEET_ID = '1_bPq_JAZq9qRPZFQNqzys4oCV2Po3u111y3Yn1Jd46M'
 var SHEET_LEADS = 'Leads'
 var SHEET_DASH = 'Tableau de bord'
 
+// Charte du site (app/globals.css) transposée dans le classeur.
+var VERT = '#00713D'
+var VERT_SOMBRE = '#0B3D25'
+var VERT_CLAIR = '#E8F1EB'
+var IVOIRE = '#F4F6F2'
+var TRAIT = '#D8DED6'
+var ENCRE = '#131814'
+var ENCRE_DOUCE = '#6B736C'
+var BLANC = '#FFFFFF'
+var POLICE = 'Roboto'
+
 var HEADERS = [
   'Date',
   'Prénom',
@@ -46,7 +57,19 @@ var HEADERS = [
   'Atterrissage',
 ]
 
+var LARGEURS = [130, 100, 120, 210, 120, 170, 150, 300, 190, 240, 115, 110, 115, 105, 190]
+
 var STATUTS = ['Nouveau', 'Contacté', 'RDV pris', 'Devis envoyé', 'Signé', 'Perdu']
+
+// Couleurs du pipeline : fond puis texte.
+var STATUT_COULEURS = {
+  Nouveau: ['#E8F1EB', '#0B3D25'],
+  'Contacté': ['#FFF4D6', '#7A5A00'],
+  'RDV pris': ['#E4EEFB', '#1B3F73'],
+  'Devis envoyé': ['#FFE9D6', '#8A4B12'],
+  'Signé': ['#00713D', '#FFFFFF'],
+  Perdu: ['#EFEFEF', '#7C857E'],
+}
 
 // ── Entrées HTTP ──────────────────────────────────────────────────────────────
 
@@ -109,16 +132,16 @@ function appendLead(body) {
     str(body.landing),
   ])
 
+  // Suivi commercial posé ligne par ligne : une case à cocher sur toute la
+  // colonne remplirait les 1000 lignes vides du classeur, et appendRow()
+  // écrirait alors le lead suivant tout en bas.
   var row = sheet.getLastRow()
   sheet.getRange(row, 1).setNumberFormat('dd/MM/yyyy HH:mm')
   sheet.getRange(row, 12).setNumberFormat('#,##0.00 €')
   sheet.getRange(row, 13).setNumberFormat('dd/MM/yyyy')
-
-  // Suivi commercial posé ligne par ligne : une case à cocher sur toute la
-  // colonne remplirait les 1000 lignes vides du classeur, et appendRow()
-  // écrirait alors le lead suivant tout en bas.
   sheet.getRange(row, 11).setDataValidation(statutRule())
   sheet.getRange(row, 14).insertCheckboxes()
+  sheet.setRowHeight(row, 26)
 }
 
 function str(v) {
@@ -143,24 +166,11 @@ function getLeadsSheet() {
     }
   }
 
-  if (sheet.getLastRow() === 0) writeHeaders(sheet)
+  if (sheet.getLastRow() === 0) {
+    sheet.getRange(1, 1, 1, HEADERS.length).setValues([HEADERS])
+    styliserLeads(sheet)
+  }
   return sheet
-}
-
-function writeHeaders(sheet) {
-  sheet.getRange(1, 1, 1, HEADERS.length).setValues([HEADERS])
-  sheet
-    .getRange(1, 1, 1, HEADERS.length)
-    .setFontWeight('bold')
-    .setBackground('#1f2937')
-    .setFontColor('#ffffff')
-    .setVerticalAlignment('middle')
-  sheet.setFrozenRows(1)
-  sheet.setRowHeight(1, 34)
-
-  var widths = [140, 110, 130, 210, 130, 180, 150, 320, 200, 260, 120, 120, 120, 120, 200]
-  for (var i = 0; i < widths.length; i++) sheet.setColumnWidth(i + 1, widths[i])
-
 }
 
 /** Liste déroulante de la colonne Statut : le pipeline commercial. */
@@ -168,13 +178,87 @@ function statutRule() {
   return SpreadsheetApp.newDataValidation().requireValueInList(STATUTS, true).build()
 }
 
-/** Crée / répare la structure. À lancer une fois à l'installation. */
+/**
+ * Toute la mise en forme de l'onglet Leads. Relançable : chaque élément est
+ * remplacé, jamais empilé.
+ */
+function styliserLeads(sheet) {
+  var colonnes = HEADERS.length
+  var lignes = sheet.getMaxRows()
+
+  sheet.getRange(1, 1, lignes, colonnes).setFontFamily(POLICE).setFontSize(10)
+
+  // En-tête vert de la charte, figé pour rester visible au défilement.
+  sheet
+    .getRange(1, 1, 1, colonnes)
+    .setValues([HEADERS])
+    .setBackground(VERT)
+    .setFontColor(BLANC)
+    .setFontWeight('bold')
+    .setVerticalAlignment('middle')
+    .setHorizontalAlignment('left')
+  sheet.setFrozenRows(1)
+  sheet.setFrozenColumns(3)
+  sheet.setRowHeight(1, 38)
+
+  for (var i = 0; i < LARGEURS.length; i++) sheet.setColumnWidth(i + 1, LARGEURS[i])
+
+  // Corps : texte coupé plutôt que renvoyé. Un message de quarante lignes ne
+  // doit pas étirer sa ligne sur tout l'écran.
+  var corps = sheet.getRange(2, 1, lignes - 1, colonnes)
+  corps
+    .setVerticalAlignment('middle')
+    .setWrapStrategy(SpreadsheetApp.WrapStrategy.CLIP)
+    .setFontColor(ENCRE)
+
+  sheet.getRange(2, 1, lignes - 1, 1).setNumberFormat('dd/MM/yyyy HH:mm')
+  sheet.getRange(2, 12, lignes - 1, 1).setNumberFormat('#,##0.00 €')
+  sheet.getRange(2, 13, lignes - 1, 1).setNumberFormat('dd/MM/yyyy')
+  sheet.getRange(2, 10, lignes - 1, 1).setFontColor(ENCRE_DOUCE).setFontSize(9)
+  sheet.getRange(2, 15, lignes - 1, 1).setFontColor(ENCRE_DOUCE).setFontSize(9)
+
+  // Lignes alternées : le banding se remplace, il ne se superpose pas.
+  sheet.getBandings().forEach(function (b) {
+    b.remove()
+  })
+  corps
+    .applyRowBanding(SpreadsheetApp.BandingTheme.LIGHT_GREY, false, false)
+    .setFirstRowColor(BLANC)
+    .setSecondRowColor(IVOIRE)
+
+  sheet
+    .getRange(1, 1, lignes, colonnes)
+    .setBorder(null, null, null, null, true, true, TRAIT, SpreadsheetApp.BorderStyle.SOLID)
+
+  // Pipeline en couleur : le statut se lit d'un coup d'œil.
+  var regles = []
+  Object.keys(STATUT_COULEURS).forEach(function (statut) {
+    var couleurs = STATUT_COULEURS[statut]
+    regles.push(
+      SpreadsheetApp.newConditionalFormatRule()
+        .whenTextEqualTo(statut)
+        .setBackground(couleurs[0])
+        .setFontColor(couleurs[1])
+        .setBold(true)
+        .setRanges([sheet.getRange(2, 11, lignes - 1, 1)])
+        .build()
+    )
+  })
+  sheet.setConditionalFormatRules(regles)
+
+  // Filtre sur l'en-tête : trier et chercher sans passer par un menu.
+  var filtre = sheet.getFilter()
+  if (filtre) filtre.remove()
+  sheet.getRange(1, 1, Math.max(sheet.getLastRow(), 2), colonnes).createFilter()
+}
+
+/** Crée / répare la structure et la mise en forme. */
 function setupSheet() {
   // Fuseau du classeur aligné sur celui du script : sinon Sheets enregistre les
   // dates dans un fuseau et le script les relit dans un autre, et chaque lead
   // s'affiche avec plusieurs heures d'écart.
   SpreadsheetApp.openById(SHEET_ID).setSpreadsheetTimeZone('Europe/Paris')
-  getLeadsSheet()
+  styliserLeads(getLeadsSheet())
   refreshDashboard()
 }
 
@@ -196,6 +280,7 @@ function reinitialiserLignes() {
     corps.clearDataValidations()
     corps.clearContent()
   }
+  styliserLeads(sheet)
   refreshDashboard()
 }
 
@@ -207,7 +292,16 @@ function refreshDashboard() {
   var ss = SpreadsheetApp.openById(SHEET_ID)
   var leads = getLeadsSheet()
   var dash = ss.getSheetByName(SHEET_DASH) || ss.insertSheet(SHEET_DASH, 0)
+
+  dash.getCharts().forEach(function (c) {
+    dash.removeChart(c)
+  })
+  dash.getBandings().forEach(function (b) {
+    b.remove()
+  })
   dash.clear()
+  dash.clearConditionalFormatRules()
+  dash.setHiddenGridlines(true)
 
   var last = leads.getLastRow()
   var rows = last > 1 ? leads.getRange(2, 1, last - 1, HEADERS.length).getValues() : []
@@ -243,35 +337,120 @@ function refreshDashboard() {
     }
   }
 
-  dash.getRange('A1').setValue('123digital — Leads').setFontSize(16).setFontWeight('bold')
+  dash.getRange(1, 1, dash.getMaxRows(), 12).setFontFamily(POLICE)
+
+  // Bandeau de titre, aux couleurs du site.
+  dash.getRange('A1:H2').merge().setBackground(VERT)
   dash
-    .getRange('A2')
+    .getRange('A1')
+    .setValue('123digital  ·  Leads')
+    .setFontSize(20)
+    .setFontWeight('bold')
+    .setFontColor(BLANC)
+    .setVerticalAlignment('middle')
+    .setHorizontalAlignment('center')
+  dash.setRowHeight(1, 34)
+  dash.setRowHeight(2, 22)
+
+  dash
+    .getRange('A3')
     .setValue(
       'Mis à jour : ' + Utilities.formatDate(today, Session.getScriptTimeZone(), 'dd/MM/yyyy HH:mm')
     )
-    .setFontColor('#6b7280')
+    .setFontSize(9)
+    .setFontColor(ENCRE_DOUCE)
 
+  // Cartes de chiffres : libellé au-dessus, valeur en gros dessous.
   var kpis = [
-    ['Total leads', total],
-    ['7 derniers jours', last7],
-    ['30 derniers jours', last30],
-    ['Signés', signes],
-    ['CA signé (€ HT)', ca],
+    ['Total leads', total, false],
+    ['7 derniers jours', last7, false],
+    ['30 derniers jours', last30, false],
+    ['Signés', signes, false],
+    ['CA signé', ca, true],
   ]
-  dash.getRange(4, 1, kpis.length, 2).setValues(kpis)
-  dash.getRange(4, 1, kpis.length, 1).setFontWeight('bold')
-  dash.getRange(8, 2).setNumberFormat('#,##0.00 €')
+  for (var k = 0; k < kpis.length; k++) {
+    var col = k + 1
+    dash
+      .getRange(5, col)
+      .setValue(String(kpis[k][0]).toUpperCase())
+      .setFontSize(8)
+      .setFontWeight('bold')
+      .setFontColor(ENCRE_DOUCE)
+      .setHorizontalAlignment('center')
+      .setVerticalAlignment('bottom')
+    var valeur = dash
+      .getRange(6, col)
+      .setValue(kpis[k][1])
+      .setFontSize(22)
+      .setFontWeight('bold')
+      .setFontColor(VERT)
+      .setHorizontalAlignment('center')
+      .setVerticalAlignment('top')
+    if (kpis[k][2]) valeur.setNumberFormat('#,##0 €')
+  }
+  dash
+    .getRange(5, 1, 2, kpis.length)
+    .setBackground(VERT_CLAIR)
+    .setBorder(true, true, true, true, true, false, TRAIT, SpreadsheetApp.BorderStyle.SOLID)
+  dash.setRowHeight(5, 20)
+  dash.setRowHeight(6, 40)
 
   var jours = sortEntries(byDay, true).map(function (e) {
     return [e[0].slice(8, 10) + '/' + e[0].slice(5, 7), e[1]]
   })
-  writeBlock(dash, 10, 1, 'Leads par jour', jours, ['Jour', 'Leads'])
-  writeBlock(dash, 10, 4, 'Répartition par besoin', sortEntries(byNeed, false), ['Besoin', 'Nombre'])
-  writeBlock(dash, 10, 7, 'Pages qui convertissent', sortEntries(byPage, false), ['Page', 'Leads'])
+  var besoins = sortEntries(byNeed, false)
+  var pages = sortEntries(byPage, false)
 
-  dash.setColumnWidth(1, 190)
-  dash.setColumnWidth(4, 190)
+  writeBlock(dash, 8, 1, 'Leads par jour', jours, ['Jour', 'Leads'])
+  writeBlock(dash, 8, 4, 'Répartition par besoin', besoins, ['Besoin', 'Nombre'])
+  writeBlock(dash, 8, 7, 'Pages qui convertissent', pages, ['Page', 'Leads'])
+
+  dash.setColumnWidth(1, 150)
+  dash.setColumnWidth(2, 90)
+  dash.setColumnWidth(3, 24)
+  dash.setColumnWidth(4, 210)
+  dash.setColumnWidth(5, 90)
+  dash.setColumnWidth(6, 24)
   dash.setColumnWidth(7, 260)
+  dash.setColumnWidth(8, 90)
+
+  if (jours.length) {
+    dash.insertChart(
+      dash
+        .newChart()
+        .asColumnChart()
+        .addRange(dash.getRange(9, 1, jours.length + 1, 2))
+        .setNumHeaders(1)
+        .setPosition(5, 10, 0, 0)
+        .setOption('title', 'Leads par jour')
+        .setOption('titleTextStyle', { color: ENCRE, fontSize: 13, bold: true })
+        .setOption('colors', [VERT])
+        .setOption('legend', { position: 'none' })
+        .setOption('backgroundColor', BLANC)
+        .setOption('width', 460)
+        .setOption('height', 260)
+        .build()
+    )
+  }
+
+  if (besoins.length) {
+    dash.insertChart(
+      dash
+        .newChart()
+        .asPieChart()
+        .addRange(dash.getRange(9, 4, besoins.length + 1, 2))
+        .setNumHeaders(1)
+        .setPosition(20, 10, 0, 0)
+        .setOption('title', 'Répartition par besoin')
+        .setOption('titleTextStyle', { color: ENCRE, fontSize: 13, bold: true })
+        .setOption('colors', [VERT, '#3E9B6B', '#7BC29A', '#B7DCC7', '#DCEDE3'])
+        .setOption('pieHole', 0.45)
+        .setOption('backgroundColor', BLANC)
+        .setOption('width', 460)
+        .setOption('height', 260)
+        .build()
+    )
+  }
 }
 
 /** Trie un dictionnaire : par clé (chronologique) ou par valeur décroissante. */
@@ -286,7 +465,38 @@ function sortEntries(map, byKey) {
 }
 
 function writeBlock(sheet, row, col, title, entries, head) {
-  sheet.getRange(row, col).setValue(title).setFontWeight('bold').setFontSize(12)
-  sheet.getRange(row + 1, col, 1, 2).setValues([head]).setFontWeight('bold').setBackground('#f3f4f6')
-  if (entries.length) sheet.getRange(row + 2, col, entries.length, 2).setValues(entries)
+  sheet
+    .getRange(row, col)
+    .setValue(title)
+    .setFontWeight('bold')
+    .setFontSize(12)
+    .setFontColor(VERT_SOMBRE)
+
+  sheet
+    .getRange(row + 1, col, 1, 2)
+    .setValues([head])
+    .setFontWeight('bold')
+    .setFontSize(9)
+    .setFontColor(BLANC)
+    .setBackground(VERT)
+
+  if (!entries.length) {
+    sheet
+      .getRange(row + 2, col)
+      .setValue('Aucun lead pour le moment')
+      .setFontColor(ENCRE_DOUCE)
+      .setFontSize(9)
+    return
+  }
+
+  var plage = sheet.getRange(row + 2, col, entries.length, 2)
+  plage
+    .setValues(entries)
+    .setFontSize(10)
+    .setFontColor(ENCRE)
+    .setWrapStrategy(SpreadsheetApp.WrapStrategy.CLIP)
+  sheet
+    .getRange(row + 1, col, entries.length + 1, 2)
+    .setBorder(true, true, true, true, true, true, TRAIT, SpreadsheetApp.BorderStyle.SOLID)
+  sheet.getRange(row + 2, col + 1, entries.length, 1).setHorizontalAlignment('right')
 }

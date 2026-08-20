@@ -13,7 +13,13 @@ import { ICONES, type NomIcone } from '@/lib/icones-pong'
 //   2. vitesse d'arcade, exprimee en pixels par seconde et non par image, donc
 //      identique sur un ecran 60 Hz ou 120 Hz ;
 //   3. les deux raquettes sont independantes — chacune tire sa destination, sa
-//      vitesse et son moment de depart separement, aucune ne suit l'autre.
+//      vitesse et son moment de depart separement, aucune ne suit l'autre ;
+//   4. le decor tourne partout, y compris sur un appareil regle sur « reduire
+//      les animations ». Decision du 20/08, apres l'avoir vu fige sur le poste
+//      de l'operateur : c'est un decor de fond, personne ne le lit, et le
+//      reglage est souvent mis pour la vitesse et non pour le confort. Ne pas
+//      remettre de garde prefers-reduced-motion ici. Le canvas continue de
+//      s'arreter hors ecran et onglet cache, pour la batterie.
 // La balle rebondit aussi sur les bords : l'echange ne s'interrompt jamais, meme
 // quand une raquette n'est pas au rendez-vous.
 //
@@ -102,11 +108,6 @@ export function PongCanvas({
     if (!canvas || !ctx) return
 
     const R = ballRadius
-    // Relue a chaque bascule et non une fois pour toutes : le mode economie
-    // d'energie d'Android et le reglage « reduire les animations » d'iOS
-    // activent cette preference sans recharger la page.
-    const prefMouvement = window.matchMedia('(prefers-reduced-motion: reduce)')
-    let reduced = prefMouvement.matches
     let w = 0
     let h = 0
     let raf: number | null = null
@@ -119,16 +120,6 @@ export function PongCanvas({
       { y: 0, target: 0, height: 0, wait: 0, speed: PADDLE_SPEED },
       { y: 0, target: 0, height: 0, wait: 0, speed: PADDLE_SPEED },
     ]
-
-    // Image d'arret quand le mouvement est refuse : raquettes face a face et
-    // balle au centre. Une partie figee en plein echange passe pour une panne.
-    function reposer() {
-      ball.x = w / 2
-      ball.y = h / 2
-      pads.forEach((p) => {
-        p.y = h / 2
-      })
-    }
 
     function newTarget(p: (typeof pads)[number]) {
       const half = p.height / 2
@@ -166,7 +157,6 @@ export function PongCanvas({
           p.y = h * (i === 0 ? 0.35 : 0.65)
           newTarget(p)
         })
-        if (reduced) reposer()
       } else {
         pads.forEach((p) => {
           p.y = Math.max(p.height / 2, Math.min(h - p.height / 2, p.y))
@@ -266,7 +256,7 @@ export function PongCanvas({
     }
 
     function play() {
-      if (raf !== null || !onScreen || document.hidden || reduced) return
+      if (raf !== null || !onScreen || document.hidden) return
       last = performance.now()
       raf = requestAnimationFrame(frame)
     }
@@ -280,27 +270,22 @@ export function PongCanvas({
 
     function onResize() {
       layout()
-      // Sans mouvement, rien ne replace le decor : on recentre a chaque
-      // changement de taille, sinon l'image d'arret reste calee sur l'ancienne
-      // hauteur — celle mesuree avant que la banniere ait la sienne.
-      if (reduced) reposer()
       draw()
     }
 
     function onVisibility() {
-      if (document.hidden) pause()
-      else play()
-    }
-
-    function onMotionPref() {
-      reduced = prefMouvement.matches
-      if (!reduced) {
-        play()
+      if (document.hidden) {
+        pause()
         return
       }
-      pause()
-      reposer()
-      draw()
+      // Au retour sur l'onglet, on remesure au lieu de croire le dernier etat
+      // connu de l'IntersectionObserver. Un navigateur qui n'a rien peint
+      // pendant l'absence a pu laisser onScreen a faux, et play() refusait
+      // alors de repartir tant que la banniere ne refranchissait pas le seuil :
+      // le decor restait fige sur sa derniere image, l'onglet bien en vue.
+      const rect = canvas!.getBoundingClientRect()
+      onScreen = rect.bottom > 0 && rect.top < window.innerHeight
+      play()
     }
 
     layout()
@@ -313,7 +298,6 @@ export function PongCanvas({
     const tailleObs = new ResizeObserver(onResize)
     tailleObs.observe(canvas)
     document.addEventListener('visibilitychange', onVisibility)
-    prefMouvement.addEventListener('change', onMotionPref)
 
     const observer = new IntersectionObserver(
       (entries) => {
@@ -327,14 +311,13 @@ export function PongCanvas({
     )
     observer.observe(canvas)
 
-    if (!reduced) play()
+    play()
 
     return () => {
       pause()
       observer.disconnect()
       tailleObs.disconnect()
       document.removeEventListener('visibilitychange', onVisibility)
-      prefMouvement.removeEventListener('change', onMotionPref)
     }
   }, [ballRadius, icone])
 

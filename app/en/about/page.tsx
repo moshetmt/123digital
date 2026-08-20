@@ -17,7 +17,7 @@ export const metadata: Metadata = {
 
 export default function AboutPageEN() {
   return (
-    <div style={{ paddingTop: '5rem' }}>
+    <>
       <PageHeroEn
         kicker='About'
         title='Maurice Timsit, digital consultant in Lyon'
@@ -30,6 +30,6 @@ export default function AboutPageEN() {
       />
       <About lang="en" />
       <CTA lang="en" />
-    </div>
+    </>
   )
 }

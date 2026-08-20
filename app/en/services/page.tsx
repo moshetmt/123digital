@@ -17,7 +17,7 @@ export const metadata: Metadata = {
 
 export default function ServicesPageEN() {
   return (
-    <div style={{ paddingTop: '5rem' }}>
+    <>
       <PageHeroEn
         kicker='Services'
         title='Digital services for small and mid-sized businesses'
@@ -30,6 +30,6 @@ export default function ServicesPageEN() {
       />
       <Services lang="en" />
       <CTA lang="en" />
-    </div>
+    </>
   )
 }

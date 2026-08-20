@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 
 export default function AuditPageEN() {
   return (
-    <div style={{ paddingTop: '5rem' }}>
+    <>
       <PageHeroEn
         kicker='Free audit'
         title='A free 30-minute audit of your digital presence'
@@ -27,6 +27,6 @@ export default function AuditPageEN() {
         ]}
       />
       <CTA lang="en" />
-    </div>
+    </>
   )
 }

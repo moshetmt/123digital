@@ -113,6 +113,12 @@ function appendLead(body) {
   sheet.getRange(row, 1).setNumberFormat('dd/MM/yyyy HH:mm')
   sheet.getRange(row, 12).setNumberFormat('#,##0.00 €')
   sheet.getRange(row, 13).setNumberFormat('dd/MM/yyyy')
+
+  // Suivi commercial posé ligne par ligne : une case à cocher sur toute la
+  // colonne remplirait les 1000 lignes vides du classeur, et appendRow()
+  // écrirait alors le lead suivant tout en bas.
+  sheet.getRange(row, 11).setDataValidation(statutRule())
+  sheet.getRange(row, 14).insertCheckboxes()
 }
 
 function str(v) {
@@ -155,18 +161,37 @@ function writeHeaders(sheet) {
   var widths = [140, 110, 130, 210, 130, 180, 150, 320, 200, 260, 120, 120, 120, 120, 200]
   for (var i = 0; i < widths.length; i++) sheet.setColumnWidth(i + 1, widths[i])
 
-  // Liste déroulante sur Statut : la colonne sert de pipeline commercial.
-  var rule = SpreadsheetApp.newDataValidation().requireValueInList(STATUTS, true).build()
-  sheet.getRange(2, 11, sheet.getMaxRows() - 1, 1).setDataValidation(rule)
+}
 
-  // Prêt pour Ads : case à cocher, pour repérer les leads à exporter en
-  // conversions hors ligne vers Google Ads.
-  sheet.getRange(2, 14, sheet.getMaxRows() - 1, 1).insertCheckboxes()
+/** Liste déroulante de la colonne Statut : le pipeline commercial. */
+function statutRule() {
+  return SpreadsheetApp.newDataValidation().requireValueInList(STATUTS, true).build()
 }
 
 /** Crée / répare la structure. À lancer une fois à l'installation. */
 function setupSheet() {
   getLeadsSheet()
+  refreshDashboard()
+}
+
+/**
+ * Efface toutes les lignes sous l'en-tête, cases à cocher et listes déroulantes
+ * comprises. À n'utiliser qu'à l'installation : les leads déjà enregistrés
+ * seraient perdus.
+ */
+function reinitialiserLignes() {
+  var sheet = getLeadsSheet()
+  var lignes = sheet.getMaxRows() - 1
+  if (lignes > 0) {
+    var corps = sheet.getRange(2, 1, lignes, sheet.getMaxColumns())
+    try {
+      corps.removeCheckboxes()
+    } catch (e) {
+      // Aucune case à cocher à retirer : rien à faire.
+    }
+    corps.clearDataValidations()
+    corps.clearContent()
+  }
   refreshDashboard()
 }
 

@@ -25,7 +25,13 @@ const BALL_SPEED = 150   // px/s
 const PADDLE_SPEED = 260 // px/s — regle par simulation : 2 interceptions sur 3
 const PADDLE_W = 7
 const MARGIN = 14
-const WHITE = 'oklch(0.985 0.003 150)'
+// #FAFBFA, l'equivalent exact de --on-brand. Ecrit en hexadecimal et non en
+// oklch : le canvas des Safari anterieurs a 16.4 et des navigateurs Android
+// anterieurs a Chromium 111 refuse oklch en silence et garde le noir par
+// defaut, si bien que le Pong disparaissait sous le voile vert de la banniere.
+// Le CSS, lui, accepte oklch depuis bien plus longtemps — d'ou une panne qui ne
+// touchait que les vieux telephones. Ne pas repasser cette valeur en oklch.
+const WHITE = '#FAFBFA'
 
 // Rejoue une icone lucide dans le canvas. Les icones sont decrites dans un
 // carre de 24 sur 24 avec un trait de 2 : on met l'echelle a la taille de la
@@ -96,7 +102,11 @@ export function PongCanvas({
     if (!canvas || !ctx) return
 
     const R = ballRadius
-    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    // Relue a chaque bascule et non une fois pour toutes : le mode economie
+    // d'energie d'Android et le reglage « reduire les animations » d'iOS
+    // activent cette preference sans recharger la page.
+    const prefMouvement = window.matchMedia('(prefers-reduced-motion: reduce)')
+    let reduced = prefMouvement.matches
     let w = 0
     let h = 0
     let raf: number | null = null
@@ -109,6 +119,16 @@ export function PongCanvas({
       { y: 0, target: 0, height: 0, wait: 0, speed: PADDLE_SPEED },
       { y: 0, target: 0, height: 0, wait: 0, speed: PADDLE_SPEED },
     ]
+
+    // Image d'arret quand le mouvement est refuse : raquettes face a face et
+    // balle au centre. Une partie figee en plein echange passe pour une panne.
+    function reposer() {
+      ball.x = w / 2
+      ball.y = h / 2
+      pads.forEach((p) => {
+        p.y = h / 2
+      })
+    }
 
     function newTarget(p: (typeof pads)[number]) {
       const half = p.height / 2
@@ -146,6 +166,7 @@ export function PongCanvas({
           p.y = h * (i === 0 ? 0.35 : 0.65)
           newTarget(p)
         })
+        if (reduced) reposer()
       } else {
         pads.forEach((p) => {
           p.y = Math.max(p.height / 2, Math.min(h - p.height / 2, p.y))
@@ -259,6 +280,10 @@ export function PongCanvas({
 
     function onResize() {
       layout()
+      // Sans mouvement, rien ne replace le decor : on recentre a chaque
+      // changement de taille, sinon l'image d'arret reste calee sur l'ancienne
+      // hauteur — celle mesuree avant que la banniere ait la sienne.
+      if (reduced) reposer()
       draw()
     }
 
@@ -267,15 +292,34 @@ export function PongCanvas({
       else play()
     }
 
+    function onMotionPref() {
+      reduced = prefMouvement.matches
+      if (!reduced) {
+        play()
+        return
+      }
+      pause()
+      reposer()
+      draw()
+    }
+
     layout()
     draw()
 
-    window.addEventListener('resize', onResize)
+    // ResizeObserver plutot que l'evenement resize de la fenetre : sur mobile,
+    // la barre d'adresse qui se replie change la hauteur de la banniere sans
+    // toujours declencher resize, et le Pong restait alors calcule sur une
+    // hauteur perimee.
+    const tailleObs = new ResizeObserver(onResize)
+    tailleObs.observe(canvas)
     document.addEventListener('visibilitychange', onVisibility)
+    prefMouvement.addEventListener('change', onMotionPref)
 
     const observer = new IntersectionObserver(
       (entries) => {
-        onScreen = entries[0].isIntersecting
+        // La derniere entree, pas la premiere : un defilement rapide peut
+        // grouper deux franchissements de la meme cible dans un seul appel.
+        onScreen = entries[entries.length - 1].isIntersecting
         if (onScreen) play()
         else pause()
       },
@@ -288,8 +332,9 @@ export function PongCanvas({
     return () => {
       pause()
       observer.disconnect()
-      window.removeEventListener('resize', onResize)
+      tailleObs.disconnect()
       document.removeEventListener('visibilitychange', onVisibility)
+      prefMouvement.removeEventListener('change', onMotionPref)
     }
   }, [ballRadius, icone])
 

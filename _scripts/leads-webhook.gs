@@ -170,6 +170,10 @@ function statutRule() {
 
 /** Crée / répare la structure. À lancer une fois à l'installation. */
 function setupSheet() {
+  // Fuseau du classeur aligné sur celui du script : sinon Sheets enregistre les
+  // dates dans un fuseau et le script les relit dans un autre, et chaque lead
+  // s'affiche avec plusieurs heures d'écart.
+  SpreadsheetApp.openById(SHEET_ID).setSpreadsheetTimeZone('Europe/Paris')
   getLeadsSheet()
   refreshDashboard()
 }

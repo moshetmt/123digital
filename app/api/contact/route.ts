@@ -1,4 +1,4 @@
-import { NextResponse } from 'next/server'
+import { NextResponse, after } from 'next/server'
 import { leadEmailHtml, leadEmailSubject, leadEmailText } from '@/lib/lead-email'
 
 /**
@@ -11,6 +11,14 @@ import { leadEmailHtml, leadEmailSubject, leadEmailText } from '@/lib/lead-email
  *
  * Les deux écritures sont isolées : si l'une échoue, l'autre part quand même et
  * la réponse reste 200. Un lead perdu coûte plus cher qu'un canal muet.
+ *
+ * Elles partent APRÈS la réponse, via after(). Mesuré le 20/08 sur un envoi
+ * réel en production : 8,3 s de bouton qui tourne, dont 7,5 s passées à
+ * attendre Google et Resend. Le visiteur n'a aucune raison de patienter pendant
+ * que deux services tiers se répondent : la validation seule décide de la
+ * réponse, et Vercel maintient la fonction en vie pour terminer les écritures.
+ * Corollaire assumé : un échec des deux canaux n'est plus visible du visiteur,
+ * il n'apparaît que dans les journaux, en LEAD PERDU.
  */
 
 const MAX_LEN = 2000
@@ -82,11 +90,16 @@ export async function POST(req: Request) {
     source: clean(body.source) || 'direct',
   }
 
-  const [sheet, mail] = await Promise.all([appendToSheet(lead), sendEmail(lead)])
-
-  if (!sheet && !mail) {
-    return NextResponse.json({ ok: false }, { status: 502 })
-  }
+  after(async () => {
+    const debut = Date.now()
+    const [sheet, mail] = await Promise.all([appendToSheet(lead), sendEmail(lead)])
+    console.log(
+      `[contact] ecritures terminees en ${Date.now() - debut} ms — sheet ${sheet ? 'ok' : 'ECHEC'}, mail ${mail ? 'ok' : 'ECHEC'}`,
+    )
+    if (!sheet && !mail) {
+      console.error(`[contact] LEAD PERDU, les deux canaux ont echoue : ${JSON.stringify(lead)}`)
+    }
+  })
 
   return NextResponse.json({ ok: true })
 }
@@ -100,6 +113,7 @@ async function appendToSheet(lead: Lead): Promise<boolean> {
     return false
   }
 
+  const debut = Date.now()
   try {
     // Apps Script répond 302 vers googleusercontent : fetch suit la redirection
     // par défaut, mais un timeout évite qu'un webhook lent bloque la réponse.
@@ -123,6 +137,7 @@ async function appendToSheet(lead: Lead): Promise<boolean> {
     })
 
     const text = await res.text()
+    console.log(`[contact] Sheet ${res.status} en ${Date.now() - debut} ms`)
     if (!res.ok || !text.includes('"ok":true')) {
       console.error(`[contact] Sheet ${res.status} : ${text.slice(0, 300)}`)
       return false
@@ -144,6 +159,7 @@ async function sendEmail(lead: Lead): Promise<boolean> {
   }
 
   const to = process.env.CONTACT_TO || 'contact@123digital.fr'
+  const debut = Date.now()
 
   try {
     const res = await fetch('https://api.resend.com/emails', {
@@ -168,6 +184,7 @@ async function sendEmail(lead: Lead): Promise<boolean> {
       signal: AbortSignal.timeout(15000),
     })
 
+    console.log(`[contact] Resend ${res.status} en ${Date.now() - debut} ms`)
     if (!res.ok) {
       const detail = await res.text().catch(() => '')
       console.error(`[contact] Resend ${res.status} : ${detail.slice(0, 300)}`)

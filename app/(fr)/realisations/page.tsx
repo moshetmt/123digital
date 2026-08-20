@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import Image from 'next/image'
 import { ArrowRight, ArrowUpRight, Check } from 'lucide-react'
 import { JsonLd } from '@/components/seo/JsonLd'
 import { PageBanner, BannerCta, BannerCtaLine } from '@/components/sections/PageBanner'
@@ -119,6 +120,25 @@ export default function PortfolioPage() {
                   className="flex flex-col rounded-2xl"
                   style={{ backgroundColor: 'var(--surface-2)', border: '1px solid var(--line)', boxShadow: '0 8px 30px var(--shadow-soft)', padding: '1.5rem', gap: '0.6rem' }}
                 >
+                  {/* La capture du site livré. `data/portfolio.ts` prévoyait le
+                      champ `screenshot` depuis le début, mais aucun projet ne le
+                      renseignait et aucune image n'existait : la page qui montre
+                      le travail d'une agence web ne montrait aucun site.
+                      Captures faites le 20/08 en 1440x900, haut de page. */}
+                  {project.screenshot && (
+                    <div
+                      className="relative overflow-hidden rounded-xl"
+                      style={{ aspectRatio: '16 / 10', border: '1px solid var(--line)', marginBottom: '0.4rem' }}
+                    >
+                      <Image
+                        src={project.screenshot}
+                        alt={`Page d'accueil du site ${project.title}, réalisé par 123 Digital`}
+                        fill
+                        sizes="(max-width: 768px) 100vw, 33vw"
+                        style={{ objectFit: 'cover', objectPosition: 'top center' }}
+                      />
+                    </div>
+                  )}
                   <span style={{ fontSize: '0.68rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--ink-3)' }}>
                     {project.sector}
                   </span>

@@ -34,6 +34,7 @@ export const projects: PortfolioProject[] = [
     tags: ['Google Ads', 'Refonte web', 'SEO local', 'Villeurbanne'],
     featured: true,
     url: 'https://clim69.fr',
+    screenshot: '/images/realisations/clim69.webp',
   },
   {
     id: 'rhone-deconstruction',
@@ -47,6 +48,7 @@ export const projects: PortfolioProject[] = [
     tags: ['SEO local', 'Création web', 'BTP', 'Lyon'],
     featured: true,
     url: 'https://rhone-deconstruction.fr',
+    screenshot: '/images/realisations/rhone-deconstruction.webp',
   },
   {
     id: 'aplus-audition',
@@ -60,5 +62,6 @@ export const projects: PortfolioProject[] = [
     tags: ['SEO local', 'Création web', 'Santé', 'Cannes'],
     featured: true,
     url: 'https://aplusaudition.fr',
+    screenshot: '/images/realisations/aplusaudition.webp',
   },
 ]

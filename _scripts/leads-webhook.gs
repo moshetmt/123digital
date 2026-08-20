@@ -246,6 +246,12 @@ function styliserLeads(sheet) {
   })
   sheet.setConditionalFormatRules(regles)
 
+  // Colonnes vides à droite retirées : le tableau s'arrête où il finit.
+  if (sheet.getMaxColumns() > colonnes) {
+    sheet.deleteColumns(colonnes + 1, sheet.getMaxColumns() - colonnes)
+  }
+  sheet.setTabColor(VERT)
+
   // Filtre sur l'en-tête : trier et chercher sans passer par un menu.
   var filtre = sheet.getFilter()
   if (filtre) filtre.remove()
@@ -299,9 +305,11 @@ function refreshDashboard() {
   dash.getBandings().forEach(function (b) {
     b.remove()
   })
+  dash.getRange(1, 1, dash.getMaxRows(), dash.getMaxColumns()).breakApart()
   dash.clear()
   dash.clearConditionalFormatRules()
   dash.setHiddenGridlines(true)
+  dash.setTabColor(VERT_SOMBRE)
 
   var last = leads.getLastRow()
   var rows = last > 1 ? leads.getRange(2, 1, last - 1, HEADERS.length).getValues() : []
@@ -360,40 +368,14 @@ function refreshDashboard() {
     .setFontSize(9)
     .setFontColor(ENCRE_DOUCE)
 
-  // Cartes de chiffres : libellé au-dessus, valeur en gros dessous.
-  var kpis = [
-    ['Total leads', total, false],
-    ['7 derniers jours', last7, false],
-    ['30 derniers jours', last30, false],
-    ['Signés', signes, false],
-    ['CA signé', ca, true],
-  ]
-  for (var k = 0; k < kpis.length; k++) {
-    var col = k + 1
-    dash
-      .getRange(5, col)
-      .setValue(String(kpis[k][0]).toUpperCase())
-      .setFontSize(8)
-      .setFontWeight('bold')
-      .setFontColor(ENCRE_DOUCE)
-      .setHorizontalAlignment('center')
-      .setVerticalAlignment('bottom')
-    var valeur = dash
-      .getRange(6, col)
-      .setValue(kpis[k][1])
-      .setFontSize(22)
-      .setFontWeight('bold')
-      .setFontColor(VERT)
-      .setHorizontalAlignment('center')
-      .setVerticalAlignment('top')
-    if (kpis[k][2]) valeur.setNumberFormat('#,##0 €')
-  }
-  dash
-    .getRange(5, 1, 2, kpis.length)
-    .setBackground(VERT_CLAIR)
-    .setBorder(true, true, true, true, true, false, TRAIT, SpreadsheetApp.BorderStyle.SOLID)
-  dash.setRowHeight(5, 20)
-  dash.setRowHeight(6, 40)
+  // Cartes de chiffres, alignées sur les mêmes colonnes que les blocs du
+  // dessous : chaque carte occupe deux colonnes, sinon « 30 derniers jours »
+  // déborde sur la carte voisine.
+  carte(dash, 5, 1, '30 derniers jours', last30, false)
+  carte(dash, 5, 4, '7 derniers jours', last7, false)
+  carte(dash, 5, 7, 'Total leads', total, false)
+  carte(dash, 8, 1, 'Signés', signes, false)
+  carte(dash, 8, 4, 'CA signé', ca, true)
 
   var jours = sortEntries(byDay, true).map(function (e) {
     return [e[0].slice(8, 10) + '/' + e[0].slice(5, 7), e[1]]
@@ -401,16 +383,16 @@ function refreshDashboard() {
   var besoins = sortEntries(byNeed, false)
   var pages = sortEntries(byPage, false)
 
-  writeBlock(dash, 8, 1, 'Leads par jour', jours, ['Jour', 'Leads'])
-  writeBlock(dash, 8, 4, 'Répartition par besoin', besoins, ['Besoin', 'Nombre'])
-  writeBlock(dash, 8, 7, 'Pages qui convertissent', pages, ['Page', 'Leads'])
+  writeBlock(dash, 12, 1, 'Leads par jour', jours, ['Jour', 'Leads'])
+  writeBlock(dash, 12, 4, 'Répartition par besoin', besoins, ['Besoin', 'Nombre'])
+  writeBlock(dash, 12, 7, 'Pages qui convertissent', pages, ['Page', 'Leads'])
 
   dash.setColumnWidth(1, 150)
   dash.setColumnWidth(2, 90)
-  dash.setColumnWidth(3, 24)
-  dash.setColumnWidth(4, 210)
+  dash.setColumnWidth(3, 26)
+  dash.setColumnWidth(4, 220)
   dash.setColumnWidth(5, 90)
-  dash.setColumnWidth(6, 24)
+  dash.setColumnWidth(6, 26)
   dash.setColumnWidth(7, 260)
   dash.setColumnWidth(8, 90)
 
@@ -419,7 +401,7 @@ function refreshDashboard() {
       dash
         .newChart()
         .asColumnChart()
-        .addRange(dash.getRange(9, 1, jours.length + 1, 2))
+        .addRange(dash.getRange(13, 1, jours.length + 1, 2))
         .setNumHeaders(1)
         .setPosition(5, 10, 0, 0)
         .setOption('title', 'Leads par jour')
@@ -438,7 +420,7 @@ function refreshDashboard() {
       dash
         .newChart()
         .asPieChart()
-        .addRange(dash.getRange(9, 4, besoins.length + 1, 2))
+        .addRange(dash.getRange(13, 4, besoins.length + 1, 2))
         .setNumHeaders(1)
         .setPosition(20, 10, 0, 0)
         .setOption('title', 'Répartition par besoin')
@@ -451,6 +433,37 @@ function refreshDashboard() {
         .build()
     )
   }
+}
+
+/** Une carte de chiffre : libellé discret au-dessus, valeur en gros dessous. */
+function carte(sheet, row, col, label, valeur, estEuro) {
+  sheet
+    .getRange(row, col, 1, 2)
+    .merge()
+    .setValue(String(label).toUpperCase())
+    .setFontSize(8)
+    .setFontWeight('bold')
+    .setFontColor(ENCRE_DOUCE)
+    .setHorizontalAlignment('center')
+    .setVerticalAlignment('bottom')
+
+  var cellule = sheet
+    .getRange(row + 1, col, 1, 2)
+    .merge()
+    .setValue(valeur)
+    .setFontSize(22)
+    .setFontWeight('bold')
+    .setFontColor(VERT)
+    .setHorizontalAlignment('center')
+    .setVerticalAlignment('top')
+  if (estEuro) cellule.setNumberFormat('#,##0 €')
+
+  sheet
+    .getRange(row, col, 2, 2)
+    .setBackground(VERT_CLAIR)
+    .setBorder(true, true, true, true, false, false, TRAIT, SpreadsheetApp.BorderStyle.SOLID)
+  sheet.setRowHeight(row, 20)
+  sheet.setRowHeight(row + 1, 40)
 }
 
 /** Trie un dictionnaire : par clé (chronologique) ou par valeur décroissante. */

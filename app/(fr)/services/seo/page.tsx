@@ -1,8 +1,9 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { PageBanner, BannerCta, BannerCtaLine } from '@/components/sections/PageBanner'
-import { BlocsDepliants } from '@/components/ui/BlocsDepliants'
+import { GrilleCartes, GrilleEtapes } from '@/components/sections/Grilles'
 import { JsonLd } from '@/components/seo/JsonLd'
+import { FaqListe } from '@/components/sections/FaqListe'
 import { BASE_URL, serviceSchema, breadcrumbSchema } from '@/lib/schema'
 import { CTA } from '@/components/sections/CTA'
 
@@ -139,9 +140,7 @@ export default function SeoPage() {
           <h2 className="font-display font-extrabold mb-5 sm:mb-10" style={{ fontSize: 'clamp(1.6rem, 3vw, 2.5rem)', color: 'var(--ink)', letterSpacing: '-0.02em' }}>
             Référencement naturel PME en 4 étapes
           </h2>
-          <BlocsDepliants
-            items={steps.map((s) => ({ etiquette: s.num, titre: s.title, texte: s.desc }))}
-          />
+          <GrilleEtapes items={steps.map((s) => ({ titre: s.title, texte: s.desc }))} />
         </div>
       </section>
 
@@ -152,7 +151,7 @@ export default function SeoPage() {
           <h2 className="font-display font-extrabold mb-5 sm:mb-10" style={{ fontSize: 'clamp(1.6rem, 3vw, 2.5rem)', color: 'var(--ink)', letterSpacing: '-0.02em' }}>
             Un SEO PME complet, sans zone grise
           </h2>
-          <BlocsDepliants
+          <GrilleCartes
             items={[
               { title: 'Audit SEO technique', desc: 'Vitesse, Core Web Vitals, indexation, balises, structure de liens — tout ce que Google évalue en coulisses.' },
               { title: 'Stratégie de mots-clés locaux', desc: 'Requêtes ciblées que vos clients tapent réellement, avec volume et concurrence analysés.' },
@@ -199,17 +198,7 @@ export default function SeoPage() {
           </h2>
           {/* Accordeon natif : la liste depliee pesait environ 1000 px sur
               telephone. Le schema FAQPage de la page reste inchange. */}
-          <div className="flex flex-col gap-1.5">
-            {faqs.map(({ question, answer }, i) => (
-              <details key={i} className="group rounded-xl" style={{ border: '1px solid var(--line)', backgroundColor: 'var(--surface-2)' }}>
-                <summary className="flex items-center justify-between gap-3 cursor-pointer list-none font-extrabold" style={{ fontSize: '0.95rem', color: 'var(--ink)', padding: '0.85rem 1rem' }}>
-                  {question}
-                  <span aria-hidden className="shrink-0 transition-transform group-open:rotate-45" style={{ color: 'var(--brand)', fontSize: '1.2rem', lineHeight: 1 }}>+</span>
-                </summary>
-                <p style={{ color: 'var(--ink-2)', lineHeight: 1.55, fontSize: '0.88rem', padding: '0 1rem 0.9rem' }}>{answer}</p>
-              </details>
-            ))}
-          </div>
+          <FaqListe items={faqs} />
         </div>
       </section>
 

@@ -26,7 +26,7 @@ interface PageBannerProps {
   breadcrumb?: ReactNode
   /** Boutons, en general <BannerCta> et <BannerCtaLine>. */
   actions?: ReactNode
-  /** L'accueil est centre, les pages internes sont alignees a gauche. */
+  /** Centre par defaut, comme l'accueil.  reste possible au besoin. */
   align?: 'left' | 'center'
   /** Diametre de la loupe. 30 par defaut, 22 sur les bannieres courtes. */
   ballRadius?: number
@@ -44,7 +44,7 @@ export function PageBanner({
   sub,
   breadcrumb,
   actions,
-  align = 'left',
+  align = 'center',
   ballRadius = 30,
   image,
   children,
@@ -56,7 +56,7 @@ export function PageBanner({
       className="relative isolate overflow-hidden"
       style={{
         padding: 'clamp(2.25rem, 6vw, 4.5rem) 1.5rem',
-        minHeight: 'clamp(340px, 48vh, 520px)',
+        minHeight: 'clamp(420px, 58vh, 600px)',
         display: 'flex',
         alignItems: 'center',
         color: 'var(--on-brand)',

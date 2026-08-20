@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation'
 import Image from 'next/image'
 import Link from 'next/link'
 import { JsonLd } from '@/components/seo/JsonLd'
+import { FaqListe } from '@/components/sections/FaqListe'
 import { Breadcrumb } from '@/components/layout/Breadcrumb'
 import { BASE_URL, breadcrumbSchema, articleSchema } from '@/lib/schema'
 import { articles, getArticleBySlug, type BlogSection } from '@/data/blog'
@@ -139,19 +140,7 @@ function RenderSection({ section }: { section: BlogSection }) {
           </div>
           {/* Accordeon natif : la liste depliee allongeait l'article sans
               raison. Le schema FAQPage de la page reste inchange. */}
-          <div className="flex flex-col gap-1.5">
-            {section.faqs?.map(({ question, reponse }, i) => (
-              <details key={i} className="group rounded-xl" style={{ border: '1px solid var(--line)', backgroundColor: 'var(--surface-2)' }}>
-                <summary className="flex items-center justify-between gap-3 cursor-pointer list-none font-extrabold" style={{ fontSize: '0.92rem', color: 'var(--ink)', padding: '0.8rem 1rem' }}>
-                  {question}
-                  <span aria-hidden className="shrink-0 transition-transform group-open:rotate-45" style={{ color: 'var(--brand)', fontSize: '1.2rem', lineHeight: 1 }}>+</span>
-                </summary>
-                <p style={{ color: 'var(--ink-2)', lineHeight: 1.55, fontSize: '0.86rem', padding: '0 1rem 0.85rem' }}>
-                  {reponse}
-                </p>
-              </details>
-            ))}
-          </div>
+          <FaqListe items={(section.faqs ?? []).map((f) => ({ question: f.question, answer: f.reponse }))} />
         </div>
       )
 

@@ -64,6 +64,7 @@ export default function BlogPage() {
             <span
               style={{
                 padding: '0.35rem 0.9rem',
+                borderRadius: 999,
                 backgroundColor: 'var(--brand-tint)',
                 border: '1px solid var(--brand-line)',
                 color: 'var(--brand)',
@@ -80,6 +81,7 @@ export default function BlogPage() {
                 key={cat}
                 style={{
                   padding: '0.35rem 0.9rem',
+                borderRadius: 999,
                   border: '1px solid var(--line)',
                   color: 'var(--ink-2)',
                   fontSize: '0.75rem',
@@ -101,127 +103,62 @@ export default function BlogPage() {
         style={{ padding: 'clamp(2rem, 5vw, 3.5rem) 1.5rem clamp(2.25rem, 6vw, 4rem)' }}
       >
         <div className="mx-auto max-w-5xl">
-          <div className="space-y-px" style={{ border: '1px solid var(--line)', borderBottom: 'none' }}>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4">
             {articlesTriees.map((article) => (
               <Link
                 key={article.slug}
                 href={`/blog/${article.slug}`}
-                className="group flex flex-col sm:flex-row sm:items-start gap-6 p-8"
+                className="group flex flex-col rounded-2xl overflow-hidden"
                 style={{
                   backgroundColor: 'var(--surface-2)',
-                  borderBottom: '1px solid var(--line)',
+                  border: '1px solid var(--line)',
+                  boxShadow: '0 8px 30px var(--shadow-soft)',
                 }}
               >
-                <div
-                  style={{
-                    flexShrink: 0,
-                    width: '160px',
-                    height: '100px',
-                    position: 'relative',
-                    overflow: 'hidden',
-                  }}
-                >
+                <div style={{ position: 'relative', width: '100%', aspectRatio: '16 / 9' }}>
                   <Image
                     src={article.image}
                     alt={article.titre}
                     fill
-                    sizes="160px"
+                    sizes="(min-width: 768px) 50vw, 100vw"
                     style={{ objectFit: 'cover' }}
                   />
                 </div>
 
-                <div style={{ flexShrink: 0 }}>
+                <div className="flex flex-col flex-1" style={{ padding: 'clamp(0.9rem, 3vw, 1.3rem)' }}>
                   <div
-                    style={{
-                      fontSize: '0.65rem',
-                      letterSpacing: '0.1em',
-                      textTransform: 'uppercase',
-                      color: 'var(--ink-3)',
-                      fontWeight: 700,
-                      whiteSpace: 'nowrap',
-                    }}
-                  >
-                    {new Date(article.datePublication).toLocaleDateString('fr-FR', {
-                      day: '2-digit',
-                      month: 'short',
-                      year: 'numeric',
-                    })}
-                  </div>
-                  <div
-                    style={{
-                      fontSize: '0.7rem',
-                      color: 'var(--brand)',
-                      fontWeight: 700,
-                      marginTop: '0.4rem',
-                      letterSpacing: '0.06em',
-                      textTransform: 'uppercase',
-                    }}
-                  >
-                    {article.tempsLecture} min
-                  </div>
-                </div>
-
-                <div style={{ flex: 1 }}>
-                  <div
-                    style={{
-                      fontSize: '0.65rem',
-                      letterSpacing: '0.1em',
-                      textTransform: 'uppercase',
-                      color: 'var(--ink-2)',
-                      fontWeight: 700,
-                      marginBottom: '0.5rem',
-                    }}
+                    className="flex items-center gap-2 mb-1.5"
+                    style={{ fontSize: '0.65rem', letterSpacing: '0.1em', textTransform: 'uppercase', color: 'var(--brand-strong)', fontWeight: 800 }}
                   >
                     {article.categorie}
+                    <span style={{ color: 'var(--ink-4)' }}>·</span>
+                    <span style={{ color: 'var(--ink-3)' }}>{article.tempsLecture} min</span>
                   </div>
 
                   <h2
-                    className="font-display font-extrabold mb-3 group-hover:text-[var(--brand)] transition-colors"
-                    style={{ fontSize: 'clamp(1.05rem, 2vw, 1.3rem)', color: 'var(--ink)', lineHeight: 1.25 }}
+                    className="group-hover:text-[var(--brand)] transition-colors"
+                    style={{ fontFamily: 'var(--font-sans)', fontWeight: 800, fontSize: 'clamp(1rem, 2.6vw, 1.2rem)', letterSpacing: '-0.01em', color: 'var(--ink)', lineHeight: 1.25, marginBottom: '0.4rem' }}
                   >
                     {article.titre}
                   </h2>
 
-                  <p style={{ fontSize: '0.87rem', color: 'var(--ink-2)', lineHeight: 1.6 }}>
+                  <p style={{ fontSize: 'clamp(0.8rem, 2.6vw, 0.87rem)', color: 'var(--ink-2)', lineHeight: 1.5, flex: 1 }}>
                     {article.description}
                   </p>
 
-                  <div className="flex flex-wrap gap-2 mt-3">
-                    {article.tags.slice(0, 3).map((tag) => (
-                      <span
-                        key={tag}
-                        style={{
-                          padding: '0.15rem 0.5rem',
-                          backgroundColor: 'var(--surface-3)',
-                          border: '1px solid var(--line)',
-                          color: 'var(--ink-3)',
-                          fontSize: '0.7rem',
-                        }}
-                      >
-                        {tag}
-                      </span>
-                    ))}
+                  <div
+                    className="flex items-center justify-between"
+                    style={{ marginTop: '0.9rem', fontSize: '0.72rem', color: 'var(--ink-3)', fontWeight: 700 }}
+                  >
+                    <span>
+                      {new Date(article.datePublication).toLocaleDateString('fr-FR', { day: '2-digit', month: 'short', year: 'numeric' })}
+                    </span>
+                    <span className="group-hover:text-[var(--brand)] transition-colors" style={{ color: 'var(--brand-strong)' }}>Lire →</span>
                   </div>
-                </div>
-
-                <div
-                  className="group-hover:text-[var(--brand)] transition-colors"
-                  style={{
-                    fontSize: '0.75rem',
-                    color: 'var(--ink-3)',
-                    fontWeight: 700,
-                    letterSpacing: '0.08em',
-                    textTransform: 'uppercase',
-                    flexShrink: 0,
-                    marginTop: '0.2rem',
-                  }}
-                >
-                  Lire →
                 </div>
               </Link>
             ))}
-          </div>
-        </div>
+          </div>        </div>
       </section>
 
       {/* Formulaire — composant unique CTA.tsx, partage par tout le site */}

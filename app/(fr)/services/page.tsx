@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
 import { JsonLd } from '@/components/seo/JsonLd'
+import { FaqListe } from '@/components/sections/FaqListe'
 import { PageBanner, BannerCta, BannerCtaLine } from '@/components/sections/PageBanner'
 import { Breadcrumb } from '@/components/layout/Breadcrumb'
 import { BASE_URL, breadcrumbSchema, serviceSchema } from '@/lib/schema'
@@ -310,32 +311,7 @@ export default function ServicesPage() {
           {/* Accordion natif : la liste etait entierement depliee et pesait
               1380 px sur telephone. Le schema FAQPage reste inchange, donc
               les reponses restent lisibles par Google. */}
-          <div className="flex flex-col gap-1.5">
-            {faqs.map(({ question, answer }, i) => (
-              <details
-                key={i}
-                className="group rounded-xl"
-                style={{ border: '1px solid var(--line)', backgroundColor: 'var(--surface-2)' }}
-              >
-                <summary
-                  className="flex items-center justify-between gap-3 cursor-pointer list-none font-extrabold"
-                  style={{ fontSize: '0.95rem', color: 'var(--ink)', padding: '0.85rem 1rem' }}
-                >
-                  {question}
-                  <span
-                    aria-hidden
-                    className="shrink-0 transition-transform group-open:rotate-45"
-                    style={{ color: 'var(--brand)', fontSize: '1.2rem', lineHeight: 1 }}
-                  >
-                    +
-                  </span>
-                </summary>
-                <p style={{ color: 'var(--ink-2)', lineHeight: 1.55, fontSize: '0.88rem', padding: '0 1rem 0.9rem' }}>
-                  {answer}
-                </p>
-              </details>
-            ))}
-          </div>
+          <FaqListe items={faqs} />
         </div>
       </section>
 

@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import { Check, X } from 'lucide-react'
 import { JsonLd } from '@/components/seo/JsonLd'
+import { FaqListe } from '@/components/sections/FaqListe'
 import { PageBanner, BannerCta, BannerCtaLine } from '@/components/sections/PageBanner'
 import { Breadcrumb } from '@/components/layout/Breadcrumb'
 import { BASE_URL, breadcrumbSchema, localBusinessSchema } from '@/lib/schema'
@@ -212,19 +213,7 @@ export default async function SecteurPage({ params }: PageProps) {
           </h2>
           {/* Accordeon natif : la liste depliee pesait environ 1000 px sur
               telephone. Le schema FAQPage de la page reste inchange. */}
-          <div className="flex flex-col gap-1.5">
-            {secteur.faqs.map(({ question, reponse }, i) => (
-              <details key={i} className="group rounded-xl" style={{ border: '1px solid var(--line)', backgroundColor: 'var(--surface-2)' }}>
-                <summary className="flex items-center justify-between gap-3 cursor-pointer list-none font-extrabold" style={{ fontSize: '0.95rem', color: 'var(--ink)', padding: '0.85rem 1rem' }}>
-                  {question}
-                  <span aria-hidden className="shrink-0 transition-transform group-open:rotate-45" style={{ color: 'var(--brand)', fontSize: '1.2rem', lineHeight: 1 }}>+</span>
-                </summary>
-                <p style={{ color: 'var(--ink-2)', lineHeight: 1.55, fontSize: '0.88rem', padding: '0 1rem 0.9rem' }}>
-                  {reponse}
-                </p>
-              </details>
-            ))}
-          </div>
+          <FaqListe items={secteur.faqs.map((f) => ({ question: f.question, answer: f.reponse }))} />
         </div>
       </section>
 

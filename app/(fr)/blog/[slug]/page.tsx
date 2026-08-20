@@ -36,7 +36,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       modifiedTime: article.dateModification,
       images: article.image
         ? [{ url: `${BASE_URL}${article.image}`, width: 1200, height: 628, alt: article.titre }]
-        : [{ url: `${BASE_URL}/images/og-image.svg`, width: 1200, height: 630, alt: article.titre }],
+        : [{ url: `${BASE_URL}/images/og-image.png`, width: 1200, height: 630, alt: article.titre }],
     },
   }
 }

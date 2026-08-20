@@ -85,7 +85,10 @@ export const metadata: Metadata = {
       'Maurice Timsit vous aide à développer votre PME en ligne : SEO, création de site, publicité, branding. Audit gratuit disponible.',
     images: [
       {
-        url: '/images/og-image.svg',
+        url: '/images/og-image.png',
+        // PNG et non SVG : aucun reseau social ne lit le SVG, et la vignette
+        // restait vide sur tout lien partage. Constate le 20/08.
+        type: 'image/png',
         width: 1200,
         height: 630,
         alt: '123 Digital — Expert en croissance digitale pour PME françaises',
@@ -98,7 +101,7 @@ export const metadata: Metadata = {
     title: '123 Digital — Expert en croissance digitale pour PME',
     description:
       'Maurice Timsit vous aide à développer votre PME en ligne : SEO, création de site, publicité, branding.',
-    images: ['/images/og-image.svg'],
+    images: ['/images/og-image.png'],
     creator: '@123digital',
   },
 

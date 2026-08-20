@@ -59,7 +59,7 @@ export function personSchema(): JsonLdObject {
     jobTitle: 'Expert en croissance digitale',
     description:
       'Expert en croissance digitale pour PME et entrepreneurs en France. Spécialiste SEO, création de sites web, publicité en ligne, branding et automatisation marketing.',
-    image: `${BASE_URL}/images/og-image.svg`,
+    image: `${BASE_URL}/images/og-image.png`,
     worksFor: {
       '@type': 'Organization',
       name: '123 Digital',
@@ -107,7 +107,7 @@ export function localBusinessSchema(): JsonLdObject {
     alternateName: '123digital',
     url: BASE_URL,
     logo: `${BASE_URL}/images/logo.svg`,
-    image: `${BASE_URL}/images/og-image.svg`,
+    image: `${BASE_URL}/images/og-image.png`,
     description:
       'Consultant en croissance digitale à Lyon pour PME et entrepreneurs. SEO, création de sites web, publicité en ligne, branding, community management et automatisation marketing.',
     founder: {

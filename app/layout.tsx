@@ -120,14 +120,21 @@ export const metadata: Metadata = {
   icons: {
     icon: '/images/favicon.svg',
   },
-  other: { 'theme-color': '#000000' },
+  // Pas de 'theme-color' ici : viewport.themeColor plus bas emet deja la balise,
+  // et les deux ensemble en produisaient deux, identiques.
 }
 
 export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
-  themeColor: '#000000',
-  colorScheme: 'dark',
+  // Couleur de la barre du navigateur sur mobile : celle du bandeau tout en
+  // haut de la page, --dark, et non un noir approximatif.
+  themeColor: '#0A0A0A',
+  // Le site est clair, --surface vaut #F4F6F2. La valeur 'dark' venait du
+  // gabarit de depart et n a jamais ete corrigee : elle faisait rendre au
+  // navigateur ses champs de formulaire, ses listes deroulantes et ses barres
+  // de defilement en sombre par-dessus une page ivoire.
+  colorScheme: 'light',
 }
 
 // ─── Layout ───────────────────────────────────────────────────────────────────

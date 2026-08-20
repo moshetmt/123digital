@@ -1,0 +1,19 @@
+{
+  "name": "123 Digital Lyon",
+  "short_name": "123 Digital",
+  "description": "Maurice Timsit, consultant digital à Lyon : SEO, création de site web, publicité en ligne et automatisation pour PME.",
+  "lang": "fr",
+  "start_url": "/",
+  "scope": "/",
+  "display": "browser",
+  "background_color": "#F4F6F2",
+  "theme_color": "#0A0A0A",
+  "icons": [
+    {
+      "src": "/icon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}

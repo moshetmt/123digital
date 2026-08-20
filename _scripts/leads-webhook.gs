@@ -11,7 +11,9 @@
  *  2. Coller ce fichier entier (remplacer le Code.gs par défaut)
  *  3. Paramètres du projet → Propriétés du script → ajouter
  *       SHARED_SECRET = <une chaîne aléatoire, la même que SHEETS_WEBHOOK_SECRET côté site>
- *  4. Exécuter la fonction setupSheet() une fois (autoriser l'accès quand demandé)
+ *  4. Exécuter la fonction setupSheet() une fois (autoriser l'accès quand demandé).
+ *     Cette exécution accorde aussi le droit de poser des déclencheurs, dont le
+ *     webhook a besoin pour repousser le tableau de bord hors de la requête.
  *  5. Déployer → Nouveau déploiement → Type : Application web
  *       Exécuter en tant que : moi
  *       Qui a accès : Tout le monde
@@ -92,14 +94,41 @@ function doPost(e) {
     lock.waitLock(20000)
     try {
       appendLead(body)
-      refreshDashboard()
     } finally {
       lock.releaseLock()
     }
 
+    programmerTableauDeBord()
     return json({ ok: true })
   } catch (err) {
     return json({ ok: false, error: String(err) })
+  }
+}
+
+/**
+ * Le tableau de bord se reconstruit entièrement : il supprime les deux
+ * graphiques, les recrée, refait toute la mise en forme et refusionne les
+ * cellules. Mesuré le 20/08/2026 depuis le site : 6,8 s pour enregistrer un
+ * lead, dont la quasi-totalité ici, contre 146 ms pour l'email. Le site
+ * attendait donc sept secondes pour des chiffres que personne ne lit à la
+ * seconde près.
+ *
+ * On le repousse une minute plus tard, hors requête, avec un seul rendez-vous
+ * en attente à la fois : dix leads d'affilée déclenchent un recalcul, pas dix.
+ * Le webhook ne fait plus qu'écrire sa ligne.
+ */
+function programmerTableauDeBord() {
+  try {
+    ScriptApp.getProjectTriggers().forEach(function (t) {
+      if (t.getHandlerFunction() === 'refreshDashboard') ScriptApp.deleteTrigger(t)
+    })
+    ScriptApp.newTrigger('refreshDashboard').timeBased().after(60 * 1000).create()
+  } catch (err) {
+    // Autorisation pas encore accordée, ou quota de déclencheurs atteint. La
+    // ligne du lead est déjà écrite, c'est le seul point qui ne se rattrape
+    // pas : le tableau de bord, lui, se refera au lead suivant ou à la main
+    // avec setupSheet().
+    console.error('Tableau de bord non programme : ' + err)
   }
 }
 

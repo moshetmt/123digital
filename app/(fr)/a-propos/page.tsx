@@ -58,6 +58,41 @@ export default function AProposPage() {
         </p>
       </PageBanner>
 
+      {/* Portrait + bio courte */}
+      <section className="bg-background" style={{ padding: '5rem 1.5rem 6rem' }}>
+        <div className="mx-auto max-w-5xl grid grid-cols-1 md:grid-cols-[minmax(0,340px)_1fr] gap-10 md:gap-14 items-center">
+          <div className="rounded-2xl overflow-hidden" style={{ border: '1px solid var(--line)', boxShadow: '0 24px 60px var(--shadow-soft)' }}>
+            <Image
+              src="/images/maurice-timsit-portrait.jpg"
+              alt="Maurice Timsit, consultant digital à Lyon"
+              width={1000}
+              height={1250}
+              sizes="(max-width: 768px) 100vw, 340px"
+              style={{ width: '100%', height: 'auto', display: 'block' }}
+            />
+          </div>
+          <div>
+            <h2 className="font-display font-extrabold mb-6" style={{ fontSize: 'clamp(1.6rem, 3vw, 2.5rem)', color: 'var(--ink)', letterSpacing: '-0.02em' }}>
+              En deux mots
+            </h2>
+            <p className="leading-relaxed mb-4" style={{ color: 'var(--ink-2)' }}>
+              J&apos;ai commencé par vendre du référencement à des commerçants qui ne voyaient pas
+              l&apos;intérêt d&apos;un site. Huit ans plus tard, je fais toujours le même métier,
+              avec une conviction simple : un site qui ne fait pas sonner le téléphone ne sert à rien.
+            </p>
+            <p className="leading-relaxed mb-4" style={{ color: 'var(--ink-2)' }}>
+              Je travaille seul sur vos dossiers. Pas de commercial qui promet, pas de junior qui
+              exécute. Vous m&apos;avez au téléphone, et c&apos;est moi qui touche à votre site,
+              à vos campagnes et à vos statistiques.
+            </p>
+            <p className="leading-relaxed" style={{ color: 'var(--ink-2)' }}>
+              Basé à Lyon, j&apos;accompagne surtout des artisans, des commerces et des PME de la
+              région, et quelques clients ailleurs en France.
+            </p>
+          </div>
+        </div>
+      </section>
+
       {/* Valeurs */}
       <section className="bg-background" style={{ padding: '0 1.5rem 6rem' }}>
         <div className="mx-auto max-w-5xl">

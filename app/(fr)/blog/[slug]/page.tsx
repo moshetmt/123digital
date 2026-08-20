@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation'
 import Image from 'next/image'
 import Link from 'next/link'
 import { JsonLd } from '@/components/seo/JsonLd'
+import { PageBanner } from '@/components/sections/PageBanner'
 import { FaqListe } from '@/components/sections/FaqListe'
 import { Breadcrumb } from '@/components/layout/Breadcrumb'
 import { BASE_URL, breadcrumbSchema, articleSchema } from '@/lib/schema'
@@ -271,68 +272,27 @@ export default async function BlogArticlePage({ params }: PageProps) {
     <>
       <JsonLd schema={schemas} />
 
-      {/* Hero article */}
-      <section className="bg-background" style={{ padding: 'clamp(2rem, 5vw, 3.5rem) 1.5rem clamp(2.25rem, 6vw, 4rem)' }}>
-        <div className="mx-auto max-w-3xl">
-          <div className="mb-6">
-            <Breadcrumb
-              items={[
-                { label: 'Accueil', href: '/' },
-                { label: 'Blog', href: '/blog' },
-                { label: article.categorie },
-              ]}
-            />
-          </div>
-
-          <div className="flex items-center gap-4 mb-6 flex-wrap">
-            <span
-              style={{
-                fontSize: '0.65rem',
-                letterSpacing: '0.12em',
-                textTransform: 'uppercase',
-                color: 'var(--brand)',
-                fontWeight: 700,
-              }}
-            >
-              {article.categorie}
-            </span>
-            <span style={{ color: 'var(--ink-3)', fontSize: '0.8rem' }}>
-              {new Date(article.datePublication).toLocaleDateString('fr-FR', {
-                day: '2-digit',
-                month: 'long',
-                year: 'numeric',
-              })}
-            </span>
-            <span style={{ color: 'var(--ink-3)', fontSize: '0.8rem' }}>
-              {article.tempsLecture} min de lecture
-            </span>
-          </div>
-
-          <h1
-            className="font-display font-extrabold mb-6"
-            style={{
-              fontSize: 'clamp(1.8rem, 4vw, 3rem)',
-              color: 'var(--ink)',
-              lineHeight: 1.1,
-              letterSpacing: '-0.02em',
-            }}
-          >
-            {article.titre}
-          </h1>
-
-          <p
-            style={{
-              color: 'var(--ink-2)',
-              lineHeight: 1.7,
-              fontSize: '1rem',
-              borderBottom: '1px solid var(--line)',
-              paddingBottom: '2rem',
-            }}
-          >
-            {article.description}
-          </p>
-        </div>
-      </section>
+      <PageBanner
+        icone="pen-line"
+        image={{ src: article.image, priority: true }}
+        breadcrumb={
+          <Breadcrumb
+            tone="vert"
+            items={[
+              { label: 'Accueil', href: '/' },
+              { label: 'Blog', href: '/blog' },
+              { label: article.categorie },
+            ]}
+          />
+        }
+        title={article.titre}
+        sub={article.description}
+        ballRadius={22}
+      >
+        <p style={{ marginTop: '0.9rem', fontSize: '0.8rem', fontWeight: 700, color: 'oklch(0.985 0.003 150 / 78%)' }}>
+          {article.categorie} · {new Date(article.datePublication).toLocaleDateString('fr-FR', { day: '2-digit', month: 'long', year: 'numeric' })} · {article.tempsLecture} min de lecture
+        </p>
+      </PageBanner>
 
       {/* Image de couverture */}
       <section className="bg-background" style={{ padding: '0 1.5rem 3rem' }}>

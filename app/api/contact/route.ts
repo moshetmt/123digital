@@ -143,10 +143,6 @@ async function sendEmail(lead: Lead): Promise<boolean> {
     return false
   }
 
-  // Destinataire par defaut = l'adresse proprietaire du compte Resend.
-  // Tant que le domaine 123digital.fr n'est pas verifie chez Resend, l'expediteur
-  // de secours onboarding@resend.dev ne peut livrer QU'A cette adresse : viser
-  // une autre boite ferait echouer chaque demande.
   const to = process.env.CONTACT_TO || 'contact@123digital.fr'
 
   try {
@@ -157,9 +153,10 @@ async function sendEmail(lead: Lead): Promise<boolean> {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        // onboarding@resend.dev fonctionne sans vérifier de domaine ;
-        // passer à un expéditeur @123digital.fr une fois le domaine vérifié chez Resend.
-        from: '123digital.fr <onboarding@resend.dev>',
+        // Domaine 123digital.fr vérifié chez Resend : l'expéditeur porte la
+        // marque et la livraison n'est plus limitée à l'adresse du compte,
+        // contrairement à l'adresse de test onboarding@resend.dev.
+        from: process.env.CONTACT_FROM || '123digital <contact@123digital.fr>',
         to: [to],
         reply_to: lead.email,
         subject: leadEmailSubject(lead),

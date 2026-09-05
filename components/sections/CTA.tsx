@@ -1,7 +1,7 @@
 'use client'
 
-import { useRef, useState } from 'react'
-import { motion, useInView, AnimatePresence } from 'framer-motion'
+import { useState } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
 import { Check } from 'lucide-react'
 import { t, type Locale } from '@/lib/i18n'
 import { readLeadSource } from '@/lib/lead-source'
@@ -15,12 +15,9 @@ const PHONE_DISPLAY = '06 52 09 23 01'
 
 interface FormState {
   prenom: string
-  nom: string
   email: string
   tel: string
-  site: string
   besoin: string
-  message: string
 }
 
 const BESOINS_FR = [
@@ -95,21 +92,6 @@ function FormSelect({
   )
 }
 
-function FormTextarea({
-  value, onChange, placeholder,
-}: {
-  value: string; onChange: React.ChangeEventHandler<HTMLTextAreaElement>; placeholder: string
-}) {
-  const [focused, setFocused] = useState(false)
-  return (
-    <textarea
-      rows={3} value={value} onChange={onChange} placeholder={placeholder}
-      style={{ ...inputBase, borderColor: focused ? 'var(--brand)' : 'var(--line)', resize: 'vertical' }}
-      onFocus={() => setFocused(true)} onBlur={() => setFocused(false)}
-    />
-  )
-}
-
 // ── CTA Section ───────────────────────────────────────────────────────────────
 
 export function CTA({ lang = 'fr' }: { lang?: Locale }) {
@@ -117,10 +99,7 @@ export function CTA({ lang = 'fr' }: { lang?: Locale }) {
   const isEN = lang === 'en'
   const besoins = isEN ? BESOINS_EN : BESOINS_FR
 
-  const ref = useRef<HTMLDivElement>(null)
-  const isInView = useInView(ref, { once: true, margin: '-100px' })
-
-  const [form, setForm] = useState<FormState>({ prenom: '', nom: '', email: '', tel: '', site: '', besoin: '', message: '' })
+  const [form, setForm] = useState<FormState>({ prenom: '', email: '', tel: '', besoin: '' })
   const [hp, setHp] = useState('')
   const [submitted, setSubmitted] = useState(false)
   const [loading, setLoading] = useState(false)
@@ -135,9 +114,21 @@ export function CTA({ lang = 'fr' }: { lang?: Locale }) {
     e.preventDefault()
     const errs: typeof errors = {}
     if (!form.prenom.trim()) errs.prenom = true
-    if (!form.nom.trim()) errs.nom = true
-    if (!form.email.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) errs.email = true
     if (!form.besoin) errs.besoin = true
+
+    // Email ou telephone, au moins un des deux : aucun rempli fait rougir les
+    // deux champs de la ligne, un seul rempli n'est verifie que lui-meme.
+    const emailFilled = form.email.trim().length > 0
+    const telDigits = form.tel.replace(/\D/g, '')
+    const telFilled = telDigits.length > 0
+    if (!emailFilled && !telFilled) {
+      errs.email = true
+      errs.tel = true
+    } else {
+      if (emailFilled && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) errs.email = true
+      if (telFilled && telDigits.length < 6) errs.tel = true
+    }
+
     if (Object.keys(errs).length) { setErrors(errs); return }
     setErrors({})
     setSendError(false)
@@ -182,13 +173,9 @@ export function CTA({ lang = 'fr' }: { lang?: Locale }) {
       style={{ backgroundColor: 'var(--brand)', padding: 'clamp(1.6rem, 5vw, 4.5rem) 1.5rem' }}
       aria-labelledby="contact-heading"
     >
-      <div ref={ref} className="mx-auto max-w-6xl grid grid-cols-1 lg:grid-cols-2 gap-5 lg:gap-14 items-start">
+      <div className="mx-auto max-w-6xl grid grid-cols-1 lg:grid-cols-2 gap-5 lg:gap-14 items-start">
         {/* ── Texte gauche ── */}
-        <motion.div
-          initial={{ opacity: 0, y: 16, filter: 'blur(6px)' }}
-          animate={isInView ? { opacity: 1, y: 0, filter: 'blur(0px)' } : {}}
-          transition={{ duration: 0.6, ease: EASE }}
-        >
+        <div>
           <h2
             id="contact-heading"
             style={{
@@ -212,14 +199,10 @@ export function CTA({ lang = 'fr' }: { lang?: Locale }) {
               {PHONE_DISPLAY}
             </a>
           </p>
-        </motion.div>
+        </div>
 
         {/* ── Formulaire ── */}
-        <motion.div
-          initial={{ opacity: 0, y: 20, filter: 'blur(6px)' }}
-          animate={isInView ? { opacity: 1, y: 0, filter: 'blur(0px)' } : {}}
-          transition={{ delay: 0.15, duration: 0.6, ease: EASE }}
-        >
+        <div>
           <AnimatePresence mode="wait" initial={false}>
             {!submitted ? (
               <motion.form
@@ -231,30 +214,18 @@ export function CTA({ lang = 'fr' }: { lang?: Locale }) {
                 className="flex flex-col gap-2.5"
                 style={{ backgroundColor: 'var(--surface-2)', borderRadius: '1.25rem', padding: 'clamp(1.1rem, 4vw, 1.6rem)' }}
               >
-                {/* Champs courts appaires des le telephone : le formulaire
-                    empilait 6 lignes pleine largeur, soit 1,4 ecran a lui seul. */}
-                <div className="grid grid-cols-2 gap-2.5">
-                  <div>
-                    <label style={labelStyle}>{d.firstName}</label>
-                    <FormInput value={form.prenom} onChange={set('prenom')} placeholder={isEN ? 'John' : 'Jean'} hasError={errors.prenom} />
-                  </div>
-                  <div>
-                    <label style={labelStyle}>{d.lastName}</label>
-                    <FormInput value={form.nom} onChange={set('nom')} placeholder={isEN ? 'Smith' : 'Dupont'} hasError={errors.nom} />
-                  </div>
+                {/* 3 lignes seulement : prenom, puis email ou telephone (un des
+                    deux suffit), puis besoin. Le formulaire a 7 champs n'a
+                    ramene aucun lead depuis la mise en ligne. */}
+                <div>
+                  <label style={labelStyle}>{d.firstName}</label>
+                  <FormInput value={form.prenom} onChange={set('prenom')} placeholder={isEN ? 'John' : 'Jean'} hasError={errors.prenom} />
                 </div>
                 <div>
-                  <label style={labelStyle}>{d.emailLabel}</label>
-                  <FormInput type="email" value={form.email} onChange={set('email')} placeholder={isEN ? 'you@company.com' : 'vous@entreprise.fr'} hasError={errors.email} />
-                </div>
-                <div className="grid grid-cols-2 gap-2.5">
-                  <div>
-                    <label style={labelStyle}>{d.phoneLabel} <span style={{ opacity: 0.7, fontWeight: 500 }}>{d.optional}</span></label>
-                    <FormInput type="tel" value={form.tel} onChange={set('tel')} placeholder="06 12 34 56 78" />
-                  </div>
-                  <div>
-                    <label style={labelStyle}>{d.siteLabel} <span style={{ opacity: 0.7, fontWeight: 500 }}>{d.optional}</span></label>
-                    <FormInput value={form.site} onChange={set('site')} placeholder="https://" />
+                  <label style={labelStyle}>{d.contactLabel} <span style={{ opacity: 0.7, fontWeight: 500 }}>{d.contactHint}</span></label>
+                  <div className="grid grid-cols-2 gap-2.5">
+                    <FormInput type="email" value={form.email} onChange={set('email')} placeholder={isEN ? 'you@company.com' : 'vous@entreprise.fr'} hasError={errors.email} />
+                    <FormInput type="tel" value={form.tel} onChange={set('tel')} placeholder="06 12 34 56 78" hasError={errors.tel} />
                   </div>
                 </div>
                 <div>
@@ -266,10 +237,6 @@ export function CTA({ lang = 'fr' }: { lang?: Locale }) {
                     options={besoins}
                     placeholder={d.needPH}
                   />
-                </div>
-                <div>
-                  <label style={labelStyle}>{d.messageLabel} <span style={{ opacity: 0.7, fontWeight: 500 }}>{d.messageOptional}</span></label>
-                  <FormTextarea value={form.message} onChange={set('message') as React.ChangeEventHandler<HTMLTextAreaElement>} placeholder={d.messagePlaceholder} />
                 </div>
 
                 {/* Honeypot anti-spam : invisible et hors tabulation */}
@@ -345,7 +312,7 @@ export function CTA({ lang = 'fr' }: { lang?: Locale }) {
               </div>
             ))}
           </div>
-        </motion.div>
+        </div>
       </div>
     </section>
   )

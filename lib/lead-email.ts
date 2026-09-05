@@ -69,12 +69,16 @@ function pied(label: string, valeur: string): string {
   return `<div style="color:${INK_SOFT};font-size:12px;line-height:18px;word-break:break-all;"><span style="color:${INK_LABEL};font-weight:bold;">${esc(label)} :</span> ${esc(valeur)}</div>`
 }
 
+/** Prenom seul si nom absent : evite un espace bancal en fin de chaine. */
+function nomComplet(lead: LeadEmail): string {
+  return lead.nom ? `${lead.prenom} ${lead.nom}` : lead.prenom
+}
+
 export function leadEmailSubject(lead: LeadEmail): string {
-  return `Lead 123digital — ${lead.besoinLabel} — ${lead.prenom} ${lead.nom}`.trim()
+  return `Lead 123digital — ${lead.besoinLabel} — ${nomComplet(lead)}`
 }
 
 export function leadEmailHtml(lead: LeadEmail): string {
-  const nomComplet = `${lead.prenom} ${lead.nom}`.trim()
   const telHtml = lead.tel
     ? `<a href="tel:${esc(lead.tel.replace(/\s/g, ''))}" style="color:${BRAND};text-decoration:none;font-weight:bold;">${esc(lead.tel)}</a>`
     : `<span style="color:${INK_SOFT};">non renseigné</span>`
@@ -88,8 +92,19 @@ export function leadEmailHtml(lead: LeadEmail): string {
   const sujetReponse = encodeURIComponent(`Votre demande sur 123digital.fr`)
   const boutons = [
     lead.tel ? bouton(`tel:${lead.tel.replace(/\s/g, '')}`, `Appeler ${lead.prenom}`, true) : '',
-    bouton(`mailto:${lead.email}?subject=${sujetReponse}`, 'Répondre par email', !lead.tel),
+    lead.email ? bouton(`mailto:${lead.email}?subject=${sujetReponse}`, 'Répondre par email', !lead.tel) : '',
   ].join('')
+
+  // Le telephone est le canal de rappel : quand il est renseigné, sa ligne
+  // passe en tete plutot que d'attendre son tour derriere Nom et Email.
+  const ligneTel = ligne('Téléphone', telHtml)
+  const ligneNom = ligne('Nom', esc(nomComplet(lead)))
+  const ligneEmail = lead.email
+    ? ligne('Email', `<a href="mailto:${esc(lead.email)}" style="color:${BRAND};text-decoration:none;font-weight:bold;">${esc(lead.email)}</a>`)
+    : ''
+  const lignesContact = lead.tel
+    ? [ligneTel, ligneNom, ligneEmail]
+    : [ligneNom, ligneEmail, ligneTel]
 
   return `<div style="margin:0;padding:24px 12px;background:${SURFACE};font-family:Arial,Helvetica,sans-serif;">
 <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="max-width:620px;margin:0 auto;background:#ffffff;border:1px solid ${LINE};border-radius:8px;">
@@ -99,9 +114,7 @@ export function leadEmailHtml(lead: LeadEmail): string {
 </td></tr>
 <tr><td style="padding:20px 24px 8px;">
 <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="border-collapse:collapse;">
-${ligne('Nom', esc(nomComplet))}
-${ligne('Email', `<a href="mailto:${esc(lead.email)}" style="color:${BRAND};text-decoration:none;font-weight:bold;">${esc(lead.email)}</a>`)}
-${ligne('Téléphone', telHtml)}
+${lignesContact.join('\n')}
 ${ligne('Site web', siteHtml)}
 ${ligne('Besoin', esc(lead.besoinLabel))}
 ${ligne('Message', messageHtml)}
@@ -129,12 +142,17 @@ ${pied('Reçu le', recuLe())}
 }
 
 export function leadEmailText(lead: LeadEmail): string {
+  const ligneNom = `Nom : ${nomComplet(lead)}`
+  const ligneEmail = lead.email ? `Email : ${lead.email}` : ''
+  const ligneTel = `Téléphone : ${lead.tel || 'non renseigné'}`
+  const lignesContact = lead.tel
+    ? [ligneTel, ligneNom, ligneEmail]
+    : [ligneNom, ligneEmail, ligneTel]
+
   return [
     'Nouvelle demande depuis 123digital.fr',
     '-------------------------------------',
-    `Nom : ${lead.prenom} ${lead.nom}`.trim(),
-    `Email : ${lead.email}`,
-    `Téléphone : ${lead.tel || 'non renseigné'}`,
+    ...lignesContact,
     `Site web : ${lead.site || 'non renseigné'}`,
     `Besoin : ${lead.besoinLabel}`,
     `Message : ${lead.message || 'vide'}`,

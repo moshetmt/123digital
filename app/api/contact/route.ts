@@ -63,11 +63,17 @@ export async function POST(req: Request) {
   }
 
   const prenom = clean(body.prenom)
-  const nom = clean(body.nom)
   const email = clean(body.email)
+  const tel = clean(body.tel)
   const besoin = clean(body.besoin)
 
-  if (!prenom || !nom || !besoin || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+  // Formulaire a 3 lignes : email et telephone sont chacun facultatifs, mais
+  // au moins un des deux doit etre exploitable (email valide, ou au moins
+  // 6 chiffres de telephone).
+  const emailValide = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
+  const telValide = tel.replace(/\D/g, '').length >= 6
+
+  if (!prenom || !besoin || !(emailValide || telValide)) {
     return NextResponse.json({ ok: false }, { status: 400 })
   }
 
@@ -76,13 +82,13 @@ export async function POST(req: Request) {
 
   const lead: Lead = {
     prenom,
-    nom,
+    nom: '',
     email,
-    tel: clean(body.tel),
-    site: clean(body.site),
+    tel,
+    site: '',
     besoin,
     besoinLabel: BESOIN_LABELS[besoin] || besoin,
-    message: clean(body.message),
+    message: '',
     // Page du formulaire et page d'arrivée restent deux colonnes distinctes :
     // les fusionner casserait le regroupement « pages qui convertissent ».
     page,
@@ -174,7 +180,9 @@ async function sendEmail(lead: Lead): Promise<boolean> {
         // contrairement à l'adresse de test onboarding@resend.dev.
         from: process.env.CONTACT_FROM || '123digital <contact@123digital.fr>',
         to: [to],
-        reply_to: lead.email,
+        // reply_to seulement si un email a ete fourni : le lead peut n'avoir
+        // laisse que son telephone, Resend refuse une chaine vide.
+        ...(lead.email ? { reply_to: lead.email } : {}),
         subject: leadEmailSubject(lead),
         html: leadEmailHtml(lead),
         // Version texte pour les clients qui refusent le HTML, et pour éviter

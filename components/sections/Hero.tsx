@@ -1,30 +1,28 @@
-'use client'
-
-import { useRef, type ReactNode } from 'react'
+import type { ReactNode } from 'react'
 import Link from 'next/link'
-import { motion, useInView } from 'framer-motion'
 import { Phone, Check } from 'lucide-react'
 import { PongCanvas } from '@/components/sections/PongCanvas'
 import { t, type Locale } from '@/lib/i18n'
 
-const EASE = [0.16, 1, 0.3, 1] as [number, number, number, number]
-
 const PHONE_TEL = 'tel:+33652092301'
 
 // Banniere d'accueil : meme fond et meme Pong que les pages internes
-// (components/sections/PageBanner), avec en plus l'entree animee et les trois
-// puces de reassurance. Le decor vit dans PongCanvas, partage par les deux.
+// (components/sections/PageBanner), avec en plus les trois puces de
+// reassurance. Le decor vit dans PongCanvas, partage par les deux.
+//
+// Aucune animation d'entree ici, decision du 05/09 : le titre est l'element
+// LCP de la page. Quand il partait a opacite 0 en attendant framer-motion,
+// le navigateur ne le comptait qu'apres l'hydratation et le fondu, d'ou un
+// LCP mobile a 6,5 s. Le texte est rendu cote serveur, visible tout de suite ;
+// seul PongCanvas reste un composant client.
 
 export function Hero({ lang = 'fr' }: { lang?: Locale }) {
   const d = t(lang).hero
-  const ref = useRef<HTMLElement>(null)
-  const isInView = useInView(ref, { once: true, margin: '-10%' })
 
   const checks = [d.check1, d.check2, d.check3]
 
   return (
     <section
-      ref={ref}
       id="section-hero"
       className="relative isolate overflow-hidden"
       style={{
@@ -56,10 +54,7 @@ export function Hero({ lang = 'fr' }: { lang?: Locale }) {
 
       <div className="relative mx-auto w-full max-w-4xl">
         <div className="text-center">
-          <motion.h1
-            initial={{ y: 16, opacity: 0, filter: 'blur(6px)' }}
-            animate={isInView ? { y: 0, opacity: 1, filter: 'blur(0px)' } : {}}
-            transition={{ duration: 0.8, ease: EASE }}
+          <h1
             className="mx-auto"
             style={{
               fontFamily: 'var(--font-sans)',
@@ -73,12 +68,9 @@ export function Hero({ lang = 'fr' }: { lang?: Locale }) {
             }}
           >
             {highlightGoogle(d.h1)}
-          </motion.h1>
+          </h1>
 
-          <motion.p
-            initial={{ y: 16, opacity: 0, filter: 'blur(6px)' }}
-            animate={isInView ? { y: 0, opacity: 1, filter: 'blur(0px)' } : {}}
-            transition={{ duration: 0.8, delay: 0.1, ease: EASE }}
+          <p
             className="mx-auto"
             style={{
               fontSize: 'clamp(0.95rem, 3.2vw, 1.1rem)',
@@ -89,12 +81,9 @@ export function Hero({ lang = 'fr' }: { lang?: Locale }) {
             }}
           >
             {d.sub}
-          </motion.p>
+          </p>
 
-          <motion.div
-            initial={{ y: 16, opacity: 0, filter: 'blur(6px)' }}
-            animate={isInView ? { y: 0, opacity: 1, filter: 'blur(0px)' } : {}}
-            transition={{ duration: 0.8, delay: 0.2, ease: EASE }}
+          <div
             className="flex flex-nowrap items-center justify-center gap-2.5 sm:gap-3.5 mb-6"
           >
             {/* Boutons inverses : le vert est passe en fond, l'appel devient donc
@@ -127,12 +116,9 @@ export function Hero({ lang = 'fr' }: { lang?: Locale }) {
               <span className="sm:hidden">{d.ctaQuoteShort}</span>
               <span className="hidden sm:inline">{d.ctaQuote}</span>
             </Link>
-          </motion.div>
+          </div>
 
-          <motion.ul
-            initial={{ opacity: 0, filter: 'blur(6px)' }}
-            animate={isInView ? { opacity: 1, filter: 'blur(0px)' } : {}}
-            transition={{ duration: 0.8, delay: 0.35 }}
+          <ul
             className="grid grid-cols-1 sm:grid-cols-3 gap-x-5 gap-y-1.5"
             role="list"
           >
@@ -158,7 +144,7 @@ export function Hero({ lang = 'fr' }: { lang?: Locale }) {
                 {label}
               </li>
             ))}
-          </motion.ul>
+          </ul>
         </div>
       </div>
     </section>

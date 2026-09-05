@@ -3,7 +3,9 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import type { LucideIcon } from 'lucide-react'
-import { Briefcase, Coins, Gem, Hammer, Monitor, Rocket, Search, ShoppingBag, Smartphone, Sparkles, Stethoscope, TrendingUp, UtensilsCrossed, Wallet } from 'lucide-react'
+// Icones neutres pour « Autre » et les paliers de budget : Sparkles, Gem et
+// Rocket sont le trio signature des sites generes par IA, remplaces le 05/09.
+import { Banknote, Briefcase, Coins, Ellipsis, Hammer, Landmark, Monitor, Search, ShoppingBag, Smartphone, Stethoscope, TrendingUp, UtensilsCrossed, Wallet } from 'lucide-react'
 
 interface Question {
   id: string
@@ -21,7 +23,7 @@ const questions: Question[] = [
       { value: 'commerce', label: 'Commerce / Boutique', icon: ShoppingBag },
       { value: 'services', label: 'Services / Conseil', icon: Briefcase },
       { value: 'medical', label: 'Santé / Médical', icon: Stethoscope },
-      { value: 'autre', label: 'Autre', icon: Sparkles },
+      { value: 'autre', label: 'Autre', icon: Ellipsis },
     ],
   },
   {
@@ -40,8 +42,8 @@ const questions: Question[] = [
     options: [
       { value: 'small', label: 'Moins de 500 €', icon: Wallet },
       { value: 'medium', label: '500 — 1 500 €', icon: Coins },
-      { value: 'large', label: '1 500 — 3 000 €', icon: Gem },
-      { value: 'xl', label: 'Plus de 3 000 €', icon: Rocket },
+      { value: 'large', label: '1 500 — 3 000 €', icon: Banknote },
+      { value: 'xl', label: 'Plus de 3 000 €', icon: Landmark },
     ],
   },
 ]

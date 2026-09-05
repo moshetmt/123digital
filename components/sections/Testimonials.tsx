@@ -1,12 +1,3 @@
-'use client'
-
-import { useRef } from 'react'
-import { motion, useInView } from 'framer-motion'
-import type { Variants } from 'framer-motion'
-
-const EASE = [0.22, 1, 0.36, 1] as [number, number, number, number]
-const PULL_EASE = [0.16, 1, 0.3, 1] as [number, number, number, number]
-
 interface Testimonial {
   name: string
   company: string
@@ -77,42 +68,8 @@ function getTestimonials(lang: 'fr' | 'en'): Testimonial[] {
   ]
 }
 
-// Word pull-up
-function WordPullUp({ text, delay = 0 }: { text: string; delay?: number }) {
-  const ref = useRef<HTMLSpanElement>(null)
-  const isInView = useInView(ref, { once: true, margin: '-40px' })
-  const words = text.split(' ')
-  return (
-    <span ref={ref} style={{ display: 'inline-flex', flexWrap: 'wrap', gap: '0.18em' }}>
-      {words.map((word, i) => (
-        <span key={i} style={{ display: 'inline-block', overflow: 'hidden' }}>
-          <motion.span
-            style={{ display: 'inline-block' }}
-            initial={{ y: '110%' }}
-            animate={isInView ? { y: 0 } : {}}
-            transition={{ duration: 0.8, ease: PULL_EASE, delay: delay + i * 0.06 }}
-          >
-            {word}
-          </motion.span>
-        </span>
-      ))}
-    </span>
-  )
-}
-
-const container: Variants = {
-  hidden: { opacity: 0 },
-  visible: { opacity: 1, transition: { staggerChildren: 0.12 } },
-}
-const cardVariant: Variants = {
-  hidden: { y: 28, opacity: 0 },
-  visible: { y: 0, opacity: 1, transition: { duration: 0.6, ease: EASE } },
-}
-
 export function Testimonials({ lang = 'fr' }: { lang?: 'fr' | 'en' }) {
   const testimonials = getTestimonials(lang)
-  const ref = useRef<HTMLDivElement>(null)
-  const isInView = useInView(ref, { once: true, margin: '-100px' })
 
   return (
     <section
@@ -122,12 +79,8 @@ export function Testimonials({ lang = 'fr' }: { lang?: 'fr' | 'en' }) {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
 
         {/* Header */}
-        <motion.div
-          ref={ref}
+        <div
           className="mb-14 sm:mb-20"
-          initial={{ opacity: 0 }}
-          animate={isInView ? { opacity: 1 } : {}}
-          transition={{ duration: 0.5 }}
         >
           <p
             className="text-[10px] font-semibold tracking-[0.22em] uppercase mb-5"
@@ -145,22 +98,18 @@ export function Testimonials({ lang = 'fr' }: { lang?: 'fr' | 'en' }) {
               letterSpacing: '-0.02em',
             }}
           >
-            <WordPullUp text="Ils ont fait confiance." delay={0.05} />
+            Ils ont fait confiance.
           </h2>
-        </motion.div>
+        </div>
 
         {/* Cards */}
-        <motion.div
-          variants={container}
-          initial="hidden"
-          animate={isInView ? 'visible' : 'hidden'}
+        <div
           className="grid grid-cols-1 md:grid-cols-3 gap-3"
           role="list"
         >
           {testimonials.map((t) => (
-            <motion.blockquote
+            <blockquote
               key={t.name}
-              variants={cardVariant}
               role="listitem"
               className="flex flex-col rounded-2xl p-6 sm:p-7"
               style={{
@@ -225,19 +174,16 @@ export function Testimonials({ lang = 'fr' }: { lang?: 'fr' | 'en' }) {
                   </p>
                 </div>
               </footer>
-            </motion.blockquote>
+            </blockquote>
           ))}
-        </motion.div>
+        </div>
 
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={isInView ? { opacity: 1 } : {}}
-          transition={{ delay: 0.5, duration: 0.5 }}
+        <p
           className="mt-7 text-xs italic"
           style={{ color: 'oklch(0.38 0 0)' }}
         >
           {lang === 'en' ? '* Testimonials collected with client consent. First names abbreviated for privacy.' : '* Témoignages collectés avec accord des clients. Prénoms abrégés pour la confidentialité.'}
-        </motion.p>
+        </p>
       </div>
     </section>
   )

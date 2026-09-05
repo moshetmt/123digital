@@ -1,13 +1,7 @@
-'use client'
-
-import { useRef } from 'react'
 import Link from 'next/link'
-import { motion, useInView } from 'framer-motion'
 import { villesARA } from '@/data/villes'
 import { estIndexable } from '@/data/indexation'
 import { t, type Locale } from '@/lib/i18n'
-
-const EASE = [0.22, 1, 0.36, 1] as [number, number, number, number]
 
 // Les villes ARA encore indexables, dans l'ordre de data/villes.ts, plafonnées à 9.
 // 🔑 Le filtre n'est pas cosmétique : depuis le 19/08, Grenoble, Chambéry et
@@ -19,19 +13,13 @@ const CHIP_VILLES = villesARA.filter((v) => estIndexable(`/${v.slug}`)).slice(0,
 
 export function Zones({ lang = 'fr' }: { lang?: Locale }) {
   const d = t(lang).zones
-  const ref = useRef<HTMLDivElement>(null)
-  const isInView = useInView(ref, { once: true, margin: '-10%' })
 
   return (
     <section
       id="zones"
       style={{ backgroundColor: 'var(--surface)', padding: 'clamp(1.6rem, 5vw, 4.5rem) 1.5rem', borderTop: '1px solid var(--line)' }}
     >
-      <motion.div
-        ref={ref}
-        initial={{ opacity: 0, y: 16, filter: 'blur(6px)' }}
-        animate={isInView ? { opacity: 1, y: 0, filter: 'blur(0px)' } : {}}
-        transition={{ duration: 0.6, ease: EASE }}
+      <div
         className="mx-auto max-w-4xl text-center"
       >
         <div
@@ -85,7 +73,7 @@ export function Zones({ lang = 'fr' }: { lang?: Locale }) {
             {d.franceWide}
           </span>
         </div>
-      </motion.div>
+      </div>
 
       <style>{`
         .chip-link { transition: background-color 0.2s ease, color 0.2s ease; }

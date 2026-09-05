@@ -95,10 +95,7 @@ export function Header({ lang = 'fr' }: { lang?: Locale }) {
     <div style={{ position: 'sticky', top: 0, zIndex: 50 }}>
       <TrustBar lang={lang} />
 
-      <motion.header
-        initial={{ y: -40, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] }}
+      <header
         className="border-b"
         style={{
           backgroundColor: 'var(--surface-alpha)',
@@ -383,7 +380,7 @@ export function Header({ lang = 'fr' }: { lang?: Locale }) {
             </Sheet>
           </div>
         </nav>
-      </motion.header>
+      </header>
     </div>
   )
 }

@@ -1,21 +1,18 @@
 'use client'
 
-import { useRef, useState } from 'react'
-import { motion, useInView, AnimatePresence } from 'framer-motion'
+import { useState } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
 import { ChevronDown } from 'lucide-react'
 import { getHomeFaqs } from '@/data/faq'
 import { t, type Locale } from '@/lib/i18n'
 
 const EASE = [0.22, 1, 0.36, 1] as [number, number, number, number]
 
-function FAQItem({ question, answer, delay = 0 }: { question: string; answer: string; delay?: number }) {
+function FAQItem({ question, answer }: { question: string; answer: string }) {
   const [open, setOpen] = useState(false)
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 14, filter: 'blur(6px)' }}
-      animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-      transition={{ duration: 0.5, delay, ease: EASE }}
+    <div
       className="rounded-2xl overflow-hidden"
       style={{ border: '1px solid var(--line)', backgroundColor: 'var(--surface-2)' }}
     >
@@ -54,25 +51,18 @@ function FAQItem({ question, answer, delay = 0 }: { question: string; answer: st
           </motion.div>
         )}
       </AnimatePresence>
-    </motion.div>
+    </div>
   )
 }
 
 export function FAQ({ lang = 'fr' }: { lang?: Locale }) {
   const d = t(lang).faq
-  const ref = useRef<HTMLDivElement>(null)
-  const isInView = useInView(ref, { once: true, margin: '-100px' })
 
   return (
     <section style={{ backgroundColor: 'var(--surface)', padding: 'clamp(1.6rem, 5vw, 4.5rem) 1.5rem' }} aria-labelledby="faq-heading">
       <div className="mx-auto max-w-5xl">
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.4fr] gap-10 lg:gap-16">
-          <motion.div
-            ref={ref}
-            initial={{ opacity: 0, y: 20, filter: 'blur(6px)' }}
-            animate={isInView ? { opacity: 1, y: 0, filter: 'blur(0px)' } : {}}
-            transition={{ duration: 0.6, ease: EASE }}
-          >
+          <div>
             <div
               className="mb-3"
               style={{ fontSize: '0.72rem', letterSpacing: '0.1em', textTransform: 'uppercase', color: 'var(--brand-strong)', fontWeight: 800 }}
@@ -92,11 +82,11 @@ export function FAQ({ lang = 'fr' }: { lang?: Locale }) {
             >
               {d.heading}
             </h2>
-          </motion.div>
+          </div>
 
           <div className="flex flex-col gap-2.5">
             {getHomeFaqs(lang).map((faq, i) => (
-              <FAQItem key={i} question={faq.question} answer={faq.answer} delay={isInView ? i * 0.06 : 0} />
+              <FAQItem key={i} question={faq.question} answer={faq.answer} />
             ))}
           </div>
         </div>

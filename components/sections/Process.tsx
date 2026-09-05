@@ -1,10 +1,4 @@
-'use client'
-
-import { useRef } from 'react'
-import { motion, useInView } from 'framer-motion'
 import { t, type Locale } from '@/lib/i18n'
-
-const EASE = [0.22, 1, 0.36, 1] as [number, number, number, number]
 
 interface Step { title: string; desc: string }
 
@@ -24,15 +18,8 @@ function getSteps(lang: 'fr' | 'en'): Step[] {
 }
 
 function StepCard({ step, index }: { step: Step; index: number }) {
-  const ref = useRef<HTMLDivElement>(null)
-  const inView = useInView(ref, { once: true, margin: '-10%' })
-
   return (
-    <motion.div
-      ref={ref}
-      initial={{ opacity: 0, y: 16, filter: 'blur(6px)' }}
-      animate={inView ? { opacity: 1, y: 0, filter: 'blur(0px)' } : {}}
-      transition={{ duration: 0.6, delay: index * 0.08, ease: EASE }}
+    <div
       className="rounded-2xl"
       style={{ backgroundColor: 'var(--surface-2)', border: '1px solid var(--line)', padding: 'clamp(0.8rem, 3vw, 1.25rem)' }}
     >
@@ -49,15 +36,13 @@ function StepCard({ step, index }: { step: Step; index: number }) {
       <p style={{ fontSize: 'clamp(0.76rem, 2.6vw, 0.85rem)', color: 'var(--ink-2)', lineHeight: 1.4 }}>
         {step.desc}
       </p>
-    </motion.div>
+    </div>
   )
 }
 
 export function Process({ lang = 'fr' }: { lang?: Locale }) {
   const d = t(lang).process
   const steps = getSteps(lang)
-  const ref = useRef<HTMLDivElement>(null)
-  const inView = useInView(ref, { once: true, margin: '-80px' })
 
   return (
     <section
@@ -65,11 +50,8 @@ export function Process({ lang = 'fr' }: { lang?: Locale }) {
       style={{ backgroundColor: 'var(--surface-3)', padding: 'clamp(1.6rem, 5vw, 4.5rem) 1.5rem' }}
       aria-labelledby="process-heading"
     >
-      <div className="mx-auto max-w-6xl" ref={ref}>
-        <motion.div
-          initial={{ opacity: 0, filter: 'blur(6px)' }}
-          animate={inView ? { opacity: 1, filter: 'blur(0px)' } : {}}
-          transition={{ duration: 0.5 }}
+      <div className="mx-auto max-w-6xl">
+        <div
           className="mb-5 sm:mb-10"
         >
           <div
@@ -91,7 +73,7 @@ export function Process({ lang = 'fr' }: { lang?: Locale }) {
           >
             {d.heading}
           </h2>
-        </motion.div>
+        </div>
 
         {/* 2 colonnes des le telephone : en 1 colonne les 4 etapes prenaient un ecran entier. */}
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-2.5 sm:gap-4">

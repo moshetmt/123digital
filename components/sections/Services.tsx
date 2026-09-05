@@ -1,12 +1,6 @@
-'use client'
-
-import { useRef } from 'react'
 import Link from 'next/link'
-import { motion, useInView } from 'framer-motion'
 import { getServices, type ServiceData } from '@/data/services'
 import { t, type Locale } from '@/lib/i18n'
-
-const EASE = [0.22, 1, 0.36, 1] as [number, number, number, number]
 
 interface CardCopy { shortDesc: string; chips: string[] }
 
@@ -32,16 +26,9 @@ const cardCopyEN: Record<string, CardCopy> = {
 const ATTRACT_IDS = ['seo', 'publicite-en-ligne', 'community-management']
 const CONVERT_IDS = ['creation-site-web', 'branding', 'automatisation-marketing']
 
-function ServiceCard({ service, copy, index, learnMoreLabel }: { service: ServiceData; copy: CardCopy; index: number; learnMoreLabel: string }) {
-  const ref = useRef<HTMLDivElement>(null)
-  const inView = useInView(ref, { once: true, margin: '-10%' })
-
+function ServiceCard({ service, copy, learnMoreLabel }: { service: ServiceData; copy: CardCopy; learnMoreLabel: string }) {
   return (
-    <motion.div
-      ref={ref}
-      initial={{ opacity: 0, y: 16, filter: 'blur(6px)' }}
-      animate={inView ? { opacity: 1, y: 0, filter: 'blur(0px)' } : {}}
-      transition={{ duration: 0.6, delay: index * 0.08, ease: EASE }}
+    <div
       className="rounded-2xl flex flex-col"
       style={{ backgroundColor: 'var(--surface-2)', border: '1px solid var(--line)', boxShadow: '0 8px 30px var(--shadow-soft)', padding: 'clamp(0.85rem, 3vw, 1.4rem)' }}
     >
@@ -70,12 +57,12 @@ function ServiceCard({ service, copy, index, learnMoreLabel }: { service: Servic
       >
         {learnMoreLabel} →
       </Link>
-    </motion.div>
+    </div>
   )
 }
 
-function ServiceFamily({ title, ids, services, copy, learnMoreLabel, offset }: {
-  title: string; ids: string[]; services: ServiceData[]; copy: Record<string, CardCopy>; learnMoreLabel: string; offset: number
+function ServiceFamily({ title, ids, services, copy, learnMoreLabel }: {
+  title: string; ids: string[]; services: ServiceData[]; copy: Record<string, CardCopy>; learnMoreLabel: string
 }) {
   const items = ids
     .map((id) => services.find((s) => s.id === id))
@@ -88,8 +75,8 @@ function ServiceFamily({ title, ids, services, copy, learnMoreLabel, offset }: {
       </p>
       {/* 2 colonnes des le telephone : en 1 colonne la section faisait 2 ecrans. */}
       <div className="grid grid-cols-2 lg:grid-cols-3 gap-2.5 sm:gap-4">
-        {items.map((service, i) => (
-          <ServiceCard key={service.id} service={service} copy={copy[service.id]} index={offset + i} learnMoreLabel={learnMoreLabel} />
+        {items.map((service) => (
+          <ServiceCard key={service.id} service={service} copy={copy[service.id]} learnMoreLabel={learnMoreLabel} />
         ))}
       </div>
     </div>
@@ -100,8 +87,6 @@ export function Services({ lang = 'fr' }: { lang?: Locale }) {
   const d = t(lang).services
   const services = getServices(lang)
   const copy = lang === 'en' ? cardCopyEN : cardCopyFR
-  const ref = useRef<HTMLDivElement>(null)
-  const inView = useInView(ref, { once: true, margin: '-10%' })
 
   return (
     <section
@@ -109,16 +94,13 @@ export function Services({ lang = 'fr' }: { lang?: Locale }) {
       aria-labelledby="services-heading"
       style={{ backgroundColor: 'var(--surface)', padding: 'clamp(1.6rem, 5vw, 4.5rem) 1.5rem' }}
     >
-      <div className="mx-auto max-w-6xl" ref={ref}>
-        <motion.div
-          initial={{ opacity: 0, filter: 'blur(6px)' }}
-          animate={inView ? { opacity: 1, filter: 'blur(0px)' } : {}}
-          transition={{ duration: 0.5 }}
+      <div className="mx-auto max-w-6xl">
+        <div
           className="flex items-center gap-2 mb-3"
           style={{ fontSize: '0.72rem', letterSpacing: '0.1em', textTransform: 'uppercase', color: 'var(--brand-strong)', fontWeight: 800 }}
         >
           {d.label}
-        </motion.div>
+        </div>
 
         <h2
           id="services-heading"
@@ -136,8 +118,8 @@ export function Services({ lang = 'fr' }: { lang?: Locale }) {
         </h2>
         <p style={{ color: 'var(--ink-2)', maxWidth: '60ch', marginBottom: 'clamp(1.1rem, 4vw, 2.5rem)' }}>{d.sub}</p>
 
-        <ServiceFamily title={d.familyAttract} ids={ATTRACT_IDS} services={services} copy={copy} learnMoreLabel={d.learnMore} offset={0} />
-        <ServiceFamily title={d.familyConvert} ids={CONVERT_IDS} services={services} copy={copy} learnMoreLabel={d.learnMore} offset={3} />
+        <ServiceFamily title={d.familyAttract} ids={ATTRACT_IDS} services={services} copy={copy} learnMoreLabel={d.learnMore} />
+        <ServiceFamily title={d.familyConvert} ids={CONVERT_IDS} services={services} copy={copy} learnMoreLabel={d.learnMore} />
       </div>
     </section>
   )

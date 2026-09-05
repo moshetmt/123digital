@@ -1,8 +1,4 @@
-'use client'
-
-import { useRef } from 'react'
 import Link from 'next/link'
-import { motion, useInView } from 'framer-motion'
 
 // ── Grilles de contenu ────────────────────────────────────────────────────────
 // Le vocabulaire visuel de l'accueil, disponible pour les pages internes.
@@ -12,8 +8,6 @@ import { motion, useInView } from 'framer-motion'
 // Les deux etaient mauvais. L'accueil, lui, tient parce que ses cartes sont
 // petites : deux colonnes des le telephone, titre a 0,9 rem, texte a 0,8 rem,
 // bordure fine et ombre douce. On reprend exactement ce reglage ici.
-
-const EASE = [0.22, 1, 0.36, 1] as [number, number, number, number]
 
 interface Carte {
   /** Rend la carte cliquable, avec le lien de fin comme sur l accueil. */
@@ -27,16 +21,9 @@ interface Carte {
   note?: string
 }
 
-function CarteCompacte({ carte, index, accent }: { carte: Carte; index: number; accent?: string }) {
-  const ref = useRef<HTMLDivElement>(null)
-  const inView = useInView(ref, { once: true, margin: '-10%' })
-
+function CarteCompacte({ carte, accent }: { carte: Carte; accent?: string }) {
   return (
-    <motion.div
-      ref={ref}
-      initial={{ opacity: 0, y: 16, filter: 'blur(6px)' }}
-      animate={inView ? { opacity: 1, y: 0, filter: 'blur(0px)' } : {}}
-      transition={{ duration: 0.6, delay: index * 0.06, ease: EASE }}
+    <div
       className="rounded-2xl flex flex-col"
       style={{
         backgroundColor: 'var(--surface-2)',
@@ -119,7 +106,7 @@ function CarteCompacte({ carte, index, accent }: { carte: Carte; index: number; 
           {carte.note}
         </div>
       )}
-    </motion.div>
+    </div>
   )
 }
 
@@ -136,8 +123,8 @@ export function GrilleCartes({
 
   return (
     <div className={`grid grid-cols-2 ${large} gap-2.5 sm:gap-4`}>
-      {items.map((carte, i) => (
-        <CarteCompacte key={carte.titre} carte={carte} index={i} />
+      {items.map((carte) => (
+        <CarteCompacte key={carte.titre} carte={carte} />
       ))}
     </div>
   )
@@ -155,15 +142,8 @@ export function GrilleEtapes({ items }: { items: Carte[] }) {
 }
 
 function EtapeCarte({ etape, index }: { etape: Carte; index: number }) {
-  const ref = useRef<HTMLDivElement>(null)
-  const inView = useInView(ref, { once: true, margin: '-10%' })
-
   return (
-    <motion.div
-      ref={ref}
-      initial={{ opacity: 0, y: 16, filter: 'blur(6px)' }}
-      animate={inView ? { opacity: 1, y: 0, filter: 'blur(0px)' } : {}}
-      transition={{ duration: 0.6, delay: index * 0.08, ease: EASE }}
+    <div
       className="rounded-2xl"
       style={{
         backgroundColor: 'var(--surface-2)',
@@ -200,27 +180,20 @@ function EtapeCarte({ etape, index }: { etape: Carte; index: number }) {
       <p style={{ fontSize: 'clamp(0.76rem, 2.6vw, 0.85rem)', color: 'var(--ink-2)', lineHeight: 1.4 }}>
         {etape.texte}
       </p>
-    </motion.div>
+    </div>
   )
 }
 
 /** Bande sombre a chiffres, comme la bande Resultats de l'accueil. */
 export function BandeChiffres({ items }: { items: { valeur: string; legende: string }[] }) {
-  const ref = useRef<HTMLDivElement>(null)
-  const inView = useInView(ref, { once: true, margin: '-80px' })
-
   return (
     <section style={{ backgroundColor: 'var(--dark)', padding: 'clamp(1.6rem, 5vw, 4rem) 1.5rem' }}>
       <div
-        ref={ref}
         className="mx-auto max-w-6xl grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 text-center"
       >
         {items.map((chiffre, i) => (
-          <motion.div
+          <div
             key={chiffre.legende}
-            initial={{ opacity: 0, y: 16, filter: 'blur(6px)' }}
-            animate={inView ? { opacity: 1, y: 0, filter: 'blur(0px)' } : {}}
-            transition={{ duration: 0.6, delay: i * 0.1, ease: EASE }}
             className={items.length === 3 && i === 2 ? 'col-span-2 lg:col-span-1' : undefined}
           >
             <div
@@ -237,7 +210,7 @@ export function BandeChiffres({ items }: { items: { valeur: string; legende: str
             <p style={{ fontSize: '0.82rem', color: 'var(--cream-2)', lineHeight: 1.45, marginTop: '0.4rem' }}>
               {chiffre.legende}
             </p>
-          </motion.div>
+          </div>
         ))}
       </div>
     </section>

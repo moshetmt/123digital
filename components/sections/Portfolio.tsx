@@ -1,25 +1,13 @@
-'use client'
-
-import { useRef } from 'react'
 import Link from 'next/link'
-import { motion, useInView } from 'framer-motion'
 import { ArrowRight, ArrowUpRight } from 'lucide-react'
 import { projects, type PortfolioProject } from '@/data/portfolio'
 import { t, type Locale } from '@/lib/i18n'
 
-const EASE = [0.22, 1, 0.36, 1] as [number, number, number, number]
-
-function ProjectCard({ project, index }: { project: PortfolioProject; index: number }) {
-  const ref = useRef<HTMLDivElement>(null)
-  const inView = useInView(ref, { once: true, margin: '-10%' })
+function ProjectCard({ project }: { project: PortfolioProject }) {
   const domain = project.url ? project.url.replace(/^https?:\/\//, '').replace(/\/$/, '') : null
 
   return (
-    <motion.article
-      ref={ref}
-      initial={{ opacity: 0, y: 18, filter: 'blur(6px)' }}
-      animate={inView ? { opacity: 1, y: 0, filter: 'blur(0px)' } : {}}
-      transition={{ duration: 0.6, delay: index * 0.1, ease: EASE }}
+    <article
       className="flex flex-col rounded-2xl"
       style={{ backgroundColor: 'var(--surface-2)', border: '1px solid var(--line)', boxShadow: '0 8px 30px var(--shadow-soft)', padding: 'clamp(1rem, 3.5vw, 1.5rem)', gap: '0.45rem' }}
     >
@@ -56,14 +44,12 @@ function ProjectCard({ project, index }: { project: PortfolioProject; index: num
           {domain} <ArrowUpRight size={14} aria-hidden />
         </a>
       )}
-    </motion.article>
+    </article>
   )
 }
 
 export function Portfolio({ lang = 'fr' }: { lang?: Locale }) {
   const d = t(lang).portfolio
-  const ref = useRef<HTMLDivElement>(null)
-  const isInView = useInView(ref, { once: true, margin: '-100px' })
 
   return (
     <section
@@ -71,11 +57,8 @@ export function Portfolio({ lang = 'fr' }: { lang?: Locale }) {
       style={{ backgroundColor: 'var(--surface)', padding: 'clamp(1.6rem, 5vw, 4.5rem) 1.5rem' }}
       aria-labelledby="portfolio-heading"
     >
-      <div className="mx-auto max-w-6xl" ref={ref}>
-        <motion.div
-          initial={{ opacity: 0, filter: 'blur(6px)' }}
-          animate={isInView ? { opacity: 1, filter: 'blur(0px)' } : {}}
-          transition={{ duration: 0.5 }}
+      <div className="mx-auto max-w-6xl">
+        <div
           className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-3 sm:gap-6 mb-5 sm:mb-10"
         >
           <div>
@@ -109,11 +92,11 @@ export function Portfolio({ lang = 'fr' }: { lang?: Locale }) {
             {d.cta}
             <ArrowRight size={14} aria-hidden />
           </Link>
-        </motion.div>
+        </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          {projects.map((project, i) => (
-            <ProjectCard key={project.id} project={project} index={i} />
+          {projects.map((project) => (
+            <ProjectCard key={project.id} project={project} />
           ))}
         </div>
       </div>

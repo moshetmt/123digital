@@ -50,7 +50,7 @@ export function CvWork({ work }: { work: CvContent['work'] }) {
               type="button"
               onClick={() => setFilter(chip.key)}
               aria-pressed={active}
-              className="rounded-full transition-colors"
+              className="rounded transition-colors"
               style={{
                 padding: '0.45rem 1rem',
                 fontSize: '0.82rem',
@@ -74,11 +74,10 @@ export function CvWork({ work }: { work: CvContent['work'] }) {
           {visible.map((project) => (
             <li key={project.id}>
               <article
-                className="cv-card h-full flex flex-col overflow-hidden rounded-2xl"
+                className="cv-card h-full flex flex-col overflow-hidden rounded"
                 style={{
                   backgroundColor: 'var(--surface-2)',
                   border: '1px solid var(--line)',
-                  boxShadow: '0 8px 30px var(--shadow-soft)',
                 }}
               >
                 <button
@@ -94,16 +93,13 @@ export function CvWork({ work }: { work: CvContent['work'] }) {
                     style={{ aspectRatio: '16 / 10', backgroundColor: 'var(--surface-3)' }}
                   >
                     <span
-                      className="absolute inset-x-0 top-0 z-10 flex items-center gap-1.5"
-                      style={{ height: 22, padding: '0 0.6rem', backgroundColor: 'var(--surface-3)', borderBottom: '1px solid var(--line)' }}
+                      className="absolute inset-x-0 top-0 z-10 flex items-center"
+                      style={{ height: 28, padding: '0 0.6rem', backgroundColor: 'var(--surface-3)', borderBottom: '1px solid var(--line)' }}
                       aria-hidden
                     >
-                      <span className="rounded-full" style={{ width: 7, height: 7, backgroundColor: 'var(--ink-4)' }} />
-                      <span className="rounded-full" style={{ width: 7, height: 7, backgroundColor: 'var(--ink-4)' }} />
-                      <span className="rounded-full" style={{ width: 7, height: 7, backgroundColor: 'var(--ink-4)' }} />
                       <span
-                        className="ml-2 truncate"
-                        style={{ fontSize: '0.62rem', fontWeight: 600, color: 'var(--ink-3)' }}
+                        className="truncate"
+                        style={{ fontSize: '0.75rem', fontWeight: 600, color: 'var(--ink-2)' }}
                       >
                         {project.url.replace(/^https?:\/\/(www\.)?/, '')}
                       </span>
@@ -114,7 +110,7 @@ export function CvWork({ work }: { work: CvContent['work'] }) {
                       fill
                       sizes="(max-width: 768px) 100vw, 50vw"
                       className="cv-shot"
-                      style={{ objectFit: 'cover', objectPosition: 'top center', paddingTop: 22 }}
+                      style={{ objectFit: 'cover', objectPosition: 'top center', paddingTop: 28 }}
                     />
                   </span>
 
@@ -135,12 +131,9 @@ export function CvWork({ work }: { work: CvContent['work'] }) {
                       {project.role}
                     </span>
                     <span
-                      className="inline-block"
+                      className="block"
                       style={{
-                        backgroundColor: 'var(--brand-tint)',
                         color: 'var(--brand-strong)',
-                        borderRadius: 12,
-                        padding: '0.45rem 0.7rem',
                         fontSize: '0.8rem',
                         fontWeight: 700,
                         marginTop: '0.7rem',
@@ -206,12 +199,12 @@ function CvWorkDialog({
       aria-label={project.name}
       onClick={onClose}
       className="fixed inset-0 z-50 flex items-end sm:items-center justify-center"
-      style={{ backgroundColor: 'oklch(0.195 0.006 155 / 55%)', padding: '0 0 0 0' }}
+      style={{ backgroundColor: 'color-mix(in oklch, var(--ink) 55%, transparent)', padding: '0 0 0 0' }}
     >
       <div
         onClick={(e) => e.stopPropagation()}
-        className="w-full sm:max-w-2xl max-h-[92vh] overflow-y-auto rounded-t-2xl sm:rounded-2xl"
-        style={{ backgroundColor: 'var(--surface-2)', border: '1px solid var(--line)', boxShadow: '0 24px 70px var(--shadow-soft)' }}
+        className="w-full sm:max-w-2xl max-h-[92vh] overflow-y-auto rounded-t sm:rounded"
+        style={{ backgroundColor: 'var(--surface-2)', border: '1px solid var(--line)' }}
       >
         <div className="relative" style={{ aspectRatio: '16 / 9', backgroundColor: 'var(--surface-3)' }}>
           <Image
@@ -226,7 +219,7 @@ function CvWorkDialog({
             type="button"
             onClick={onClose}
             aria-label={work.closeLabel}
-            className="absolute rounded-full inline-flex items-center justify-center"
+            className="absolute rounded inline-flex items-center justify-center"
             style={{ top: 12, right: 12, width: 34, height: 34, backgroundColor: 'var(--surface-2)', border: '1px solid var(--line)', cursor: 'pointer', color: 'var(--ink)' }}
           >
             <X size={17} aria-hidden />
@@ -258,22 +251,15 @@ function CvWorkDialog({
           <p style={{ fontSize: '0.66rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--ink-3)', marginBottom: '0.45rem' }}>
             {work.stackLabel}
           </p>
-          <div className="flex flex-wrap gap-1.5" style={{ marginBottom: '1.4rem' }}>
-            {project.stack.map((tool) => (
-              <span
-                key={tool}
-                style={{ backgroundColor: 'var(--surface-3)', color: 'var(--ink-2)', borderRadius: 999, padding: '0.25rem 0.7rem', fontSize: '0.74rem', fontWeight: 600 }}
-              >
-                {tool}
-              </span>
-            ))}
-          </div>
+          <p style={{ fontSize: '0.8rem', color: 'var(--ink-2)', marginBottom: '1.4rem' }}>
+            {project.stack.join(' · ')}
+          </p>
 
           <a
             href={project.url}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 rounded-full font-bold"
+            className="inline-flex items-center gap-2 rounded font-bold"
             style={{ backgroundColor: 'var(--brand)', color: 'var(--on-brand)', padding: '0.75rem 1.35rem', fontSize: '0.88rem' }}
           >
             {work.openSite} <ArrowUpRight size={15} aria-hidden />

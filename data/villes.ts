@@ -298,7 +298,7 @@ export interface VilleInsight {
 export const villeInsights: Record<string, VilleInsight> = {
   lyon: {
     marche:
-      "Deuxième métropole économique de France, Lyon concentre une économie diversifiée : santé et biotech (pôle Lyonbiopôle), fintech, logistique — carrefour entre le nord et le sud de l'Europe — et un tissu dense de PME de services. La concurrence digitale y est plus forte que dans le reste de la région, ce qui rend un positionnement SEO précis et une fiche Google Business Profile soignée d'autant plus déterminants.",
+      "Deuxième métropole économique de France, Lyon concentre une économie diversifiée : santé et biotech (pôle Lyonbiopôle), fintech, logistique, carrefour entre le nord et le sud de l'Europe, et un tissu dense de PME de services. La concurrence digitale y est plus forte que dans le reste de la région, ce qui rend un positionnement SEO précis et une fiche Google Business Profile soignée d'autant plus déterminants.",
     angle:
       "Pour les PME lyonnaises, je combine SEO local ciblé par arrondissement (Lyon 1er à Lyon 9e, Villeurbanne, Caluire-et-Cuire) et créneaux sectoriels moins saturés, plutôt que d'affronter frontalement les mots-clés génériques déjà occupés par les grandes agences du centre-ville.",
   },
@@ -327,7 +327,7 @@ export const villeInsights: Record<string, VilleInsight> = {
       "Pour les commerces et prestataires annéciens, j'intègre la saisonnalité touristique dans la stratégie : visibilité renforcée avant et pendant la haute saison, contenu adapté à une clientèle mixte locale et touristique.",
   },
 
-  // — Villes ARA priorité medium —
+  // Villes ARA priorité medium
   chambery: {
     marche:
       "Préfecture de la Savoie, Chambéry vit d'une économie mixte : administration publique, université (Savoie Mont Blanc), et un rôle de porte d'entrée vers les stations de ski des Alpes. La ville profite d'une clientèle de passage vers la montagne en plus de son bassin résidentiel propre.",
@@ -356,10 +356,10 @@ export const villeInsights: Record<string, VilleInsight> = {
     marche:
       "Ville frontalière avec Genève, Annemasse bénéficie d'une économie transfrontalière dynamique avec un pouvoir d'achat local élevé, porté par les nombreux travailleurs frontaliers suisses. C'est un marché à part, différent du reste de la Haute-Savoie.",
     angle:
-      "Pour les commerces et services annemassiens, j'intègre la dimension transfrontalière dans la stratégie de mots-clés — les recherches et habitudes de consommation y diffèrent sensiblement du reste de la région.",
+      "Pour les commerces et services annemassiens, j'intègre la dimension transfrontalière dans la stratégie de mots-clés : les recherches et habitudes de consommation y diffèrent sensiblement du reste de la région.",
   },
 
-  // — Villes ARA priorité basse —
+  // Villes ARA priorité basse
   'thonon-les-bains': {
     marche:
       "Ville thermale et lacustre sur la rive sud du lac Léman, Thonon-les-Bains vit du tourisme, du thermalisme et d'une économie résidentielle liée à la proximité de Genève. La saisonnalité touristique y est moins marquée qu'à Annecy mais bien présente.",
@@ -376,7 +376,7 @@ export const villeInsights: Record<string, VilleInsight> = {
     marche:
       "Surnommée la capitale mondiale de la plasturgie, Oyonnax concentre un tissu industriel B2B très spécialisé (plasturgie, lunetterie historique). C'est un marché de niche, éloigné du commerce de proximité classique.",
     angle:
-      "Pour les entreprises industrielles d'Oyonnax, je privilégie un positionnement B2B et technique — SEO sur des requêtes de niche, présence LinkedIn et mise en avant de références clients plutôt qu'un SEO local grand public.",
+      "Pour les entreprises industrielles d'Oyonnax, je privilégie un positionnement B2B et technique : SEO sur des requêtes de niche, présence LinkedIn et mise en avant de références clients plutôt qu'un SEO local grand public.",
   },
   macon: {
     marche:
@@ -391,12 +391,12 @@ export const villeInsights: Record<string, VilleInsight> = {
       "Pour les entreprises albertvilloises, je structure le SEO autour des pics de recherche liés aux saisons touristiques de montagne, hiver comme été.",
   },
 
-  // — Grandes villes françaises (priorité haute) —
+  // Grandes villes françaises (priorité haute)
   paris: {
     marche:
       "Paris est le marché digital le plus concurrentiel de France, avec une densité d'agences et de consultants sans équivalent et des coûts d'acquisition publicitaire nettement plus élevés qu'en région. S'y positionner demande une niche claire plutôt qu'un positionnement généraliste.",
     angle:
-      "À Paris, je recommande aux PME de se différencier par un secteur ou un arrondissement précis plutôt que d'affronter frontalement une concurrence nationale sur des mots-clés génériques — la niche prime sur le volume.",
+      "À Paris, je recommande aux PME de se différencier par un secteur ou un arrondissement précis plutôt que d'affronter frontalement une concurrence nationale sur des mots-clés génériques. La niche prime sur le volume.",
   },
   marseille: {
     marche:
@@ -414,10 +414,10 @@ export const villeInsights: Record<string, VilleInsight> = {
     marche:
       "Bordeaux conjugue une économie viticole mondialement reconnue avec un écosystème tech en croissance (French Tech Bordeaux) et une forte attractivité résidentielle qui a fait grimper la concurrence commerciale ces dernières années.",
     angle:
-      "Pour les PME bordelaises, je distingue clairement les codes du secteur vin/tourisme — très saisonnier et à forte dimension internationale — des besoins plus classiques des commerces et services de la ville.",
+      "Pour les PME bordelaises, je distingue clairement les codes du secteur vin/tourisme, très saisonnier et à forte dimension internationale, des besoins plus classiques des commerces et services de la ville.",
   },
 
-  // — Grandes villes françaises (priorité medium) —
+  // Grandes villes françaises (priorité medium)
   nantes: {
     marche:
       "Nantes est l'une des villes pionnières de la French Tech en France, avec une économie créative et numérique dynamique, un pôle aéronautique (Airbus) et une forte attractivité auprès des jeunes actifs.",
@@ -446,6 +446,6 @@ export const villeInsights: Record<string, VilleInsight> = {
     marche:
       "Nice vit d'une économie résidentielle et touristique haut de gamme, avec un marché immobilier parmi les plus tendus de France, une proximité avec Monaco et l'Italie, et un écosystème tech naissant (French Tech Côte d'Azur).",
     angle:
-      "Pour les PME niçoises, j'adapte la stratégie à une clientèle mixte — résidents à fort pouvoir d'achat et flux touristique international — avec une forte saisonnalité à anticiper.",
+      "Pour les PME niçoises, j'adapte la stratégie à une clientèle mixte, résidents à fort pouvoir d'achat et flux touristique international, avec une forte saisonnalité à anticiper.",
   },
 }

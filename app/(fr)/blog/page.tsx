@@ -60,40 +60,12 @@ export default function BlogPage() {
         style={{ padding: '1.5rem 1.5rem 0', borderTop: '1px solid var(--line)' }}
       >
         <div className="mx-auto max-w-5xl">
-          <div className="flex flex-wrap gap-3">
-            <span
-              style={{
-                padding: '0.35rem 0.9rem',
-                borderRadius: 999,
-                backgroundColor: 'var(--brand-tint)',
-                border: '1px solid var(--brand-line)',
-                color: 'var(--brand)',
-                fontSize: '0.75rem',
-                fontWeight: 700,
-                letterSpacing: '0.06em',
-                textTransform: 'uppercase',
-              }}
-            >
-              Tous ({articles.length})
-            </span>
-            {categories.map((cat) => (
-              <span
-                key={cat}
-                style={{
-                  padding: '0.35rem 0.9rem',
-                borderRadius: 999,
-                  border: '1px solid var(--line)',
-                  color: 'var(--ink-2)',
-                  fontSize: '0.75rem',
-                  letterSpacing: '0.06em',
-                  textTransform: 'uppercase',
-                  cursor: 'default',
-                }}
-              >
-                {cat} ({articles.filter((a) => a.categorie === cat).length})
-              </span>
-            ))}
-          </div>
+          <p style={{ fontSize: '0.875rem', color: 'var(--ink-2)' }}>
+            {[
+              `Tous (${articles.length})`,
+              ...categories.map((cat) => `${cat} (${articles.filter((a) => a.categorie === cat).length})`),
+            ].join(' · ')}
+          </p>
         </div>
       </section>
 
@@ -108,11 +80,10 @@ export default function BlogPage() {
               <Link
                 key={article.slug}
                 href={`/blog/${article.slug}`}
-                className="group flex flex-col rounded-2xl overflow-hidden"
+                className="group flex flex-col rounded overflow-hidden"
                 style={{
                   backgroundColor: 'var(--surface-2)',
                   border: '1px solid var(--line)',
-                  boxShadow: '0 8px 30px var(--shadow-soft)',
                 }}
               >
                 <div style={{ position: 'relative', width: '100%', aspectRatio: '16 / 9' }}>

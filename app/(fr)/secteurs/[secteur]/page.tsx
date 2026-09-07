@@ -175,8 +175,8 @@ export default async function SecteurPage({ params }: PageProps) {
             {secteur.resultats.map((resultat, i) => (
               <div
                 key={i}
-                className="rounded-2xl"
-                style={{ backgroundColor: 'var(--surface-2)', border: '1px solid var(--line)', boxShadow: '0 8px 30px var(--shadow-soft)', padding: 'clamp(0.9rem, 3vw, 1.4rem)' }}
+                className="rounded"
+                style={{ backgroundColor: 'var(--surface-2)', border: '1px solid var(--line)', padding: 'clamp(0.9rem, 3vw, 1.4rem)' }}
               >
                 <p style={{ fontSize: '0.9rem', color: 'var(--ink)', lineHeight: 1.6 }}>
                   {resultat}
@@ -251,23 +251,16 @@ export default async function SecteurPage({ params }: PageProps) {
             Que vous soyez dans une grande métropole ou une ville moyenne, les enjeux digitaux
             sont les mêmes — et les solutions mises en place sont calibrées pour votre marché local.
           </p>
-          <div className="flex flex-wrap gap-3">
-            {villesPrioritaires.map((v) => (
-              <Link
-                key={v.slug}
-                href={`/${v.slug}`}
-                className="hover:text-[var(--brand)] hover:border-[var(--brand)] transition-colors"
-                style={{
-                  borderRadius: 999, padding: '0.4rem 0.9rem',
-                  border: '1px solid var(--line)',
-                  color: 'var(--ink-2)',
-                  fontSize: '0.8rem',
-                }}
-              >
-                {secteur.nom} à {v.nom}
-              </Link>
+          <p style={{ fontSize: '0.8rem', color: 'var(--ink-2)' }}>
+            {villesPrioritaires.map((v, i) => (
+              <span key={v.slug}>
+                <Link href={`/${v.slug}`} className="hover:text-[var(--brand)] transition-colors" style={{ color: 'var(--ink-2)' }}>
+                  {secteur.nom} à {v.nom}
+                </Link>
+                {i < villesPrioritaires.length - 1 && ' · '}
+              </span>
             ))}
-          </div>
+          </p>
         </div>
       </section>
 
@@ -289,23 +282,16 @@ export default async function SecteurPage({ params }: PageProps) {
           >
             Autres secteurs
           </p>
-          <div className="flex flex-wrap gap-3">
-            {autresSecteurs.map((s) => (
-              <Link
-                key={s.slug}
-                href={`/secteurs/${s.slug}`}
-                className="hover:text-[var(--brand)] hover:border-[var(--brand)] transition-colors"
-                style={{
-                  borderRadius: 999, padding: '0.4rem 0.9rem',
-                  border: '1px solid var(--line)',
-                  color: 'var(--ink-2)',
-                  fontSize: '0.8rem',
-                }}
-              >
-                {s.nom}
-              </Link>
+          <p style={{ fontSize: '0.8rem', color: 'var(--ink-2)' }}>
+            {autresSecteurs.map((s, i) => (
+              <span key={s.slug}>
+                <Link href={`/secteurs/${s.slug}`} className="hover:text-[var(--brand)] transition-colors" style={{ color: 'var(--ink-2)' }}>
+                  {s.nom}
+                </Link>
+                {i < autresSecteurs.length - 1 && ' · '}
+              </span>
             ))}
-          </div>
+          </p>
         </div>
       </section>
 

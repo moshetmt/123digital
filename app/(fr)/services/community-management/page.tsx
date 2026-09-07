@@ -135,7 +135,7 @@ export default function CommunityManagementPage() {
           </>
         }
       >
-        <p style={{ marginTop: '1rem', fontSize: '0.85rem', fontWeight: 600, color: 'oklch(0.985 0.003 150 / 78%)' }}>
+        <p style={{ marginTop: '1rem', fontSize: '0.85rem', fontWeight: 600, color: 'var(--ink-2)' }}>
           ×4 d’engagement en moyenne face à un compte non géré
         </p>
       </PageBanner>
@@ -176,7 +176,7 @@ export default function CommunityManagementPage() {
           </p>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
             {pricingTiers.map((t) => (
-              <div key={t.label} className="rounded-2xl p-4 sm:p-6" style={{ backgroundColor: 'var(--surface-2)', border: '1px solid var(--line)' }}>
+              <div key={t.label} className="rounded p-4 sm:p-6" style={{ backgroundColor: 'var(--surface-2)', border: '1px solid var(--line)' }}>
                 <div style={{ fontSize: '0.65rem', letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--brand)', fontWeight: 700, marginBottom: '0.75rem' }}>{t.label}</div>
                 <div className="font-display font-extrabold mb-3" style={{ fontSize: '1.3rem', color: 'var(--ink)' }}>{t.price}</div>
                 <p className="text-sm leading-relaxed mb-4" style={{ color: 'var(--ink-2)' }}>{t.desc}</p>
@@ -204,23 +204,24 @@ export default function CommunityManagementPage() {
       <section className="bg-background" style={{ ...sectionStyle, paddingBottom: '3rem' }}>
         <div className="mx-auto max-w-5xl">
           <div style={labelStyle}>Pour aller plus loin</div>
-          <div className="flex flex-wrap gap-3">
-            {[
-              { label: 'Booster vos posts avec Meta Ads →', href: '/services/publicite-en-ligne' },
-              { label: 'Créer une identité visuelle cohérente →', href: '/services/branding' },
-              { label: 'Automatiser vos séquences de suivi →', href: '/services/automatisation-marketing' },
-              { label: 'Demander un audit de vos réseaux →', href: '/audit-gratuit' },
-            ].map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className="hover:text-[var(--brand)] hover:border-[var(--brand)] transition-colors"
-                style={{ padding: '0.5rem 1rem', border: '1px solid var(--line)', color: 'var(--ink-2)', fontSize: '0.82rem', borderRadius: '0.25rem' }}
-              >
-                {link.label}
-              </Link>
-            ))}
-          </div>
+          <p style={{ fontSize: '0.82rem', color: 'var(--ink-2)' }}>
+            {(() => {
+              const liens = [
+                { label: 'Booster vos posts avec Meta Ads', href: '/services/publicite-en-ligne' },
+                { label: 'Créer une identité visuelle cohérente', href: '/services/branding' },
+                { label: 'Automatiser vos séquences de suivi', href: '/services/automatisation-marketing' },
+                { label: 'Demander un audit de vos réseaux', href: '/audit-gratuit' },
+              ]
+              return liens.map((link, i) => (
+                <span key={link.href}>
+                  <Link href={link.href} className="hover:text-[var(--brand)] transition-colors" style={{ color: 'var(--ink-2)' }}>
+                    {link.label}
+                  </Link>
+                  {i < liens.length - 1 && ' · '}
+                </span>
+              ))
+            })()}
+          </p>
         </div>
       </section>
 

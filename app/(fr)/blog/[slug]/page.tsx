@@ -152,7 +152,7 @@ function RenderSection({ section }: { section: BlogSection }) {
             marginBottom: 'clamp(1rem, 3.5vw, 1.6rem)',
             marginTop: 'clamp(1.4rem, 5vw, 2.5rem)',
             padding: 'clamp(1rem, 4vw, 1.5rem)',
-            borderRadius: '1rem',
+            borderRadius: '0.25rem',
             backgroundColor: 'var(--brand-tint)',
             border: '1px solid var(--brand-line)',
           }}
@@ -185,11 +185,9 @@ function RenderSection({ section }: { section: BlogSection }) {
           style={{
             marginBottom: 'clamp(1rem, 3.5vw, 1.6rem)',
             padding: 'clamp(1.1rem, 4vw, 1.75rem)',
-            borderRadius: '1rem',
+            borderRadius: '0.25rem',
             border: '1px solid var(--line)',
             backgroundColor: 'var(--surface-2)',
-            boxShadow: '0 8px 30px var(--shadow-soft)',
-            textAlign: 'center',
           }}
         >
           {section.titre && (
@@ -206,7 +204,7 @@ function RenderSection({ section }: { section: BlogSection }) {
             href="/audit-gratuit"
             style={{
               display: 'inline-block',
-              borderRadius: 999,
+              borderRadius: '0.25rem',
               padding: '0.75rem 1.75rem',
               backgroundColor: 'var(--brand)',
               color: 'var(--on-brand)',
@@ -289,7 +287,7 @@ export default async function BlogArticlePage({ params }: PageProps) {
         sub={article.description}
         ballRadius={22}
       >
-        <p style={{ marginTop: '0.9rem', fontSize: '0.8rem', fontWeight: 700, color: 'oklch(0.985 0.003 150 / 78%)' }}>
+        <p style={{ marginTop: '0.9rem', fontSize: '0.8rem', fontWeight: 700, color: 'var(--ink-2)' }}>
           {article.categorie} · {new Date(article.datePublication).toLocaleDateString('fr-FR', { day: '2-digit', month: 'long', year: 'numeric' })} · {article.tempsLecture} min de lecture
         </p>
       </PageBanner>
@@ -327,7 +325,6 @@ export default async function BlogArticlePage({ params }: PageProps) {
               padding: '2.5rem',
               backgroundColor: 'var(--brand-tint)',
               border: '1px solid var(--brand-line)',
-              textAlign: 'center',
             }}
           >
             <p
@@ -343,7 +340,7 @@ export default async function BlogArticlePage({ params }: PageProps) {
               href="/audit-gratuit"
               style={{
                 display: 'inline-block',
-                borderRadius: 999,
+                borderRadius: '0.25rem',
                 padding: '0.85rem 2rem',
                 backgroundColor: 'var(--brand)',
                 color: 'var(--on-brand)',
@@ -359,21 +356,9 @@ export default async function BlogArticlePage({ params }: PageProps) {
 
           {/* Tags */}
           <div style={{ marginTop: '3rem', borderTop: '1px solid var(--line)', paddingTop: '1.5rem' }}>
-            <div className="flex flex-wrap gap-2">
-              {article.tags.map((tag) => (
-                <span
-                  key={tag}
-                  style={{
-                    borderRadius: 999, padding: '0.25rem 0.65rem',
-                    border: '1px solid var(--line)',
-                    color: 'var(--ink-3)',
-                    fontSize: '0.75rem',
-                  }}
-                >
-                  {tag}
-                </span>
-              ))}
-            </div>
+            <p style={{ fontSize: '0.8rem', color: 'var(--ink-2)' }}>
+              {article.tags.join(' · ')}
+            </p>
           </div>
         </div>
       </article>

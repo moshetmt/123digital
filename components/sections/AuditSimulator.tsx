@@ -41,8 +41,8 @@ const questions: Question[] = [
     label: 'Quel est votre budget mensuel envisagé ?',
     options: [
       { value: 'small', label: 'Moins de 500 €', icon: Wallet },
-      { value: 'medium', label: '500 — 1 500 €', icon: Coins },
-      { value: 'large', label: '1 500 — 3 000 €', icon: Banknote },
+      { value: 'medium', label: '500 à 1 500 €', icon: Coins },
+      { value: 'large', label: '1 500 à 3 000 €', icon: Banknote },
       { value: 'xl', label: 'Plus de 3 000 €', icon: Landmark },
     ],
   },
@@ -134,8 +134,7 @@ export function AuditSimulator() {
       style={{
         backgroundColor: 'var(--surface-2)',
         border: '1px solid var(--line)',
-        borderRadius: '1.25rem',
-        boxShadow: '0 8px 30px var(--shadow-soft)',
+        borderRadius: 'var(--radius)',
         padding: 'clamp(1.25rem, 4vw, 2.25rem)',
         maxWidth: '640px',
         margin: '0 auto',
@@ -206,19 +205,19 @@ export function AuditSimulator() {
                 onMouseLeave={() => setHoveredOption(null)}
                 style={{
                   padding: '0.85rem 0.75rem',
-                  borderRadius: '0.85rem',
+                  borderRadius: 'var(--radius)',
                   border: `1px solid ${hoveredOption === option.value ? 'var(--brand)' : 'var(--ink-3)'}`,
                   backgroundColor: hoveredOption === option.value ? 'var(--brand-tint)' : 'transparent',
                   color: hoveredOption === option.value ? 'var(--ink)' : 'var(--ink-2)',
                   textAlign: 'left',
                   cursor: 'pointer',
-                  transition: 'all 0.15s ease',
+                  transition: 'background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease',
                   display: 'flex',
                   flexDirection: 'column',
                   gap: '0.4rem',
                 }}
               >
-                <option.icon size={20} aria-hidden style={{ color: 'var(--brand)' }} />
+                <option.icon size={20} aria-hidden style={{ color: hoveredOption === option.value ? 'var(--brand)' : 'var(--ink)' }} />
                 <span style={{ fontSize: '0.82rem', fontWeight: 500, lineHeight: 1.3 }}>
                   {option.label}
                 </span>
@@ -228,27 +227,13 @@ export function AuditSimulator() {
 
           {/* Réponses déjà données */}
           {step > 0 && (
-            <div className="flex flex-wrap gap-2 mt-4">
-              {questions.slice(0, step).map((q) => {
-                const ans = answers[q.id]
-                const opt = q.options.find((o) => o.value === ans)
-                return opt ? (
-                  <span
-                    key={q.id}
-                    style={{
-                      padding: '0.25rem 0.65rem',
-                      borderRadius: 999,
-                      backgroundColor: 'var(--brand-tint)',
-                      border: '1px solid var(--brand-line)',
-                      color: 'var(--brand)',
-                      fontSize: '0.72rem',
-                    }}
-                  >
-                    {opt.label}
-                  </span>
-                ) : null
-              })}
-            </div>
+            <p style={{ color: 'var(--ink-2)', fontSize: '0.875rem', marginTop: '1rem' }}>
+              {questions
+                .slice(0, step)
+                .map((q) => q.options.find((o) => o.value === answers[q.id])?.label)
+                .filter(Boolean)
+                .join(' · ')}
+            </p>
           )}
         </div>
       )}
@@ -293,7 +278,7 @@ export function AuditSimulator() {
               href="/audit-gratuit"
               style={{
                 display: 'inline-block',
-                borderRadius: 999,
+                borderRadius: 'var(--radius)',
                 padding: '0.85rem 1.75rem',
                 backgroundColor: 'var(--brand)',
                 color: 'var(--on-brand)',
@@ -310,7 +295,7 @@ export function AuditSimulator() {
               onClick={handleReset}
               style={{
                 padding: '0.85rem 1.75rem',
-                borderRadius: 999,
+                borderRadius: 'var(--radius)',
                 border: '1px solid var(--line)',
                 color: 'var(--ink-2)',
                 fontSize: '0.82rem',
@@ -326,26 +311,12 @@ export function AuditSimulator() {
           </div>
 
           {/* Résumé des réponses */}
-          <div className="flex flex-wrap gap-2 mt-4">
-            {questions.map((q) => {
-              const ans = answers[q.id]
-              const opt = q.options.find((o) => o.value === ans)
-              return opt ? (
-                <span
-                  key={q.id}
-                  style={{
-                    padding: '0.25rem 0.65rem',
-                    borderRadius: 999,
-                    border: '1px solid var(--line)',
-                    color: 'var(--ink-3)',
-                    fontSize: '0.72rem',
-                  }}
-                >
-                  {opt.label}
-                </span>
-              ) : null
-            })}
-          </div>
+          <p style={{ color: 'var(--ink-2)', fontSize: '0.875rem', marginTop: '1rem' }}>
+            {questions
+              .map((q) => q.options.find((o) => o.value === answers[q.id])?.label)
+              .filter(Boolean)
+              .join(' · ')}
+          </p>
         </div>
       )}
     </div>

@@ -116,7 +116,7 @@ export const dict = {
     },
     // ── Réalisations ──
     realisations: {
-      title:       'Portfolio — Réalisations clients en croissance digitale | 123 Digital',
+      title:       'Portfolio · Réalisations clients en croissance digitale | 123 Digital',
       description: 'Découvrez les résultats concrets obtenus pour des PME et TPE : SEO, création de site web, Google Ads, branding et automatisation.',
       badge:       'Réalisations clients',
       heading1:    'Des résultats,',
@@ -127,7 +127,7 @@ export const dict = {
       yourProject: 'Votre projet ici',
       auditCta:    'Audit gratuit 30 min →',
       ctaHeading:  'Votre entreprise pourrait être dans cette liste.',
-      ctaBody:     "Un audit gratuit de 30 minutes pour commencer. Pas de jargon, pas de promesses irréalistes — juste un plan d'action adapté à votre situation.",
+      ctaBody:     "Un audit gratuit de 30 minutes pour commencer. Pas de jargon, pas de promesses irréalistes : juste un plan d'action adapté à votre situation.",
       ctaBtn:      'Démarrer mon projet',
       stats: [
         { chiffre: '60+',  label: 'Projets réalisés' },
@@ -274,7 +274,7 @@ export const dict = {
     },
     // ── Réalisations ──
     realisations: {
-      title:       'Case Studies — Client Results | 123 Digital',
+      title:       'Case Studies · Client Results | 123 Digital',
       description: 'Real results for real businesses: SEO, web design, Google Ads, branding and automation.',
       badge:       'Client work',
       heading1:    'Real results,',
@@ -285,7 +285,7 @@ export const dict = {
       yourProject: 'Your project here',
       auditCta:    'Free 30-min audit →',
       ctaHeading:  'Your business could be on this list.',
-      ctaBody:     "A free 30-minute audit to get started. No jargon, no unrealistic promises — just an action plan tailored to your situation.",
+      ctaBody:     "A free 30-minute audit to get started. No jargon, no unrealistic promises: just an action plan tailored to your situation.",
       ctaBtn:      'Start my project',
       stats: [
         { chiffre: '60+',  label: 'Projects delivered' },

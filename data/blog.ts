@@ -44,21 +44,21 @@ export const articles: BlogArticle[] = [
         type: 'liste',
         titre: 'Les 3 endroits où apparaître sur Google en local :',
         items: [
-          'Le Pack Local (Google Maps) — les 3 fiches d\'entreprises qui apparaissent avec une carte',
-          'Les résultats organiques — les liens normaux sous le Pack Local',
-          'Google Ads local — les publicités payantes avec mention "Annonce"',
+          'Le Pack Local (Google Maps) : les 3 fiches d\'entreprises qui apparaissent avec une carte',
+          'Les résultats organiques : les liens normaux sous le Pack Local',
+          'Google Ads local : les publicités payantes avec mention "Annonce"',
         ],
       },
       {
         type: 'h2',
         titre: 'Étape 1 : Optimiser votre Google Business Profile (anciennement Google My Business)',
-        texte: 'Google Business Profile est gratuit et c\'est la base absolue du SEO local. Si vous ne l\'avez pas encore réclamé, faites-le aujourd\'hui — c\'est la chose la plus impactante que vous puissiez faire en 30 minutes.',
+        texte: 'Google Business Profile est gratuit et c\'est la base absolue du SEO local. Si vous ne l\'avez pas encore réclamé, faites-le aujourd\'hui. C\'est la chose la plus impactante que vous puissiez faire en 30 minutes.',
       },
       {
         type: 'liste',
         titre: 'Les éléments indispensables de votre fiche Google Business :',
         items: [
-          'Nom exact de l\'entreprise (sans mots-clés artificiels — c\'est contre les règles Google)',
+          'Nom exact de l\'entreprise (sans mots-clés artificiels, c\'est contre les règles Google)',
           'Catégorie principale précise (ex : "Plombier", pas "Services à domicile")',
           'Adresse complète et numéro de téléphone local',
           'Horaires d\'ouverture à jour (y compris jours fériés)',
@@ -70,7 +70,7 @@ export const articles: BlogArticle[] = [
       {
         type: 'h3',
         titre: 'Les avis Google : votre actif SEO local le plus précieux',
-        texte: 'Les avis clients influencent à la fois votre classement dans le Pack Local et la décision de vos prospects. Un profil avec 50 avis à 4,7 étoiles surclasse systématiquement un concurrent avec 10 avis à 5 étoiles. Encouragez activement vos clients satisfaits à laisser un avis — envoyez-leur le lien direct vers votre fiche.',
+        texte: 'Les avis clients influencent à la fois votre classement dans le Pack Local et la décision de vos prospects. Un profil avec 50 avis à 4,7 étoiles surclasse systématiquement un concurrent avec 10 avis à 5 étoiles. Encouragez activement vos clients satisfaits à laisser un avis. Envoyez-leur le lien direct vers votre fiche.',
       },
       {
         type: 'h2',
@@ -81,7 +81,7 @@ export const articles: BlogArticle[] = [
         type: 'liste',
         titre: 'Les éléments SEO locaux indispensables sur votre site :',
         items: [
-          'Titre de page (H1) contenant le service + la ville : "Plombier à Lyon — Intervention rapide 7j/7"',
+          'Titre de page (H1) contenant le service + la ville : "Plombier à Lyon : Intervention rapide 7j/7"',
           'Adresse complète dans le footer sur toutes les pages',
           'Page "Zones d\'intervention" listant les villes et quartiers',
           'Contenu mentionnant naturellement votre ville et votre région',
@@ -110,12 +110,12 @@ export const articles: BlogArticle[] = [
       {
         type: 'h2',
         titre: 'Étape 4 : Créer du contenu local régulier',
-        texte: 'Google favorise les sites qui publient régulièrement du contenu pertinent. Pour une PME locale, ça peut être aussi simple qu\'un article mensuel sur un sujet que vos clients se posent. Pas besoin d\'écrire un roman — un article de 600 mots bien ciblé suffit.',
+        texte: 'Google favorise les sites qui publient régulièrement du contenu pertinent. Pour une PME locale, ça peut être aussi simple qu\'un article mensuel sur un sujet que vos clients se posent. Pas besoin d\'écrire un roman. Un article de 600 mots bien ciblé suffit.',
       },
       {
         type: 'h2',
         titre: 'Combien de temps pour voir les résultats du SEO local ?',
-        texte: 'C\'est la question que tout le monde pose. La réalité : comptez 3 à 6 mois pour des résultats significatifs, mais certaines actions (Google Business Profile, avis) peuvent avoir un impact en quelques semaines. Le SEO local est un investissement, pas une dépense — une fois en place, il travaille pour vous 24h/24 sans coût supplémentaire.',
+        texte: 'C\'est la question que tout le monde pose. La réalité : comptez 3 à 6 mois pour des résultats significatifs, mais certaines actions (Google Business Profile, avis) peuvent avoir un impact en quelques semaines. Le SEO local est un investissement, pas une dépense : une fois en place, il travaille pour vous 24h/24 sans coût supplémentaire.',
       },
       {
         type: 'faq',
@@ -126,7 +126,7 @@ export const articles: BlogArticle[] = [
           },
           {
             question: 'Puis-je faire le SEO local moi-même ?',
-            reponse: 'Pour les bases (Google Business Profile, annuaires), oui. Pour aller plus loin (optimisation technique du site, contenu SEO, netlinking local), faire appel à un expert est souvent plus rentable — le temps que vous passeriez à apprendre et appliquer vaut souvent plus que le coût d\'un professionnel.',
+            reponse: 'Pour les bases (Google Business Profile, annuaires), oui. Pour aller plus loin (optimisation technique du site, contenu SEO, netlinking local), faire appel à un expert est souvent plus rentable : le temps que vous passeriez à apprendre et appliquer vaut souvent plus que le coût d\'un professionnel.',
           },
           {
             question: 'Mon concurrent est déjà en première position, puis-je le dépasser ?',
@@ -144,7 +144,7 @@ export const articles: BlogArticle[] = [
       },
       {
         type: 'resume',
-        titre: 'En résumé — Les 4 étapes du SEO local pour une PME',
+        titre: 'En résumé : Les 4 étapes du SEO local pour une PME',
         items: [
           '1. Créez et optimisez votre Google Business Profile (nom, catégorie, photos, avis)',
           '2. Construisez un site web avec vos mots-clés locaux, votre adresse et le schema JSON-LD',
@@ -175,7 +175,7 @@ export const articles: BlogArticle[] = [
       },
       {
         type: 'liste',
-        titre: 'Niveau 1 — 0 à 500 € : les solutions DIY (faites vous-même)',
+        titre: 'Niveau 1, 0 à 500 € : les solutions DIY (faites vous-même)',
         items: [
           'Wix, Squarespace, Webador : templates clé en main, simple à utiliser',
           'Ce que vous obtenez : un site basique, présentable, fonctionnel',
@@ -185,7 +185,7 @@ export const articles: BlogArticle[] = [
       },
       {
         type: 'liste',
-        titre: 'Niveau 2 — 500 à 2 000 € : le prestataire low-cost',
+        titre: 'Niveau 2, 500 à 2 000 € : le prestataire low-cost',
         items: [
           'Freelance débutant, offre packagée sur Malt ou 5euros.com',
           'Ce que vous obtenez : un site WordPress avec un thème, livré vite',
@@ -195,7 +195,7 @@ export const articles: BlogArticle[] = [
       },
       {
         type: 'liste',
-        titre: 'Niveau 3 — 2 000 à 6 000 € : le bon rapport qualité/prix',
+        titre: 'Niveau 3, 2 000 à 6 000 € : le bon rapport qualité/prix',
         items: [
           'Freelance expérimenté ou petite agence spécialisée PME',
           'Ce que vous obtenez : site sur mesure, SEO intégré, mobile-first, rapide',
@@ -205,7 +205,7 @@ export const articles: BlogArticle[] = [
       },
       {
         type: 'liste',
-        titre: 'Niveau 4 — 6 000 à 20 000 € : la grande agence',
+        titre: 'Niveau 4, 6 000 à 20 000 € : la grande agence',
         items: [
           'Agence digitale avec account manager, équipe dédiée',
           'Ce que vous obtenez : processus, structure, garanties contractuelles',
@@ -235,17 +235,17 @@ export const articles: BlogArticle[] = [
       {
         type: 'h2',
         titre: 'Les 5 pièges à éviter quand vous achetez un site web',
-        texte: 'L\'industrie du web est pleine d\'arnaques soft — pas illégales, mais franchement décevantes. Voici celles que je vois le plus souvent.',
+        texte: 'L\'industrie du web est pleine d\'arnaques soft, pas illégales, mais franchement décevantes. Voici celles que je vois le plus souvent.',
       },
       {
         type: 'liste',
         titre: 'Pièges classiques :',
         items: [
-          'Le "site livré en 48h" — impossible de faire du bon travail si vite, il s\'agit d\'un template',
-          'L\'abonnement mensuel sans fin — certains vous font payer 50 €/mois à vie pour quelque chose que vous devriez posséder',
-          'Le site sur CMS propriétaire — vous serez otage du prestataire si vous voulez changer',
-          'Les promesses SEO immédiates — le SEO prend du temps, méfiez-vous de ceux qui promettent la 1ère page en 1 mois',
-          'L\'absence de formation — si vous ne savez pas mettre à jour votre site vous-même, vous dépendrez toujours du prestataire',
+          'Le "site livré en 48h" : impossible de faire du bon travail si vite, il s\'agit d\'un template',
+          'L\'abonnement mensuel sans fin : certains vous font payer 50 €/mois à vie pour quelque chose que vous devriez posséder',
+          'Le site sur CMS propriétaire : vous serez otage du prestataire si vous voulez changer',
+          'Les promesses SEO immédiates : le SEO prend du temps, méfiez-vous de ceux qui promettent la 1ère page en 1 mois',
+          'L\'absence de formation : si vous ne savez pas mettre à jour votre site vous-même, vous dépendrez toujours du prestataire',
         ],
       },
       {
@@ -270,22 +270,22 @@ export const articles: BlogArticle[] = [
           },
           {
             question: 'Combien coûte la maintenance d\'un site web ?',
-            reponse: 'Comptez 50 à 200 €/mois pour la maintenance (mises à jour de sécurité, hébergement, support). Certains prestataires incluent une version allégée dans leur prix initial. Je propose des contrats de maintenance clairs avec un périmètre défini — pas de mauvaises surprises.',
+            reponse: 'Comptez 50 à 200 €/mois pour la maintenance (mises à jour de sécurité, hébergement, support). Certains prestataires incluent une version allégée dans leur prix initial. Je propose des contrats de maintenance clairs avec un périmètre défini, pas de mauvaises surprises.',
           },
           {
             question: 'Combien de temps faut-il pour créer un site web PME ?',
-            reponse: 'Pour un site vitrine bien fait : 3 à 6 semaines (collecte des informations, design, développement, tests, mise en ligne). Pour un e-commerce : 6 à 12 semaines. Méfiez-vous des délais plus courts — soit le travail est bâclé, soit c\'est un template avec peu de personnalisation.',
+            reponse: 'Pour un site vitrine bien fait : 3 à 6 semaines (collecte des informations, design, développement, tests, mise en ligne). Pour un e-commerce : 6 à 12 semaines. Méfiez-vous des délais plus courts : soit le travail est bâclé, soit c\'est un template avec peu de personnalisation.',
           },
         ],
       },
       {
         type: 'resume',
-        titre: 'En résumé — Ce qu\'il faut retenir sur les prix des sites web PME',
+        titre: 'En résumé : Ce qu\'il faut retenir sur les prix des sites web PME',
         items: [
-          'Un site web PME sérieux coûte entre 2 000 et 6 000 € — c\'est la fourchette du bon rapport qualité/prix',
+          'Un site web PME sérieux coûte entre 2 000 et 6 000 € : c\'est la fourchette du bon rapport qualité/prix',
           'En dessous de 1 500 €, vous aurez un template, pas un outil commercial',
           'Au-dessus de 8 000 €, vous payez souvent des frais de structure d\'une grande agence',
-          'Le ROI d\'un bon site web se calcule sur 3 à 5 ans — c\'est un investissement, pas une dépense',
+          'Le ROI d\'un bon site web se calcule sur 3 à 5 ans : c\'est un investissement, pas une dépense',
           'Exigez toujours : propriété du domaine, formation incluse, CMS standard (pas propriétaire)',
         ],
       },
@@ -303,7 +303,7 @@ export const articles: BlogArticle[] = [
     contenu: [
       {
         type: 'intro',
-        texte: 'Google Ads peut être le levier le plus rentable de votre marketing digital — ou un gouffre financier si c\'est mal géré. La différence tient souvent à quelques erreurs évitables au démarrage. Ce guide vous donne les bases pour ne pas répéter les erreurs que je vois chaque semaine chez les PME qui se lancent seules.',
+        texte: 'Google Ads peut être le levier le plus rentable de votre marketing digital, ou un gouffre financier si c\'est mal géré. La différence tient souvent à quelques erreurs évitables au démarrage. Ce guide vous donne les bases pour ne pas répéter les erreurs que je vois chaque semaine chez les PME qui se lancent seules.',
       },
       {
         type: 'h2',
@@ -334,11 +334,11 @@ export const articles: BlogArticle[] = [
         type: 'liste',
         titre: 'Erreurs classiques :',
         items: [
-          '1. Ne pas utiliser de mots-clés négatifs — vous payez pour des requêtes sans rapport (ex: "plombier emploi" pour un plombier qui cherche des clients)',
-          '2. Envoyer le trafic sur la page d\'accueil plutôt qu\'une page dédiée — les taux de conversion s\'effondrent',
-          '3. Ne pas utiliser la correspondance exacte — votre annonce apparaît pour des requêtes très éloignées',
-          '4. Ne jamais regarder les statistiques — les campagnes s\'optimisent si vous les suivez, pas sinon',
-          '5. Vouloir des résultats en 48h — il faut au moins 2 à 4 semaines pour qu\'une campagne s\'optimise',
+          '1. Ne pas utiliser de mots-clés négatifs : vous payez pour des requêtes sans rapport (ex: "plombier emploi" pour un plombier qui cherche des clients)',
+          '2. Envoyer le trafic sur la page d\'accueil plutôt qu\'une page dédiée : les taux de conversion s\'effondrent',
+          '3. Ne pas utiliser la correspondance exacte : votre annonce apparaît pour des requêtes très éloignées',
+          '4. Ne jamais regarder les statistiques : les campagnes s\'optimisent si vous les suivez, pas sinon',
+          '5. Vouloir des résultats en 48h : il faut au moins 2 à 4 semaines pour qu\'une campagne s\'optimise',
         ],
       },
       {
@@ -346,10 +346,10 @@ export const articles: BlogArticle[] = [
         faqs: [
           {
             question: 'Puis-je gérer mes Google Ads moi-même ?',
-            reponse: 'Oui, mais soyez prêt à y consacrer du temps d\'apprentissage. Google Ads est une plateforme complexe qui s\'apprend sur des mois. Pour un budget inférieur à 500 €/mois, faire gérer vos campagnes par un professionnel peut sembler coûteux proportionnellement — mais les erreurs d\'un débutant coûtent souvent plus cher que les frais de gestion.',
+            reponse: 'Oui, mais soyez prêt à y consacrer du temps d\'apprentissage. Google Ads est une plateforme complexe qui s\'apprend sur des mois. Pour un budget inférieur à 500 €/mois, faire gérer vos campagnes par un professionnel peut sembler coûteux proportionnellement, mais les erreurs d\'un débutant coûtent souvent plus cher que les frais de gestion.',
           },
           {
-            question: 'Google Ads ou Facebook Ads — lequel choisir ?',
+            question: 'Google Ads ou Facebook Ads, lequel choisir ?',
             reponse: 'Google Ads capte une demande existante (la personne cherche déjà votre service). Facebook/Meta Ads crée la demande (vous touchez des personnes susceptibles d\'être intéressées). Pour un artisan ou un service local, commencez par Google Ads. Pour un restaurant, une boutique ou un service grand public, Meta Ads peut être très efficace en complément.',
           },
           {
@@ -358,7 +358,7 @@ export const articles: BlogArticle[] = [
           },
           {
             question: 'Comment savoir si mes Google Ads sont rentables ?',
-            reponse: 'La métrique clé est le ROAS (Return On Ad Spend) ou le coût par lead si vous vendez des services. Pour calculer : montant dépensé ÷ nombre de clients acquis = coût d\'acquisition. Comparez ce chiffre à la valeur moyenne d\'un client chez vous. Si vous dépensez 20 € pour acquérir un client qui vous rapporte 200 €, vous avez un ROAS de 10 — excellent.',
+            reponse: 'La métrique clé est le ROAS (Return On Ad Spend) ou le coût par lead si vous vendez des services. Pour calculer : montant dépensé ÷ nombre de clients acquis = coût d\'acquisition. Comparez ce chiffre à la valeur moyenne d\'un client chez vous. Si vous dépensez 20 € pour acquérir un client qui vous rapporte 200 €, vous avez un ROAS de 10. Excellent.',
           },
           {
             question: 'Faut-il un site web performant avant de lancer Google Ads ?',
@@ -368,7 +368,7 @@ export const articles: BlogArticle[] = [
       },
       {
         type: 'resume',
-        titre: 'En résumé — Google Ads pour PME en 5 points clés',
+        titre: 'En résumé : Google Ads pour PME en 5 points clés',
         items: [
           'Budgétez au minimum 300 €/mois pour avoir des données suffisantes et des résultats significatifs',
           'Définissez des mots-clés négatifs dès le départ pour éviter les clics inutiles',
@@ -391,12 +391,12 @@ export const articles: BlogArticle[] = [
     contenu: [
       {
         type: 'intro',
-        texte: 'L\'automatisation marketing, ça semble réservé aux grandes entreprises avec des équipes tech. Faux. Aujourd\'hui, un artisan, un cabinet médical ou un restaurateur peut automatiser ses rappels clients, ses emails de suivi et sa relance devis en moins d\'une journée de mise en place — et économiser 5 à 10h par semaine.',
+        texte: 'L\'automatisation marketing, ça semble réservé aux grandes entreprises avec des équipes tech. Faux. Aujourd\'hui, un artisan, un cabinet médical ou un restaurateur peut automatiser ses rappels clients, ses emails de suivi et sa relance devis en moins d\'une journée de mise en place, et économiser 5 à 10h par semaine.',
       },
       {
         type: 'h2',
         titre: 'Qu\'est-ce que l\'automatisation marketing pour une PME ?',
-        texte: 'L\'automatisation marketing, c\'est programmer des actions répétitives pour qu\'elles se déclenchent automatiquement selon des conditions. Exemple concret : quand un client remplit un formulaire de contact sur votre site, il reçoit automatiquement un email de confirmation avec vos tarifs et vos disponibilités — sans que vous ayez à faire quoi que ce soit.',
+        texte: 'L\'automatisation marketing, c\'est programmer des actions répétitives pour qu\'elles se déclenchent automatiquement selon des conditions. Exemple concret : quand un client remplit un formulaire de contact sur votre site, il reçoit automatiquement un email de confirmation avec vos tarifs et vos disponibilités, sans que vous ayez à faire quoi que ce soit.',
       },
       {
         type: 'liste',
@@ -418,7 +418,7 @@ export const articles: BlogArticle[] = [
           },
           {
             question: 'L\'automatisation ne rend-elle pas le marketing trop impersonnel ?',
-            reponse: 'Pas si c\'est bien fait. Un email automatique peut être très personnel : il utilise le prénom du client, fait référence au produit ou service qui l\'intéresse, et est écrit dans un ton humain. L\'automatisation ne remplace pas la relation humaine — elle libère votre temps pour vous concentrer sur elle.',
+            reponse: 'Pas si c\'est bien fait. Un email automatique peut être très personnel : il utilise le prénom du client, fait référence au produit ou service qui l\'intéresse, et est écrit dans un ton humain. L\'automatisation ne remplace pas la relation humaine : elle libère votre temps pour vous concentrer sur elle.',
           },
           {
             question: 'Combien coûte une mise en place d\'automatisation marketing pour une PME ?',
@@ -428,11 +428,11 @@ export const articles: BlogArticle[] = [
       },
       {
         type: 'resume',
-        titre: 'En résumé — L\'automatisation marketing en 4 points',
+        titre: 'En résumé : L\'automatisation marketing en 4 points',
         items: [
           'Commencez par une seule automation utile (ex: rappel de rendez-vous) plutôt que vouloir tout automatiser d\'un coup',
           'Choisissez des outils adaptés à votre taille : Brevo, HubSpot Free ou Make selon votre cas',
-          'Gardez un ton humain dans vos messages automatiques — prénom, personnalisation, clarté',
+          'Gardez un ton humain dans vos messages automatiques : prénom, personnalisation, clarté',
           'Mesurez l\'impact : taux d\'ouverture, no-shows réduits, devis signés après relance',
         ],
       },
@@ -467,7 +467,7 @@ export const articles: BlogArticle[] = [
           '4. Le design paraît daté (polices, couleurs, mise en page d\'une autre époque)',
           '5. Vous avez du mal à le mettre à jour vous-même',
           '6. Votre offre a évolué mais votre site ne le reflète pas',
-          '7. Vous n\'en êtes pas fier — vous hésitez à l\'envoyer à un prospect',
+          '7. Vous n\'en êtes pas fier : vous hésitez à l\'envoyer à un prospect',
         ],
       },
       {
@@ -489,7 +489,7 @@ export const articles: BlogArticle[] = [
       },
       {
         type: 'resume',
-        titre: 'En résumé — Quand refondre son site web ?',
+        titre: 'En résumé : Quand refondre son site web ?',
         items: [
           'Si votre site a plus de 4 ans et présente 3+ signaux d\'alarme : refonte complète',
           'Si le site est récent mais mal construit : analyse d\'abord, décision ensuite',
@@ -659,7 +659,7 @@ export const articles: BlogArticle[] = [
         type: 'resume',
         titre: 'En résumé : Google Business Profile pour PME en 5 étapes',
         items: [
-          'Réclamez ou créez votre fiche sur business.google.com — c\'est gratuit',
+          'Réclamez ou créez votre fiche sur business.google.com, c\'est gratuit',
           'Remplissez chaque champ : description, horaires, photos, services, attributs',
           'Collectez des avis régulièrement et répondez à tous sans exception',
           'Publiez un post par semaine pour montrer à Google que vous êtes actif',
@@ -685,15 +685,15 @@ export const articles: BlogArticle[] = [
       {
         type: 'h2',
         titre: 'Les 3 types de prestataires digitaux à Lyon',
-        texte: 'Avant de comparer les prix, il faut comprendre ce que chaque modèle propose réellement. Lyon compte une offre dense — grandes agences du centre-ville, studios spécialisés, freelances et consultants indépendants. Le bon choix dépend moins de la réputation que de la taille de votre besoin.',
+        texte: 'Avant de comparer les prix, il faut comprendre ce que chaque modèle propose réellement. Lyon compte une offre dense : grandes agences du centre-ville, studios spécialisés, freelances et consultants indépendants. Le bon choix dépend moins de la réputation que de la taille de votre besoin.',
       },
       {
         type: 'liste',
         titre: 'Ce qui distingue chaque modèle :',
         items: [
-          'Agence digitale — équipe de plusieurs spécialistes (SEO, ads, design, dev), structure avec compte manager, capacité à gérer de gros volumes mais coûts de structure répercutés sur le prix.',
-          'Freelance généraliste — un seul indépendant qui touche à tout (site, réseaux, un peu de SEO). Tarifs plus bas, mais expertise souvent diluée sur chaque sujet.',
-          'Consultant indépendant spécialisé — un expert unique, dédié à la croissance digitale, qui pilote lui-même vos projets ou coordonne des partenaires de confiance pour ce qu\'il ne fait pas en direct.',
+          'Agence digitale : équipe de plusieurs spécialistes (SEO, ads, design, dev), structure avec compte manager, capacité à gérer de gros volumes mais coûts de structure répercutés sur le prix.',
+          'Freelance généraliste : un seul indépendant qui touche à tout (site, réseaux, un peu de SEO). Tarifs plus bas, mais expertise souvent diluée sur chaque sujet.',
+          'Consultant indépendant spécialisé : un expert unique, dédié à la croissance digitale, qui pilote lui-même vos projets ou coordonne des partenaires de confiance pour ce qu\'il ne fait pas en direct.',
         ],
       },
       {
@@ -713,7 +713,7 @@ export const articles: BlogArticle[] = [
       {
         type: 'h3',
         titre: 'Pourquoi les agences facturent plus cher',
-        texte: 'Une agence lyonnaise doit couvrir un loyer, plusieurs salaires et des frais de structure. Ce coût est réparti entre tous ses clients — vous payez donc aussi la marge de l\'agence sur son propre fonctionnement, pas uniquement le travail effectué sur votre compte.',
+        texte: 'Une agence lyonnaise doit couvrir un loyer, plusieurs salaires et des frais de structure. Ce coût est réparti entre tous ses clients : vous payez donc aussi la marge de l\'agence sur son propre fonctionnement, pas uniquement le travail effectué sur votre compte.',
       },
       {
         type: 'h2',
@@ -724,11 +724,11 @@ export const articles: BlogArticle[] = [
         type: 'liste',
         titre: 'Critères de décision :',
         items: [
-          'Interlocuteur unique ou compte manager ? — Chez une grande agence, vous parlez rarement à la personne qui exécute le travail. Un consultant indépendant, lui, connaît votre dossier dans le détail.',
-          'Spécialisation réelle ou polyvalence de façade ? — Demandez des exemples concrets de résultats dans votre secteur, pas juste un portfolio générique.',
-          'Transparence du reporting — un bon prestataire vous montre des chiffres (trafic, leads, coût par acquisition), pas des rapports de 40 pages illisibles.',
-          'Flexibilité contractuelle — méfiez-vous des engagements de 12 mois sans clause de sortie. Un accompagnement mensuel sans engagement signale la confiance du prestataire dans ses résultats.',
-          'Connaissance du marché lyonnais — la concurrence locale, les habitudes de recherche des clients de la métropole et de la région Auvergne-Rhône-Alpes ne s\'improvisent pas.',
+          'Interlocuteur unique ou compte manager ? Chez une grande agence, vous parlez rarement à la personne qui exécute le travail. Un consultant indépendant, lui, connaît votre dossier dans le détail.',
+          'Spécialisation réelle ou polyvalence de façade ? Demandez des exemples concrets de résultats dans votre secteur, pas juste un portfolio générique.',
+          'Transparence du reporting : un bon prestataire vous montre des chiffres (trafic, leads, coût par acquisition), pas des rapports de 40 pages illisibles.',
+          'Flexibilité contractuelle : méfiez-vous des engagements de 12 mois sans clause de sortie. Un accompagnement mensuel sans engagement signale la confiance du prestataire dans ses résultats.',
+          'Connaissance du marché lyonnais : la concurrence locale, les habitudes de recherche des clients de la métropole et de la région Auvergne-Rhône-Alpes ne s\'improvisent pas.',
         ],
       },
       {
@@ -739,7 +739,7 @@ export const articles: BlogArticle[] = [
       {
         type: 'h2',
         titre: 'Dans quels cas un consultant indépendant est plus rentable',
-        texte: 'Pour la majorité des TPE et PME lyonnaises — commerces, artisans, cabinets, PME de services — un consultant indépendant spécialisé offre le meilleur rapport qualité-prix : vous payez pour de l\'expertise directe et de la disponibilité, sans les coûts de structure d\'une agence. C\'est particulièrement vrai pour les projets qui demandent une vraie compréhension de votre activité dans la durée, plutôt qu\'une exécution ponctuelle.',
+        texte: 'Pour la majorité des TPE et PME lyonnaises, commerces, artisans, cabinets, PME de services, un consultant indépendant spécialisé offre le meilleur rapport qualité-prix : vous payez pour de l\'expertise directe et de la disponibilité, sans les coûts de structure d\'une agence. C\'est particulièrement vrai pour les projets qui demandent une vraie compréhension de votre activité dans la durée, plutôt qu\'une exécution ponctuelle.',
       },
       {
         type: 'faq',
@@ -747,7 +747,7 @@ export const articles: BlogArticle[] = [
         faqs: [
           {
             question: 'Une agence digitale à Lyon est-elle toujours plus chère qu\'un consultant ?',
-            reponse: 'Presque toujours, oui, à prestation équivalente — la structure d\'une agence (locaux, salaires de plusieurs personnes, encadrement) se répercute sur les tarifs. Un consultant indépendant a des coûts fixes bien plus bas, qu\'il peut répercuter en tarifs plus compétitifs pour un niveau d\'expertise comparable.',
+            reponse: 'Presque toujours, oui, à prestation équivalente : la structure d\'une agence (locaux, salaires de plusieurs personnes, encadrement) se répercute sur les tarifs. Un consultant indépendant a des coûts fixes bien plus bas, qu\'il peut répercuter en tarifs plus compétitifs pour un niveau d\'expertise comparable.',
           },
           {
             question: 'Comment vérifier le sérieux d\'un consultant digital avant de signer ?',
@@ -769,7 +769,7 @@ export const articles: BlogArticle[] = [
       },
       {
         type: 'resume',
-        titre: 'En résumé — Agence, freelance ou consultant à Lyon',
+        titre: 'En résumé : Agence, freelance ou consultant à Lyon',
         items: [
           'Agence : pertinente pour les gros budgets et besoins multi-expertises à fort volume',
           'Freelance généraliste : tarifs bas mais expertise souvent diluée sur chaque sujet',

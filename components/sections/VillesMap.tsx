@@ -84,7 +84,7 @@ export function VillesMap({ lang = 'fr' }: { lang?: 'fr' | 'en' }) {
             )
           })}
 
-          {/* Points villes — touch-friendly (zone de clic agrandie) */}
+          {/* Points villes, touch-friendly (zone de clic agrandie) */}
           {villesARAPoints.map((ville) => {
             const r = getRadius(ville.priority)
             const isActive = ville.slug === active
@@ -189,7 +189,7 @@ export function VillesMap({ lang = 'fr' }: { lang?: 'fr' | 'en' }) {
                 textTransform: 'uppercase',
                 flexShrink: 0,
                 display: 'inline-block',
-                borderRadius: 999,
+                borderRadius: 'var(--radius)',
                 textDecoration: 'none',
               }}
             >
@@ -203,30 +203,28 @@ export function VillesMap({ lang = 'fr' }: { lang?: 'fr' | 'en' }) {
         )}
       </div>
 
-      {/* Pills villes — liens directs */}
-      <div style={{ marginTop: '1.5rem' }}>
-        <div className="flex flex-wrap gap-2">
-          {villesARAPoints.map((ville) => (
+      {/* Liste villes, liens directs, equivalent clavier de la carte */}
+      <p style={{ marginTop: '1.5rem', color: 'var(--ink-2)', fontSize: '0.85rem', lineHeight: 1.8 }}>
+        {villesARAPoints.map((ville, i) => (
+          <span key={ville.slug}>
             <Link
-              key={ville.slug}
               href={`/${ville.slug}`}
               style={{
-                padding: '0.35rem 0.85rem',
-                border: `1px solid ${active === ville.slug ? 'var(--brand)' : 'var(--ink-3)'}`,
                 color: active === ville.slug ? 'var(--brand)' : 'var(--ink-2)',
-                fontSize: '0.78rem',
                 textDecoration: 'none',
-                transition: 'all 0.15s ease',
-                display: 'inline-block',
+                transition: 'color 0.15s ease',
               }}
               onMouseEnter={() => setActive(ville.slug)}
               onMouseLeave={() => setActive(null)}
+              onFocus={() => setActive(ville.slug)}
+              onBlur={() => setActive(null)}
             >
               {ville.nom}
             </Link>
-          ))}
-        </div>
-      </div>
+            {i < villesARAPoints.length - 1 ? ' · ' : ''}
+          </span>
+        ))}
+      </p>
     </div>
   )
 }

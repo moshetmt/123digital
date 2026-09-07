@@ -347,30 +347,16 @@ export default async function VilleServicePage({ params }: PageProps) {
         {/* Angle local et chiffre cle : ce sont eux qui distinguent cette page
             des 143 autres croisements ville x service aux yeux de Google. */}
         {insight && (
-          <p style={{ marginTop: '1rem', fontSize: '0.85rem', lineHeight: 1.65, maxWidth: '62ch', color: 'oklch(0.985 0.003 150 / 78%)' }}>
+          <p style={{ marginTop: '1rem', fontSize: '0.85rem', lineHeight: 1.65, maxWidth: '62ch', color: 'var(--ink-2)' }}>
             {insight.angle}
           </p>
         )}
-        <div className="flex flex-wrap items-center gap-3" style={{ marginTop: '1.1rem' }}>
-          <span style={{ fontSize: '1.6rem', fontWeight: 800, color: 'var(--vert-pale)' }}>
+        <div className="flex flex-wrap items-baseline gap-2" style={{ marginTop: '1.1rem' }}>
+          <span style={{ fontSize: '1.6rem', fontWeight: 800, color: 'var(--brand)' }}>
             {content.stat}
           </span>
-          <span style={{ fontSize: '0.85rem', color: 'oklch(0.985 0.003 150 / 82%)' }}>
-            {content.statLabel}
-          </span>
-          <span
-            style={{
-              padding: '0.3rem 0.8rem',
-              borderRadius: 999,
-              border: '1px solid oklch(0.985 0.003 150 / 40%)',
-              color: 'var(--on-brand)',
-              fontSize: '0.68rem',
-              fontWeight: 800,
-              letterSpacing: '0.08em',
-              textTransform: 'uppercase',
-            }}
-          >
-            {content.promise}
+          <span style={{ fontSize: '0.85rem', color: 'var(--ink-2)' }}>
+            {content.statLabel} · {content.promise}
           </span>
         </div>
       </PageBanner>
@@ -455,23 +441,16 @@ export default async function VilleServicePage({ params }: PageProps) {
           >
             Autres services à {ville.nom}
           </p>
-          <div className="flex flex-wrap gap-3">
-            {autresServices.map((s) => (
-              <Link
-                key={s.id}
-                href={`/${ville.slug}/${s.id}`}
-                className="hover:text-[var(--brand)] hover:border-[var(--brand)] transition-colors"
-                style={{
-                  borderRadius: 999, padding: '0.4rem 0.9rem',
-                  border: '1px solid var(--line)',
-                  color: 'var(--ink-2)',
-                  fontSize: '0.8rem',
-                }}
-              >
-                {s.title}
-              </Link>
+          <p style={{ fontSize: '0.8rem', color: 'var(--ink-2)' }}>
+            {autresServices.map((s, i) => (
+              <span key={s.id}>
+                <Link href={`/${ville.slug}/${s.id}`} className="hover:text-[var(--brand)] transition-colors" style={{ color: 'var(--ink-2)' }}>
+                  {s.title}
+                </Link>
+                {i < autresServices.length - 1 && ' · '}
+              </span>
             ))}
-          </div>
+          </p>
         </div>
       </section>
 
@@ -494,23 +473,16 @@ export default async function VilleServicePage({ params }: PageProps) {
             >
               {service.title} dans la région
             </p>
-            <div className="flex flex-wrap gap-3">
-              {autresVilles.map((v) => (
-                <Link
-                  key={v.slug}
-                  href={`/${v.slug}/${service.id}`}
-                  className="hover:text-[var(--brand)] hover:border-[var(--brand)] transition-colors"
-                  style={{
-                    borderRadius: 999, padding: '0.4rem 0.9rem',
-                    border: '1px solid var(--line)',
-                    color: 'var(--ink-2)',
-                    fontSize: '0.8rem',
-                  }}
-                >
-                  {service.title} {v.nom}
-                </Link>
+            <p style={{ fontSize: '0.8rem', color: 'var(--ink-2)' }}>
+              {autresVilles.map((v, i) => (
+                <span key={v.slug}>
+                  <Link href={`/${v.slug}/${service.id}`} className="hover:text-[var(--brand)] transition-colors" style={{ color: 'var(--ink-2)' }}>
+                    {service.title} {v.nom}
+                  </Link>
+                  {i < autresVilles.length - 1 && ' · '}
+                </span>
               ))}
-            </div>
+            </p>
           </div>
         </section>
       )}

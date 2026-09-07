@@ -7,13 +7,13 @@ export function About({ lang = 'fr' }: { lang?: Locale }) {
   return (
     <section style={{ backgroundColor: 'var(--surface)', padding: '0 1.5rem clamp(2rem, 5vw, 3.5rem)' }} aria-labelledby="about-heading">
       <div
-        className="mx-auto grid grid-cols-[76px_1fr] sm:grid-cols-[120px_1fr] gap-3.5 sm:gap-6 items-center rounded-2xl"
+        className="mx-auto grid grid-cols-[76px_1fr] sm:grid-cols-[120px_1fr] gap-3.5 sm:gap-6 items-center rounded"
         style={{ maxWidth: '48rem', backgroundColor: 'var(--surface-2)', border: '1px solid var(--line)', padding: 'clamp(1rem, 3.5vw, 1.75rem)' }}
       >
         {/* Portrait a cote du texte des le telephone : empile, il ajoutait
             120 px de hauteur pour rien. */}
         <div
-          className="relative overflow-hidden rounded-full shrink-0 w-[76px] h-[76px] sm:w-[120px] sm:h-[120px]"
+          className="relative overflow-hidden rounded shrink-0 w-[76px] h-[76px] sm:w-[120px] sm:h-[120px]"
           style={{ border: '2px solid var(--line-strong)' }}
         >
           <Image

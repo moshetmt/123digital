@@ -109,7 +109,7 @@ export default function ConsultantDigitalLyonPage() {
             ].map((item) => (
               <div
                 key={item.num}
-                className="rounded-2xl p-7"
+                className="rounded p-7"
                 style={{ backgroundColor: 'var(--surface-2)', border: '1px solid var(--line)' }}
               >
                 <div className="text-xs font-bold mb-4" style={{ color: 'var(--ink-3)', letterSpacing: '0.1em' }}>{item.num}</div>
@@ -145,7 +145,7 @@ export default function ConsultantDigitalLyonPage() {
               <Link
                 key={s.href}
                 href={s.href}
-                className="group flex flex-col rounded-2xl p-6 transition-all duration-300 hover:opacity-90"
+                className="group flex flex-col rounded p-6 transition-opacity duration-300 hover:opacity-90"
                 style={{ backgroundColor: 'var(--surface-2)', border: '1px solid var(--line)' }}
               >
                 <h3
@@ -174,17 +174,9 @@ export default function ConsultantDigitalLyonPage() {
             Consultant digital 100% distanciel — j&apos;accompagne les PME sur toute la métropole lyonnaise
             et la région Auvergne-Rhône-Alpes, ainsi que toute la France.
           </p>
-          <div className="flex flex-wrap gap-2">
-            {zones.map((zone) => (
-              <span
-                key={zone}
-                className="px-3 py-1.5 rounded-full text-xs font-medium"
-                style={{ backgroundColor: 'var(--brand-tint)', color: 'var(--brand)', border: '1px solid var(--brand-line)' }}
-              >
-                {zone}
-              </span>
-            ))}
-          </div>
+          <p className="text-sm" style={{ color: 'var(--ink-2)' }}>
+            {zones.join(' · ')}
+          </p>
         </div>
       </section>
 
@@ -201,7 +193,7 @@ export default function ConsultantDigitalLyonPage() {
             {faqs.map(({ q, a }) => (
               <div
                 key={q}
-                className="rounded-2xl p-6"
+                className="rounded p-6"
                 style={{ backgroundColor: 'var(--surface-2)', border: '1px solid var(--line)' }}
               >
                 <h3 className="font-display font-extrabold text-base mb-3" style={{ color: 'var(--ink)', letterSpacing: '-0.01em' }}>{q}</h3>

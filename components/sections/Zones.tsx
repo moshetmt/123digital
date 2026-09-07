@@ -19,9 +19,7 @@ export function Zones({ lang = 'fr' }: { lang?: Locale }) {
       id="zones"
       style={{ backgroundColor: 'var(--surface)', padding: 'clamp(1.6rem, 5vw, 4.5rem) 1.5rem', borderTop: '1px solid var(--line)' }}
     >
-      <div
-        className="mx-auto max-w-4xl text-center"
-      >
+      <div className="mx-auto max-w-6xl">
         <div
           className="mb-3"
           style={{ fontSize: '0.72rem', letterSpacing: '0.1em', textTransform: 'uppercase', color: 'var(--brand-strong)', fontWeight: 800 }}
@@ -36,48 +34,30 @@ export function Zones({ lang = 'fr' }: { lang?: Locale }) {
             lineHeight: 1.2,
             letterSpacing: '-0.01em',
             color: 'var(--ink)',
-            marginBottom: '1.75rem',
+            marginBottom: '1.25rem',
           }}
         >
           {d.heading}
         </h2>
 
-        <div className="flex flex-wrap items-center justify-center gap-2">
+        <p style={{ color: 'var(--ink-2)', fontSize: '0.95rem', lineHeight: 1.8 }}>
           {CHIP_VILLES.map((ville) => (
-            <Link
-              key={ville.slug}
-              href={`/${ville.slug}`}
-              className="chip-link"
-              style={{
-                backgroundColor: 'var(--surface-3)',
-                color: 'var(--ink-2)',
-                borderRadius: 999,
-                padding: '0.5rem 1rem',
-                fontSize: '0.85rem',
-                fontWeight: 600,
-              }}
-            >
-              {ville.nom}
-            </Link>
+            <span key={ville.slug}>
+              <Link href={`/${ville.slug}`} className="zone-link" style={{ color: 'var(--ink-2)' }}>
+                {ville.nom}
+              </Link>
+              {' · '}
+            </span>
           ))}
-          <span
-            style={{
-              backgroundColor: 'var(--brand-tint)',
-              color: 'var(--brand-strong)',
-              borderRadius: 999,
-              padding: '0.5rem 1rem',
-              fontSize: '0.85rem',
-              fontWeight: 700,
-            }}
-          >
-            {d.franceWide}
-          </span>
-        </div>
+          <span style={{ color: 'var(--brand)', fontWeight: 700 }}>{d.franceWide}</span>
+        </p>
       </div>
 
       <style>{`
-        .chip-link { transition: background-color 0.2s ease, color 0.2s ease; }
-        .chip-link:hover { background-color: var(--brand-tint) !important; color: var(--brand-strong) !important; }
+        .zone-link { transition: color 0.15s ease; }
+        @media (hover: hover) {
+          .zone-link:hover { color: var(--brand); }
+        }
       `}</style>
     </section>
   )

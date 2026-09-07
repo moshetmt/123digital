@@ -8,8 +8,8 @@ function ProjectCard({ project }: { project: PortfolioProject }) {
 
   return (
     <article
-      className="flex flex-col rounded-2xl"
-      style={{ backgroundColor: 'var(--surface-2)', border: '1px solid var(--line)', boxShadow: '0 8px 30px var(--shadow-soft)', padding: 'clamp(1rem, 3.5vw, 1.5rem)', gap: '0.45rem' }}
+      className="flex flex-col rounded"
+      style={{ backgroundColor: 'var(--surface-2)', border: '1px solid var(--line)', padding: 'clamp(1rem, 3.5vw, 1.5rem)', gap: '0.45rem' }}
     >
       <span style={{ fontSize: '0.7rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--ink-3)' }}>
         {project.sector}
@@ -19,10 +19,7 @@ function ProjectCard({ project }: { project: PortfolioProject }) {
       </h3>
       <div
         style={{
-          backgroundColor: 'var(--brand-tint)',
           color: 'var(--brand-strong)',
-          borderRadius: 12,
-          padding: '0.6rem 0.85rem',
           fontSize: '0.87rem',
           fontWeight: 700,
           width: 'fit-content',

@@ -17,7 +17,7 @@ export const secteurs: SecteurData[] = [
     nom: 'Restaurant',
     nomPluriel: 'Restaurants',
     icon: 'UtensilsCrossed',
-    description: 'Remplissez vos tables grâce à une présence digitale qui donne faim — site web appétissant, réservations en ligne et avis clients gérés.',
+    description: 'Remplissez vos tables grâce à une présence digitale qui donne faim : site web appétissant, réservations en ligne et avis clients gérés.',
     problemes: [
       'Tables vides en semaine malgré une bonne cuisine',
       'Site web vieillissant ou inexistant',
@@ -64,7 +64,7 @@ export const secteurs: SecteurData[] = [
     nom: 'Cabinet médical',
     nomPluriel: 'Cabinets médicaux',
     icon: 'Stethoscope',
-    description: 'Facilitez la prise de rendez-vous, renforcez votre crédibilité en ligne et réduisez les no-shows — pour vous concentrer sur vos patients.',
+    description: 'Facilitez la prise de rendez-vous, renforcez votre crédibilité en ligne et réduisez les no-shows, pour vous concentrer sur vos patients.',
     problemes: [
       'Secrétariat submergé d\'appels pour des rendez-vous',
       'Patients qui ne trouvent pas le cabinet sur Google',
@@ -111,7 +111,7 @@ export const secteurs: SecteurData[] = [
     nom: 'Artisan BTP',
     nomPluriel: 'Artisans BTP',
     icon: 'Hammer',
-    description: 'Votre téléphone qui sonne en continu avec des chantiers qualifiés — sans dépendre des comparateurs qui vendent vos leads à 5 concurrents.',
+    description: 'Votre téléphone qui sonne en continu avec des chantiers qualifiés, sans dépendre des comparateurs qui vendent vos leads à 5 concurrents.',
     problemes: [
       'Dépendance aux leads achetés sur des plateformes (Houzz, Bark...)',
       'Pas de site web ou site non visible sur Google',
@@ -133,7 +133,7 @@ export const secteurs: SecteurData[] = [
     faqs: [
       {
         question: 'Est-ce que Google Ads fonctionne vraiment pour un artisan ?',
-        reponse: 'Oui, c\'est l\'un des secteurs où Google Ads est le plus rentable. Quand quelqu\'un cherche "plombier urgence Lyon" à 22h, il veut quelqu\'un tout de suite. Avec une campagne bien ciblée, vous payez 5 à 15 € par appel qualifié — c\'est souvent un chantier de plusieurs centaines d\'euros.',
+        reponse: 'Oui, c\'est l\'un des secteurs où Google Ads est le plus rentable. Quand quelqu\'un cherche "plombier urgence Lyon" à 22h, il veut quelqu\'un tout de suite. Avec une campagne bien ciblée, vous payez 5 à 15 € par appel qualifié. C\'est souvent un chantier de plusieurs centaines d\'euros.',
       },
       {
         question: 'Comment sortir de la dépendance aux plateformes de leads ?',
@@ -158,7 +158,7 @@ export const secteurs: SecteurData[] = [
     nom: 'Commerce de proximité',
     nomPluriel: 'Commerces de proximité',
     icon: 'ShoppingBag',
-    description: 'Ramenez les clients dans votre boutique et vendez aussi en ligne — sans sacrifier votre relationnel qui fait votre force.',
+    description: 'Ramenez les clients dans votre boutique et vendez aussi en ligne, sans sacrifier votre relationnel qui fait votre force.',
     problemes: [
       'Concurrence d\'Amazon et des grandes enseignes en ligne',
       'Pas de présence digitale pour capter les recherches locales',
@@ -184,7 +184,7 @@ export const secteurs: SecteurData[] = [
       },
       {
         question: 'Comment rivaliser avec Amazon en tant que petit commerce ?',
-        reponse: 'Vous ne rivalisez pas sur le prix — vous rivalisez sur la relation humaine, le conseil expert, la proximité et la qualité. Votre site web doit mettre en avant ces avantages : votre histoire, votre sélection de produits, vos conseils, et faciliter la commande locale. C\'est votre différenciation.',
+        reponse: 'Vous ne rivalisez pas sur le prix : vous rivalisez sur la relation humaine, le conseil expert, la proximité et la qualité. Votre site web doit mettre en avant ces avantages : votre histoire, votre sélection de produits, vos conseils, et faciliter la commande locale. C\'est votre différenciation.',
       },
       {
         question: 'Combien coûte une boutique en ligne pour un petit commerce ?',
@@ -205,7 +205,7 @@ export const secteurs: SecteurData[] = [
     nom: 'Cabinet juridique',
     nomPluriel: 'Cabinets juridiques',
     icon: 'Scale',
-    description: 'Attirez des clients qualifiés prêts à payer pour votre expertise — pas des curieux qui veulent juste un conseil gratuit.',
+    description: 'Attirez des clients qualifiés prêts à payer pour votre expertise, pas des curieux qui veulent juste un conseil gratuit.',
     problemes: [
       'Site web vieillissant qui ne reflète pas la qualité du cabinet',
       'Difficultés à se démarquer de la concurrence en ligne',
@@ -252,7 +252,7 @@ export const secteurs: SecteurData[] = [
     nom: 'Agence immobilière',
     nomPluriel: 'Agences immobilières',
     icon: 'Home',
-    description: 'Captez les vendeurs et acheteurs en ligne avant qu\'ils contactent vos concurrents — et construisez une réputation locale incontournable.',
+    description: 'Captez les vendeurs et acheteurs en ligne avant qu\'ils contactent vos concurrents, et construisez une réputation locale incontournable.',
     problemes: [
       'Dépendance aux grands portails (SeLoger, Leboncoin) qui absorbent les leads',
       'Site web non référencé localement',
@@ -299,7 +299,7 @@ export const secteurs: SecteurData[] = [
     nom: 'Garage automobile',
     nomPluriel: 'Garages automobiles',
     icon: 'Wrench',
-    description: 'Remplissez votre atelier et fidélisez vos clients pour l\'entretien annuel — grâce à une présence locale imparable sur Google.',
+    description: 'Remplissez votre atelier et fidélisez vos clients pour l\'entretien annuel, grâce à une présence locale imparable sur Google.',
     problemes: [
       'Concurrence des chaînes nationales (Norauto, Midas) mieux référencées',
       'Pas de site web ou site non trouvable localement',
@@ -346,7 +346,7 @@ export const secteurs: SecteurData[] = [
     nom: 'Salon de beauté',
     nomPluriel: 'Salons de beauté',
     icon: 'Sparkles',
-    description: 'Agenda toujours plein, zéro no-show — avec un site qui prend les réservations et des réseaux qui font rêver vos clientes.',
+    description: 'Agenda toujours plein, zéro no-show, avec un site qui prend les réservations et des réseaux qui font rêver vos clientes.',
     problemes: [
       'Agenda avec des créneaux vides impossibles à remplir en urgence',
       'No-shows fréquents sans système de confirmation',
@@ -393,7 +393,7 @@ export const secteurs: SecteurData[] = [
     nom: 'Cabinet comptable',
     nomPluriel: 'Cabinets comptables',
     icon: 'BarChart3',
-    description: 'Attirez des entrepreneurs qui cherchent un expert-comptable de confiance en ligne — pas juste le moins cher.',
+    description: 'Attirez des entrepreneurs qui cherchent un expert-comptable de confiance en ligne, pas juste le moins cher.',
     problemes: [
       'Site web inexistant ou qui ne génère aucun contact',
       'Difficulté à expliquer votre valeur ajoutée vs un comptable classique',
@@ -470,7 +470,7 @@ export const secteurs: SecteurData[] = [
       },
       {
         question: 'Comment se différencier d\'un concurrent moins cher en transport ?',
-        reponse: 'Votre site web et vos communications doivent mettre en avant ce qui justifie votre tarif : fiabilité prouvée (témoignages, taux de livraison à l\'heure), certifications (ISO, ADR...), technologies de suivi, disponibilité du service client. Les clients B2B ne choisissent pas toujours le moins cher — ils choisissent le plus fiable.',
+        reponse: 'Votre site web et vos communications doivent mettre en avant ce qui justifie votre tarif : fiabilité prouvée (témoignages, taux de livraison à l\'heure), certifications (ISO, ADR...), technologies de suivi, disponibilité du service client. Les clients B2B ne choisissent pas toujours le moins cher : ils choisissent le plus fiable.',
       },
       {
         question: 'Un formulaire de devis en ligne est-il vraiment efficace dans le transport ?',

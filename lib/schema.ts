@@ -147,7 +147,7 @@ export function localBusinessSchema(): JsonLdObject {
       name: 'Services de croissance digitale',
       itemListElement: [
         { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Création de site web' } },
-        { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'SEO — Référencement naturel' } },
+        { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'SEO : Référencement naturel' } },
         { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Publicité en ligne' } },
         { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Branding & identité visuelle' } },
         { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Community Management' } },
@@ -171,7 +171,7 @@ export function webSiteSchema(): JsonLdObject {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
     '@id': `${BASE_URL}/#website`,
-    name: '123 Digital — Maurice Timsit',
+    name: '123 Digital · Maurice Timsit',
     url: BASE_URL,
     description:
       'Portfolio et site vitrine de Maurice Timsit, expert en croissance digitale pour PME et entrepreneurs en France.',
@@ -281,7 +281,7 @@ export function contactPageSchema(): JsonLdObject {
   return {
     '@context': 'https://schema.org',
     '@type': 'ContactPage',
-    name: 'Contact — 123 Digital',
+    name: 'Contact · 123 Digital',
     url: `${BASE_URL}/contact`,
     description:
       'Contactez Maurice Timsit pour discuter de votre projet digital. Réponse sous 24h.',

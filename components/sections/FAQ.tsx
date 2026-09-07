@@ -13,7 +13,7 @@ function FAQItem({ question, answer }: { question: string; answer: string }) {
 
   return (
     <div
-      className="rounded-2xl overflow-hidden"
+      className="rounded overflow-hidden"
       style={{ border: '1px solid var(--line)', backgroundColor: 'var(--surface-2)' }}
     >
       <button

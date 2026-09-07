@@ -20,14 +20,7 @@ const ICONES: Record<string, LucideIcon> = {
 
 function SecteurIcon({ name }: { name: string }) {
   const Icon = ICONES[name] ?? Sparkles
-  return (
-    <span
-      className="grid place-items-center rounded-xl shrink-0"
-      style={{ width: 42, height: 42, backgroundColor: 'var(--brand-tint)', color: 'var(--brand)' }}
-    >
-      <Icon size={21} aria-hidden />
-    </span>
-  )
+  return <Icon size={26} strokeWidth={1.5} style={{ color: 'var(--brand)', flexShrink: 0 }} aria-hidden />
 }
 
 export const metadata: Metadata = {
@@ -84,8 +77,8 @@ export default function SecteursPage() {
               <Link
                 key={secteur.slug}
                 href={`/secteurs/${secteur.slug}`}
-                className="group block rounded-2xl"
-                style={{ backgroundColor: 'var(--surface-2)', border: '1px solid var(--line)', boxShadow: '0 8px 30px var(--shadow-soft)', padding: 'clamp(1.1rem, 3.5vw, 1.75rem)' }}
+                className="group block rounded"
+                style={{ backgroundColor: 'var(--surface-2)', border: '1px solid var(--line)', padding: 'clamp(1.1rem, 3.5vw, 1.75rem)' }}
               >
                 <div className="flex items-start gap-4 mb-4">
                   <SecteurIcon name={secteur.icon} />
@@ -115,21 +108,9 @@ export default function SecteursPage() {
                   {secteur.description}
                 </p>
 
-                <div className="flex flex-wrap gap-2 mb-4">
-                  {secteur.solutions.slice(0, 2).map((sol, i) => (
-                    <span
-                      key={i}
-                      style={{
-                        borderRadius: 999, padding: '0.25rem 0.6rem',
-                        border: '1px solid var(--line)',
-                        color: 'var(--ink-2)',
-                        fontSize: '0.72rem',
-                      }}
-                    >
-                      {sol}
-                    </span>
-                  ))}
-                </div>
+                <p style={{ fontSize: '0.72rem', color: 'var(--ink-2)', marginBottom: '1rem' }}>
+                  {secteur.solutions.slice(0, 2).join(' · ')}
+                </p>
 
                 <div
                   className="group-hover:text-[var(--brand)] transition-colors"

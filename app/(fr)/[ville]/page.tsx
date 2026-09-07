@@ -154,7 +154,7 @@ export default async function VillePage({ params }: PageProps) {
             fontSize: '0.85rem',
             lineHeight: 1.65,
             maxWidth: '62ch',
-            color: 'oklch(0.985 0.003 150 / 78%)',
+            color: 'var(--ink-2)',
           }}
         >
           {ville.population.toLocaleString('fr-FR')} habitants · {ville.departement} · {ville.region}.{' '}
@@ -294,23 +294,16 @@ export default async function VillePage({ params }: PageProps) {
           >
             Secteurs accompagnés à {ville.nom}
           </p>
-          <div className="flex flex-wrap gap-3">
-            {secteurs.map((s) => (
-              <Link
-                key={s.slug}
-                href={`/secteurs/${s.slug}`}
-                className="hover:text-[var(--brand)] hover:border-[var(--brand)] transition-colors"
-                style={{
-                  borderRadius: 999, padding: '0.4rem 0.9rem',
-                  border: '1px solid var(--line)',
-                  color: 'var(--ink-2)',
-                  fontSize: '0.8rem',
-                }}
-              >
-                {s.nom}
-              </Link>
+          <p style={{ fontSize: '0.8rem', color: 'var(--ink-2)' }}>
+            {secteurs.map((s, i) => (
+              <span key={s.slug}>
+                <Link href={`/secteurs/${s.slug}`} className="hover:text-[var(--brand)] transition-colors" style={{ color: 'var(--ink-2)' }}>
+                  {s.nom}
+                </Link>
+                {i < secteurs.length - 1 && ' · '}
+              </span>
             ))}
-          </div>
+          </p>
         </div>
       </section>
 
@@ -333,26 +326,19 @@ export default async function VillePage({ params }: PageProps) {
             >
               Autres villes de la région
             </p>
-            <div className="flex flex-wrap gap-3">
-              {villesARA
-                .filter((v) => v.slug !== ville.slug)
-                .slice(0, 8)
-                .map((v) => (
-                  <Link
-                    key={v.slug}
-                    href={`/${v.slug}`}
-                    className="hover:text-[var(--brand)] hover:border-[var(--brand)] transition-colors"
-                    style={{
-                      borderRadius: 999, padding: '0.4rem 0.9rem',
-                      border: '1px solid var(--line)',
-                      color: 'var(--ink-2)',
-                      fontSize: '0.8rem',
-                    }}
-                  >
-                    {v.nom}
-                  </Link>
-                ))}
-            </div>
+            <p style={{ fontSize: '0.8rem', color: 'var(--ink-2)' }}>
+              {(() => {
+                const proches = villesARA.filter((v) => v.slug !== ville.slug).slice(0, 8)
+                return proches.map((v, i) => (
+                  <span key={v.slug}>
+                    <Link href={`/${v.slug}`} className="hover:text-[var(--brand)] transition-colors" style={{ color: 'var(--ink-2)' }}>
+                      {v.nom}
+                    </Link>
+                    {i < proches.length - 1 && ' · '}
+                  </span>
+                ))
+              })()}
+            </p>
           </div>
         </section>
       )}

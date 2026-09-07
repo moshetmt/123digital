@@ -233,10 +233,10 @@ const fr: CvContent = {
         name: 'Rhône Déconstruction',
         context: 'BTP et démolition · Lyon',
         role: 'Création du site et SEO local',
-        headline: '+180% d’impressions GSC en 5 mois',
+        headline: 'Forte hausse des impressions GSC en 5 mois',
         bullets: [
           'Création du site vitrine pour une entreprise de démolition en Auvergne-Rhône-Alpes.',
-          'Stratégie SEO locale : +180% d’impressions Search Console en cinq mois.',
+          'Stratégie SEO locale : forte hausse des impressions Search Console en cinq mois.',
           'Suivi des positions et des requêtes chantier par chantier.',
         ],
         stack: ['SEO local', 'WordPress', 'Search Console'],
@@ -297,7 +297,7 @@ const fr: CvContent = {
           '4 à 5 clients par trimestre : PME, associations, startups, dont Rhône Déconstruction et A+ Audition.',
           'Audits SEO et refonte de contenus : +20% à +50% de trafic organique, +340% sur le meilleur résultat.',
           'Stratégies d’acquisition de A à Z : +30% de leads en moyenne, conversion multipliée par 2,5, tableaux de bord Looker Studio et GA4.',
-          'Rhône Déconstruction : +180% d’impressions GSC en cinq mois. A+ Audition : 1re position locale en trois mois. Plus de 12 sites livrés.',
+          'Rhône Déconstruction : forte hausse des impressions GSC en cinq mois. A+ Audition : 1re position locale en trois mois. Plus de 12 sites livrés.',
         ],
       },
       {
@@ -489,10 +489,10 @@ const en: CvContent = {
         name: 'Rhône Déconstruction',
         context: 'Construction and demolition · Lyon',
         role: 'Site build and local SEO',
-        headline: '+180% GSC impressions in 5 months',
+        headline: 'Sharp rise in GSC impressions in 5 months',
         bullets: [
           'Built the site for a demolition company operating across Auvergne-Rhône-Alpes.',
-          'Local SEO strategy: +180% Search Console impressions in five months.',
+          'Local SEO strategy: sharp rise in Search Console impressions in five months.',
           'Position and query tracking, project by project.',
         ],
         stack: ['Local SEO', 'WordPress', 'Search Console'],
@@ -553,7 +553,7 @@ const en: CvContent = {
           '4 to 5 clients per quarter: SMBs, nonprofits, startups, including Rhône Déconstruction and A+ Audition.',
           'SEO audits and content revamps: +20% to +50% organic traffic, +340% best result.',
           'Full acquisition strategies: +30% average leads, 2.5x average conversion, Looker Studio and GA4 dashboards.',
-          'Rhône Déconstruction: +180% GSC impressions in five months. A+ Audition: #1 local Google result in three months. 12+ sites shipped.',
+          'Rhône Déconstruction: sharp rise in GSC impressions in five months. A+ Audition: #1 local Google result in three months. 12+ sites shipped.',
         ],
       },
       {

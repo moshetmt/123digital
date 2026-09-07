@@ -17,19 +17,17 @@ function getSteps(lang: 'fr' | 'en'): Step[] {
   ]
 }
 
-function StepCard({ step, index }: { step: Step; index: number }) {
+function StepCard({ step, index, lang }: { step: Step; index: number; lang: 'fr' | 'en' }) {
   return (
     <div
-      className="rounded-2xl"
+      className="rounded"
       style={{ backgroundColor: 'var(--surface-2)', border: '1px solid var(--line)', padding: 'clamp(0.8rem, 3vw, 1.25rem)' }}
     >
-      <div
-        className="flex items-center justify-center rounded-full mb-2"
-        style={{ width: 28, height: 28, backgroundColor: 'var(--brand)', color: 'var(--on-brand)', fontWeight: 800, fontSize: '0.82rem' }}
-        aria-hidden
+      <p
+        style={{ fontSize: '0.72rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--brand)', marginBottom: '0.4rem' }}
       >
-        {index + 1}
-      </div>
+        {lang === 'en' ? `Step ${index + 1}` : `Étape ${index + 1}`}
+      </p>
       <h3 style={{ fontFamily: 'var(--font-sans)', fontWeight: 800, fontSize: 'clamp(0.88rem, 3.2vw, 1rem)', color: 'var(--ink)', marginBottom: '0.25rem', lineHeight: 1.2 }}>
         {step.title}
       </h3>
@@ -78,7 +76,7 @@ export function Process({ lang = 'fr' }: { lang?: Locale }) {
         {/* 2 colonnes des le telephone : en 1 colonne les 4 etapes prenaient un ecran entier. */}
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-2.5 sm:gap-4">
           {steps.map((step, i) => (
-            <StepCard key={step.title} step={step} index={i} />
+            <StepCard key={step.title} step={step} index={i} lang={lang} />
           ))}
         </div>
       </div>

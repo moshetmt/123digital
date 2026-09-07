@@ -54,7 +54,7 @@ const ERRORS_EN = {
 const inputBase: React.CSSProperties = {
   width: '100%',
   minHeight: '44px',
-  backgroundColor: '#fff',
+  backgroundColor: 'var(--surface)',
   border: '1px solid var(--line-strong)',
   borderRadius: '4px',
   padding: '0.75rem 0.9rem',
@@ -146,7 +146,7 @@ function FormSelect({
         outline: focusVisible ? '2px solid var(--brand)' : 'none',
         outlineOffset: focusVisible ? '2px' : undefined,
         appearance: 'none',
-        backgroundImage: `url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8' fill='none'><path d='M1 1L6 6L11 1' stroke='%23666459' stroke-width='1.5' stroke-linecap='round'/></svg>")`,
+        backgroundImage: `url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8' fill='none'><path d='M1 1L6 6L11 1' stroke='%23123f27' stroke-width='1.5' stroke-linecap='round'/></svg>")`,
         backgroundRepeat: 'no-repeat',
         backgroundPosition: 'right 0.9rem center',
         paddingRight: '2.4rem',
@@ -262,7 +262,7 @@ export function CTA({ lang = 'fr' }: { lang?: Locale }) {
   return (
     <section
       id="contact"
-      style={{ backgroundColor: 'var(--brand)', padding: 'clamp(1.6rem, 5vw, 4.5rem) 1.5rem' }}
+      style={{ backgroundColor: 'var(--surface-3)', padding: 'clamp(1.6rem, 5vw, 4.5rem) 1.5rem' }}
       aria-labelledby="contact-heading"
     >
       <div className="mx-auto max-w-6xl grid grid-cols-1 lg:grid-cols-2 gap-5 lg:gap-14 items-start">
@@ -276,18 +276,18 @@ export function CTA({ lang = 'fr' }: { lang?: Locale }) {
               fontSize: 'clamp(1.7rem, 3.6vw, 2.4rem)',
               lineHeight: 1.1,
               letterSpacing: '-0.015em',
-              color: 'var(--on-brand)',
+              color: 'var(--ink)',
               marginBottom: '0.6rem',
             }}
           >
             {d.heading}
           </h2>
-          <p style={{ color: 'var(--on-brand)', fontSize: 'clamp(0.92rem, 3vw, 1rem)', lineHeight: 1.5, maxWidth: '46ch', marginBottom: '0.75rem' }}>
+          <p style={{ color: 'var(--ink-2)', fontSize: 'clamp(0.92rem, 3vw, 1rem)', lineHeight: 1.5, maxWidth: '46ch', marginBottom: '0.75rem' }}>
             {d.sub}
           </p>
-          <p style={{ color: 'var(--on-brand)', fontSize: '0.92rem', fontWeight: 600 }}>
+          <p style={{ color: 'var(--ink-2)', fontSize: '0.92rem', fontWeight: 600 }}>
             {d.altPhone}{' '}
-            <a href={PHONE_TEL} style={{ fontWeight: 800, textDecoration: 'underline' }}>
+            <a href={PHONE_TEL} style={{ color: 'var(--brand)', fontWeight: 800, textDecoration: 'underline' }}>
               {PHONE_DISPLAY}
             </a>
           </p>
@@ -304,7 +304,7 @@ export function CTA({ lang = 'fr' }: { lang?: Locale }) {
                 onSubmit={handleSubmit}
                 noValidate
                 className="flex flex-col gap-2.5"
-                style={{ backgroundColor: 'var(--surface-2)', borderRadius: '1.25rem', padding: 'clamp(1.1rem, 4vw, 1.6rem)' }}
+                style={{ backgroundColor: 'var(--surface)', border: '1px solid var(--line)', borderRadius: 'var(--radius)', padding: 'clamp(1.1rem, 4vw, 1.6rem)' }}
               >
                 {/* 3 lignes seulement : prenom, puis email ou telephone (un des
                     deux suffit), puis besoin. Le formulaire a 7 champs n'a
@@ -450,15 +450,10 @@ export function CTA({ lang = 'fr' }: { lang?: Locale }) {
                 initial={{ opacity: 0, y: 20, filter: 'blur(6px)' }}
                 animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
                 transition={{ duration: 0.5, ease: EASE }}
-                className="flex flex-col items-center text-center"
-                style={{ backgroundColor: 'var(--surface-2)', borderRadius: '1.25rem', padding: '3rem 2rem' }}
+                className="flex flex-col"
+                style={{ backgroundColor: 'var(--surface)', border: '1px solid var(--line)', borderRadius: 'var(--radius)', padding: '2rem' }}
               >
-                <div
-                  className="flex items-center justify-center mb-5"
-                  style={{ width: 56, height: 56, borderRadius: '50%', backgroundColor: 'var(--brand-tint)', color: 'var(--brand)' }}
-                >
-                  <Check size={26} strokeWidth={2.5} aria-hidden />
-                </div>
+                <Check size={26} strokeWidth={1.5} aria-hidden style={{ color: 'var(--brand)', marginBottom: '0.75rem' }} />
                 <h3 style={{ fontFamily: 'var(--font-sans)', fontWeight: 800, fontSize: '1.3rem', color: 'var(--ink)', marginBottom: '0.5rem' }}>
                   {d.successTitle}
                 </h3>
@@ -473,7 +468,7 @@ export function CTA({ lang = 'fr' }: { lang?: Locale }) {
 
           {/* Réassurance : texte simple séparé par des points médians, peut
               passer à la ligne (plus de pastilles clippées). */}
-          <p className="mt-4" style={{ color: 'var(--on-brand)', fontSize: '0.875rem', lineHeight: 1.4 }}>
+          <p className="mt-4" style={{ color: 'var(--ink-2)', fontSize: '0.875rem', lineHeight: 1.4 }}>
             {d.reassurance1} · {d.reassurance2} · {d.reassurance3}
           </p>
         </div>

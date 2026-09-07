@@ -180,8 +180,8 @@ export default function AuditGratuitPage() {
             {ceQueJanalysee.map((bloc) => (
               <div
                 key={bloc.titre}
-                className="rounded-2xl"
-                style={{ backgroundColor: 'var(--surface-2)', border: '1px solid var(--line)', boxShadow: '0 8px 30px var(--shadow-soft)', padding: 'clamp(1rem, 3vw, 1.6rem)' }}
+                className="rounded"
+                style={{ backgroundColor: 'var(--surface-2)', border: '1px solid var(--line)', padding: 'clamp(1rem, 3vw, 1.6rem)' }}
               >
                 <h3
                   className="font-display font-extrabold mb-4"
@@ -272,8 +272,8 @@ export default function AuditGratuitPage() {
             {etapes.map((etape) => (
               <div
                 key={etape.num}
-                className="rounded-2xl"
-                style={{ backgroundColor: 'var(--surface-2)', border: '1px solid var(--line)', boxShadow: '0 8px 30px var(--shadow-soft)', padding: 'clamp(1rem, 3vw, 1.6rem)' }}
+                className="rounded"
+                style={{ backgroundColor: 'var(--surface-2)', border: '1px solid var(--line)', padding: 'clamp(1rem, 3vw, 1.6rem)' }}
               >
                 <div
                   style={{
@@ -334,7 +334,7 @@ export default function AuditGratuitPage() {
       {/* CTA final */}
       <section
         className="bg-background"
-        style={{ padding: 'clamp(2rem, 5vw, 3.5rem) 1.5rem clamp(2.25rem, 6vw, 4rem)', borderTop: '1px solid var(--line)', textAlign: 'center' }}
+        style={{ padding: 'clamp(2rem, 5vw, 3.5rem) 1.5rem clamp(2.25rem, 6vw, 4rem)', borderTop: '1px solid var(--line)' }}
       >
         <div className="mx-auto max-w-2xl">
           <h2
@@ -359,7 +359,7 @@ export default function AuditGratuitPage() {
               fontWeight: 600,
               fontSize: '1rem',
               padding: '14px 28px',
-              borderRadius: 999,
+              borderRadius: '0.25rem',
               textDecoration: 'none',
               letterSpacing: '-0.01em',
             }}

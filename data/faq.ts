@@ -42,12 +42,12 @@ export const homeFaqsEN: FAQ[] = [
   {
     question: 'Do you specialise in a particular industry?',
     answer:
-      'No — and that is actually a strength. I have worked with clients across more than 12 different sectors (trades, B2B, e-commerce, self-employed professionals, hospitality…). Each sector has its own specifics, which I factor in from the audit to tailor the strategy to your actual market.',
+      'No, and that is actually a strength. I have worked with clients across more than 12 different sectors (trades, B2B, e-commerce, self-employed professionals, hospitality…). Each sector has its own specifics, which I factor in from the audit to tailor the strategy to your actual market.',
   },
   {
     question: 'What happens during the free digital audit?',
     answer:
-      'The audit takes place over video call, lasts 30 minutes and covers the key pillars of your digital presence: website (performance, SEO, UX), Google visibility, social media, and quick-win growth opportunities. You leave with a concrete action plan — whether you work with me afterwards or not.',
+      'The audit takes place over video call, lasts 30 minutes and covers the key pillars of your digital presence: website (performance, SEO, UX), Google visibility, social media, and quick-win growth opportunities. You leave with a concrete action plan, whether you work with me afterwards or not.',
   },
   {
     question: 'Do you work with businesses outside of Lyon?',

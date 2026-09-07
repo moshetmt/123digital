@@ -52,7 +52,7 @@ export default function AProposPage() {
           </>
         }
       >
-        <p style={{ marginTop: '1rem', fontSize: '0.85rem', lineHeight: 1.65, maxWidth: '62ch', color: 'oklch(0.985 0.003 150 / 78%)' }}>
+        <p style={{ marginTop: '1rem', fontSize: '0.85rem', lineHeight: 1.65, maxWidth: '62ch', color: 'var(--ink-2)' }}>
           Basé à Lyon, j&apos;accompagne des entreprises de la métropole et de toute la France.
           Mon approche : comprendre votre activité avant de toucher au digital.
         </p>
@@ -61,7 +61,7 @@ export default function AProposPage() {
       {/* Portrait + bio courte */}
       <section className="bg-background" style={{ padding: '5rem 1.5rem 6rem' }}>
         <div className="mx-auto max-w-5xl grid grid-cols-1 md:grid-cols-[minmax(0,340px)_1fr] gap-10 md:gap-14 items-center">
-          <div className="rounded-2xl overflow-hidden" style={{ border: '1px solid var(--line)', boxShadow: '0 24px 60px var(--shadow-soft)' }}>
+          <div className="rounded overflow-hidden" style={{ border: '1px solid var(--line)' }}>
             <Image
               src="/images/maurice-timsit-portrait.jpg"
               alt="Maurice Timsit, consultant digital à Lyon"
@@ -101,7 +101,7 @@ export default function AProposPage() {
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
             {values.map((v) => (
-              <div key={v.title} className="rounded-2xl p-7" style={{ backgroundColor: 'var(--surface-2)', border: '1px solid var(--line)' }}>
+              <div key={v.title} className="rounded p-7" style={{ backgroundColor: 'var(--surface-2)', border: '1px solid var(--line)' }}>
                 <h3 className="font-display font-extrabold text-base mb-3" style={{ color: 'var(--ink)' }}>{v.title}</h3>
                 <p className="text-sm leading-relaxed" style={{ color: 'var(--ink-2)' }}>{v.desc}</p>
               </div>
@@ -116,13 +116,9 @@ export default function AProposPage() {
           <h2 className="font-display font-extrabold mb-8" style={{ fontSize: 'clamp(1.6rem, 3vw, 2.5rem)', color: 'var(--ink)', letterSpacing: '-0.02em' }}>
             Expertise technique
           </h2>
-          <div className="flex flex-wrap gap-2">
-            {expertise.map((e) => (
-              <span key={e} className="px-3 py-1.5 rounded-full text-xs font-medium" style={{ backgroundColor: 'var(--brand-tint)', color: 'var(--brand)', border: '1px solid var(--brand-line)' }}>
-                {e}
-              </span>
-            ))}
-          </div>
+          <p style={{ fontSize: '0.9rem', color: 'var(--ink-2)' }}>
+            {expertise.join(' · ')}
+          </p>
         </div>
       </section>
 

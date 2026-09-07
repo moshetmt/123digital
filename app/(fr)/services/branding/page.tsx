@@ -172,7 +172,7 @@ export default function BrandingPage() {
           </p>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
             {pricingTiers.map((t) => (
-              <div key={t.label} className="rounded-2xl p-4 sm:p-6" style={{ backgroundColor: 'var(--surface-2)', border: '1px solid var(--line)' }}>
+              <div key={t.label} className="rounded p-4 sm:p-6" style={{ backgroundColor: 'var(--surface-2)', border: '1px solid var(--line)' }}>
                 <div style={{ fontSize: '0.65rem', letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--brand)', fontWeight: 700, marginBottom: '0.75rem' }}>{t.label}</div>
                 <div className="font-display font-extrabold mb-3" style={{ fontSize: '1.3rem', color: 'var(--ink)' }}>{t.price}</div>
                 <p className="text-sm leading-relaxed mb-4" style={{ color: 'var(--ink-2)' }}>{t.desc}</p>
@@ -200,23 +200,24 @@ export default function BrandingPage() {
       <section className="bg-background" style={{ ...sectionStyle, paddingBottom: '3rem' }}>
         <div className="mx-auto max-w-5xl">
           <div style={labelStyle}>Pour aller plus loin</div>
-          <div className="flex flex-wrap gap-3">
-            {[
-              { label: 'Voir les réalisations de branding →', href: '/realisations' },
-              { label: 'Appliquer votre identité sur un site web →', href: '/services/creation-site-web' },
-              { label: 'Gérer votre image sur les réseaux →', href: '/services/community-management' },
-              { label: 'Qui je suis — à propos →', href: '/a-propos' },
-            ].map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className="hover:text-[var(--brand)] hover:border-[var(--brand)] transition-colors"
-                style={{ padding: '0.5rem 1rem', border: '1px solid var(--line)', color: 'var(--ink-2)', fontSize: '0.82rem', borderRadius: '0.25rem' }}
-              >
-                {link.label}
-              </Link>
-            ))}
-          </div>
+          <p style={{ fontSize: '0.82rem', color: 'var(--ink-2)' }}>
+            {(() => {
+              const liens = [
+                { label: 'Voir les réalisations de branding', href: '/realisations' },
+                { label: 'Appliquer votre identité sur un site web', href: '/services/creation-site-web' },
+                { label: 'Gérer votre image sur les réseaux', href: '/services/community-management' },
+                { label: 'Qui je suis — à propos', href: '/a-propos' },
+              ]
+              return liens.map((link, i) => (
+                <span key={link.href}>
+                  <Link href={link.href} className="hover:text-[var(--brand)] transition-colors" style={{ color: 'var(--ink-2)' }}>
+                    {link.label}
+                  </Link>
+                  {i < liens.length - 1 && ' · '}
+                </span>
+              ))
+            })()}
+          </p>
         </div>
       </section>
 

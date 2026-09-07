@@ -37,7 +37,7 @@ export function CvPage({ locale }: { locale: CvLocale }) {
           et le PDF. */}
       <header
         className="sticky top-0 z-40"
-        style={{ backgroundColor: 'var(--surface-alpha)', backdropFilter: 'blur(10px)', borderBottom: '1px solid var(--line)' }}
+        style={{ backgroundColor: 'var(--surface-alpha)', borderBottom: '1px solid var(--line)' }}
       >
         <div className="mx-auto max-w-4xl flex items-center justify-between gap-4" style={{ padding: '0.7rem 1.5rem' }}>
           {/* Le logo reste, le nom vient s'y accrocher : la page appartient au
@@ -71,14 +71,14 @@ export function CvPage({ locale }: { locale: CvLocale }) {
             </a>
             <Link
               href={c.nav.switchHref}
-              className="rounded-full"
+              className="rounded"
               style={{ fontSize: '0.74rem', fontWeight: 800, letterSpacing: '0.06em', color: 'var(--ink-2)', border: '1px solid var(--line-strong)', padding: '0.25rem 0.6rem' }}
             >
               {c.nav.switchLabel}
             </Link>
             <a
               href={`mailto:${identity.email}`}
-              className="inline-flex items-center gap-1.5 rounded-full font-bold"
+              className="inline-flex items-center gap-1.5 rounded font-bold"
               style={{ backgroundColor: 'var(--brand)', color: 'var(--on-brand)', padding: '0.45rem 0.95rem', fontSize: '0.8rem' }}
             >
               <Mail size={14} aria-hidden /> {c.contact.emailCta}
@@ -92,8 +92,8 @@ export function CvPage({ locale }: { locale: CvLocale }) {
         <div className="mx-auto max-w-4xl">
           <div className="flex flex-col sm:flex-row gap-6 sm:gap-8 sm:items-center">
             <div
-              className="relative overflow-hidden rounded-2xl shrink-0 self-start"
-              style={{ width: 116, height: 116, border: '1px solid var(--line)', boxShadow: '0 8px 30px var(--shadow-soft)' }}
+              className="relative overflow-hidden rounded shrink-0 self-start"
+              style={{ width: 116, height: 116, border: '1px solid var(--line)' }}
             >
               <Image
                 src="/portraitmaurice.png"
@@ -108,16 +108,13 @@ export function CvPage({ locale }: { locale: CvLocale }) {
             <div className="min-w-0">
               <div className="flex flex-wrap items-center gap-2 mb-2.5">
                 <span
-                  className="inline-flex items-center gap-1.5 rounded-full"
+                  className="inline-flex items-center gap-1.5"
                   style={{
                     fontSize: '0.68rem',
                     fontWeight: 800,
                     letterSpacing: '0.09em',
                     textTransform: 'uppercase',
                     color: 'var(--brand-strong)',
-                    backgroundColor: 'var(--brand-tint)',
-                    border: '1px solid var(--brand-line)',
-                    padding: '0.3rem 0.7rem',
                   }}
                 >
                   <span className="rounded-full" style={{ width: 6, height: 6, backgroundColor: 'var(--brand)' }} aria-hidden />
@@ -126,7 +123,7 @@ export function CvPage({ locale }: { locale: CvLocale }) {
                 <span
                   style={{ fontSize: '0.68rem', fontWeight: 800, letterSpacing: '0.09em', textTransform: 'uppercase', color: 'var(--ink-3)' }}
                 >
-                  {c.intro.kicker}
+                  · {c.intro.kicker}
                 </span>
               </div>
 
@@ -170,36 +167,11 @@ export function CvPage({ locale }: { locale: CvLocale }) {
               {c.intro.traitsLabel}
             </span>
 
-            <div className="flex flex-wrap items-center gap-x-2 gap-y-1.5">
-              <span
-                style={{
-                  fontSize: '0.78rem',
-                  fontWeight: 700,
-                  color: 'var(--brand-strong)',
-                  backgroundColor: 'var(--brand-tint)',
-                  border: '1px solid var(--brand-line)',
-                  borderRadius: 999,
-                  padding: '0.25rem 0.75rem',
-                }}
-              >
-                {c.intro.traitsProfile}
-              </span>
-              {c.intro.traits.map((trait) => (
-                <span
-                  key={trait}
-                  style={{
-                    fontSize: '0.78rem',
-                    fontWeight: 600,
-                    color: 'var(--ink-2)',
-                    backgroundColor: 'var(--surface-3)',
-                    borderRadius: 999,
-                    padding: '0.25rem 0.7rem',
-                  }}
-                >
-                  {trait}
-                </span>
-              ))}
-            </div>
+            <p style={{ fontSize: '0.85rem', color: 'var(--ink-2)' }}>
+              <span style={{ fontWeight: 700, color: 'var(--brand-strong)' }}>{c.intro.traitsProfile}</span>
+              {c.intro.traits.length > 0 && ' · '}
+              {c.intro.traits.join(' · ')}
+            </p>
 
             <p style={{ fontSize: '0.75rem', color: 'var(--ink-3)', marginTop: '0.55rem' }}>
               {c.intro.traitsSourceUrl ? (
@@ -215,7 +187,7 @@ export function CvPage({ locale }: { locale: CvLocale }) {
           <div className="flex flex-wrap gap-3">
             <a
               href={`mailto:${identity.email}`}
-              className="inline-flex items-center gap-2 rounded-full font-bold"
+              className="inline-flex items-center gap-2 rounded font-bold"
               style={{ backgroundColor: 'var(--brand)', color: 'var(--on-brand)', padding: '0.8rem 1.4rem', fontSize: '0.9rem' }}
             >
               <Mail size={16} aria-hidden /> {c.contact.emailCta}
@@ -224,7 +196,7 @@ export function CvPage({ locale }: { locale: CvLocale }) {
               href={identity.linkedin}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-full font-bold hover:bg-[var(--surface-3)] transition-colors"
+              className="inline-flex items-center gap-2 rounded font-bold hover:bg-[var(--surface-3)] transition-colors"
               style={{ border: '2px solid var(--line-strong)', color: 'var(--ink)', padding: '0.75rem 1.3rem', fontSize: '0.9rem' }}
             >
               <LinkedinGlyph /> {c.contact.linkedinCta}
@@ -232,7 +204,7 @@ export function CvPage({ locale }: { locale: CvLocale }) {
             <a
               href={identity.cvFile}
               download
-              className="inline-flex items-center gap-2 rounded-full font-bold hover:bg-[var(--surface-3)] transition-colors"
+              className="inline-flex items-center gap-2 rounded font-bold hover:bg-[var(--surface-3)] transition-colors"
               style={{ border: '2px solid var(--line-strong)', color: 'var(--ink)', padding: '0.75rem 1.3rem', fontSize: '0.9rem' }}
             >
               <Download size={16} aria-hidden /> {c.contact.pdfCta}
@@ -244,7 +216,7 @@ export function CvPage({ locale }: { locale: CvLocale }) {
       {/* Chiffres */}
       <section className="bg-background" style={{ padding: '0 1.5rem clamp(2rem, 5vw, 3rem)' }}>
         <div
-          className="mx-auto max-w-4xl grid grid-cols-2 md:grid-cols-4 rounded-2xl overflow-hidden"
+          className="mx-auto max-w-4xl grid grid-cols-2 md:grid-cols-4 rounded overflow-hidden"
           style={{ backgroundColor: 'var(--surface-2)', border: '1px solid var(--line)' }}
         >
           {c.stats.map((stat) => (
@@ -346,30 +318,16 @@ export function CvPage({ locale }: { locale: CvLocale }) {
             <p style={{ fontSize: '0.68rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.09em', color: 'var(--ink-3)', marginBottom: '0.55rem' }}>
               {c.skills.skillsLabel}
             </p>
-            <div className="flex flex-wrap gap-1.5" style={{ marginBottom: '1.4rem' }}>
-              {c.skills.items.map((skill) => (
-                <span
-                  key={skill}
-                  style={{ backgroundColor: 'var(--brand-tint)', color: 'var(--brand-strong)', borderRadius: 999, padding: '0.3rem 0.75rem', fontSize: '0.78rem', fontWeight: 700 }}
-                >
-                  {skill}
-                </span>
-              ))}
-            </div>
+            <p style={{ fontSize: '0.85rem', fontWeight: 600, color: 'var(--brand-strong)', marginBottom: '1.4rem' }}>
+              {c.skills.items.join(' · ')}
+            </p>
 
             <p style={{ fontSize: '0.68rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.09em', color: 'var(--ink-3)', marginBottom: '0.55rem' }}>
               {c.skills.toolsLabel}
             </p>
-            <div className="flex flex-wrap gap-1.5">
-              {c.skills.tools.map((tool) => (
-                <span
-                  key={tool}
-                  style={{ backgroundColor: 'var(--surface-3)', color: 'var(--ink-2)', borderRadius: 999, padding: '0.3rem 0.75rem', fontSize: '0.78rem', fontWeight: 600 }}
-                >
-                  {tool}
-                </span>
-              ))}
-            </div>
+            <p style={{ fontSize: '0.85rem', color: 'var(--ink-2)' }}>
+              {c.skills.tools.join(' · ')}
+            </p>
           </div>
 
           <div>
@@ -418,7 +376,7 @@ export function CvPage({ locale }: { locale: CvLocale }) {
       </section>
 
       {/* Contact recruteur */}
-      <section id="contact" style={{ backgroundColor: 'var(--brand)', padding: SECTION, textAlign: 'center' }}>
+      <section id="contact" style={{ backgroundColor: 'var(--brand)', padding: SECTION }}>
         <div className="mx-auto max-w-2xl">
           <h2
             className="font-sans font-extrabold"
@@ -426,14 +384,14 @@ export function CvPage({ locale }: { locale: CvLocale }) {
           >
             {c.contact.heading}
           </h2>
-          <p style={{ color: 'oklch(0.985 0.003 150 / 88%)', lineHeight: 1.65, margin: '0.8rem auto 1.9rem', maxWidth: '46ch' }}>
+          <p style={{ color: 'var(--on-brand)', lineHeight: 1.65, margin: '0.8rem 0 1.9rem', maxWidth: '46ch' }}>
             {c.contact.body}
           </p>
 
-          <div className="flex flex-wrap justify-center gap-3">
+          <div className="flex flex-wrap gap-3">
             <a
               href={`mailto:${identity.email}`}
-              className="inline-flex items-center gap-2 rounded-full font-bold"
+              className="inline-flex items-center gap-2 rounded font-bold"
               style={{ backgroundColor: 'var(--on-brand)', color: 'var(--brand-strong)', padding: '0.8rem 1.4rem', fontSize: '0.9rem' }}
             >
               <Mail size={16} aria-hidden /> {identity.email}
@@ -442,16 +400,16 @@ export function CvPage({ locale }: { locale: CvLocale }) {
               href={identity.linkedin}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-full font-bold"
-              style={{ border: '2px solid oklch(0.985 0.003 150 / 55%)', color: 'var(--on-brand)', padding: '0.75rem 1.3rem', fontSize: '0.9rem' }}
+              className="inline-flex items-center gap-2 rounded font-bold"
+              style={{ border: '2px solid var(--on-brand)', color: 'var(--on-brand)', padding: '0.75rem 1.3rem', fontSize: '0.9rem' }}
             >
               <LinkedinGlyph /> {c.contact.linkedinCta}
             </a>
             <a
               href={identity.cvFile}
               download
-              className="inline-flex items-center gap-2 rounded-full font-bold"
-              style={{ border: '2px solid oklch(0.985 0.003 150 / 55%)', color: 'var(--on-brand)', padding: '0.75rem 1.3rem', fontSize: '0.9rem' }}
+              className="inline-flex items-center gap-2 rounded font-bold"
+              style={{ border: '2px solid var(--on-brand)', color: 'var(--on-brand)', padding: '0.75rem 1.3rem', fontSize: '0.9rem' }}
             >
               <Download size={16} aria-hidden /> {c.contact.pdfCta}
             </a>
@@ -461,7 +419,7 @@ export function CvPage({ locale }: { locale: CvLocale }) {
             <Link
               href={c.nav.backHref}
               className="inline-flex items-center gap-1.5"
-              style={{ color: 'oklch(0.985 0.003 150 / 80%)', fontSize: '0.82rem', fontWeight: 700 }}
+              style={{ color: 'var(--on-brand)', fontSize: '0.82rem', fontWeight: 700 }}
             >
               {c.nav.backToSite} <ArrowUpRight size={14} aria-hidden />
             </Link>

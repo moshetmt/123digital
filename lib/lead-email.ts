@@ -7,16 +7,21 @@
  * bonne partie du CSS moderne.
  */
 
+/** Échelle verte de la charte v2 (Gmail/Outlook n'appliquent pas les
+ *  variables CSS : les valeurs sont recopiées ici en dur depuis
+ *  charte-graphique.md section 2). Deux gris seulement (charte section 3,
+ *  « pas de troisième gris ») : INK_SOFT et INK_LABEL partagent la teinte de
+ *  INK, la hiérarchie se fait par la graisse, pas par une nuance en plus. */
 const BRAND = '#00713D'
-const BRAND_DEEP = '#0B3D25'
-const BRAND_TINT = '#E8F1EB'
-const SURFACE = '#F4F6F2'
-const LINE = '#E0E4DE'
-const HAIRLINE = '#EEF2EC'
-const INK = '#233028'
-const INK_SOFT = '#7C857E'
-const INK_LABEL = '#5A635C'
-const ON_BRAND = '#FAFBFA'
+const BRAND_DEEP = '#005C31'
+const BRAND_TINT = '#EAF3EE'
+const SURFACE = '#F6FAF7'
+const LINE = '#CDE6D8'
+const HAIRLINE = '#EAF3EE'
+const INK = '#123F27'
+const INK_SOFT = '#123F27'
+const INK_LABEL = '#123F27'
+const ON_BRAND = '#FFFFFF'
 
 const SHEET_URL =
   'https://docs.google.com/spreadsheets/d/1_bPq_JAZq9qRPZFQNqzys4oCV2Po3u111y3Yn1Jd46M/edit'
@@ -75,7 +80,7 @@ function nomComplet(lead: LeadEmail): string {
 }
 
 export function leadEmailSubject(lead: LeadEmail): string {
-  return `Lead 123digital — ${lead.besoinLabel} — ${nomComplet(lead)}`
+  return `Lead 123digital : ${lead.besoinLabel}, ${nomComplet(lead)}`
 }
 
 export function leadEmailHtml(lead: LeadEmail): string {
@@ -107,10 +112,10 @@ export function leadEmailHtml(lead: LeadEmail): string {
     : [ligneNom, ligneEmail, ligneTel]
 
   return `<div style="margin:0;padding:24px 12px;background:${SURFACE};font-family:Arial,Helvetica,sans-serif;">
-<table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="max-width:620px;margin:0 auto;background:#ffffff;border:1px solid ${LINE};border-radius:8px;">
-<tr><td style="background:${BRAND};padding:22px 24px;text-align:center;border-radius:8px 8px 0 0;">
+<table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="max-width:620px;margin:0 auto;background:#ffffff;border:1px solid ${LINE};border-radius:4px;">
+<tr><td style="background:${BRAND};padding:22px 24px;text-align:center;border-radius:4px 4px 0 0;">
 <div style="color:${ON_BRAND};font-size:19px;font-weight:bold;letter-spacing:1px;">NOUVEAU LEAD</div>
-<div style="color:#A9CFBA;font-size:13px;padding-top:5px;">Nouvelle demande depuis 123digital.fr</div>
+<div style="color:${ON_BRAND};font-size:13px;padding-top:5px;">Nouvelle demande depuis 123digital.fr</div>
 </td></tr>
 <tr><td style="padding:20px 24px 8px;">
 <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="border-collapse:collapse;">
@@ -121,10 +126,10 @@ ${ligne('Message', messageHtml)}
 </table>
 </td></tr>
 <tr><td style="padding:12px 24px 4px;">
-<table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="background:#F1F7F3;border:1px solid #BBD9C6;border-radius:6px;">
+<table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="background:${SURFACE};border:1px solid ${LINE};border-radius:4px;">
 <tr><td style="padding:16px 18px;">
 <div style="color:${BRAND_DEEP};font-size:14px;font-weight:bold;letter-spacing:.5px;">RAPPELER SOUS 24 H</div>
-<div style="color:#4A5A50;font-size:13px;line-height:19px;padding:7px 0 12px;">C'est la promesse affichée sur le site. Passé ce délai, le prospect a déjà appelé quelqu'un d'autre.</div>
+<div style="color:${INK};font-size:13px;line-height:19px;padding:7px 0 12px;">C'est la promesse affichée sur le site. Passé ce délai, le prospect a déjà appelé quelqu'un d'autre.</div>
 ${boutons}
 </td></tr></table>
 </td></tr>

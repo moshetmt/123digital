@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import { Phone, ArrowRight, ArrowUpRight, Check } from 'lucide-react'
+import Image from 'next/image'
+import { ArrowRight, ArrowUpRight } from 'lucide-react'
 import { JsonLd } from '@/components/seo/JsonLd'
 import { PageBanner, BannerCta, BannerCtaLine } from '@/components/sections/PageBanner'
 import { Breadcrumb } from '@/components/layout/Breadcrumb'
@@ -24,15 +25,6 @@ export const metadata: Metadata = {
   },
 }
 
-// The 3 real metrics, identical to the Results bar on the homepage (Results.tsx).
-// Do not invent others: only these are verified. Clim69 no longer has a figure
-// here: the client does not want their amounts made public.
-const metrics = [
-  { value: '+180%', caption: 'local visibility in 5 months (Rhône Déconstruction)' },
-  { value: '+240%', caption: 'organic traffic (A+ Audition, Cannes)' },
-  { value: '50+', caption: 'businesses supported since 2017' },
-]
-
 export default function CaseStudiesPage() {
   const schemas = [
     localBusinessSchema(),
@@ -47,10 +39,8 @@ export default function CaseStudiesPage() {
       <JsonLd schema={schemas} />
 
       <PageBanner
-        icone="trophy"
         breadcrumb={
           <Breadcrumb
-            tone="vert"
             items={[
               { label: d.nav.home, href: '/en' },
               { label: d.nav.realisations },
@@ -58,7 +48,7 @@ export default function CaseStudiesPage() {
           />
         }
         title={`${d.realisations.heading1} ${d.realisations.heading2}`}
-        highlight={d.realisations.heading2}
+        highlight="promises."
         sub={d.realisations.intro}
         actions={
           <>
@@ -67,29 +57,6 @@ export default function CaseStudiesPage() {
           </>
         }
       />
-
-      {/* Proof — the page's one dark section, gradation of the logo's 3 tones */}
-      <section
-        id="realisations-metrics"
-        aria-label={d.results.label}
-        style={{ backgroundColor: 'var(--dark)', padding: 'clamp(2.25rem, 6vw, 3.5rem) 1.5rem' }}
-      >
-        <div className="mx-auto max-w-6xl grid grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 text-center">
-          {metrics.map((m, i) => (
-            /* Three figures on a 2-column grid: the last one spans the full
-               width so it does not sit alone in a half row. */
-            <div key={m.caption} className={i === metrics.length - 1 ? 'col-span-2 lg:col-span-1' : undefined}>
-              <div
-                className="font-sans font-extrabold"
-                style={{ fontSize: 'clamp(1.9rem, 3.8vw, 2.75rem)', letterSpacing: '-0.02em', color: `var(--vert-${[3, 2, 1, 2][i % 4]})` }}
-              >
-                {m.value}
-              </div>
-              <p style={{ fontSize: '0.82rem', color: 'var(--cream-2)', lineHeight: 1.45, marginTop: '0.4rem' }}>{m.caption}</p>
-            </div>
-          ))}
-        </div>
-      </section>
 
       {/* Client cases — the 3 only verifiable cases, data/portfolio.ts */}
       <section
@@ -112,9 +79,43 @@ export default function CaseStudiesPage() {
               return (
                 <article
                   key={project.id}
-                  className="flex flex-col rounded-2xl"
-                  style={{ backgroundColor: 'var(--surface-2)', border: '1px solid var(--line)', boxShadow: '0 8px 30px var(--shadow-soft)', padding: '1.5rem', gap: '0.6rem' }}
+                  className="flex flex-col rounded"
+                  style={{ backgroundColor: 'var(--surface-2)', border: '1px solid var(--line)', padding: '1.5rem', gap: '0.6rem' }}
                 >
+                  {/* The screenshot, set in a simplified browser frame: never a
+                      raw capture (charte v2, section 6). */}
+                  {project.screenshot && (
+                    <div
+                      className="overflow-hidden rounded"
+                      style={{ border: '1px solid var(--line)', marginBottom: '0.4rem' }}
+                    >
+                      <div
+                        style={{
+                          background: 'var(--surface-3)',
+                          height: 28,
+                          display: 'flex',
+                          alignItems: 'center',
+                          padding: '0 10px',
+                          fontSize: '0.72rem',
+                          color: 'var(--ink-2)',
+                          whiteSpace: 'nowrap',
+                          overflow: 'hidden',
+                          textOverflow: 'ellipsis',
+                        }}
+                      >
+                        {domain ?? project.title}
+                      </div>
+                      <div className="relative" style={{ aspectRatio: '16 / 10' }}>
+                        <Image
+                          src={project.screenshot}
+                          alt={`Homepage of the ${project.title} website, built by 123 Digital`}
+                          fill
+                          sizes="(max-width: 768px) 100vw, 33vw"
+                          style={{ objectFit: 'cover', objectPosition: 'top center' }}
+                        />
+                      </div>
+                    </div>
+                  )}
                   <span style={{ fontSize: '0.68rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--ink-3)' }}>
                     {project.sector}
                   </span>
@@ -123,26 +124,13 @@ export default function CaseStudiesPage() {
                   </h3>
                   <p style={{ fontSize: '0.78rem', color: 'var(--ink-3)' }}>{project.category}</p>
 
-                  <div
-                    className="inline-flex items-center gap-1.5 w-fit"
-                    style={{ backgroundColor: 'var(--brand-tint)', color: 'var(--brand-strong)', borderRadius: 12, padding: '0.55rem 0.8rem', fontSize: '0.85rem', fontWeight: 700, marginTop: '0.2rem' }}
-                  >
-                    <Check size={15} aria-hidden style={{ flexShrink: 0 }} />
-                    {project.results}
-                  </div>
+                  <p style={{ fontSize: '0.85rem', fontWeight: 600, color: 'var(--ink)', lineHeight: 1.5 }}>{project.results}</p>
 
                   <p style={{ fontSize: '0.85rem', color: 'var(--ink-2)', lineHeight: 1.55 }}>{project.description}</p>
 
-                  <div className="flex flex-wrap gap-1.5" style={{ marginTop: '0.2rem' }}>
-                    {project.tags.map((tag) => (
-                      <span
-                        key={tag}
-                        style={{ backgroundColor: 'var(--surface-3)', color: 'var(--ink-2)', borderRadius: 999, padding: '0.22rem 0.65rem', fontSize: '0.72rem', fontWeight: 600 }}
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
+                  <p style={{ fontSize: '0.75rem', fontWeight: 600, color: 'var(--ink-2)', marginTop: '0.2rem' }}>
+                    {project.tags.join(' · ')}
+                  </p>
 
                   <div className="flex items-center justify-between flex-wrap gap-2" style={{ marginTop: 'auto', paddingTop: '0.9rem', borderTop: '1px solid var(--line)' }}>
                     {domain && project.url ? (

@@ -2,7 +2,6 @@ import type { Metadata } from 'next'
 import { Hero }      from '@/components/sections/Hero'
 import { Services }  from '@/components/sections/Services'
 import { About }     from '@/components/sections/About'
-import { Results }   from '@/components/sections/Results'
 import { Portfolio } from '@/components/sections/Portfolio'
 import { Process }   from '@/components/sections/Process'
 import { FAQ }       from '@/components/sections/FAQ'
@@ -29,7 +28,6 @@ export default function HomePageEN() {
       <JsonLd schema={faqPageSchema(getHomeFaqs('en'))} />
       <Hero lang="en" />
       <Services lang="en" />
-      <Results lang="en" />
       <Portfolio lang="en" />
       <Process lang="en" />
       <About lang="en" />

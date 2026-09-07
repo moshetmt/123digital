@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { JsonLd } from '@/components/seo/JsonLd'
 import { FaqListe } from '@/components/sections/FaqListe'
 import { PageBanner, BannerCta, BannerCtaLine } from '@/components/sections/PageBanner'
-import { GrilleCartes, BandeChiffres } from '@/components/sections/Grilles'
+import { GrilleCartes } from '@/components/sections/Grilles'
 import { Breadcrumb } from '@/components/layout/Breadcrumb'
 import { BASE_URL, breadcrumbSchema, localBusinessSchema } from '@/lib/schema'
 import { allVilles, villesARA, villeInsights } from '@/data/villes'
@@ -245,16 +245,6 @@ export default async function VillePage({ params }: PageProps) {
           />
         </div>
       </section>
-
-      {/* Chiffres : meme bande sombre que l accueil, seul aplat noir de la page */}
-      <BandeChiffres
-        items={[
-          { valeur: '60+', legende: 'Projets réalisés' },
-          { valeur: '8 ans', legende: "D'expérience" },
-          { valeur: '94%', legende: 'Clients satisfaits' },
-          { valeur: '3–6 mois', legende: 'Pour voir les résultats SEO' },
-        ]}
-      />
 
       {/* FAQ */}
       <section

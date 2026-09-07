@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#FFFFFF"/>
+
+  <!-- Logotype + signature "CONSULTANT DIGITAL · LYON" -->
+  <g transform="translate(64,110) scale(1.318681)">
+<rect x="0" y="32" width="11" height="20" rx="2" fill="#00713D" opacity=".45"/>
+  <rect x="15" y="22" width="11" height="30" rx="2" fill="#00713D" opacity=".7"/>
+  <rect x="30" y="10" width="11" height="42" rx="2" fill="#00713D"/>
+  <path d="M34 2 L34 20 L39 16.2 L42.6 24 L46 22.4 L42.4 14.8 L48 14 Z" fill="#131814" stroke="#FFFFFF" stroke-width="1.6"/>
+  <path transform="translate(64.00,46.0) scale(0.044295,-0.044295)" fill="#00713D" d="M170 0V614H25V745H325V0Z"/>
+  <path transform="translate(82.29,46.0) scale(0.044295,-0.044295)" fill="#00713D" d="M42 0V120L242 326Q301 387 331.5 422.5Q362 458 373.5 482.0Q385 506 385 529Q385 570 358.5 593.5Q332 617 292 617Q251 617 219.0 593.5Q187 570 172 522L37 566Q49 624 87.0 667.0Q125 710 179.0 733.5Q233 757 292 757Q366 757 422.0 731.0Q478 705 509.0 658.0Q540 611 540 548Q540 508 526.0 469.5Q512 431 483.5 391.5Q455 352 410 306L239 130H547V0Z"/>
+  <path transform="translate(108.69,46.0) scale(0.044295,-0.044295)" fill="#00713D" d="M292 -12Q230 -12 174.0 11.5Q118 35 79.0 78.0Q40 121 27 179L164 225Q181 177 214.0 152.5Q247 128 292 128Q329 128 355.5 142.0Q382 156 397.0 181.5Q412 207 412 241Q412 275 397.5 299.5Q383 324 356.5 337.5Q330 351 292 351Q270 351 248.0 346.0Q226 341 208 332L172 407L363 615H72V745H537V625L341 402L346 465Q413 465 462.5 437.5Q512 410 539.5 361.0Q567 312 567 247Q567 173 531.0 114.0Q495 55 433.0 21.5Q371 -12 292 -12Z"/>
+  <path transform="translate(135.80,46.0) scale(0.044295,-0.044295)" fill="#131814" d="M312 -12Q232 -12 169.0 26.0Q106 64 69.5 129.0Q33 194 33 273Q33 353 70.0 417.5Q107 482 170.0 520.0Q233 558 311 558Q371 558 417.5 535.5Q464 513 491 472L468 442V757H618V0H478V100L492 69Q464 29 416.0 8.5Q368 -12 312 -12ZM330 123Q371 123 402.0 142.0Q433 161 450.5 195.0Q468 229 468 273Q468 317 450.5 351.0Q433 385 402.0 404.0Q371 423 330 423Q289 423 256.5 403.5Q224 384 206.0 350.5Q188 317 188 273Q188 229 206.0 195.0Q224 161 256.5 142.0Q289 123 330 123Z"/>
+  <path transform="translate(165.61,46.0) scale(0.044295,-0.044295)" fill="#131814" d="M55 0V546H205V0ZM55 595V745H205V595Z"/>
+  <path transform="translate(177.13,46.0) scale(0.044295,-0.044295)" fill="#131814" d="M323 -220Q260 -220 206.0 -199.0Q152 -178 113.5 -140.5Q75 -103 58 -52L197 -3Q208 -41 242.0 -63.0Q276 -85 323 -85Q360 -85 387.0 -71.5Q414 -58 428.5 -32.0Q443 -6 443 29V154L472 118Q444 72 400.0 49.5Q356 27 297 27Q221 27 161.0 61.5Q101 96 67.0 156.5Q33 217 33 294Q33 371 67.0 430.5Q101 490 160.0 524.0Q219 558 294 558Q353 558 397.0 534.5Q441 511 472 463L453 427V546H593V29Q593 -43 558.0 -99.5Q523 -156 462.5 -188.0Q402 -220 323 -220ZM318 163Q356 163 384.0 179.0Q412 195 427.5 224.0Q443 253 443 292Q443 331 427.0 360.5Q411 390 383.0 406.5Q355 423 318 423Q280 423 250.5 406.5Q221 390 204.5 360.5Q188 331 188 292Q188 254 204.5 225.0Q221 196 250.5 179.5Q280 163 318 163Z"/>
+  <path transform="translate(205.83,46.0) scale(0.044295,-0.044295)" fill="#131814" d="M55 0V546H205V0ZM55 595V745H205V595Z"/>
+  <path transform="translate(217.35,46.0) scale(0.044295,-0.044295)" fill="#131814" d="M318 -6Q219 -6 164.5 47.5Q110 101 110 197V416H18V546H23Q65 546 87.5 567.0Q110 588 110 630V670H260V546H388V416H260V207Q260 179 270.0 160.5Q280 142 301.0 133.0Q322 124 353 124Q360 124 369.0 125.0Q378 126 388 127V0Q373 -2 354.0 -4.0Q335 -6 318 -6Z"/>
+  <path transform="translate(236.00,46.0) scale(0.044295,-0.044295)" fill="#131814" d="M224 -12Q165 -12 122.0 7.0Q79 26 56.0 61.5Q33 97 33 146Q33 192 54.0 227.5Q75 263 118.5 287.0Q162 311 227 321L394 348V238L254 213Q222 207 205.0 192.5Q188 178 188 151Q188 126 207.0 112.0Q226 98 254 98Q291 98 319.0 114.0Q347 130 362.5 157.5Q378 185 378 218V360Q378 391 353.5 412.0Q329 433 287 433Q247 433 216.5 411.0Q186 389 172 353L52 410Q68 456 103.0 489.0Q138 522 187.0 540.0Q236 558 294 558Q363 558 416.0 533.0Q469 508 498.5 463.5Q528 419 528 360V0H388V88L422 94Q398 58 369.0 34.5Q340 11 304.0 -0.5Q268 -12 224 -12Z"/>
+  <path transform="translate(261.82,46.0) scale(0.044295,-0.044295)" fill="#131814" d="M55 0V757H205V0Z"/>
+  <text x="64" y="72" font-family="Rethink Sans, Arial, sans-serif" font-size="9.5" font-weight="600" letter-spacing="1.1" fill="#123F27">CONSULTANT DIGITAL · LYON</text>
+  </g>
+
+  <!-- Titre -->
+  <text x="64" y="340" xml:space="preserve" font-family="Arial, Helvetica, sans-serif" font-weight="700" font-size="44">
+    <tspan x="64" dy="0" fill="#131814">Vos clients vous</tspan>
+    <tspan x="64" dy="58" fill="#131814">cherchent sur </tspan><tspan fill="#00713D">Google</tspan><tspan fill="#131814">.</tspan>
+    <tspan x="64" dy="58" fill="#131814">Faites-vous trouver.</tspan>
+  </text>
+
+  <!-- Ecran reconstruit -->
+  <clipPath id="ecranClip">
+    <rect x="696" y="140" width="440" height="300" rx="4"/>
+  </clipPath>
+
+  <g clip-path="url(#ecranClip)">
+    <rect x="696" y="140" width="440" height="300" fill="#FFFFFF"/>
+    <rect x="696" y="140" width="440" height="28" fill="#EAF3EE"/>
+    <text x="712" y="158" font-family="Arial, Helvetica, sans-serif" font-size="12" fill="#123F27">google.fr &#183; plombier villeurbanne</text>
+
+    <text x="716" y="210" font-family="Arial, Helvetica, sans-serif" font-size="18" fill="#00713D">Dépannage plomberie 24h/24</text>
+    <text x="716" y="284" font-family="Arial, Helvetica, sans-serif" font-size="18" fill="#00713D">Plombier agréé, devis gratuit</text>
+
+    <rect x="704" y="316" width="424" height="56" fill="#EAF3EE"/>
+    <text x="716" y="350" font-family="Arial, Helvetica, sans-serif" font-size="18" fill="#00713D">Votre plomberie ici</text>
+    <text x="1124" y="350" text-anchor="end" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="700" fill="#C9401C">Page 3.</text>
+  </g>
+  <rect x="696" y="140" width="440" height="300" rx="4" fill="none" stroke="#CDE6D8" stroke-width="1"/>
+
+  <!-- Curseur du logo, incline 12°, pose sur la 3e ligne -->
+  <path d="M34 3 L34 20 L38.6 16.5 L42 23.8 L45.2 22.3 L41.8 15.2 L47 14.4 Z" fill="#131814" stroke="#FFFFFF" stroke-width="1.6"
+        transform="translate(1108,298) rotate(12) scale(1.8) translate(-34,-3)"/>
+</svg>

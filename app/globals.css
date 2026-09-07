@@ -2,8 +2,8 @@
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
 
-/* ── Plus Jakarta Sans — chargée via next/font/google dans app/layout.tsx,
-     exposée ici par la variable --font-jakarta (poids 400/600/700/800) ── */
+/* ── Rethink Sans — chargée via next/font/google dans app/layout.tsx,
+     exposée ici par la variable --font-rethink (police variable, 400 à 800) ── */
 
 @custom-variant dark (&:is(.dark *));
 
@@ -26,20 +26,23 @@
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
-  /* Charte du 18/08 : Plus Jakarta Sans PARTOUT, titres compris. Les alias
-     heading/display/serif pointent tous dessus pour que les 28 pages qui les
-     utilisent suivent sans etre editees une par une. Fraunces est retire. */
-  --font-sans:    var(--font-jakarta), ui-sans-serif, system-ui, -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+  /* Charte v2 (07/09) : Rethink Sans PARTOUT, titres compris. Les alias
+     heading/display/serif pointent tous dessus pour que les pages qui les
+     utilisent suivent sans etre editees une par une. */
+  --font-sans:    var(--font-rethink), ui-sans-serif, system-ui, -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
   --font-heading: var(--font-sans);
   --font-display: var(--font-sans);
   --font-serif:   var(--font-sans);
   --font-mono: ui-monospace, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
-  --radius-sm: calc(var(--radius) * 0.6);
-  --radius-md: calc(var(--radius) * 0.8);
+  /* Charte v2 : rayon 4 px partout, aucun multiplicateur. L'ancienne chaine
+     calc(var(--radius) * N) donnait un rounded-2xl a 0,45rem malgre
+     --radius: 0.25rem : chaque palier vaut desormais --radius tel quel. */
+  --radius-sm: var(--radius);
+  --radius-md: var(--radius);
   --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) * 1.4);
-  --radius-2xl: calc(var(--radius) * 1.8);
-  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-xl: var(--radius);
+  --radius-2xl: var(--radius);
+  --radius-3xl: var(--radius);
   --color-chart-1: var(--chart-1);
   --color-chart-2: var(--chart-2);
   --color-chart-3: var(--chart-3);
@@ -56,83 +59,78 @@
 }
 
 /* ─────────────────────────────────────────────────────────────
-   Palette : ivoire chaud #F5F3EA · encre #151513 · vert profond #007942
-   Le néon #00FF87 et le crème #E1E0CC ne servent plus que dans les zones
-   sombres — section contact et pied de page.
+   Charte v2 (07/09), clients/123digital/00-brief/charte-graphique/.
+   Une seule teinte (oklch hue 155, le vert du logo) déclinée du blanc à
+   l'encre, plus une alerte hors teinte. Aucun gris neutre, aucun noir pur,
+   aucun dégradé nulle part. Contrastes WCAG 2.1 recalculés le 07/09 pour
+   chaque paire texte/fond utilisée (voir charte-graphique.md section 4).
 
-   Contrastes WCAG 2.1 mesurés au navigateur (canvas, 24 combinaisons
-   page × format). Le plancher n'est pas --surface mais --brand-tint
-   (#DCE6D9), l'aplat clair le plus sombre du site :
-     sur --surface     : --ink 16,4:1 · --ink-2 7,1:1 · --ink-3 5,4:1 · --brand 5,4:1
-     sur --brand-tint  : --ink-3 4,7:1 · --brand 4,7:1
-     --on-brand sur --brand 5,6:1 · --ink-4 2,8:1 (décoratif seulement)
+   Les noms ci-dessous (--surface, --ink, --brand, --dark, --cream, --vert-*…)
+   sont conservés comme ALIAS de l'échelle --g-50..950 : les 204 pages qui
+   les consomment suivent sans être éditées une par une. Le mapping exact
+   est celui de l'audit du 07/09.
 ──────────────────────────────────────────────────────────── */
 :root {
   color-scheme: light;
 
-  /* ── Surfaces claires ──
-     Refonte 18/08 : bascule de l'ivoire chaud (teinte 96, famille crème, bannie)
-     vers l'ivoire froid légèrement vert de la maquette basique-v1 (#f5f6f2).
-     Les L restent identiques à ±0.006 : les ratios de contraste mesurés tiennent. */
-  --surface:       oklch(0.968 0.005 150);   /* ≈#F4F6F2 — fond de page */
-  --surface-2:     oklch(0.992 0.002 150);   /* ≈#FDFDFC — cartes */
-  --surface-3:     oklch(0.948 0.007 150);   /* ≈#EDF0EB — aplats secondaires */
-  --surface-alpha: oklch(0.968 0.005 150 / 93%);  /* en-tête au scroll — reste ivoire au-dessus des zones sombres */
+  /* ── Échelle verte (section 2 de la charte) ── */
+  --white:  oklch(1 0 0);
+  --g-50:   oklch(0.985 0.006 155);   /* #F6FAF7 */
+  --g-100:  oklch(0.960 0.012 155);   /* #EAF3EE */
+  --g-200:  oklch(0.900 0.040 155);   /* #CDE6D8 */
+  --g-300:  oklch(0.820 0.060 155);   /* #A7D3BB */
+  --g-400:  oklch(0.720 0.090 155);   /* #6FB791 */
+  --g-500:  oklch(0.600 0.120 155);   /* #2F9A63 */
+  --g-600:  oklch(0.485 0.128 155);   /* #00713D — le vert du logo, marque */
+  --g-700:  oklch(0.420 0.115 155);   /* #005C31 */
+  --g-800:  oklch(0.320 0.080 155);   /* #123F27 */
+  --g-900:  oklch(0.240 0.040 155);   /* #16281D */
+  --g-950:  oklch(0.195 0.006 155);   /* #131814 — encre */
+  --alerte: #C9401C;                  /* hors teinte, jamais décoratif */
 
-  /* ── Encre ── */
-  --ink:    oklch(0.195 0.006 155);   /* ≈#131814 — titres, texte fort */
-  --ink-2:  oklch(0.435 0.010 155);   /* ≈#4F544F — corps de texte */
-  --ink-3:  oklch(0.500 0.012 155);   /* ≈#5E655F — labels, légendes (4,7:1 sur --brand-tint) */
-  --ink-4:  oklch(0.660 0.012 155);   /* ≈#8B958C — décoratif non informatif */
+  /* ── Alias — noms consommés par les composants ── */
+  --surface:       var(--white);
+  --surface-2:     var(--g-50);
+  --surface-3:     var(--g-100);
+  --surface-alpha: var(--white);
 
-  /* ── Filets ── */
-  --line:        oklch(0.895 0.010 150);
-  --line-strong: oklch(0.830 0.012 150);
+  --ink:    var(--g-950);
+  --ink-2:  var(--g-800);
+  --ink-3:  var(--g-800);
+  --ink-4:  var(--g-300);
 
-  /* ── Ombre — teinte encre unique pour toutes les élévations de cartes ── */
-  --shadow-soft: oklch(0.30 0.02 155 / 10%);
+  --line:        var(--g-200);
+  --line-strong: var(--g-500);
 
-  /* ── Vert profond — CTA et liens sur fond clair ── */
-  --brand:        oklch(0.485 0.128 155);       /* ≈ #00713D — vert profond */
-  --brand-strong: oklch(0.440 0.122 155);       /* #006532 — survol */
-  --brand-tint:   oklch(0.485 0.128 155 / 10%);
-  --brand-line:   oklch(0.485 0.128 155 / 30%);
-  --on-brand:     oklch(0.985 0.003 150);       /* ≈#FAFBFA */
-  /* Deux nuances de la meme teinte, uniquement pour le degrade de la
-     banniere d'accueil : clair en haut a gauche, profond en bas a droite.
-     --vert-pale sert au seul mot mis en valeur du titre, sur ce fond vert. */
-  --brand-deep:   oklch(0.395 0.112 155);
-  --brand-light:  oklch(0.560 0.135 155);
-  --vert-pale:    oklch(0.900 0.070 155);
+  /* Aucune ombre dans la charte v2 : le token existe encore (18 usages en
+     dépendent) mais ne rend plus rien. */
+  --shadow-soft: transparent;
 
-  /* ── Zones sombres — continuité de marque ── */
-  --dark:      oklch(0.145 0 0);            /* #0A0A0A */
-  --dark-2:    oklch(0.196 0 0);            /* #141414 */
-  --dark-3:    oklch(0.248 0 0);            /* #1E1E1E */
-  --dark-line: oklch(1 0 0 / 11%);
-  /* Refonte 18/08 : le crème (ancien logo) et le vert néon sont remplacés par
-     les 3 tons du logo « Le clic », éclaircis pour tenir sur fond noir.
-     --cream* deviennent des neutres froids ; --neon = alias de --vert-2. */
-  --cream:     oklch(0.940 0.004 150);           /* ≈#EDEFEC — texte sur sombre */
-  --cream-2:   oklch(0.940 0.004 150 / 80%);
-  --cream-3:   oklch(0.940 0.004 150 / 62%);
-  --vert-1:    oklch(0.62 0.105 155);            /* ton plein du logo, version fond noir */
-  --vert-2:    oklch(0.72 0.080 155);            /* ton 70 % */
-  --vert-3:    oklch(0.82 0.052 155);            /* ton 45 % */
-  --neon:      var(--vert-2);
-  /* Degrade du pied de page : les trois tons du logo, du plus sombre au plus
-     vert, en diagonale. Seul degrade du site. */
-  --footer-grad: linear-gradient(
-    158deg,
-    oklch(0.145 0 0) 0%,
-    oklch(0.205 0.035 155) 45%,
-    oklch(0.285 0.070 155) 100%
-  );
-  --neon-tint: oklch(0.876 0.229 152 / 14%);
+  --brand:        var(--g-600);
+  --brand-strong: var(--g-700);
+  --brand-tint:   var(--g-100);
+  --brand-line:   var(--g-300);
+  --on-brand:     var(--white);
+  --brand-deep:   var(--g-700);
+  --brand-light:  var(--g-500);
+  --vert-pale:    var(--g-300);
+
+  --dark:   var(--g-950);
+  --dark-2: var(--g-900);
+  --dark-3: var(--g-900);
+
+  --cream:   var(--white);
+  --cream-2: var(--g-300);
+  --cream-3: var(--g-300);
+  --vert-1:  var(--g-400);
+  --vert-2:  var(--g-400);
+  --vert-3:  var(--g-300);
+  --neon:      var(--g-400);
+  --neon-tint: var(--g-900);
 
   /* ── Mapping shadcn/ui ── */
   --background:         var(--surface);
-  --foreground:         var(--ink);
+  --foreground:         var(--ink-2);
   --card:               var(--surface-2);
   --card-foreground:    var(--ink);
   --popover:            var(--surface-2);
@@ -152,14 +150,16 @@
   --destructive: oklch(0.505 0.190 27);
   --border:      var(--line);
   --input:       var(--line-strong);
-  --ring:        oklch(0.485 0.128 155 / 40%);
-  --radius:      0.75rem;
+  /* Anneau de focus : 600 à 100 % sur fond clair, décalé de 2 px. Sur le pied
+     de page (fond 950) il repasse en 400, règle ciblée plus bas. */
+  --ring:        var(--g-600);
+  --radius:      0.25rem;
 
-  --chart-1: oklch(0.485 0.128 155);
-  --chart-2: oklch(0.55 0.13 230);
-  --chart-3: oklch(0.62 0.14 60);
-  --chart-4: oklch(0.50 0.15 30);
-  --chart-5: oklch(0.48 0.14 310);
+  --chart-1: var(--g-600);
+  --chart-2: var(--g-300);
+  --chart-3: var(--g-950);
+  --chart-4: var(--alerte);
+  --chart-5: var(--g-400);
 
   --sidebar:                    var(--surface-2);
   --sidebar-foreground:         var(--ink);
@@ -168,24 +168,33 @@
   --sidebar-accent:             var(--surface-3);
   --sidebar-accent-foreground:  var(--ink);
   --sidebar-border:             var(--line);
-  --sidebar-ring:               oklch(0.485 0.128 155 / 40%);
+  --sidebar-ring:               var(--g-600);
 }
 
 /* ── Base ─────────────────────────────────────────────────── */
 @layer base {
-  * { @apply border-border outline-ring/50; }
+  * { @apply border-border outline-ring; }
   html { @apply scroll-smooth; }
+  /* Corps en 800, titres en 950 (charte v2 section 3 : « pas de troisième gris »). */
   body { @apply bg-background text-foreground font-sans antialiased; }
-  /* Tous les titres en Plus Jakarta Sans, gras, comme la page d'accueil. */
-  h1, h2, h3 { font-family: var(--font-sans); font-weight: 800; }
+  h1, h2, h3 {
+    font-family: var(--font-sans);
+    font-weight: 800;
+    color: var(--ink);
+    line-height: 1.1; /* jamais sous 1,05 : les accents de capitale ne touchent pas la ligne au-dessus */
+  }
+  /* Approche par niveau, section 7 de la charte. */
+  h1 { letter-spacing: -0.03em; }
+  h2 { letter-spacing: -0.02em; }
+  h3 { letter-spacing: -0.01em; }
+  h4, h5, h6 { letter-spacing: -0.01em; }
   /* Les <em> des titres venaient de l'ancien site (accent italique serif).
      La balise reste pour la semantique, l'italique disparait. */
   h1 em, h2 em, h3 em, h1 i, h2 i, h3 i { font-style: normal; font-weight: 800; }
-  h1, h2, h3, h4, h5, h6 { letter-spacing: -0.02em; }
 
-  /* Text selection — vert profond */
+  /* Sélection de texte — aplat 100, aucune transparence codée en dur */
   ::selection {
-    background: oklch(0.485 0.128 155 / 22%);
+    background: var(--g-100);
     color: var(--ink);
   }
 
@@ -195,6 +204,10 @@
   ::-webkit-scrollbar-track { background: var(--surface); }
   ::-webkit-scrollbar-thumb { background: var(--line-strong); border-radius: 10px; }
   ::-webkit-scrollbar-thumb:hover { background: var(--ink-4); }
+
+  /* Unique zone sombre du site : l'anneau de focus 600 est illisible sur 950
+     (2,94:1, charte section 4), il repasse en 400 dans le pied de page. */
+  footer { --ring: var(--g-400); }
 }
 
 /* ── Utilities ────────────────────────────────────────────── */
@@ -229,50 +242,15 @@
     color: var(--brand);
   }
 
-  /* Filet vert sous un mot — accent typographique */
-  .rule-underline {
-    background-image: linear-gradient(to right, var(--brand) 0%, oklch(0.485 0.128 155 / 12%) 100%);
-    background-repeat: no-repeat;
-    background-position: 0 100%;
-    background-size: 100% 0.08em;
-    padding-bottom: 0.06em;
-  }
-
   /* Carte claire standard — blanc chaud + filet */
   .card-light {
     background-color: var(--surface-2);
     border: 1px solid var(--line);
   }
-
-  /* Gradient warm text (legacy compat) */
-  .text-gradient-blue,
-  .text-gradient-warm {
-    background: linear-gradient(135deg, var(--ink) 0%, var(--ink-2) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-
-  /* Shimmer on primary buttons */
-  .shimmer { position: relative; overflow: hidden; }
-  .shimmer::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(105deg, transparent 38%, oklch(1 0 0 / 18%) 50%, transparent 62%);
-    background-size: 200% 100%;
-    animation: shimmer-sweep 3s infinite;
-  }
-}
-
-@keyframes shimmer-sweep {
-  0%   { background-position: 200% 0; }
-  100% { background-position: -200% 0; }
 }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .shimmer::after { animation: none; }
 }
 
 /* ─── CV interactif (/portfolio, /en/portfolio) ────────────────────────────

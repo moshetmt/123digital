@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { ArrowRight } from 'lucide-react'
 import { getServices, type ServiceData } from '@/data/services'
 import { t, type Locale } from '@/lib/i18n'
 
@@ -26,11 +27,11 @@ const cardCopyEN: Record<string, CardCopy> = {
 const ATTRACT_IDS = ['seo', 'publicite-en-ligne', 'community-management']
 const CONVERT_IDS = ['creation-site-web', 'branding', 'automatisation-marketing']
 
-function ServiceCard({ service, copy, learnMoreLabel }: { service: ServiceData; copy: CardCopy; learnMoreLabel: string }) {
+function ServiceCard({ service, copy, learnMoreLabel, learnMoreSuffix }: { service: ServiceData; copy: CardCopy; learnMoreLabel: string; learnMoreSuffix: string }) {
   return (
     <div
-      className="rounded-2xl flex flex-col"
-      style={{ backgroundColor: 'var(--surface-2)', border: '1px solid var(--line)', boxShadow: '0 8px 30px var(--shadow-soft)', padding: 'clamp(0.85rem, 3vw, 1.4rem)' }}
+      className="rounded flex flex-col"
+      style={{ backgroundColor: 'var(--surface-2)', border: '1px solid var(--line)', padding: 'clamp(0.85rem, 3vw, 1.4rem)' }}
     >
       <h3 style={{ fontFamily: 'var(--font-sans)', fontWeight: 800, fontSize: 'clamp(0.92rem, 3.4vw, 1.05rem)', color: 'var(--ink)', marginBottom: '0.3rem', lineHeight: 1.2 }}>
         {service.title}
@@ -38,31 +39,24 @@ function ServiceCard({ service, copy, learnMoreLabel }: { service: ServiceData; 
       <p style={{ fontSize: 'clamp(0.78rem, 2.6vw, 0.87rem)', color: 'var(--ink-2)', lineHeight: 1.45, marginBottom: '0.7rem', flex: 1 }}>
         {copy.shortDesc}
       </p>
-      {/* Les pastilles disparaissent sous 640 px : a 2 colonnes sur telephone
-          elles s'empilaient et doublaient la hauteur de chaque carte. */}
-      <div className="hidden sm:flex flex-wrap gap-1.5 mb-3">
-        {copy.chips.map((chip) => (
-          <span
-            key={chip}
-            style={{ backgroundColor: 'var(--surface-3)', color: 'var(--ink-2)', borderRadius: 999, padding: '0.25rem 0.65rem', fontSize: '0.72rem', fontWeight: 600 }}
-          >
-            {chip}
-          </span>
-        ))}
-      </div>
+      <p style={{ color: 'var(--ink-2)', fontSize: '0.78rem', marginBottom: '0.7rem' }}>
+        {copy.chips.join(' · ')}
+      </p>
       <Link
         href={service.href}
-        className="font-bold w-fit"
-        style={{ color: 'var(--brand-strong)', fontSize: 'clamp(0.78rem, 2.6vw, 0.875rem)' }}
+        aria-label={`${learnMoreLabel} ${learnMoreSuffix} ${service.title}`}
+        className="font-bold w-fit inline-flex items-center gap-1"
+        style={{ color: 'var(--brand-strong)', fontSize: 'clamp(0.78rem, 2.6vw, 0.875rem)', paddingTop: '0.875rem', paddingBottom: '0.875rem' }}
       >
-        {learnMoreLabel} →
+        {learnMoreLabel}
+        <ArrowRight size={14} aria-hidden />
       </Link>
     </div>
   )
 }
 
-function ServiceFamily({ title, ids, services, copy, learnMoreLabel }: {
-  title: string; ids: string[]; services: ServiceData[]; copy: Record<string, CardCopy>; learnMoreLabel: string
+function ServiceFamily({ title, ids, services, copy, learnMoreLabel, learnMoreSuffix }: {
+  title: string; ids: string[]; services: ServiceData[]; copy: Record<string, CardCopy>; learnMoreLabel: string; learnMoreSuffix: string
 }) {
   const items = ids
     .map((id) => services.find((s) => s.id === id))
@@ -76,7 +70,7 @@ function ServiceFamily({ title, ids, services, copy, learnMoreLabel }: {
       {/* 2 colonnes des le telephone : en 1 colonne la section faisait 2 ecrans. */}
       <div className="grid grid-cols-2 lg:grid-cols-3 gap-2.5 sm:gap-4">
         {items.map((service) => (
-          <ServiceCard key={service.id} service={service} copy={copy[service.id]} learnMoreLabel={learnMoreLabel} />
+          <ServiceCard key={service.id} service={service} copy={copy[service.id]} learnMoreLabel={learnMoreLabel} learnMoreSuffix={learnMoreSuffix} />
         ))}
       </div>
     </div>
@@ -87,6 +81,7 @@ export function Services({ lang = 'fr' }: { lang?: Locale }) {
   const d = t(lang).services
   const services = getServices(lang)
   const copy = lang === 'en' ? cardCopyEN : cardCopyFR
+  const learnMoreSuffix = lang === 'en' ? 'about' : 'sur'
 
   return (
     <section
@@ -118,8 +113,8 @@ export function Services({ lang = 'fr' }: { lang?: Locale }) {
         </h2>
         <p style={{ color: 'var(--ink-2)', maxWidth: '60ch', marginBottom: 'clamp(1.1rem, 4vw, 2.5rem)' }}>{d.sub}</p>
 
-        <ServiceFamily title={d.familyAttract} ids={ATTRACT_IDS} services={services} copy={copy} learnMoreLabel={d.learnMore} />
-        <ServiceFamily title={d.familyConvert} ids={CONVERT_IDS} services={services} copy={copy} learnMoreLabel={d.learnMore} />
+        <ServiceFamily title={d.familyAttract} ids={ATTRACT_IDS} services={services} copy={copy} learnMoreLabel={d.learnMore} learnMoreSuffix={learnMoreSuffix} />
+        <ServiceFamily title={d.familyConvert} ids={CONVERT_IDS} services={services} copy={copy} learnMoreLabel={d.learnMore} learnMoreSuffix={learnMoreSuffix} />
       </div>
     </section>
   )

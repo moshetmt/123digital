@@ -16,8 +16,9 @@ import { PageBanner } from '@/components/sections/PageBanner'
  * rempli avec le nom de la page.
  *
  * Depuis le 20/08 il n'est plus qu'un adaptateur : le rendu vient de
- * `PageBanner`, la bannière verte partagée par tout le site. Les cinq pages
- * anglaises suivent donc automatiquement les évolutions de la version française.
+ * `PageBanner`, la banniere blanche partagee par tout le site (charte v2,
+ * 07/09). Les cinq pages anglaises suivent donc automatiquement les
+ * evolutions de la version francaise.
  */
 type Props = {
   kicker: string
@@ -32,15 +33,15 @@ export function PageHeroEn({ title, intro, points }: Props) {
       {points && points.length > 0 && (
         <ul
           className="mt-4 grid grid-cols-1 gap-2 sm:grid-cols-3"
-          style={{ fontSize: '0.85rem', color: 'oklch(0.985 0.003 150 / 88%)', lineHeight: 1.45 }}
+          style={{ fontSize: '0.85rem', color: 'var(--ink-2)', lineHeight: 1.45 }}
         >
           {points.map((p) => (
             <li
               key={p}
-              className="rounded-xl"
+              className="rounded"
               style={{
-                backgroundColor: 'oklch(0.985 0.003 150 / 12%)',
-                border: '1px solid oklch(0.985 0.003 150 / 22%)',
+                backgroundColor: 'var(--surface-3)',
+                border: '1px solid var(--line)',
                 padding: '0.7rem 0.85rem',
               }}
             >

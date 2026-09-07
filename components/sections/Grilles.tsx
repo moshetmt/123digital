@@ -6,8 +6,9 @@ import Link from 'next/link'
 // Pourquoi elles existent : les pages service alignaient des cartes larges avec
 // cinq a huit lignes de texte, puis on a essaye de tout replier en accordeon.
 // Les deux etaient mauvais. L'accueil, lui, tient parce que ses cartes sont
-// petites : deux colonnes des le telephone, titre a 0,9 rem, texte a 0,8 rem,
-// bordure fine et ombre douce. On reprend exactement ce reglage ici.
+// petites : deux colonnes des le telephone, titre a 0,9 rem, texte a 0,8 rem.
+// Charte v2 : rayon 4 px, aucune ombre, chips en texte separe par un point
+// median (toujours visible, y compris sur telephone).
 
 interface Carte {
   /** Rend la carte cliquable, avec le lien de fin comme sur l accueil. */
@@ -15,7 +16,7 @@ interface Carte {
   lienLabel?: string
   titre: string
   texte: string
-  /** Pastilles courtes, masquees sur telephone comme sur l'accueil. */
+  /** Mots courts, affiches en texte separe par « · ». */
   chips?: string[]
   /** Ligne discrete en bas de carte : delai, prix, precision. */
   note?: string
@@ -24,11 +25,10 @@ interface Carte {
 function CarteCompacte({ carte, accent }: { carte: Carte; accent?: string }) {
   return (
     <div
-      className="rounded-2xl flex flex-col"
+      className="rounded flex flex-col"
       style={{
         backgroundColor: 'var(--surface-2)',
         border: '1px solid var(--line)',
-        boxShadow: '0 8px 30px var(--shadow-soft)',
         padding: 'clamp(0.85rem, 3vw, 1.4rem)',
       }}
     >
@@ -72,22 +72,8 @@ function CarteCompacte({ carte, accent }: { carte: Carte; accent?: string }) {
       </p>
 
       {carte.chips && carte.chips.length > 0 && (
-        <div className="hidden sm:flex flex-wrap gap-1.5 mt-3">
-          {carte.chips.map((chip) => (
-            <span
-              key={chip}
-              style={{
-                backgroundColor: 'var(--surface-3)',
-                color: 'var(--ink-2)',
-                borderRadius: 999,
-                padding: '0.25rem 0.65rem',
-                fontSize: '0.72rem',
-                fontWeight: 600,
-              }}
-            >
-              {chip}
-            </span>
-          ))}
+        <div className="mt-3" style={{ fontSize: '0.75rem', fontWeight: 600, color: 'var(--ink-2)' }}>
+          {carte.chips.join(' · ')}
         </div>
       )}
 
@@ -144,26 +130,26 @@ export function GrilleEtapes({ items }: { items: Carte[] }) {
 function EtapeCarte({ etape, index }: { etape: Carte; index: number }) {
   return (
     <div
-      className="rounded-2xl"
+      className="rounded"
       style={{
         backgroundColor: 'var(--surface-2)',
         border: '1px solid var(--line)',
         padding: 'clamp(0.8rem, 3vw, 1.25rem)',
       }}
     >
+      {/* Numero en texte plein, jamais en pastille ronde (charte v2, section 6). */}
       <div
-        className="flex items-center justify-center rounded-full mb-2"
         style={{
-          width: 28,
-          height: 28,
-          backgroundColor: 'var(--brand)',
-          color: 'var(--on-brand)',
+          fontFamily: 'var(--font-sans)',
           fontWeight: 800,
-          fontSize: '0.82rem',
+          fontSize: '1.15rem',
+          color: 'var(--brand)',
+          letterSpacing: '-0.02em',
+          marginBottom: '0.4rem',
         }}
         aria-hidden
       >
-        {index + 1}
+        {String(index + 1).padStart(2, '0')}
       </div>
       <h3
         style={{
@@ -181,38 +167,5 @@ function EtapeCarte({ etape, index }: { etape: Carte; index: number }) {
         {etape.texte}
       </p>
     </div>
-  )
-}
-
-/** Bande sombre a chiffres, comme la bande Resultats de l'accueil. */
-export function BandeChiffres({ items }: { items: { valeur: string; legende: string }[] }) {
-  return (
-    <section style={{ backgroundColor: 'var(--dark)', padding: 'clamp(1.6rem, 5vw, 4rem) 1.5rem' }}>
-      <div
-        className="mx-auto max-w-6xl grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 text-center"
-      >
-        {items.map((chiffre, i) => (
-          <div
-            key={chiffre.legende}
-            className={items.length === 3 && i === 2 ? 'col-span-2 lg:col-span-1' : undefined}
-          >
-            <div
-              style={{
-                fontFamily: 'var(--font-sans)',
-                fontWeight: 800,
-                fontSize: 'clamp(1.9rem, 3.8vw, 2.75rem)',
-                letterSpacing: '-0.02em',
-                color: `var(--vert-${[3, 2, 1, 2][i % 4]})`,
-              }}
-            >
-              {chiffre.valeur}
-            </div>
-            <p style={{ fontSize: '0.82rem', color: 'var(--cream-2)', lineHeight: 1.45, marginTop: '0.4rem' }}>
-              {chiffre.legende}
-            </p>
-          </div>
-        ))}
-      </div>
-    </section>
   )
 }

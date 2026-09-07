@@ -22,10 +22,9 @@ import { cn } from '@/lib/utils'
 import { getServices, type ServiceIconName } from '@/data/services'
 import { t, type Locale } from '@/lib/i18n'
 
-// Encre sur ivoire — plancher de contraste 4,5:1 sur --surface
+// Encre sur blanc, charte v2 section 4
 const INK = 'var(--ink)'
 const INK_DIM = 'var(--ink-2)'
-const INK_FAINT = 'var(--ink-3)'
 
 const PHONE_TEL = 'tel:+33652092301'
 const PHONE_DISPLAY = '06 52 09 23 01'
@@ -40,36 +39,6 @@ function ServiceIcon({ name, size = 15 }: { name: ServiceIconName; size?: number
 }
 
 interface NavLink { label: string; href: string; hasDropdown?: boolean }
-
-// ── Barre de confiance — bandeau sombre au-dessus du header ────────────────────
-
-function TrustBar({ lang }: { lang: Locale }) {
-  const d = t(lang).header
-  return (
-    <div
-      className="text-center px-3 whitespace-nowrap overflow-hidden"
-      style={{
-        backgroundColor: 'var(--dark)',
-        color: 'var(--cream)',
-        fontSize: '0.7rem',
-        fontWeight: 600,
-        padding: '0.34rem 0.75rem',
-        lineHeight: 1.35,
-      }}
-    >
-      {/* Sur telephone le bandeau tenait sur 2 lignes (51 px). La zone
-          geographique et l'annee sont masquees sous 640 px : une seule ligne. */}
-      <span className="hidden sm:inline">
-        {d.trustLocation}
-        <span style={{ color: 'var(--cream-3)', margin: '0 0.6em' }} aria-hidden>·</span>
-      </span>
-      <span style={{ color: 'var(--vert-3)', fontWeight: 800 }}>{d.trustProof}</span>
-      <span className="hidden sm:inline"> {d.trustSince}</span>
-      <span style={{ color: 'var(--cream-3)', margin: '0 0.55em' }} aria-hidden>·</span>
-      {d.trustReply}
-    </div>
-  )
-}
 
 export function Header({ lang = 'fr' }: { lang?: Locale }) {
   const d = t(lang).nav
@@ -92,295 +61,275 @@ export function Header({ lang = 'fr' }: { lang?: Locale }) {
     href === '/' ? pathname === '/' : pathname.startsWith(href)
 
   return (
-    <div style={{ position: 'sticky', top: 0, zIndex: 50 }}>
-      <TrustBar lang={lang} />
-
-      <header
-        className="border-b"
-        style={{
-          backgroundColor: 'var(--surface-alpha)',
-          backdropFilter: 'blur(20px)',
-          WebkitBackdropFilter: 'blur(20px)',
-          borderColor: 'var(--line)',
-        }}
+    <header
+      className="sticky top-0 z-50 border-b"
+      style={{ backgroundColor: 'var(--surface)', borderColor: 'var(--line)' }}
+    >
+      <nav
+        className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between"
+        aria-label="Navigation principale"
       >
-        <nav
-          className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between"
-          aria-label="Navigation principale"
+        {/* ── Logo — logotype seul, l'URL et le contenu font le travail ── */}
+        <Link
+          href={lang === 'en' ? '/en' : '/'}
+          className="flex items-center shrink-0"
+          aria-label="123digital, accueil"
         >
-          {/* ── Logo ── */}
-          <Link
-            href={lang === 'en' ? '/en' : '/'}
-            className="flex items-center shrink-0"
-            aria-label="123 Digital, accueil"
-          >
-            <Image src="/images/logo.svg" alt="123 Digital" width={166} height={34} style={{ height: 34, width: 'auto' }} priority unoptimized />
-          </Link>
+          <Image src="/logo/logotype.svg" alt="123digital" width={166} height={34} style={{ height: 34, width: 'auto' }} priority unoptimized />
+        </Link>
 
-          {/* ── Desktop nav ── */}
-          <ul className="hidden lg:flex items-center gap-0.5" role="list">
-            {navLinks.map((link) =>
-              link.hasDropdown ? (
-                <li key={link.href} className="relative">
-                  <div
-                    onMouseEnter={() => setServicesOpen(true)}
-                    onMouseLeave={() => setServicesOpen(false)}
-                  >
-                    <button
-                      type="button"
-                      className="relative flex items-center gap-1 px-3 py-2 rounded-lg text-sm font-bold transition-colors duration-150"
-                      style={{
-                        color: isActive(link.href) ? 'var(--brand)' : INK,
-                      }}
-                      aria-expanded={servicesOpen}
-                      aria-haspopup="true"
-                    >
-                      {link.label}
-                      <ChevronDown
-                        size={13}
-                        className={cn('transition-transform duration-200', servicesOpen && 'rotate-180')}
-                        aria-hidden
-                      />
-                    </button>
-
-                    {/* Services dropdown */}
-                    <AnimatePresence>
-                      {servicesOpen && (
-                        <motion.div
-                          initial={{ opacity: 0, y: 6, scale: 0.98 }}
-                          animate={{ opacity: 1, y: 0, scale: 1 }}
-                          exit={{ opacity: 0, y: 6, scale: 0.98 }}
-                          transition={{ duration: 0.16, ease: 'easeOut' }}
-                          className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-72 rounded-2xl p-2 shadow-2xl"
-                          style={{
-                            border: '1px solid var(--line)',
-                            backgroundColor: 'var(--surface-2)',
-                            backdropFilter: 'blur(20px)',
-                            WebkitBackdropFilter: 'blur(20px)',
-                            boxShadow: '0 24px 60px var(--shadow-soft)',
-                          }}
-                          role="menu"
-                          aria-label="Services"
-                        >
-                          {services.map((service) => (
-                            <Link
-                              key={service.id}
-                              href={service.href}
-                              role="menuitem"
-                              onClick={() => setServicesOpen(false)}
-                              className="flex items-start gap-3 rounded-xl px-3 py-2.5 transition-colors group"
-                              style={{ color: INK_DIM }}
-                              onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = 'var(--surface-3)' }}
-                              onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = 'transparent' }}
-                            >
-                              <span
-                                className="mt-0.5 shrink-0 grid place-items-center rounded-lg"
-                                style={{ color: 'var(--brand)', backgroundColor: 'var(--brand-tint)', width: 28, height: 28 }}
-                              >
-                                <ServiceIcon name={service.icon} size={15} />
-                              </span>
-                              <div>
-                                <p
-                                  className="text-sm font-bold leading-snug transition-colors"
-                                  style={{ color: INK }}
-                                >
-                                  {service.title}
-                                </p>
-                                <p className="text-xs leading-snug mt-0.5" style={{ color: INK_DIM }}>
-                                  {service.shortDesc}
-                                </p>
-                              </div>
-                            </Link>
-                          ))}
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
-                  </div>
-                </li>
-              ) : (
-                <li key={link.href}>
-                  {/* L'audit gratuit est la page de conversion : elle sort du
-                      lot en pastille contour, au lieu d'etre le dernier lien
-                      de la rangee, indistinct des autres. */}
-                  <Link
-                    href={link.href}
-                    className={cn(
-                      'relative block text-sm font-bold transition-colors duration-150',
-                      link.href.includes('audit')
-                        ? 'ml-1 px-3.5 py-1.5 rounded-full border-2'
-                        : 'px-3 py-2 rounded-lg',
-                    )}
-                    style={
-                      link.href.includes('audit')
-                        ? { color: 'var(--brand)', borderColor: 'var(--brand-line)', backgroundColor: 'var(--brand-tint)' }
-                        : { color: isActive(link.href) ? 'var(--brand)' : INK }
-                    }
+        {/* ── Desktop nav ── */}
+        <ul className="hidden lg:flex items-center gap-0.5" role="list">
+          {navLinks.map((link) =>
+            link.hasDropdown ? (
+              <li key={link.href} className="relative">
+                <div
+                  onMouseEnter={() => setServicesOpen(true)}
+                  onMouseLeave={() => setServicesOpen(false)}
+                >
+                  <button
+                    type="button"
+                    className="relative flex items-center gap-1 px-3 py-2 rounded text-sm font-bold transition-colors duration-150"
+                    style={{
+                      color: isActive(link.href) ? 'var(--brand)' : INK,
+                    }}
+                    aria-expanded={servicesOpen}
+                    aria-haspopup="true"
                   >
                     {link.label}
-                  </Link>
-                </li>
-              ),
-            )}
-          </ul>
+                    <ChevronDown
+                      size={13}
+                      className={cn('transition-transform duration-200', servicesOpen && 'rotate-180')}
+                      aria-hidden
+                    />
+                  </button>
 
-          {/* ── Desktop CTA + lang toggle ── */}
-          <div className="hidden lg:flex items-center gap-3 shrink-0">
-            {/* Selecteur de langue segmente : la langue courante est marquee,
-                l'autre est cliquable. Remplace l'ancien bouton encadre. */}
-            <div
-              className="inline-flex items-center rounded-full p-0.5"
-              style={{ backgroundColor: 'var(--surface-3)' }}
+                  {/* Services dropdown */}
+                  <AnimatePresence>
+                    {servicesOpen && (
+                      <motion.div
+                        initial={{ opacity: 0, y: 6, scale: 0.98 }}
+                        animate={{ opacity: 1, y: 0, scale: 1 }}
+                        exit={{ opacity: 0, y: 6, scale: 0.98 }}
+                        transition={{ duration: 0.16, ease: 'easeOut' }}
+                        className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-72 rounded p-2"
+                        style={{
+                          border: '1px solid var(--line)',
+                          backgroundColor: 'var(--surface)',
+                        }}
+                        role="menu"
+                        aria-label="Services"
+                      >
+                        {services.map((service) => (
+                          <Link
+                            key={service.id}
+                            href={service.href}
+                            role="menuitem"
+                            onClick={() => setServicesOpen(false)}
+                            className="flex items-start gap-3 rounded px-3 py-2.5 transition-colors group"
+                            style={{ color: INK_DIM }}
+                            onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = 'var(--surface-3)' }}
+                            onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = 'transparent' }}
+                          >
+                            <span className="mt-0.5 shrink-0 grid place-items-center" style={{ color: INK, width: 24, height: 24 }}>
+                              <ServiceIcon name={service.icon} size={16} />
+                            </span>
+                            <div>
+                              <p
+                                className="text-sm font-bold leading-snug transition-colors"
+                                style={{ color: INK }}
+                              >
+                                {service.title}
+                              </p>
+                              <p className="text-xs leading-snug mt-0.5" style={{ color: INK_DIM }}>
+                                {service.shortDesc}
+                              </p>
+                            </div>
+                          </Link>
+                        ))}
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              </li>
+            ) : (
+              <li key={link.href}>
+                {/* L'audit gratuit est la page de conversion : elle sort du
+                    lot avec un aplat 100, au lieu d'etre le dernier lien
+                    de la rangee, indistinct des autres. */}
+                <Link
+                  href={link.href}
+                  className={cn(
+                    'relative block text-sm font-bold transition-colors duration-150 rounded',
+                    link.href.includes('audit') ? 'ml-1 px-3.5 py-1.5' : 'px-3 py-2',
+                  )}
+                  style={
+                    link.href.includes('audit')
+                      ? { color: 'var(--brand)', backgroundColor: 'var(--brand-tint)' }
+                      : { color: isActive(link.href) ? 'var(--brand)' : INK }
+                  }
+                >
+                  {link.label}
+                </Link>
+              </li>
+            ),
+          )}
+        </ul>
+
+        {/* ── Desktop CTA + lang toggle ── */}
+        <div className="hidden lg:flex items-center gap-3 shrink-0">
+          {/* Selecteur de langue segmente : la langue courante est marquee,
+              l'autre est cliquable. */}
+          <div
+            className="inline-flex items-center rounded p-0.5"
+            style={{ backgroundColor: 'var(--surface-3)' }}
+          >
+            <span
+              className="rounded px-2.5 py-1 text-xs font-extrabold leading-none"
+              style={{ backgroundColor: 'var(--ink)', color: 'var(--on-brand)' }}
             >
-              <span
-                className="rounded-full px-2.5 py-1 text-xs font-extrabold leading-none"
-                style={{ backgroundColor: 'var(--ink)', color: 'var(--on-brand)' }}
-              >
-                {lang.toUpperCase()}
-              </span>
-              <Link
-                href={d.langHref}
-                className="rounded-full px-2.5 py-1 text-xs font-extrabold leading-none transition-colors"
-                style={{ color: INK_DIM }}
-              >
-                {d.lang}
-              </Link>
-            </div>
-            <a
-              href={PHONE_TEL}
-              className="inline-flex items-center gap-2 rounded-full font-bold text-sm transition-all duration-200 active:scale-[0.97] whitespace-nowrap"
-              style={{ backgroundColor: 'var(--brand)', color: 'var(--on-brand)', padding: '0.55rem 1.15rem' }}
+              {lang.toUpperCase()}
+            </span>
+            <Link
+              href={d.langHref}
+              className="rounded px-2.5 py-1 text-xs font-extrabold leading-none transition-colors"
+              style={{ color: INK_DIM }}
             >
-              <Phone size={14} aria-hidden />
-              {PHONE_DISPLAY}
-            </a>
+              {d.lang}
+            </Link>
           </div>
+          <a
+            href={PHONE_TEL}
+            className="inline-flex items-center gap-2 rounded font-bold text-sm transition duration-150 active:scale-[0.97] whitespace-nowrap"
+            style={{ backgroundColor: 'var(--brand)', color: 'var(--on-brand)', padding: '0.55rem 1.15rem' }}
+          >
+            <Phone size={14} aria-hidden />
+            {PHONE_DISPLAY}
+          </a>
+        </div>
 
-          {/* ── Mobile : CTA téléphone + hamburger ── */}
-          <div className="lg:hidden flex items-center gap-2 shrink-0">
-            <a
-              href={PHONE_TEL}
-              className="inline-flex items-center justify-center gap-1.5 rounded-full px-3 font-bold whitespace-nowrap transition-transform duration-100 active:scale-[0.97]"
-              style={{
-                backgroundColor: 'var(--brand)',
-                color: 'var(--on-brand)',
-                fontSize: '0.78rem',
-                minHeight: 40,
-              }}
+        {/* ── Mobile : CTA téléphone + hamburger ── */}
+        <div className="lg:hidden flex items-center gap-2 shrink-0">
+          <a
+            href={PHONE_TEL}
+            className="inline-flex items-center justify-center gap-1.5 rounded px-3 font-bold whitespace-nowrap transition duration-150 active:scale-[0.97]"
+            style={{
+              backgroundColor: 'var(--brand)',
+              color: 'var(--on-brand)',
+              fontSize: '0.78rem',
+              minHeight: 40,
+            }}
+          >
+            <Phone size={13} aria-hidden />
+            {PHONE_DISPLAY}
+          </a>
+
+          <Sheet open={mobileOpen} onOpenChange={setMobileOpen}>
+            <SheetTrigger
+              className="flex items-center justify-center rounded transition-colors"
+              style={{ color: INK_DIM, minWidth: 44, minHeight: 44 }}
+              aria-label="Ouvrir le menu de navigation"
             >
-              <Phone size={13} aria-hidden />
-              {PHONE_DISPLAY}
-            </a>
+              <Menu size={20} aria-hidden />
+            </SheetTrigger>
 
-            <Sheet open={mobileOpen} onOpenChange={setMobileOpen}>
-              <SheetTrigger
-                className="flex items-center justify-center rounded-lg transition-colors"
-                style={{ color: INK_DIM, minWidth: 44, minHeight: 44 }}
-                aria-label="Ouvrir le menu de navigation"
+            <SheetContent
+              side="right"
+              className="w-[300px] sm:w-[340px] p-0"
+              style={{ backgroundColor: 'var(--surface)', borderColor: 'var(--line)' }}
+            >
+            <SheetTitle className="sr-only">Menu de navigation</SheetTitle>
+
+            <div className="flex flex-col h-full p-5">
+              {/* Mobile logo */}
+              <Link
+                href={lang === 'en' ? '/en' : '/'}
+                className="flex items-center mb-8"
+                onClick={() => setMobileOpen(false)}
               >
-                <Menu size={20} aria-hidden />
-              </SheetTrigger>
+                {/* `unoptimized` : le logo est un SVG, l'optimiseur d'images
+                    le rendait cassé dans le panneau mobile. */}
+                <Image src="/logo/logotype.svg" alt="123digital" width={150} height={31} unoptimized style={{ height: 31, width: 'auto' }} />
+              </Link>
 
-              <SheetContent
-                side="right"
-                className="w-[300px] sm:w-[340px] p-0"
-                style={{ backgroundColor: 'var(--surface)', borderColor: 'var(--line)' }}
-              >
-              <SheetTitle className="sr-only">Menu de navigation</SheetTitle>
-
-              <div className="flex flex-col h-full p-5">
-                {/* Mobile logo */}
+              {/* Mobile links */}
+              <nav className="flex flex-col gap-1 flex-1" aria-label="Navigation mobile">
                 <Link
                   href={lang === 'en' ? '/en' : '/'}
-                  className="flex items-center mb-8"
                   onClick={() => setMobileOpen(false)}
+                  className="block px-3 py-2.5 rounded text-[0.95rem] font-bold transition-colors"
+                  style={{
+                    color: pathname === '/' || pathname === '/en' ? 'var(--brand)' : INK,
+                    backgroundColor: pathname === '/' || pathname === '/en' ? 'var(--brand-tint)' : 'transparent',
+                  }}
                 >
-                  {/* `unoptimized` : le logo est un SVG, l'optimiseur d'images
-                      le rendait cassé dans le panneau mobile. */}
-                  <Image src="/images/logo.svg" alt="123 Digital" width={150} height={31} unoptimized style={{ height: 31, width: 'auto' }} />
+                  {d.home}
                 </Link>
 
-                {/* Mobile links */}
-                <nav className="flex flex-col gap-1 flex-1" aria-label="Navigation mobile">
-                  <Link
-                    href={lang === 'en' ? '/en' : '/'}
-                    onClick={() => setMobileOpen(false)}
-                    className="block px-3 py-2.5 rounded-xl text-[0.95rem] font-bold transition-colors"
-                    style={{
-                      color: pathname === '/' || pathname === '/en' ? 'var(--brand)' : INK,
-                      backgroundColor: pathname === '/' || pathname === '/en' ? 'var(--brand-tint)' : 'transparent',
-                    }}
-                  >
-                    {d.home}
-                  </Link>
+                {navLinks.map((link) => (
+                  <div key={link.href}>
+                    <Link
+                      href={link.href}
+                      onClick={() => !link.hasDropdown && setMobileOpen(false)}
+                      className="block px-3 py-2.5 rounded text-[0.95rem] font-bold transition-colors"
+                      style={{
+                        color: isActive(link.href) ? 'var(--brand)' : INK,
+                        backgroundColor: isActive(link.href) ? 'var(--brand-tint)' : 'transparent',
+                      }}
+                    >
+                      {link.label}
+                    </Link>
 
-                  {navLinks.map((link) => (
-                    <div key={link.href}>
-                      <Link
-                        href={link.href}
-                        onClick={() => !link.hasDropdown && setMobileOpen(false)}
-                        className="block px-3 py-2.5 rounded-xl text-[0.95rem] font-bold transition-colors"
-                        style={{
-                          color: isActive(link.href) ? 'var(--brand)' : INK,
-                          backgroundColor: isActive(link.href) ? 'var(--brand-tint)' : 'transparent',
-                        }}
+                    {link.hasDropdown && (
+                      <div
+                        className="ml-4 mt-1 mb-1 pl-3 flex flex-col gap-0.5"
+                        style={{ borderLeft: '1px solid var(--line)' }}
                       >
-                        {link.label}
-                      </Link>
+                        {services.map((service) => (
+                          <Link
+                            key={service.id}
+                            href={service.href}
+                            onClick={() => setMobileOpen(false)}
+                            className="flex items-center gap-2 py-1.5 px-2 rounded text-[0.82rem] font-semibold transition-colors"
+                            style={{ color: INK_DIM }}
+                          >
+                            <span className="grid place-items-center shrink-0" style={{ width: 18, height: 18, color: INK }}>
+                              <ServiceIcon name={service.icon} size={13} />
+                            </span>
+                            {service.title}
+                          </Link>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </nav>
 
-                      {link.hasDropdown && (
-                        <div
-                          className="ml-4 mt-1 mb-1 pl-3 flex flex-col gap-0.5"
-                          style={{ borderLeft: '1px solid var(--line)' }}
-                        >
-                          {services.map((service) => (
-                            <Link
-                              key={service.id}
-                              href={service.href}
-                              onClick={() => setMobileOpen(false)}
-                              className="flex items-center gap-2 py-1.5 px-2 rounded-lg text-[0.82rem] font-semibold transition-colors"
-                              style={{ color: INK_DIM }}
-                            >
-                              <span
-                                className="grid place-items-center rounded-md shrink-0"
-                                style={{ width: 20, height: 20, backgroundColor: 'var(--brand-tint)', color: 'var(--brand)' }}
-                              >
-                                <ServiceIcon name={service.icon} size={12} />
-                              </span>
-                              {service.title}
-                            </Link>
-                          ))}
-                        </div>
-                      )}
-                    </div>
-                  ))}
-                </nav>
-
-                {/* Mobile CTA + lang */}
-                <div className="pt-4 mt-4 flex flex-col gap-3" style={{ borderTop: '1px solid var(--line)' }}>
-                  <a
-                    href={PHONE_TEL}
-                    onClick={() => setMobileOpen(false)}
-                    className="flex items-center justify-center gap-2 w-full rounded-full font-bold text-sm transition-all duration-200 active:scale-[0.97]"
-                    style={{ backgroundColor: 'var(--brand)', color: 'var(--on-brand)', padding: '0.75rem' }}
-                  >
-                    <Phone size={15} aria-hidden />
-                    {PHONE_DISPLAY}
-                  </a>
-                  <Link
-                    href={d.langHref}
-                    onClick={() => setMobileOpen(false)}
-                    className="text-center text-sm py-2 rounded border transition-colors"
-                    style={{ borderColor: 'var(--line-strong)', color: INK_DIM }}
-                  >
-                    {d.lang === 'EN' ? '🇬🇧 English' : '🇫🇷 Français'}
-                  </Link>
-                </div>
-                </div>
-              </SheetContent>
-            </Sheet>
-          </div>
-        </nav>
-      </header>
-    </div>
+              {/* Mobile CTA + lang */}
+              <div className="pt-4 mt-4 flex flex-col gap-3" style={{ borderTop: '1px solid var(--line)' }}>
+                <a
+                  href={PHONE_TEL}
+                  onClick={() => setMobileOpen(false)}
+                  className="flex items-center justify-center gap-2 w-full rounded font-bold text-sm transition duration-150 active:scale-[0.97]"
+                  style={{ backgroundColor: 'var(--brand)', color: 'var(--on-brand)', padding: '0.75rem' }}
+                >
+                  <Phone size={15} aria-hidden />
+                  {PHONE_DISPLAY}
+                </a>
+                <Link
+                  href={d.langHref}
+                  onClick={() => setMobileOpen(false)}
+                  className="text-center text-sm py-2 rounded border transition-colors"
+                  style={{ borderColor: 'var(--line-strong)', color: INK_DIM }}
+                >
+                  {d.lang === 'EN' ? '🇬🇧 English' : '🇫🇷 Français'}
+                </Link>
+              </div>
+              </div>
+            </SheetContent>
+          </Sheet>
+        </div>
+      </nav>
+    </header>
   )
 }

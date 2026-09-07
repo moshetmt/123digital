@@ -2,7 +2,6 @@ import type { Metadata } from 'next'
 import { Hero }         from '@/components/sections/Hero'
 import { Services }     from '@/components/sections/Services'
 import { About }        from '@/components/sections/About'
-import { Results }      from '@/components/sections/Results'
 import { Portfolio }    from '@/components/sections/Portfolio'
 import { Process }      from '@/components/sections/Process'
 import { FAQ }          from '@/components/sections/FAQ'
@@ -30,16 +29,13 @@ export default function HomePage() {
     <>
       <JsonLd schema={faqPageSchema(homeFaqs)} />
 
-      {/* 1. Hero — fond ivoire, carte statut en direct */}
+      {/* 1. Hero — fond blanc, écran reconstruit */}
       <Hero />
 
       {/* 2. Services — 6 cartes, 2 familles */}
       <Services />
 
-      {/* 3. Results — LA section sombre, 4 chiffres */}
-      <Results />
-
-      {/* 4. Portfolio — cas clients (Clim69, Rhône Déconstruction, A+ Audition) */}
+      {/* 3. Portfolio — cas clients (Clim69, Rhône Déconstruction, A+ Audition) */}
       <Portfolio />
 
       {/* 5. Process — méthode en 4 étapes */}

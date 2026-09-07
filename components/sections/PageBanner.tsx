@@ -1,24 +1,23 @@
 import type { ReactNode } from 'react'
-import Image from 'next/image'
 import Link from 'next/link'
-import { PongCanvas } from '@/components/sections/PongCanvas'
-import type { NomIcone } from '@/lib/icones-pong'
+import { EcranReconstruit, Flag } from '@/components/sections/EcranReconstruit'
 
 // ── Banniere de page ──────────────────────────────────────────────────────────
-// Avant le 20/08, chaque page ecrivait sa propre banniere a la main : seize
-// heros differents, et l'accueil qui partait tout seul de son cote a chaque
-// refonte. Tout passe desormais par ce composant. Une seule regle : si une page
-// a besoin d'une variante, on ajoute une prop ici, on ne recopie pas la section.
+// Charte v2 (section 6) : fond blanc, titre a gauche avec un mot en 600, corps
+// en 800, deux boutons rectangulaires. A droite sur desktop / en dessous sur
+// mobile : un ecran reconstruit, version courte a deux resultats, avec le
+// titre de la page comme requete.
 //
-// Fond vert de marque, texte blanc, partie de Pong derriere. Le mot mis en
-// valeur du titre passe en vert pale.
+// `icone`, `image` et `ballRadius` restent acceptes pour ne pas casser les
+// ~19 pages qui les passent encore (le decor Pong et la photo de fond ont
+// disparu) : ils ne sont plus lus par ce composant.
 
 interface PageBannerProps {
-  /** Icone portee par la balle du Pong : le sujet de la page. */
-  icone?: NomIcone
+  /** Ancien decor Pong : non lu, garde pour compatibilite des appelants. */
+  icone?: string
   /** Titre de la page. Le h1 unique. */
   title: string
-  /** Mot ou fin de phrase a detacher en vert pale, s'il apparait dans le titre. */
+  /** Mot ou fin de phrase a detacher en 600, s'il apparait dans le titre. */
   highlight?: string
   /** Une a deux phrases. Au-dela, c'est du contenu de section, pas de banniere. */
   sub?: string
@@ -26,116 +25,83 @@ interface PageBannerProps {
   breadcrumb?: ReactNode
   /** Boutons, en general <BannerCta> et <BannerCtaLine>. */
   actions?: ReactNode
-  /** Centre par defaut, comme l'accueil.  reste possible au besoin. */
+  /** Toutes les bannieres s'alignent a gauche (charte v2, section 6). */
   align?: 'left' | 'center'
-  /** Diametre de la loupe. 30 par defaut, 22 sur les bannieres courtes. */
+  /** Ancien diametre de la loupe : non lu, garde pour compatibilite. */
   ballRadius?: number
-  /** Photo de fond, fondue dans le vert. Les images des services et des villes
-   *  dormaient dans public/images sans etre affichees nulle part. */
+  /** Ancienne photo de fond : non lue, gardee pour compatibilite. */
   image?: { src: string; alt?: string; priority?: boolean }
   /** Contenu libre sous les boutons (puces de reassurance, chiffre cle). */
   children?: ReactNode
 }
 
 export function PageBanner({
-  icone,
   title,
   highlight,
   sub,
   breadcrumb,
   actions,
-  align = 'center',
-  ballRadius = 30,
-  image,
   children,
 }: PageBannerProps) {
-  const centered = align === 'center'
+  const requete = title.replace(/\.$/, '').toLowerCase()
 
   return (
-    <section
-      className="relative isolate overflow-hidden"
-      style={{
-        padding: 'clamp(2.25rem, 6vw, 4.5rem) 1.5rem',
-        minHeight: 'clamp(420px, 58vh, 600px)',
-        display: 'flex',
-        alignItems: 'center',
-        color: 'var(--on-brand)',
-        background:
-          'radial-gradient(120% 85% at 12% 0%, var(--brand-light) 0%, transparent 58%), ' +
-          'radial-gradient(110% 90% at 92% 100%, var(--brand-deep) 0%, transparent 62%), ' +
-          'var(--brand)',
-      }}
-    >
-      {/* Photo posee sous le Pong, desaturee et fondue dans le vert : elle donne
-          le lieu ou le metier sans jamais concurrencer le titre blanc. */}
-      {image && (
-        <div aria-hidden className="absolute inset-0 -z-30">
-          <Image
-            src={image.src}
-            alt=""
-            fill
-            priority={image.priority}
-            sizes="100vw"
-            style={{ objectFit: 'cover', opacity: 0.16, filter: 'grayscale(0.6) brightness(0.75)' }}
-          />
-        </div>
-      )}
+    <section style={{ background: 'var(--surface)', padding: 'clamp(2.25rem, 6vw, 4.5rem) 1.5rem' }}>
+      <div className="mx-auto w-full max-w-6xl grid gap-8 lg:grid-cols-2 lg:items-center lg:gap-16">
+        <div>
+          {breadcrumb && <div className="mb-4">{breadcrumb}</div>}
 
-      <PongCanvas ballRadius={ballRadius} icone={icone} />
-
-      {/* Voile vert, pas noir : il assombrit a peine le centre pour que le texte
-          blanc reste net quand la loupe passe derriere, et laisse les bords
-          libres pour les raquettes. */}
-      <div
-        aria-hidden
-        className="absolute inset-0 -z-10"
-        style={{
-          background:
-            'radial-gradient(88% 58% at 50% 46%, oklch(0.395 0.112 155 / 72%) 0%, oklch(0.395 0.112 155 / 34%) 58%, oklch(0.395 0.112 155 / 0%) 100%)',
-        }}
-      />
-
-      <div className={`relative mx-auto w-full max-w-4xl ${centered ? 'text-center' : ''}`}>
-        {breadcrumb && <div className="mb-4">{breadcrumb}</div>}
-
-        <h1
-          className={centered ? 'mx-auto' : ''}
-          style={{
-            fontFamily: 'var(--font-sans)',
-            fontWeight: 800,
-            fontSize: 'clamp(1.8rem, 4.4vw, 3rem)',
-            lineHeight: 1.08,
-            letterSpacing: '-0.02em',
-            color: 'var(--on-brand)',
-            maxWidth: '22ch',
-            marginBottom: sub ? '0.85rem' : '1.1rem',
-          }}
-        >
-          {detacher(title, highlight)}
-        </h1>
-
-        {sub && (
-          <p
-            className={centered ? 'mx-auto' : ''}
+          <h1
             style={{
-              fontSize: 'clamp(0.95rem, 3.2vw, 1.08rem)',
-              color: 'oklch(0.985 0.003 150 / 86%)',
-              maxWidth: '58ch',
-              marginBottom: 'clamp(1rem, 3.5vw, 1.5rem)',
-              lineHeight: 1.5,
+              fontFamily: 'var(--font-sans)',
+              fontWeight: 800,
+              fontSize: 'clamp(1.8rem, 3.6vw, 2.75rem)',
+              lineHeight: 1.05,
+              letterSpacing: '-0.025em',
+              color: 'var(--ink)',
+              maxWidth: '22ch',
+              marginBottom: sub ? '0.85rem' : '1.1rem',
             }}
           >
-            {sub}
-          </p>
-        )}
+            {detacher(title, highlight)}
+          </h1>
 
-        {actions && (
-          <div className={`flex flex-wrap items-center gap-3 ${centered ? 'justify-center' : ''}`}>
-            {actions}
-          </div>
-        )}
+          {sub && (
+            <p
+              style={{
+                fontSize: 'clamp(0.95rem, 3.2vw, 1.08rem)',
+                color: 'var(--ink-2)',
+                maxWidth: '58ch',
+                marginBottom: 'clamp(1rem, 3.5vw, 1.5rem)',
+                lineHeight: 1.55,
+              }}
+            >
+              {sub}
+            </p>
+          )}
 
-        {children}
+          {actions && <div className="flex flex-wrap items-center gap-3">{actions}</div>}
+
+          {children}
+        </div>
+
+        <EcranReconstruit
+          requete={requete}
+          resultats={[
+            {
+              url: 'concurrent-lyon.fr',
+              titre: `${title.replace(/\.$/, '')} · Devis gratuit`,
+              description: 'Fiche complète, en tête des résultats.',
+            },
+            {
+              url: 'votre-site.fr',
+              titre: 'Accueil',
+              description: <><Flag>Page 3.</Flag> Ni ville, ni métier dans le titre.</>,
+              vous: true,
+            },
+          ]}
+          className="lg:justify-self-end"
+        />
       </div>
     </section>
   )
@@ -150,44 +116,30 @@ function detacher(title: string, highlight?: string): ReactNode {
   return (
     <>
       {avant}
-      <span style={{ color: 'var(--vert-pale)' }}>{highlight}</span>
+      <span style={{ color: 'var(--brand)' }}>{highlight}</span>
       {reste.join(highlight)}
     </>
   )
 }
 
-/** Bouton principal de banniere : blanc sur vert, le plus contraste de la page. */
+/** Bouton principal de banniere : plein 600, rayon 4 px. */
 export function BannerCta({ href, children }: { href: string; children: ReactNode }) {
-  const inner = (
-    <>
-      {children}
-    </>
-  )
-  // Compact sur telephone : c'est a cette taille que deux boutons tiennent
-  // encore cote a cote au lieu de s'empiler.
   const className =
-    'inline-flex items-center gap-2 rounded-full font-bold whitespace-nowrap px-4 py-2.5 text-[0.86rem] sm:px-6 sm:py-3 sm:text-[0.95rem]'
-  const style = {
-    backgroundColor: 'var(--on-brand)',
-    color: 'var(--brand-deep)',
-    boxShadow: '0 2px 14px oklch(0.145 0 0 / 22%)',
-  }
+    'inline-flex items-center gap-2 rounded font-bold whitespace-nowrap px-5 py-2.5 text-[0.92rem] transition duration-150 active:scale-[0.97]'
+  const style = { backgroundColor: 'var(--brand)', color: 'var(--on-brand)' }
 
   return href.startsWith('/') ? (
-    <Link href={href} className={className} style={style}>{inner}</Link>
+    <Link href={href} className={className} style={style}>{children}</Link>
   ) : (
-    <a href={href} className={className} style={style}>{inner}</a>
+    <a href={href} className={className} style={style}>{children}</a>
   )
 }
 
-/** Bouton secondaire : contour blanc, fond transparent. */
+/** Bouton secondaire : contour 600, fond transparent. */
 export function BannerCtaLine({ href, children }: { href: string; children: ReactNode }) {
   const className =
-    'inline-flex items-center gap-2 rounded-full font-bold whitespace-nowrap px-4 py-2.5 text-[0.86rem] sm:px-5 sm:py-3 sm:text-[0.95rem]'
-  const style = {
-    border: '1.5px solid oklch(0.985 0.003 150 / 55%)',
-    color: 'var(--on-brand)',
-  }
+    'inline-flex items-center gap-2 rounded font-bold whitespace-nowrap px-5 py-2.5 text-[0.92rem] transition duration-150 active:scale-[0.97]'
+  const style = { border: '1px solid var(--brand)', color: 'var(--brand)' }
 
   return href.startsWith('/') || href.startsWith('#') ? (
     <Link href={href} className={className} style={style}>{children}</Link>

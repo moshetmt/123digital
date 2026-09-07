@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from 'next'
-import { Plus_Jakarta_Sans } from 'next/font/google'
+import { Rethink_Sans } from 'next/font/google'
 import Script from 'next/script'
 import './globals.css'
 import { JsonLd } from '@/components/seo/JsonLd'
@@ -12,13 +12,15 @@ import {
 } from '@/lib/schema'
 
 // ─── Fonts ────────────────────────────────────────────────────────────────────
-// Plus Jakarta Sans, seule police du site depuis la charte du 18/08 : corps, nav,
-// boutons, formulaires ET titres. Fraunces a ete retiree (plus aucun usage).
+// Rethink Sans, seule police du site depuis la charte v2 (07/09) : corps, nav,
+// boutons, formulaires ET titres. Police variable (axe wght 400 à 800) : le
+// mot-cle 'variable' charge la plage complete au lieu d'un tableau de graisses
+// fixes, syntaxe reservee aux polices non variables.
 
-const jakarta = Plus_Jakarta_Sans({
+const rethink = Rethink_Sans({
   subsets: ['latin'],
-  variable: '--font-jakarta',
-  weight: ['400', '600', '700', '800'],
+  weight: 'variable',
+  variable: '--font-rethink',
   display: 'swap',
 })
 
@@ -146,7 +148,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html
       lang="fr"
-      className={jakarta.variable}
+      className={rethink.variable}
       suppressHydrationWarning
     >
       <head>

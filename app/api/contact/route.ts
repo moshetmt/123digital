@@ -56,9 +56,28 @@ export async function POST(req: Request) {
     return NextResponse.json({ ok: false }, { status: 400 })
   }
 
-  // Honeypot : un humain ne remplit jamais ce champ. On répond "ok" pour ne pas
-  // signaler au bot que sa soumission est écartée.
+  // Honeypot : un humain ne remplit jamais ce champ. On journalise quand même
+  // la tentative dans le Sheet (besoin = "REJETÉ anti-spam", aucun email
+  // envoyé) pour distinguer un bot d'un vrai lead perdu, puis on répond "ok"
+  // pour ne pas signaler au bot que sa soumission est écartée. Si l'écriture
+  // échoue, rien de plus : appendToSheet avale déjà ses propres erreurs.
   if (clean(body.hp)) {
+    const spamLead: Lead = {
+      prenom: clean(body.prenom),
+      nom: clean(body.nom),
+      email: clean(body.email),
+      tel: clean(body.tel),
+      site: clean(body.site),
+      besoin: clean(body.besoin) || 'spam',
+      besoinLabel: 'REJETÉ anti-spam',
+      message: clean(body.message),
+      page: clean(body.page) || '/',
+      landing: clean(body.landing),
+      source: clean(body.source) || 'direct',
+    }
+    after(async () => {
+      await appendToSheet(spamLead)
+    })
     return NextResponse.json({ ok: true })
   }
 

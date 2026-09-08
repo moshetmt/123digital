@@ -31,8 +31,8 @@ export function CallBar({ lang = 'fr' }: { lang?: Locale }) {
   const pastille: React.CSSProperties = {
     width: 52,
     height: 52,
-    borderRadius: 999,
-    boxShadow: '0 6px 20px var(--shadow-soft)',
+    borderRadius: 'var(--radius)',
+    border: '1px solid var(--line)',
   }
 
   return (

@@ -268,7 +268,7 @@ export default async function VillePage({ params }: PageProps) {
             className="font-display font-extrabold mb-5 sm:mb-10"
             style={{ fontSize: 'clamp(1.8rem, 3vw, 2.6rem)', color: 'var(--ink)', lineHeight: 1.1 }}
           >
-            Consultant digital à {ville.nom} — vos questions
+            Consultant digital à {ville.nom} : vos questions
           </h2>
           {/* Accordeon natif : la liste depliee pesait environ 1000 px sur
               telephone. Le schema FAQPage de la page reste inchange. */}

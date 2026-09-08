@@ -11,7 +11,7 @@ import { languesPour } from '@/data/hreflang'
 import { CTA } from '@/components/sections/CTA'
 
 export const metadata: Metadata = {
-  title: 'Services digitaux Lyon — SEO, Web & Ads | 123 Digital',
+  title: 'Services digitaux Lyon · SEO, Web & Ads | 123 Digital',
   description:
     'Services digitaux pour PME à Lyon et en Auvergne-Rhône-Alpes : SEO, création de site, Google Ads, branding et automatisation. Un seul expert, une stratégie cohérente pour votre croissance.',
   alternates: { canonical: `${BASE_URL}/services`, ...languesPour('/services') },
@@ -81,7 +81,7 @@ const faqs = [
   },
   {
     question: 'Comment se passe le suivi et la communication ?',
-    answer: 'Un point mensuel minimum par visio ou téléphone, un accès direct par WhatsApp ou email pour les questions, et un rapport de performance mensuel sur tous les services actifs. Vous n\'avez jamais un account manager junior comme interlocuteur — c\'est toujours moi, Maurice.',
+    answer: 'Un point mensuel minimum par visio ou téléphone, un accès direct par WhatsApp ou email pour les questions, et un rapport de performance mensuel sur tous les services actifs. Vous n\'avez jamais un account manager junior comme interlocuteur. C\'est toujours moi, Maurice.',
   },
   {
     question: 'Travaillez-vous uniquement avec des PME lyonnaises ?',

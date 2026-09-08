@@ -8,12 +8,12 @@ import { BASE_URL, breadcrumbSchema, contactPageSchema } from '@/lib/schema'
 import { languesPour } from '@/data/hreflang'
 
 export const metadata: Metadata = {
-  title: 'Contact — Consultant digital Lyon | 123 Digital',
+  title: 'Contact · Consultant digital Lyon | 123 Digital',
   description:
     'Contactez Maurice Timsit pour discuter de votre projet digital. Réponse sous 24h. Email, téléphone ou formulaire de contact.',
   alternates: { canonical: `${BASE_URL}/contact`, ...languesPour('/contact') },
   openGraph: {
-    title: 'Contact — 123 Digital',
+    title: 'Contact · 123 Digital',
     description: 'Contactez Maurice Timsit pour votre projet digital. Réponse sous 24h.',
     url: `${BASE_URL}/contact`,
   },

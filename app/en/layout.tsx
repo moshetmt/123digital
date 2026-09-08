@@ -8,7 +8,7 @@ import { languesPour } from '@/data/hreflang'
 export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),
   title: {
-    default: '123 Digital Lyon — Digital Growth Expert for SMEs',
+    default: '123 Digital Lyon · Digital Growth Expert for SMEs',
     // Meme correctif que le layout francais : les pages /en finissent deja par
     // « | 123 Digital » ou « | 123 Digital Lyon », ce gabarit en rajoutait un
     // second. Le title de /en/services faisait 93 caracteres dont la marque

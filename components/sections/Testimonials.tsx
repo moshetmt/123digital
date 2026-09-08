@@ -170,7 +170,7 @@ export function Testimonials({ lang = 'fr' }: { lang?: 'fr' | 'en' }) {
                     className="text-xs"
                     style={{ color: 'oklch(0.45 0 0)' }}
                   >
-                    {t.role} — {t.company}
+                    {t.role} · {t.company}
                   </p>
                 </div>
               </footer>

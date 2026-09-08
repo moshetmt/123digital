@@ -15,12 +15,12 @@ const PHONE_TEL = 'tel:+33652092301'
 const PHONE_DISPLAY = '06 52 09 23 01'
 
 export const metadata: Metadata = {
-  title: 'Réalisations — Résultats SEO & Web pour PME | 123 Digital',
+  title: 'Réalisations · Résultats SEO & Web pour PME | 123 Digital',
   description:
     'Résultats concrets pour PME : SEO, site web, Google Ads. Projets de Maurice Timsit et performances mesurées pour ses clients lyonnais.',
   alternates: { canonical: `${BASE_URL}/realisations`, ...languesPour('/realisations') },
   openGraph: {
-    title: 'Portfolio — 123 Digital',
+    title: 'Portfolio · 123 Digital',
     description: 'Réalisations et résultats concrets pour des PME en croissance digitale.',
     url: `${BASE_URL}/realisations`,
   },

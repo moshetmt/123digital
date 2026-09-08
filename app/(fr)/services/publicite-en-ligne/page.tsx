@@ -8,7 +8,7 @@ import { BASE_URL, serviceSchema, breadcrumbSchema } from '@/lib/schema'
 import { CTA } from '@/components/sections/CTA'
 
 export const metadata: Metadata = {
-  title: 'Publicité en Ligne PME — Google Ads & Meta Ads | 123Digital',
+  title: 'Publicité en Ligne PME · Google Ads & Meta Ads | 123Digital',
   description:
     'Gestion Google Ads et Meta Ads pour PME : campagnes ciblées, ROI mesurable dès la 1ère semaine. Budget maîtrisé, reporting hebdomadaire, sans frais cachés.',
   alternates: { canonical: `${BASE_URL}/services/publicite-en-ligne` },
@@ -18,7 +18,7 @@ const platforms = [
   { name: 'Google Ads Search', desc: 'Apparaissez en premier quand vos clients cherchent activement vos services. Le canal le plus direct pour capter une intention d\'achat.' },
   { name: 'Meta Ads (Facebook & Instagram)', desc: 'Touchez votre audience idéale selon l\'âge, les intérêts et la localisation. Idéal pour la notoriété et les offres visuelles.' },
   { name: 'Retargeting', desc: 'Reconvertissez les visiteurs qui n\'ont pas contacté lors de leur première visite. Le coût d\'acquisition le plus bas de la publicité en ligne.' },
-  { name: 'Tracking & Attribution', desc: 'Chaque euro est tracé. Appels, formulaires, achats — vous savez exactement d\'où viennent vos clients et combien ils coûtent.' },
+  { name: 'Tracking & Attribution', desc: 'Chaque euro est tracé. Appels, formulaires, achats : vous savez exactement d\'où viennent vos clients et combien ils coûtent.' },
 ]
 
 const steps = [
@@ -35,7 +35,7 @@ const steps = [
   {
     num: '03',
     title: 'Lancement & tests A/B',
-    desc: 'Tests sur les visuels, les textes et les audiences. On apprend vite ce qui convertit — et on coupe ce qui ne convertit pas. Optimisation des enchères selon les données réelles.',
+    desc: 'Tests sur les visuels, les textes et les audiences. On apprend vite ce qui convertit, et on coupe ce qui ne convertit pas. Optimisation des enchères selon les données réelles.',
   },
   {
     num: '04',
@@ -72,14 +72,14 @@ const faqs = [
       'Je recommande un minimum de 500 €/mois en budget médias (ce que vous payez à Google ou Meta) pour obtenir des données statistiquement significatives et optimiser correctement les campagnes. En dessous de ce seuil, les résultats sont difficiles à interpréter et à améliorer. Mes honoraires de gestion s\'ajoutent à ce budget médias.',
   },
   {
-    question: 'Google Ads ou Meta Ads — quel canal choisir pour ma PME ?',
+    question: 'Google Ads ou Meta Ads, quel canal choisir pour ma PME ?',
     answer:
-      'Google Ads capte une demande existante : la personne cherche déjà votre service. C\'est idéal pour les artisans, les professionnels de santé, les services urgents. Meta Ads (Facebook & Instagram) crée la demande en touchant des personnes susceptibles d\'être intéressées — excellent pour les restaurants, les commerces, les formations et les services qui se choisissent sur l\'image. Les deux combinés donnent presque toujours les meilleurs résultats.',
+      'Google Ads capte une demande existante : la personne cherche déjà votre service. C\'est idéal pour les artisans, les professionnels de santé, les services urgents. Meta Ads (Facebook & Instagram) crée la demande en touchant des personnes susceptibles d\'être intéressées, excellent pour les restaurants, les commerces, les formations et les services qui se choisissent sur l\'image. Les deux combinés donnent presque toujours les meilleurs résultats.',
   },
   {
     question: 'Comment mesure-t-on qu\'une campagne publicitaire est rentable ?',
     answer:
-      'On met en place un suivi des conversions complet : appels téléphoniques, soumissions de formulaires, achats en ligne. La métrique clé est le coût par acquisition (CPA) — ce que coûte un nouveau client. Si vous dépensez 30 € en publicité pour acquérir un client qui vous rapporte 300 €, votre ROAS est de 10 : très rentable. On ajuste les campagnes chaque semaine pour améliorer ce ratio.',
+      'On met en place un suivi des conversions complet : appels téléphoniques, soumissions de formulaires, achats en ligne. La métrique clé est le coût par acquisition (CPA) : ce que coûte un nouveau client. Si vous dépensez 30 € en publicité pour acquérir un client qui vous rapporte 300 €, votre ROAS est de 10 : très rentable. On ajuste les campagnes chaque semaine pour améliorer ce ratio.',
   },
   {
     question: 'Puis-je arrêter ou modifier mes campagnes à tout moment ?',
@@ -89,7 +89,7 @@ const faqs = [
   {
     question: 'Faut-il obligatoirement une landing page dédiée ou ma page d\'accueil suffit ?',
     answer:
-      'Une landing page dédiée multiplie généralement le taux de conversion par 2 à 5. La page d\'accueil parle de tout — la landing page ne parle que de l\'offre de l\'annonce, sans distraction. Je peux créer des landing pages optimisées dans le cadre de la gestion des campagnes, ou intégrer ça à une prestation de création de site.',
+      'Une landing page dédiée multiplie généralement le taux de conversion par 2 à 5. La page d\'accueil parle de tout. La landing page ne parle que de l\'offre de l\'annonce, sans distraction. Je peux créer des landing pages optimisées dans le cadre de la gestion des campagnes, ou intégrer ça à une prestation de création de site.',
   },
 ]
 
@@ -117,7 +117,7 @@ export default function PubliciteEnLignePage() {
   return (
     <>
       <JsonLd schema={[
-        serviceSchema({ name: 'Publicité en ligne PME — Google Ads & Meta Ads', description: 'Gestion de campagnes Google Ads et Meta Ads pour PME avec ROI mesurable.', path: '/services/publicite-en-ligne' }),
+        serviceSchema({ name: 'Publicité en ligne PME · Google Ads & Meta Ads', description: 'Gestion de campagnes Google Ads et Meta Ads pour PME avec ROI mesurable.', path: '/services/publicite-en-ligne' }),
         breadcrumbSchema([{ name: 'Accueil', path: '/' }, { name: 'Services', path: '/services' }, { name: 'Publicité en ligne', path: '/services/publicite-en-ligne' }]),
         faqSchema,
       ]} />
@@ -190,7 +190,7 @@ export default function PubliciteEnLignePage() {
         <div className="mx-auto max-w-3xl">
           <div style={labelStyle}>Questions fréquentes</div>
           <h2 className="font-display font-extrabold mb-5 sm:mb-10" style={{ fontSize: 'clamp(1.6rem, 3vw, 2.5rem)', color: 'var(--ink)', letterSpacing: '-0.02em' }}>
-            Publicité en ligne PME — vos questions
+            Publicité en ligne PME : vos questions
           </h2>
           {/* Accordeon natif : la liste depliee pesait environ 1000 px sur
               telephone. Le schema FAQPage de la page reste inchange. */}
@@ -205,7 +205,7 @@ export default function PubliciteEnLignePage() {
           <p style={{ fontSize: '0.82rem', color: 'var(--ink-2)' }}>
             {(() => {
               const liens = [
-                { label: 'Guide Google Ads PME — démarrer sans se ruiner', href: '/blog/google-ads-pme-debuter' },
+                { label: 'Guide Google Ads PME · démarrer sans se ruiner', href: '/blog/google-ads-pme-debuter' },
                 { label: 'Combiner avec le SEO pour durer', href: '/services/seo' },
                 { label: 'Un site qui convertit vos clics', href: '/services/creation-site-web' },
                 { label: 'Audit de vos campagnes existantes', href: '/audit-gratuit' },

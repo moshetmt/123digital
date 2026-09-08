@@ -34,7 +34,7 @@ const serviceContent: Record<
   'creation-site-web': {
     tagline: (v) => `Un site web qui convertit vos visiteurs en clients à ${v}.`,
     intro: (v) =>
-      `Les PME de ${v} ont besoin d'un site rapide, bien référencé et pensé pour transformer les visiteurs en appels et en devis. Je conçois des sites web sur mesure pour les entreprises de ${v} — du design à la mise en ligne en moins de 4 semaines.`,
+      `Les PME de ${v} ont besoin d'un site rapide, bien référencé et pensé pour transformer les visiteurs en appels et en devis. Je conçois des sites web sur mesure pour les entreprises de ${v} : du design à la mise en ligne en moins de 4 semaines.`,
     promise: 'Livré en moins de 4 semaines',
     stat: '3×',
     statLabel: 'plus de contacts générés en moyenne',
@@ -65,7 +65,7 @@ const serviceContent: Record<
   seo: {
     tagline: (v) => `Soyez en première page de Google pour vos clients à ${v}.`,
     intro: (v) =>
-      `Le premier résultat Google capte 32% des clics. J'aide les PME de ${v} à se positionner durablement sur les requêtes de leurs clients — sans dépendre de la publicité. SEO technique, contenu local et netlinking adaptés au marché de ${v}.`,
+      `Le premier résultat Google capte 32% des clics. J'aide les PME de ${v} à se positionner durablement sur les requêtes de leurs clients, sans dépendre de la publicité. SEO technique, contenu local et netlinking adaptés au marché de ${v}.`,
     promise: 'Résultats visibles en 3 à 6 mois',
     stat: '+150%',
     statLabel: 'trafic organique moyen après 6 mois',
@@ -96,7 +96,7 @@ const serviceContent: Record<
   'publicite-en-ligne': {
     tagline: (v) => `Des campagnes Google Ads et Meta Ads qui génèrent des clients à ${v}.`,
     intro: (v) =>
-      `La publicité en ligne bien gérée est le moyen le plus rapide d'obtenir des clients qualifiés à ${v}. Je conçois et pilote vos campagnes Google Ads et Meta Ads pour maximiser votre retour sur investissement — pas juste des clics.`,
+      `La publicité en ligne bien gérée est le moyen le plus rapide d'obtenir des clients qualifiés à ${v}. Je conçois et pilote vos campagnes Google Ads et Meta Ads pour maximiser votre retour sur investissement, pas juste des clics.`,
     promise: 'Premiers résultats en moins de 2 semaines',
     stat: '3,5×',
     statLabel: 'ROAS moyen sur les campagnes gérées',
@@ -115,19 +115,19 @@ const serviceContent: Record<
       {
         q: (v) => `Google Ads ou Meta Ads pour mon entreprise à ${v} ?`,
         a: (v) =>
-          `Ça dépend de votre activité. Google Ads capte une intention d'achat active ("plombier urgence ${v}") — idéal pour les services et l'urgence. Meta Ads (Facebook/Instagram) crée de la demande et est excellent pour la notoriété, les commerces et les services qui se choisissent sur l'image. Souvent les deux combinés donnent les meilleurs résultats.`,
+          `Ça dépend de votre activité. Google Ads capte une intention d'achat active ("plombier urgence ${v}"), idéal pour les services et l'urgence. Meta Ads (Facebook/Instagram) crée de la demande et est excellent pour la notoriété, les commerces et les services qui se choisissent sur l'image. Souvent les deux combinés donnent les meilleurs résultats.`,
       },
       {
         q: (v) => `Comment savoir si mes publicités fonctionnent à ${v} ?`,
         a: (v) =>
-          `Je mets en place un suivi des conversions complet : appels téléphoniques, formulaires de contact, achats en ligne. Vous recevez un rapport mensuel avec le coût par lead, le ROAS et les recommandations d'optimisation. Pas de jargon — des chiffres clairs.`,
+          `Je mets en place un suivi des conversions complet : appels téléphoniques, formulaires de contact, achats en ligne. Vous recevez un rapport mensuel avec le coût par lead, le ROAS et les recommandations d'optimisation. Pas de jargon : des chiffres clairs.`,
       },
     ],
   },
   branding: {
     tagline: (v) => `Une identité visuelle forte qui vous différencie à ${v}.`,
     intro: (v) =>
-      `À ${v}, se différencier de la concurrence est essentiel. Le branding, c'est bien plus qu'un logo — c'est l'ensemble de l'image que vous projetez : visuelle, textuelle, émotionnelle. Je crée des identités cohérentes et mémorables pour les entreprises de ${v} qui veulent marquer les esprits.`,
+      `À ${v}, se différencier de la concurrence est essentiel. Le branding, c'est bien plus qu'un logo. C'est l'ensemble de l'image que vous projetez : visuelle, textuelle, émotionnelle. Je crée des identités cohérentes et mémorables pour les entreprises de ${v} qui veulent marquer les esprits.`,
     promise: 'Identité complète livrée en 3 semaines',
     stat: '89%',
     statLabel: 'des clients perçoivent plus de valeur après un rebranding',
@@ -151,14 +151,14 @@ const serviceContent: Record<
       {
         q: (v) => `Mon secteur est-il adapté à un rebranding à ${v} ?`,
         a: (v) =>
-          `Tous les secteurs bénéficient d'un branding fort — artisans, restaurateurs, cabinets médicaux, commerces de proximité... Le rebranding est particulièrement impactant lors d'un changement de cible, d'une montée en gamme ou d'un lancement de nouvelle offre à ${v}.`,
+          `Tous les secteurs bénéficient d'un branding fort : artisans, restaurateurs, cabinets médicaux, commerces de proximité... Le rebranding est particulièrement impactant lors d'un changement de cible, d'une montée en gamme ou d'un lancement de nouvelle offre à ${v}.`,
       },
     ],
   },
   'community-management': {
     tagline: (v) => `Une présence sur les réseaux sociaux qui construit votre notoriété à ${v}.`,
     intro: (v) =>
-      `Les habitants de ${v} sont sur Instagram, Facebook et LinkedIn chaque jour. Je gère vos réseaux sociaux avec une stratégie de contenu locale, des publications régulières et une vraie voix de marque — pour que votre entreprise de ${v} reste dans les esprits.`,
+      `Les habitants de ${v} sont sur Instagram, Facebook et LinkedIn chaque jour. Je gère vos réseaux sociaux avec une stratégie de contenu locale, des publications régulières et une vraie voix de marque, pour que votre entreprise de ${v} reste dans les esprits.`,
     promise: 'Stratégie + contenu pris en charge',
     stat: '×4',
     statLabel: 'engagement moyen vs comptes non gérés',
@@ -189,7 +189,7 @@ const serviceContent: Record<
   'automatisation-marketing': {
     tagline: (v) => `Automatisez votre marketing et gagnez 10h par semaine à ${v}.`,
     intro: (v) =>
-      `Les entrepreneurs de ${v} perdent en moyenne 10 à 15 heures par semaine en tâches marketing répétitives. Je mets en place des systèmes d'automatisation — emails, CRM, rappels, nurturing — pour que votre entreprise de ${v} continue à générer des leads et à fidéliser ses clients, même quand vous ne travaillez pas.`,
+      `Les entrepreneurs de ${v} perdent en moyenne 10 à 15 heures par semaine en tâches marketing répétitives. Je mets en place des systèmes d'automatisation (emails, CRM, rappels, nurturing) pour que votre entreprise de ${v} continue à générer des leads et à fidéliser ses clients, même quand vous ne travaillez pas.`,
     promise: 'Système opérationnel en 3 semaines',
     stat: '10h',
     statLabel: 'gagnées par semaine en moyenne',
@@ -415,7 +415,7 @@ export default async function VilleServicePage({ params }: PageProps) {
             className="font-display font-extrabold mb-5 sm:mb-10"
             style={{ fontSize: 'clamp(1.8rem, 3vw, 2.6rem)', color: 'var(--ink)', lineHeight: 1.1 }}
           >
-            {service.title} à {ville.nom} —<br />vos questions
+            {service.title} à {ville.nom} :<br />vos questions
           </h2>
           {/* Accordeon natif : la liste depliee pesait environ 1000 px sur
               telephone. Le schema FAQPage de la page reste inchange. */}

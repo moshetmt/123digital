@@ -8,7 +8,7 @@ import { BASE_URL, serviceSchema, breadcrumbSchema } from '@/lib/schema'
 import { CTA } from '@/components/sections/CTA'
 
 export const metadata: Metadata = {
-  title: 'Création Site Web PME — Sites qui Convertissent | 123Digital',
+  title: 'Création Site Web PME · Sites qui Convertissent | 123Digital',
   description:
     'Création de site web sur mesure pour PME : site vitrine, e-commerce, landing page. Rapide, optimisé SEO, livré en 3 à 6 semaines. Devis gratuit sous 24h.',
   alternates: { canonical: `${BASE_URL}/services/creation-site-web` },
@@ -16,9 +16,9 @@ export const metadata: Metadata = {
 
 const features = [
   { title: 'Design sur mesure', desc: 'Interface unique, adaptée à votre marque et à vos clients.' },
-  { title: 'Mobile-first', desc: '100% responsive — 70% du trafic vient du mobile.' },
+  { title: 'Mobile-first', desc: '100% responsive : 70% du trafic vient du mobile.' },
   { title: 'SEO intégré', desc: 'Structure technique optimisée pour Google dès le lancement.' },
-  { title: 'Rapide à charger', desc: 'Score performance 90+ — crucial pour le SEO et l\'expérience.' },
+  { title: 'Rapide à charger', desc: 'Score performance 90+, crucial pour le SEO et l\'expérience.' },
   { title: 'Orienté conversion', desc: 'Parcours utilisateur pensé pour transformer les visiteurs en leads.' },
   { title: 'Livré en 3 à 6 semaines', desc: 'Délai maîtrisé, sans surprise, du brief à la mise en ligne.' },
 ]
@@ -32,7 +32,7 @@ const steps = [
   {
     num: '02',
     title: 'Design & maquettes',
-    desc: 'Maquettes sur mesure, alignées sur votre image de marque. Vous validez avant qu\'une ligne de code soit écrite — pas de mauvaise surprise.',
+    desc: 'Maquettes sur mesure, alignées sur votre image de marque. Vous validez avant qu\'une ligne de code soit écrite, pas de mauvaise surprise.',
   },
   {
     num: '03',
@@ -71,7 +71,7 @@ const faqs = [
   {
     question: 'Quelle technologie utilisez-vous pour créer les sites web ?',
     answer:
-      'J\'utilise Next.js (React) pour les sites à hautes performances et Webflow pour les sites vitrines simples. Ces technologies donnent des scores PageSpeed 90+ et une structure SEO propre — sans les problèmes de sécurité et de maintenance de WordPress. Votre site vous appartient entièrement.',
+      'J\'utilise Next.js (React) pour les sites à hautes performances et Webflow pour les sites vitrines simples. Ces technologies donnent des scores PageSpeed 90+ et une structure SEO propre, sans les problèmes de sécurité et de maintenance de WordPress. Votre site vous appartient entièrement.',
   },
   {
     question: 'Que dois-je préparer avant de lancer mon projet de site web ?',
@@ -86,12 +86,12 @@ const faqs = [
   {
     question: 'Proposez-vous l\'hébergement et le nom de domaine ?',
     answer:
-      'Je vous conseille et configure l\'hébergement, mais le contrat est à votre nom — vous êtes propriétaire à 100%. Pour un site Next.js, Vercel est l\'option recommandée : rapide, fiable, gratuit pour les petits volumes. Pour Webflow, l\'hébergement est inclus dans l\'abonnement Webflow.',
+      'Je vous conseille et configure l\'hébergement, mais le contrat est à votre nom : vous êtes propriétaire à 100%. Pour un site Next.js, Vercel est l\'option recommandée : rapide, fiable, gratuit pour les petits volumes. Pour Webflow, l\'hébergement est inclus dans l\'abonnement Webflow.',
   },
   {
     question: 'Que se passe-t-il si le design ne me convient pas ?',
     answer:
-      'On ne part jamais en développement sans que vous ayez validé les maquettes. Je propose deux rounds de retouches inclus dans le prix. Si après validation vous changez d\'avis en cours de développement, les modifications majeures sont facturées au temps passé — on en discute toujours en amont.',
+      'On ne part jamais en développement sans que vous ayez validé les maquettes. Je propose deux rounds de retouches inclus dans le prix. Si après validation vous changez d\'avis en cours de développement, les modifications majeures sont facturées au temps passé, on en discute toujours en amont.',
   },
 ]
 
@@ -169,7 +169,7 @@ export default function CreationSiteWebPage() {
           </h2>
           <p className="mb-10 max-w-2xl" style={{ color: 'var(--ink-2)', fontSize: '0.95rem', lineHeight: 1.7 }}>
             Un site web sérieux pour une PME coûte entre 1 500 et 5 000 €. En dessous, vous obtenez
-            un template — pas un outil commercial. Au-dessus de 8 000 €, vous payez des frais de
+            un template, pas un outil commercial. Au-dessus de 8 000 €, vous payez des frais de
             structure d&apos;une grande agence.{' '}
             <Link href="/blog/site-web-pme-prix-guide" style={{ color: 'var(--brand)', textDecoration: 'underline' }}>
               Guide complet des prix →
@@ -193,7 +193,7 @@ export default function CreationSiteWebPage() {
         <div className="mx-auto max-w-3xl">
           <div style={labelStyle}>Questions fréquentes</div>
           <h2 className="font-display font-extrabold mb-5 sm:mb-10" style={{ fontSize: 'clamp(1.6rem, 3vw, 2.5rem)', color: 'var(--ink)', letterSpacing: '-0.02em' }}>
-            Création de site web PME — vos questions
+            Création de site web PME : vos questions
           </h2>
           {/* Accordeon natif : la liste depliee pesait environ 1000 px sur
               telephone. Le schema FAQPage de la page reste inchange. */}

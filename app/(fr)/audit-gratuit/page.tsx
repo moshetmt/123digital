@@ -11,7 +11,7 @@ import { BASE_URL, breadcrumbSchema, auditPageSchema } from '@/lib/schema'
 import { languesPour } from '@/data/hreflang'
 
 export const metadata: Metadata = {
-  title: 'Audit digital gratuit Lyon — 30 min sans engagement',
+  title: 'Audit digital gratuit Lyon · 30 min sans engagement',
   description:
     'Audit digital gratuit de 30 min avec Maurice Timsit. SEO, UX et publicité : pourquoi votre site PME ne convertit pas. Réservez votre créneau gratuit.',
   alternates: { canonical: `${BASE_URL}/audit-gratuit`, ...languesPour('/audit-gratuit') },
@@ -66,7 +66,7 @@ const etapes = [
   {
     num: '01',
     titre: 'Vous réservez',
-    desc: 'Choisissez un créneau de 30 minutes dans le calendrier. Pas de formulaire long — juste votre nom, email et URL de site.',
+    desc: 'Choisissez un créneau de 30 minutes dans le calendrier. Pas de formulaire long : juste votre nom, email et URL de site.',
   },
   {
     num: '02',
@@ -104,7 +104,7 @@ const faqs = [
   },
   {
     q: 'Que se passe-t-il si on décide de travailler ensemble après l\'audit ?',
-    a: 'On définit ensemble un périmètre de mission adapté à vos besoins et votre budget. Pas de contrat long terme imposé — je propose des missions ponctuelles et des accompagnements mensuels selon ce qui vous convient.',
+    a: 'On définit ensemble un périmètre de mission adapté à vos besoins et votre budget. Pas de contrat long terme imposé : je propose des missions ponctuelles et des accompagnements mensuels selon ce qui vous convient.',
   },
 ]
 
@@ -192,7 +192,7 @@ export default function AuditGratuitPage() {
                 <ul className="space-y-2">
                   {bloc.points.map((point, i) => (
                     <li key={i} className="flex items-start gap-2">
-                      <span style={{ color: 'var(--ink-3)', flexShrink: 0, marginTop: '0.1rem' }}>—</span>
+                      <span style={{ color: 'var(--ink-3)', flexShrink: 0, marginTop: '0.1rem' }}>•</span>
                       <span style={{ fontSize: '0.87rem', color: 'var(--ink-2)', lineHeight: 1.5 }}>
                         {point}
                       </span>
@@ -232,7 +232,7 @@ export default function AuditGratuitPage() {
                 Trouvez votre stratégie<br />en 3 questions.
               </h2>
               <p style={{ fontSize: '0.88rem', color: 'var(--ink-2)', lineHeight: 1.7 }}>
-                Répondez à 3 questions rapides sur votre situation — vous obtiendrez une recommandation personnalisée avant même de me parler.
+                Répondez à 3 questions rapides sur votre situation. Vous obtiendrez une recommandation personnalisée avant même de me parler.
               </p>
             </div>
             <div>

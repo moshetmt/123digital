@@ -6,7 +6,7 @@ import { languesPour } from '@/data/hreflang'
 import { PageHeroEn } from '@/components/sections/PageHeroEn'
 
 export const metadata: Metadata = {
-  title: 'About Maurice Timsit — Digital Consultant in Lyon | 123 Digital',
+  title: 'About Maurice Timsit · Digital Consultant in Lyon | 123 Digital',
   description:
     'Maurice Timsit, digital consultant in Lyon. One expert, one dedicated strategy for your business: SEO, web design, advertising and automation.',
   alternates: {

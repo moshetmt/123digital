@@ -24,7 +24,7 @@ function SecteurIcon({ name }: { name: string }) {
 }
 
 export const metadata: Metadata = {
-  title: 'Croissance digitale par secteur d\'activité — PME & TPE | 123 Digital',
+  title: 'Croissance digitale par secteur d\'activité · PME & TPE | 123 Digital',
   description:
     'Stratégies digitales sur mesure pour chaque secteur : restaurant, artisan BTP, cabinet médical, commerce, agence immobilière et plus. Expert consultant digital Lyon.',
   alternates: { canonical: `${BASE_URL}/secteurs` },

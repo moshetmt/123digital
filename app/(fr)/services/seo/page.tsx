@@ -8,7 +8,7 @@ import { BASE_URL, serviceSchema, breadcrumbSchema } from '@/lib/schema'
 import { CTA } from '@/components/sections/CTA'
 
 export const metadata: Metadata = {
-  title: 'SEO Lyon PME — Référencement naturel 1ère page Google',
+  title: 'SEO Lyon PME · Référencement naturel 1ère page Google',
   description:
     'Expert SEO pour PME à Lyon : audit technique, mots-clés locaux, contenu et netlinking. Passez en 1ère page Google durablement. Audit SEO gratuit.',
   alternates: { canonical: `${BASE_URL}/services/seo` },
@@ -77,10 +77,10 @@ const faqs = [
   {
     question: 'Comment mesurez-vous les résultats de votre prestation SEO ?',
     answer:
-      'Chaque mois, vous recevez un rapport avec : l\'évolution des positions sur les mots-clés cibles (via Google Search Console), l\'évolution du trafic organique (GA4), le nombre de leads générés par le canal organique, et les actions réalisées. Pas de jargon — des chiffres lisibles et comparés au mois précédent.',
+      'Chaque mois, vous recevez un rapport avec : l\'évolution des positions sur les mots-clés cibles (via Google Search Console), l\'évolution du trafic organique (GA4), le nombre de leads générés par le canal organique, et les actions réalisées. Pas de jargon : des chiffres lisibles et comparés au mois précédent.',
   },
   {
-    question: 'Mon secteur est très concurrentiel — le SEO peut-il vraiment m\'aider ?',
+    question: 'Mon secteur est très concurrentiel, le SEO peut-il vraiment m\'aider ?',
     answer:
       'Presque toujours oui, mais le délai est plus long et la stratégie plus fine. Dans un secteur concurrentiel, on cible d\'abord les requêtes de longue traîne (plus spécifiques, moins compétitives) pour construire l\'autorité, puis on monte progressivement vers les mots-clés principaux. L\'analyse de vos concurrents directs révèle presque toujours des opportunités inexploitées.',
   },
@@ -153,12 +153,12 @@ export default function SeoPage() {
           </h2>
           <GrilleCartes
             items={[
-              { title: 'Audit SEO technique', desc: 'Vitesse, Core Web Vitals, indexation, balises, structure de liens — tout ce que Google évalue en coulisses.' },
+              { title: 'Audit SEO technique', desc: 'Vitesse, Core Web Vitals, indexation, balises, structure de liens : tout ce que Google évalue en coulisses.' },
               { title: 'Stratégie de mots-clés locaux', desc: 'Requêtes ciblées que vos clients tapent réellement, avec volume et concurrence analysés.' },
               { title: 'Optimisation on-page', desc: 'Balises title, meta description, H1-H3, données structurées et contenu réécrit pour Google et les humains.' },
               { title: 'Création de contenu SEO', desc: 'Pages locales, articles de blog ciblés et pages service pensées pour capter du trafic qualifié.' },
               { title: 'Netlinking qualitatif', desc: 'Liens entrants depuis des sources pertinentes et locales pour renforcer l\'autorité de votre domaine.' },
-              { title: 'Rapport mensuel transparent', desc: 'Positions, trafic, leads — chiffres clairs, sans jargon, avec les actions du mois suivant.' },
+              { title: 'Rapport mensuel transparent', desc: 'Positions, trafic, leads : chiffres clairs, sans jargon, avec les actions du mois suivant.' },
             ].map((f) => ({ titre: f.title, texte: f.desc }))}
           />
         </div>
@@ -173,7 +173,7 @@ export default function SeoPage() {
           </h2>
           <p className="mb-10 max-w-2xl" style={{ color: 'var(--ink-2)', fontSize: '0.95rem', lineHeight: 1.7 }}>
             Un SEO sérieux ne s&apos;improvise pas en un mois. Les formules ci-dessous reflètent un
-            investissement réaliste pour des résultats durables — pas du SEO au rabais qui disparaît
+            investissement réaliste pour des résultats durables, pas du SEO au rabais qui disparaît
             à la prochaine mise à jour de Google.
           </p>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
@@ -194,7 +194,7 @@ export default function SeoPage() {
         <div className="mx-auto max-w-3xl">
           <div style={labelStyle}>Questions fréquentes</div>
           <h2 className="font-display font-extrabold mb-5 sm:mb-10" style={{ fontSize: 'clamp(1.6rem, 3vw, 2.5rem)', color: 'var(--ink)', letterSpacing: '-0.02em' }}>
-            SEO pour PME — vos questions
+            SEO pour PME : vos questions
           </h2>
           {/* Accordeon natif : la liste depliee pesait environ 1000 px sur
               telephone. Le schema FAQPage de la page reste inchange. */}
@@ -209,7 +209,7 @@ export default function SeoPage() {
           <p style={{ fontSize: '0.82rem', color: 'var(--ink-2)' }}>
             {(() => {
               const liens = [
-                { label: 'Guide SEO local pour PME — étape par étape', href: '/blog/seo-local-pme-guide-complet' },
+                { label: 'Guide SEO local pour PME · étape par étape', href: '/blog/seo-local-pme-guide-complet' },
                 { label: 'Compléter avec la publicité en ligne', href: '/services/publicite-en-ligne' },
                 { label: 'Votre site est optimisé ? Vérifiez', href: '/services/creation-site-web' },
                 { label: 'Demander un audit SEO gratuit', href: '/audit-gratuit' },

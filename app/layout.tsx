@@ -30,7 +30,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),
 
   title: {
-    default: '123 Digital Lyon — Expert en Croissance Digitale pour PME',
+    default: '123 Digital Lyon · Expert en Croissance Digitale pour PME',
     // 🔴 PAS DE SUFFIXE ICI. Mesure du 19/08 sur les 212 pages fabriquees :
     // 199 portaient « 123 Digital » DEUX fois et 204 depassaient 60 caracteres
     // (mediane 76, maximum 125), parce que chaque page finit deja par
@@ -82,7 +82,7 @@ export const metadata: Metadata = {
     locale: 'fr_FR',
     url: BASE_URL,
     siteName: '123 Digital',
-    title: '123 Digital — Expert en croissance digitale pour PME',
+    title: '123 Digital · Expert en croissance digitale pour PME',
     description:
       'Maurice Timsit vous aide à développer votre PME en ligne : SEO, création de site, publicité, branding. Audit gratuit disponible.',
     images: [
@@ -93,14 +93,14 @@ export const metadata: Metadata = {
         type: 'image/png',
         width: 1200,
         height: 630,
-        alt: '123 Digital — Expert en croissance digitale pour PME françaises',
+        alt: '123 Digital · Expert en croissance digitale pour PME françaises',
       },
     ],
   },
 
   twitter: {
     card: 'summary_large_image',
-    title: '123 Digital — Expert en croissance digitale pour PME',
+    title: '123 Digital · Expert en croissance digitale pour PME',
     description:
       'Maurice Timsit vous aide à développer votre PME en ligne : SEO, création de site, publicité, branding.',
     images: ['/images/og-image.png'],

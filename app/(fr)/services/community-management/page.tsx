@@ -8,7 +8,7 @@ import { BASE_URL, serviceSchema, breadcrumbSchema } from '@/lib/schema'
 import { CTA } from '@/components/sections/CTA'
 
 export const metadata: Metadata = {
-  title: 'Community Management Lyon — Réseaux qui convertissent',
+  title: 'Community Management Lyon · Réseaux qui convertissent',
   description:
     'Gestion réseaux sociaux pour PME : stratégie éditoriale, création de contenu, community management. Transformez vos abonnés en clients. Contactez-moi.',
   alternates: { canonical: `${BASE_URL}/services/community-management` },
@@ -30,7 +30,7 @@ const steps = [
   {
     num: '02',
     title: 'Ligne éditoriale',
-    desc: 'Ton de voix, thèmes de contenu récurrents, formats adaptés à chaque plateforme et calendrier éditorial mensuel. La cohérence est la clé — le contenu aléatoire ne construit pas de communauté.',
+    desc: 'Ton de voix, thèmes de contenu récurrents, formats adaptés à chaque plateforme et calendrier éditorial mensuel. La cohérence est la clé. Le contenu aléatoire ne construit pas de communauté.',
   },
   {
     num: '03',
@@ -74,22 +74,22 @@ const faqs = [
   {
     question: 'Créez-vous les visuels ou dois-je vous les fournir ?',
     answer:
-      'Je crée tous les visuels dans le cadre de la prestation — templates graphiques basés sur votre charte, montages photos, infographies et couvertures de stories. Si vous avez des photos de votre activité (locaux, équipe, réalisations), c\'est un plus que j\'intègre dans le contenu. Si vous n\'en avez pas, je travaille avec des images libres de droits sélectionnées pour coller à votre univers.',
+      'Je crée tous les visuels dans le cadre de la prestation : templates graphiques basés sur votre charte, montages photos, infographies et couvertures de stories. Si vous avez des photos de votre activité (locaux, équipe, réalisations), c\'est un plus que j\'intègre dans le contenu. Si vous n\'en avez pas, je travaille avec des images libres de droits sélectionnées pour coller à votre univers.',
   },
   {
     question: 'Comment gérez-vous les commentaires négatifs ou les messages difficiles ?',
     answer:
-      'Je modère les commentaires selon une charte de community management qu\'on établit ensemble. Pour les commentaires négatifs, la règle est toujours de répondre professionnellement et calmement — ignorer ou supprimer un commentaire légitime aggrave toujours la situation. Pour les cas sensibles (litige client, crise de réputation), je vous remonte l\'alerte immédiatement et on gère ensemble.',
+      'Je modère les commentaires selon une charte de community management qu\'on établit ensemble. Pour les commentaires négatifs, la règle est toujours de répondre professionnellement et calmement. Ignorer ou supprimer un commentaire légitime aggrave toujours la situation. Pour les cas sensibles (litige client, crise de réputation), je vous remonte l\'alerte immédiatement et on gère ensemble.',
   },
   {
     question: 'Les réseaux sociaux génèrent-ils vraiment des clients pour une PME locale ?',
     answer:
-      'Oui, mais pas de la même façon que le SEO ou Google Ads. Les réseaux construisent la notoriété et la confiance sur votre zone locale — les gens vous voient régulièrement, s\'habituent à votre marque, puis font appel à vous le moment venu. Les résultats les plus directs viennent des offres ponctuelles, des événements et des campagnes Meta Ads coordonnées avec le contenu organique.',
+      'Oui, mais pas de la même façon que le SEO ou Google Ads. Les réseaux construisent la notoriété et la confiance sur votre zone locale. Les gens vous voient régulièrement, s\'habituent à votre marque, puis font appel à vous le moment venu. Les résultats les plus directs viennent des offres ponctuelles, des événements et des campagnes Meta Ads coordonnées avec le contenu organique.',
   },
   {
-    question: 'Je n\'ai aucun abonné pour l\'instant — est-il trop tôt pour faire appel à vous ?',
+    question: 'Je n\'ai aucun abonné pour l\'instant, est-il trop tôt pour faire appel à vous ?',
     answer:
-      'Non, c\'est même le meilleur moment. Construire une communauté depuis zéro avec une bonne stratégie dès le départ est plus efficace que de corriger une présence existante mal positionnée. Les 3 à 6 premiers mois sont consacrés à poser les bases — identité visuelle cohérente, ton de voix défini, premiers 200 abonnés ciblés. Ensuite, la croissance s\'accélère.',
+      'Non, c\'est même le meilleur moment. Construire une communauté depuis zéro avec une bonne stratégie dès le départ est plus efficace que de corriger une présence existante mal positionnée. Les 3 à 6 premiers mois sont consacrés à poser les bases : identité visuelle cohérente, ton de voix défini, premiers 200 abonnés ciblés. Ensuite, la croissance s\'accélère.',
   },
 ]
 
@@ -170,7 +170,7 @@ export default function CommunityManagementPage() {
             Combien coûte la gestion de réseaux sociaux pour une PME ?
           </h2>
           <p className="mb-10 max-w-2xl" style={{ color: 'var(--ink-2)', fontSize: '0.95rem', lineHeight: 1.7 }}>
-            Un community management sérieux, c&apos;est une prestation mensuelle récurrente — pas un one-shot.
+            Un community management sérieux, c&apos;est une prestation mensuelle récurrente, pas un one-shot.
             La cohérence dans le temps est ce qui construit la notoriété locale. Les formules
             ci-dessous incluent la stratégie, la création et la publication.
           </p>
@@ -192,7 +192,7 @@ export default function CommunityManagementPage() {
         <div className="mx-auto max-w-3xl">
           <div style={labelStyle}>Questions fréquentes</div>
           <h2 className="font-display font-extrabold mb-5 sm:mb-10" style={{ fontSize: 'clamp(1.6rem, 3vw, 2.5rem)', color: 'var(--ink)', letterSpacing: '-0.02em' }}>
-            Community management PME — vos questions
+            Community management PME : vos questions
           </h2>
           {/* Accordeon natif : la liste depliee pesait environ 1000 px sur
               telephone. Le schema FAQPage de la page reste inchange. */}

@@ -14,7 +14,7 @@ import { BASE_URL as BU } from '@/lib/schema'
 import { languesPour } from '@/data/hreflang'
 
 export const metadata: Metadata = {
-  title: '123 Digital Lyon — Digital Growth Expert for SMEs',
+  title: '123 Digital Lyon · Digital Growth Expert for SMEs',
   description: 'Maurice Timsit, digital consultant in Lyon: SEO, web design, online advertising and automation for SMEs. Free 30-min audit.',
   alternates: {
     canonical: `${BU}/en`,

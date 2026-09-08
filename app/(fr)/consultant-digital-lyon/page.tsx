@@ -6,12 +6,12 @@ import { BASE_URL, serviceSchema, breadcrumbSchema } from '@/lib/schema'
 import { CTA } from '@/components/sections/CTA'
 
 export const metadata: Metadata = {
-  title: 'Consultant Digital Lyon — Expert Croissance PME | 123 Digital',
+  title: 'Consultant Digital Lyon · Expert Croissance PME | 123 Digital',
   description:
     'Maurice Timsit, consultant digital à Lyon : SEO, création de site web, Google Ads et automatisation pour PME et TPE lyonnaises. Audit gratuit 30 min.',
   alternates: { canonical: `${BASE_URL}/consultant-digital-lyon` },
   openGraph: {
-    title: 'Consultant Digital Lyon — 123 Digital',
+    title: 'Consultant Digital Lyon · 123 Digital',
     description: 'Expert en croissance digitale pour PME à Lyon et région Auvergne-Rhône-Alpes.',
     url: `${BASE_URL}/consultant-digital-lyon`,
   },
@@ -54,7 +54,7 @@ const faqs = [
 export default function ConsultantDigitalLyonPage() {
   const jsonLd = [
     serviceSchema({
-      name: 'Consultant Digital Lyon — 123 Digital',
+      name: 'Consultant Digital Lyon · 123 Digital',
       description: 'Services de croissance digitale pour PME à Lyon : SEO, création de site, publicité en ligne et automatisation.',
       path: '/consultant-digital-lyon',
     }),
@@ -171,7 +171,7 @@ export default function ConsultantDigitalLyonPage() {
             Zones d&apos;intervention à Lyon et région
           </h2>
           <p className="text-sm mb-8" style={{ color: 'var(--ink-2)' }}>
-            Consultant digital 100% distanciel — j&apos;accompagne les PME sur toute la métropole lyonnaise
+            Consultant digital 100% distanciel : j&apos;accompagne les PME sur toute la métropole lyonnaise
             et la région Auvergne-Rhône-Alpes, ainsi que toute la France.
           </p>
           <p className="text-sm" style={{ color: 'var(--ink-2)' }}>

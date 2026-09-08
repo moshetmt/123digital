@@ -24,7 +24,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const secteur = getSecteurBySlug(secteurSlug)
   if (!secteur) return {}
 
-  const title = `Marketing digital pour ${secteur.nomPluriel} — Expert PME | 123 Digital`
+  const title = `Marketing digital pour ${secteur.nomPluriel} · Expert PME | 123 Digital`
   const description = `Stratégie digitale sur mesure pour les ${secteur.nomPluriel.toLowerCase()} : ${secteur.solutions.slice(0, 2).join(', ')}. Audit gratuit 30 min avec Maurice Timsit, consultant digital à Lyon.`
 
   return {
@@ -209,7 +209,7 @@ export default async function SecteurPage({ params }: PageProps) {
             className="font-display font-extrabold mb-10"
             style={{ fontSize: 'clamp(1.8rem, 3vw, 2.6rem)', color: 'var(--ink)', lineHeight: 1.1 }}
           >
-            {secteur.nomPluriel} & digital —<br />vos questions
+            {secteur.nomPluriel} & digital :<br />vos questions
           </h2>
           {/* Accordeon natif : la liste depliee pesait environ 1000 px sur
               telephone. Le schema FAQPage de la page reste inchange. */}
@@ -249,7 +249,7 @@ export default async function SecteurPage({ params }: PageProps) {
             Auvergne-Rhône-Alpes :{' '}
             {villesPrioritaires.map((v) => v.nom).join(', ')} et leurs agglomérations.
             Que vous soyez dans une grande métropole ou une ville moyenne, les enjeux digitaux
-            sont les mêmes — et les solutions mises en place sont calibrées pour votre marché local.
+            sont les mêmes, et les solutions mises en place sont calibrées pour votre marché local.
           </p>
           <p style={{ fontSize: '0.8rem', color: 'var(--ink-2)' }}>
             {villesPrioritaires.map((v, i) => (

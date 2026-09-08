@@ -10,12 +10,12 @@ import { languesPour } from '@/data/hreflang'
 import { CTA } from '@/components/sections/CTA'
 
 export const metadata: Metadata = {
-  title: 'Blog — Conseils marketing digital pour PME | 123 Digital',
+  title: 'Blog · Conseils marketing digital pour PME | 123 Digital',
   description:
     "Guides pratiques SEO, création de site web, Google Ads et automatisation pour PME. Conseils concrets par Maurice Timsit, consultant digital à Lyon.",
   alternates: { canonical: `${BASE_URL}/blog`, ...languesPour('/blog') },
   openGraph: {
-    title: 'Blog — Conseils marketing digital PME | 123 Digital',
+    title: 'Blog · Conseils marketing digital PME | 123 Digital',
     description: 'Articles pratiques sur le SEO, Google Ads et la croissance digitale pour les PME.',
     url: `${BASE_URL}/blog`,
   },

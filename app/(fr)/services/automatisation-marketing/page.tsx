@@ -8,7 +8,7 @@ import { BASE_URL, serviceSchema, breadcrumbSchema } from '@/lib/schema'
 import { CTA } from '@/components/sections/CTA'
 
 export const metadata: Metadata = {
-  title: 'Automatisation Marketing PME — Gagnez 5h/semaine',
+  title: 'Automatisation Marketing PME · Gagnez 5h/semaine',
   description:
     'Automatisez vos emails, CRM et relances clients pour générer des leads 24h/24. Automatisation marketing pour PME à Lyon par Maurice Timsit. Audit gratuit.',
   alternates: { canonical: `${BASE_URL}/services/automatisation-marketing` },
@@ -16,11 +16,11 @@ export const metadata: Metadata = {
 
 const automations = [
   { title: 'Emailing & séquences', desc: 'Séquences de nurturing qui guident vos prospects vers l\'achat sans action manuelle : bienvenue, relance devis, suivi après devis, fidélisation.' },
-  { title: 'CRM setup', desc: 'HubSpot, Brevo ou Notion — pipeline commercial structuré pour ne plus perdre de lead. Vous voyez où en est chaque prospect à tout moment.' },
+  { title: 'CRM setup', desc: 'HubSpot, Brevo ou Notion : pipeline commercial structuré pour ne plus perdre de lead. Vous voyez où en est chaque prospect à tout moment.' },
   { title: 'Funnels de conversion', desc: 'Parcours client complet de la landing page à la prise de RDV, 100% automatisé. Chaque étape est optimisée pour maximiser le taux de conversion.' },
-  { title: 'Rappels & réduction no-shows', desc: 'SMS et emails de rappel automatiques avant les rendez-vous. Réduit les absences de 60 à 70% — mesurable dès la première semaine.' },
+  { title: 'Rappels & réduction no-shows', desc: 'SMS et emails de rappel automatiques avant les rendez-vous. Réduit les absences de 60 à 70%, mesurable dès la première semaine.' },
   { title: 'Make.com / n8n / Zapier', desc: 'Connexions sur mesure entre vos outils existants : formulaire site → CRM, paiement → notification Slack, avis Google → tableau de bord.' },
-  { title: 'GA4 & dashboards', desc: 'Tableau de bord en temps réel pour piloter votre croissance à la donnée — sans passer 2h dans Google Analytics chaque semaine.' },
+  { title: 'GA4 & dashboards', desc: 'Tableau de bord en temps réel pour piloter votre croissance à la donnée, sans passer 2h dans Google Analytics chaque semaine.' },
 ]
 
 const steps = [
@@ -32,7 +32,7 @@ const steps = [
   {
     num: '02',
     title: 'Architecture du système',
-    desc: 'Sélection des outils adaptés à votre budget et à votre structure. Je ne recommande pas les outils les plus chers mais les plus adaptés — souvent des solutions gratuites ou à moins de 50 €/mois.',
+    desc: 'Sélection des outils adaptés à votre budget et à votre structure. Je ne recommande pas les outils les plus chers mais les plus adaptés, souvent des solutions gratuites ou à moins de 50 €/mois.',
   },
   {
     num: '03',
@@ -42,7 +42,7 @@ const steps = [
   {
     num: '04',
     title: 'Formation & maintenance',
-    desc: 'Formation à la supervision et aux ajustements — vous n\'avez pas besoin de moi pour modifier un email ou ajouter une étape. Documentation complète livrée avec chaque projet.',
+    desc: 'Formation à la supervision et aux ajustements : vous n\'avez pas besoin de moi pour modifier un email ou ajouter une étape. Documentation complète livrée avec chaque projet.',
   },
 ]
 
@@ -86,12 +86,12 @@ const faqs = [
   {
     question: 'Comment s\'assurer que mes emails automatiques ne tombent pas dans les spams ?',
     answer:
-      'La délivrabilité dépend de plusieurs facteurs techniques : authentification SPF, DKIM et DMARC du domaine, réputation de l\'expéditeur, qualité de la liste et contenu des emails. Je configure ces éléments lors de la mise en place et je surveille les taux d\'ouverture et de rebond. Un bon système d\'automatisation commence avec des taux d\'ouverture de 25 à 40% — en dessous, il faut investiguer.',
+      'La délivrabilité dépend de plusieurs facteurs techniques : authentification SPF, DKIM et DMARC du domaine, réputation de l\'expéditeur, qualité de la liste et contenu des emails. Je configure ces éléments lors de la mise en place et je surveille les taux d\'ouverture et de rebond. Un bon système d\'automatisation commence avec des taux d\'ouverture de 25 à 40%. En dessous, il faut investiguer.',
   },
   {
     question: 'Qu\'est-ce qu\'un funnel de vente automatisé concrètement ?',
     answer:
-      'C\'est le parcours qu\'un prospect fait depuis sa première interaction avec vous jusqu\'à l\'achat — entièrement automatisé. Exemple : visite votre site → remplit un formulaire → reçoit immédiatement un email avec votre brochure → 2 jours plus tard reçoit un email de témoignage client → 5 jours plus tard reçoit une invitation à un appel de 20 min → prend RDV via Calendly → reçoit un rappel la veille. Tout ça se passe sans que vous leviez le petit doigt.',
+      'C\'est le parcours qu\'un prospect fait depuis sa première interaction avec vous jusqu\'à l\'achat, entièrement automatisé. Exemple : visite votre site → remplit un formulaire → reçoit immédiatement un email avec votre brochure → 2 jours plus tard reçoit un email de témoignage client → 5 jours plus tard reçoit une invitation à un appel de 20 min → prend RDV via Calendly → reçoit un rappel la veille. Tout ça se passe sans que vous leviez le petit doigt.',
   },
 ]
 
@@ -172,7 +172,7 @@ export default function AutomatisationMarketingPage() {
             Combien coûte l&apos;automatisation marketing pour une PME ?
           </h2>
           <p className="mb-10 max-w-2xl" style={{ color: 'var(--ink-2)', fontSize: '0.95rem', lineHeight: 1.7 }}>
-            Un système d&apos;automatisation de base est généralement rentabilisé en 2 à 3 mois — entre
+            Un système d&apos;automatisation de base est généralement rentabilisé en 2 à 3 mois : entre
             le temps récupéré et les leads supplémentaires générés.{' '}
             <Link href="/blog/automatisation-marketing-pme-debutant" style={{ color: 'var(--brand)', textDecoration: 'underline' }}>
               Guide complet pour démarrer →
@@ -196,7 +196,7 @@ export default function AutomatisationMarketingPage() {
         <div className="mx-auto max-w-3xl">
           <div style={labelStyle}>Questions fréquentes</div>
           <h2 className="font-display font-extrabold mb-5 sm:mb-10" style={{ fontSize: 'clamp(1.6rem, 3vw, 2.5rem)', color: 'var(--ink)', letterSpacing: '-0.02em' }}>
-            Automatisation marketing PME — vos questions
+            Automatisation marketing PME : vos questions
           </h2>
           {/* Accordeon natif : la liste depliee pesait environ 1000 px sur
               telephone. Le schema FAQPage de la page reste inchange. */}

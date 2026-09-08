@@ -5,7 +5,7 @@ import { languesPour } from '@/data/hreflang'
 import { PageHeroEn } from '@/components/sections/PageHeroEn'
 
 export const metadata: Metadata = {
-  title: 'Contact — 123 Digital Lyon',
+  title: 'Contact · 123 Digital Lyon',
   description: 'Get in touch with Maurice Timsit, digital consultant in Lyon. Free 30-min audit, no commitment.',
   alternates: {
     canonical: `${BASE_URL}/en/contact`,

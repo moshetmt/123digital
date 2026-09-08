@@ -6,7 +6,7 @@ import { languesPour } from '@/data/hreflang'
 import { PageHeroEn } from '@/components/sections/PageHeroEn'
 
 export const metadata: Metadata = {
-  title: 'Digital Services for SMEs — SEO, Web Design, Google Ads | 123 Digital Lyon',
+  title: 'Digital Services for SMEs · SEO, Web Design, Google Ads | 123 Digital Lyon',
   description:
     'All digital services to grow your business: website creation, SEO, online advertising, branding, community management and marketing automation. Measurable results.',
   alternates: {

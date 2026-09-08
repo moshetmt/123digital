@@ -4,7 +4,7 @@ import { Breadcrumb } from '@/components/layout/Breadcrumb'
 import { BASE_URL, breadcrumbSchema } from '@/lib/schema'
 
 export const metadata: Metadata = {
-  title: 'Mentions légales — 123 Digital',
+  title: 'Mentions légales · 123 Digital',
   description: 'Mentions légales, politique de confidentialité et informations légales du site 123digital.fr.',
   alternates: { canonical: `${BASE_URL}/mentions-legales` },
   robots: { index: false, follow: true },
@@ -52,7 +52,7 @@ export default function MentionsLegalesPage() {
               <p>
                 Le site 123digital.fr est édité par :<br />
                 <strong style={{ color: 'var(--ink)' }}>Maurice Timsit</strong><br />
-                Consultant en croissance digitale — Entrepreneur individuel<br />
+                Consultant en croissance digitale, Entrepreneur individuel<br />
                 Siège social : Lyon (69), France<br />
                 Email : <a href="mailto:contact@123digital.fr" style={{ color: 'var(--brand)' }}>contact@123digital.fr</a><br />
                 SIRET : en cours d&apos;immatriculation

@@ -8,7 +8,7 @@ import { BASE_URL, serviceSchema, breadcrumbSchema } from '@/lib/schema'
 import { CTA } from '@/components/sections/CTA'
 
 export const metadata: Metadata = {
-  title: 'Branding & Identité Visuelle PME — Logo & Charte | 123Digital',
+  title: 'Branding & Identité Visuelle PME · Logo & Charte | 123Digital',
   description:
     'Création d\'identité visuelle pour PME : logo, charte graphique, positionnement de marque. Une image cohérente et mémorable qui inspire confiance. Devis en 24h.',
   alternates: { canonical: `${BASE_URL}/services/branding` },
@@ -16,16 +16,16 @@ export const metadata: Metadata = {
 
 const deliverables = [
   { title: 'Logo & déclinaisons', desc: 'Logo principal + versions alternatives (horizontal, vertical, icône), livrés dans tous les formats web et print (SVG, PNG, PDF, EPS).' },
-  { title: 'Charte graphique', desc: 'Palette de couleurs, typographies, règles d\'utilisation et exemples d\'application — pour que votre image reste cohérente sur tous les supports.' },
+  { title: 'Charte graphique', desc: 'Palette de couleurs, typographies, règles d\'utilisation et exemples d\'application, pour que votre image reste cohérente sur tous les supports.' },
   { title: 'Positionnement de marque', desc: 'Territoire de marque, promesse client, valeurs et différenciation. Le fondement stratégique qui donne du sens à votre identité visuelle.' },
-  { title: 'Copywriting de marque', desc: 'Tagline, texte "à propos", valeurs formulées — les mots qui parlent à vos clients et vous distinguent de la concurrence.' },
+  { title: 'Copywriting de marque', desc: 'Tagline, texte "à propos", valeurs formulées : les mots qui parlent à vos clients et vous distinguent de la concurrence.' },
 ]
 
 const steps = [
   {
     num: '01',
     title: 'Stratégie de marque',
-    desc: 'On commence par comprendre votre positionnement, votre cible et vos concurrents. Cette étape définit les axes créatifs avant qu\'un seul trait soit tracé — c\'est ce qui rend un logo signifiant, pas juste joli.',
+    desc: 'On commence par comprendre votre positionnement, votre cible et vos concurrents. Cette étape définit les axes créatifs avant qu\'un seul trait soit tracé. C\'est ce qui rend un logo signifiant, pas juste joli.',
   },
   {
     num: '02',
@@ -69,22 +69,22 @@ const faqs = [
   {
     question: 'Quelle est la différence entre un logo et une identité visuelle complète ?',
     answer:
-      'Un logo, c\'est le symbole graphique de votre marque. L\'identité visuelle, c\'est tout ce qui constitue votre "look" : le logo, les couleurs de marque, les typographies, les règles d\'utilisation, les templates. Un logo seul sans charte, ça produit souvent des incohérences — chaque support est différent, l\'effet de marque ne se construit pas. Pour une PME sérieuse, l\'identité complète est l\'investissement qui tient dans le temps.',
+      'Un logo, c\'est le symbole graphique de votre marque. L\'identité visuelle, c\'est tout ce qui constitue votre "look" : le logo, les couleurs de marque, les typographies, les règles d\'utilisation, les templates. Un logo seul sans charte, ça produit souvent des incohérences : chaque support est différent, l\'effet de marque ne se construit pas. Pour une PME sérieuse, l\'identité complète est l\'investissement qui tient dans le temps.',
   },
   {
     question: 'J\'ai déjà un logo, pouvez-vous juste créer la charte graphique ?',
     answer:
-      'Oui, si le logo existant est de qualité suffisante (vecteur propre, police correcte). On évalue ensemble si votre logo actuel est une bonne base. Si oui, je construis la charte autour. Si le logo présente des problèmes structurels, je vous le dis honnêtement — parfois il vaut mieux repartir sur une base saine que de construire une charte sur un logo bancal.',
+      'Oui, si le logo existant est de qualité suffisante (vecteur propre, police correcte). On évalue ensemble si votre logo actuel est une bonne base. Si oui, je construis la charte autour. Si le logo présente des problèmes structurels, je vous le dis honnêtement : parfois il vaut mieux repartir sur une base saine que de construire une charte sur un logo bancal.',
   },
   {
     question: 'En quoi un bon branding influence-t-il mes ventes ?',
     answer:
-      'Une identité cohérente crée de la reconnaissance et de la confiance. Les clients se souviennent de vous, vous recommandent plus facilement et perçoivent plus de valeur dans votre offre — ce qui vous permet de justifier des tarifs plus élevés que vos concurrents. Un rebranding bien mené génère souvent une hausse du panier moyen avant même de toucher à l\'acquisition. C\'est un investissement qui se rentabilise rapidement si votre offre est solide.',
+      'Une identité cohérente crée de la reconnaissance et de la confiance. Les clients se souviennent de vous, vous recommandent plus facilement et perçoivent plus de valeur dans votre offre, ce qui vous permet de justifier des tarifs plus élevés que vos concurrents. Un rebranding bien mené génère souvent une hausse du panier moyen avant même de toucher à l\'acquisition. C\'est un investissement qui se rentabilise rapidement si votre offre est solide.',
   },
   {
     question: 'Les fichiers sources du logo m\'appartiennent-ils après la prestation ?',
     answer:
-      'Oui, 100%. Je livre tous les fichiers sources — AI (Adobe Illustrator), EPS, SVG, PNG en plusieurs résolutions, PDF. Vous êtes propriétaire de votre identité visuelle et pouvez travailler avec n\'importe quel autre prestataire ensuite. Je ne pratique pas la rétention de fichiers pour vous fidéliser de force.',
+      'Oui, 100%. Je livre tous les fichiers sources : AI (Adobe Illustrator), EPS, SVG, PNG en plusieurs résolutions, PDF. Vous êtes propriétaire de votre identité visuelle et pouvez travailler avec n\'importe quel autre prestataire ensuite. Je ne pratique pas la rétention de fichiers pour vous fidéliser de force.',
   },
   {
     question: 'Travaillez-vous aussi sur les supports de communication (flyers, kakemonos, etc.) ?',
@@ -167,7 +167,7 @@ export default function BrandingPage() {
           </h2>
           <p className="mb-10 max-w-2xl" style={{ color: 'var(--ink-2)', fontSize: '0.95rem', lineHeight: 1.7 }}>
             Un logo sérieux commence à 800 €. En dessous, vous obtenez un résultat générique issu
-            d&apos;un outil IA ou d&apos;un freelance junior. Ce n&apos;est pas un jugement — c&apos;est
+            d&apos;un outil IA ou d&apos;un freelance junior. Ce n&apos;est pas un jugement. C&apos;est
             ce que vous verrez en comparant les résultats sur le long terme.
           </p>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
@@ -188,7 +188,7 @@ export default function BrandingPage() {
         <div className="mx-auto max-w-3xl">
           <div style={labelStyle}>Questions fréquentes</div>
           <h2 className="font-display font-extrabold mb-5 sm:mb-10" style={{ fontSize: 'clamp(1.6rem, 3vw, 2.5rem)', color: 'var(--ink)', letterSpacing: '-0.02em' }}>
-            Branding PME — vos questions
+            Branding PME : vos questions
           </h2>
           {/* Accordeon natif : la liste depliee pesait environ 1000 px sur
               telephone. Le schema FAQPage de la page reste inchange. */}
@@ -206,7 +206,7 @@ export default function BrandingPage() {
                 { label: 'Voir les réalisations de branding', href: '/realisations' },
                 { label: 'Appliquer votre identité sur un site web', href: '/services/creation-site-web' },
                 { label: 'Gérer votre image sur les réseaux', href: '/services/community-management' },
-                { label: 'Qui je suis — à propos', href: '/a-propos' },
+                { label: 'Qui je suis · à propos', href: '/a-propos' },
               ]
               return liens.map((link, i) => (
                 <span key={link.href}>

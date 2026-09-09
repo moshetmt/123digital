@@ -1,13 +1,14 @@
 import type { ReactNode } from 'react'
 import Link from 'next/link'
-import { EcranReconstruit, Flag } from '@/components/sections/EcranReconstruit'
 import { PongCanvas } from '@/components/sections/PongCanvas'
 
 // ── Banniere de page ──────────────────────────────────────────────────────────
-// Fond vert de marque anime par le Pong, titre a gauche avec un mot detache,
-// corps en 800, deux boutons rectangulaires (charte v2, section 6). A droite sur
-// desktop / en dessous sur mobile : un ecran reconstruit, version courte a deux
-// resultats, avec le titre de la page comme requete.
+// Fond vert de marque anime par le Pong, titre avec un mot detache, corps en
+// 800, deux boutons rectangulaires.
+//
+// ⛔ Pas d'« ecran reconstruit » ici : la carte de resultats Google posee a
+// droite par la charte v2 a ete retiree le 09/09 sur decision de l'operateur
+// (« on comprend rien, ca tombe pas sous le sens »). Ne pas la remettre.
 //
 // ⚠️ Le decor Pong avait ete retire par la charte v2 le 08/09 : l'operateur l'a
 // redemande le 09/09 (« j'adorais ca »). Ne pas le resupprimer sans un mot
@@ -29,7 +30,7 @@ interface PageBannerProps {
   breadcrumb?: ReactNode
   /** Boutons, en general <BannerCta> et <BannerCtaLine>. */
   actions?: ReactNode
-  /** Toutes les bannieres s'alignent a gauche (charte v2, section 6). */
+  /** Alignement du bloc de texte. Centre par defaut, comme l'accueil. */
   align?: 'left' | 'center'
   /** Ancien diametre de la loupe : non lu, garde pour compatibilite. */
   ballRadius?: number
@@ -45,9 +46,10 @@ export function PageBanner({
   sub,
   breadcrumb,
   actions,
+  align = 'center',
   children,
 }: PageBannerProps) {
-  const requete = title.replace(/\.$/, '').toLowerCase()
+  const centre = align === 'center'
 
   return (
     <section
@@ -72,7 +74,7 @@ export function PageBanner({
         }}
       />
 
-      <div className="relative mx-auto w-full max-w-6xl grid gap-8 lg:grid-cols-2 lg:items-center lg:gap-16">
+      <div className={`relative mx-auto w-full max-w-4xl ${centre ? 'text-center' : ''}`}>
         <div>
           {breadcrumb && <div className="mb-4">{breadcrumb}</div>}
 
@@ -85,7 +87,7 @@ export function PageBanner({
               letterSpacing: '-0.025em',
               color: 'var(--on-brand)',
               maxWidth: '22ch',
-              marginBottom: sub ? '0.85rem' : '1.1rem',
+              margin: centre ? `0 auto ${sub ? '0.85rem' : '1.1rem'}` : `0 0 ${sub ? '0.85rem' : '1.1rem'}`,
             }}
           >
             {detacher(title, highlight)}
@@ -98,6 +100,8 @@ export function PageBanner({
                 color: 'oklch(0.985 0.003 150 / 86%)',
                 maxWidth: '58ch',
                 marginBottom: 'clamp(1rem, 3.5vw, 1.5rem)',
+                marginLeft: centre ? 'auto' : undefined,
+                marginRight: centre ? 'auto' : undefined,
                 lineHeight: 1.55,
               }}
             >
@@ -105,28 +109,15 @@ export function PageBanner({
             </p>
           )}
 
-          {actions && <div className="flex flex-wrap items-center gap-3">{actions}</div>}
+          {actions && (
+            <div className={`flex flex-wrap items-center gap-3 ${centre ? 'justify-center' : ''}`}>
+              {actions}
+            </div>
+          )}
 
           {children}
         </div>
 
-        <EcranReconstruit
-          requete={requete}
-          resultats={[
-            {
-              url: 'concurrent-lyon.fr',
-              titre: `${title.replace(/\.$/, '')} · Devis gratuit`,
-              description: 'Fiche complète, en tête des résultats.',
-            },
-            {
-              url: 'votre-site.fr',
-              titre: 'Accueil',
-              description: <><Flag>Page 3.</Flag> Ni ville, ni métier dans le titre.</>,
-              vous: true,
-            },
-          ]}
-          className="lg:justify-self-end"
-        />
       </div>
     </section>
   )

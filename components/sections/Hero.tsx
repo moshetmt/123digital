@@ -1,15 +1,18 @@
 import type { ReactNode } from 'react'
 import Link from 'next/link'
 import { Phone, Check } from 'lucide-react'
-import { EcranReconstruit, Flag } from '@/components/sections/EcranReconstruit'
 import { PongCanvas } from '@/components/sections/PongCanvas'
 import { t, type Locale } from '@/lib/i18n'
 
 const PHONE_TEL = 'tel:+33652092301'
 
-// Banniere d'accueil : fond vert de marque anime par le Pong, titre a gauche,
-// ecran reconstruit a droite sur desktop / en dessous sur mobile. Le contenu de
-// l'ecran est celui de la planche charte-visuelle.html (charte v2, section 6).
+// Banniere d'accueil : fond vert de marque anime par le Pong, titre centre,
+// sous-titre, deux boutons et trois puces de reassurance.
+//
+// ⛔ Pas d'« ecran reconstruit » ici : la carte de resultats Google posee a
+// droite par la charte v2 a ete retiree le 09/09 sur decision de l'operateur.
+// Le visiteur ne pouvait pas deviner que le 3e resultat le representait, ni ce
+// que la scene voulait dire. Ne pas la remettre.
 //
 // ⚠️ Le decor Pong avait ete retire par la charte v2 le 08/09 : l'operateur l'a
 // redemande le 09/09 (« j'adorais ca, le site n'a plus aucune douceur »). Il est
@@ -24,45 +27,6 @@ export function Hero({ lang = 'fr' }: { lang?: Locale }) {
   const d = t(lang).hero
 
   const checks = [d.check1, d.check2, d.check3]
-
-  const requete = lang === 'en' ? 'plumber leeds' : 'plombier villeurbanne'
-  const resultats = lang === 'en'
-    ? [
-        {
-          url: 'leeds-plumbing-pro.co.uk',
-          titre: 'Plumber Leeds 24/7 · Free quote',
-          description: 'Response in 30 min, 4.9 from 312 reviews.',
-        },
-        {
-          url: 'yell.com',
-          titre: 'Plumbers in Leeds · 48 results',
-          description: 'Directory, hours, reviews.',
-        },
-        {
-          url: 'your-site.co.uk',
-          titre: 'Home',
-          description: <><Flag>Page 3.</Flag> No city, no trade in the title.</>,
-          vous: true,
-        },
-      ]
-    : [
-        {
-          url: 'plombier-express-lyon.fr',
-          titre: 'Plombier Villeurbanne 24h/24 · Devis gratuit',
-          description: 'Intervention en 30 min, 4,9 sur 312 avis.',
-        },
-        {
-          url: 'pagesjaunes.fr',
-          titre: 'Plombiers à Villeurbanne · 48 résultats',
-          description: 'Annuaire, horaires, avis.',
-        },
-        {
-          url: 'votre-site.fr',
-          titre: 'Accueil',
-          description: <><Flag>Page 3.</Flag> Ni ville, ni métier dans le titre.</>,
-          vous: true,
-        },
-      ]
 
   return (
     <section
@@ -92,7 +56,7 @@ export function Hero({ lang = 'fr' }: { lang?: Locale }) {
         }}
       />
 
-      <div className="relative mx-auto w-full max-w-6xl grid gap-10 lg:grid-cols-2 lg:items-center lg:gap-16">
+      <div className="relative mx-auto w-full max-w-4xl text-center">
         <div>
           <h1
             style={{
@@ -102,8 +66,8 @@ export function Hero({ lang = 'fr' }: { lang?: Locale }) {
               lineHeight: 1.05,
               letterSpacing: '-0.03em',
               color: 'var(--on-brand)',
-              maxWidth: '18ch',
-              marginBottom: '1rem',
+              maxWidth: '19ch',
+              margin: '0 auto 1rem',
             }}
           >
             {highlightGoogle(d.h1)}
@@ -113,7 +77,9 @@ export function Hero({ lang = 'fr' }: { lang?: Locale }) {
             style={{
               fontSize: 'clamp(0.95rem, 3.2vw, 1.1rem)',
               color: 'oklch(0.985 0.003 150 / 86%)',
-              maxWidth: '52ch',
+              maxWidth: '58ch',
+              marginLeft: 'auto',
+              marginRight: 'auto',
               marginBottom: 'clamp(1.25rem, 4vw, 1.75rem)',
               lineHeight: 1.55,
             }}
@@ -121,7 +87,7 @@ export function Hero({ lang = 'fr' }: { lang?: Locale }) {
             {d.sub}
           </p>
 
-          <div className="flex flex-wrap items-center gap-3 mb-6">
+          <div className="flex flex-wrap items-center justify-center gap-3 mb-6">
             <a
               href={PHONE_TEL}
               className="inline-flex items-center gap-2 rounded font-bold whitespace-nowrap px-5 py-3 text-[0.92rem] transition duration-150 active:scale-[0.97]"
@@ -141,7 +107,7 @@ export function Hero({ lang = 'fr' }: { lang?: Locale }) {
             </Link>
           </div>
 
-          <ul className="grid grid-cols-1 sm:grid-cols-3 gap-x-5 gap-y-2" role="list">
+          <ul className="grid grid-cols-1 sm:grid-cols-3 gap-x-5 gap-y-2 justify-items-center" role="list">
             {checks.map((label) => (
               <li
                 key={label}
@@ -155,7 +121,6 @@ export function Hero({ lang = 'fr' }: { lang?: Locale }) {
           </ul>
         </div>
 
-        <EcranReconstruit requete={requete} resultats={resultats} className="lg:justify-self-end" />
       </div>
     </section>
   )

@@ -44,7 +44,7 @@ export default function PortfolioPage() {
 
       <PageBanner
         breadcrumb={
-          <Breadcrumb
+          <Breadcrumb tone="vert"
             items={[
               { label: d.nav.home, href: '/' },
               { label: d.nav.realisations },

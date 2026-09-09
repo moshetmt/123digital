@@ -1,16 +1,20 @@
 import type { ReactNode } from 'react'
 import Link from 'next/link'
 import { EcranReconstruit, Flag } from '@/components/sections/EcranReconstruit'
+import { PongCanvas } from '@/components/sections/PongCanvas'
 
 // ── Banniere de page ──────────────────────────────────────────────────────────
-// Charte v2 (section 6) : fond blanc, titre a gauche avec un mot en 600, corps
-// en 800, deux boutons rectangulaires. A droite sur desktop / en dessous sur
-// mobile : un ecran reconstruit, version courte a deux resultats, avec le
-// titre de la page comme requete.
+// Fond vert de marque anime par le Pong, titre a gauche avec un mot detache,
+// corps en 800, deux boutons rectangulaires (charte v2, section 6). A droite sur
+// desktop / en dessous sur mobile : un ecran reconstruit, version courte a deux
+// resultats, avec le titre de la page comme requete.
+//
+// ⚠️ Le decor Pong avait ete retire par la charte v2 le 08/09 : l'operateur l'a
+// redemande le 09/09 (« j'adorais ca »). Ne pas le resupprimer sans un mot
+// explicite de sa part. Le decor vit dans PongCanvas, partage avec Hero.
 //
 // `icone`, `image` et `ballRadius` restent acceptes pour ne pas casser les
-// ~19 pages qui les passent encore (le decor Pong et la photo de fond ont
-// disparu) : ils ne sont plus lus par ce composant.
+// ~19 pages qui les passent encore : ils ne sont pas lus par ce composant.
 
 interface PageBannerProps {
   /** Ancien decor Pong : non lu, garde pour compatibilite des appelants. */
@@ -46,8 +50,29 @@ export function PageBanner({
   const requete = title.replace(/\.$/, '').toLowerCase()
 
   return (
-    <section style={{ background: 'var(--surface)', padding: 'clamp(2.25rem, 6vw, 4.5rem) 1.5rem' }}>
-      <div className="mx-auto w-full max-w-6xl grid gap-8 lg:grid-cols-2 lg:items-center lg:gap-16">
+    <section
+      className="relative isolate overflow-hidden"
+      style={{
+        padding: 'clamp(2.25rem, 6vw, 4.5rem) 1.5rem',
+        color: 'var(--on-brand)',
+        background:
+          'radial-gradient(120% 85% at 12% 0%, var(--brand-light) 0%, transparent 58%), ' +
+          'radial-gradient(110% 90% at 92% 100%, var(--brand-deep) 0%, transparent 62%), ' +
+          'var(--brand)',
+      }}
+    >
+      <PongCanvas />
+
+      <div
+        aria-hidden
+        className="absolute inset-0 -z-10"
+        style={{
+          background:
+            'radial-gradient(88% 58% at 30% 46%, oklch(0.395 0.112 155 / 72%) 0%, oklch(0.395 0.112 155 / 34%) 58%, oklch(0.395 0.112 155 / 0%) 100%)',
+        }}
+      />
+
+      <div className="relative mx-auto w-full max-w-6xl grid gap-8 lg:grid-cols-2 lg:items-center lg:gap-16">
         <div>
           {breadcrumb && <div className="mb-4">{breadcrumb}</div>}
 
@@ -58,7 +83,7 @@ export function PageBanner({
               fontSize: 'clamp(1.8rem, 3.6vw, 2.75rem)',
               lineHeight: 1.05,
               letterSpacing: '-0.025em',
-              color: 'var(--ink)',
+              color: 'var(--on-brand)',
               maxWidth: '22ch',
               marginBottom: sub ? '0.85rem' : '1.1rem',
             }}
@@ -70,7 +95,7 @@ export function PageBanner({
             <p
               style={{
                 fontSize: 'clamp(0.95rem, 3.2vw, 1.08rem)',
-                color: 'var(--ink-2)',
+                color: 'oklch(0.985 0.003 150 / 86%)',
                 maxWidth: '58ch',
                 marginBottom: 'clamp(1rem, 3.5vw, 1.5rem)',
                 lineHeight: 1.55,
@@ -116,17 +141,17 @@ function detacher(title: string, highlight?: string): ReactNode {
   return (
     <>
       {avant}
-      <span style={{ color: 'var(--brand)' }}>{highlight}</span>
+      <span style={{ color: 'var(--brand-tint)' }}>{highlight}</span>
       {reste.join(highlight)}
     </>
   )
 }
 
-/** Bouton principal de banniere : plein 600, rayon 4 px. */
+/** Bouton principal de banniere : blanc sur le vert du fond, rayon 4 px. */
 export function BannerCta({ href, children }: { href: string; children: ReactNode }) {
   const className =
     'inline-flex items-center gap-2 rounded font-bold whitespace-nowrap px-5 py-2.5 text-[0.92rem] transition duration-150 active:scale-[0.97]'
-  const style = { backgroundColor: 'var(--brand)', color: 'var(--on-brand)' }
+  const style = { backgroundColor: 'var(--on-brand)', color: 'var(--brand-deep)' }
 
   return href.startsWith('/') ? (
     <Link href={href} className={className} style={style}>{children}</Link>
@@ -135,11 +160,11 @@ export function BannerCta({ href, children }: { href: string; children: ReactNod
   )
 }
 
-/** Bouton secondaire : contour 600, fond transparent. */
+/** Bouton secondaire : contour clair, fond transparent, sur le vert du fond. */
 export function BannerCtaLine({ href, children }: { href: string; children: ReactNode }) {
   const className =
     'inline-flex items-center gap-2 rounded font-bold whitespace-nowrap px-5 py-2.5 text-[0.92rem] transition duration-150 active:scale-[0.97]'
-  const style = { border: '1px solid var(--brand)', color: 'var(--brand)' }
+  const style = { border: '1px solid oklch(0.985 0.003 150 / 55%)', color: 'var(--on-brand)' }
 
   return href.startsWith('/') || href.startsWith('#') ? (
     <Link href={href} className={className} style={style}>{children}</Link>

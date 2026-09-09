@@ -9,17 +9,16 @@ interface BreadcrumbItem {
 
 interface BreadcrumbProps {
   items: BreadcrumbItem[]
-  /** Heritage de la charte 18/08 (fil pose sur une banniere verte). La
-   *  charte v2 met toutes les bannieres sur fond blanc : les deux tons
-   *  rendent desormais la meme chose, la prop reste acceptee pour ne pas
-   *  casser les appelants existants. */
+  /** Fil pose sur une banniere verte : le decor Pong est revenu le 09/09,
+   *  les bannieres sont a nouveau vertes et le ton vert redevient utile. */
   tone?: 'clair' | 'vert'
 }
 
-export function Breadcrumb({ items }: BreadcrumbProps) {
-  const couleurBase = 'var(--ink-2)'
-  const couleurSeparateur = 'var(--ink-3)'
-  const couleurActuelle = 'var(--ink)'
+export function Breadcrumb({ items, tone = 'clair' }: BreadcrumbProps) {
+  const surVert = tone === 'vert'
+  const couleurBase = surVert ? 'oklch(0.985 0.003 150 / 72%)' : 'var(--ink-2)'
+  const couleurSeparateur = surVert ? 'oklch(0.985 0.003 150 / 45%)' : 'var(--ink-3)'
+  const couleurActuelle = surVert ? 'var(--on-brand)' : 'var(--ink)'
   const schemaItems = items.map((item, i) => ({
     name: item.label,
     path: item.href ?? `/${items.slice(1, i + 1).map(it => it.label.toLowerCase().replace(/\s+/g, '-')).join('/')}`,

@@ -40,7 +40,7 @@ export default function CaseStudiesPage() {
 
       <PageBanner
         breadcrumb={
-          <Breadcrumb
+          <Breadcrumb tone="vert"
             items={[
               { label: d.nav.home, href: '/en' },
               { label: d.nav.realisations },

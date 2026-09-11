@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>123digital — Planche logos v1</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+  :root{--paper:#fff;--ivory:#f5f6f2;--ink:#131814;--ink2:#5c655e;--line:#e2e6de;--brand:#00784a;--brand-pale:#e3f2ea}
+  body{font-family:"Archivo",Arial,sans-serif;background:var(--ivory);color:var(--ink);padding:40px 20px;line-height:1.5}
+  .wrap{max-width:1000px;margin:0 auto}
+  h1{font-size:26px;font-weight:800;margin-bottom:4px}
+  .note{color:var(--ink2);font-size:14px;margin-bottom:30px;max-width:70ch}
+  .dir{background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:28px;margin-bottom:26px;box-shadow:0 8px 30px rgba(13,17,14,.05)}
+  .dir h2{font-size:15px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;margin-bottom:2px}
+  .dir h2 .tag{font-size:11px;background:var(--brand-pale);color:var(--brand);border-radius:999px;padding:3px 10px;vertical-align:2px;margin-left:8px;letter-spacing:.05em}
+  .dir .why{font-size:13.5px;color:var(--ink2);margin-bottom:20px;max-width:75ch}
+  .main{background:var(--ivory);border-radius:14px;padding:36px;display:flex;justify-content:center;margin-bottom:14px}
+  .variants{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+  .v{border:1px solid var(--line);border-radius:12px;display:flex;align-items:center;justify-content:center;padding:18px;min-height:92px;position:relative}
+  .v.dark{background:#0d110e;border-color:#0d110e}
+  .v .lbl{position:absolute;bottom:6px;left:0;right:0;text-align:center;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--ink2)}
+  .v.dark .lbl{color:rgba(255,255,255,.5)}
+  .sizes{display:flex;align-items:center;gap:14px}
+  @media(max-width:700px){.variants{grid-template-columns:repeat(2,1fr)}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>123digital — 4 directions de logo</h1>
+  <p class="note">Registre validé : encre + vert 123digital réservé à l'accent, formes arrondies, lisible par un patron de PME de 30 à 70 ans. Chaque direction est montrée en couleur, sur fond sombre, en noir et blanc, et en tuile favicon. Les fichiers finaux seront vectorisés (texte converti en tracés).</p>
+
+  <!-- ═══ A. Les barres ═══ -->
+  <div class="dir">
+    <h2>A · Les barres <span class="tag">Recommandé</span></h2>
+    <p class="why">Trois barres qui montent : 1, 2, 3. C'est un mini-graphique de croissance, l'image exacte de ta promesse « résultats mesurés chaque mois ». Reconnaissable à 16 pixels, déclinable partout.</p>
+    <div class="main">
+      <svg width="340" height="64" viewBox="0 0 340 64">
+        <g>
+          <rect x="8"  y="34" width="10" height="18" rx="5" fill="#00784a" opacity=".45"/>
+          <rect x="22" y="24" width="10" height="28" rx="5" fill="#00784a" opacity=".7"/>
+          <rect x="36" y="12" width="10" height="40" rx="5" fill="#00784a"/>
+        </g>
+        <text x="60" y="45" font-family="Archivo" font-size="30" font-weight="800" letter-spacing="-0.5" fill="#131814">123digital</text>
+      </svg>
+    </div>
+    <div class="variants">
+      <div class="v dark">
+        <svg width="170" height="34" viewBox="0 0 340 64"><g><rect x="8" y="34" width="10" height="18" rx="5" fill="#4ecb96" opacity=".5"/><rect x="22" y="24" width="10" height="28" rx="5" fill="#4ecb96" opacity=".75"/><rect x="36" y="12" width="10" height="40" rx="5" fill="#4ecb96"/></g><text x="60" y="45" font-family="Archivo" font-size="30" font-weight="800" letter-spacing="-0.5" fill="#ffffff">123digital</text></svg>
+        <span class="lbl">Fond sombre</span>
+      </div>
+      <div class="v">
+        <svg width="170" height="34" viewBox="0 0 340 64"><g><rect x="8" y="34" width="10" height="18" rx="5" fill="#131814" opacity=".4"/><rect x="22" y="24" width="10" height="28" rx="5" fill="#131814" opacity=".65"/><rect x="36" y="12" width="10" height="40" rx="5" fill="#131814"/></g><text x="60" y="45" font-family="Archivo" font-size="30" font-weight="800" letter-spacing="-0.5" fill="#131814">123digital</text></svg>
+        <span class="lbl">Noir &amp; blanc</span>
+      </div>
+      <div class="v">
+        <svg width="64" height="64" viewBox="0 0 64 64"><rect width="64" height="64" rx="14" fill="#00784a"/><g><rect x="14" y="36" width="8" height="14" rx="4" fill="#fff" opacity=".5"/><rect x="26" y="28" width="8" height="22" rx="4" fill="#fff" opacity=".75"/><rect x="38" y="16" width="8" height="34" rx="4" fill="#fff"/></g></svg>
+        <span class="lbl">Tuile / app</span>
+      </div>
+      <div class="v sizes">
+        <svg width="32" height="32" viewBox="0 0 64 64"><rect width="64" height="64" rx="14" fill="#00784a"/><g><rect x="14" y="36" width="8" height="14" rx="4" fill="#fff" opacity=".5"/><rect x="26" y="28" width="8" height="22" rx="4" fill="#fff" opacity=".75"/><rect x="38" y="16" width="8" height="34" rx="4" fill="#fff"/></g></svg>
+        <svg width="16" height="16" viewBox="0 0 64 64"><rect width="64" height="64" rx="14" fill="#00784a"/><g><rect x="14" y="36" width="8" height="14" rx="4" fill="#fff" opacity=".5"/><rect x="26" y="28" width="8" height="22" rx="4" fill="#fff" opacity=".75"/><rect x="38" y="16" width="8" height="34" rx="4" fill="#fff"/></g></svg>
+        <span class="lbl">Favicon 32 / 16 px</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ B. Wordmark au point vert ═══ -->
+  <div class="dir">
+    <h2>B · Le point vert</h2>
+    <p class="why">Sobriété maximale : le nom en gras, un point vert final. Le « 123 » porte déjà l'idée de simplicité (simple comme 1, 2, 3). Rien à expliquer, impossible à rater.</p>
+    <div class="main">
+      <svg width="300" height="64" viewBox="0 0 300 64">
+        <text x="8" y="45" font-family="Archivo" font-size="32" font-weight="800" letter-spacing="-0.5" fill="#131814">123digital</text>
+        <circle cx="270" cy="42" r="6" fill="#00784a"/>
+      </svg>
+    </div>
+    <div class="variants">
+      <div class="v dark"><svg width="160" height="34" viewBox="0 0 300 64"><text x="8" y="45" font-family="Archivo" font-size="32" font-weight="800" letter-spacing="-0.5" fill="#ffffff">123digital</text><circle cx="270" cy="42" r="6" fill="#4ecb96"/></svg><span class="lbl">Fond sombre</span></div>
+      <div class="v"><svg width="160" height="34" viewBox="0 0 300 64"><text x="8" y="45" font-family="Archivo" font-size="32" font-weight="800" letter-spacing="-0.5" fill="#131814">123digital</text><circle cx="270" cy="42" r="6" fill="#131814"/></svg><span class="lbl">Noir &amp; blanc</span></div>
+      <div class="v"><svg width="64" height="64" viewBox="0 0 64 64"><rect width="64" height="64" rx="14" fill="#00784a"/><text x="32" y="42" text-anchor="middle" font-family="Archivo" font-size="26" font-weight="800" letter-spacing="-1" fill="#fff">123</text></svg><span class="lbl">Tuile / app</span></div>
+      <div class="v sizes">
+        <svg width="32" height="32" viewBox="0 0 64 64"><rect width="64" height="64" rx="14" fill="#00784a"/><text x="32" y="42" text-anchor="middle" font-family="Archivo" font-size="26" font-weight="800" letter-spacing="-1" fill="#fff">123</text></svg>
+        <svg width="16" height="16" viewBox="0 0 64 64"><rect width="64" height="64" rx="14" fill="#00784a"/><text x="32" y="42" text-anchor="middle" font-family="Archivo" font-size="26" font-weight="800" letter-spacing="-1" fill="#fff">123</text></svg>
+        <span class="lbl">Favicon 32 / 16 px</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ C. La coche qui monte ═══ -->
+  <div class="dir">
+    <h2>C · La coche qui monte</h2>
+    <p class="why">Une coche de validation dont la branche droite se prolonge en courbe de croissance : « c'est fait, et ça monte ». Le symbole le plus parlant pour un client qui veut du concret.</p>
+    <div class="main">
+      <svg width="340" height="64" viewBox="0 0 340 64">
+        <g fill="none" stroke="#00784a" stroke-width="7" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M10 36 L24 50 L52 14"/>
+        </g>
+        <text x="68" y="45" font-family="Archivo" font-size="30" font-weight="800" letter-spacing="-0.5" fill="#131814">123digital</text>
+      </svg>
+    </div>
+    <div class="variants">
+      <div class="v dark"><svg width="170" height="34" viewBox="0 0 340 64"><g fill="none" stroke="#4ecb96" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"><path d="M10 36 L24 50 L52 14"/></g><text x="68" y="45" font-family="Archivo" font-size="30" font-weight="800" letter-spacing="-0.5" fill="#ffffff">123digital</text></svg><span class="lbl">Fond sombre</span></div>
+      <div class="v"><svg width="170" height="34" viewBox="0 0 340 64"><g fill="none" stroke="#131814" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"><path d="M10 36 L24 50 L52 14"/></g><text x="68" y="45" font-family="Archivo" font-size="30" font-weight="800" letter-spacing="-0.5" fill="#131814">123digital</text></svg><span class="lbl">Noir &amp; blanc</span></div>
+      <div class="v"><svg width="64" height="64" viewBox="0 0 64 64"><rect width="64" height="64" rx="14" fill="#00784a"/><g fill="none" stroke="#fff" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"><path d="M14 34 L26 46 L50 18"/></g></svg><span class="lbl">Tuile / app</span></div>
+      <div class="v sizes">
+        <svg width="32" height="32" viewBox="0 0 64 64"><rect width="64" height="64" rx="14" fill="#00784a"/><g fill="none" stroke="#fff" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"><path d="M14 34 L26 46 L50 18"/></g></svg>
+        <svg width="16" height="16" viewBox="0 0 64 64"><rect width="64" height="64" rx="14" fill="#00784a"/><g fill="none" stroke="#fff" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"><path d="M14 34 L26 46 L50 18"/></g></svg>
+        <span class="lbl">Favicon 32 / 16 px</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ D. Le monogramme tuile ═══ -->
+  <div class="dir">
+    <h2>D · Le monogramme tuile</h2>
+    <p class="why">Le « 123 » assumé comme monogramme dans une tuile arrondie, façon icône d'application, wordmark à côté. Le plus « marque » des quatre : la tuile vit seule sur les réseaux, les documents, la signature email.</p>
+    <div class="main">
+      <svg width="340" height="64" viewBox="0 0 340 64">
+        <rect x="4" y="8" width="48" height="48" rx="12" fill="#00784a"/>
+        <text x="28" y="41" text-anchor="middle" font-family="Archivo" font-size="20" font-weight="800" letter-spacing="-1" fill="#fff">123</text>
+        <text x="66" y="45" font-family="Archivo" font-size="30" font-weight="800" letter-spacing="-0.5" fill="#131814">digital</text>
+      </svg>
+    </div>
+    <div class="variants">
+      <div class="v dark"><svg width="170" height="34" viewBox="0 0 340 64"><rect x="4" y="8" width="48" height="48" rx="12" fill="#4ecb96"/><text x="28" y="41" text-anchor="middle" font-family="Archivo" font-size="20" font-weight="800" letter-spacing="-1" fill="#0d110e">123</text><text x="66" y="45" font-family="Archivo" font-size="30" font-weight="800" letter-spacing="-0.5" fill="#ffffff">digital</text></svg><span class="lbl">Fond sombre</span></div>
+      <div class="v"><svg width="170" height="34" viewBox="0 0 340 64"><rect x="4" y="8" width="48" height="48" rx="12" fill="#131814"/><text x="28" y="41" text-anchor="middle" font-family="Archivo" font-size="20" font-weight="800" letter-spacing="-1" fill="#fff">123</text><text x="66" y="45" font-family="Archivo" font-size="30" font-weight="800" letter-spacing="-0.5" fill="#131814">digital</text></svg><span class="lbl">Noir &amp; blanc</span></div>
+      <div class="v"><svg width="64" height="64" viewBox="0 0 64 64"><rect width="64" height="64" rx="14" fill="#00784a"/><text x="32" y="42" text-anchor="middle" font-family="Archivo" font-size="24" font-weight="800" letter-spacing="-1" fill="#fff">123</text></svg><span class="lbl">Tuile / app</span></div>
+      <div class="v sizes">
+        <svg width="32" height="32" viewBox="0 0 64 64"><rect width="64" height="64" rx="14" fill="#00784a"/><text x="32" y="42" text-anchor="middle" font-family="Archivo" font-size="24" font-weight="800" letter-spacing="-1" fill="#fff">123</text></svg>
+        <svg width="16" height="16" viewBox="0 0 64 64"><rect width="64" height="64" rx="14" fill="#00784a"/><text x="32" y="42" text-anchor="middle" font-family="Archivo" font-size="24" font-weight="800" letter-spacing="-1" fill="#fff">123</text></svg>
+        <span class="lbl">Favicon 32 / 16 px</span>
+      </div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

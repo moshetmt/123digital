@@ -1,0 +1,532 @@
+<title>Balle Google</title>
+
+<style>
+  @font-face {
+    font-family: 'Switzer';
+    src: url(data:font/woff2;base64,__FONT__) format('woff2');
+    font-weight: 100 900;
+    font-display: swap;
+  }
+
+  :root {
+    --brand:        oklch(0.485 0.128 155);
+    --brand-deep:   oklch(0.395 0.112 155);
+    --brand-light:  oklch(0.560 0.135 155);
+    --on-brand:     oklch(0.985 0.003 150);
+    --on-brand-2:   oklch(0.985 0.003 150 / 86%);
+    --vert-pale:    oklch(0.900 0.070 155);
+
+    --page:      oklch(0.968 0.005 150);
+    --page-2:    oklch(0.992 0.002 150);
+    --ink:       oklch(0.195 0.006 155);
+    --ink-2:     oklch(0.435 0.010 155);
+    --ink-3:     oklch(0.500 0.012 155);
+    --line:      oklch(0.895 0.010 150);
+    --alerte:    oklch(0.505 0.190 27);
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--page);
+    color: var(--ink);
+    font-family: 'Switzer', system-ui, sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .wrap {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: clamp(2rem, 6vw, 3.5rem) clamp(1.1rem, 4vw, 2.5rem) clamp(3rem, 8vw, 5rem);
+    display: flex;
+    flex-direction: column;
+    gap: clamp(2rem, 5vw, 3rem);
+  }
+
+  .lede { display: flex; flex-direction: column; gap: 0.85rem; max-width: 62ch; }
+
+  .kicker {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--brand);
+  }
+
+  h1 {
+    margin: 0;
+    font-size: clamp(1.9rem, 5.5vw, 2.9rem);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    line-height: 1.05;
+    text-wrap: balance;
+  }
+
+  .lede p { margin: 0; color: var(--ink-2); }
+
+  .avis {
+    border-left: 3px solid var(--alerte);
+    padding: 0.1rem 0 0.1rem 0.9rem;
+    color: var(--ink-2);
+    font-size: 0.92rem;
+    max-width: 62ch;
+  }
+  .avis b { color: var(--ink); font-weight: 700; }
+
+  /* ── Les trois propositions ─────────────────────────────────────────── */
+
+  .choix {
+    display: grid;
+    gap: clamp(1.5rem, 4vw, 2.2rem);
+    grid-template-columns: 1fr;
+  }
+  @media (min-width: 820px) { .choix { grid-template-columns: repeat(3, 1fr); } }
+
+  .option { display: flex; flex-direction: column; gap: 0.9rem; }
+  .option h2 { margin: 0; font-size: 1.08rem; font-weight: 800; letter-spacing: -0.01em; }
+  .option p { margin: 0; font-size: 0.88rem; color: var(--ink-2); }
+  .option .num {
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.16em;
+    color: var(--brand);
+  }
+  .option .risque { font-size: 0.82rem; color: var(--ink-3); }
+
+  .frame {
+    border: 1px solid var(--line);
+    border-radius: 20px;
+    overflow: hidden;
+    background: var(--page-2);
+    box-shadow: 0 14px 36px oklch(0.145 0 0 / 12%);
+  }
+
+  .urlbar {
+    display: flex;
+    justify-content: center;
+    padding: 0.45rem 0 0.3rem;
+    font-size: 0.62rem;
+    color: var(--ink-3);
+  }
+
+  /* ── La banniere ────────────────────────────────────────────────────── */
+
+  .hero {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    padding: 1.1rem 1rem 1.3rem;
+    color: var(--on-brand);
+    background:
+      radial-gradient(120% 85% at 12% 0%, var(--brand-light) 0%, transparent 58%),
+      radial-gradient(110% 90% at 92% 100%, var(--brand-deep) 0%, transparent 62%),
+      var(--brand);
+  }
+
+  .hero canvas {
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+
+  .hero .veil {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: radial-gradient(88% 58% at 50% 46%, oklch(0.395 0.112 155 / 72%) 0%, oklch(0.395 0.112 155 / 34%) 58%, oklch(0.395 0.112 155 / 0%) 100%);
+  }
+
+  .topbar {
+    display: flex;
+    justify-content: center;
+    gap: 0.35rem;
+    font-size: 0.56rem;
+    font-weight: 600;
+    color: var(--on-brand-2);
+    padding-bottom: 0.8rem;
+  }
+  .topbar b { color: var(--on-brand); font-weight: 800; }
+
+  .navrow {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.4rem;
+    padding-bottom: 1.1rem;
+  }
+
+  .brand { display: flex; align-items: center; gap: 0.35rem; }
+  .brand .bars { display: flex; align-items: flex-end; gap: 2px; height: 15px; }
+  .brand .bars i { width: 3px; border-radius: 1px; display: block; background: var(--on-brand); }
+  .brand .bars i:nth-child(1) { height: 45%; opacity: 0.5; }
+  .brand .bars i:nth-child(2) { height: 72%; opacity: 0.75; }
+  .brand .bars i:nth-child(3) { height: 100%; }
+  .brand span { font-size: 0.9rem; font-weight: 800; letter-spacing: -0.02em; color: var(--on-brand); }
+  .brand span em { font-style: normal; opacity: 0.72; }
+
+  .pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    background: var(--on-brand);
+    color: var(--brand-deep);
+    font-size: 0.62rem;
+    font-weight: 800;
+    padding: 0.35rem 0.6rem;
+    border-radius: 999px;
+    white-space: nowrap;
+  }
+
+  .hero h3 {
+    margin: 0 0 0.5rem;
+    font-size: 1.4rem;
+    line-height: 1.06;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    text-align: center;
+    text-wrap: balance;
+  }
+  .hero h3 u { text-decoration: none; color: var(--vert-pale); }
+
+  .hero .sub {
+    margin: 0 auto 0.9rem;
+    max-width: 32ch;
+    text-align: center;
+    font-size: 0.74rem;
+    line-height: 1.45;
+    color: var(--on-brand-2);
+  }
+
+  .ctas { display: flex; flex-direction: column; gap: 0.45rem; align-items: center; }
+
+  .cta-main,
+  .cta-second {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+    border-radius: 999px;
+    font-weight: 800;
+    font-size: 0.84rem;
+    padding: 0.6rem 1.2rem;
+    width: 100%;
+    max-width: 250px;
+  }
+  .cta-main { background: var(--on-brand); color: var(--brand-deep); }
+  .cta-second { border: 1.5px solid oklch(0.985 0.003 150 / 55%); color: var(--on-brand); }
+
+  .checks {
+    list-style: none;
+    margin: 0.9rem 0 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.28rem;
+    font-size: 0.68rem;
+    color: var(--on-brand-2);
+  }
+  .checks li { display: flex; gap: 0.35rem; align-items: center; }
+  .checks svg { flex: none; color: var(--on-brand); }
+
+  .foot {
+    border-top: 1px solid var(--line);
+    padding-top: 1.4rem;
+    color: var(--ink-3);
+    font-size: 0.88rem;
+    max-width: 66ch;
+  }
+  .foot b { color: var(--ink); font-weight: 700; }
+</style>
+
+<div class="wrap">
+  <header class="lede">
+    <span class="kicker">123digital · bannière d'accueil</span>
+    <h1>Trois balles au choix</h1>
+    <p>
+      Même bannière, même partie de Pong, même vitesse. Seule la balle change.
+      Regarde-les tourner côte à côte : à cette taille, la lisibilité en mouvement
+      compte plus que le dessin à l'arrêt.
+    </p>
+    <p class="avis">
+      <b>Ce que tu dois savoir avant de choisir la 1.</b> Le logo Google est une marque
+      déposée. Google interdit de le déformer, de l'animer ou de l'utiliser comme élément
+      décoratif, et son usage sur le site d'une agence peut laisser croire à un partenariat
+      officiel. Tu n'es pas Google Partner à ma connaissance. Le risque est réel mais c'est
+      ta décision : je te la prépare quand même, à toi de trancher.
+    </p>
+  </header>
+
+  <section class="choix">
+    <div class="option">
+      <span class="num">Balle 1</span>
+      <h2>Le logo Google</h2>
+      <div class="frame">
+        <div class="urlbar">123digital.fr</div>
+        <div class="hero" data-ball="google"></div>
+      </div>
+      <p>Ce que tu as demandé. Le message est immédiat : c'est Google qui rebondit sur ta page.</p>
+      <p class="risque">Réserve : marque déposée, quatre couleurs étrangères à ta charte, et un dessin de 22 pixels qui devient une bouillie de couleurs en mouvement.</p>
+    </div>
+
+    <div class="option">
+      <span class="num">Balle 2</span>
+      <h2>Le G blanc</h2>
+      <div class="frame">
+        <div class="urlbar">123digital.fr</div>
+        <div class="hero" data-ball="lettre"></div>
+      </div>
+      <p>La même idée, dans ta typo et ta couleur. Tout le monde lit « Google » sans que tu utilises leur marque.</p>
+      <p class="risque">Aucun risque juridique, et le blanc sur vert reste net à toutes les tailles.</p>
+    </div>
+
+    <div class="option">
+      <span class="num">Balle 3</span>
+      <h2>La loupe</h2>
+      <div class="frame">
+        <div class="urlbar">123digital.fr</div>
+        <div class="hero" data-ball="loupe"></div>
+      </div>
+      <p>Le geste plutôt que la marque : la recherche elle-même, qui rebondit d'un bord à l'autre.</p>
+      <p class="risque">Le plus lisible des trois en mouvement, et il ne vieillira pas si Google change de logo.</p>
+    </div>
+  </section>
+
+  <p class="foot">
+    <b>Dans tous les cas :</b> aucun fichier chargé, tout est dessiné par le navigateur.
+    Sur le site, la balle passe déjà en vert quand elle traverse le bouton blanc. Dis-moi
+    le numéro et je remplace.
+  </p>
+</div>
+
+<script>
+  const CHECKS = [
+    'Un seul interlocuteur, zéro sous-traitance',
+    'Devis clair avant tout engagement',
+    'Résultats mesurés chaque mois',
+  ];
+
+  const CHECK_SVG = '<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>';
+  const PHONE_SVG = '<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>';
+
+  document.querySelectorAll('[data-ball]').forEach((hero) => {
+    hero.innerHTML = `
+      <canvas class="pong"></canvas>
+      <div class="veil"></div>
+      <div class="topbar"><b>50+ entreprises accompagnées</b> · Réponse sous 24 h</div>
+      <div class="navrow">
+        <div class="brand">
+          <span class="bars"><i></i><i></i><i></i></span>
+          <span><em>123</em>digital</span>
+        </div>
+        <span class="pill">${PHONE_SVG} 06 52 09 23 01</span>
+      </div>
+      <h3>Vos clients vous cherchent sur <u>Google</u>. Faites-vous trouver.</h3>
+      <p class="sub">Sites web, référencement et publicité en ligne pour les artisans, commerces et PME.</p>
+      <div class="ctas">
+        <span class="cta-main">${PHONE_SVG} Appeler maintenant</span>
+        <span class="cta-second">Demander un devis gratuit</span>
+      </div>
+      <ul class="checks">${CHECKS.map((c) => `<li>${CHECK_SVG}${c}</li>`).join('')}</ul>`;
+  });
+
+  const WHITE = 'oklch(0.985 0.003 150)';
+
+  /* ── Les trois balles ───────────────────────────────────────────────────
+     Chacune est dessinee autour de (0, 0) : la boucle place le repere, la
+     fonction ne s'occupe que du dessin. */
+
+  // Le G de Google, reconstruit a l'arc : anneau coupe en quatre segments plus
+  // la barre horizontale. C'est une approximation, pas le fichier officiel.
+  function ballGoogle(ctx, r) {
+    const t = r * 0.52;
+    const rad = r - t / 2;
+    const seg = [
+      ['#34A853', 10, 100],   // vert, bas droite
+      ['#FBBC05', 100, 190],  // jaune, bas gauche
+      ['#EA4335', 190, 290],  // rouge, haut gauche
+      ['#4285F4', 290, 352],  // bleu, haut droite
+    ];
+    ctx.lineWidth = t;
+    ctx.lineCap = 'butt';
+    seg.forEach(([color, a1, a2]) => {
+      ctx.strokeStyle = color;
+      ctx.beginPath();
+      ctx.arc(0, 0, rad, (a1 * Math.PI) / 180, (a2 * Math.PI) / 180);
+      ctx.stroke();
+    });
+    ctx.fillStyle = '#4285F4';
+    ctx.fillRect(0, -t * 0.42, r + t * 0.1, t * 0.84);
+  }
+
+  // Le G en typo maison : meme lecture, aucune marque empruntee.
+  function ballLettre(ctx, r, color) {
+    ctx.fillStyle = color;
+    ctx.font = `800 ${r * 2.1}px Switzer, system-ui, sans-serif`;
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText('G', 0, r * 0.06);
+  }
+
+  // La loupe : cercle plus manche, au trait.
+  function ballLoupe(ctx, r, color) {
+    ctx.strokeStyle = color;
+    ctx.lineWidth = Math.max(2, r * 0.28);
+    ctx.lineCap = 'round';
+    ctx.beginPath();
+    ctx.arc(-r * 0.18, -r * 0.18, r * 0.62, 0, Math.PI * 2);
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(r * 0.26, r * 0.26);
+    ctx.lineTo(r * 0.78, r * 0.78);
+    ctx.stroke();
+  }
+
+  /* ── Pong ─────────────────────────────────────────────────────────────── */
+  function startPong(canvas, style) {
+    const ctx = canvas.getContext('2d');
+    const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    let w = 0, h = 0, raf = null, last = 0, onScreen = true, started = false;
+
+    const BALL_SPEED = 150;
+    const PADDLE_SPEED = 260;
+    const R = style === 'google' ? 11 : style === 'lettre' ? 9 : 10;
+    const MARGIN = 12;
+    const PADDLE_W = 6;
+
+    const ball = { x: 0, y: 0, angle: 0 };
+    const pads = [
+      { y: 0, target: 0, height: 0, wait: 0, speed: 1 },
+      { y: 0, target: 0, height: 0, wait: 0, speed: 1 },
+    ];
+
+    function newTarget(p) {
+      const half = p.height / 2;
+      const base = Math.random() < 0.25
+        ? Math.random() * h
+        : ball.y + (Math.random() - 0.5) * h * 0.18;
+      p.target = Math.max(half, Math.min(h - half, base));
+      p.wait = 0.3 + Math.random() * 1.1;
+      p.speed = PADDLE_SPEED * (0.55 + Math.random() * 0.95);
+    }
+
+    function layout() {
+      const rect = canvas.getBoundingClientRect();
+      const dpr = Math.min(devicePixelRatio || 1, 2);
+      w = Math.max(rect.width, 1);
+      h = Math.max(rect.height, 1);
+      canvas.width = Math.round(w * dpr);
+      canvas.height = Math.round(h * dpr);
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+      pads.forEach((p) => { p.height = Math.max(46, Math.min(96, h * 0.18)); });
+
+      if (!started) {
+        started = true;
+        ball.x = w / 2;
+        ball.y = h / 2;
+        ball.angle = (Math.random() < 0.5 ? 0 : Math.PI) + (Math.random() - 0.5) * 0.9;
+        pads.forEach((p, i) => { p.y = h * (i === 0 ? 0.35 : 0.65); newTarget(p); });
+      } else {
+        pads.forEach((p) => { p.y = Math.max(p.height / 2, Math.min(h - p.height / 2, p.y)); });
+      }
+    }
+
+    function draw() {
+      ctx.clearRect(0, 0, w, h);
+
+      ctx.strokeStyle = 'oklch(0.985 0.003 150 / 22%)';
+      ctx.lineWidth = 2;
+      ctx.setLineDash([7, 13]);
+      ctx.beginPath();
+      ctx.moveTo(w / 2, 0);
+      ctx.lineTo(w / 2, h);
+      ctx.stroke();
+      ctx.setLineDash([]);
+
+      ctx.fillStyle = WHITE;
+      ctx.fillRect(MARGIN, pads[0].y - pads[0].height / 2, PADDLE_W, pads[0].height);
+      ctx.fillRect(w - MARGIN - PADDLE_W, pads[1].y - pads[1].height / 2, PADDLE_W, pads[1].height);
+
+      ctx.save();
+      ctx.translate(ball.x, ball.y);
+      if (style === 'google') ballGoogle(ctx, R);
+      else if (style === 'lettre') ballLettre(ctx, R, WHITE);
+      else ballLoupe(ctx, R, WHITE);
+      ctx.restore();
+    }
+
+    function update(dt) {
+      ball.angle += (Math.random() - 0.5) * 0.25 * dt;
+      const vx = Math.cos(ball.angle);
+      if (Math.abs(vx) < 0.32) {
+        ball.angle = Math.atan2(Math.sin(ball.angle), (vx < 0 ? -0.32 : 0.32));
+      }
+
+      ball.x += Math.cos(ball.angle) * BALL_SPEED * dt;
+      ball.y += Math.sin(ball.angle) * BALL_SPEED * dt;
+
+      if (ball.y < R)     { ball.y = R;     ball.angle = -ball.angle + (Math.random() - 0.5) * 0.15; }
+      if (ball.y > h - R) { ball.y = h - R; ball.angle = -ball.angle + (Math.random() - 0.5) * 0.15; }
+
+      const faces = [MARGIN + PADDLE_W, w - MARGIN - PADDLE_W];
+      pads.forEach((p, i) => {
+        const goingLeft = Math.cos(ball.angle) < 0;
+        const towardThis = i === 0 ? goingLeft : !goingLeft;
+        const inFront = Math.abs(ball.y - p.y) < p.height / 2 + R;
+        const reached = i === 0 ? ball.x - R < faces[0] : ball.x + R > faces[1];
+        if (towardThis && reached && inFront) {
+          ball.x = i === 0 ? faces[0] + R : faces[1] - R;
+          ball.angle = Math.PI - ball.angle + (ball.y - p.y) / p.height * 0.55;
+        }
+      });
+
+      if (ball.x < R)     { ball.x = R;     ball.angle = Math.PI - ball.angle; }
+      if (ball.x > w - R) { ball.x = w - R; ball.angle = Math.PI - ball.angle; }
+
+      pads.forEach((p) => {
+        p.wait -= dt;
+        if (p.wait <= 0 && Math.abs(p.target - p.y) < 2) newTarget(p);
+        const step = p.speed * dt;
+        p.y = Math.abs(p.target - p.y) <= step ? p.target : p.y + Math.sign(p.target - p.y) * step;
+      });
+    }
+
+    function frame(now) {
+      const dt = Math.min((now - last) / 1000, 0.05);
+      last = now;
+      update(dt);
+      draw();
+      raf = requestAnimationFrame(frame);
+    }
+
+    function play() {
+      if (raf || !onScreen || document.hidden || reduced) return;
+      last = performance.now();
+      raf = requestAnimationFrame(frame);
+    }
+    function pause() { if (raf) { cancelAnimationFrame(raf); raf = null; } }
+
+    layout();
+    draw();
+
+    addEventListener('resize', () => { layout(); draw(); });
+    document.addEventListener('visibilitychange', () => (document.hidden ? pause() : play()));
+    new IntersectionObserver((entries) => {
+      onScreen = entries[0].isIntersecting;
+      onScreen ? play() : pause();
+    }, { threshold: 0.1 }).observe(canvas);
+
+    if (!reduced) play();
+  }
+
+  document.querySelectorAll('[data-ball]').forEach((hero) => {
+    startPong(hero.querySelector('canvas.pong'), hero.dataset.ball);
+  });
+</script>

@@ -10,3 +10,6 @@ out/
 
 # Worktrees temporaires de Claude Code
 .claude/worktrees/
+
+# archives locales de worktrees supprimes
+_archives/

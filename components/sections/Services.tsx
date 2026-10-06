@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import { ArrowRight } from 'lucide-react'
 import { getServices, type ServiceData } from '@/data/services'
 import { t, type Locale } from '@/lib/i18n'
@@ -33,6 +34,15 @@ function ServiceCard({ service, copy, learnMoreLabel, learnMoreSuffix }: { servi
       className="rounded flex flex-col"
       style={{ backgroundColor: 'var(--surface-2)', border: '1px solid var(--line)', padding: 'clamp(0.85rem, 3vw, 1.4rem)' }}
     >
+      <div className="relative h-[120px] lg:h-[160px] w-full mb-2">
+        <Image
+          src={`/images/illustrations/service-${service.id}.webp`}
+          alt=""
+          fill
+          sizes="(min-width: 1024px) 200px, 45vw"
+          style={{ objectFit: 'contain', objectPosition: 'left center' }}
+        />
+      </div>
       <h3 style={{ fontFamily: 'var(--font-sans)', fontWeight: 800, fontSize: 'clamp(0.92rem, 3.4vw, 1.05rem)', color: 'var(--ink)', marginBottom: '0.3rem', lineHeight: 1.2 }}>
         {service.title}
       </h3>

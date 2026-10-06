@@ -1,4 +1,7 @@
+import Image from 'next/image'
 import { t, type Locale } from '@/lib/i18n'
+
+const STEP_IMAGES = ['etape-1-appel', 'etape-2-plan', 'etape-3-mise-en-oeuvre', 'etape-4-resultats']
 
 interface Step { title: string; desc: string }
 
@@ -23,6 +26,15 @@ function StepCard({ step, index, lang }: { step: Step; index: number; lang: 'fr'
       className="rounded"
       style={{ backgroundColor: 'var(--surface-2)', border: '1px solid var(--line)', padding: 'clamp(0.8rem, 3vw, 1.25rem)' }}
     >
+      <div className="relative h-[110px] lg:h-[150px] w-full mb-2">
+        <Image
+          src={`/images/illustrations/${STEP_IMAGES[index]}.webp`}
+          alt=""
+          fill
+          sizes="(min-width: 1024px) 200px, 45vw"
+          style={{ objectFit: 'contain', objectPosition: 'left center' }}
+        />
+      </div>
       <p
         style={{ fontSize: '0.72rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--brand)', marginBottom: '0.4rem' }}
       >

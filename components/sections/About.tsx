@@ -7,7 +7,7 @@ export function About({ lang = 'fr' }: { lang?: Locale }) {
   return (
     <section style={{ backgroundColor: 'var(--surface)', padding: '0 1.5rem clamp(2rem, 5vw, 3.5rem)' }} aria-labelledby="about-heading">
       <div
-        className="mx-auto grid grid-cols-[76px_1fr] sm:grid-cols-[120px_1fr] gap-3.5 sm:gap-6 items-center rounded"
+        className="mx-auto grid grid-cols-[76px_1fr] sm:grid-cols-[120px_1fr] md:grid-cols-[120px_1fr_170px] gap-3.5 sm:gap-6 items-center rounded"
         style={{ maxWidth: '48rem', backgroundColor: 'var(--surface-2)', border: '1px solid var(--line)', padding: 'clamp(1rem, 3.5vw, 1.75rem)' }}
       >
         {/* Portrait a cote du texte des le telephone : empile, il ajoutait
@@ -35,6 +35,18 @@ export function About({ lang = 'fr' }: { lang?: Locale }) {
           <p style={{ fontSize: '0.9rem', color: 'var(--ink-2)', lineHeight: 1.6 }}>
             {d.body}
           </p>
+        </div>
+        {/* Scène dessinée à droite à partir de md : en dessous, le bloc
+            reste portrait + texte. */}
+        <div className="hidden md:block">
+          <Image
+            src="/images/illustrations/about-consultant.webp"
+            alt=""
+            width={800}
+            height={800}
+            sizes="170px"
+            style={{ width: '100%', height: 'auto', objectFit: 'contain' }}
+          />
         </div>
       </div>
     </section>

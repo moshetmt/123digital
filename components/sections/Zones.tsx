@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import { villesARA } from '@/data/villes'
 import { estIndexable } from '@/data/indexation'
 import { t, type Locale } from '@/lib/i18n'
@@ -40,23 +41,42 @@ export function Zones({ lang = 'fr' }: { lang?: Locale }) {
           {d.heading}
         </h2>
 
-        <p style={{ color: 'var(--ink-2)', fontSize: '0.95rem', lineHeight: 1.8 }}>
+        {/* Tuiles photo des villes (public/images/villes/<slug>.jpg) : défilement
+            horizontal sur téléphone, une rangée à partir de lg. */}
+        <div className="flex gap-2.5 overflow-x-auto snap-x -mx-6 px-6 pb-2 lg:grid lg:grid-cols-9 lg:overflow-visible lg:mx-0 lg:px-0 lg:pb-0">
           {CHIP_VILLES.map((ville) => (
-            <span key={ville.slug}>
-              <Link href={`/${ville.slug}`} className="zone-link" style={{ color: 'var(--ink-2)' }}>
+            <Link
+              key={ville.slug}
+              href={`/${ville.slug}`}
+              className="zone-tile relative overflow-hidden rounded shrink-0 snap-start"
+              style={{ height: 150, border: '1px solid var(--line)' }}
+            >
+              <Image
+                src={`/images/villes/${ville.slug}.jpg`}
+                alt=""
+                fill
+                sizes="128px"
+                className="object-cover"
+              />
+              {/* Voile vert 950 en bas pour le nom, lisible sur toute photo. */}
+              <span
+                className="absolute inset-x-0 bottom-0 px-2 py-1.5"
+                style={{ backgroundColor: 'rgba(19, 24, 20, 0.78)', color: '#FFFFFF', fontSize: '0.8rem', fontWeight: 700, lineHeight: 1.2 }}
+              >
                 {ville.nom}
-              </Link>
-              {' · '}
-            </span>
+              </span>
+            </Link>
           ))}
-          <span style={{ color: 'var(--brand)', fontWeight: 700 }}>{d.franceWide}</span>
-        </p>
+        </div>
+        <p style={{ color: 'var(--brand)', fontWeight: 700, fontSize: '0.95rem', marginTop: '1rem' }}>{d.franceWide}</p>
       </div>
 
       <style>{`
-        .zone-link { transition: color 0.15s ease; }
+        .zone-tile { width: 128px; }
+        @media (min-width: 1024px) { .zone-tile { width: auto; } }
+        .zone-tile img { transition: transform 0.25s ease; }
         @media (hover: hover) {
-          .zone-link:hover { color: var(--brand); }
+          .zone-tile:hover img { transform: scale(1.04); }
         }
       `}</style>
     </section>

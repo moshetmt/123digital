@@ -1,5 +1,6 @@
 import type { ReactNode } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { Phone, Check } from 'lucide-react'
 import { PongCanvas } from '@/components/sections/PongCanvas'
 import { t, type Locale } from '@/lib/i18n'
@@ -56,8 +57,8 @@ export function Hero({ lang = 'fr' }: { lang?: Locale }) {
         }}
       />
 
-      <div className="relative mx-auto w-full max-w-4xl text-center">
-        <div>
+      <div className="relative z-10 mx-auto w-full max-w-4xl lg:max-w-6xl text-center lg:grid lg:grid-cols-[1.15fr_0.85fr] lg:items-center lg:gap-10">
+        <div className="relative z-20">
           <h1
             style={{
               fontFamily: 'var(--font-sans)',
@@ -121,6 +122,18 @@ export function Hero({ lang = 'fr' }: { lang?: Locale }) {
           </ul>
         </div>
 
+        {/* Sur téléphone la scène passe sous les boutons, plus petite et centrée. */}
+        <div className="relative z-10 justify-self-center lg:justify-self-end w-full mt-6 lg:mt-0 max-w-[260px] lg:max-w-[520px]">
+          <Image
+            src="/images/illustrations/hero-scene.webp"
+            alt=""
+            width={1400}
+            height={1050}
+            sizes="(max-width: 1024px) 260px, 520px"
+            priority
+            style={{ width: '100%', height: 'auto', objectFit: 'contain' }}
+          />
+        </div>
       </div>
     </section>
   )

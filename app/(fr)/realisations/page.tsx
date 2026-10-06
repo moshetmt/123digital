@@ -77,7 +77,7 @@ export default function PortfolioPage() {
           </h2>
           <p className="mb-8" style={{ color: 'var(--ink-2)', maxWidth: '55ch' }}>{d.caseStudiesPage.sectionSub}</p>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4">
             {projects.map((project) => {
               const domain = project.url ? project.url.replace(/^https?:\/\//, '').replace(/\/$/, '') : null
               return (
@@ -112,7 +112,7 @@ export default function PortfolioPage() {
                       <div className="relative" style={{ aspectRatio: '16 / 10' }}>
                         <Image
                           src={project.screenshot}
-                          alt={`Page d'accueil du site ${project.title}, réalisé par 123 Digital`}
+                          alt={`${project.title} : ${project.category}, réalisé par 123 Digital`}
                           fill
                           sizes="(max-width: 768px) 100vw, 33vw"
                           style={{ objectFit: 'cover', objectPosition: 'top center' }}

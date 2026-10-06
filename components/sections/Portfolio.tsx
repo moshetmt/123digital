@@ -1,16 +1,50 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import { ArrowRight, ArrowUpRight } from 'lucide-react'
 import { projects, type PortfolioProject } from '@/data/portfolio'
 import { t, type Locale } from '@/lib/i18n'
 
 function ProjectCard({ project }: { project: PortfolioProject }) {
-  const domain = project.url ? project.url.replace(/^https?:\/\//, '').replace(/\/$/, '') : null
+  const raw = project.url ? project.url.replace(/^https?:\/\/(www\.)?/, '').replace(/\/$/, '') : null
+  // Un compte Instagram s'affiche en @pseudo, pas en URL complète.
+  const domain = raw?.startsWith('instagram.com/') ? `@${raw.split('/')[1]}` : raw
 
   return (
     <article
-      className="flex flex-col rounded"
-      style={{ backgroundColor: 'var(--surface-2)', border: '1px solid var(--line)', padding: 'clamp(1rem, 3.5vw, 1.5rem)', gap: '0.45rem' }}
+      className="flex flex-col rounded shrink-0 snap-start sm:shrink"
+      style={{ backgroundColor: 'var(--surface-2)', border: '1px solid var(--line)', padding: 'clamp(1rem, 3.5vw, 1.5rem)', gap: '0.45rem', width: 'min(82vw, 100%)' }}
     >
+      {/* Même cadre de navigateur simplifié que /realisations : jamais une
+          image brute (charte v2, section 6). */}
+      {project.screenshot && (
+        <div className="overflow-hidden rounded" style={{ border: '1px solid var(--line)', marginBottom: '0.4rem' }}>
+          <div
+            style={{
+              background: 'var(--surface-3)',
+              height: 26,
+              display: 'flex',
+              alignItems: 'center',
+              padding: '0 10px',
+              fontSize: '0.7rem',
+              color: 'var(--ink-2)',
+              whiteSpace: 'nowrap',
+              overflow: 'hidden',
+              textOverflow: 'ellipsis',
+            }}
+          >
+            {domain ?? project.title}
+          </div>
+          <div className="relative" style={{ aspectRatio: '16 / 10' }}>
+            <Image
+              src={project.screenshot}
+              alt={`${project.title} : ${project.category}, réalisé par 123 Digital`}
+              fill
+              sizes="(max-width: 640px) 100vw, (max-width: 1280px) 50vw, 25vw"
+              style={{ objectFit: 'cover', objectPosition: 'top center' }}
+            />
+          </div>
+        </div>
+      )}
       <span style={{ fontSize: '0.7rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--ink-3)' }}>
         {project.sector}
       </span>
@@ -91,7 +125,9 @@ export function Portfolio({ lang = 'fr' }: { lang?: Locale }) {
           </Link>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        {/* Sur téléphone : carrousel horizontal (4 cartes empilées = 5 écrans).
+            À partir de sm : grille. */}
+        <div className="flex gap-3 overflow-x-auto snap-x snap-mandatory -mx-6 px-6 pb-2 sm:grid sm:grid-cols-2 xl:grid-cols-4 sm:gap-4 sm:overflow-visible sm:mx-0 sm:px-0 sm:pb-0">
           {projects.map((project) => (
             <ProjectCard key={project.id} project={project} />
           ))}

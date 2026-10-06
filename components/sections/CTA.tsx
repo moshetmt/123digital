@@ -2,6 +2,7 @@
 
 import { useId, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import Image from 'next/image'
 import { Check } from 'lucide-react'
 import { t, type Locale } from '@/lib/i18n'
 import { readLeadSource } from '@/lib/lead-source'
@@ -291,6 +292,9 @@ export function CTA({ lang = 'fr' }: { lang?: Locale }) {
               {PHONE_DISPLAY}
             </a>
           </p>
+          <div className="hidden lg:block mt-6" style={{ width: 220 }}>
+            <Image src="/images/illustrations/contact.webp" alt="" width={800} height={800} sizes="220px" style={{ width: '100%', height: 'auto', objectFit: 'contain' }} />
+          </div>
         </div>
 
         {/* ── Formulaire ── */}

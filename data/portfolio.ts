@@ -65,4 +65,18 @@ export const projects: PortfolioProject[] = [
     url: 'https://aplusaudition.fr',
     screenshot: '/images/realisations/aplusaudition.webp',
   },
+  {
+    id: 'habad-etudiants-lyon',
+    title: 'Habad Étudiants Lyon',
+    category: 'Réseaux sociaux + Charte',
+    sector: 'Association étudiante · Lyon',
+    description:
+      'Charte graphique, carrousels et stories Instagram, statuts WhatsApp, formulaires d\'inscription aux événements et suivi des inscrits.',
+    results: 'Une identité reconnaissable, des posts chaque semaine, des inscriptions suivies',
+    metric: 'Posts chaque semaine',
+    tags: ['Instagram', 'Charte graphique', 'Inscriptions', 'Lyon'],
+    featured: true,
+    url: 'https://www.instagram.com/chabadoncampuslyon/',
+    screenshot: '/images/realisations/habad-etudiants-lyon-posts.webp',
+  },
 ]

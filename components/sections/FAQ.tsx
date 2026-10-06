@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import Image from 'next/image'
 import { ChevronDown } from 'lucide-react'
 import { getHomeFaqs } from '@/data/faq'
 import { t, type Locale } from '@/lib/i18n'
@@ -62,7 +63,10 @@ export function FAQ({ lang = 'fr' }: { lang?: Locale }) {
     <section style={{ backgroundColor: 'var(--surface)', padding: 'clamp(1.6rem, 5vw, 4.5rem) 1.5rem' }} aria-labelledby="faq-heading">
       <div className="mx-auto max-w-5xl">
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.4fr] gap-10 lg:gap-16">
-          <div>
+          {/* Titre au-dessus, illustration en dessous : côte à côte, le h2
+              tombait à un mot par ligne dans cette colonne étroite. */}
+          <div className="flex flex-col gap-6">
+           <div>
             <div
               className="mb-3"
               style={{ fontSize: '0.72rem', letterSpacing: '0.1em', textTransform: 'uppercase', color: 'var(--brand-strong)', fontWeight: 800 }}
@@ -82,6 +86,10 @@ export function FAQ({ lang = 'fr' }: { lang?: Locale }) {
             >
               {d.heading}
             </h2>
+           </div>
+           <div className="hidden lg:block shrink-0" style={{ width: 220 }}>
+             <Image src="/images/illustrations/faq.webp" alt="" width={800} height={800} sizes="220px" style={{ width: '100%', height: 'auto', objectFit: 'contain' }} />
+           </div>
           </div>
 
           <div className="flex flex-col gap-2.5">

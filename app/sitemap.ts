@@ -6,6 +6,7 @@ import { PAGES_EN_INDEXABLES } from '@/data/hreflang'
 import { services } from '@/data/services'
 import { secteurs } from '@/data/secteurs'
 import { articles } from '@/data/blog'
+import { etudesDeCas } from '@/data/etudes-de-cas'
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date()
@@ -17,6 +18,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE_URL}/contact`, lastModified: now, changeFrequency: 'yearly', priority: 0.65 },
     { url: `${BASE_URL}/realisations`, lastModified: now, changeFrequency: 'monthly', priority: 0.75 },
     { url: `${BASE_URL}/consultant-digital-lyon`, lastModified: now, changeFrequency: 'monthly', priority: 0.95 },
+    ...etudesDeCas.map((e) => ({
+      url: `${BASE_URL}/realisations/${e.slug}`,
+      lastModified: now,
+      changeFrequency: 'monthly' as const,
+      priority: 0.7,
+    })),
     // Services hub + pages
     { url: `${BASE_URL}/services`, lastModified: now, changeFrequency: 'weekly', priority: 0.9 },
     ...services.map((s) => ({

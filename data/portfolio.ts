@@ -34,7 +34,7 @@ export const projects: PortfolioProject[] = [
     tags: ['Google Ads', 'Refonte web', 'SEO local', 'Villeurbanne'],
     featured: true,
     url: 'https://clim69.fr',
-    screenshot: '/images/realisations/clim69.webp',
+    screenshot: '/images/realisations/clim69-maquette.webp',
   },
   {
     id: 'rhone-deconstruction',
@@ -49,7 +49,7 @@ export const projects: PortfolioProject[] = [
     tags: ['SEO local', 'Création web', 'BTP', 'Lyon'],
     featured: true,
     url: 'https://rhone-deconstruction.fr',
-    screenshot: '/images/realisations/rhone-deconstruction.webp',
+    screenshot: '/images/realisations/rhone-deconstruction-maquette.webp',
   },
   {
     id: 'aplus-audition',
@@ -63,7 +63,7 @@ export const projects: PortfolioProject[] = [
     tags: ['SEO local', 'Création web', 'Santé', 'Cannes'],
     featured: true,
     url: 'https://aplusaudition.fr',
-    screenshot: '/images/realisations/aplusaudition.webp',
+    screenshot: '/images/realisations/aplusaudition-maquette.webp',
   },
   {
     id: 'habad-etudiants-lyon',
@@ -77,6 +77,6 @@ export const projects: PortfolioProject[] = [
     tags: ['Instagram', 'Charte graphique', 'Inscriptions', 'Lyon'],
     featured: true,
     url: 'https://www.instagram.com/chabadoncampuslyon/',
-    screenshot: '/images/realisations/habad-etudiants-lyon-posts.webp',
+    screenshot: '/images/realisations/habad-etudiants-lyon-maquette.webp',
   },
 ]

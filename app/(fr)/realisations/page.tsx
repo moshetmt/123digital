@@ -86,29 +86,15 @@ export default function PortfolioPage() {
                   className="flex flex-col rounded"
                   style={{ backgroundColor: 'var(--surface-2)', border: '1px solid var(--line)', padding: '1.5rem', gap: '0.6rem' }}
                 >
-                  {/* La capture du site livré, posée dans un cadre de navigateur
-                      simplifié : jamais une image brute (charte v2, section 6). */}
+                  {/* Maquette composée (cadre navigateur + téléphone sur fond pâle) :
+                      la carte n'ajoute qu'une bordure. */}
                   {project.screenshot && (
-                    <div
-                      className="overflow-hidden rounded"
+                    <Link
+                      href={`/realisations/${project.id}`}
+                      aria-label={`Lire l'étude de cas ${project.title}`}
+                      className="block overflow-hidden rounded"
                       style={{ border: '1px solid var(--line)', marginBottom: '0.4rem' }}
                     >
-                      <div
-                        style={{
-                          background: 'var(--surface-3)',
-                          height: 28,
-                          display: 'flex',
-                          alignItems: 'center',
-                          padding: '0 10px',
-                          fontSize: '0.72rem',
-                          color: 'var(--ink-2)',
-                          whiteSpace: 'nowrap',
-                          overflow: 'hidden',
-                          textOverflow: 'ellipsis',
-                        }}
-                      >
-                        {domain ?? project.title}
-                      </div>
                       <div className="relative" style={{ aspectRatio: '16 / 10' }}>
                         <Image
                           src={project.screenshot}
@@ -118,13 +104,13 @@ export default function PortfolioPage() {
                           style={{ objectFit: 'cover', objectPosition: 'top center' }}
                         />
                       </div>
-                    </div>
+                    </Link>
                   )}
                   <span style={{ fontSize: '0.68rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--ink-3)' }}>
                     {project.sector}
                   </span>
                   <h3 className="font-sans font-extrabold" style={{ fontSize: '1.15rem', color: 'var(--ink)', lineHeight: 1.2 }}>
-                    {project.title}
+                    <Link href={`/realisations/${project.id}`}>{project.title}</Link>
                   </h3>
                   <p style={{ fontSize: '0.78rem', color: 'var(--ink-3)' }}>{project.category}</p>
 
@@ -149,11 +135,11 @@ export default function PortfolioPage() {
                       </a>
                     ) : <span />}
                     <Link
-                      href="/audit-gratuit"
+                      href={`/realisations/${project.id}`}
                       className="inline-flex items-center gap-1 text-sm font-bold"
                       style={{ color: 'var(--ink)' }}
                     >
-                      {d.caseStudiesPage.sameResultCta} <ArrowRight size={14} aria-hidden />
+                      Lire l&apos;étude de cas <ArrowRight size={14} aria-hidden />
                     </Link>
                   </div>
                 </article>

@@ -14,26 +14,10 @@ function ProjectCard({ project }: { project: PortfolioProject }) {
       className="flex flex-col rounded shrink-0 snap-start sm:shrink"
       style={{ backgroundColor: 'var(--surface-2)', border: '1px solid var(--line)', padding: 'clamp(1rem, 3.5vw, 1.5rem)', gap: '0.45rem', width: 'min(82vw, 100%)' }}
     >
-      {/* Même cadre de navigateur simplifié que /realisations : jamais une
-          image brute (charte v2, section 6). */}
+      {/* Maquette composée (cadre navigateur + téléphone sur fond pâle) : la carte
+          n'ajoute qu'une bordure. */}
       {project.screenshot && (
         <div className="overflow-hidden rounded" style={{ border: '1px solid var(--line)', marginBottom: '0.4rem' }}>
-          <div
-            style={{
-              background: 'var(--surface-3)',
-              height: 26,
-              display: 'flex',
-              alignItems: 'center',
-              padding: '0 10px',
-              fontSize: '0.7rem',
-              color: 'var(--ink-2)',
-              whiteSpace: 'nowrap',
-              overflow: 'hidden',
-              textOverflow: 'ellipsis',
-            }}
-          >
-            {domain ?? project.title}
-          </div>
           <div className="relative" style={{ aspectRatio: '16 / 10' }}>
             <Image
               src={project.screenshot}
@@ -49,7 +33,7 @@ function ProjectCard({ project }: { project: PortfolioProject }) {
         {project.sector}
       </span>
       <h3 style={{ fontFamily: 'var(--font-sans)', fontWeight: 800, fontSize: '1.1rem', color: 'var(--ink)' }}>
-        {project.title}
+        <Link href={`/realisations/${project.id}`}>{project.title}</Link>
       </h3>
       <div
         style={{

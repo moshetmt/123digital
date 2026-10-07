@@ -34,11 +34,11 @@
   --font-display: var(--font-sans);
   --font-serif:   var(--font-sans);
   --font-mono: ui-monospace, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
-  /* Charte v2 : rayon 4 px partout, aucun multiplicateur. L'ancienne chaine
-     calc(var(--radius) * N) donnait un rounded-2xl a 0,45rem malgre
-     --radius: 0.25rem : chaque palier vaut desormais --radius tel quel. */
-  --radius-sm: var(--radius);
-  --radius-md: var(--radius);
+  /* 07/10 : l'operateur trouvait le site trop « brique » a 4 px. Deux rayons :
+     --radius (12 px) pour les cartes, images et cadres, --radius-sm (8 px) pour
+     les boutons, champs et chips. Les paliers lg a 3xl valent --radius. */
+  --radius-sm: var(--radius-ctrl);
+  --radius-md: var(--radius-ctrl);
   --radius-lg: var(--radius);
   --radius-xl: var(--radius);
   --radius-2xl: var(--radius);
@@ -153,7 +153,8 @@
   /* Anneau de focus : 600 à 100 % sur fond clair, décalé de 2 px. Sur le pied
      de page (fond 950) il repasse en 400, règle ciblée plus bas. */
   --ring:        var(--g-600);
-  --radius:      0.25rem;
+  --radius:      0.75rem;
+  --radius-ctrl: 0.5rem;
 
   --chart-1: var(--g-600);
   --chart-2: var(--g-300);
@@ -279,3 +280,8 @@
     transform: none;
   }
 }
+
+/* `rounded` sans suffixe vaut 0,25rem en dur dans Tailwind v4 : on l'aligne sur le token. */
+@utility rounded { border-radius: var(--radius); }
+@utility rounded-t { border-top-left-radius: var(--radius); border-top-right-radius: var(--radius); }
+@utility rounded-b { border-bottom-left-radius: var(--radius); border-bottom-right-radius: var(--radius); }

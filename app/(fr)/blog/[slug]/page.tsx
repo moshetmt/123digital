@@ -157,7 +157,7 @@ export default async function BlogArticlePage({ params }: PageProps) {
               href="/audit-gratuit"
               style={{
                 display: 'inline-block',
-                borderRadius: '0.25rem',
+                borderRadius: 'var(--radius)',
                 padding: '0.85rem 2rem',
                 backgroundColor: 'var(--brand)',
                 color: 'var(--on-brand)',

@@ -138,16 +138,16 @@ export default function CaseStudiesPage() {
                         href={project.url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1 text-sm font-bold"
-                        style={{ color: 'var(--brand-strong)' }}
+                        className="inline-flex items-center gap-1.5 rounded-md text-sm font-bold"
+                        style={{ color: 'var(--brand-strong)', border: '1px solid var(--brand-strong)', padding: '0.5rem 0.9rem' }}
                       >
                         {domain} <ArrowUpRight size={14} aria-hidden />
                       </a>
                     ) : <span />}
                     <Link
                       href="/en/audit"
-                      className="inline-flex items-center gap-1 text-sm font-bold"
-                      style={{ color: 'var(--ink)' }}
+                      className="inline-flex items-center gap-1.5 rounded-md text-sm font-bold"
+                      style={{ color: 'var(--on-brand)', backgroundColor: 'var(--brand)', padding: '0.5rem 0.9rem' }}
                     >
                       {d.caseStudiesPage.sameResultCta} <ArrowRight size={14} aria-hidden />
                     </Link>

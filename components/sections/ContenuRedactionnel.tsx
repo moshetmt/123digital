@@ -123,7 +123,7 @@ export function RenderSection({ section }: { section: BlogSection }) {
             marginBottom: 'clamp(1rem, 3.5vw, 1.6rem)',
             marginTop: 'clamp(1.4rem, 5vw, 2.5rem)',
             padding: 'clamp(1rem, 4vw, 1.5rem)',
-            borderRadius: '0.25rem',
+            borderRadius: 'var(--radius)',
             backgroundColor: 'var(--brand-tint)',
             border: '1px solid var(--brand-line)',
           }}
@@ -156,7 +156,7 @@ export function RenderSection({ section }: { section: BlogSection }) {
           style={{
             marginBottom: 'clamp(1rem, 3.5vw, 1.6rem)',
             padding: 'clamp(1.1rem, 4vw, 1.75rem)',
-            borderRadius: '0.25rem',
+            borderRadius: 'var(--radius)',
             border: '1px solid var(--line)',
             backgroundColor: 'var(--surface-2)',
           }}
@@ -175,7 +175,7 @@ export function RenderSection({ section }: { section: BlogSection }) {
             href="/audit-gratuit"
             style={{
               display: 'inline-block',
-              borderRadius: '0.25rem',
+              borderRadius: 'var(--radius)',
               padding: '0.75rem 1.75rem',
               backgroundColor: 'var(--brand)',
               color: 'var(--on-brand)',

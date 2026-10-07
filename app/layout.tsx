@@ -122,8 +122,10 @@ export const metadata: Metadata = {
   },
 
   manifest: '/site.webmanifest',
+  // Pas de app/favicon.ico : celui de public/ (charte v2) est le seul servi.
   icons: {
-    icon: '/images/favicon.svg',
+    icon: [{ url: '/images/favicon.svg', type: 'image/svg+xml' }, { url: '/favicon.ico', sizes: '48x48' }],
+    apple: '/apple-touch-icon.png',
   },
   // Pas de 'theme-color' ici : viewport.themeColor plus bas emet deja la balise,
   // et les deux ensemble en produisaient deux, identiques.

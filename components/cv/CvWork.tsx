@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import Image from 'next/image'
-import { ArrowUpRight, X } from 'lucide-react'
+import { ArrowLeft, ArrowRight, ArrowUpRight, X } from 'lucide-react'
 import type { CvContent } from '@/data/cv'
 import { cvScreenshots } from '@/data/cv'
 
@@ -20,7 +20,19 @@ export function CvWork({ work }: { work: CvContent['work'] }) {
   )
 
   const open = openId ? work.projects.find((p) => p.id === openId) ?? null : null
-  const close = useCallback(() => setOpenId(null), [])
+  const close = useCallback(() => {
+    if (typeof window !== 'undefined' && window.history.state?.cvDialog) window.history.back()
+    else setOpenId(null)
+  }, [])
+
+  // La fiche compte comme une page : le bouton « précédent » du téléphone la ferme.
+  useEffect(() => {
+    if (!open) return
+    window.history.pushState({ cvDialog: true }, '')
+    const onPop = () => setOpenId(null)
+    window.addEventListener('popstate', onPop)
+    return () => window.removeEventListener('popstate', onPop)
+  }, [open])
 
   // Verrou de defilement + Echap pendant que la modale est ouverte.
   useEffect(() => {
@@ -152,16 +164,17 @@ export function CvWork({ work }: { work: CvContent['work'] }) {
                     type="button"
                     onClick={() => setOpenId(project.id)}
                     aria-haspopup="dialog"
-                    style={{ fontSize: '0.82rem', fontWeight: 700, color: 'var(--ink)', background: 'none', border: 'none', padding: 0, cursor: 'pointer' }}
+                    className="inline-flex items-center gap-1.5 rounded-md font-bold"
+                    style={{ fontSize: '0.82rem', color: 'var(--on-brand)', backgroundColor: 'var(--brand)', border: '1px solid var(--brand)', padding: '0.55rem 0.95rem', cursor: 'pointer' }}
                   >
-                    {work.detailIntro}
+                    {work.detailIntro} <ArrowRight size={14} aria-hidden />
                   </button>
                   <a
                     href={project.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1"
-                    style={{ fontSize: '0.82rem', fontWeight: 700, color: 'var(--brand-strong)' }}
+                    className="inline-flex items-center gap-1.5 rounded-md font-bold"
+                    style={{ fontSize: '0.82rem', color: 'var(--brand-strong)', border: '1px solid var(--brand-strong)', padding: '0.55rem 0.95rem' }}
                   >
                     {project.url.includes('/realisations/') ? work.openCase : work.openSite} <ArrowUpRight size={14} aria-hidden />
                   </a>
@@ -226,7 +239,15 @@ function CvWorkDialog({
           </button>
         </div>
 
-        <div style={{ padding: '1.4rem 1.5rem 1.6rem' }}>
+        <div style={{ padding: '1.1rem 1.5rem 1.6rem' }}>
+          <button
+            type="button"
+            onClick={onClose}
+            className="inline-flex items-center gap-1.5 rounded-md font-bold"
+            style={{ fontSize: '0.82rem', color: 'var(--ink)', backgroundColor: 'var(--surface-3)', border: '1px solid var(--line)', padding: '0.45rem 0.85rem', cursor: 'pointer', marginBottom: '1.1rem' }}
+          >
+            <ArrowLeft size={15} aria-hidden /> {work.backLabel}
+          </button>
           <p style={{ fontSize: '0.66rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--ink-3)' }}>
             {project.context}
           </p>
@@ -255,15 +276,25 @@ function CvWorkDialog({
             {project.stack.join(' · ')}
           </p>
 
-          <a
-            href={project.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 rounded font-bold"
-            style={{ backgroundColor: 'var(--brand)', color: 'var(--on-brand)', padding: '0.75rem 1.35rem', fontSize: '0.88rem' }}
-          >
-            {project.url.includes('/realisations/') ? work.openCase : work.openSite} <ArrowUpRight size={15} aria-hidden />
-          </a>
+          <div className="flex flex-wrap gap-2.5">
+            <a
+              href={project.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 rounded-md font-bold"
+              style={{ backgroundColor: 'var(--brand)', color: 'var(--on-brand)', padding: '0.75rem 1.35rem', fontSize: '0.88rem' }}
+            >
+              {project.url.includes('/realisations/') ? work.openCase : work.openSite} <ArrowUpRight size={15} aria-hidden />
+            </a>
+            <button
+              type="button"
+              onClick={onClose}
+              className="inline-flex items-center gap-2 rounded-md font-bold"
+              style={{ color: 'var(--ink)', border: '1px solid var(--line-strong)', padding: '0.75rem 1.35rem', fontSize: '0.88rem', cursor: 'pointer', backgroundColor: 'transparent' }}
+            >
+              <ArrowLeft size={15} aria-hidden /> {work.backLabel}
+            </button>
+          </div>
         </div>
       </div>
     </div>

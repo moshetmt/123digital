@@ -100,6 +100,7 @@ export interface CvContent {
     openSite: string
     openCase: string
     closeLabel: string
+    backLabel: string
     detailIntro: string
     stackLabel: string
     emptyLabel: string
@@ -181,6 +182,7 @@ const fr: CvContent = {
     openSite: 'Ouvrir le site',
     openCase: 'Voir l’étude de cas',
     closeLabel: 'Fermer',
+    backLabel: 'Retour',
     detailIntro: 'Ce que j’ai fait',
     stackLabel: 'Outils',
     emptyLabel: 'Aucun projet sur ce filtre.',
@@ -474,6 +476,7 @@ const en: CvContent = {
     openSite: 'Open the site',
     openCase: 'See the case study',
     closeLabel: 'Close',
+    backLabel: 'Back',
     detailIntro: 'What I did',
     stackLabel: 'Stack',
     emptyLabel: 'No project under this filter.',

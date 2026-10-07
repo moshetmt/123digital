@@ -98,6 +98,7 @@ export interface CvContent {
     filterAll: string
     filters: { key: string; label: string }[]
     openSite: string
+    openCase: string
     closeLabel: string
     detailIntro: string
     stackLabel: string
@@ -178,6 +179,7 @@ const fr: CvContent = {
       { key: 'social', label: 'Réseaux sociaux' },
     ],
     openSite: 'Ouvrir le site',
+    openCase: 'Voir l’étude de cas',
     closeLabel: 'Fermer',
     detailIntro: 'Ce que j’ai fait',
     stackLabel: 'Outils',
@@ -470,6 +472,7 @@ const en: CvContent = {
       { key: 'social', label: 'Social media' },
     ],
     openSite: 'Open the site',
+    openCase: 'See the case study',
     closeLabel: 'Close',
     detailIntro: 'What I did',
     stackLabel: 'Stack',

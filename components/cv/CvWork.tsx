@@ -163,7 +163,7 @@ export function CvWork({ work }: { work: CvContent['work'] }) {
                     className="inline-flex items-center gap-1"
                     style={{ fontSize: '0.82rem', fontWeight: 700, color: 'var(--brand-strong)' }}
                   >
-                    {work.openSite} <ArrowUpRight size={14} aria-hidden />
+                    {project.url.includes('/realisations/') ? work.openCase : work.openSite} <ArrowUpRight size={14} aria-hidden />
                   </a>
                 </div>
               </article>
@@ -262,7 +262,7 @@ function CvWorkDialog({
             className="inline-flex items-center gap-2 rounded font-bold"
             style={{ backgroundColor: 'var(--brand)', color: 'var(--on-brand)', padding: '0.75rem 1.35rem', fontSize: '0.88rem' }}
           >
-            {work.openSite} <ArrowUpRight size={15} aria-hidden />
+            {project.url.includes('/realisations/') ? work.openCase : work.openSite} <ArrowUpRight size={15} aria-hidden />
           </a>
         </div>
       </div>

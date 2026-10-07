@@ -199,6 +199,29 @@ export default async function EtudeDeCasPage({ params }: Props) {
           </div>
         </section>
 
+        {etude.iterations && etude.iterations.length > 0 && (
+          <section className="mx-auto max-w-5xl" style={sectionStyle}>
+            <h2 className="font-sans font-extrabold mb-2" style={h2Style}>Ce qu&apos;on a jeté en route</h2>
+            <p style={{ ...proseStyle, marginBottom: '1.25rem' }}>Les versions qui n&apos;ont pas survécu, et pourquoi. C&apos;est là que le travail se voit.</p>
+            {/* Frise verticale : trait vert à gauche, une pastille par itération. */}
+            <ol className="flex flex-col gap-5" style={{ listStyle: 'none', padding: 0, borderLeft: '3px solid var(--line-strong, var(--line))', marginLeft: 10 }}>
+              {etude.iterations.map((it, i) => (
+                <li key={it.titre} className="relative" style={{ paddingLeft: '1.5rem' }}>
+                  <span
+                    aria-hidden
+                    className="absolute rounded-full"
+                    style={{ left: -10, top: 4, width: 17, height: 17, backgroundColor: 'var(--brand-strong)', border: '3px solid var(--surface)' }}
+                  />
+                  <h3 className="font-sans font-extrabold" style={{ fontSize: '1.02rem', color: 'var(--ink)', marginBottom: '0.3rem' }}>
+                    <span style={{ color: 'var(--brand-strong)' }}>v{i + 1}</span> {it.titre}
+                  </h3>
+                  <p style={{ color: 'var(--ink-2)', fontSize: '0.92rem', lineHeight: 1.6, maxWidth: '68ch' }}>{it.texte}</p>
+                </li>
+              ))}
+            </ol>
+          </section>
+        )}
+
         <Recit titre="Ce que ça change" paragraphes={etude.resultat} scene={`/images/illustrations/etudes/${etude.slug}-resultat.webp`} />
 
         {etude.client.url && (

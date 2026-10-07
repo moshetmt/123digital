@@ -153,40 +153,6 @@ export default async function SecteurPage({ params }: PageProps) {
         </div>
       </section>
 
-      {/* Résultats */}
-      <section
-        className="bg-background"
-        style={{ padding: 'clamp(2.25rem, 6vw, 4.5rem) 1.5rem', borderTop: '1px solid var(--line)' }}
-      >
-        <div className="mx-auto max-w-5xl">
-          <div
-            style={{
-              fontSize: '0.65rem',
-              letterSpacing: '0.14em',
-              textTransform: 'uppercase',
-              color: 'var(--ink-2)',
-              fontWeight: 700,
-              marginBottom: '1.5rem',
-            }}
-          >
-            Résultats concrets
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-2.5 sm:gap-4">
-            {secteur.resultats.map((resultat, i) => (
-              <div
-                key={i}
-                className="rounded"
-                style={{ backgroundColor: 'var(--surface-2)', border: '1px solid var(--line)', padding: 'clamp(0.9rem, 3vw, 1.4rem)' }}
-              >
-                <p style={{ fontSize: '0.9rem', color: 'var(--ink)', lineHeight: 1.6 }}>
-                  {resultat}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* FAQ */}
       <section
         className="bg-background"

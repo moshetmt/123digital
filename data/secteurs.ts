@@ -6,7 +6,6 @@ export interface SecteurData {
   description: string
   problemes: string[]
   solutions: string[]
-  resultats: string[]
   keywords: string[]
   faqs: Array<{ question: string; reponse: string }>
 }
@@ -29,11 +28,6 @@ export const secteurs: SecteurData[] = [
       'Google Business Profile optimisé avec photos professionnelles',
       'SEO local pour apparaître en tête sur "restaurant [ville]"',
       'Campagnes Meta Ads ciblant les habitants du quartier',
-    ],
-    resultats: [
-      '+40% de réservations directes en 3 mois',
-      'Note Google passée de 3,8 à 4,6 étoiles',
-      'Taux de remplissage le jeudi soir multiplié par 2',
     ],
     keywords: ['site web restaurant', 'marketing restaurant', 'SEO restaurant', 'réservation en ligne restaurant'],
     faqs: [
@@ -77,11 +71,6 @@ export const secteurs: SecteurData[] = [
       'SEO local "médecin [spécialité] [ville]"',
       'Intégration Doctolib ou Calendly pour la gestion des créneaux',
     ],
-    resultats: [
-      '30% d\'appels en moins grâce aux réservations en ligne',
-      'Agenda rempli 3 semaines à l\'avance',
-      'Nouveau cabinet de 0 à 40 patients/semaine en 4 mois',
-    ],
     keywords: ['site web cabinet médical', 'SEO médecin', 'rendez-vous en ligne médecin', 'marketing cabinet médical'],
     faqs: [
       {
@@ -123,11 +112,6 @@ export const secteurs: SecteurData[] = [
       'SEO local "plombier/électricien/maçon [ville]"',
       'Google Ads pour les urgences (dépannage)',
       'Fiche Google avec photos de chantiers et avis clients',
-    ],
-    resultats: [
-      'Plombier à Lyon : 25 demandes de devis/mois sans plateforme',
-      'Électricien à Grenoble : 0 à 15 chantiers/mois en 5 mois',
-      'Maçon à Annecy : carnet de commandes plein 4 mois à l\'avance',
     ],
     keywords: ['site web artisan', 'SEO artisan BTP', 'leads chantier', 'marketing plombier électricien maçon'],
     faqs: [
@@ -171,11 +155,6 @@ export const secteurs: SecteurData[] = [
       'SEO local et campagnes Google Shopping',
       'Programme de fidélité digital et email marketing',
     ],
-    resultats: [
-      'Librairie à Annecy : 35% de son CA en click & collect en 6 mois',
-      'Boutique mode à Lyon : 500 nouveaux abonnés Instagram en 3 mois',
-      'Fleuriste à Grenoble : commandes en ligne représentent 20% du CA',
-    ],
     keywords: ['site web commerce', 'e-commerce petite boutique', 'SEO commerce local', 'marketing boutique'],
     faqs: [
       {
@@ -217,11 +196,6 @@ export const secteurs: SecteurData[] = [
       'SEO sur les mots-clés spécialisés "avocat [domaine] [ville]"',
       'Contenu d\'expertise (articles juridiques vulgarisés) pour le SEO',
       'Formulaire de premier contact qualifiant et confidentiel',
-    ],
-    resultats: [
-      'Cabinet droit du travail Lyon : 1ère page Google pour 8 mots-clés cibles',
-      'Notaire Grenoble : +60% de demandes de rdv qualifiées en 6 mois',
-      'Avocat divorce Clermont : 3 clients/mois en plus via le site',
     ],
     keywords: ['site web avocat', 'SEO cabinet juridique', 'marketing avocat', 'référencement notaire'],
     faqs: [
@@ -265,11 +239,6 @@ export const secteurs: SecteurData[] = [
       'Outil d\'estimation en ligne pour capter des vendeurs',
       'Campagnes Google Ads sur les recherches d\'acheteurs qualifiés',
     ],
-    resultats: [
-      'Agence Lyon 6e : 3 mandats exclusifs/mois via l\'outil d\'estimation en ligne',
-      'Agence Annecy : 1ère page Google sur 12 secteurs de la ville',
-      'Négociateur indépendant Grenoble : portefeuille multiplié par 2 en 8 mois',
-    ],
     keywords: ['site web agence immobilière', 'SEO immobilier', 'marketing agence immo', 'leads immobilier'],
     faqs: [
       {
@@ -311,11 +280,6 @@ export const secteurs: SecteurData[] = [
       'SEO local "garagiste [ville]", "révision voiture [ville]"',
       'Google Ads pour les recherches urgentes',
       'Emails automatiques de rappel d\'entretien',
-    ],
-    resultats: [
-      'Garage Lyon 8e : planning rempli 2 semaines à l\'avance toute l\'année',
-      'Carrossier Saint-Étienne : 40 nouveaux clients/mois via Google',
-      'Garagiste Grenoble : taux de retour client passé de 40% à 75%',
     ],
     keywords: ['site web garage auto', 'SEO garagiste', 'marketing garage automobile', 'rendez-vous garage en ligne'],
     faqs: [
@@ -359,11 +323,6 @@ export const secteurs: SecteurData[] = [
       'Instagram professionnel avec portfolio de réalisations',
       'SMS de rappel 24h avant chaque rendez-vous',
     ],
-    resultats: [
-      'Salon coiffure Lyon : no-shows réduits de 80% grâce aux rappels SMS',
-      'Institut beauté Annecy : agenda plein 3 semaines à l\'avance',
-      'Esthéticienne indépendante Grenoble : +120 abonnés Instagram/mois',
-    ],
     keywords: ['site web salon coiffure', 'SEO esthéticienne', 'réservation en ligne salon beauté', 'Instagram salon beauté'],
     faqs: [
       {
@@ -406,11 +365,6 @@ export const secteurs: SecteurData[] = [
       'Contenu de confiance : guides fiscaux, conseils entrepreneurs',
       'Formulaire de premier contact qualifiant',
     ],
-    resultats: [
-      'Cabinet comptable Lyon : 5 nouveaux dossiers TPE/mois via le site',
-      'Expert-comptable Grenoble : 1ère page Google en 5 mois',
-      'Cabinet Annecy : 30% du portefeuille clients acquis en ligne en 2 ans',
-    ],
     keywords: ['site web expert-comptable', 'SEO cabinet comptable', 'marketing expert-comptable', 'référencement comptable'],
     faqs: [
       {
@@ -452,11 +406,6 @@ export const secteurs: SecteurData[] = [
       'SEO sur "transport [type] [région]" et mots-clés B2B',
       'Google Ads ciblant les directeurs logistiques et acheteurs',
       'LinkedIn pour la prospection commerciale',
-    ],
-    resultats: [
-      'Transporteur régional ARA : 8 nouveaux clients professionnels via le site en 6 mois',
-      'Déménageur Lyon : 1ère page Google pour 6 mots-clés locaux',
-      'Coursier express Grenoble : formulaire de devis génère 15 demandes/mois',
     ],
     keywords: ['site web transport', 'SEO entreprise transport', 'marketing transport logistique', 'devis transport en ligne'],
     faqs: [

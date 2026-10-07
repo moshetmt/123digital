@@ -7,6 +7,7 @@ import { services } from '@/data/services'
 import { secteurs } from '@/data/secteurs'
 import { articles } from '@/data/blog'
 import { etudesDeCas } from '@/data/etudes-de-cas'
+import { problemes } from '@/data/problemes'
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date()
@@ -39,6 +40,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: a.dateModification ? new Date(a.dateModification) : new Date(a.datePublication),
       changeFrequency: 'monthly' as const,
       priority: 0.65,
+    })),
+    // Problèmes hub + pages (intention chaude, chantier du 20/08)
+    { url: `${BASE_URL}/problemes`, lastModified: now, changeFrequency: 'weekly', priority: 0.9 },
+    ...problemes.map((p) => ({
+      url: `${BASE_URL}/problemes/${p.slug}`,
+      lastModified: new Date(p.dateModification ?? p.datePublication),
+      changeFrequency: 'monthly' as const,
+      priority: 0.85,
     })),
     // Secteurs hub + pages
     { url: `${BASE_URL}/secteurs`, lastModified: now, changeFrequency: 'monthly', priority: 0.8 },

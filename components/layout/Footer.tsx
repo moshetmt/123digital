@@ -62,6 +62,7 @@ export function Footer({ lang = 'fr' }: { lang?: Locale }) {
   ] : [
     { label: 'À propos',          href: '/a-propos' },
     { label: 'Blog',              href: '/blog' },
+    { label: 'Problèmes fréquents', href: '/problemes' },
     { label: 'Audit gratuit',     href: '/audit-gratuit' },
     { label: 'Mentions légales',  href: '/mentions-legales' },
   ]

@@ -164,8 +164,10 @@ export default async function EtudeDeCasPage({ params }: Props) {
                 className="flex flex-col sm:flex-row gap-4 rounded"
                 style={{ border: '1px solid var(--line)', backgroundColor: 'var(--surface-2)', padding: '1.1rem' }}
               >
+                {/* Une illustration par etape (scripts/illustrations_etapes.py d'ads-os),
+                    les six pictos de service se repetaient sept fois par page. */}
                 <Image
-                  src={`/images/illustrations/service-${e.service}.webp`}
+                  src={`/images/illustrations/etapes/${etude.slug}-${i + 1}.webp`}
                   alt=""
                   width={96}
                   height={96}

@@ -70,6 +70,7 @@ export const dict = {
       label:   'Cas clients',
       heading: 'Des résultats réels, vérifiables en ligne',
       cta:     'Tous les projets',
+      steps:   'Voir toutes les étapes',
     },
     // ── Process ──
     process: {
@@ -229,6 +230,7 @@ export const dict = {
       label:   'Client cases',
       heading: 'Real results, verifiable online',
       cta:     'All projects',
+      steps:   'See every step',
     },
     // ── Process ──
     process: {

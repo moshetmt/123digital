@@ -4,7 +4,7 @@ import { ArrowRight, ArrowUpRight } from 'lucide-react'
 import { projects, type PortfolioProject } from '@/data/portfolio'
 import { t, type Locale } from '@/lib/i18n'
 
-function ProjectCard({ project }: { project: PortfolioProject }) {
+function ProjectCard({ project, stepsLabel }: { project: PortfolioProject; stepsLabel: string }) {
   const raw = project.url ? project.url.replace(/^https?:\/\/(www\.)?/, '').replace(/\/$/, '') : null
   // Un compte Instagram s'affiche en @pseudo, pas en URL complète.
   const domain = raw?.startsWith('instagram.com/') ? `@${raw.split('/')[1]}` : raw
@@ -48,16 +48,18 @@ function ProjectCard({ project }: { project: PortfolioProject }) {
       <p style={{ fontSize: '0.82rem', color: 'var(--ink-2)', lineHeight: 1.45 }}>
         {project.description}
       </p>
-      {domain && project.url && (
-        <a
-          href={project.url}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="btn-contour mt-2"
-        >
-          {domain} <ArrowUpRight size={14} aria-hidden />
-        </a>
-      )}
+      {/* Le déroulé complet (étapes, choix, versions jetées) vit sur l'étude de cas :
+          un bouton plein y mène, le site du client reste en contour. */}
+      <div className="flex flex-wrap gap-2 mt-auto" style={{ paddingTop: '0.6rem' }}>
+        <Link href={`/realisations/${project.id}`} className="btn-plein">
+          {stepsLabel} <ArrowRight size={14} aria-hidden />
+        </Link>
+        {domain && project.url && (
+          <a href={project.url} target="_blank" rel="noopener noreferrer" className="btn-contour">
+            {domain} <ArrowUpRight size={14} aria-hidden />
+          </a>
+        )}
+      </div>
     </article>
   )
 }
@@ -111,7 +113,7 @@ export function Portfolio({ lang = 'fr' }: { lang?: Locale }) {
             À partir de sm : grille. */}
         <div className="flex gap-3 overflow-x-auto snap-x snap-mandatory -mx-6 px-6 pb-2 sm:grid sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-5 sm:gap-4 sm:overflow-visible sm:mx-0 sm:px-0 sm:pb-0">
           {projects.map((project) => (
-            <ProjectCard key={project.id} project={project} />
+            <ProjectCard key={project.id} project={project} stepsLabel={d.steps} />
           ))}
         </div>
       </div>

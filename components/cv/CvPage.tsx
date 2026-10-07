@@ -152,7 +152,10 @@ export function CvPage({ locale }: { locale: CvLocale }) {
             </div>
           </div>
 
-          <p className="max-w-3xl" style={{ color: 'var(--ink-2)', lineHeight: 1.7, margin: '1.75rem 0 1.25rem' }}>
+          {/* Scenes aplat (scripts/illustrations_cv.py d'ads-os) : la page etait du texte sur du blanc. */}
+          <div className="grid grid-cols-1 md:grid-cols-[1fr_19rem] gap-8 items-center" style={{ marginTop: '1.75rem' }}>
+          <div>
+          <p className="max-w-3xl" style={{ color: 'var(--ink-2)', lineHeight: 1.7, margin: '0 0 1.25rem' }}>
             {c.intro.body}
           </p>
 
@@ -210,6 +213,11 @@ export function CvPage({ locale }: { locale: CvLocale }) {
               <Download size={16} aria-hidden /> {c.contact.pdfCta}
             </a>
           </div>
+          </div>
+          <div className="rounded overflow-hidden" style={{ border: '1px solid var(--line)' }}>
+            <Image src="/images/illustrations/cv/hero.webp" alt="" width={960} height={720} style={{ width: '100%', height: 'auto' }} priority />
+          </div>
+          </div>
         </div>
       </section>
 
@@ -219,8 +227,9 @@ export function CvPage({ locale }: { locale: CvLocale }) {
           className="mx-auto max-w-4xl grid grid-cols-2 md:grid-cols-4 rounded overflow-hidden"
           style={{ backgroundColor: 'var(--surface-2)', border: '1px solid var(--line)' }}
         >
-          {c.stats.map((stat) => (
+          {c.stats.map((stat, i) => (
             <div key={stat.value + stat.label} style={{ padding: '1.25rem 1.1rem', borderTop: '1px solid var(--line)' }}>
+              <Image src={`/images/illustrations/cv/stat-${i + 1}.webp`} alt="" width={52} height={52} className="rounded" style={{ width: 52, height: 52, marginBottom: '0.6rem' }} />
               <p
                 className="font-sans font-extrabold"
                 style={{ fontSize: 'clamp(1.5rem, 3.2vw, 2rem)', color: 'var(--brand-strong)', lineHeight: 1.05, letterSpacing: '-0.02em' }}
@@ -269,6 +278,7 @@ export function CvPage({ locale }: { locale: CvLocale }) {
                 }}
               >
                 <div>
+                  <Image src={`/images/illustrations/cv/exp-${i + 1}.webp`} alt="" width={120} height={120} className="rounded" style={{ width: 120, height: 120, marginBottom: '0.8rem', border: '1px solid var(--line)' }} />
                   <p style={{ fontSize: '0.78rem', fontWeight: 700, color: 'var(--brand-strong)', letterSpacing: '0.01em' }}>{item.period}</p>
                   <p style={{ fontSize: '0.9rem', fontWeight: 700, color: 'var(--ink)', marginTop: '0.2rem' }}>{item.org}</p>
                   {item.note ? (
@@ -308,6 +318,7 @@ export function CvPage({ locale }: { locale: CvLocale }) {
       <section id="competences" className="bg-background" style={{ padding: SECTION, borderTop: '1px solid var(--line)' }}>
         <div className="mx-auto max-w-4xl grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10">
           <div>
+            <Image src="/images/illustrations/cv/skills.webp" alt="" width={84} height={84} className="rounded" style={{ width: 84, height: 84, marginBottom: '1rem', border: '1px solid var(--line)' }} />
             <h2
               className="font-sans font-extrabold mb-5"
               style={{ fontSize: 'clamp(1.35rem, 2.8vw, 1.75rem)', color: 'var(--ink)', lineHeight: 1.15, letterSpacing: '-0.015em' }}
@@ -331,6 +342,7 @@ export function CvPage({ locale }: { locale: CvLocale }) {
           </div>
 
           <div>
+            <Image src="/images/illustrations/cv/education.webp" alt="" width={84} height={84} className="rounded" style={{ width: 84, height: 84, marginBottom: '1rem', border: '1px solid var(--line)' }} />
             <h2
               className="font-sans font-extrabold mb-5"
               style={{ fontSize: 'clamp(1.35rem, 2.8vw, 1.75rem)', color: 'var(--ink)', lineHeight: 1.15, letterSpacing: '-0.015em' }}
@@ -377,7 +389,8 @@ export function CvPage({ locale }: { locale: CvLocale }) {
 
       {/* Contact recruteur */}
       <section id="contact" style={{ backgroundColor: 'var(--brand)', padding: SECTION }}>
-        <div className="mx-auto max-w-2xl">
+        <div className="mx-auto max-w-4xl grid grid-cols-1 md:grid-cols-[1fr_18rem] gap-8 items-center">
+        <div>
           <h2
             className="font-sans font-extrabold"
             style={{ fontSize: 'clamp(1.6rem, 3.4vw, 2.4rem)', color: 'var(--on-brand)', lineHeight: 1.12, letterSpacing: '-0.02em' }}
@@ -424,6 +437,10 @@ export function CvPage({ locale }: { locale: CvLocale }) {
               {c.nav.backToSite} <ArrowUpRight size={14} aria-hidden />
             </Link>
           </p>
+        </div>
+        <div className="rounded overflow-hidden">
+          <Image src="/images/illustrations/cv/contact.webp" alt="" width={960} height={720} style={{ width: '100%', height: 'auto' }} />
+        </div>
         </div>
       </section>
     </>

@@ -206,19 +206,47 @@ export default async function EtudeDeCasPage({ params }: Props) {
             {/* Frise verticale : trait vert à gauche, une pastille par itération. */}
             <ol className="flex flex-col gap-5" style={{ listStyle: 'none', padding: 0, borderLeft: '3px solid var(--line-strong, var(--line))', marginLeft: 10 }}>
               {etude.iterations.map((it, i) => (
-                <li key={it.titre} className="relative" style={{ paddingLeft: '1.5rem' }}>
+                <li key={it.titre} className="relative flex flex-col sm:flex-row gap-4" style={{ paddingLeft: '1.5rem' }}>
                   <span
                     aria-hidden
                     className="absolute rounded-full"
                     style={{ left: -10, top: 4, width: 17, height: 17, backgroundColor: 'var(--brand-strong)', border: '3px solid var(--surface)' }}
                   />
-                  <h3 className="font-sans font-extrabold" style={{ fontSize: '1.02rem', color: 'var(--ink)', marginBottom: '0.3rem' }}>
-                    <span style={{ color: 'var(--brand-strong)' }}>v{i + 1}</span> {it.titre}
-                  </h3>
-                  <p style={{ color: 'var(--ink-2)', fontSize: '0.92rem', lineHeight: 1.6, maxWidth: '68ch' }}>{it.texte}</p>
+                  {/* La version jetée, en vignette : c'est elle qu'on montre, pas seulement son récit. */}
+                  {it.image && (
+                    <Image
+                      src={it.image}
+                      alt={`Version abandonnée : ${it.titre}`}
+                      width={800}
+                      height={500}
+                      sizes="(max-width: 640px) 100vw, 260px"
+                      className="rounded shrink-0 w-full sm:w-[260px]"
+                      style={{ height: 'auto', border: '1px solid var(--line)', backgroundColor: 'var(--surface-2)' }}
+                    />
+                  )}
+                  <div>
+                    <h3 className="font-sans font-extrabold" style={{ fontSize: '1.02rem', color: 'var(--ink)', marginBottom: '0.3rem' }}>
+                      <span style={{ color: 'var(--brand-strong)' }}>v{i + 1}</span> {it.titre}
+                    </h3>
+                    <p style={{ color: 'var(--ink-2)', fontSize: '0.92rem', lineHeight: 1.6, maxWidth: '68ch' }}>{it.texte}</p>
+                  </div>
                 </li>
               ))}
             </ol>
+            {etude.mosaique && (
+              <figure className="mt-8">
+                <Image
+                  src={etude.mosaique.src}
+                  alt={etude.mosaique.legende}
+                  width={1600}
+                  height={1000}
+                  sizes="(max-width: 1024px) 100vw, 1024px"
+                  className="rounded w-full"
+                  style={{ height: 'auto', border: '1px solid var(--line)' }}
+                />
+                <figcaption style={{ color: 'var(--ink-3)', fontSize: '0.82rem', marginTop: '0.5rem' }}>{etude.mosaique.legende}</figcaption>
+              </figure>
+            )}
           </section>
         )}
 

@@ -36,21 +36,8 @@ export const projects: PortfolioProject[] = [
     url: 'https://clim69.fr',
     screenshot: '/images/realisations/clim69-maquette.webp',
   },
-  {
-    id: 'rhone-deconstruction',
-    title: 'Rhône Déconstruction',
-    category: 'Création web + SEO local',
-    sector: 'BTP & Démolition',
-    description:
-      'Création du site vitrine et stratégie SEO local pour une entreprise de démolition et déconstruction basée à Lyon, visant à capter des chantiers en Auvergne-Rhône-Alpes.',
-    // Décision opérateur du 20/08 : aucun chiffre client nommé sur le site.
-    // Le résultat se décrit sans pourcentage, jamais en inventant un montant.
-    results: 'Site créé, structure SEO locale déployée pour capter les recherches à Lyon.',
-    tags: ['SEO local', 'Création web', 'BTP', 'Lyon'],
-    featured: true,
-    url: 'https://rhone-deconstruction.fr',
-    screenshot: '/images/realisations/rhone-deconstruction-maquette.webp',
-  },
+  // Rhône Déconstruction retiré le 06/10 (décision opérateur) : le site du client
+  // est en erreur 500 chez son hébergeur. Entrée et étude de cas dans l'historique git.
   {
     id: 'aplus-audition',
     title: 'A+ Audition',

@@ -50,6 +50,30 @@ const h2Style = {
 const sectionStyle = { padding: 'clamp(1.75rem, 5vw, 3rem) 1rem 0' } as const
 const proseStyle = { color: 'var(--ink-2)', lineHeight: 1.65, maxWidth: '68ch' } as const
 
+function Recit({ titre, paragraphes, scene, inverse = false }: { titre: string; paragraphes: string[]; scene: string; inverse?: boolean }) {
+  return (
+    <section className="mx-auto max-w-5xl" style={sectionStyle}>
+      <div className={`grid grid-cols-1 lg:grid-cols-[1.15fr_0.85fr] gap-6 lg:gap-10 items-center ${inverse ? 'lg:[&>*:first-child]:order-2' : ''}`}>
+        <div>
+          <h2 className="font-sans font-extrabold mb-4" style={h2Style}>{titre}</h2>
+          <div className="flex flex-col gap-3" style={proseStyle}>
+            {paragraphes.map((p) => <p key={p}>{p}</p>)}
+          </div>
+        </div>
+        <Image
+          src={scene}
+          alt=""
+          width={1200}
+          height={900}
+          sizes="(max-width: 1024px) 100vw, 440px"
+          className="rounded w-full"
+          style={{ height: 'auto', border: '1px solid var(--line)' }}
+        />
+      </div>
+    </section>
+  )
+}
+
 export default async function EtudeDeCasPage({ params }: Props) {
   const { slug } = await params
   const index = etudesDeCas.findIndex((e) => e.slug === slug)
@@ -125,19 +149,11 @@ export default async function EtudeDeCasPage({ params }: Props) {
           />
         </div>
 
-        <section className="mx-auto max-w-5xl" style={sectionStyle}>
-          <h2 className="font-sans font-extrabold mb-4" style={h2Style}>La commande</h2>
-          <div className="flex flex-col gap-3" style={proseStyle}>
-            {etude.commande.map((p) => <p key={p}>{p}</p>)}
-          </div>
-        </section>
-
-        <section className="mx-auto max-w-5xl" style={sectionStyle}>
-          <h2 className="font-sans font-extrabold mb-4" style={h2Style}>Les coulisses</h2>
-          <div className="flex flex-col gap-3" style={proseStyle}>
-            {etude.coulisses.map((p) => <p key={p}>{p}</p>)}
-          </div>
-        </section>
+        {/* Récit en deux colonnes : texte + scène générée pour l'étude
+            (public/images/illustrations/etudes/<slug>-<section>.webp), la scène
+            change de côté à chaque section. */}
+        <Recit titre="La commande" paragraphes={etude.commande} scene={`/images/illustrations/etudes/${etude.slug}-commande.webp`} />
+        <Recit titre="Les coulisses" paragraphes={etude.coulisses} scene={`/images/illustrations/etudes/${etude.slug}-coulisses.webp`} inverse />
 
         <section className="mx-auto max-w-5xl" style={sectionStyle}>
           <h2 className="font-sans font-extrabold mb-5" style={h2Style}>Comment on a procédé</h2>
@@ -183,12 +199,7 @@ export default async function EtudeDeCasPage({ params }: Props) {
           </div>
         </section>
 
-        <section className="mx-auto max-w-5xl" style={sectionStyle}>
-          <h2 className="font-sans font-extrabold mb-4" style={h2Style}>Ce que ça change</h2>
-          <div className="flex flex-col gap-3" style={proseStyle}>
-            {etude.resultat.map((p) => <p key={p}>{p}</p>)}
-          </div>
-        </section>
+        <Recit titre="Ce que ça change" paragraphes={etude.resultat} scene={`/images/illustrations/etudes/${etude.slug}-resultat.webp`} />
 
         {etude.client.url && (
           <section className="mx-auto max-w-5xl" style={sectionStyle}>

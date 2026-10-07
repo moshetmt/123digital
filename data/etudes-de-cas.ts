@@ -1,5 +1,5 @@
 export interface EtudeDeCas {
-  slug: 'clim69' | 'rhone-deconstruction' | 'aplus-audition' | 'habad-etudiants-lyon'
+  slug: 'clim69' | 'aplus-audition' | 'habad-etudiants-lyon'
   titre: string
   accroche: string
   metaTitle: string
@@ -116,102 +116,6 @@ export const etudesDeCas: EtudeDeCas[] = [
       },
     ],
     maquette: '/images/realisations/clim69-maquette.webp',
-  },
-  {
-    slug: 'rhone-deconstruction',
-    titre: 'Site démolition Lyon : un site vitrine pour Rhône Déconstruction',
-    accroche:
-      'Comment on a donné un visage et une structure de référencement local à une entreprise de démolition, de curage et de déconstruction de la région lyonnaise.',
-    metaTitle: 'Site démolition Lyon : Rhône Déconstruction | 123 Digital',
-    metaDescription:
-      'Site vitrine et SEO local pour une entreprise de démolition et de déconstruction à Lyon. Découvrez la commande, les choix et la méthode, étape par étape.',
-    client: {
-      nom: 'Rhône Déconstruction',
-      metier: 'Démolition, curage et déconstruction',
-      ville: 'Lyon',
-      url: undefined,
-    },
-    services: ['creation-site-web', 'seo'],
-    commande: [
-      'Rhône Déconstruction démolit, cure et déconstruit des bâtiments à Lyon et dans la région, pour des professionnels comme pour des particuliers. L’entreprise avait du savoir-faire, du matériel et des chantiers, mais presque aucune existence sur Internet. Quand un promoteur ou un propriétaire cherchait une entreprise de démolition, elle n’apparaissait nulle part.',
-      'La demande était claire : un site vitrine qui rassure, qui explique les métiers sans jargon de chantier et qui se fasse trouver dans la région. « On fait un travail sérieux et dangereux, disait en substance le dirigeant, et sur Internet, on doit donner la même impression. »',
-    ],
-    coulisses: [
-      'Un chantier de démolition ne ressemble pas à ce qu’on imagine. Avant la première pelle, il y a des diagnostics, des autorisations, la déconnexion des réseaux, le tri des matériaux. Détruire un bâtiment demande de la méthode. Le curage, qui consiste à vider un immeuble de ses cloisons, de ses faux plafonds et de ses installations avant de le rénover, ressemble à un déménagement à l’échelle d’un étage.',
-      'On a aussi appris que les clients se divisent en deux familles. Les professionnels, promoteurs, syndics, entreprises du bâtiment, veulent savoir si l’entreprise est organisée et fiable. Les particuliers, eux, ont peur : peur de la poussière, du bruit, des voisins, du reste de la maison. Un site qui parle aux deux doit répondre à des inquiétudes très différentes.',
-      'Enfin, le mot « déconstruction » parle peu au grand public, alors que « démolition » est celui qu’on tape sur Google. Le site devait employer les deux, expliquer la différence en une phrase et ne perdre personne en route.',
-    ],
-    etapes: [
-      {
-        titre: 'Visiter le métier et lister les chantiers types',
-        texte:
-          'On a commencé par comprendre les différents travaux : démolition complète, démolition partielle, curage, déconstruction avec tri des matériaux. Chaque type de chantier devient une page, avec ses étapes, ses contraintes et le genre de client qui le demande.',
-        service: 'seo',
-      },
-      {
-        titre: 'Choisir un outil que l’entreprise peut tenir seule',
-        texte:
-          'Le site est fait sous WordPress, un outil que beaucoup de gens savent manier. L’équipe peut ajouter un chantier ou modifier un texte sans nous appeler. Un site vitrine d’entreprise de démolition doit évoluer avec les chantiers.',
-        service: 'creation-site-web',
-      },
-      {
-        titre: 'Construire la structure du site pour le référencement local',
-        texte:
-          'Le site est organisé pour la recherche « démolition Lyon » et pour les communes de la région Auvergne-Rhône-Alpes. Un site démolition à Lyon qui veut se faire trouver s’organise en couches : les métiers, puis les territoires, puis les réponses aux questions courantes.',
-        service: 'seo',
-      },
-      {
-        titre: 'Écrire pour deux lecteurs en même temps',
-        texte:
-          'Chaque page commence par une réponse simple en deux phrases, lisible par un particulier inquiet. Elle se poursuit par le détail technique qu’un conducteur de travaux attend. On a gardé les mots du chantier mais on les a expliqués à chaque première apparition.',
-        service: 'creation-site-web',
-      },
-      {
-        titre: 'Poser la demande de devis au bon endroit',
-        texte:
-          'Le formulaire est court et se trouve sur chaque page. Il demande le type de chantier, l’adresse et un moyen de rappeler. L’entreprise reçoit des demandes qu’elle peut chiffrer sans pose de dix questions supplémentaires.',
-        service: 'creation-site-web',
-      },
-    ],
-    choix: [
-      {
-        titre: 'Employer « démolition » et « déconstruction » ensemble',
-        texte:
-          'Les clients tapent « démolition ». Les professionnels de la rénovation disent « déconstruction ». Le site emploie les deux mots, définis en une phrase, pour répondre à chacun dans sa langue.',
-      },
-      {
-        titre: 'Parler de méthode avant de parler de machines',
-        texte:
-          'Une photo de pelleteuse impressionne, mais elle ne rassure pas un propriétaire. On a mis en avant le déroulé : diagnostic, autorisations, sécurisation du site, travaux, tri et évacuation. C’est ce qui montre qu’on sait ce qu’on fait.',
-      },
-      {
-        titre: 'Bâtir un site en couches géographiques',
-        texte:
-          'On part de Lyon, puis on ouvre vers les communes et les départements voisins. Ce découpage permet de cibler la région sans écrire des dizaines de pages creuses.',
-      },
-    ],
-    resultat: [
-      'Rhône Déconstruction dispose d’une vitrine à la hauteur de son travail. Un promoteur qui prépare un projet comprend en quelques minutes ce que l’entreprise fait, comment elle s’organise et comment la joindre. Un particulier trouve des réponses à ses inquiétudes avant même de décrocher.',
-      'L’entreprise a aussi une base solide pour le référencement. Sa structure par métiers et par territoires permet d’ajouter des pages au fil des chantiers, sans refaire l’ensemble. Le site se complète au rythme de l’activité.',
-    ],
-    faq: [
-      {
-        question: 'Pourquoi une entreprise de démolition a-t-elle besoin d’un site à Lyon ?',
-        reponse:
-          'Parce que ses clients cherchent sur Google avant d’appeler. Un promoteur ou un propriétaire qui tape « démolition Lyon » compare trois ou quatre entreprises en quelques minutes. Celle qui n’a pas de site, ou un site flou, n’entre pas dans la comparaison.',
-      },
-      {
-        question: 'Quelle différence entre démolition, curage et déconstruction ?',
-        reponse:
-          'La démolition abat tout ou partie d’un bâtiment. Le curage vide l’intérieur : cloisons, plafonds, installations. La déconstruction démonte le bâtiment en triant les matériaux pour les réemployer ou les recycler. Un bon site explique ces trois mots simplement.',
-      },
-      {
-        question: 'Un site WordPress suffit-il pour un site de démolition qui doit se faire référencer ?',
-        reponse:
-          'Oui, si la structure est pensée pour le référencement : pages par métier, pages par territoire, vitesse correcte, balises soignées. WordPress offre aussi l’avantage de pouvoir être modifié par l’entreprise elle-même.',
-      },
-    ],
-    maquette: '/images/realisations/rhone-deconstruction-maquette.webp',
   },
   {
     slug: 'aplus-audition',

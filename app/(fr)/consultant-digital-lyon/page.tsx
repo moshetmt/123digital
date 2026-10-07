@@ -121,8 +121,7 @@ export default function ConsultantDigitalLyonPage() {
 
           <Link
             href="/blog/consultant-digital-ou-agence-lyon"
-            className="inline-flex items-center gap-2 mt-8 text-sm font-medium transition-colors hover:text-[var(--brand)]"
-            style={{ color: 'var(--ink-2)' }}
+            className="btn-contour mt-8"
           >
             Lire le comparatif complet agence vs consultant à Lyon →
           </Link>

@@ -113,14 +113,7 @@ export default function SecteursPage() {
                 </p>
 
                 <div
-                  className="group-hover:text-[var(--brand)] transition-colors"
-                  style={{
-                    fontSize: '0.75rem',
-                    letterSpacing: '0.08em',
-                    color: 'var(--ink-3)',
-                    textTransform: 'uppercase',
-                    fontWeight: 700,
-                  }}
+                  className="btn-contour group-hover:bg-[var(--surface-2)]"
                 >
                   Voir la stratégie →
                 </div>

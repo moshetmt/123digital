@@ -431,8 +431,7 @@ export function CvPage({ locale }: { locale: CvLocale }) {
           <p style={{ marginTop: '1.8rem' }}>
             <Link
               href={c.nav.backHref}
-              className="inline-flex items-center gap-1.5"
-              style={{ color: 'var(--on-brand)', fontSize: '0.82rem', fontWeight: 700 }}
+              className="btn-contour-inverse"
             >
               {c.nav.backToSite} <ArrowUpRight size={14} aria-hidden />
             </Link>

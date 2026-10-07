@@ -53,8 +53,7 @@ function ProjectCard({ project }: { project: PortfolioProject }) {
           href={project.url}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-1 text-sm font-bold mt-1"
-          style={{ color: 'var(--brand-strong)' }}
+          className="btn-contour mt-2"
         >
           {domain} <ArrowUpRight size={14} aria-hidden />
         </a>
@@ -101,8 +100,7 @@ export function Portfolio({ lang = 'fr' }: { lang?: Locale }) {
 
           <Link
             href={lang === 'en' ? '/en/realisations' : '/realisations'}
-            className="inline-flex items-center gap-2 text-sm font-bold shrink-0"
-            style={{ color: 'var(--ink-2)' }}
+            className="btn-plein shrink-0"
           >
             {d.cta}
             <ArrowRight size={14} aria-hidden />

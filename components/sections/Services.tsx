@@ -55,8 +55,8 @@ function ServiceCard({ service, copy, learnMoreLabel, learnMoreSuffix }: { servi
       <Link
         href={service.href}
         aria-label={`${learnMoreLabel} ${learnMoreSuffix} ${service.title}`}
-        className="font-bold w-fit inline-flex items-center gap-1"
-        style={{ color: 'var(--brand-strong)', fontSize: 'clamp(0.78rem, 2.6vw, 0.875rem)', paddingTop: '0.875rem', paddingBottom: '0.875rem' }}
+        className="btn-contour"
+        style={{ marginTop: '0.875rem' }}
       >
         {learnMoreLabel}
         <ArrowRight size={14} aria-hidden />

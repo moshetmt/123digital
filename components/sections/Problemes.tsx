@@ -49,9 +49,9 @@ export function Problemes() {
             </li>
           ))}
         </ul>
-        <p style={{ marginTop: '1rem', fontSize: '0.85rem' }}>
-          <Link href="/problemes" className="font-bold" style={{ color: 'var(--brand-strong)' }}>
-            Tous les problèmes fréquents
+        <p style={{ marginTop: '1.25rem' }}>
+          <Link href="/problemes" className="btn-contour">
+            Tous les problèmes fréquents <ArrowRight size={14} aria-hidden />
           </Link>
         </p>
       </div>

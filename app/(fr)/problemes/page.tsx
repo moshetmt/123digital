@@ -105,7 +105,7 @@ export default function ProblemesPage() {
                         style={{ marginTop: '0.9rem', fontSize: '0.72rem', color: 'var(--ink-3)', fontWeight: 700 }}
                       >
                         <span>{p.tempsLecture} min de lecture</span>
-                        <span className="group-hover:text-[var(--brand)] transition-colors" style={{ color: 'var(--brand-strong)' }}>
+                        <span className="btn-contour group-hover:bg-[var(--surface-2)]">
                           Lire →
                         </span>
                       </div>

@@ -204,7 +204,7 @@ export default async function EtudeDeCasPage({ params }: Props) {
         {etude.iterations && etude.iterations.length > 0 && (
           <section className="mx-auto max-w-5xl" style={sectionStyle}>
             <h2 className="font-sans font-extrabold mb-2" style={h2Style}>Ce qu&apos;on a jeté en route</h2>
-            <p style={{ ...proseStyle, marginBottom: '1.25rem' }}>Les versions qui n&apos;ont pas survécu, et pourquoi. C&apos;est là que le travail se voit.</p>
+            <p style={{ ...proseStyle, marginBottom: '1.25rem' }}>On ne livre pas du premier coup. Ce qu&apos;on a construit, ce qui a cassé, ce qu&apos;on a refait, dans l&apos;ordre.</p>
             {/* Frise verticale : trait vert à gauche, une pastille par itération. */}
             <ol className="flex flex-col gap-5" style={{ listStyle: 'none', padding: 0, borderLeft: '3px solid var(--line-strong, var(--line))', marginLeft: 10 }}>
               {etude.iterations.map((it, i) => (
@@ -268,8 +268,7 @@ export default async function EtudeDeCasPage({ params }: Props) {
                 href={etude.client.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-1 text-sm font-bold"
-                style={{ color: 'var(--brand-strong)' }}
+                className="btn-contour"
               >
                 {etude.client.url.replace(/^https?:\/\/(www\.)?/, '').replace(/\/$/, '')} <ArrowUpRight size={14} aria-hidden />
               </a>

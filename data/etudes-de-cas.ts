@@ -114,46 +114,46 @@ export const etudesDeCas: EtudeDeCas[] = [
     ],
     iterations: [
       {
-        titre: 'Le style néo-brutaliste',
+        titre: 'Première version : codée en trois jours, illisible en plein soleil',
         image: '/images/realisations/iterations/clim69-v1.webp',
         texte:
-          'Bordures noires épaisses, ombres dures décalées, jaune vif. Il avait de la personnalité et le client n’arrivait pas à le lire. Un site pour quelqu’un qui cherche un dépanneur en pleine chaleur doit se lire sans effort : on l’a rangé dans un dossier de sauvegarde, avec fierté.',
+          'On a monté un premier site vite et avec du caractère : bordures épaisses, jaune vif, ombres dures. Mis devant quelqu’un qui cherche un dépanneur à 35 °C sur son téléphone, il ne se lisait pas. Tout à la poubelle, on n’a gardé que le code du formulaire.',
       },
       {
-        titre: 'Le bleu roi et jaune, façon plomberie',
+        titre: 'Deuxième version : propre, en ligne, et déjà à refaire',
         image: '/images/realisations/iterations/clim69-v2.webp',
         texte:
-          'Pilules, cartes douces, ombres légères : lisible, propre, et mis en ligne à la mi-juillet sur Vercel avec le domaine transféré chez OVH. Il a tenu quelques semaines. En relisant l’ensemble, on y a vu un gabarit bien exécuté plus qu’un site de Clim69, et l’envie d’un site qui change ce que le visiteur fait a gagné.',
+          'Site entièrement refait, hébergé sur Vercel, domaine migré chez OVH, en ligne à la mi-juillet. Techniquement irréprochable, il a tenu quelques semaines. En le relisant, c’était un gabarit bien exécuté, pas Clim69. On a décidé de le refaire une troisième fois, pour de bon.',
       },
       {
-        titre: 'Le Relevé et le Thermostat',
+        titre: 'Deux rhabillages refusés en une phrase',
         image: '/images/realisations/iterations/clim69-v3.webp',
         texte:
-          'Deux rhabillages de la même architecture, le second avec une idée de thermostat en vedette. Verdict du client : trop similaires. Il avait raison, on avait changé les couleurs et laissé le parcours intact.',
+          'On a cru s’en sortir en changeant la peau : deux versions, même squelette. Le client les a renvoyées toutes les deux, « trop pareilles ». Il avait raison. On a arrêté de toucher aux couleurs et attaqué ce que le visiteur fait sur la page.',
       },
       {
-        titre: 'Le diagnostic guidé en cinq écrans',
+        titre: 'Un outil de diagnostic codé, testé, puis jeté',
         image: '/images/realisations/iterations/clim69-v4.webp',
         texte:
-          'Le visiteur décrit son besoin, précise, indique son lieu, reçoit un verdict, laisse un numéro de rappel. L’idée plaisait. Elle a été jetée parce que le reste du site n’avait pas été repensé avec elle, et que sa variante « estimation en soixante secondes » butait sur la règle du prix.',
+          'On a construit un vrai parcours : le visiteur décrit sa panne, son lieu, reçoit un verdict et laisse son numéro. Codé, testé, apprécié. Jeté quand même : le reste du site ne suivait pas, et la variante « estimation en soixante secondes » affichait des prix, ce que le client interdit. On a tout repensé autour de l’appel téléphonique.',
       },
       {
-        titre: 'L’Affiche, puis la recette empruntée',
+        titre: 'Deux pistes de plus, retour à la ligne un',
         image: '/images/realisations/iterations/clim69-v5.webp',
         texte:
-          'L’Affiche était un site de papier typographique avec trois gestes géants pour le métier. La version suivante transposait une recette qui avait réussi sur un autre site de dépannage. Les deux ont été refusées : la première faisait trop de place à la typographie, la seconde sentait la copie. On a repris la méthode au début.',
+          'Une version affiche typographique, puis une recette copiée d’un autre site de dépannage qui marchait. Refusées : la première faisait du style, la seconde sentait la copie. On a repris la méthode depuis le début : d’abord ce que fait le visiteur, ensuite seulement à quoi ça ressemble.',
       },
       {
-        titre: 'Les jeux de boutons',
+        titre: 'Les boutons, refaits quatre fois',
         image: '/images/realisations/iterations/clim69-v6.webp',
         texte:
-          'Quatre jeux proposés, refus en bloc. Six registres capturés chez des sites de référence, puis un jeu à fond blanc choisi. Quelques semaines plus tard, le client a trouvé les boutons blancs et bleus noyés dans le bleu du site. Ils sont aujourd’hui en ambre plein, avec une tranche basse nette, et un seul fichier de style les gouverne.',
+          'Quatre jeux de boutons refusés en bloc. On a capturé six sites de référence, choisi un registre, livré. Quelques semaines plus tard, les boutons blancs et bleus se noyaient dans le bleu du site. Ils sont aujourd’hui ambre plein, et un seul fichier de style pilote les trente pages : un changement, une ligne de code.',
       },
       {
-        titre: 'Le flocon, première idée de logo',
+        titre: 'Le logo : du flocon aux deux voyants',
         image: '/images/realisations/iterations/clim69-v7.webp',
         texte:
-          'Un flocon géométrique sur badge bleu, lisible en favicon. Propre, mais il ne disait que le froid, alors que Clim69 vend aussi le chaud. Les variantes suivantes ont fini en une unité murale et un groupe extérieur, avec deux voyants de couleurs différentes.',
+          'Premier logo, un flocon sur badge bleu, lisible en favicon. Il ne disait que le froid, et Clim69 vend aussi le chaud. Trois séries plus tard : une unité murale, un groupe extérieur, deux voyants chaud et froid, redessinés en vectoriel pour tenir du favicon à la camionnette.',
       },
     ],
     mosaique: {
@@ -283,45 +283,45 @@ export const etudesDeCas: EtudeDeCas[] = [
     ],
     iterations: [
       {
-        titre: 'Huit maquettes en quatre jours',
+        titre: 'Huit maquettes en quatre jours, huit refus',
         image: '/images/realisations/iterations/aplus-audition-v1.webp',
         texte:
-          'Éditoriale, classique, sur la recette d’un autre client, façon clinique, quatre variantes A à D, un rebranding. Huit habillages d’une même page, jamais une réflexion sur ce que le visiteur vient faire. Le soir du huitième, on a tout rangé dans une archive et on a écrit le cadrage qui manquait.',
+          'Huit habillages produits en quatre jours : éditorial, clinique, variantes A à D, un rebranding. Huit fois non. Le soir du huitième on a compris qu’on habillait une page sans savoir ce que le patient venait y faire. Tout archivé, et on a écrit le cadrage qu’on aurait dû écrire le premier jour.',
       },
       {
-        titre: 'Trois concepts d’expérience',
+        titre: 'Trois parcours prototypés, refusés le même jour',
         image: '/images/realisations/iterations/aplus-audition-v2.webp',
         texte:
-          'La devanture, On pousse la porte, Le praticien vous reçoit : trois idées contrastées, avec aperçu sur téléphone, pour choisir ce que le visiteur fait en arrivant. Les trois ont été refusées le même jour. Elles ressemblaient trop au travail d’août, et le client ne s’y reconnaissait pas.',
+          'Trois parcours contrastés, prototypés avec aperçu sur téléphone. Les trois renvoyés dans la journée : ça ressemblait encore au travail du mois d’août. On a arrêté de produire pour écouter.',
       },
       {
-        titre: 'La copie du site existant',
+        titre: 'Douzième proposition, douzième non',
         image: '/images/realisations/iterations/aplus-audition-v3.webp',
         texte:
-          'Consigne de départ : reprendre le site actuel, mettre de vraies photos, corriger les incohérences. C’était la douzième proposition. Elle a été jugée comme les autres : logo trop grand, pas de menu, bandeau de contact laid, texte de bannière illisible. La conclusion est tombée net : tout était à refaire, composition comprise.',
+          'Consigne du client : reprenez l’ancien site, mettez de vraies photos, corrigez. Fait. Verdict : logo trop gros, pas de menu, bandeau de contact laid, titre illisible. Douze propositions, zéro validée. Conclusion : on repart de zéro, structure comprise, une section à la fois.',
       },
       {
-        titre: 'Le marine emprunté à un site de référence',
+        titre: 'La charte empruntée, effacée',
         image: '/images/realisations/iterations/aplus-audition-v4.webp',
         texte:
-          'Pour répondre à la demande d’un site de santé, on avait pris le marine et le blanc d’un confrère. Le client n’avait demandé aucune de ces couleurs. On a effacé la charte d’août et reparti des couleurs de l’enseigne : écru, sable, or, brun. Une couleur de l’enseigne vaut mieux qu’une référence.',
+          'On avait pris le marine et le blanc d’un site de santé de référence. Le client n’avait rien demandé de tel. Charte supprimée, on est reparti des couleurs de l’enseigne : écru, sable, or, brun. Depuis, aucune couleur du site ne vient d’ailleurs que de la boutique.',
       },
       {
-        titre: 'Cinq photos de bannière',
+        titre: 'Cinq photos de bannière, mesurées une par une',
         image: '/images/realisations/iterations/aplus-audition-v5.webp',
         texte:
-          'Une photo de banque d’images au fond de la page, un couple jugé trop âgé, une scène qui mettait mal à l’aise, un portrait sur fond blanc qui rendait le titre illisible. Chaque photo a été montée dans la vraie bannière puis mesurée, et celles qui rendaient le titre illisible sont sorties. Le client a choisi lui-même un couple en trench sur une plage. La leçon : changer la photo, jamais la structure d’une section validée.',
+          'Cinq photos montées dans la vraie bannière, contraste du titre mesuré sur chacune. Une image de banque, un couple trop âgé, une scène gênante, un portrait qui rendait le titre illisible : sorties. Le client a choisi la cinquième. On n’a plus touché à la structure, seulement à l’image.',
       },
       {
-        titre: 'Un accueil trop plein',
+        titre: 'Un accueil deux fois trop long',
         texte:
-          'La première page d’accueil avait six sections, des cartes, une FAQ. « Trop de choses, trop d’écriture. » On a coupé de plus de la moitié les mots, ramené la hauteur à moins de la moitié et déplacé le détail vers les pages intérieures.',
+          'Six sections, des cartes, une FAQ : « trop de choses, trop d’écriture ». On a coupé plus de la moitié des mots, divisé la hauteur de la page par deux et poussé le détail dans les pages intérieures.',
       },
       {
-        titre: 'L’en-tête, la bande de repères et le slogan',
+        titre: 'En-tête refait trois fois, slogan trois fois',
         image: '/images/realisations/iterations/aplus-audition-v7.webp',
         texte:
-          'L’en-tête a été refait trois fois, du logo dessiné à la marque typographique, puis le logo est revenu sans le mot AUDITION, illisible à petite taille. La bande de repères a connu une version sans icône, une version avec, et c’est la seconde qui a gagné. Le slogan a eu trois traitements, signature, plaque, titre roi : la plaque en capitales espacées a été choisie.',
+          'Logo dessiné, puis marque typographique, puis logo sans le mot AUDITION, illisible en petit. Bande de repères sans icônes, puis avec : la seconde a gagné. Slogan en signature, en plaque, en titre : la plaque. Chaque pièce validée seule avant la suivante, c’est ce qui a fini par faire aboutir le site.',
       },
     ],
     resultat: [
@@ -446,45 +446,45 @@ export const etudesDeCas: EtudeDeCas[] = [
     ],
     iterations: [
       {
-        titre: 'La planche de six couleurs',
+        titre: 'Six recolorations du vieux logo, refusées dans l’heure',
         image: '/images/realisations/iterations/habad-etudiants-lyon-v1.webp',
         texte:
-          'La première réponse a été de recolorer l’ancien logo en six variantes. L’équipe l’a refusée aussitôt : une planche de couleurs ne se demande pas ce que le logo raconte. On est reparti de l’histoire, la flamme qui dit « Habad » et pas encore « Lyon », avant de toucher une teinte.',
+          'Première réponse : recolorer l’ancien logo en six variantes. Refusé aussitôt, une planche de couleurs ne dit pas ce que le logo raconte. On est reparti de l’histoire, la flamme, avant de toucher une teinte.',
       },
       {
-        titre: 'Quatre directions de posts, de Pinterest au scrapbook',
+        titre: 'Quatre univers de posts, tous empruntés',
         image: '/images/realisations/iterations/habad-etudiants-lyon-v2.webp',
         texte:
-          'Pinterest (photo pleine page, titre en serif, mot doré en italique), Notes (une fausse application de notes avec case à cocher), Affiche (capitales condensées, pastille or) et Scrapbook (polaroïd, ruban adhésif, étiquettes manuscrites). Quatre mondes graphiques, tous jolis, tous empruntés à ailleurs. Les quatre dorment dans un dossier d’archives.',
+          'Pinterest, Notes, Affiche, Scrapbook : quatre systèmes de posts, gabarits codés, exemples rendus. Tous jolis, tous venus d’ailleurs. Les quatre dorment en archive, et une règle est née : rien qui ressemble à un autre compte.',
       },
       {
         titre: 'Les photos en noir et blanc',
         texte:
-          'Une ville en noir et blanc avec une flamme allumée : le système était élégant sur le papier. L’équipe a objecté que les gens viennent pour se sentir en famille et que le noir et blanc refroidit. Les photos sont revenues en couleur. Seule la flamme porte la couleur de marque.',
+          'Ville en noir et blanc, flamme en couleur : élégant sur le papier. L’équipe a tranché, les étudiants viennent pour se sentir en famille et le noir et blanc refroidit. Retour à la couleur, seule la flamme porte la marque.',
       },
       {
-        titre: 'Le gabarit rangé, puis la matière',
+        titre: 'Trente gabarits passés au tamis',
         image: '/images/realisations/iterations/habad-etudiants-lyon-v4.webp',
         texte:
-          'Quinze gabarits de placement de la flamme, trois refusés, puis quinze styles graphiques (pop art, affiche suisse, polaroïd, risographe) sont passés par le tamis. Un lot d’éléments tirés du logo a ensuite été invalidé parce qu’il redécoupait le logo sans le transformer. On a retenu les traitements où la flamme cesse de se lire comme un tampon pour devenir une matière : fenêtre, verre, alphabet.',
+          'Quinze placements de flamme, puis quinze styles graphiques passés au crible, et un lot d’éléments invalidé parce qu’il redécoupait le logo sans le transformer. Restent trois traitements où la flamme devient une matière : fenêtre, verre, alphabet. Tout le reste est généré par script depuis ces trois moteurs.',
       },
       {
-        titre: 'Douze ronds noirs sur WhatsApp',
+        titre: 'Douze avatars identiques sur WhatsApp',
         image: '/images/realisations/iterations/habad-etudiants-lyon-v5.webp',
         texte:
-          'Les avatars des groupes de campus se ressemblaient tellement qu’on n’arrivait plus à les distinguer à 40 pixels. Plusieurs systèmes se sont succédé : rangées de flammes identiques, pictogrammes, emojis sur dégradé, photo du lieu en bichromie. Le ballon dessiné pour le groupe de foot a été refusé deux fois, jusqu’à une vraie photo de ballon avec la flamme posée dessus.',
+          'Les groupes de campus avaient tous le même rond noir, impossible à distinguer à 40 pixels. Flammes alignées, pictos, emojis sur dégradé, photo du lieu en bichromie : quatre systèmes successifs. Le ballon du groupe foot a été refusé deux fois, jusqu’à une vraie photo avec la flamme posée dessus.',
       },
       {
-        titre: 'La story en aplat avec du texte',
+        titre: 'La story en aplat',
         image: '/images/realisations/iterations/habad-etudiants-lyon-v6.webp',
         texte:
-          'Un fond uni, un titre, une date. Efficace en théorie, froid en pratique. Les stories partent désormais du moteur « fenêtre » : une vraie photo vue à travers la flamme, un petit texte, une vidéo avec musique.',
+          'Fond uni, titre, date : rapide à produire, froid à regarder. On a construit un moteur de stories « fenêtre » : vraie photo vue à travers la flamme, grain pellicule, musique, le tout généré en une commande.',
       },
       {
-        titre: 'Le bouton de lien dessiné maison',
+        titre: 'Le bouton dessiné maison sur lequel personne ne cliquait',
         image: '/images/realisations/iterations/habad-etudiants-lyon-v7.webp',
         texte:
-          'Un premier bouton d’inscription dessiné sur mesure ressemblait à autre chose qu’à Instagram, et les étudiants ne cliquaient pas sur ce qu’ils ne reconnaissaient pas. L’équipe a demandé la copie au pixel du sticker natif : même pilule blanche, même icône de chaîne en dégradé, même texte en capitales. Un texte d’action remplace l’adresse brute.',
+          'Premier bouton d’inscription dessiné sur mesure : les étudiants ne cliquaient pas sur ce qu’ils ne reconnaissaient pas. Refait au pixel près comme le sticker natif d’Instagram, pilule blanche, icône de chaîne, texte en capitales. Les clics sont revenus.',
       },
     ],
     resultat: [
@@ -609,46 +609,46 @@ export const etudesDeCas: EtudeDeCas[] = [
     ],
     iterations: [
       {
-        titre: 'Les trois directions typographiques et les premiers emblèmes',
+        titre: 'Trois directions complètes, rangées le lendemain',
         image: '/images/realisations/iterations/mdj17-v1.webp',
         texte:
-          'La Maison, Le 17, Nuit : trois directions éditoriales, solides, rangées au bout d’une journée parce que le client voulait un symbole. Les premiers emblèmes, une flamme habitée, un badge, un 17 en flamme, ont suivi.',
+          'La Maison, Le 17, Nuit : trois directions typographiques livrées en planches. Rangées le lendemain, le client voulait un symbole, pas une typographie. Premiers emblèmes dans la foulée : flamme habitée, badge, 17 en flamme.',
       },
       {
-        titre: 'La demi-menorah « 1777 » et la chasse au 7',
+        titre: 'La demi-menorah et la chasse au 7',
         image: '/images/realisations/iterations/mdj17-v2.webp',
         texte:
-          'Moitié droite d’une menorah, lue 1 puis 7 7 7 : une idée du soir, jolie, dont le 7 ressemblait à une branche. Douze formes de 7 et seize formes de 1 plus tard, une évidence : mêler lettres de police et dessin à la main donne un résultat sale pour un œil de graphiste. La chaîne vectorielle, un trait unique et zéro lettre de police, est née de cette série.',
+          'Une menorah coupée en deux, lue 1 7 7 7 : jolie idée de fin de soirée. Le 7 ressemblait à une branche. Douze formes de 7 et seize formes de 1 plus tard, verdict : mélanger police et dessin donne un résultat sale. On a tout reconstruit en vectoriel pur, un seul trait, zéro lettre de police.',
       },
       {
-        titre: 'La menorah de sept bonhommes',
+        titre: 'Sept bonhommes pour une menorah',
         image: '/images/realisations/iterations/mdj17-v3.webp',
         texte:
-          'Le client avait envoyé une référence : une menorah faite de sept petits personnages. On a donc transformé chaque branche en silhouette surmontée d’une tête. Le corps était rond, le 17 restait anguleux. Cette série a appris à dessiner le 1 et le 7 dans la langue des branches, puis le client est revenu au signe droit.',
+          'Référence envoyée par le client : une menorah de sept personnages. On a transformé chaque branche en silhouette. Corps ronds, 17 anguleux, ça ne tenait pas ensemble. La série a servi à apprendre à dessiner le 1 et le 7 dans la langue des branches, puis le client est revenu au signe droit.',
       },
       {
-        titre: 'Les pistes « artistiques »',
+        titre: 'Sept pistes artistiques pour confirmer la première',
         image: '/images/realisations/iterations/mdj17-v4.webp',
         texte:
-          'Réserve, Fil, Mosaïque, Taille, Pinceau, Déchirure, Calame : sept manières de rendre le signe plus artistique. Trois n’étaient que des opérations propres sur une géométrie régulière, jetées. Taille et Pinceau avaient une matière et ont été aimées. La Déchirure, jugée sans sens pour une maison de jeunes, a été retaillée aux ciseaux. Le client a pourtant choisi l’élan sans artifice.',
+          'Réserve, Fil, Mosaïque, Taille, Pinceau, Déchirure, Calame. Trois jetées comme de simples filtres, deux aimées pour leur matière, une retaillée aux ciseaux. Le client a choisi le signe nu. Sept directions pour valider la première.',
       },
       {
-        titre: 'Cinq palettes, puis six accents',
+        titre: 'Cinq palettes, puis six accents, puis la bonne',
         image: '/images/realisations/iterations/mdj17-v5.webp',
         texte:
-          'Encre, Craie, Chantier, Cuivre, Volt : cinq palettes posées sur le vrai kit, à l’endroit et à l’envers, toutes refusées, l’une parce qu’elle ressemblait à une autre commande de la maison. Six accents sur blanc pur ou sur noir ont suivi, puis le bleu ciel de CTeen. Le retour « il manque l’orange » a donné le pêche, en second accent.',
+          'Cinq palettes posées sur le vrai kit, à l’endroit et à l’envers, toutes refusées, l’une parce qu’elle ressemblait à un autre projet de la maison. Six accents sur blanc et noir, puis le bleu ciel. « Il manque l’orange » : le pêche est arrivé en second accent, et la palette est figée dans le code depuis.',
       },
       {
-        titre: 'Les flammes tracées à main levée',
+        titre: 'Les flammes à main levée, remplacées par une construction au compas',
         image: '/images/realisations/iterations/mdj17-v6.webp',
         texte:
-          'Trois séries de flammes, dont celle du logo d’origine, ont été refusées en bloc : contour posé point par point, aucune relation avec le signe. Une note de méthode a fixé la construction au compas. La flamme obtenue, plus jolie, a paru trop ronde pour un signe de droites fines : une goutte aux flancs parallèles au 1 et au 7 a été essayée, puis la flamme pleine est revenue derrière le 17.',
+          'Trois séries de flammes refusées en bloc : contour posé point par point, aucune relation avec le signe. On a écrit une note de construction au compas, scriptée, et la flamme en est sortie. Trop ronde pour des droites fines : une goutte essayée, puis la flamme pleine remise derrière le 17.',
       },
       {
-        titre: 'La première story',
+        titre: 'La première story, refaite deux fois',
         image: '/images/realisations/iterations/mdj17-v7.webp',
         texte:
-          'Une flamme pêche pleine portant le titre sur fond uni : refusée. La seconde, bâtie comme la recette « fenêtre » d’un autre client, a séduit par sa flamme mais ressemblait trop à son modèle, jusqu’à la photo et au grain. Refaite à neuf : photo propre à la maison, mise en page à elle, pastille de date inclinée, barre de bouton pêche.',
+          'Une flamme pêche portant le titre : refusée. La seconde, bâtie sur le moteur d’un autre client, trop ressemblante jusqu’au grain. Refaite à neuf : photo de la maison, mise en page propre, pastille de date, barre pêche. Le moteur de stories de MDJ17 est né là.',
       },
     ],
     mosaique: {
@@ -777,41 +777,41 @@ export const etudesDeCas: EtudeDeCas[] = [
     ],
     iterations: [
       {
-        titre: 'Le jeu de rôle à construire soi-même',
+        titre: 'Le jeu de rôle à construire, trop haut pour la classe',
         texte:
-          'Des cartes A et B et une banque de phrases : l’idée respectait le niveau visé par le référentiel et dépassait celui de la classe. Les élèves ne savent pas encore fabriquer des phrases. Le dialogue est désormais livré entier, à lire en binôme, avec trois mots à remplacer.',
+          'Cartes A et B, banque de phrases, niveau du référentiel respecté. En classe, les élèves ne fabriquent pas encore de phrases. Le dialogue est livré entier, à lire en binôme, avec trois mots à remplacer.',
       },
       {
-        titre: 'L’emoji et la mascotte',
+        titre: 'Mascotte et emojis, codés le matin, retirés le soir',
         texte:
-          'Un personnage récurrent et des emojis pour égayer les pages, essayés puis retirés le jour même. L’habillage du gabarit suffisait, et un support surchargé se photocopie mal.',
+          'Un personnage récurrent et des emojis sur chaque page, ajoutés au gabarit le matin, retirés le soir. L’habillage suffisait, et une page chargée se photocopie mal.',
       },
       {
-        titre: 'Le rose scrapbook',
+        titre: 'La charte rose, grise sous la photocopieuse',
         image: '/images/realisations/iterations/cours-anglais-esthetique-v3.webp',
         texte:
-          'Une première charte rose vif, bandes de ruban, nœud noué, serif à gros caractère en titre. Elle fonctionnait à l’écran et virait au gris moyen sous la photocopieuse. Elle a cédé la place à un gabarit sobre, en gris teintés par filière, avec une seule famille de polices.',
+          'Rose vif, ruban, nœud, serif à gros caractère : superbe à l’écran, gris moyen à la photocopie. On a mesuré, puis tout refait en gris teintés par filière, avec une seule police.',
       },
       {
-        titre: 'Le PDF en couleur et son jumeau en noir et blanc',
+        titre: 'Deux PDF par fiche, un seul utile',
         image: '/images/realisations/iterations/cours-anglais-esthetique-v4.webp',
         texte:
-          'La double sortie semblait prudente. L’enseignante imprime toujours en noir et blanc : le fichier couleur ne servait à rien et doublait le travail. Un seul PDF sort, dessiné pour le niveau de gris dès le départ.',
+          'Une sortie couleur et une sortie noir et blanc par fiche, prudent sur le papier. L’enseignante imprime toujours en noir et blanc. Le script ne sort plus qu’un PDF, dessiné pour le gris dès le départ, moitié moins de travail.',
       },
       {
-        titre: 'Les pictogrammes générés par une image',
+        titre: 'Des dizaines de pictos générés, tous jetés',
         texte:
-          'Des dizaines d’icônes d’étapes demandées à un générateur d’images : trait d’épaisseur variable, mains aux doigts fondus, et du faux texte qui apparaissait là où on demandait un objet sans lettres. On est revenu à des icônes vectorielles à trait constant, composées à deux quand l’objet seul ne dit pas le geste.',
+          'Des dizaines d’icônes d’étapes demandées à un générateur d’images : traits irréguliers, doigts fondus, faux texte. Tout jeté. Retour aux icônes vectorielles à trait constant, composées à deux quand l’objet seul ne dit pas le geste.',
       },
       {
-        titre: 'Le feed social pour le brevet professionnel',
+        titre: 'Le faux fil social, retiré pour le brevet',
         texte:
-          'Des apprenties déjà en poste dans un institut n’ont pas besoin qu’on leur imite un fil de réseau social. Le registre professionnel et sobre a remplacé l’habillage, pour cette filière seulement.',
+          'Des apprenties déjà en poste dans un institut n’ont pas besoin qu’on leur imite un réseau social. Registre professionnel et sobre pour cette filière, l’habillage feed gardé pour les autres.',
       },
       {
-        titre: 'Le téléchargement automatique des photos',
+        titre: 'Six méthodes de téléchargement, six fermées',
         texte:
-          'Six voies testées pour récupérer les images d’un réseau social, toutes fermées par la plateforme. L’outil ne télécharge plus, il fournit l’adresse exacte du post, que l’enseignante capture à l’écran en cinq secondes, avec la source écrite dessous.',
+          'Six méthodes codées pour récupérer les images d’un réseau social, six bloquées par la plateforme. L’outil ne télécharge plus : il donne l’adresse exacte du post, capture d’écran en cinq secondes, source écrite dessous.',
       },
     ],
     resultat: [

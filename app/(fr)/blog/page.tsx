@@ -124,7 +124,7 @@ export default function BlogPage() {
                     <span>
                       {new Date(article.datePublication).toLocaleDateString('fr-FR', { day: '2-digit', month: 'short', year: 'numeric' })}
                     </span>
-                    <span className="group-hover:text-[var(--brand)] transition-colors" style={{ color: 'var(--brand-strong)' }}>Lire →</span>
+                    <span className="btn-contour group-hover:bg-[var(--surface-2)]">Lire →</span>
                   </div>
                 </div>
               </Link>

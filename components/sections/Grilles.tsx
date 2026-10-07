@@ -80,8 +80,8 @@ function CarteCompacte({ carte, accent }: { carte: Carte; accent?: string }) {
       {carte.href && (
         <Link
           href={carte.href}
-          className="font-bold w-fit"
-          style={{ color: 'var(--brand-strong)', fontSize: 'clamp(0.78rem, 2.6vw, 0.875rem)', marginTop: '0.7rem' }}
+          className="btn-contour"
+          style={{ marginTop: '0.8rem' }}
         >
           {carte.lienLabel ?? 'En savoir plus'} →
         </Link>

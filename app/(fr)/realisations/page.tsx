@@ -77,7 +77,7 @@ export default function PortfolioPage() {
           </h2>
           <p className="mb-8" style={{ color: 'var(--ink-2)', maxWidth: '55ch' }}>{d.caseStudiesPage.sectionSub}</p>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-5 gap-4">
             {projects.map((project) => {
               const domain = project.url ? project.url.replace(/^https?:\/\//, '').replace(/\/$/, '') : null
               return (

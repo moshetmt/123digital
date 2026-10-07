@@ -66,4 +66,31 @@ export const projects: PortfolioProject[] = [
     url: 'https://www.instagram.com/chabadoncampuslyon/',
     screenshot: '/images/realisations/habad-etudiants-lyon-maquette.webp',
   },
+  {
+    id: 'mdj17',
+    title: 'Maison des Jeunes 17',
+    category: 'Charte graphique + Réseaux sociaux',
+    sector: 'Association jeunesse · Paris 17e',
+    description:
+      'Logo où le 17 se cache dans une menorah, typographie latin et hébreu, couleurs, flamme tracée au compas, stories et présentation de la charte.',
+    results: 'Un kit d’identité qu’un graphiste peut lire et défendre, et des stories reconnaissables au premier coup d’œil',
+    metric: 'Une identité à elle',
+    tags: ['Charte graphique', 'Logo', 'Instagram', 'Paris 17e'],
+    featured: true,
+    url: 'https://www.instagram.com/maisondesjeunes17/',
+    screenshot: '/images/realisations/mdj17-maquette.webp',
+  },
+  {
+    id: 'cours-anglais-esthetique',
+    title: 'Cours 2.0',
+    category: 'Outil sur mesure + Supports pédagogiques',
+    sector: 'Enseignement · Lycée professionnel',
+    description:
+      'Un outil qui fabrique les fiches d’anglais d’une enseignante pour quatre filières d’esthétique : fiche élève, document professeur et test, prêts à photocopier en niveaux de gris.',
+    results: 'Un support demandé en une phrase, un PDF prêt pour la photocopieuse du lycée',
+    metric: 'Une phrase, un PDF',
+    tags: ['Outil sur mesure', 'Supports de cours', 'Anglais', 'Esthétique'],
+    featured: true,
+    screenshot: '/images/realisations/cours-anglais-esthetique-maquette.webp',
+  },
 ]

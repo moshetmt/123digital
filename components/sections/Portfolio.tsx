@@ -111,7 +111,7 @@ export function Portfolio({ lang = 'fr' }: { lang?: Locale }) {
 
         {/* Sur téléphone : carrousel horizontal (4 cartes empilées = 5 écrans).
             À partir de sm : grille. */}
-        <div className="flex gap-3 overflow-x-auto snap-x snap-mandatory -mx-6 px-6 pb-2 sm:grid sm:grid-cols-2 xl:grid-cols-4 sm:gap-4 sm:overflow-visible sm:mx-0 sm:px-0 sm:pb-0">
+        <div className="flex gap-3 overflow-x-auto snap-x snap-mandatory -mx-6 px-6 pb-2 sm:grid sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-5 sm:gap-4 sm:overflow-visible sm:mx-0 sm:px-0 sm:pb-0">
           {projects.map((project) => (
             <ProjectCard key={project.id} project={project} />
           ))}

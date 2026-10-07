@@ -1,5 +1,5 @@
 export interface EtudeDeCas {
-  slug: 'clim69' | 'aplus-audition' | 'habad-etudiants-lyon'
+  slug: 'clim69' | 'aplus-audition' | 'habad-etudiants-lyon' | 'mdj17' | 'cours-anglais-esthetique'
   titre: string
   accroche: string
   metaTitle: string
@@ -488,5 +488,318 @@ export const etudesDeCas: EtudeDeCas[] = [
       },
     ],
     maquette: '/images/realisations/habad-etudiants-lyon-maquette.webp',
+  },
+  {
+    slug: 'mdj17',
+    titre: 'Charte graphique association Paris : le logo et l’identité de la Maison des Jeunes 17',
+    accroche:
+      'Un client graphiste qui juge en pair, trente-quatre versions de logo en trois jours, un 17 caché dans une menorah, une flamme tracée au compas et une story qui ne ressemble à aucune autre.',
+    metaTitle: 'Charte graphique association Paris : cas MDJ17 | 123 Digital',
+    metaDescription:
+      'Logo, typographie, couleurs, flamme et stories pour une maison des jeunes du 17e arrondissement de Paris : le récit d’une charte et de ses versions jetées.',
+    client: {
+      nom: 'Maison des Jeunes 17',
+      metier: 'Association jeunesse',
+      ville: 'Paris 17e',
+      url: 'https://www.instagram.com/maisondesjeunes17/',
+    },
+    services: ['branding', 'community-management'],
+    commande: [
+      'La Maison des Jeunes 17 est la branche jeunesse du Beth Habad Monceau, un centre communautaire du 17e arrondissement de Paris. Elle reçoit des collégiens et des lycéens du quartier autour de repas, de cours, de voyages et de fêtes. Son compte Instagram venait de naître. Il alignait quelques publications aux styles différents, un logo qui circulait en deux versions et un monogramme en J calligraphique, repris un jour en dégradé holographique.',
+      'Le client dessine lui-même. Il est graphiste, il a tracé le logo d’origine, et il lit une charte comme on relit le travail d’un confrère : un vide plus large d’un côté, une branche qui penche dans l’autre sens, une police posée à l’arrache, il les voit avant nous. La mission tenait en une ligne : une identité classe et jeune, qui n’a rien en commun avec ce que 123 Digital a déjà fait pour d’autres clients. Ensuite viendraient les posts.',
+      'On a posé une règle dès le premier jour : aucune maquette avant la fin des audits. Six rapports sont sortis en une journée et débouchaient sur trois directions typographiques soignées. Le client les a regardées, puis il a dit ce qu’il voulait : un symbole, minimaliste, qui se lit de deux façons, qui se porte comme un badge et qui donne envie de suivre le compte.',
+    ],
+    coulisses: [
+      'Les audits ont dessiné le terrain. Les sites du secteur sont presque tous bleus sur fond blanc, avec une photo de groupe et un ton « chaleureux et inclusif » recopié d’un site à l’autre. Les adolescents viennent surtout des lycées du quartier, dont l’un est à deux cents mètres du local. Pour eux, l’appartenance première est le quartier, et un « 17 » se lit comme un numéro de maillot, donc comme une équipe.',
+      'Le client a cité ses références sans détour : les marques de sport et de mode que les adolescents portent, avec leurs couleurs franches et leurs signes simples. Un signe qui tient sur un sweat se pense autrement qu’un logo de plaquette : il doit survivre à 18 pixels comme à deux mètres, et se découper dans un badge, un autocollant, un avatar.',
+      'Travailler avec un graphiste oblige à montrer le procédé. Chaque version partait avec ses mesures : longueur de chaque branche, largeur du trait, vide le plus serré entre deux pièces. Un reproche sur les distances nous a envoyés mesurer au pixel : les vides variaient de 0,38 à 0,70 selon l’endroit. On a alors fixé un seul vide pour tout le signe et fait vérifier la règle par un script à chaque version.',
+      'Le calendrier a servi de banc d’essai. Roch Hachana tombait dans la semaine, et une charte se juge sur un cas réel plus que sur une planche. La story de cette fête, refaite plusieurs fois, a servi de test final : si la flamme, les couleurs et la police tenaient sur un téléphone, elles tiendraient partout.',
+    ],
+    etapes: [
+      {
+        titre: 'Auditer avant de dessiner la première ligne',
+        texte:
+          'Six rapports en une journée : design existant, secteur, audience, typographie et couleurs avec contrastes calculés, réseaux sociaux, stratégie de marque. C’est le socle d’une charte graphique d’association à Paris qui veut sortir du bleu et blanc : un seul symbole, une seule famille de signes, des photos vraies.',
+        service: 'branding',
+      },
+      {
+        titre: 'Cacher un 17 dans une menorah',
+        texte:
+          'Le signe vient du client : une menorah dont le 1 est le fût et le 7 la branche extérieure droite. Chaque pièce partage le même trait, la même pente et le même vide, mesuré. Le chiffre se lit d’un coup d’œil, la menorah se reconnaît, et le signe seul vit sur un avatar ou un badge.',
+        service: 'branding',
+      },
+      {
+        titre: 'Proposer des pistes nommées par leur idée',
+        texte:
+          'Sept pistes, chacune inspirée d’une marque que les adolescents aiment et baptisée d’après son idée : bloc, galet, élan, brut, biseau, épure, atelier. Le client en retient une, demande plus d’art, nous explorons des gouttes, des pinceaux et des découpes, puis il revient à « Élan », un signe penché qui court vers la droite.',
+        service: 'branding',
+      },
+      {
+        titre: 'Choisir une police qui penche comme le logo',
+        texte:
+          'Geologica pour le latin, réglée à douze degrés pour suivre la diagonale du 7, avec des coupes vives. Suez One pour l’hébreu, avec ses points-voyelles, pour une lecture plus traditionnelle. Le mot-marque tient en deux lignes imbriquées contre la diagonale du signe, à seize degrés. Les capitales ont été écartées : on n’y retrouvait plus la police.',
+        service: 'branding',
+      },
+      {
+        titre: 'Prendre les couleurs de ceux que les jeunes suivent',
+        texte:
+          'Après cinq palettes et une série d’accents sur blanc et sur noir, on a essayé les couleurs de CTeen, le mouvement jeunesse de son monde : un bleu ciel et un pêche sur blanc ou sur noir. Les deux accents se permutent, avec une règle : jamais les deux dans le même rôle au même endroit.',
+        service: 'branding',
+      },
+      {
+        titre: 'Tracer la flamme au compas, bâtir la story « fenêtre »',
+        texte:
+          'La flamme se construit sans un point à la main : un cercle pour le ventre, un grand cercle tangent pour le flanc, un petit pour la lèche, la pointe penchée de seize degrés. Elle découpe ensuite une fenêtre dans une photo sur fond noir, sous un titre penché. Elle change de place d’une story à l’autre.',
+        service: 'community-management',
+      },
+      {
+        titre: 'Livrer onze pages plutôt qu’un livre de marque',
+        texte:
+          'La première charte, complète, a été jugée trop chargée de texte pour un client qui lit avec les yeux. Elle est devenue une présentation PDF de onze pages, un visuel et une ligne par page.',
+        service: 'branding',
+      },
+    ],
+    choix: [
+      {
+        titre: 'Traiter le client en pair et lui montrer le procédé',
+        texte:
+          'Un graphiste n’achète pas un résultat, il évalue une exécution. Chaque planche portait ses mesures et sa logique, et chaque refus a été traité comme une consigne de métier.',
+      },
+      {
+        titre: 'Nommer les pistes par leur idée, jamais par leur marque',
+        texte:
+          'Devant le client, une piste s’appelle bloc, galet, élan, brut, biseau, épure ou atelier. Le nom dit ce que le dessin cherche, sans emprunter l’aura d’une marque tierce. La discussion porte sur la forme, pas sur la référence.',
+      },
+      {
+        titre: 'Un seul trait, un seul vide',
+        texte:
+          'Tout le signe obéit à une seule épaisseur de trait et à une seule distance entre les pièces. Un script écarte les pointes juste ce qu’il faut pour que le vide le plus serré atteigne la valeur voulue, et refuse de dessiner en dessous.',
+      },
+      {
+        titre: 'Deux blocs de logo, pas six',
+        texte:
+          'Le kit contient un rectangle imbriqué et la menorah seule pour tout format carré. Six essais de carrés avec du texte ont été écartés : le texte flottait, la menorah y perdait sa place.',
+      },
+    ],
+    iterations: [
+      {
+        titre: 'Les trois directions typographiques et les premiers emblèmes',
+        texte:
+          'La Maison, Le 17, Nuit : trois directions éditoriales, solides, rangées au bout d’une journée parce que le client voulait un symbole. Les premiers emblèmes, une flamme habitée, un badge, un 17 en flamme, ont suivi.',
+      },
+      {
+        titre: 'La demi-menorah « 1777 » et la chasse au 7',
+        texte:
+          'Moitié droite d’une menorah, lue 1 puis 7 7 7 : une idée du soir, jolie, dont le 7 ressemblait à une branche. Douze formes de 7 et seize formes de 1 plus tard, une évidence : mêler lettres de police et dessin à la main donne un résultat sale pour un œil de graphiste. La chaîne vectorielle, un trait unique et zéro lettre de police, est née de cette série.',
+      },
+      {
+        titre: 'La menorah de sept bonhommes',
+        texte:
+          'Le client avait envoyé une référence : une menorah faite de sept petits personnages. On a donc transformé chaque branche en silhouette surmontée d’une tête. Le corps était rond, le 17 restait anguleux. Cette série a appris à dessiner le 1 et le 7 dans la langue des branches, puis le client est revenu au signe droit.',
+      },
+      {
+        titre: 'Les pistes « artistiques »',
+        texte:
+          'Réserve, Fil, Mosaïque, Taille, Pinceau, Déchirure, Calame : sept manières de rendre le signe plus artistique. Trois n’étaient que des opérations propres sur une géométrie régulière, jetées. Taille et Pinceau avaient une matière et ont été aimées. La Déchirure, jugée sans sens pour une maison de jeunes, a été retaillée aux ciseaux. Le client a pourtant choisi l’élan sans artifice.',
+      },
+      {
+        titre: 'Cinq palettes, puis six accents',
+        texte:
+          'Encre, Craie, Chantier, Cuivre, Volt : cinq palettes posées sur le vrai kit, à l’endroit et à l’envers, toutes refusées, l’une parce qu’elle ressemblait à une autre commande de la maison. Six accents sur blanc pur ou sur noir ont suivi, puis le bleu ciel de CTeen. Le retour « il manque l’orange » a donné le pêche, en second accent.',
+      },
+      {
+        titre: 'Les flammes tracées à main levée',
+        texte:
+          'Trois séries de flammes, dont celle du logo d’origine, ont été refusées en bloc : contour posé point par point, aucune relation avec le signe. Une note de méthode a fixé la construction au compas. La flamme obtenue, plus jolie, a paru trop ronde pour un signe de droites fines : une goutte aux flancs parallèles au 1 et au 7 a été essayée, puis la flamme pleine est revenue derrière le 17.',
+      },
+      {
+        titre: 'La première story',
+        texte:
+          'Une flamme pêche pleine portant le titre sur fond uni : refusée. La seconde, bâtie comme la recette « fenêtre » d’un autre client, a séduit par sa flamme mais ressemblait trop à son modèle, jusqu’à la photo et au grain. Refaite à neuf : photo propre à la maison, mise en page à elle, pastille de date inclinée, barre de bouton pêche.',
+      },
+    ],
+    resultat: [
+      'La Maison des Jeunes 17 possède aujourd’hui un kit d’identité qu’un graphiste peut lire et défendre : un signe où le 17 loge dans une menorah, deux blocs de logo, une police qui penche comme le chiffre, deux accents qui s’alternent, une flamme construite au compas et un modèle de story qui ne ressemble à aucun autre compte. Chaque pièce se justifie par une mesure ou par une décision du client.',
+      'Une présentation de onze pages est prête, et ce qui a été refusé n’a pas disparu : les versions jetées, rangées et datées, ont servi à éliminer ce que la maison ne voulait pas être. Les posts peuvent commencer sur des gabarits qui tiennent déjà sur un téléphone.',
+    ],
+    faq: [
+      {
+        question: 'Que contient une charte graphique d’association à Paris ?',
+        reponse:
+          'Un logo décliné en blocs, une police pour le latin et, si besoin, une autre pour l’hébreu ou une langue étrangère, des couleurs avec leurs rôles, des règles d’usage et des gabarits de posts. Pour la Maison des Jeunes 17, le tout tient en onze pages, un visuel et une ligne par page.',
+      },
+      {
+        question: 'Pourquoi tester autant de versions d’un logo ?',
+        reponse:
+          'Chaque refus précise le cahier des charges. Trente-quatre versions en trois jours ont fixé ce que le signe devait faire : se lire en 17, se reconnaître comme menorah, tenir à petite taille, respecter un seul vide. Sans elles, la charte aurait été un goût plus qu’une décision.',
+      },
+      {
+        question: 'Peut-on associer hébreu et latin dans la même identité visuelle ?',
+        reponse:
+          'Oui, avec deux polices choisies pour leur cohérence : même gabarit, même poids, même tenue. Ici, Geologica penchée pour le latin et Suez One pour l’hébreu, avec ses points-voyelles. Le couple a été validé en regardant les deux alphabets côte à côte.',
+      },
+      {
+        question: 'Comment bâtir des stories reconnaissables sans les répéter ?',
+        reponse:
+          'Avec un moteur et non un modèle figé : une flamme qui change de place, une photo vraie, une police, une pastille, un bouton. Les éléments restent les mêmes, leur disposition varie, et le texte reste lisible sur l’image grâce à une règle de géométrie plutôt qu’à un réglage à l’œil.',
+      },
+    ],
+    maquette: '/images/realisations/mdj17-maquette.webp',
+  },
+  {
+    slug: 'cours-anglais-esthetique',
+    titre: 'Supports de cours sur mesure : Cours 2.0, l’outil d’anglais d’une enseignante en lycée professionnel',
+    accroche:
+      'Une phrase en français, un PDF prêt à photocopier : l’outil sur mesure d’une professeure d’anglais pour ses classes d’esthétique, et tout ce qu’il a fallu jeter pour que la photocopieuse du lycée lui fasse confiance.',
+    metaTitle: 'Supports de cours sur mesure : cas Cours 2.0 | 123 Digital',
+    metaDescription:
+      'Un outil qui fabrique les fiches d’anglais d’une enseignante de lycée professionnel : une phrase de demande, un PDF en niveaux de gris, une mémoire qui voyage.',
+    client: {
+      nom: 'Cours 2.0',
+      metier: 'Enseignement, anglais en filières esthétique',
+      ville: 'Lycée professionnel',
+    },
+    services: ['automatisation-marketing', 'branding'],
+    commande: [
+      'L’enseignante donne des cours d’anglais dans un lycée professionnel, auprès de quatre filières de l’esthétique : CAP, bac pro, brevet professionnel et BTS. Ses élèves ont entre quinze et vingt ans. Elles vivent dans leur téléphone, elles lisent peu de texte long, et elles préparent des diplômes qui s’évaluent à l’oral. Elle sait ce qu’elle veut leur faire dire. Ce qui lui manquait, c’était le temps de fabriquer chaque semaine une fiche qui leur parle.',
+      'La commande tenait en une phrase : demander un support et recevoir un PDF à photocopier. Pas de logiciel à apprendre, pas de message d’erreur à déchiffrer, pas de mise en page à refaire. Elle dit la classe, le sujet et la durée, comme à une collègue, et l’outil rend une fiche élève, un document professeur et un test.',
+      'Le cahier des charges avait trois contraintes. Le support doit se terminer par une prise de parole, parce que tout se joue à l’oral. Il doit ressembler à ce que ces élèves regardent déjà sur leur écran, sans se moquer d’elles. Et il doit survivre à la photocopieuse du lycée, qui imprime en noir et blanc et écrase les couleurs.',
+    ],
+    coulisses: [
+      'Un support de cours n’est pas un article. Une élève le lit une fois, en classe, sous le regard de la prof et de ses voisines. Ce qui n’est pas évident au premier coup d’œil est perdu. Chaque séance suit donc la même progression : un document déclencheur, des tâches de repérage, une banque de phrases, puis une consigne de parole chronométrée. Les consignes sont en français et le matériau en anglais, pour que l’énergie des élèves aille à la langue et pas au décodage de l’énoncé.',
+      'Le niveau réel des classes a imposé ses lois. Le premier jeu de rôle demandait de construire ses phrases à partir de cartes et d’une banque de mots : il visait le niveau officiel et dépassait les moyens des élèves. Depuis, un jeu de rôle se livre entièrement rédigé, chaque réplique étiquetée, avec une seule production à fournir : remplacer trois mots surlignés. L’élève joue un vrai dialogue au lieu de rester bloquée devant une page.',
+      'Le papier a ses propres pièges. Une page A4 se mesure à 296 millimètres et non 297, parce qu’un arrondi de Chrome pousse chaque feuille sur la suivante. Une ligne à écrire peut disparaître sans erreur quand une règle de style perd sa mise en page. Un dessin vectoriel tombe en noir quand une variable de couleur est supprimée. Le build restait vert dans tous ces cas : la seule parade a été d’ouvrir les PDF et de regarder, puis d’écrire un contrôle qui compare chaque page à celle de la fois précédente.',
+      'Le vocabulaire a lui aussi ses faux amis. L’enseignante a banni « cabin », qui désigne une cabane ou une cabine d’avion, au profit de « treatment room », et « institute », calque du français, au profit de « salon ». Les personnages inventés des dialogues portent des prénoms du calendrier, utilisables en anglais. Ces décisions se sont inscrites dans la mémoire du projet et reviennent à chaque support, sans qu’elle ait à les redire.',
+    ],
+    etapes: [
+      {
+        titre: 'Écouter les classes avant d’écrire un gabarit',
+        texte:
+          'Quatre filières, quatre niveaux, quatre épreuves orales. Pour chacune, une fiche de référence dit le niveau d’anglais attendu, la longueur de texte, les temps autorisés et la manière dont l’épreuve se déroule. La réalité de la filière prime sur un texte officiel générique : le brevet professionnel, par exemple, évalue la présentation orale d’un protocole de soins à partir d’une image.',
+        service: 'automatisation-marketing',
+      },
+      {
+        titre: 'Demander un support en une phrase',
+        texte:
+          'Une commande unique suffit : « un support pour les CAP, vocabulaire du maquillage, trente minutes ». L’outil lit d’abord ce qui a déjà été servi, pour ne pas répéter un point de grammaire, cherche dans la bibliothèque personnelle de l’enseignante ce qu’elle possède déjà, vérifie l’actualité du jour et propose une séance complète.',
+        service: 'automatisation-marketing',
+      },
+      {
+        titre: 'Habiller le support comme un fil de réseau social',
+        texte:
+          'Pour le CAP et le bac pro, la fiche emprunte aux feeds : faux posts, commentaires, messages privés. Les créatrices sont inventées, les marques et les faits sont réels et sourcés. Le brevet professionnel garde un registre sobre, parce que ses élèves sont déjà apprenties en institut.',
+        service: 'branding',
+      },
+      {
+        titre: 'Dessiner pour la photocopieuse, pas pour l’écran',
+        texte:
+          'Chaque filière a sa teinte, calée sur la luminance exacte du gris qu’elle remplace. Un seul PDF sort, et sa photocopie en noir et blanc rend comme la fiche en couleur. Les zones à écrire restent en blanc pur. Les pictogrammes sont des icônes vectorielles à trait constant, pas des images générées.',
+        service: 'branding',
+      },
+      {
+        titre: 'Écrire une fiche professeur qui se lit debout',
+        texte:
+          'Le corrigé mot pour mot, la réponse en face de chaque question numérotée, le minutage de chaque activité, la traduction française des termes techniques avec leur prononciation, et la phrase à répondre à la question qu’une élève va poser. Ce document ne part jamais au photocopieur : il n’a pas de limite de densité.',
+        service: 'automatisation-marketing',
+      },
+      {
+        titre: 'Installer l’outil sur son ordinateur, avec une clé USB',
+        texte:
+          'Trois fichiers à double-cliquer, numérotés dans l’ordre : copier sur la clé, installer sur cet ordinateur, envoyer sur le Drive. L’installation vérifie la machine, range les documents et construit l’index de recherche en deux à trois minutes. Un quatrième fichier, « Cours 2.0 », ouvre le programme au bon endroit.',
+        service: 'automatisation-marketing',
+      },
+      {
+        titre: 'Faire voyager la mémoire avec les fichiers',
+        texte:
+          'Les décisions durables et l’état des classes vivent dans deux fichiers à l’intérieur du dossier du projet, pas dans le profil de son concepteur. Copié sur un autre ordinateur, le dossier emporte avec lui ses règles, ses classes et la liste de ce qui a déjà été servi.',
+        service: 'automatisation-marketing',
+      },
+    ],
+    choix: [
+      {
+        titre: 'Consignes en français, matériau en anglais',
+        texte:
+          'Une élève ne doit jamais dépenser son énergie à comprendre ce qu’on lui demande. Les titres, les consignes et les encadrés de grammaire sont en français. Les posts, les dialogues, les exercices et la banque de phrases sont en anglais, relus avant l’export.',
+      },
+      {
+        titre: 'Une fiche professeur séparée de la fiche élève',
+        texte:
+          'Le corrigé ne doit jamais partir à la photocopie avec le sujet. Chaque séance donne donc plusieurs fichiers distincts, nommés sans accent ni date : « Seance 03, A day at the salon, fiche de travail », puis « document professeur », puis « test de vocabulaire » et son corrigé.',
+      },
+      {
+        titre: 'Des personnes inventées, des faits réels et des sources',
+        texte:
+          'Les créatrices qui s’expriment dans le fil sont fictives, les marques, les chiffres et les événements cités sont vérifiés et sourcés. On ne met jamais dans la bouche d’une personne réelle des propos qu’elle n’a pas tenus. Une vraie photo n’entre dans un support qu’avec sa source écrite dessous, pour un usage limité à la classe.',
+      },
+      {
+        titre: 'Chercher dans sa bibliothèque avant de produire',
+        texte:
+          'Elle possède déjà des manuels complets, des centaines de tests et de corrigés, des fichiers audio et vidéo. Livrer un document qu’elle a déjà, en moins bien, lui fait perdre son temps. L’outil cherche donc d’abord dans le contenu de ses documents, pas seulement dans leurs noms, et ne produit que ce qui manque.',
+      },
+    ],
+    iterations: [
+      {
+        titre: 'Le jeu de rôle à construire soi-même',
+        texte:
+          'Des cartes A et B et une banque de phrases : l’idée respectait le niveau visé par le référentiel et dépassait celui de la classe. Les élèves ne savent pas encore fabriquer des phrases. Le dialogue est désormais livré entier, à lire en binôme, avec trois mots à remplacer.',
+      },
+      {
+        titre: 'L’emoji et la mascotte',
+        texte:
+          'Un personnage récurrent et des emojis pour égayer les pages, essayés puis retirés le jour même. L’habillage du gabarit suffisait, et un support surchargé se photocopie mal.',
+      },
+      {
+        titre: 'Le rose scrapbook',
+        texte:
+          'Une première charte rose vif, bandes de ruban, nœud noué, serif à gros caractère en titre. Elle fonctionnait à l’écran et virait au gris moyen sous la photocopieuse. Elle a cédé la place à un gabarit sobre, en gris teintés par filière, avec une seule famille de polices.',
+      },
+      {
+        titre: 'Le PDF en couleur et son jumeau en noir et blanc',
+        texte:
+          'La double sortie semblait prudente. L’enseignante imprime toujours en noir et blanc : le fichier couleur ne servait à rien et doublait le travail. Un seul PDF sort, dessiné pour le niveau de gris dès le départ.',
+      },
+      {
+        titre: 'Les pictogrammes générés par une image',
+        texte:
+          'Des dizaines d’icônes d’étapes demandées à un générateur d’images : trait d’épaisseur variable, mains aux doigts fondus, et du faux texte qui apparaissait là où on demandait un objet sans lettres. On est revenu à des icônes vectorielles à trait constant, composées à deux quand l’objet seul ne dit pas le geste.',
+      },
+      {
+        titre: 'Le feed social pour le brevet professionnel',
+        texte:
+          'Des apprenties déjà en poste dans un institut n’ont pas besoin qu’on leur imite un fil de réseau social. Le registre professionnel et sobre a remplacé l’habillage, pour cette filière seulement.',
+      },
+      {
+        titre: 'Le téléchargement automatique des photos',
+        texte:
+          'Six voies testées pour récupérer les images d’un réseau social, toutes fermées par la plateforme. L’outil ne télécharge plus, il fournit l’adresse exacte du post, que l’enseignante capture à l’écran en cinq secondes, avec la source écrite dessous.',
+      },
+    ],
+    resultat: [
+      'L’enseignante demande aujourd’hui un support en une phrase et reçoit une fiche prête à photocopier, une fiche professeur qu’elle lit debout et un test de vocabulaire. La fiche ne dépend ni de son écran ni de son imprimante : elle a été dessinée pour le papier gris d’un photocopieur de lycée.',
+      'L’outil retient ce qu’elle lui dit, les mots qu’elle a bannis, les classes de l’année et les sujets déjà servis. Ses décisions se retrouvent d’une séance à l’autre, et le dossier suit le projet partout où on le copie. Son temps reste pour ce qu’elle sait faire mieux que personne : faire parler ses élèves.',
+    ],
+    faq: [
+      {
+        question: 'Pourquoi un outil sur mesure plutôt qu’un manuel ou un modèle de fiche ?',
+        reponse:
+          'Un manuel suit un programme, pas une classe. Un outil sur mesure connaît le niveau de chaque filière, ce qui a déjà été servi, les mots que l’enseignante a bannis et l’actualité du jour. Il fabrique la fiche qu’il faut pour la séance de la semaine, dans le format que sa photocopieuse accepte.',
+      },
+      {
+        question: 'Comment concevoir un support de cours lisible en photocopie noir et blanc ?',
+        reponse:
+          'Il faut juger le contraste en niveaux de gris, pas en couleur. Un texte rose sur un fond rose pâle passe le test en couleur et disparaît à la copie. Chaque teinte de ce projet a la luminance exacte du gris qu’elle remplace, et un seul PDF sort : sa copie rend comme la version couleur.',
+      },
+      {
+        question: 'Peut-on installer un tel outil sur un ordinateur sans compétence informatique ?',
+        reponse:
+          'Oui, si l’installation tient en trois fichiers à double-cliquer. Ici, un fichier copie le dossier sur une clé USB, un deuxième l’installe sur l’ordinateur de l’enseignante, un troisième envoie les PDF sur son Drive.',
+      },
+      {
+        question: 'Pourquoi la mémoire de l’outil est-elle rangée dans le dossier du projet ?',
+        reponse:
+          'Une mémoire rangée dans le profil de son concepteur ne suit pas le projet : elle serait vide chez l’enseignante. En la stockant dans deux fichiers du dossier, on emporte avec lui les décisions, les classes et l’historique à chaque copie. Le test qui le prouve consiste à copier le dossier sur un autre ordinateur et à relancer.',
+      },
+    ],
+    maquette: '/images/realisations/cours-anglais-esthetique-maquette.webp',
   },
 ]

@@ -51,6 +51,8 @@ export function Header({ lang = 'fr' }: { lang?: Locale }) {
   const navLinks: NavLink[] = [
     { label: d.services,     href: `${base}/services`, hasDropdown: true },
     { label: d.realisations, href: `${base}/realisations` },
+    // Pages problème × métier : en français seulement, pas de version /en (décision opérateur 07/10).
+    ...(lang === 'fr' ? [{ label: d.problemes, href: '/problemes' }] : []),
     { label: d.about,        href: lang === 'en' ? '/en/about' : '/a-propos' },
     { label: d.blog,         href: `${base}/blog` },
     { label: d.contact,      href: `${base}/contact` },
@@ -79,7 +81,7 @@ export function Header({ lang = 'fr' }: { lang?: Locale }) {
         </Link>
 
         {/* ── Desktop nav ── */}
-        <ul className="hidden lg:flex items-center gap-0.5" role="list">
+        <ul className="hidden lg:flex items-center gap-0.5 whitespace-nowrap" role="list">
           {navLinks.map((link) =>
             link.hasDropdown ? (
               <li key={link.href} className="relative">
@@ -204,7 +206,9 @@ export function Header({ lang = 'fr' }: { lang?: Locale }) {
             style={{ backgroundColor: 'var(--brand)', color: 'var(--on-brand)', padding: '0.55rem 1.15rem' }}
           >
             <Phone size={14} aria-hidden />
-            {PHONE_DISPLAY}
+            {/* Entre 1024 et 1279 px, sept liens plus le numero ne tiennent pas : icone seule. */}
+            <span className="hidden xl:inline">{PHONE_DISPLAY}</span>
+            <span className="sr-only xl:hidden">{PHONE_DISPLAY}</span>
           </a>
         </div>
 

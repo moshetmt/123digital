@@ -6,6 +6,7 @@ export const dict = {
     nav: {
       services:     'Services',
       realisations: 'Réalisations',
+      problemes:    'Problèmes',
       about:        'À propos',
       blog:         'Blog',
       contact:      'Contact',
@@ -166,6 +167,7 @@ export const dict = {
     nav: {
       services:     'Services',
       realisations: 'Case Studies',
+      problemes:    'Problems',
       about:        'About',
       blog:         'Blog',
       contact:      'Contact',

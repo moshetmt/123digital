@@ -163,6 +163,16 @@ export default async function VillePage({ params }: PageProps) {
           {ville.keywords[2] ? `, un expert en ${ville.keywords[2]}` : ''} ou un accompagnement
           complet pour se démarquer en ligne. Je connais les spécificités de ce marché et
           j&apos;adapte chaque stratégie à la taille et au secteur de votre entreprise.
+          {/* /lyon est la page « agence » : renvoi vers la page « consultant ». */}
+          {ville.slug === 'lyon' && (
+            <>
+              {' '}Vous cherchez un consultant plutôt qu&apos;une agence ? Découvrez le{' '}
+              <Link href="/consultant-digital-lyon" className="underline underline-offset-2">
+                consultant digital à Lyon
+              </Link>
+              .
+            </>
+          )}
         </p>
       </PageBanner>
 
@@ -328,7 +338,7 @@ export default async function VillePage({ params }: PageProps) {
             </p>
             <p style={{ fontSize: '0.8rem', color: 'var(--ink-2)' }}>
               {(() => {
-                const proches = villesARA.filter((v) => v.slug !== ville.slug).slice(0, 8)
+                const proches = villesARA.filter((v) => v.slug !== ville.slug && estIndexable(`/${v.slug}`)).slice(0, 8)
                 return proches.map((v, i) => (
                   <span key={v.slug}>
                     <Link href={`/${v.slug}`} className="hover:text-[var(--brand)] transition-colors" style={{ color: 'var(--ink-2)' }}>

@@ -9,6 +9,7 @@ import { Breadcrumb } from '@/components/layout/Breadcrumb'
 import { BASE_URL, breadcrumbSchema, localBusinessSchema } from '@/lib/schema'
 import { secteurs, getSecteurBySlug } from '@/data/secteurs'
 import { villesARA } from '@/data/villes'
+import { estIndexable } from '@/data/indexation'
 import { CTA } from '@/components/sections/CTA'
 
 interface PageProps {
@@ -46,6 +47,8 @@ export default async function SecteurPage({ params }: PageProps) {
 
   const autresSecteurs = secteurs.filter((s) => s.slug !== secteur.slug)
   const villesPrioritaires = villesARA.filter((v) => v.priority === 'high')
+  // Le texte cite toutes les villes prioritaires ; seuls les liens se limitent aux pages indexables.
+  const villesLiees = villesPrioritaires.filter((v) => estIndexable(`/${v.slug}`))
 
   const schemas = [
     localBusinessSchema(),
@@ -218,12 +221,12 @@ export default async function SecteurPage({ params }: PageProps) {
             sont les mêmes, et les solutions mises en place sont calibrées pour votre marché local.
           </p>
           <p style={{ fontSize: '0.8rem', color: 'var(--ink-2)' }}>
-            {villesPrioritaires.map((v, i) => (
+            {villesLiees.map((v, i) => (
               <span key={v.slug}>
                 <Link href={`/${v.slug}`} className="hover:text-[var(--brand)] transition-colors" style={{ color: 'var(--ink-2)' }}>
                   {secteur.nom} à {v.nom}
                 </Link>
-                {i < villesPrioritaires.length - 1 && ' · '}
+                {i < villesLiees.length - 1 && ' · '}
               </span>
             ))}
           </p>

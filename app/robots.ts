@@ -15,10 +15,13 @@ export default function robots(): MetadataRoute.Robots {
         // ⛔ Ne pas le remettre sans repasser `/en` en `noindex` ET
         // `EN_INDEXABLE` a `false` dans `data/hreflang.ts` : les trois doivent
         // toujours dire la meme chose.
-        // ⚠️ `/_next/` reste bloque par habitude, mais Google a besoin du CSS et
-        // du JS pour rendre la page. Laisse tel quel tant que rien ne prouve un
-        // probleme de rendu, c'est le comportement d'origine du site.
-        disallow: ['/api/', '/_next/'],
+        // 🔴 `/_next/` A ETE RETIRE LE 11/10. Google applique la regle la plus
+        // longue : `Disallow: /_next/` l'emportait sur `Allow: /` et lui
+        // interdisait le CSS, le JS et les images servies par `/_next/image`
+        // (blocage verifie avec Protego le 11/10). Google doit pouvoir charger
+        // ces fichiers pour rendre la page et indexer les images.
+        // ⛔ Ne pas le remettre. Seul `/api/` reste bloque.
+        disallow: ['/api/'],
       },
       // Les robots des moteurs generatifs sont autorises explicitement plutot
       // que par defaut. Constat du 20/08 : aucun n'etait nomme, donc autorise

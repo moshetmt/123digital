@@ -3,6 +3,16 @@ import Link from 'next/link'
 import { t, type Locale } from '@/lib/i18n'
 import { getServices } from '@/data/services'
 import { projects } from '@/data/portfolio'
+import { villesARA, villesFrance } from '@/data/villes'
+import { estIndexable } from '@/data/indexation'
+import { CHIP_VILLES } from '@/components/sections/Zones'
+
+// Villes indexables absentes des tuiles de l'accueil : elles n'ont pas d'autre
+// chemin interne depuis la page d'accueil. Calcule, pas en dur : suit
+// `data/indexation.ts` et la selection de `Zones.tsx`.
+const AUTRES_VILLES = [...villesARA, ...villesFrance].filter(
+  (v) => estIndexable(`/${v.slug}`) && !CHIP_VILLES.some((c) => c.slug === v.slug),
+)
 
 const LinkedinIcon = ({ size = 18 }: { size?: number }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor">
@@ -64,6 +74,7 @@ export function Footer({ lang = 'fr' }: { lang?: Locale }) {
     { label: 'Blog',              href: '/blog' },
     { label: 'Problèmes fréquents', href: '/problemes' },
     { label: 'Audit gratuit',     href: '/audit-gratuit' },
+    { label: 'Consultant digital à Lyon', href: '/consultant-digital-lyon' },
     { label: 'Mentions légales',  href: '/mentions-legales' },
   ]
 
@@ -118,6 +129,11 @@ export function Footer({ lang = 'fr' }: { lang?: Locale }) {
                 </Link>
               </li>
             ))}
+            <li>
+              <Link href={`${base}/services`} className="footer-link" style={{ color: 'var(--vert-1)', fontSize: '0.85rem' }}>
+                {lang === 'en' ? 'All services' : 'Tous les services'}
+              </Link>
+            </li>
           </ul>
         </div>
 
@@ -156,6 +172,23 @@ export function Footer({ lang = 'fr' }: { lang?: Locale }) {
           </ul>
         </div>
       </div>
+
+      {lang === 'fr' && AUTRES_VILLES.length > 0 && (
+        <div className="mx-auto" style={{ maxWidth: '1280px', marginTop: '2.25rem' }}>
+          <h3 style={{ fontSize: '0.72rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--vert-1)', marginBottom: '0.7rem' }}>
+            Autres villes
+          </h3>
+          <ul className="flex flex-wrap gap-x-4 gap-y-1">
+            {AUTRES_VILLES.map((v) => (
+              <li key={v.slug}>
+                <Link href={`/${v.slug}`} className="footer-link" style={{ color: 'var(--vert-1)', fontSize: '0.85rem' }}>
+                  {v.nom}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
 
       <div
         className="mx-auto flex flex-col sm:flex-row items-center justify-between gap-2"

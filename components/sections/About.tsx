@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import Link from 'next/link'
 import { t, type Locale } from '@/lib/i18n'
 
 export function About({ lang = 'fr' }: { lang?: Locale }) {
@@ -34,6 +35,17 @@ export function About({ lang = 'fr' }: { lang?: Locale }) {
           </h2>
           <p style={{ fontSize: '0.9rem', color: 'var(--ink-2)', lineHeight: 1.6 }}>
             {d.body}
+            {/* Lien vers la page dediee a la requete « consultant digital Lyon »
+                (jamais l'ancre « agence », reservee a /lyon). */}
+            {lang === 'fr' && (
+              <>
+                {' '}Mon offre en détail :{' '}
+                <Link href="/consultant-digital-lyon" className="underline underline-offset-2" style={{ color: 'var(--brand)', fontWeight: 600 }}>
+                  consultant digital à Lyon
+                </Link>
+                .
+              </>
+            )}
           </p>
         </div>
         {/* Scène dessinée à droite à partir de md : en dessous, le bloc

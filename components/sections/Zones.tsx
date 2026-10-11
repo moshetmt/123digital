@@ -10,7 +10,7 @@ import { t, type Locale } from '@/lib/i18n'
 // page d'accueil enverrait les visiteurs, et le maillage interne, vers des pages
 // qu'on a décidé de retirer de l'index. Cette liste et `data/indexation.ts`
 // doivent toujours dire la même chose.
-const CHIP_VILLES = villesARA.filter((v) => estIndexable(`/${v.slug}`)).slice(0, 9)
+export const CHIP_VILLES = villesARA.filter((v) => estIndexable(`/${v.slug}`)).slice(0, 9)
 
 export function Zones({ lang = 'fr' }: { lang?: Locale }) {
   const d = t(lang).zones

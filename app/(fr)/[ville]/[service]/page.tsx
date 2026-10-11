@@ -285,8 +285,10 @@ export default async function VilleServicePage({ params }: PageProps) {
   if (!content) notFound()
 
   const isARA = villesARA.some((v) => v.slug === ville.slug)
-  const autresServices = services.filter((s) => s.id !== service.id)
-  const autresVilles = villesARA.filter((v) => v.slug !== ville.slug).slice(0, 6)
+  const autresServices = services.filter((s) => s.id !== service.id && estIndexable(`/${ville.slug}/${s.id}`))
+  const autresVilles = villesARA
+    .filter((v) => v.slug !== ville.slug && estIndexable(`/${v.slug}/${serviceSlug}`))
+    .slice(0, 6)
   const insight = villeInsights[ville.slug]
 
   const faqs = content.faqs.map(({ q, a }) => ({
@@ -423,7 +425,8 @@ export default async function VilleServicePage({ params }: PageProps) {
         </div>
       </section>
 
-      {/* Autres services à la même ville */}
+      {/* Autres services à la même ville (seulement les pages indexables) */}
+      {autresServices.length > 0 && (
       <section
         className="bg-background"
         style={{ padding: 'clamp(2.25rem, 6vw, 4.5rem) 1.5rem', borderTop: '1px solid var(--line)' }}
@@ -453,6 +456,7 @@ export default async function VilleServicePage({ params }: PageProps) {
           </p>
         </div>
       </section>
+      )}
 
       {/* Même service dans d'autres villes ARA */}
       {isARA && autresVilles.length > 0 && (

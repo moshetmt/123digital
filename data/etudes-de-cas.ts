@@ -370,9 +370,9 @@ export const etudesDeCas: EtudeDeCas[] = [
   },
   {
     slug: 'aplus-audition',
-    titre: 'Site internet audioprothésiste Cannes : A+ Audition repart de zéro, section par section',
+    titre: 'Douze propositions refusées, puis un site qui lui ressemble',
     accroche:
-      'Douze propositions refusées, un déclic, puis un site calme, lisible par tous les âges, pour un cabinet d’audioprothèse du quartier de la Croisette.',
+      'Le journal de bord de Maurice Timsit : douze refus, un déclic, puis un site assemblé une section à la fois pour un audioprothésiste de Cannes.',
     metaTitle: 'Site audioprothésiste Cannes : cas A+ Audition | 123 Digital',
     metaDescription:
       'Refonte du site d’un audioprothésiste à Cannes : douze propositions rejetées, puis un site médical, sobre et lisible, construit section par section.',
@@ -530,12 +530,89 @@ export const etudesDeCas: EtudeDeCas[] = [
       },
     ],
     maquette: '/images/realisations/aplusaudition-maquette.webp',
+    court: {
+      journal: [
+        {
+          repere: 'Semaine 1',
+          texte:
+            'Un cabinet d’audioprothèse à Cannes, un ancien site sans titre principal ni description, des horaires faux. Avant de toucher à quoi que ce soit, je l’archive en douze captures.',
+        },
+        {
+          repere: 'Semaine 1, plus tard',
+          texte:
+            'Le bouton e-mail de la page contact écrit à une entreprise de démolition. Un numéro inconnu s’affiche à côté du vrai. Je remets tout d’accord avec la vitrine du centre, photo à l’appui.',
+        },
+        {
+          repere: 'Semaine 2',
+          texte:
+            'Huit maquettes en quatre jours : éditorial, clinique, quatre variantes, un rebranding. Le client répond non huit fois.',
+          image: { src: '/images/realisations/iterations/aplus-audition-v1.webp', alt: 'Une des premières maquettes du site A+ Audition, refusée' },
+        },
+        {
+          repere: 'Semaine 2, le huitième soir',
+          texte:
+            'Je comprends que j’habille une page sans savoir ce que le patient vient y faire. J’archive tout et j’écris cinq règles. La première : le visiteur a soixante-seize ans et un téléphone.',
+        },
+        {
+          repere: 'Semaine 3',
+          texte:
+            'Trois parcours prototypés, avec aperçu sur téléphone. Le client les renvoie dans la journée : ça ressemble encore à ce que j’ai déjà montré. J’arrête de produire et j’écoute.',
+        },
+        {
+          repere: 'Semaine 3, fin',
+          texte:
+            'Consigne : reprendre l’ancien site, y mettre de vraies photos, corriger. Je le fais. Logo trop gros, pas de menu, titre illisible. Douzième proposition, douzième non. Je repars de zéro.',
+        },
+        {
+          repere: 'Semaine 4',
+          texte:
+            'Nouvelle méthode : une seule section à la fois, jugée sur mon téléphone, validée avant la suivante. Je commence par la bannière.',
+        },
+        {
+          repere: 'Semaine 4, un soir',
+          texte:
+            'Mon marine et mon blanc viennent d’un site de santé de référence. Le client n’a rien demandé de tel. J’efface la charte et je repars de l’enseigne : écru, sable, or, brun.',
+        },
+        {
+          repere: 'Semaine 4, plus tard',
+          texte:
+            'Cinq photos montées dans la vraie bannière, contraste du titre mesuré sur chacune. Une image de banque, un portrait qui noie le titre : je les sors. Le client choisit la cinquième.',
+          image: { src: '/images/realisations/iterations/aplus-audition-v5.webp', alt: 'Essai de photo de bannière pour le site A+ Audition' },
+        },
+        {
+          repere: 'Semaine 5',
+          texte:
+            'Mon accueil compte six sections et une FAQ. Le client écrit : « trop de choses, trop d’écriture ». Je coupe plus de la moitié des mots et je divise la hauteur de la page par deux.',
+        },
+        {
+          repere: 'Semaine 5, fin',
+          texte:
+            'L’en-tête passe par trois versions. Le logo sans le mot AUDITION devient illisible en petit : je le jette. Le slogan, essayé en signature, en plaque puis en titre, finit en plaque.',
+        },
+        {
+          repere: 'Semaine 6, un jour d’audits',
+          texte:
+            'Trois audits le même jour : technique, contenu, local. Un plan du site mal déclaré, un fichier d’exclusion qui cache les balises des pages légales, une adresse de démonstration ouverte à Google. Je corrige tout avant la bascule.',
+        },
+        {
+          repere: 'Le jour de la mise en ligne',
+          texte:
+            'Je bascule le nom de domaine sans toucher à la messagerie du cabinet. Je vérifie que chaque page répond et je déclare le site à Google.',
+        },
+        {
+          repere: 'Aujourd’hui',
+          texte:
+            'Le site est en ligne sous le nom de domaine du cabinet, avec la vraie devanture, les vrais horaires et un bouton pour réserver. Les douze refus ont dessiné ce qu’il devait être.',
+          image: { src: '/images/realisations/aplusaudition-maquette.webp', alt: 'Le site A+ Audition en ligne, aux couleurs de l’enseigne' },
+        },
+      ],
+    },
   },
   {
     slug: 'habad-etudiants-lyon',
-    titre: 'Communication association étudiante Lyon : l’identité et le suivi de Habad Étudiants Lyon',
+    titre: 'Six variantes du logo refusées en une heure, une flamme gardée',
     accroche:
-      'Une charte graphique, des stories, des formulaires et des messages automatiques pour une association étudiante qui reçoit ses membres dans deux centres de la ville, et tout ce qu’on a essayé avant de trouver la flamme.',
+      'Le journal de bord de Maurice Timsit : une identité refaite version après version, un formulaire d’inscription et des messages préparés pour une association étudiante de Lyon.',
     metaTitle: 'Communication association étudiante Lyon | 123 Digital',
     metaDescription:
       'Charte, Instagram, WhatsApp, inscriptions et messages d’anniversaire pour une association étudiante à Lyon. Le récit d’une communication de terrain.',
@@ -693,12 +770,98 @@ export const etudesDeCas: EtudeDeCas[] = [
       },
     ],
     maquette: '/images/realisations/habad-etudiants-lyon-maquette.webp',
+    court: {
+      journal: [
+        {
+          repere: 'Semaine 1',
+          texte:
+            'Une association étudiante, deux centres à Lyon, un camion qui va sur les campus. Tout passe par le bouche-à-oreille et des messages jetés en vrac dans des groupes WhatsApp. Je recense : deux noms, deux comptes Instagram, trois logos.',
+        },
+        {
+          repere: 'Semaine 1, le soir',
+          texte:
+            'Je choisis un seul nom français et un seul avatar pour toute la communauté. Pas un trait de dessin avant que ce soit réglé.',
+        },
+        {
+          repere: 'Semaine 2',
+          texte:
+            'Je recolore l’ancien logo en six variantes. L’équipe les refuse dans l’heure. Une planche de couleurs ne dit rien de l’histoire du logo, alors je repars de la flamme.',
+          image: {
+            src: '/images/realisations/iterations/habad-etudiants-lyon-v1.webp',
+            alt: 'Les six recolorations du logo de Habad Étudiants Lyon, refusées par l’équipe',
+          },
+        },
+        {
+          repere: 'Semaine 2, trois jours plus tard',
+          texte:
+            'Je dessine quatre univers de posts complets, avec gabarits codés et exemples rendus. Tous jolis, tous empruntés à d’autres comptes. Je les range en archive et je pose une règle : rien qui ressemble à un autre compte.',
+        },
+        {
+          repere: 'Semaine 2, un soir',
+          texte:
+            'Je teste la ville en noir et blanc et la flamme en couleur. Sur le papier, c’est élégant. L’équipe tranche : les étudiants viennent pour se sentir en famille, et le noir et blanc refroidit. Je reviens à la couleur.',
+        },
+        {
+          repere: 'Semaine 3',
+          texte:
+            'Quinze placements de flamme, puis quinze styles graphiques, passés au crible. J’invalide un lot entier : il redécoupait le logo sans le transformer. Il reste trois traitements où la flamme devient une matière : fenêtre, verre, alphabet.',
+          image: {
+            src: '/images/realisations/iterations/habad-etudiants-lyon-v4.webp',
+            alt: 'Les trente gabarits testés, réduits à trois traitements de la flamme',
+          },
+        },
+        {
+          repere: 'Semaine 3, plus tard',
+          texte:
+            'Je fixe la charte : noir, blanc cassé et braise comme base, une couleur du moment qui suit le calendrier, un sceau blanc toujours au même endroit. Un post sur trois reste dans les couleurs de base.',
+        },
+        {
+          repere: 'Semaine 3, un matin',
+          texte:
+            'Les groupes de campus affichent tous le même rond noir, impossible à distinguer à 40 pixels. J’enchaîne quatre systèmes d’avatars. Le ballon du groupe foot est refusé deux fois, jusqu’à une vraie photo avec la flamme posée dessus.',
+        },
+        {
+          repere: 'Semaine 3, un soir',
+          texte:
+            'Mes stories en aplat, fond uni, titre et date, se fabriquent vite et se regardent froid. Je construis un outil maison : la vraie photo se voit à travers la flamme, avec le grain pellicule et la musique.',
+        },
+        {
+          repere: 'Semaine 4',
+          texte:
+            'Je remplace le « qui vient ? » par un formulaire d’inscription. Il gère un stock de places, il ferme avant l’entrée de la fête, et personne n’est jamais refusé. L’équipe sait enfin pour combien préparer les repas.',
+        },
+        {
+          repere: 'Quelques jours plus tard',
+          texte:
+            'Le bouton d’inscription que j’ai dessiné moi-même ne reçoit aucun clic : personne ne reconnaît ce qu’il ne connaît pas. Je le refais au pixel près sur le sticker natif d’Instagram, pilule blanche et icône de chaîne. Les clics reviennent.',
+        },
+        {
+          repere: 'La veille d’une fête',
+          texte:
+            'Les messages d’anniversaire partent la veille à 19 h, quand la date hébraïque commence, jamais pendant le Shabbat ni les fêtes. Un soir, l’ordinateur de l’équipe était en avion et un créneau a sauté. Je recalcule les envois à l’heure de Lyon, sans dépendre d’un portable.',
+        },
+        {
+          repere: 'Plus tard',
+          texte:
+            'Pour que la marque tienne quand quelqu’un d’autre filme, j’écris une charte vidéo : deux réglages de couleur, un grain, une notice en français.',
+        },
+        {
+          repere: 'Aujourd’hui',
+          texte:
+            'L’association se reconnaît en une seconde : la flamme, les couleurs, le sceau. Chaque événement a son visuel, les étudiants savent où s’inscrire, et aucun ne disparaît de la liste, même en quittant Lyon.',
+          image: {
+            src: '/images/realisations/habad-etudiants-lyon-maquette.webp',
+            alt: 'Maquette de la communication de Habad Étudiants Lyon',
+          },
+        },
+      ],
+    },
   },
   {
     slug: 'mdj17',
-    titre: 'Charte graphique association Paris : le logo et l’identité de la Maison des Jeunes 17',
+    titre: 'Trente-quatre versions de logo en trois jours',
     accroche:
-      'Un client graphiste qui juge en pair, trente-quatre versions de logo en trois jours, un 17 caché dans une menorah, une flamme tracée au compas et une story qui ne ressemble à aucune autre.',
+      'Le journal de bord de Maurice Timsit : trente-quatre versions du signe, des pistes jetées une à une, jusqu’au 17 caché dans une menorah.',
     metaTitle: 'Charte graphique association Paris : cas MDJ17 | 123 Digital',
     metaDescription:
       'Logo, typographie, couleurs, flamme et stories pour une maison des jeunes du 17e arrondissement de Paris : le récit d’une charte et de ses versions jetées.',
@@ -862,12 +1025,93 @@ export const etudesDeCas: EtudeDeCas[] = [
       },
     ],
     maquette: '/images/realisations/mdj17-maquette.webp',
+    court: {
+      journal: [
+        {
+          repere: 'Jour 1',
+          texte:
+            'Je ne dessine rien. Six rapports dans la journée : design existant, secteur, audience, typographie et couleurs, réseaux sociaux, stratégie de marque. Aucune maquette avant la fin des audits.',
+        },
+        {
+          repere: 'Jour 1, le soir',
+          texte:
+            'Les sites du secteur se ressemblent tous : bleu sur blanc, photo de groupe, ton « chaleureux et inclusif ». Je décide de sortir de là.',
+        },
+        {
+          repere: 'Jour 2, le matin',
+          texte:
+            'Trois directions typographiques sur planche. Le client les regarde et dit qu’il veut un symbole, pas une typographie. Je range les trois planches.',
+        },
+        {
+          repere: 'Jour 2, à midi',
+          texte:
+            'Une menorah coupée en deux, qui se lit 1 7 7 7. Jolie idée de fin de soirée. Le 7 ressemble à une branche. Je dessine douze formes de 7 et seize formes de 1.',
+        },
+        {
+          repere: 'Jour 2, l’après-midi',
+          texte:
+            'Je mélange la police et le dessin : le résultat est sale. Je jette tout et je reconstruis en vectoriel pur, un seul trait, aucune lettre de police.',
+        },
+        {
+          repere: 'Jour 2, le soir',
+          texte:
+            'Le client m’envoie une référence : une menorah de sept personnages. Je transforme chaque branche en silhouette. Corps ronds, 17 anguleux, ça ne tient pas ensemble. Il revient au signe droit.',
+        },
+        {
+          repere: 'Jour 3, le matin',
+          texte:
+            'Sept pistes de matière pour confirmer la première : Réserve, Fil, Mosaïque, Taille, Pinceau, Déchirure, Calame. J’en jette trois, qui ne sont que des filtres. Le client choisit le signe nu.',
+        },
+        {
+          repere: 'Jour 3, tard',
+          texte:
+            'Le client me reproche mes distances. Je mesure au pixel : mes vides vont de 0,38 à 0,70 selon l’endroit. Je fixe un seul vide pour tout le signe et je le fais vérifier à chaque version.',
+        },
+        {
+          repere: 'Version 34',
+          texte:
+            'Le signe est là. Le 1 est le fût de la menorah, le 7 sa branche extérieure droite. Même trait, même pente, même vide. Le 17 se lit d’un coup d’œil, la menorah se reconnaît.',
+          image: {
+            src: '/images/realisations/iterations/mdj17-mosaique.webp',
+            alt: 'Mosaïque des planches des trente-quatre versions du signe de la Maison des Jeunes 17',
+          },
+        },
+        {
+          repere: 'Après le signe, les couleurs',
+          texte:
+            'Cinq palettes sur le vrai kit, à l’endroit et à l’envers. Je les jette toutes, dont une qui ressemble trop à un autre projet de la maison. Six accents sur blanc et sur noir, puis le bleu ciel. Le client dit « il manque l’orange » : le pêche entre en second accent.',
+        },
+        {
+          repere: 'Plus tard dans la semaine',
+          texte:
+            'Trois séries de flammes tracées à la main, trois séries refusées : aucune relation avec le signe. Je repars d’une feuille blanche et je construis la flamme au compas, un cercle pour le ventre, un autre pour le flanc, un petit pour la lèche.',
+          image: {
+            src: '/images/realisations/iterations/mdj17-v6.webp',
+            alt: 'Flammes dessinées à main levée, puis flamme construite au compas',
+          },
+        },
+        {
+          repere: 'La story de la fête',
+          texte:
+            'Première version : refusée. Deuxième : trop proche d’un modèle existant, jusqu’au grain. Je la refais à neuf, avec une photo de la maison, une pastille de date et une barre pêche.',
+          image: {
+            src: '/images/realisations/iterations/mdj17-v7.webp',
+            alt: 'Les versions successives de la première story de la Maison des Jeunes 17',
+          },
+        },
+        {
+          repere: 'Aujourd’hui',
+          texte:
+            'Un graphiste a lu le kit et peut le défendre. Onze pages, un visuel et une ligne par page. Les versions jetées sont rangées et datées : elles montrent à la maison ce qu’elle ne veut pas être.',
+        },
+      ],
+    },
   },
   {
     slug: 'cours-anglais-esthetique',
-    titre: 'Supports de cours sur mesure : Cours 2.0, l’outil d’anglais d’une enseignante en lycée professionnel',
+    titre: 'Six méthodes bloquées, des dizaines d’icônes jetées, une fiche qui passe',
     accroche:
-      'Une phrase en français, un PDF prêt à photocopier : l’outil sur mesure d’une professeure d’anglais pour ses classes d’esthétique, et tout ce qu’il a fallu jeter pour que la photocopieuse du lycée lui fasse confiance.',
+      'Le journal de bord de Maurice Timsit : une charte rose jetée après la photocopieuse, des dizaines d’icônes refusées, et des fiches d’anglais en un seul PDF gris.',
     metaTitle: 'Supports de cours sur mesure : cas Cours 2.0 | 123 Digital',
     metaDescription:
       'Un outil qui fabrique les fiches d’anglais d’une enseignante de lycée professionnel : une phrase de demande, un PDF en niveaux de gris, une mémoire qui voyage.',
@@ -1020,5 +1264,82 @@ export const etudesDeCas: EtudeDeCas[] = [
       },
     ],
     maquette: '/images/realisations/cours-anglais-esthetique-maquette.webp',
+    court: {
+      journal: [
+        {
+          repere: 'Au départ',
+          texte:
+            'Une enseignante d’anglais, quatre filières d’esthétique : CAP, bac pro, brevet professionnel, BTS. Elle sait ce qu’elle veut faire dire à ses élèves. Il lui manque le temps de fabriquer chaque semaine une fiche qui leur parle. Sa commande tient en une phrase : elle demande un support, elle reçoit un PDF à photocopier.',
+        },
+        {
+          repere: 'Avant le premier gabarit',
+          texte:
+            'J’écoute les classes. Pour chaque filière, j’écris une fiche de référence : niveau d’anglais, longueur du texte, temps autorisés, déroulé de l’épreuve. Le brevet professionnel, lui, évalue la présentation orale d’un protocole de soins à partir d’une image.',
+        },
+        {
+          repere: 'Premier jeu de rôle',
+          texte:
+            'Cartes A et B, banque de phrases, niveau du référentiel respecté. En classe, les élèves ne fabriquent pas encore de phrases. Je réécris : le dialogue arrive entier, à lire en binôme, avec trois mots à remplacer.',
+        },
+        {
+          repere: 'Un matin',
+          texte:
+            'J’ajoute au gabarit une mascotte et des emojis sur chaque page. Le soir, je les retire. L’habillage suffisait, et une page chargée se photocopie mal.',
+        },
+        {
+          repere: 'Devant la photocopieuse',
+          texte:
+            'Rose vif, ruban, nœud, grosse police à empattements. Superbe à l’écran, gris moyen sur la copie. Je mesure, puis je refais tout : des gris teintés par filière, une seule police.',
+          image: { src: '/images/realisations/iterations/cours-anglais-esthetique-v3.webp', alt: 'Une fiche d’anglais en rose vif, rejetée après le passage à la photocopieuse' },
+        },
+        {
+          repere: 'Un autre essai',
+          texte:
+            'Je sortais deux PDF par fiche, un en couleur, un en noir et blanc. Elle imprime toujours en noir et blanc. Je ne garde qu’un PDF, dessiné pour le gris dès le départ. Moitié moins de travail.',
+          image: { src: '/images/realisations/iterations/cours-anglais-esthetique-v4.webp', alt: 'La fiche d’anglais redessinée en gris teintés, un seul PDF par séance' },
+        },
+        {
+          repere: 'Les pictogrammes',
+          texte:
+            'Je demande des dizaines d’icônes d’étapes à un générateur d’images. Traits irréguliers, doigts fondus, faux texte. Je jette tout et je reviens à des icônes vectorielles à trait constant.',
+        },
+        {
+          repere: 'Les pièges du papier',
+          texte:
+            'Une page A4 mesure 296 millimètres, pas 297 : un arrondi à l’impression pousse chaque feuille sur la suivante. Une ligne à écrire disparaît sans message d’erreur. Un dessin tombe en noir. Le contrôle automatique reste vert à chaque fois.',
+        },
+        {
+          repere: 'Après les pièges',
+          texte:
+            'Je n’ai qu’une parade : ouvrir les PDF et regarder. Puis j’écris un contrôle qui compare chaque page à celle de la fois précédente.',
+        },
+        {
+          repere: 'Pour le brevet professionnel',
+          texte:
+            'Ces élèves sont déjà apprenties en institut. Elles n’ont pas besoin qu’on leur imite un réseau social. Je retire le faux fil et je garde un registre sobre. L’habillage des feeds reste pour les autres filières.',
+        },
+        {
+          repere: 'Les images des réseaux',
+          texte:
+            'Je code six méthodes pour récupérer les images d’un réseau social. La plateforme bloque les six. L’outil ne télécharge plus : il donne l’adresse exacte du post, elle prend une capture d’écran en cinq secondes, la source s’écrit dessous.',
+        },
+        {
+          repere: 'Les mots bannis',
+          texte:
+            'Elle bannit « cabin », qui désigne une cabane ou une cabine d’avion, au profit de « treatment room ». Même sort pour « institute », calque du français : ce sera « salon ». Je l’inscris dans la mémoire du projet, elle n’aura plus à le redire.',
+        },
+        {
+          repere: 'Sur son ordinateur',
+          texte:
+            'Trois fichiers à double-cliquer, numérotés dans l’ordre : copier sur la clé USB, installer, envoyer sur le Drive. L’installation prend deux à trois minutes. La mémoire vit dans deux fichiers du dossier, donc elle voyage avec lui.',
+        },
+        {
+          repere: 'Aujourd’hui',
+          texte:
+            'Elle demande un support en une phrase et reçoit une fiche prête à photocopier, une fiche professeur qu’elle lit debout et un test de vocabulaire. La photocopie en noir et blanc rend comme la fiche en couleur.',
+          image: { src: '/images/realisations/cours-anglais-esthetique-maquette.webp', alt: 'Cours 2.0 : une fiche élève, une fiche professeur et un test de vocabulaire' },
+        },
+      ],
+    },
   },
 ]

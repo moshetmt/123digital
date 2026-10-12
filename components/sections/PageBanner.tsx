@@ -128,10 +128,13 @@ export function PageBanner({
 
         {illustration && (
           // Sous `lg` le conteneur n'est pas une grille : le centrage passe par les marges, pas par justify-self.
-          // `compactMobile` : scene basse posee sur le bord bas de la banniere, pour laisser le premier ecran au contenu.
+          // `compactMobile` : case de hauteur fixe (mobile : posee sur le bord bas, scene calee en bas ; ordinateur : centree).
+          // La largeur vient d'une surface constante, pour qu'une scene haute et une scene large pesent autant.
           <div
             className={`relative z-10 mx-auto lg:mx-0 lg:justify-self-end lg:w-full lg:mt-0 lg:max-w-[440px] ${
-              illustration.compactMobile ? 'mt-4 -mb-6 w-fit max-w-full lg:mb-0' : 'w-full mt-8 max-w-[240px]'
+              illustration.compactMobile
+                ? 'mt-4 -mb-6 h-[170px] flex items-end justify-center lg:mb-0 lg:h-[330px] lg:items-center lg:justify-end'
+                : 'w-full mt-8 max-w-[240px]'
             }`}
           >
             <Image
@@ -141,14 +144,27 @@ export function PageBanner({
               height={illustration.height}
               sizes="(max-width: 1024px) 300px, 440px"
               priority
-              className={illustration.compactMobile ? 'h-[150px] w-auto max-w-full lg:h-auto lg:w-full' : 'w-full h-auto'}
-              style={{ objectFit: 'contain' }}
+              className={illustration.compactMobile ? 'w-[var(--scene-w)] h-auto lg:w-[var(--scene-w-lg)]' : 'w-full h-auto'}
+              style={{
+                objectFit: 'contain',
+                ...(illustration.compactMobile
+                  ? {
+                      ['--scene-w' as string]: `${largeurScene(illustration.width / illustration.height, 30000, 170, 290)}px`,
+                      ['--scene-w-lg' as string]: `${largeurScene(illustration.width / illustration.height, 120000, 330, 440)}px`,
+                    }
+                  : {}),
+              }}
             />
           </div>
         )}
       </div>
     </section>
   )
+}
+
+// Largeur d'une scene de ratio donne : surface constante, plafonnee en hauteur et en largeur par la case.
+function largeurScene(ratio: number, surface: number, hMax: number, lMax: number): number {
+  return Math.round(Math.min(Math.sqrt(surface * ratio), hMax * ratio, lMax))
 }
 
 // Le mot detache est cherche tel quel dans le titre : pas de decoupage

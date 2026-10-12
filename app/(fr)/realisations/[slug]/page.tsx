@@ -154,8 +154,8 @@ export default async function EtudeDeCasPage({ params }: Props) {
           <section className="mx-auto max-w-3xl" style={sectionStyle}>
             <h2 className="font-sans font-extrabold mb-6" style={h2Style}>Journal de bord</h2>
             <ol className="flex flex-col gap-7" style={{ listStyle: 'none', padding: 0, borderLeft: '3px solid var(--line)', marginLeft: 8 }}>
-              {etude.court.journal.map((e) => (
-                <li key={e.repere} className="relative" style={{ paddingLeft: '1.5rem' }}>
+              {etude.court.journal.map((e, i) => (
+                <li key={i} className="relative" style={{ paddingLeft: '1.5rem' }}>
                   <span
                     aria-hidden
                     className="absolute rounded-full"

@@ -125,9 +125,9 @@ export const etudesDeCas: EtudeDeCas[] = [
   },
   {
     slug: 'clim69',
-    titre: 'Site internet climaticien Lyon : Clim69 fait sonner le téléphone à Villeurbanne',
+    titre: 'Sept versions jetées, quatre mois de réglages : le téléphone de Clim69 sonne',
     accroche:
-      'Comment on a construit le site, les pages locales et le compte Google Ads d’un artisan climaticien pour que le bon client appelle au bon moment, et les sept versions du site qu’on a jetées avant la bonne.',
+      'Le journal de bord de Maurice Timsit : un compte publicitaire monté de zéro, sept versions de site jetées et une trentaine de pages locales, pour un climaticien de Villeurbanne.',
     metaTitle: 'Site internet climaticien Lyon : cas Clim69 | 123 Digital',
     metaDescription:
       'Site, une trentaine de pages locales, Google Ads et suivi des appels pour un climaticien de Villeurbanne, avec les sept versions jetées en route.',
@@ -291,6 +291,82 @@ export const etudesDeCas: EtudeDeCas[] = [
       },
     ],
     maquette: '/images/realisations/clim69-maquette.webp',
+    court: {
+      journal: [
+        {
+          repere: 'Semaine 1',
+          texte:
+            'Un climaticien de Villeurbanne, jamais de compte publicitaire. Je monte le compte de zéro et je vise le dépannage, là où l’urgence fait décrocher le téléphone. Dès le premier jour, j’exclus les recherches de climatisation de voiture : ce n’est pas son métier.',
+        },
+        {
+          repere: 'Semaine 1, quatre jours plus tard',
+          texte:
+            'Le compte affiche zéro résultat alors que le patron vient de recevoir une vraie demande de devis. Je trouve le coupable : un réglage de liaison entre Analytics et Google Ads, éteint par défaut. Je le corrige, je recrée le suivi des clics sur le numéro et je teste un parcours complet.',
+        },
+        {
+          repere: 'Semaine 3',
+          texte:
+            'Je code un premier site en trois jours : bordures épaisses, jaune vif. Je le regarde sur un téléphone en plein soleil. Illisible. Je jette tout, je garde le code du formulaire.',
+        },
+        {
+          repere: 'Mois 2',
+          texte:
+            'Deuxième site en ligne, domaine migré. Propre, rapide. Je le relis quelques semaines plus tard : c’est un gabarit bien exécuté, ce n’est pas Clim69. Je décide de le refaire.',
+        },
+        {
+          repere: 'Mois 2, deuxième semaine',
+          texte:
+            'Deux versions habillées autrement, même squelette. Le client les renvoie en une phrase : « trop pareilles ». Il a raison. J’arrête de toucher aux couleurs et je repars de ce que fait le visiteur sur la page.',
+        },
+        {
+          repere: 'Mois 2, un vendredi',
+          texte:
+            'Je code un outil de diagnostic : le visiteur décrit sa panne, reçoit un verdict, laisse son numéro. Ça marche. Je le jette quand même, parce que la variante « estimation en soixante secondes » affiche des prix et que le patron n’en veut aucun. Tout se réorganise autour de l’appel.',
+          image: { src: '/images/realisations/clim69-maquette.webp', alt: 'Clim69 : la maquette du site de dépannage et d’installation de climatisation à Villeurbanne' },
+        },
+        {
+          repere: 'Mois 2, fin',
+          texte:
+            'Le logo d’origine mélangeait deux polices. Mon premier essai, un flocon, ne dit que le froid, et Clim69 vend aussi le chaud. Trois séries plus tard : une unité murale, un groupe extérieur, un voyant bleu, un voyant orange.',
+        },
+        {
+          repere: 'Mois 3',
+          texte:
+            'Je fais passer le site de 19 à une trentaine de pages locales. Chaque page s’appuie sur au moins deux sources vérifiées, et je refuse d’écrire une caractéristique d’une commune de mémoire, même quand je la sais exacte. Une page qui n’y arrive pas devient une section de la page voisine.',
+        },
+        {
+          repere: 'Mois 3, un lundi matin',
+          texte:
+            'Je teste le nouveau site de bout en bout. Le test révèle que le formulaire de l’ancien site n’enregistre plus rien : l’espace de la feuille de suivi est plein. Je branche une nouvelle feuille des demandes, avec un filtre anti-spam et un onglet à part pour les envois suspects.',
+        },
+        {
+          repere: 'Mois 3, deuxième semaine',
+          texte:
+            'Les recherches du type « combien coûte » cliquent beaucoup et n’appellent personne. Je les bloque, le patron ne donne ses prix qu’au téléphone. Je mets aussi les noms de concurrents qui ne convertissent pas en exclusion, et je laisse ouverts ceux qui font sonner le téléphone.',
+        },
+        {
+          repere: 'Mois 3, un dimanche',
+          texte:
+            'Le compte publicitaire dit qu’aucune demande ne vient le dimanche. La feuille des demandes dit que c’est l’un de ses meilleurs jours pour les formulaires, parce que les cookies refusés cachent ces demandes à Google. Je garde le dimanche. Depuis, je ne juge plus un créneau sur le compte publicitaire seul.',
+        },
+        {
+          repere: 'Mois 4',
+          texte:
+            'Les boutons blancs et bleus se noient dans le bleu du site. Je les passe en ambre plein, avec un seul fichier de style pour toutes les pages : un changement, une ligne de code.',
+        },
+        {
+          repere: 'Chaque semaine',
+          texte:
+            'Je relis les recherches qui ont déclenché les annonces, je coupe ce qui coûte sans appeler, je regarde les appels et les devis. Je pose les extensions d’hiver en pause, prêtes pour le premier froid.',
+        },
+        {
+          repere: 'Aujourd’hui',
+          texte:
+            'Quatre mois après l’ouverture du compte, les demandes arrivent chaque semaine par le téléphone et le formulaire. Le patron sait d’où vient chacune, et il suit tout depuis son téléphone.',
+          image: { src: '/images/realisations/clim69.webp', alt: 'Clim69 : le site en ligne, avec le numéro et le devis à portée du pouce' },
+        },
+      ],
+    },
   },
   {
     slug: 'aplus-audition',

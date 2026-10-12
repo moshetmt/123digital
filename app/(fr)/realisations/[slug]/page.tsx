@@ -95,12 +95,12 @@ export default async function EtudeDeCasPage({ params }: Props) {
     author: { '@type': 'Organization', name: '123 Digital', url: BASE_URL },
     publisher: { '@type': 'Organization', name: '123 Digital', url: BASE_URL },
   }
-  const faq = faqPageSchema(etude.faq.map((f) => ({ question: f.question, answer: f.reponse })))
+  const faq = etude.faq.length > 0 ? faqPageSchema(etude.faq.map((f) => ({ question: f.question, answer: f.reponse }))) : null
 
   return (
     <>
       {/* Le fil d'Ariane émet déjà le BreadcrumbList : chaque entrée porte un href. */}
-      <JsonLd schema={[article, faq]} />
+      <JsonLd schema={faq ? [article, faq] : [article]} />
 
       <PageBanner
         breadcrumb={
@@ -149,6 +149,41 @@ export default async function EtudeDeCasPage({ params }: Props) {
           />
         </div>
 
+        {etude.court && (
+          <>
+            <section className="mx-auto max-w-5xl" style={sectionStyle}>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {etude.court.blocs.map((b) => (
+                  <div
+                    key={b.titre}
+                    className="rounded"
+                    style={{ border: '1px solid var(--line)', backgroundColor: 'var(--surface-2)', padding: 'clamp(1.25rem, 3vw, 1.75rem)' }}
+                  >
+                    <h2 className="font-sans font-extrabold" style={{ ...h2Style, color: 'var(--brand-strong)', marginBottom: '0.6rem' }}>{b.titre}</h2>
+                    <p style={{ color: 'var(--ink)', fontSize: '1.08rem', lineHeight: 1.55 }}>{b.texte}</p>
+                  </div>
+                ))}
+              </div>
+            </section>
+            <section className="mx-auto max-w-5xl flex flex-col gap-5" style={sectionStyle}>
+              {etude.court.images.map((im) => (
+                <Image
+                  key={im.src}
+                  src={im.src}
+                  alt={im.alt}
+                  width={1600}
+                  height={1000}
+                  sizes="(max-width: 1024px) 100vw, 1024px"
+                  className="rounded"
+                  style={{ width: '100%', height: 'auto', border: '1px solid var(--line)' }}
+                />
+              ))}
+            </section>
+          </>
+        )}
+
+        {!etude.court && (
+          <>
         {/* Récit en deux colonnes : texte + scène générée pour l'étude
             (public/images/illustrations/etudes/<slug>-<section>.webp), la scène
             change de côté à chaque section. */}
@@ -253,6 +288,8 @@ export default async function EtudeDeCasPage({ params }: Props) {
         )}
 
         <Recit titre="Ce que ça change" paragraphes={etude.resultat} scene={`/images/illustrations/etudes/${etude.slug}-resultat.webp`} />
+          </>
+        )}
 
         {etude.client.url && (
           <section className="mx-auto max-w-5xl" style={sectionStyle}>
@@ -276,10 +313,12 @@ export default async function EtudeDeCasPage({ params }: Props) {
           </section>
         )}
 
+        {etude.faq.length > 0 && (
         <section className="mx-auto max-w-5xl" style={sectionStyle}>
           <h2 className="font-sans font-extrabold mb-5" style={h2Style}>Questions fréquentes</h2>
           <FaqListe items={etude.faq.map((f) => ({ question: f.question, answer: f.reponse }))} />
         </section>
+        )}
 
         <section className="mx-auto max-w-5xl" style={sectionStyle}>
           <Link

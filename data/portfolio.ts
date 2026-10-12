@@ -20,6 +20,20 @@ export interface PortfolioProject {
 // (audit concurrence 2026-07-29, implication n°1). Ne pas en réinventer.
 export const projects: PortfolioProject[] = [
   {
+    id: 'mishpacha-tours',
+    title: 'Mishpacha Tours',
+    category: 'Création web + SEO + Logo',
+    sector: 'Tourisme · Lyon',
+    description:
+      'Nom, logo et site en quatre langues pour une guide qui fait visiter le Lyon juif à des familles venues de l’étranger.',
+    results: 'Une première demande de séjour venue de Google le lendemain de la mise en ligne, sans publicité',
+    metric: 'Demande dès le lendemain',
+    tags: ['Création web', 'SEO', 'Logo', 'Lyon'],
+    featured: true,
+    url: 'https://mishpachatours.com',
+    screenshot: '/images/realisations/mishpacha-tours-maquette.webp',
+  },
+  {
     id: 'clim69',
     title: 'Clim69',
     category: 'SEA + Refonte web',

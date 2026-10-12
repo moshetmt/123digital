@@ -1,5 +1,5 @@
 export interface EtudeDeCas {
-  slug: 'clim69' | 'aplus-audition' | 'habad-etudiants-lyon' | 'mdj17' | 'cours-anglais-esthetique'
+  slug: 'mishpacha-tours' | 'clim69' | 'aplus-audition' | 'habad-etudiants-lyon' | 'mdj17' | 'cours-anglais-esthetique'
   titre: string
   accroche: string
   metaTitle: string
@@ -17,9 +17,68 @@ export interface EtudeDeCas {
   resultat: string[]
   faq: { question: string; reponse: string }[]
   maquette: string
+  /** Format court (décision opérateur du 12/10 : les récits longs sont « ennuyeux à mourir »).
+   *  Quand il est rempli, la page n'affiche que lui : le problème, l'idée, ce qu'on a livré,
+   *  le résultat, puis les images. Les champs longs restent vides. */
+  court?: {
+    blocs: { titre: string; texte: string }[]
+    images: { src: string; alt: string }[]
+  }
 }
 
 export const etudesDeCas: EtudeDeCas[] = [
+  {
+    slug: 'mishpacha-tours',
+    titre: 'Une guide, zéro site, une première famille de New York dès le lendemain',
+    accroche:
+      'Mishpacha Tours fait visiter le Lyon juif à des familles venues de l’étranger. Nom, logo, site en quatre langues : la première demande est arrivée par Google, sans un euro de publicité.',
+    metaTitle: 'Site de tourisme en 4 langues : Mishpacha Tours | 123 Digital',
+    metaDescription:
+      'Une guide de Lyon sans présence en ligne. Un nom, un logo, un site en quatre langues, et une première demande venue de Google le lendemain.',
+    client: {
+      nom: 'Mishpacha Tours',
+      metier: 'Visites guidées et séjours casher',
+      ville: 'Lyon',
+      url: 'https://mishpachatours.com',
+    },
+    services: ['creation-site-web', 'seo', 'branding'],
+    commande: [],
+    coulisses: [],
+    etapes: [],
+    choix: [],
+    resultat: [],
+    faq: [],
+    maquette: '/images/realisations/mishpacha-tours-maquette.webp',
+    court: {
+      blocs: [
+        {
+          titre: 'Le problème',
+          texte:
+            'Une guide juive de Lyon, aucune présence en ligne. Ses clients vivent à New York, à Londres, à Buenos Aires, et ils préparent leur voyage des mois à l’avance.',
+        },
+        {
+          titre: 'L’idée',
+          texte:
+            'On a regardé ce que ces familles tapent vraiment. Elles ne cherchent pas « visite guidée Lyon ». Elles cherchent où manger casher, où prier, où skier en famille. Le site répond à ces questions avant de vendre une visite.',
+        },
+        {
+          titre: 'Ce qu’on a livré',
+          texte:
+            'Un nom, un logo, un site en quatre langues, 196 pages, la fiche Google.',
+        },
+        {
+          titre: 'Le résultat',
+          texte:
+            'Le lendemain de la mise en ligne, une famille demande un séjour complet. Elle a trouvé le site sur Google, sans un euro de publicité.',
+        },
+      ],
+      images: [
+        { src: '/images/realisations/mishpacha-tours-guide.webp', alt: 'Mishpacha Tours : le guide du Lyon juif, avec les horaires de Shabbat de la semaine' },
+        { src: '/images/realisations/mishpacha-tours-alpes.webp', alt: 'Mishpacha Tours : la page des Alpes, strictement casher' },
+        { src: '/images/realisations/mishpacha-tours-visite.webp', alt: 'Mishpacha Tours : la fiche d’une visite privée à Lyon' },
+      ],
+    },
+  },
   {
     slug: 'clim69',
     titre: 'Site internet climaticien Lyon : Clim69 fait sonner le téléphone à Villeurbanne',

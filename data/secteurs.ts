@@ -8,6 +8,10 @@ export interface SecteurData {
   // (ads-os/clients/123digital/06-reports/2026-10-12-titles-metas.md). Le title est écrit SANS « | 123 Digital ».
   seoTitle?: string
   seoDescription?: string
+  /** Slugs de data/problemes.ts : les trois pages « problème du moment » proposées en carte. */
+  problemesLies: string[]
+  /** Ids de data/services.ts : 2 à 4 prestations les plus utiles au secteur, déduites de `solutions`. */
+  services: string[]
   problemes: string[]
   solutions: string[]
   keywords: string[]
@@ -17,6 +21,8 @@ export interface SecteurData {
 export const secteurs: SecteurData[] = [
   {
     slug: 'restaurant',
+    problemesLies: ['avis-google-negatif-ou-faux-que-faire', 'fiche-google-suspendue-ou-invisible', 'mon-site-est-lent-sur-mobile'],
+    services: ['creation-site-web', 'seo', 'publicite-en-ligne'],
     seoTitle: "Site internet restaurant et référencement local",
     seoDescription: "Site internet pour restaurant : menu en ligne, réservation directe, fiche Google et référencement local pour remplir vos tables. Audit gratuit de 30 min.",
     nom: 'Restaurant',
@@ -61,6 +67,8 @@ export const secteurs: SecteurData[] = [
   },
   {
     slug: 'cabinet-medical',
+    problemesLies: ['avis-google-negatif-ou-faux-que-faire', 'fiche-google-suspendue-ou-invisible', 'nouveau-site-invisible-sur-google'],
+    services: ['creation-site-web', 'seo'],
     seoTitle: "Site internet médecin et cabinet médical",
     seoDescription: "Site internet pour médecins et cabinets médicaux : prise de rendez-vous en ligne, fiche Google à jour, informations claires pour vos patients. Audit gratuit.",
     nom: 'Cabinet médical',
@@ -105,6 +113,8 @@ export const secteurs: SecteurData[] = [
   },
   {
     slug: 'artisan-btp',
+    problemesLies: ['site-internet-artisan-depannage-qui-fait-appeler', 'mes-google-ads-ne-rapportent-rien', 'je-ne-recois-plus-les-demandes-de-mon-site'],
+    services: ['creation-site-web', 'seo', 'publicite-en-ligne'],
     seoTitle: "Artisan BTP : trouver des chantiers en direct",
     seoDescription: "Artisans BTP : trouvez des chantiers sans dépendre des plateformes. Site avec vos réalisations, référencement local et Google Ads. Audit gratuit de 30 min.",
     nom: 'Artisan BTP',
@@ -149,6 +159,8 @@ export const secteurs: SecteurData[] = [
   },
   {
     slug: 'commerce-de-proximite',
+    problemesLies: ['fiche-google-suspendue-ou-invisible', 'avis-google-negatif-ou-faux-que-faire', 'mon-site-n-apparait-plus-sur-google'],
+    services: ['creation-site-web', 'seo', 'publicite-en-ligne', 'automatisation-marketing'],
     seoTitle: "Marketing digital pour commerce de proximité",
     seoDescription: "Marketing digital pour commerces de proximité : site vitrine ou boutique en ligne, fiche Google à jour, clients qui reviennent. Audit gratuit de 30 min.",
     nom: 'Commerce de proximité',
@@ -193,6 +205,8 @@ export const secteurs: SecteurData[] = [
   },
   {
     slug: 'cabinet-juridique',
+    problemesLies: ['un-concurrent-apparait-sur-mon-nom', 'nouveau-site-invisible-sur-google', 'je-paie-une-agence-sans-resultat'],
+    services: ['creation-site-web', 'seo'],
     seoTitle: "Site internet et référencement avocat",
     seoDescription: "Site internet et référencement pour cabinets d'avocats : un site sobre, des pages par domaine de droit, des demandes qualifiées. Audit gratuit de 30 min.",
     nom: 'Cabinet juridique',
@@ -237,6 +251,8 @@ export const secteurs: SecteurData[] = [
   },
   {
     slug: 'agence-immobiliere',
+    problemesLies: ['un-concurrent-apparait-sur-mon-nom', 'mes-google-ads-ne-rapportent-rien', 'mon-site-est-lent-sur-mobile'],
+    services: ['creation-site-web', 'seo', 'publicite-en-ligne'],
     seoTitle: "Site internet et marketing digital immobilier",
     seoDescription: "Site internet et marketing digital pour agences immobilières : recherche de biens, pages d'estimation, référencement local. Audit gratuit de 30 min.",
     nom: 'Agence immobilière',
@@ -281,6 +297,8 @@ export const secteurs: SecteurData[] = [
   },
   {
     slug: 'garage-automobile',
+    problemesLies: ['avis-google-negatif-ou-faux-que-faire', 'fiche-google-suspendue-ou-invisible', 'je-ne-recois-plus-les-demandes-de-mon-site'],
+    services: ['creation-site-web', 'seo', 'publicite-en-ligne', 'automatisation-marketing'],
     seoTitle: "Marketing et publicité garage automobile",
     seoDescription: "Marketing et publicité pour garages automobiles : site avec prise de rendez-vous, référencement local, rappels d'entretien. Audit gratuit de 30 min.",
     nom: 'Garage automobile',
@@ -325,6 +343,8 @@ export const secteurs: SecteurData[] = [
   },
   {
     slug: 'salon-beaute',
+    problemesLies: ['avis-google-negatif-ou-faux-que-faire', 'fiche-google-suspendue-ou-invisible', 'mon-site-est-lent-sur-mobile'],
+    services: ['creation-site-web', 'seo', 'community-management', 'automatisation-marketing'],
     seoTitle: "Site internet coiffeur et institut de beauté",
     seoDescription: "Site internet pour coiffeurs et instituts de beauté : réservation en ligne, fiche Google soignée, réseaux sociaux qui remplissent l'agenda. Audit gratuit.",
     nom: 'Salon de beauté',
@@ -369,6 +389,8 @@ export const secteurs: SecteurData[] = [
   },
   {
     slug: 'cabinet-comptable',
+    problemesLies: ['nouveau-site-invisible-sur-google', 'je-paie-une-agence-sans-resultat', 'un-concurrent-apparait-sur-mon-nom'],
+    services: ['creation-site-web', 'seo'],
     seoTitle: "Site internet et marketing expert-comptable",
     seoDescription: "Site internet et marketing pour experts-comptables : présentation des missions, référencement local, demandes d'entrepreneurs qualifiées. Audit gratuit.",
     nom: 'Cabinet comptable',
@@ -413,6 +435,8 @@ export const secteurs: SecteurData[] = [
   },
   {
     slug: 'entreprise-transport',
+    problemesLies: ['je-ne-recois-plus-les-demandes-de-mon-site', 'mes-google-ads-ne-rapportent-rien', 'mon-site-n-apparait-plus-sur-google'],
+    services: ['creation-site-web', 'seo', 'publicite-en-ligne'],
     seoTitle: "Marketing digital pour entreprise de transport",
     seoDescription: "Marketing digital pour entreprises de transport : site professionnel, formulaire de devis détaillé, référencement B2B. Audit gratuit de 30 min.",
     nom: 'Entreprise de transport',
@@ -459,4 +483,18 @@ export const secteurs: SecteurData[] = [
 
 export function getSecteurBySlug(slug: string): SecteurData | undefined {
   return secteurs.find((s) => s.slug === slug)
+}
+
+/** Dimensions réelles de public/images/illustrations/secteurs/<slug>.webp (largeur, hauteur). */
+export const scenesSecteurs: Record<string, [number, number]> = {
+  'agence-immobiliere': [900, 1031],
+  'artisan-btp': [900, 632],
+  'cabinet-comptable': [900, 764],
+  'cabinet-juridique': [900, 699],
+  'cabinet-medical': [900, 558],
+  'commerce-de-proximite': [900, 863],
+  'entreprise-transport': [900, 659],
+  'garage-automobile': [900, 441],
+  restaurant: [900, 723],
+  'salon-beaute': [900, 743],
 }

@@ -151,36 +151,33 @@ export default async function EtudeDeCasPage({ params }: Props) {
         </div>
 
         {etude.court && (
-          <>
-            <section className="mx-auto max-w-5xl" style={sectionStyle}>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {etude.court.blocs.map((b) => (
-                  <div
-                    key={b.titre}
-                    className="rounded"
-                    style={{ border: '1px solid var(--line)', backgroundColor: 'var(--surface-2)', padding: 'clamp(1.25rem, 3vw, 1.75rem)' }}
-                  >
-                    <h2 className="font-sans font-extrabold" style={{ ...h2Style, color: 'var(--brand-strong)', marginBottom: '0.6rem' }}>{b.titre}</h2>
-                    <p style={{ color: 'var(--ink)', fontSize: '1.08rem', lineHeight: 1.55 }}>{b.texte}</p>
-                  </div>
-                ))}
-              </div>
-            </section>
-            <section className="mx-auto max-w-5xl flex flex-col gap-5" style={sectionStyle}>
-              {etude.court.images.map((im) => (
-                <Image
-                  key={im.src}
-                  src={im.src}
-                  alt={im.alt}
-                  width={1600}
-                  height={1000}
-                  sizes="(max-width: 1024px) 100vw, 1024px"
-                  className="rounded"
-                  style={{ width: '100%', height: 'auto', border: '1px solid var(--line)' }}
-                />
+          <section className="mx-auto max-w-3xl" style={sectionStyle}>
+            <h2 className="font-sans font-extrabold mb-6" style={h2Style}>Journal de bord</h2>
+            <ol className="flex flex-col gap-7" style={{ listStyle: 'none', padding: 0, borderLeft: '3px solid var(--line)', marginLeft: 8 }}>
+              {etude.court.journal.map((e) => (
+                <li key={e.repere} className="relative" style={{ paddingLeft: '1.5rem' }}>
+                  <span
+                    aria-hidden
+                    className="absolute rounded-full"
+                    style={{ left: -10, top: 5, width: 17, height: 17, backgroundColor: 'var(--brand-strong)', border: '3px solid var(--surface)' }}
+                  />
+                  <h3 className="font-sans font-extrabold" style={{ fontSize: '1.15rem', color: 'var(--brand-strong)', marginBottom: '0.35rem' }}>{e.repere}</h3>
+                  <p style={{ color: 'var(--ink)', fontSize: '1.12rem', lineHeight: 1.55 }}>{e.texte}</p>
+                  {e.image && (
+                    <Image
+                      src={e.image.src}
+                      alt={e.image.alt}
+                      width={1600}
+                      height={1000}
+                      sizes="(max-width: 768px) 100vw, 720px"
+                      className="rounded"
+                      style={{ width: '100%', height: 'auto', border: '1px solid var(--line)', marginTop: '1rem' }}
+                    />
+                  )}
+                </li>
               ))}
-            </section>
-          </>
+            </ol>
+          </section>
         )}
 
         {!etude.court && (

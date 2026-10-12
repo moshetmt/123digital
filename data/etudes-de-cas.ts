@@ -1011,7 +1011,7 @@ export const etudesDeCas: EtudeDeCas[] = [
       {
         question: 'Pourquoi tester autant de versions d’un logo ?',
         reponse:
-          'Chaque refus précise le cahier des charges. Trente-quatre versions en trois jours ont fixé ce que le signe devait faire : se lire en 17, se reconnaître comme menorah, tenir à petite taille, respecter un seul vide. Sans elles, la charte aurait été un goût plus qu’une décision.',
+          'Chaque refus précise le cahier des charges. Trente-quatre versions ont fixé ce que le signe devait faire : se lire en 17, se reconnaître comme menorah, tenir à petite taille, respecter un seul vide. Sans elles, la charte aurait été un goût plus qu’une décision.',
       },
       {
         question: 'Peut-on associer hébreu et latin dans la même identité visuelle ?',

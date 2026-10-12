@@ -1,13 +1,15 @@
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
-import { Check, X } from 'lucide-react'
+import { ArrowRight, Check, X } from 'lucide-react'
 import { JsonLd } from '@/components/seo/JsonLd'
 import { FaqListe } from '@/components/sections/FaqListe'
 import { PageBanner, BannerCta, BannerCtaLine } from '@/components/sections/PageBanner'
 import { Breadcrumb } from '@/components/layout/Breadcrumb'
 import { BASE_URL, breadcrumbSchema, localBusinessSchema } from '@/lib/schema'
-import { secteurs, getSecteurBySlug } from '@/data/secteurs'
+import { secteurs, getSecteurBySlug, scenesSecteurs } from '@/data/secteurs'
+import { getProblemeBySlug } from '@/data/problemes'
+import { services } from '@/data/services'
 import { villesARA } from '@/data/villes'
 import { estIndexable } from '@/data/indexation'
 import { CTA } from '@/components/sections/CTA'
@@ -40,15 +42,76 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   }
 }
 
+const CHIP =
+  'inline-flex items-center min-h-[44px] px-4 rounded font-bold text-[0.85rem] transition-colors hover:border-[var(--brand)] hover:text-[var(--brand-strong)]'
+const CHIP_STYLE = { border: '1px solid var(--line)', backgroundColor: 'var(--surface-2)', color: 'var(--ink)' }
+
+const SECTION_PAD = 'clamp(2.25rem, 6vw, 4.5rem) 1.5rem'
+
+const EYEBROW = {
+  fontSize: '0.65rem',
+  letterSpacing: '0.14em',
+  textTransform: 'uppercase',
+  fontWeight: 700,
+  marginBottom: '1.25rem',
+} as const
+
+// Liste de points ; au-delà de 4, le reste se replie dans un <details> natif (sans JavaScript).
+function Points({
+  items,
+  icone,
+  couleur,
+  texte,
+}: {
+  items: string[]
+  icone: 'check' | 'x'
+  couleur: string
+  texte: string
+}) {
+  const Icone = icone === 'check' ? Check : X
+  const rendre = (liste: string[]) =>
+    liste.map((t, i) => (
+      <li key={i} className="flex items-start gap-3">
+        <Icone size={16} strokeWidth={3} aria-hidden style={{ color: couleur, marginTop: '0.15rem', flexShrink: 0 }} />
+        <span style={{ fontSize: '0.92rem', color: texte, lineHeight: 1.6 }}>{t}</span>
+      </li>
+    ))
+  const debut = items.slice(0, 4)
+  const reste = items.slice(4)
+
+  return (
+    <>
+      <ul className="space-y-4">{rendre(debut)}</ul>
+      {reste.length > 0 && (
+        <details className="mt-4">
+          <summary
+            className="inline-flex items-center min-h-[44px] cursor-pointer font-bold"
+            style={{ fontSize: '0.85rem', color: texte, textDecoration: 'underline', textUnderlineOffset: '3px' }}
+          >
+            Voir tout
+          </summary>
+          <ul className="space-y-4 mt-3">{rendre(reste)}</ul>
+        </details>
+      )}
+    </>
+  )
+}
+
 export default async function SecteurPage({ params }: PageProps) {
   const { secteur: secteurSlug } = await params
   const secteur = getSecteurBySlug(secteurSlug)
   if (!secteur) notFound()
 
+  // Minuscule sur la premiere lettre seulement : « artisans BTP », pas « artisans btp ».
+  const nomMin = secteur.nomPluriel.charAt(0).toLowerCase() + secteur.nomPluriel.slice(1)
   const autresSecteurs = secteurs.filter((s) => s.slug !== secteur.slug)
-  const villesPrioritaires = villesARA.filter((v) => v.priority === 'high')
-  // Le texte cite toutes les villes prioritaires ; seuls les liens se limitent aux pages indexables.
-  const villesLiees = villesPrioritaires.filter((v) => estIndexable(`/${v.slug}`))
+  const villesLiees = villesARA.filter((v) => v.priority === 'high' && estIndexable(`/${v.slug}`))
+  const scene = scenesSecteurs[secteur.slug]
+  const cartesProblemes = secteur.problemesLies.flatMap((slug) => {
+    const page = getProblemeBySlug(slug)
+    return page ? [{ slug, titre: page.titre }] : []
+  })
+  const prestations = secteur.services.flatMap((id) => services.find((x) => x.id === id) ?? [])
 
   const schemas = [
     localBusinessSchema(),
@@ -74,6 +137,12 @@ export default async function SecteurPage({ params }: PageProps) {
 
       <PageBanner
         icone="store"
+        align="left"
+        illustration={
+          scene
+            ? { src: `/images/illustrations/secteurs/${secteur.slug}.webp`, width: scene[0], height: scene[1] }
+            : undefined
+        }
         breadcrumb={
           <Breadcrumb
             tone="vert"
@@ -85,8 +154,8 @@ export default async function SecteurPage({ params }: PageProps) {
           />
         }
 
-        title={`Marketing digital pour les ${secteur.nomPluriel.toLowerCase()}`}
-        highlight={`pour les ${secteur.nomPluriel.toLowerCase()}`}
+        title={`Marketing digital pour les ${nomMin}`}
+        highlight={`pour les ${nomMin}`}
         sub={secteur.description}
         actions={
           <>
@@ -96,63 +165,89 @@ export default async function SecteurPage({ params }: PageProps) {
         }
       />
 
-      {/* Problèmes identifiés */}
-      <section
-        className="bg-background"
-        style={{ padding: 'clamp(2.25rem, 6vw, 4.5rem) 1.5rem', borderTop: '1px solid var(--line)' }}
-      >
+      {/* Le visiteur choisit son problème : trois pages dédiées, plus la sortie vers l'audit */}
+      <section className="bg-background" style={{ padding: SECTION_PAD }}>
         <div className="mx-auto max-w-5xl">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-            <div>
-              <div
-                style={{
-                  fontSize: '0.65rem',
-                  letterSpacing: '0.14em',
-                  textTransform: 'uppercase',
-                  color: 'var(--ink-2)',
-                  fontWeight: 700,
-                  marginBottom: '1.5rem',
-                }}
+          <h2
+            className="font-display font-extrabold mb-6"
+            style={{ fontSize: 'clamp(1.4rem, 2.5vw, 2rem)', color: 'var(--ink)', lineHeight: 1.2 }}
+          >
+            Votre problème du moment
+          </h2>
+          <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3" role="list">
+            {cartesProblemes.map((c) => (
+              <li key={c.slug} className="flex">
+                <Link
+                  href={`/problemes/${c.slug}`}
+                  className="flex w-full flex-col justify-between gap-4 rounded transition-colors hover:border-[var(--brand)]"
+                  style={{ border: '1px solid var(--line)', padding: '1.1rem', minHeight: '44px' }}
+                >
+                  <span style={{ fontWeight: 800, fontSize: '0.95rem', lineHeight: 1.3, color: 'var(--ink)' }}>
+                    {c.titre}
+                  </span>
+                  <ArrowRight size={18} strokeWidth={2.5} aria-hidden style={{ color: 'var(--brand)' }} />
+                </Link>
+              </li>
+            ))}
+            <li className="flex">
+              <Link
+                href="/audit-gratuit"
+                className="flex w-full flex-col justify-between gap-4 rounded transition-colors hover:border-[var(--brand)]"
+                style={{ border: '1px solid var(--line)', backgroundColor: 'var(--surface-2)', padding: '1.1rem', minHeight: '44px' }}
               >
-                Ce que vous vivez
-              </div>
-              <ul className="space-y-4">
-                {secteur.problemes.map((probleme, i) => (
-                  <li key={i} className="flex items-start gap-3">
-                    <X size={16} strokeWidth={3} aria-hidden style={{ color: 'var(--ink-3)', marginTop: '0.15rem', flexShrink: 0 }} />
-                    <span style={{ fontSize: '0.9rem', color: 'var(--ink-2)', lineHeight: 1.6 }}>
-                      {probleme}
-                    </span>
-                  </li>
-                ))}
-              </ul>
-            </div>
+                <span>
+                  <span className="block" style={{ fontWeight: 800, fontSize: '0.95rem', lineHeight: 1.3, color: 'var(--ink)' }}>
+                    Autre chose ?
+                  </span>
+                  <span className="block mt-1" style={{ fontSize: '0.85rem', color: 'var(--ink-2)', lineHeight: 1.4 }}>
+                    Audit gratuit 30 min
+                  </span>
+                </span>
+                <ArrowRight size={18} strokeWidth={2.5} aria-hidden style={{ color: 'var(--brand)' }} />
+              </Link>
+            </li>
+          </ul>
+        </div>
+      </section>
 
-            <div>
-              <div
-                style={{
-                  fontSize: '0.65rem',
-                  letterSpacing: '0.14em',
-                  textTransform: 'uppercase',
-                  color: 'var(--ink-2)',
-                  fontWeight: 700,
-                  marginBottom: '1.5rem',
-                }}
-              >
-                Ce que je mets en place
-              </div>
-              <ul className="space-y-4">
-                {secteur.solutions.map((solution, i) => (
-                  <li key={i} className="flex items-start gap-3">
-                    <Check size={16} strokeWidth={3} aria-hidden style={{ color: 'var(--brand)', marginTop: '0.15rem', flexShrink: 0 }} />
-                    <span style={{ fontSize: '0.9rem', color: 'var(--ink-2)', lineHeight: 1.6 }}>
-                      {solution}
-                    </span>
-                  </li>
-                ))}
-              </ul>
-            </div>
+      {/* Deux panneaux qui se répondent */}
+      <section className="bg-background" style={{ padding: '0 1.5rem clamp(2.25rem, 6vw, 4.5rem)' }}>
+        <div className="mx-auto max-w-5xl grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div
+            className="rounded"
+            style={{ backgroundColor: 'var(--surface-2)', border: '1px solid var(--line)', padding: 'clamp(1.25rem, 4vw, 2rem)' }}
+          >
+            <h2 style={{ ...EYEBROW, color: 'var(--ink-2)' }}>Ce que vous vivez</h2>
+            <Points items={secteur.problemes} icone="x" couleur="var(--ink-3)" texte="var(--ink-2)" />
           </div>
+          <div
+            className="rounded"
+            style={{ backgroundColor: 'var(--brand)', color: 'var(--on-brand)', padding: 'clamp(1.25rem, 4vw, 2rem)' }}
+          >
+            <h2 style={{ ...EYEBROW, color: 'var(--on-brand)' }}>Ce que je mets en place</h2>
+            <Points items={secteur.solutions} icone="check" couleur="var(--on-brand)" texte="var(--on-brand)" />
+          </div>
+        </div>
+      </section>
+
+      {/* Prestations concernées */}
+      <section className="bg-background" style={{ padding: 'clamp(1.5rem, 4vw, 2.5rem) 1.5rem', borderTop: '1px solid var(--line)' }}>
+        <div className="mx-auto max-w-5xl">
+          <h2
+            className="font-display font-extrabold mb-4"
+            style={{ fontSize: 'clamp(1.25rem, 2.2vw, 1.6rem)', color: 'var(--ink)', lineHeight: 1.2 }}
+          >
+            Les prestations concernées
+          </h2>
+          <ul className="flex flex-wrap gap-2" role="list">
+            {prestations.map((x) => (
+              <li key={x.id}>
+                <Link href={x.href} className={CHIP} style={CHIP_STYLE}>
+                  {x.title}
+                </Link>
+              </li>
+            ))}
+          </ul>
         </div>
       </section>
 
@@ -162,18 +257,7 @@ export default async function SecteurPage({ params }: PageProps) {
         style={{ padding: 'clamp(2rem, 5vw, 3.5rem) 1.5rem clamp(2.25rem, 6vw, 4rem)', borderTop: '1px solid var(--line)' }}
       >
         <div className="mx-auto max-w-3xl">
-          <div
-            style={{
-              fontSize: '0.65rem',
-              letterSpacing: '0.14em',
-              textTransform: 'uppercase',
-              color: 'var(--ink-2)',
-              fontWeight: 700,
-              marginBottom: '1.5rem',
-            }}
-          >
-            Questions fréquentes
-          </div>
+          <div style={{ ...EYEBROW, color: 'var(--ink-2)', marginBottom: '1.5rem' }}>Questions fréquentes</div>
           <h2
             className="font-display font-extrabold mb-10"
             style={{ fontSize: 'clamp(1.8rem, 3vw, 2.6rem)', color: 'var(--ink)', lineHeight: 1.1 }}
@@ -186,85 +270,45 @@ export default async function SecteurPage({ params }: PageProps) {
         </div>
       </section>
 
-      {/* Zones d'intervention — ARA */}
-      <section
-        className="bg-background"
-        style={{ padding: 'clamp(2.25rem, 6vw, 4.5rem) 1.5rem', borderTop: '1px solid var(--line)' }}
-      >
+      {/* Zones d'intervention : seules les villes dont la page est indexable */}
+      <section className="bg-background" style={{ padding: SECTION_PAD, borderTop: '1px solid var(--line)' }}>
         <div className="mx-auto max-w-5xl">
-          <div
-            style={{
-              fontSize: '0.65rem',
-              letterSpacing: '0.14em',
-              textTransform: 'uppercase',
-              color: 'var(--ink-2)',
-              fontWeight: 700,
-              marginBottom: '1.5rem',
-            }}
-          >
-            Zones d&apos;intervention
-          </div>
+          <div style={{ ...EYEBROW, color: 'var(--ink-2)', marginBottom: '1.5rem' }}>Zones d&apos;intervention</div>
           <h2
-            className="font-display font-extrabold mb-4"
+            className="font-display font-extrabold mb-5"
             style={{ fontSize: 'clamp(1.4rem, 2.5vw, 2rem)', color: 'var(--ink)', lineHeight: 1.2 }}
           >
             {secteur.nomPluriel} en Auvergne-Rhône-Alpes
           </h2>
-          <p
-            className="mb-6 max-w-2xl"
-            style={{ fontSize: '0.9rem', color: 'var(--ink-2)', lineHeight: 1.7 }}
-          >
-            J&apos;accompagne les {secteur.nomPluriel.toLowerCase()} de toute la région
-            Auvergne-Rhône-Alpes :{' '}
-            {villesPrioritaires.map((v) => v.nom).join(', ')} et leurs agglomérations.
-            Que vous soyez dans une grande métropole ou une ville moyenne, les enjeux digitaux
-            sont les mêmes, et les solutions mises en place sont calibrées pour votre marché local.
-          </p>
-          <p style={{ fontSize: '0.8rem', color: 'var(--ink-2)' }}>
-            {villesLiees.map((v, i) => (
-              <span key={v.slug}>
-                <Link href={`/${v.slug}`} className="hover:text-[var(--brand)] transition-colors" style={{ color: 'var(--ink-2)' }}>
-                  {secteur.nom} à {v.nom}
+          <ul className="flex flex-wrap gap-2" role="list">
+            {villesLiees.map((v) => (
+              <li key={v.slug}>
+                <Link href={`/${v.slug}`} className={CHIP} style={CHIP_STYLE}>
+                  {v.nom}
                 </Link>
-                {i < villesLiees.length - 1 && ' · '}
-              </span>
+              </li>
             ))}
-          </p>
+          </ul>
         </div>
       </section>
 
       {/* Autres secteurs */}
-      <section
-        className="bg-background"
-        style={{ padding: '3rem 1.5rem 4rem', borderTop: '1px solid var(--line)' }}
-      >
+      <section className="bg-background" style={{ padding: '2.5rem 1.5rem 4rem', borderTop: '1px solid var(--line)' }}>
         <div className="mx-auto max-w-5xl">
-          <p
-            style={{
-              fontSize: '0.7rem',
-              letterSpacing: '0.1em',
-              textTransform: 'uppercase',
-              color: 'var(--ink-3)',
-              marginBottom: '1rem',
-              fontWeight: 700,
-            }}
-          >
-            Autres secteurs
-          </p>
-          <p style={{ fontSize: '0.8rem', color: 'var(--ink-2)' }}>
-            {autresSecteurs.map((s, i) => (
-              <span key={s.slug}>
-                <Link href={`/secteurs/${s.slug}`} className="hover:text-[var(--brand)] transition-colors" style={{ color: 'var(--ink-2)' }}>
+          <h2 style={{ ...EYEBROW, color: 'var(--ink-3)', fontSize: '0.7rem', letterSpacing: '0.1em' }}>Autres secteurs</h2>
+          <ul className="flex flex-wrap gap-2" role="list">
+            {autresSecteurs.map((s) => (
+              <li key={s.slug}>
+                <Link href={`/secteurs/${s.slug}`} className={CHIP} style={CHIP_STYLE}>
                   {s.nom}
                 </Link>
-                {i < autresSecteurs.length - 1 && ' · '}
-              </span>
+              </li>
             ))}
-          </p>
+          </ul>
         </div>
       </section>
 
-      {/* Formulaire — composant unique CTA.tsx, partage par tout le site */}
+      {/* Formulaire : composant unique CTA.tsx, déjà présent avant la refonte et non fourni par le layout */}
       <CTA />
     </>
   )

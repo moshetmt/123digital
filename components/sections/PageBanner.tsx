@@ -1,5 +1,6 @@
 import type { ReactNode } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { PongCanvas } from '@/components/sections/PongCanvas'
 
 // ── Banniere de page ──────────────────────────────────────────────────────────
@@ -38,6 +39,8 @@ interface PageBannerProps {
   image?: { src: string; alt?: string; priority?: boolean }
   /** Contenu libre sous les boutons (puces de reassurance, chiffre cle). */
   children?: ReactNode
+  /** Scene decorative (webp transparent). Deux colonnes des `lg`, sous les boutons sur mobile. Absente : rendu inchange. */
+  illustration?: { src: string; width: number; height: number }
 }
 
 export function PageBanner({
@@ -48,6 +51,7 @@ export function PageBanner({
   actions,
   align = 'center',
   children,
+  illustration,
 }: PageBannerProps) {
   const centre = align === 'center'
 
@@ -74,7 +78,11 @@ export function PageBanner({
         }}
       />
 
-      <div className={`relative mx-auto w-full max-w-4xl ${centre ? 'text-center' : ''}`}>
+      <div
+        className={`relative mx-auto w-full max-w-4xl ${centre ? 'text-center' : ''}${
+          illustration ? ' lg:max-w-6xl lg:grid lg:grid-cols-[1.15fr_0.85fr] lg:items-center lg:gap-10' : ''
+        }`}
+      >
         <div>
           {breadcrumb && <div className="mb-4">{breadcrumb}</div>}
 
@@ -118,6 +126,19 @@ export function PageBanner({
           {children}
         </div>
 
+        {illustration && (
+          <div className="relative z-10 justify-self-center lg:justify-self-end w-full mt-8 lg:mt-0 max-w-[240px] lg:max-w-[440px]">
+            <Image
+              src={illustration.src}
+              alt=""
+              width={illustration.width}
+              height={illustration.height}
+              sizes="(max-width: 1024px) 240px, 440px"
+              priority
+              style={{ width: '100%', height: 'auto', objectFit: 'contain' }}
+            />
+          </div>
+        )}
       </div>
     </section>
   )

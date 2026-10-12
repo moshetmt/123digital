@@ -1,7 +1,8 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import { BellRing, Database, Filter, LayoutDashboard, Mail, Workflow } from 'lucide-react'
 import { PageBanner, BannerCta, BannerCtaLine } from '@/components/sections/PageBanner'
-import { GrilleCartes, GrilleEtapes } from '@/components/sections/Grilles'
+import { GrilleCartes, GrilleEtapes, GrilleTarifs } from '@/components/sections/Grilles'
 import { JsonLd } from '@/components/seo/JsonLd'
 import { FaqListe } from '@/components/sections/FaqListe'
 import { BASE_URL, serviceSchema, breadcrumbSchema } from '@/lib/schema'
@@ -125,6 +126,7 @@ export default function AutomatisationMarketingPage() {
       ]} />
 
       <PageBanner
+        illustration={{ src: "/images/illustrations/service-automatisation-marketing.webp", width: 800, height: 800 }}
         icone="zap"
         image={{ src: '/images/services/automatisation-marketing.jpg', priority: true }}
         title="Automatisation marketing PME. Des leads même quand vous dormez."
@@ -137,7 +139,7 @@ export default function AutomatisationMarketingPage() {
           </>
         }
       >
-        <p style={{ marginTop: '1rem', fontSize: '0.85rem', fontWeight: 600, color: 'var(--ink-2)' }}>
+        <p style={{ marginTop: '1rem', fontSize: '0.85rem', fontWeight: 600, color: 'var(--brand-tint)' }}>
           10 h gagnées par semaine en moyenne
         </p>
       </PageBanner>
@@ -149,7 +151,7 @@ export default function AutomatisationMarketingPage() {
           <h2 className="font-display font-extrabold mb-5 sm:mb-10" style={{ fontSize: 'clamp(1.6rem, 3vw, 2.5rem)', color: 'var(--ink)', letterSpacing: '-0.02em' }}>
             Automatisation marketing PME : les tâches qui disparaissent
           </h2>
-          <GrilleCartes items={automations.map((a) => ({ titre: a.title, texte: a.desc }))} />
+          <GrilleCartes icones={[Mail, Database, Filter, BellRing, Workflow, LayoutDashboard]} items={automations.map((a) => ({ titre: a.title, texte: a.desc }))} />
         </div>
       </section>
 
@@ -160,7 +162,7 @@ export default function AutomatisationMarketingPage() {
           <h2 className="font-display font-extrabold mb-5 sm:mb-10" style={{ fontSize: 'clamp(1.6rem, 3vw, 2.5rem)', color: 'var(--ink)', letterSpacing: '-0.02em' }}>
             Mise en place de l&apos;automatisation en 4 étapes
           </h2>
-          <GrilleEtapes items={steps.map((s) => ({ titre: s.title, texte: s.desc }))} />
+          <GrilleEtapes illustrees items={steps.map((s) => ({ titre: s.title, texte: s.desc }))} />
         </div>
       </section>
 
@@ -178,16 +180,7 @@ export default function AutomatisationMarketingPage() {
               Guide complet pour démarrer →
             </Link>
           </p>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
-            {pricingTiers.map((t) => (
-              <div key={t.label} className="rounded p-4 sm:p-6" style={{ backgroundColor: 'var(--surface-2)', border: '1px solid var(--line)' }}>
-                <div style={{ fontSize: '0.65rem', letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--brand)', fontWeight: 700, marginBottom: '0.75rem' }}>{t.label}</div>
-                <div className="font-display font-extrabold mb-3" style={{ fontSize: '1.3rem', color: 'var(--ink)' }}>{t.price}</div>
-                <p className="text-sm leading-relaxed mb-4" style={{ color: 'var(--ink-2)' }}>{t.desc}</p>
-                <div style={{ fontSize: '0.75rem', color: 'var(--ink-3)', fontWeight: 600 }}>{t.delay}</div>
-              </div>
-            ))}
-          </div>
+          <GrilleTarifs items={pricingTiers} />
         </div>
       </section>
 

@@ -1,7 +1,8 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import { Compass, Palette, PenLine, Shapes } from 'lucide-react'
 import { PageBanner, BannerCta, BannerCtaLine } from '@/components/sections/PageBanner'
-import { GrilleCartes, GrilleEtapes } from '@/components/sections/Grilles'
+import { GrilleCartes, GrilleEtapes, GrilleTarifs } from '@/components/sections/Grilles'
 import { JsonLd } from '@/components/seo/JsonLd'
 import { FaqListe } from '@/components/sections/FaqListe'
 import { BASE_URL, serviceSchema, breadcrumbSchema } from '@/lib/schema'
@@ -123,6 +124,7 @@ export default function BrandingPage() {
       ]} />
 
       <PageBanner
+        illustration={{ src: "/images/illustrations/service-branding.webp", width: 800, height: 800 }}
         icone="palette"
         image={{ src: '/images/services/branding.jpg', priority: true }}
         title="Branding & identité visuelle PME. Une image qui inspire confiance."
@@ -143,7 +145,7 @@ export default function BrandingPage() {
           <h2 className="font-display font-extrabold mb-5 sm:mb-10" style={{ fontSize: 'clamp(1.6rem, 3vw, 2.5rem)', color: 'var(--ink)', letterSpacing: '-0.02em' }}>
             Identité visuelle PME complète et cohérente
           </h2>
-          <GrilleCartes items={deliverables.map((d) => ({ titre: d.title, texte: d.desc }))} />
+          <GrilleCartes icones={[Shapes, Palette, Compass, PenLine]} items={deliverables.map((d) => ({ titre: d.title, texte: d.desc }))} />
         </div>
       </section>
 
@@ -154,7 +156,7 @@ export default function BrandingPage() {
           <h2 className="font-display font-extrabold mb-5 sm:mb-10" style={{ fontSize: 'clamp(1.6rem, 3vw, 2.5rem)', color: 'var(--ink)', letterSpacing: '-0.02em' }}>
             Création d&apos;identité visuelle en 4 étapes
           </h2>
-          <GrilleEtapes items={steps.map((s) => ({ titre: s.title, texte: s.desc }))} />
+          <GrilleEtapes illustrees items={steps.map((s) => ({ titre: s.title, texte: s.desc }))} />
         </div>
       </section>
 
@@ -170,16 +172,7 @@ export default function BrandingPage() {
             d&apos;un outil IA ou d&apos;un freelance junior. Ce n&apos;est pas un jugement. C&apos;est
             ce que vous verrez en comparant les résultats sur le long terme.
           </p>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
-            {pricingTiers.map((t) => (
-              <div key={t.label} className="rounded p-4 sm:p-6" style={{ backgroundColor: 'var(--surface-2)', border: '1px solid var(--line)' }}>
-                <div style={{ fontSize: '0.65rem', letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--brand)', fontWeight: 700, marginBottom: '0.75rem' }}>{t.label}</div>
-                <div className="font-display font-extrabold mb-3" style={{ fontSize: '1.3rem', color: 'var(--ink)' }}>{t.price}</div>
-                <p className="text-sm leading-relaxed mb-4" style={{ color: 'var(--ink-2)' }}>{t.desc}</p>
-                <div style={{ fontSize: '0.75rem', color: 'var(--ink-3)', fontWeight: 600 }}>Délai : {t.delay}</div>
-              </div>
-            ))}
-          </div>
+          <GrilleTarifs items={pricingTiers} prefixeDelai={'Délai : '} />
         </div>
       </section>
 

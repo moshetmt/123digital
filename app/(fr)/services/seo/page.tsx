@@ -1,7 +1,8 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import { BarChart3, FileText, KeyRound, Link2, SearchCheck, SlidersHorizontal } from 'lucide-react'
 import { PageBanner, BannerCta, BannerCtaLine } from '@/components/sections/PageBanner'
-import { GrilleCartes, GrilleEtapes } from '@/components/sections/Grilles'
+import { GrilleCartes, GrilleEtapes, GrilleTarifs } from '@/components/sections/Grilles'
 import { JsonLd } from '@/components/seo/JsonLd'
 import { FaqListe } from '@/components/sections/FaqListe'
 import { BASE_URL, serviceSchema, breadcrumbSchema } from '@/lib/schema'
@@ -116,6 +117,7 @@ export default function SeoPage() {
       ]} />
 
       <PageBanner
+        illustration={{ src: "/images/illustrations/service-seo.webp", width: 800, height: 800 }}
         icone="search"
         image={{ src: '/images/services/seo.jpg', priority: true }}
         title="SEO & référencement naturel. 1ère page Google pour votre PME."
@@ -128,7 +130,7 @@ export default function SeoPage() {
           </>
         }
       >
-        <p style={{ marginTop: '1rem', fontSize: '0.85rem', fontWeight: 600, color: 'var(--ink-2)' }}>
+        <p style={{ marginTop: '1rem', fontSize: '0.85rem', fontWeight: 600, color: 'var(--brand-tint)' }}>
           +150 % de trafic organique en moyenne après 6 mois
         </p>
       </PageBanner>
@@ -140,7 +142,7 @@ export default function SeoPage() {
           <h2 className="font-display font-extrabold mb-5 sm:mb-10" style={{ fontSize: 'clamp(1.6rem, 3vw, 2.5rem)', color: 'var(--ink)', letterSpacing: '-0.02em' }}>
             Référencement naturel PME en 4 étapes
           </h2>
-          <GrilleEtapes items={steps.map((s) => ({ titre: s.title, texte: s.desc }))} />
+          <GrilleEtapes illustrees items={steps.map((s) => ({ titre: s.title, texte: s.desc }))} />
         </div>
       </section>
 
@@ -152,6 +154,7 @@ export default function SeoPage() {
             Un SEO PME complet, sans zone grise
           </h2>
           <GrilleCartes
+            icones={[SearchCheck, KeyRound, SlidersHorizontal, FileText, Link2, BarChart3]}
             items={[
               { title: 'Audit SEO technique', desc: 'Vitesse, Core Web Vitals, indexation, balises, structure de liens : tout ce que Google évalue en coulisses.' },
               { title: 'Stratégie de mots-clés locaux', desc: 'Requêtes ciblées que vos clients tapent réellement, avec volume et concurrence analysés.' },
@@ -176,16 +179,7 @@ export default function SeoPage() {
             investissement réaliste pour des résultats durables, pas du SEO au rabais qui disparaît
             à la prochaine mise à jour de Google.
           </p>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
-            {pricingTiers.map((t) => (
-              <div key={t.label} className="rounded p-4 sm:p-6" style={{ backgroundColor: 'var(--surface-2)', border: '1px solid var(--line)' }}>
-                <div style={{ fontSize: '0.65rem', letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--brand)', fontWeight: 700, marginBottom: '0.75rem' }}>{t.label}</div>
-                <div className="font-display font-extrabold mb-3" style={{ fontSize: '1.3rem', color: 'var(--ink)' }}>{t.price}</div>
-                <p className="text-sm leading-relaxed mb-4" style={{ color: 'var(--ink-2)' }}>{t.desc}</p>
-                <div style={{ fontSize: '0.75rem', color: 'var(--ink-3)', fontWeight: 600 }}>{t.delay}</div>
-              </div>
-            ))}
-          </div>
+          <GrilleTarifs items={pricingTiers} />
         </div>
       </section>
 

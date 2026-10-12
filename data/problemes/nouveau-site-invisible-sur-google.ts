@@ -3,24 +3,43 @@ import type { PageProbleme } from '../problemes'
 export const page: PageProbleme = {
   slug: 'nouveau-site-invisible-sur-google',
   famille: 'panne',
-  requete: 'nouveau site n’apparaît pas sur google',
-  title: 'Nouveau site invisible sur Google : délais et vérifications',
-  description: 'Votre nouveau site, refait ou migré, ne sort nulle part sur Google ? Le délai normal, les blocages à chercher dans l’ordre et ce qu’une migration doit préparer.',
-  titre: 'Nouveau site invisible sur Google : combien de temps attendre et quoi vérifier',
-  reponse: 'Google indique qu’il peut falloir quelques semaines pour remarquer un nouveau site, et que l’exploration d’une page prend de quelques jours à quelques semaines. Passé ce délai, je vérifie dans l’ordre : le noindex du brouillon resté en place, le fichier robots.txt, le sitemap soumis dans Search Console, la balise canonical, puis l’inspection d’URL des pages principales. Pour une refonte, tout se joue avant la mise en ligne, avec des redirections 301 page à page.',
+  requete: 'comment apparaître sur Google',
+  title: 'Comment apparaître sur Google avec un site neuf, pas à pas',
+  description: 'Comment apparaître sur Google avec un site neuf : Search Console, sitemap, demande d’indexation, fiche Business Profile, liens et délais donnés par Google.',
+  titre: 'Comment apparaître sur Google avec un site neuf : les étapes, dans l’ordre',
+  reponse: 'Pour apparaître sur Google avec un site neuf, vous ajoutez le site à Search Console, vous soumettez le sitemap, vous demandez l’indexation de l’accueil et des pages de service, puis vous validez votre fiche Google Business Profile. Google indique qu’il peut falloir quelques semaines pour remarquer un nouveau site, et qu’aucune apparition n’est garantie. Si rien ne bouge au-delà, je vérifie dans l’ordre : le noindex du brouillon resté en place, le fichier robots.txt, la balise canonical. Pour une refonte, tout se joue avant la mise en ligne, avec des redirections 301 page à page.',
   datePublication: '2026-10-07',
   tempsLecture: 7,
   contenu: [
     // source : https://developers.google.com/search/docs/fundamentals/get-on-google
     {
       type: 'intro',
-      texte: 'Le site est en ligne, il est beau, vous l’avez envoyé à vos proches, et quand vous tapez votre métier sur Google, rien. Un site neuf démarre sans historique, et Google ne le découvre pas à la seconde où il est publié. La question utile est double : combien de temps l’attente est normale, et à partir de quand on cherche un blocage. Je réponds aux deux, puis je raconte une bascule réelle que j’ai suivie heure par heure.',
+      texte: 'Pour faire apparaître un site neuf sur Google, vous le signalez à Google par quelques gestes simples, puis vous laissez ses robots le lire. Le site est en ligne, il est beau, vous l’avez envoyé à vos proches, et quand vous tapez votre métier sur Google, rien. Un site neuf démarre sans historique, et Google ne le découvre pas à la seconde où il est publié. Je donne ici les étapes pour indexer votre site sur Google, dans l’ordre, puis le délai normal et les blocages à chercher, puis une bascule réelle que j’ai suivie heure par heure. Votre site apparaissait et a disparu ? Ce cas a sa propre page, le diagnostic d’un site qui n’apparaît plus sur Google, liée en fin d’article.',
+    },
+    // source : https://developers.google.com/search/docs/fundamentals/get-on-google (Search Console pour repérer ce qui empêche Google de comprendre le site, fiche Business Profile pour Search et Maps, liens d’autres sites, aucune garantie)
+    // source : https://support.google.com/business/answer/2911778?hl=fr (une fois la fiche ajoutée et validée, les clients peuvent la trouver dans la Recherche et sur Maps)
+    {
+      type: 'h2',
+      titre: 'Comment faire apparaître un site neuf sur Google : les six étapes',
+      texte: 'Google ne promet l’apparition d’aucun site : il explore des milliards de pages et indique qu’il est inévitable que certains sites lui échappent. Ce qui dépend de vous se résume à six gestes, détaillés dans les sections qui suivent.',
+    },
+    {
+      type: 'liste',
+      titre: 'Les six étapes, dans l’ordre',
+      items: [
+        '1. Vérifier que le site peut être indexé : pas de noindex hérité du brouillon, pas de blocage dans robots.txt.',
+        '2. Ajouter le site à Search Console, l’outil gratuit de Google qui signale ce qui empêche Google de comprendre le site.',
+        '3. Soumettre le sitemap dans le rapport Sitemaps.',
+        '4. Demander l’indexation de l’accueil et des pages de service, une seule fois, avec l’inspection d’URL.',
+        '5. Valider votre fiche Google Business Profile si vous recevez ou servez des clients dans une zone : une fois la fiche ajoutée et validée, les clients peuvent vous trouver dans la Recherche et sur Maps.',
+        '6. Obtenir des liens d’autres sites vers le vôtre, par exemple les annuaires de votre métier et les sites de vos partenaires. Google cite l’absence de liens entrants parmi les raisons possibles d’un site peu visible, et déconseille d’acheter des liens.',
+      ],
     },
     // source : https://developers.google.com/search/docs/fundamentals/get-on-google
     // source : https://developers.google.com/search/docs/crawling-indexing/ask-google-to-recrawl
     {
       type: 'h2',
-      titre: 'Combien de temps c’est normal',
+      titre: 'Combien de temps pour apparaître sur Google : ce que dit Google',
       texte: 'Google donne lui-même l’ordre de grandeur : il peut falloir quelques semaines pour qu’il remarque un nouveau site, ou des changements sur un site existant. Pour une page donnée, l’exploration prend de quelques jours à quelques semaines. Google ajoute qu’il explore des milliards de pages et qu’il est inévitable que certains sites lui échappent : rien n’est garanti, d’où l’intérêt de lui signaler le site plutôt que d’attendre. Concrètement, un site publié il y a dix jours et absent des résultats n’a rien d’anormal. Un site publié il y a deux mois et toujours absent mérite les vérifications qui suivent.',
     },
     // source : C:\projet site\ads-os\.claude\skills\seo-migration\SKILL.md (checklist pré-migration : robots.txt, noindex accidentel, sitemap)
@@ -106,6 +125,14 @@ export const page: PageProbleme = {
       type: 'faq',
       faqs: [
         {
+          question: 'Comment apparaître sur Google quand on a un site neuf ?',
+          reponse: 'Ajoutez le site à Search Console, soumettez le sitemap, demandez l’indexation de l’accueil et des pages de service, puis validez votre fiche Google Business Profile si vous servez une clientèle locale. Google précise qu’il peut falloir quelques semaines pour remarquer un nouveau site, et ne garantit l’apparition d’aucun.',
+        },
+        {
+          question: 'Comment indexer son site sur Google ?',
+          reponse: 'Dans Search Console, soumettez le sitemap, puis ouvrez l’inspection d’URL sur l’accueil et cliquez sur « Demander une indexation ». Une seule demande suffit : en redemander ne l’accélère pas, et Google n’en garantit pas l’issue. Avant cela, vérifiez qu’aucune balise noindex ni ligne Disallow ne bloque les pages.',
+        },
+        {
           question: 'Combien de temps pour qu’un nouveau site apparaisse sur Google ?',
           reponse: 'Google indique quelques semaines pour remarquer un nouveau site, et de quelques jours à quelques semaines pour explorer une page. Soumettre le sitemap dans Search Console aide sans rien garantir.',
         },
@@ -135,6 +162,7 @@ export const page: PageProbleme = {
       type: 'resume',
       titre: 'À retenir',
       items: [
+        'Pour apparaître sur Google : Search Console, sitemap, demande d’indexation, fiche Google Business Profile, liens d’autres sites.',
         'Quelques semaines d’attente sont normales pour un site neuf, selon Google.',
         'Le premier suspect est le noindex du brouillon, le second le fichier robots.txt.',
         'Le sitemap et la demande d’indexation signalent vos pages à Google sans rien garantir.',
@@ -144,7 +172,7 @@ export const page: PageProbleme = {
     },
   ],
   liens: [
-    { label: 'Mon site n’apparaît plus sur Google : le diagnostic', href: '/problemes/mon-site-n-apparait-plus-sur-google' },
+    { label: 'Votre site apparaissait et a disparu ? Le diagnostic', href: '/problemes/mon-site-n-apparait-plus-sur-google' },
     { label: 'Création de site web', href: '/services/creation-site-web' },
     { label: 'Faut-il refondre son site ?', href: '/blog/refonte-site-web-quand-pourquoi' },
     { label: 'Référencement naturel (SEO)', href: '/services/seo' },

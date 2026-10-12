@@ -142,7 +142,7 @@ export const page: PageProbleme = {
     },
   ],
   liens: [
-    { label: 'Nouveau site invisible sur Google : délais et vérifications', href: '/problemes/nouveau-site-invisible-sur-google' },
+    { label: 'Votre site est neuf et n’apparaît pas encore ? Comment apparaître sur Google', href: '/problemes/nouveau-site-invisible-sur-google' },
     { label: 'Mon site est lent sur mobile', href: '/problemes/mon-site-est-lent-sur-mobile' },
     { label: 'Référencement naturel (SEO)', href: '/services/seo' },
     { label: 'Audit gratuit de 30 minutes', href: '/audit-gratuit' },

@@ -3,22 +3,43 @@ import type { PageProbleme } from '../problemes'
 export const page: PageProbleme = {
   slug: 'mes-google-ads-ne-rapportent-rien',
   famille: 'argent',
-  requete: 'mes google ads ne rapportent rien',
-  title: 'Mes Google Ads ne rapportent rien : 5 causes à vérifier',
+  requete: 'audit Google Ads',
+  title: 'Audit Google Ads : ce qu’on vérifie quand rien ne rapporte',
   description:
-    'Des clics, une facture, et aucun client ? Les cinq causes que je vérifie dans un compte Google Ads, dans l’ordre, avec les repères chiffrés du marché français.',
-  titre: 'Mes Google Ads ne rapportent rien : les cinq causes, dans l’ordre où je les vérifie',
+    'Audit Google Ads : les sept points contrôlés (conversions, termes de recherche, enchères, horaires, annonces, page d’arrivée) et ce qu’on décide ensuite.',
+  titre: 'Audit Google Ads : ce qu’on contrôle quand le compte ne rapporte rien, dans l’ordre',
   // source : C:\projet site\ads-os\.claude\skills\account-audit\SKILL.md (tracking en premier : un tracking faux invalide le reste)
   // source : C:\projet site\ads-os\rag\sources\best-practices\benchmarks-sea-france.md (seuil taux de conversion < 4 % = à améliorer)
   reponse:
-    'Quand une campagne Google Ads dépense sans ramener de clients, je vérifie cinq points, dans cet ordre : la mesure des conversions, les recherches réellement achetées, l’appareil et le créneau, la page d’arrivée, la répartition du budget. La mesure passe en premier, parce qu’un suivi faux rend toutes les autres lectures fausses. Sur un compte d’artisan, un taux de conversion sous 4 % est le seuil à partir duquel je cherche une cause.',
+    'Un audit Google Ads passe un compte en revue en sept points : le suivi des conversions, les termes de recherche, la structure des campagnes, les enchères, les zones et horaires de diffusion, les annonces et la page d’arrivée. Le suivi des conversions passe en premier, parce qu’un suivi faux rend toutes les autres lectures fausses. Il en sort la cause principale du gaspillage et l’ordre des corrections. Sur un compte d’artisan, un taux de conversion sous 4 % est le seuil à partir duquel je cherche une cause.',
   datePublication: '2026-10-07',
   tempsLecture: 8,
   contenu: [
     {
       type: 'intro',
       texte:
-        'Vous voyez passer des clics et une facture chaque mois, et le téléphone ne sonne pas davantage. Avant de couper le compte ou de changer de prestataire, il existe une lecture méthodique du compte, avec des rapports que Google fournit à tout annonceur. Je décris ici celle que j’applique, avec les erreurs que j’ai vues sur de vrais comptes. Cette page ne parle pas du démarrage d’une campagne, ni de la relation avec une agence : elle part d’un compte qui tourne et qui ne rapporte pas.',
+        'Un audit Google Ads (on dit aussi audit AdWords, audit de campagne SEA ou audit de compte Google Ads) répond à une question : où part l’argent, et pourquoi le téléphone ne sonne pas ? Vous voyez passer des clics et une facture chaque mois, sans plus de demandes. Avant de couper le compte ou de changer de prestataire, il existe une lecture méthodique, avec des rapports que Google fournit à tout annonceur. Je décris ici celle que j’applique, avec les erreurs que j’ai vues sur de vrais comptes. Cette page ne parle pas du démarrage d’une campagne, ni de la relation avec une agence : elle part d’un compte qui tourne et qui ne rapporte pas.',
+    },
+    // source : C:\projet site\ads-os\.claude\skills\account-audit\SKILL.md (rubriques de l’audit : tracking, structure, termes de recherche, mots clés, annonces, enchères et budget, zones et horaires, audiences et appareils, pages d’arrivée)
+    // source : https://support.google.com/google-ads/answer/1722022?hl=fr (mesure des conversions : repérer ce qui pousse les clients à agir, alimenter les enchères intelligentes)
+    {
+      type: 'h2',
+      titre: 'Ce que contrôle un audit de compte Google Ads',
+      texte:
+        'Un audit lit le compte de l’intérieur, avec les rapports de Google Ads, du suivi des conversions jusqu’à la page où atterrit le visiteur. Le suivi passe en premier, parce que les enchères intelligentes de Google s’appuient sur les conversions mesurées : si elles sont fausses, tout ce qui suit l’est aussi. Voici les sept points, que la suite de la page détaille.',
+    },
+    {
+      type: 'liste',
+      titre: 'Les sept points d’un audit Google Ads :',
+      items: [
+        '1. Le suivi des conversions : les actions comptées sont-elles les bonnes, la mesure voit-elle les appels et les formulaires (point 1 ci-dessous).',
+        '2. Les termes de recherche : ce que les internautes ont réellement tapé, et la part du budget partie sur des recherches hors sujet (point 2).',
+        '3. La structure des campagnes : une campagne par ligne de service, sans mots clés qui se font concurrence (point 5).',
+        '4. Les enchères et le budget : une stratégie d’enchères adaptée au nombre de conversions du compte, du budget pour les campagnes qui produisent (point 5).',
+        '5. Les zones, les horaires et les appareils : où et quand les annonces s’affichent, et ce que chaque créneau ramène (point 3).',
+        '6. Les annonces : ce qu’elles promettent, et si cette promesse se retrouve sur la page (point 4).',
+        '7. La page d’arrivée : titre, numéro cliquable, formulaire, vitesse (point 4).',
+      ],
     },
     // source : C:\projet site\ads-os\rag\sources\best-practices\benchmarks-sea-france.md (benchmarks Search France, mise à jour du 24/06/2026)
     {
@@ -85,11 +106,19 @@ export const page: PageProbleme = {
       texte:
         'Le rapport par appareil et le rapport par jour et heure montrent où part le budget. Sur une semaine de juillet, la campagne d’installation du chauffagiste a reçu 96 clics sur mobile, avec un taux de clic de 26,37 %, et zéro conversion. C’est la signature d’un chercheur de prix qui clique, lit et repart. Mais avant de couper un appareil ou un créneau, je croise toujours avec la feuille des demandes. Sur ce même compte, Google Ads affichait 227 € dépensés le dimanche sur neuf semaines pour zéro conversion. La feuille montrait l’inverse : le dimanche était le meilleur jour des formulaires, avec 8 demandes d’installation, dont 4 venues de Google Ads. Couper le dimanche sur la seule foi de Google Ads aurait supprimé des clients réels.',
     },
+    // source : https://support.google.com/google-ads/answer/6372656?hl=fr (page Calendrier de diffusion : performances par jour et heure, par jour, par heure)
+    // source : https://support.google.com/google-ads/answer/2732132?hl=fr (ajustements d’enchères par appareil, de -100 % à +900 %, -100 % désactive la diffusion sur l’appareil)
+    // source : https://support.google.com/google-ads/answer/1722043?hl=fr (ciblage géographique : choisir les zones où se trouvent vos clients, signaux sans précision absolue garantie)
+    {
+      type: 'paragraphe',
+      texte:
+        'Trois réglages de Google Ads portent ce point de l’audit. Le calendrier de diffusion affiche les résultats par jour et heure, par jour ou par heure. Les ajustements d’enchères par appareil vont de -100 % à +900 %, et -100 % coupe la diffusion sur l’appareil concerné. Le ciblage géographique doit couvrir les zones où se trouvent vos clients : Google précise qu’il repose sur des signaux et ne garantit pas une précision absolue, d’où l’intérêt de relire les résultats par zone.',
+    },
     {
       type: 'cta',
       titre: 'Un regard extérieur sur votre compte',
       texte:
-        'Si vous voulez savoir laquelle de ces cinq causes pèse chez vous, je regarde votre compte lors d’un audit gratuit de 30 minutes, sans engagement. Vous repartez avec la cause principale et l’ordre des corrections.',
+        'Si vous voulez savoir laquelle de ces causes pèse chez vous, je regarde votre compte lors d’un audit gratuit de 30 minutes, sans engagement. Vous repartez avec la cause principale et l’ordre des corrections.',
     },
     // source : C:\projet site\ads-os\clients\msds18\06-reports\2026-07-21-rapport-annonces.md (C2 : CTR 23,36 %, conversion 0,37 %, campagne A 5,51 % sur 30 jours ; benchmark installation 3-7 % ; URLs vers /#formulaire)
     {
@@ -131,6 +160,26 @@ export const page: PageProbleme = {
       texte:
         'Les enchères automatiques de Google apprennent à partir des conversions. En dessous d’environ 30 conversions par mois et par campagne, elles n’ont pas assez de signal. Découper un petit budget en une campagne par ville ou par prestation divise ce signal d’autant. Pour un budget d’artisan, sous 3 000 € par mois, je construis une campagne par ligne de service, sur une zone unique. Sur le compte du chauffagiste, 3 annonces sur 20 produisaient 31 des 33 conversions du mois, et 43 % de la dépense n’avait ramené que 2 conversions. Le compte tenait sur trois annonces : le reste diluait le budget. Dernier réflexe de lecture : je lis la veille le lendemain, jamais la journée en cours, et je tire le détail jour par jour. Sur ce compte, une perte d’affichage pour budget de 1,56 % en moyenne sur quatre jours cachait 51,5 % sur la seule journée décisive.',
     },
+    // source : app/(fr)/audit-gratuit/page.tsx (audit gratuit de 30 minutes, sans engagement, appel vidéo, analyse préalable du site et du secteur, campagnes existantes analysées, trois actions prioritaires, accès aux comptes publicitaires utile mais non obligatoire)
+    {
+      type: 'h2',
+      titre: 'Ce que vous recevez d’un audit Google Ads',
+      texte:
+        'Mon audit gratuit dure 30 minutes, en appel vidéo, sans engagement. J’analyse votre site, votre secteur et vos campagnes existantes avant l’appel, et vous n’avez rien à préparer : l’accès à vos comptes publicitaires aide sans être obligatoire. Vous repartez avec la cause principale de ce qui ne rapporte pas, l’ordre des corrections, et les trois actions prioritaires à mener. Le livrable tient en un plan court, sans jargon, que vous pouvez appliquer vous-même.',
+    },
+    // source : app/(fr)/services/publicite-en-ligne/page.tsx (honoraires de gestion à partir de 350 €/mois pour 1 à 2 campagnes Google Ads, budget médias recommandé de 500 à 1 000 €/mois en sus)
+    {
+      type: 'h2',
+      titre: 'Ce qu’on décide après l’audit',
+      texte:
+        'Trois suites sont possibles. Vous appliquez le plan vous-même, avec les rapports décrits plus haut. Vous me confiez la gestion du compte : mes honoraires démarrent à 350 € par mois pour une à deux campagnes Google Ads, et le budget médias, que vous payez à Google, s’ajoute (je recommande 500 à 1 000 € par mois). Ou vous arrêtez les annonces, si l’audit montre que la publicité payante ne se justifie pas dans votre cas. Dans les trois cas, la décision vous revient, et elle se prend sur des chiffres lus dans votre compte.',
+    },
+    {
+      type: 'h2',
+      titre: 'Qui réalise un audit Google Ads',
+      texte:
+        'Trois profils proposent un audit : une agence, un consultant indépendant, ou vous-même avec les rapports de Google Ads. Chez 123digital, c’est moi, Maurice Timsit, qui lis le compte. Quel que soit le profil, deux questions valent d’être posées avant de signer : l’audit vérifie-t-il d’abord le suivi des conversions, et vous remet-il la liste des corrections, que vous puissiez les appliquer sans lui ?',
+    },
     // source : C:\projet site\ads-os\clients\msds18\06-reports\2026-07-21-rapport-annonces.md (C2 meilleur CTR / pire CPA)
     // source : C:\projet site\ads-os\.claude\skills\conversion-diagnostic\SKILL.md (tag tel:, consent mode)
     // source : C:\Users\moche\.claude-ads\projects\C--projet-site-ads-os\memory\feedback_croiser-feuille-leads-avant-coupure.md
@@ -138,6 +187,16 @@ export const page: PageProbleme = {
     {
       type: 'faq',
       faqs: [
+        {
+          question: 'Qu’est-ce qu’un audit Google Ads et que vérifie-t-il ?',
+          reponse:
+            'Un audit Google Ads est la lecture complète d’un compte publicitaire. Il contrôle sept points : le suivi des conversions, les termes de recherche, la structure des campagnes, les enchères, les zones et horaires de diffusion, les annonces et la page d’arrivée. Il se conclut par la cause principale du gaspillage et l’ordre des corrections.',
+        },
+        {
+          question: 'Combien coûte un audit Google Ads, et combien de temps dure-t-il ?',
+          reponse:
+            'Mon audit est gratuit, sans engagement, et tient en un appel vidéo de 30 minutes, après une analyse préalable de votre site, de votre secteur et de vos campagnes. La gestion du compte, si vous me la confiez ensuite, démarre à 350 € par mois d’honoraires pour une à deux campagnes, hors budget médias.',
+        },
         {
           question: 'Pourquoi Google Ads affiche 0 conversion alors que j’ai reçu des appels ?',
           reponse:
@@ -164,6 +223,7 @@ export const page: PageProbleme = {
       type: 'resume',
       titre: 'À retenir',
       items: [
+        'Un audit Google Ads contrôle sept points : conversions, termes de recherche, structure, enchères, zones et horaires, annonces, page d’arrivée.',
         'Vérifier la mesure des conversions avant tout le reste, et tenir une trace des demandes hors de Google.',
         'Lire le rapport des termes de recherche, en sachant qu’une partie des requêtes n’y figure pas.',
         'Ne jamais couper un appareil ou un créneau sans croiser avec les demandes réellement reçues.',

@@ -3,22 +3,22 @@ import type { PageProbleme } from '../problemes'
 export const page: PageProbleme = {
   slug: 'avis-google-negatif-ou-faux-que-faire',
   famille: 'reputation',
-  requete: 'avis google négatif que faire',
-  title: 'Avis Google négatif ou faux avis : que faire, dans l’ordre',
+  requete: 'supprimer un avis Google',
+  title: 'Supprimer un avis Google : la marche à suivre pas à pas',
   description:
-    'Avis Google négatif ou faux avis : répondre en quatre lignes, savoir ce que Google retire, le signaler, puis obtenir plus d’avis sans enfreindre ses règles.',
-  titre: 'Avis Google négatif ou faux avis : que faire, et dans quel ordre',
+    'Supprimer un avis Google : quels avis Google retire, le signalement depuis la fiche, que faire en cas de refus, le recours juridique, la réponse.',
+  titre: 'Supprimer un avis Google négatif ou faux : la marche à suivre, dans l’ordre',
   // source : https://support.google.com/business/answer/4596773?hl=fr (signalement, examen « généralement plusieurs jours »)
   // source : C:\projet site\ads-os\clients\msds18\07-gbp\pack-gbp.md (règle interne : répondre sous 48 h)
   reponse:
-    'Un avis négatif mais réel ne se supprime pas : vous y répondez en public, sous 48 heures, en quatre lignes calmes. Un faux avis (expérience inventée, concurrent, ancien salarié, contenu hors sujet) se signale depuis votre fiche, Google l’examine en général en quelques jours et ne retire que ce qui enfreint ses règles. Le levier qui pèse le plus sur la durée reste le nombre d’avis réels, demandés à tous vos clients et sans contrepartie.',
+    'Pour supprimer un avis Google, vous le signalez depuis votre fiche : Google ne retire que les avis qui enfreignent ses règles (expérience inventée, concurrent, ancien salarié, contenu hors sujet) et l’examine en général en quelques jours. Un avis négatif mais réel ne se supprime pas : vous y répondez en public, sous 48 heures, en quatre lignes calmes. Le levier qui pèse le plus sur la durée reste le nombre d’avis réels, demandés à tous vos clients et sans contrepartie.',
   datePublication: '2026-10-07',
   tempsLecture: 8,
   contenu: [
     {
       type: 'intro',
       texte:
-        'Un avis à une étoile tombe un mardi soir, et vous le relisez dix fois. La première envie est de le faire disparaître, la seconde de répondre tout de suite pour rétablir la vérité. Les deux réflexes coûtent cher. Je vous donne ici la méthode que j’applique pour les artisans et les entreprises de service que j’accompagne : trier l’avis, répondre ou signaler, puis travailler le seul levier qui change vraiment la note sur un an.',
+        'Pour supprimer un avis Google, une seule voie existe : le signaler à Google, qui ne retire que les avis enfreignant ses règles. Un avis à une étoile tombe un mardi soir, et vous le relisez dix fois. La première envie est de le faire disparaître, la seconde de répondre tout de suite pour rétablir la vérité. Les deux réflexes coûtent cher. Je vous donne ici la méthode que j’applique pour les artisans et les entreprises de service que j’accompagne : trier l’avis, le signaler ou y répondre, puis travailler le seul levier qui change vraiment la note sur un an.',
     },
     // source : https://support.google.com/contributionpolicy/answer/7400114?hl=fr (contenus interdits et restreints)
     {
@@ -36,6 +36,39 @@ export const page: PageProbleme = {
         'Contenu hors sujet : un commentaire politique, social ou personnel qui ne parle pas de l’expérience vécue chez vous.',
         'Contrepartie : un avis obtenu, modifié ou supprimé en échange d’un avantage, remise, prestation gratuite ou paiement.',
       ],
+    },
+    // source : https://support.google.com/business/answer/4596773?hl=fr (étapes de signalement, outil de gestion des avis, examen « généralement plusieurs jours », recours, « ne signalez pas un avis uniquement parce que vous n’êtes pas d’accord »)
+    {
+      type: 'h2',
+      titre: 'Comment faire supprimer un avis Google : le signaler depuis la fiche',
+      texte:
+        'Le signalement se fait depuis votre fiche, connecté au compte qui la gère. Google précise que l’examen prend généralement plusieurs jours, et que vous suivez l’avancement dans son outil de gestion des avis. Si l’avis reste en ligne après examen, l’outil propose un recours. Je documente chaque signalement : date, motif choisi, capture de l’avis, raison pour laquelle il enfreint une règle précise. Un motif bien choisi vaut mieux qu’un long plaidoyer.',
+    },
+    {
+      type: 'liste',
+      titre: 'La procédure de signalement, étape par étape',
+      items: [
+        '1. Ouvrez votre fiche d’établissement depuis le compte qui la gère.',
+        '2. Affichez les avis et repérez celui qui pose problème.',
+        '3. Cliquez sur l’icône de signalement à côté de l’avis.',
+        '4. Choisissez le motif qui correspond à la règle enfreinte (faux engagement, conflit d’intérêts, hors sujet, langage injurieux).',
+        '5. Envoyez, puis suivez le statut dans l’outil de gestion des avis.',
+        '6. Si Google conclut qu’aucune règle n’est enfreinte, faites appel depuis le même outil.',
+      ],
+    },
+    // source : https://support.google.com/business/answer/4596773?hl=fr (recours si l’avis est maintenu, « ne signalez pas un avis uniquement parce que vous n’êtes pas d’accord »)
+    {
+      type: 'h2',
+      titre: 'Google refuse de supprimer l’avis : que faire',
+      texte:
+        'Un refus signifie que Google ne voit aucune règle enfreinte dans l’avis tel qu’il est écrit. Trois suites restent possibles, dans cet ordre. Le recours depuis l’outil de gestion des avis, une seule fois, en reprenant la règle précise et ce qui prouve le non-respect (aucune intervention correspondante dans votre agenda, lien avec un concurrent). Si l’avis est maintenu, il reste en ligne : vous y répondez en public, avec la méthode plus bas. Et vous diluez son poids par des avis réels demandés à tous vos clients.',
+    },
+    // source : https://support.google.com/legal/troubleshooter/1114905?hl=fr (demande de retrait pour motif juridique, formulaire Google)
+    {
+      type: 'h2',
+      titre: 'Dernier recours : la voie juridique',
+      texte:
+        'Si l’avis contient des propos injurieux ou diffamatoires, Google propose un formulaire de demande de retrait pour motif juridique, et vous pouvez aussi consulter un avocat. Cette voie vient en dernier : elle demande de pouvoir établir l’infraction, et un avis sévère mais authentique n’en est pas une. Je ne donne pas de conseil juridique, mon rôle s’arrête à la fiche et à la méthode.',
     },
     // source : https://support.google.com/business/answer/3474122?hl=fr (ton aimable, pas d’argument vendeur, signer de son nom)
     // source : C:\projet site\ads-os\clients\msds18\07-gbp\pack-gbp.md (répondre sous 48 h, ne jamais confirmer un prix)
@@ -76,25 +109,6 @@ export const page: PageProbleme = {
       titre: 'Une fiche à remettre d’aplomb ?',
       texte:
         'Je relis votre fiche, vos avis et vos réponses pendant l’audit gratuit de 30 minutes, et je vous dis ce qui se signale, ce qui se répond et ce qui se laisse.',
-    },
-    // source : https://support.google.com/business/answer/4596773?hl=fr (étapes de signalement, outil de gestion des avis, examen « généralement plusieurs jours », recours, « ne signalez pas un avis uniquement parce que vous n’êtes pas d’accord »)
-    {
-      type: 'h2',
-      titre: 'L’avis est faux : le signaler, et ce que Google retire vraiment',
-      texte:
-        'Le signalement se fait depuis votre fiche, connecté au compte qui la gère. Google précise que l’examen prend généralement plusieurs jours, et que vous suivez l’avancement dans son outil de gestion des avis. Si l’avis reste en ligne après examen, l’outil propose un recours. Je documente chaque signalement : date, motif choisi, capture de l’avis, raison pour laquelle il enfreint une règle précise. Un motif bien choisi vaut mieux qu’un long plaidoyer.',
-    },
-    {
-      type: 'liste',
-      titre: 'La procédure, étape par étape',
-      items: [
-        '1. Ouvrez votre fiche d’établissement depuis le compte qui la gère.',
-        '2. Affichez les avis et repérez celui qui pose problème.',
-        '3. Cliquez sur l’icône de signalement à côté de l’avis.',
-        '4. Choisissez le motif qui correspond à la règle enfreinte (faux engagement, conflit d’intérêts, hors sujet, langage injurieux).',
-        '5. Envoyez, puis suivez le statut dans l’outil de gestion des avis.',
-        '6. Si Google conclut qu’aucune règle n’est enfreinte, faites appel depuis le même outil.',
-      ],
     },
     // source : https://support.google.com/business/answer/4596773?hl=fr (ne pas signaler par simple désaccord)
     // source : https://support.google.com/business/answer/7091?hl=fr (aucun moyen d’obtenir un meilleur classement contre rémunération)
@@ -162,9 +176,19 @@ export const page: PageProbleme = {
       type: 'faq',
       faqs: [
         {
-          question: 'Peut-on supprimer un avis Google négatif ?',
+          question: 'Peut-on supprimer un avis Google ?',
           reponse:
-            'Vous ne pouvez pas le supprimer vous-même. Google ne le retire que s’il enfreint ses règles : faux engagement, conflit d’intérêts, contenu hors sujet, contrepartie, propos injurieux. Un avis négatif mais réel reste en ligne, et la réponse publique est votre seul outil.',
+            'Vous ne pouvez pas le supprimer vous-même : vous le signalez, et Google ne le retire que s’il enfreint ses règles : faux engagement, conflit d’intérêts, contenu hors sujet, contrepartie, propos injurieux. Un avis négatif mais réel reste en ligne, et la réponse publique est votre seul outil.',
+        },
+        {
+          question: 'Comment faire supprimer un avis Google ?',
+          reponse:
+            'Connecté au compte qui gère la fiche, affichez les avis, cliquez sur l’icône de signalement à côté de l’avis, choisissez le motif qui correspond à la règle enfreinte, envoyez, puis suivez le statut dans l’outil de gestion des avis. Un recours est possible si Google maintient l’avis.',
+        },
+        {
+          question: 'Que faire si Google refuse de supprimer un avis ?',
+          reponse:
+            'Faites un recours depuis l’outil de gestion des avis en citant la règle précise. Si l’avis reste en ligne, répondez-y en public et demandez des avis réels à tous vos clients. Pour des propos injurieux ou diffamatoires, la voie juridique existe en dernier recours.',
         },
         {
           question: 'Combien de temps pour qu’un faux avis soit retiré ?',
@@ -197,6 +221,7 @@ export const page: PageProbleme = {
       type: 'resume',
       titre: 'À retenir',
       items: [
+        'Supprimer un avis : le signaler depuis la fiche, seulement s’il enfreint une règle de Google ; en cas de refus, recours puis, en dernier, la voie juridique.',
         'Avis réel et négatif : une réponse publique en quatre lignes, sous 48 heures, sans prix ni argumentaire.',
         'Faux avis : un signalement depuis la fiche, avec le motif exact de la règle enfreinte, puis un recours si besoin.',
         'Payer, faire écrire des proches ou offrir une remise exposent la fiche et ne retirent rien.',

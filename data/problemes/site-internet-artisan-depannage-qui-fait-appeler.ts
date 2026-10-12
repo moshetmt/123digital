@@ -3,22 +3,41 @@ import type { PageProbleme } from '../problemes'
 export const page: PageProbleme = {
   slug: 'site-internet-artisan-depannage-qui-fait-appeler',
   famille: 'projet',
-  requete: 'site internet pour artisan dépannage',
-  title: 'Site internet d’artisan dépannage : ce qui fait appeler',
+  requete: 'création site internet artisan',
+  title: 'Création site internet artisan : un site qui fait appeler',
   description:
-    'Site internet pour plombier, chauffagiste ou dépanneur : ce qui fait appeler, ce qui ne sert à rien, une page par métier, et ce que l’artisan doit fournir.',
-  titre: 'Site internet d’artisan dépannage : ce qui fait appeler, et ce qui ne sert à rien',
+    'Création de site internet pour artisan : ce qui fait appeler, ce qui ne sert à rien, une page par métier, les pièces à fournir, site vitrine dès 1 500 €.',
+  titre: 'Création de site internet pour artisan : un site qui fait appeler, et ce qui ne sert à rien',
   // source : C:\projet site\ads-os\rag\sources\best-practices\inventaire-creation-site.md (barre d’appel collante, formulaire en position 2, photos réelles, règle de provenance des pages ville)
   // source : C:\projet site\ads-os\clients\depann69\ETAT.md (un site par métier, marque multi-métiers jugée peu crédible)
   reponse:
-    'Un site de dépanneur fait appeler quand le visiteur trouve tout de suite trois choses : votre numéro, la preuve que vous intervenez chez lui, la preuve que vous traitez sa panne. Concrètement : un bouton d’appel toujours à portée du pouce sur mobile, des communes et des marques nommées, des photos de vrais chantiers et un formulaire de trois lignes. Une page par métier vaut mieux qu’un site fourre-tout, et une page par ville seulement quand vous avez des chantiers à y raconter.',
+    'Un site internet d’artisan de dépannage fait appeler quand le visiteur trouve tout de suite trois choses : votre numéro, la preuve que vous intervenez chez lui, la preuve que vous traitez sa panne. Concrètement : un bouton d’appel toujours à portée du pouce sur mobile, des communes et des marques nommées, des photos de vrais chantiers et un formulaire de trois lignes. Une page par métier vaut mieux qu’un site fourre-tout, et une page par ville seulement quand vous avez des chantiers à y raconter.',
   datePublication: '2026-10-07',
   tempsLecture: 8,
   contenu: [
     {
       type: 'intro',
       texte:
-        'La personne qui cherche un plombier, un chauffagiste ou un serrurier a un problème en cours. Elle ne lit pas votre histoire, elle ne compare pas cinq devis : elle cherche quelqu’un de crédible qui décroche. Un site de dépannage se juge donc sur une seule question, posée en quelques secondes sur un téléphone : est-ce que j’appelle ? Voici ce qui fait répondre oui, ce que j’ai vu ne servir à rien, et ce que je demande à un artisan avant de construire son site.',
+        'Pour la création du site internet d’un artisan de dépannage, tout se joue sur le téléphone d’un client en panne. La personne qui cherche un plombier, un chauffagiste ou un serrurier a un problème en cours. Elle ne lit pas votre histoire, elle ne compare pas cinq devis : elle cherche quelqu’un de crédible qui décroche. Un site de dépannage se juge donc sur une seule question, posée en quelques secondes sur un téléphone : est-ce que j’appelle ? Voici ce qui fait répondre oui, ce que j’ai vu ne servir à rien, et ce que je demande à un artisan avant de construire son site.',
+    },
+    // source : C:\projet site\ads-os\rag\sources\best-practices\elements-a-fournir-nouveau-site.md (domaine non réservé, pièces à fournir, préversion)
+    // source : C:\projet site\ads-os\rag\sources\best-practices\inventaire-creation-site.md (numéro provisoire en production, page de remerciement, une page par métier)
+    {
+      type: 'h2',
+      titre: 'Créer le site internet d’un artisan, dans l’ordre',
+      texte:
+        'La création d’un site d’artisan suit toujours la même suite d’étapes. Je rédige les textes et je construis la charte, les pages et la mesure. L’artisan fournit les pièces que je ne peux pas inventer. Les sections qui suivent détaillent chaque étape.',
+    },
+    {
+      type: 'liste',
+      titre: 'Les étapes de la création',
+      items: [
+        'Réserver le nom de domaine, avant tout le reste.',
+        'Choisir les métiers à présenter : une page complète par métier vendu aux particuliers.',
+        'Rassembler les pièces que seul l’artisan détient : numéro, zone, horaires, photos de chantiers, lien de la fiche Google.',
+        'Écrire chaque page dans le même ordre : titre qui nomme la panne, bouton d’appel, formulaire, preuves.',
+        'Tester avant la mise en ligne : numéro réel, adresse de réception des demandes, page de remerciement après l’envoi du formulaire.',
+      ],
     },
     // source : C:\projet site\ads-os\clients\123digital\06-reports\2026-08-20-strategie-seo.md (section 1 : coupure publicitaire d’août 2026, 8 sessions dont 5 organiques, 2 directes, 1 référent, 3 demandes ; 211 sessions dont 121 payées avec la publicité active du 20/07 au 08/08)
     {
@@ -144,6 +163,11 @@ export const page: PageProbleme = {
       type: 'faq',
       faqs: [
         {
+          question: 'Comment faire la création du site internet d’un artisan ?',
+          reponse:
+            'Réservez le nom de domaine, choisissez les métiers à présenter, rassemblez numéro, zone, horaires et photos de chantiers, puis faites écrire une page complète par métier avec le numéro et le formulaire en tête. Testez le numéro, la réception des demandes et la page de remerciement avant la mise en ligne.',
+        },
+        {
           question: 'Combien coûte un site internet pour un artisan ?',
           reponse:
             'Chez moi, un site vitrine commence à 1 500 €. Mon guide sur le prix d’un site détaille les postes.',
@@ -179,6 +203,7 @@ export const page: PageProbleme = {
       type: 'resume',
       titre: 'À retenir',
       items: [
+        'Pour la création d’un site d’artisan : domaine réservé, pièces fournies par l’artisan, textes et pages écrits dans un ordre fixe, tests avant la mise en ligne.',
         'Le visiteur d’un site de dépannage veut appeler : le site doit seulement ne pas l’en empêcher.',
         'Numéro toujours visible, formulaire de trois lignes en deuxième position, zone et marques nommées, photos réelles.',
         'Une page par métier, et des pages ville seulement avec de la matière vérifiable.',

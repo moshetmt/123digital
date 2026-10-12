@@ -3,22 +3,22 @@ import type { PageProbleme } from '../problemes'
 export const page: PageProbleme = {
   slug: 'fiche-google-suspendue-ou-invisible',
   famille: 'panne',
-  requete: 'fiche google business suspendue',
-  title: 'Fiche Google suspendue ou invisible sur Maps : que faire',
+  requete: 'fiche Google suspendue',
+  title: 'Fiche Google suspendue : comment la rétablir, pas à pas',
   description:
-    'Fiche Google Business suspendue ou absente de Maps : pourquoi Google suspend, comment faire appel avec les bons justificatifs, ce qui rend une fiche invisible.',
-  titre: 'Fiche Google suspendue ou invisible sur Maps : le diagnostic et la marche à suivre',
+    'Fiche Google suspendue : pourquoi Google suspend, comment faire appel avec les bons justificatifs, ce qu’il ne faut pas faire, fiche invisible.',
+  titre: 'Fiche Google suspendue : pourquoi, comment faire appel, et que faire si elle reste invisible sur Maps',
   // source : https://support.google.com/business/answer/4569145?hl=fr (appel, justificatifs, ne pas recréer de fiche pendant l’examen)
   // source : https://support.google.com/business/answer/7091?hl=fr (pertinence, distance, proéminence)
   reponse:
-    'Une fiche suspendue se rétablit par un appel déposé dans l’outil de Google, une fois corrigé ce qui enfreint les consignes, avec des justificatifs dont le nom et l’adresse correspondent à la fiche. Ne recréez surtout pas de fiche pendant l’examen. Une fiche active mais absente de Maps relève d’un autre diagnostic : catégorie, zone de service, nom, doublon, ou des concurrents jugés plus pertinents, plus proches ou plus connus.',
+    'Une fiche Google suspendue se rétablit par un appel déposé dans l’outil de Google, une fois corrigé ce qui enfreint les consignes, avec des justificatifs dont le nom et l’adresse correspondent à la fiche. Ne recréez surtout pas de fiche pendant l’examen. Une fiche active mais absente de Maps relève d’un autre diagnostic : catégorie, zone de service, nom, doublon, ou des concurrents jugés plus pertinents, plus proches ou plus connus.',
   datePublication: '2026-10-07',
   tempsLecture: 8,
   contenu: [
     {
       type: 'intro',
       texte:
-        'Deux situations se ressemblent vues de l’extérieur et n’ont rien en commun. Dans la première, Google a suspendu la fiche : elle a disparu pour vos clients, et seul un appel la fera revenir. Dans la seconde, la fiche est en ligne, vos clients la trouvent quand ils tapent votre nom, mais elle ne sort jamais quand ils tapent votre métier. La première se règle en suivant une procédure. La seconde demande de comprendre comment Google classe les fiches. Je commence toujours par établir laquelle des deux est en cause.',
+        'Une fiche Google suspendue a disparu pour vos clients, et seul un appel la fera revenir. Une fiche invisible reste en ligne : vos clients la trouvent quand ils tapent votre nom, mais elle ne sort jamais quand ils tapent votre métier. Les deux situations se ressemblent vues de l’extérieur. La suspension se règle en suivant une procédure. L’invisibilité demande de comprendre comment Google classe les fiches. Je commence toujours par établir laquelle des deux est en cause.',
     },
     // source : https://support.google.com/business/answer/4569145?hl=fr (fiche suspendue, restriction de compte)
     {
@@ -161,6 +161,16 @@ export const page: PageProbleme = {
       type: 'faq',
       faqs: [
         {
+          question: 'Pourquoi ma fiche Google est-elle suspendue ?',
+          reponse:
+            'Google suspend une fiche qui ne respecte pas ses consignes de représentation. Les écarts les plus fréquents : un nom avec mot-clé, ville ou slogan, une adresse non acceptée (boîte postale, bureau virtuel), une zone de service trop large, un doublon, un numéro de centre d’appels. Le motif de modération s’affiche dans l’espace de gestion de la fiche.',
+        },
+        {
+          question: 'Comment faire appel d’une fiche Google suspendue ?',
+          reponse:
+            'Corrigez d’abord ce qui enfreint les consignes, puis ouvrez l’outil d’appel de Google Business Profile avec le compte qui gère la fiche, sélectionnez la fiche, lancez l’appel et joignez des justificatifs dont le nom et l’adresse correspondent à la fiche. Suivez ensuite le statut dans le même outil.',
+        },
+        {
           question: 'Combien de temps pour rétablir une fiche Google suspendue ?',
           reponse:
             'Google ne publie pas de délai d’examen sur sa page d’aide consacrée aux fiches suspendues. Ce qui dépend de vous : corriger la fiche avant l’appel et fournir des justificatifs dont le nom et l’adresse correspondent exactement à la fiche.',
@@ -194,7 +204,7 @@ export const page: PageProbleme = {
       type: 'resume',
       titre: 'À retenir',
       items: [
-        'Suspendue : corriger la fiche, puis faire appel dans l’outil de Google avec des justificatifs au nom et à l’adresse de la fiche.',
+        'Fiche Google suspendue : corriger la fiche, puis faire appel dans l’outil de Google avec des justificatifs au nom et à l’adresse de la fiche.',
         'Ne jamais recréer de fiche pendant l’examen : ce serait un doublon.',
         'Invisible mais active : catégorie, zone de service, nom, doublon, puis notoriété et avis.',
         'Aucune place dans Maps ne s’achète : Google l’écrit dans son aide.',

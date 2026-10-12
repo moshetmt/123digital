@@ -31,7 +31,7 @@ export const etudesDeCas: EtudeDeCas[] = [
     slug: 'mishpacha-tours',
     titre: 'Une guide, zéro site, une première famille de New York dès le lendemain',
     accroche:
-      'Mishpacha Tours fait visiter le Lyon juif à des familles venues de l’étranger. Nom, logo, site en quatre langues : la première demande est arrivée par Google, sans un euro de publicité.',
+      'Maurice Timsit a donné à Mishpacha Tours son nom, son logo et un site en quatre langues. La première demande est arrivée par Google le lendemain, sans un euro de publicité.',
     metaTitle: 'Site de tourisme en 4 langues : Mishpacha Tours | 123 Digital',
     metaDescription:
       'Une guide de Lyon sans présence en ligne. Un nom, un logo, un site en quatre langues, et une première demande venue de Google le lendemain.',
@@ -52,24 +52,24 @@ export const etudesDeCas: EtudeDeCas[] = [
     court: {
       blocs: [
         {
-          titre: 'Le problème',
+          titre: 'Ce que tout le monde aurait fait',
           texte:
-            'Une guide juive de Lyon, aucune présence en ligne. Ses clients vivent à New York, à Londres, à Buenos Aires, et ils préparent leur voyage des mois à l’avance.',
+            'Un site vitrine : cinq visites, de belles photos, un bouton de contact. Joli, et invisible. Personne à New York ne tape « visite guidée Lyon ».',
         },
         {
-          titre: 'L’idée',
+          titre: 'Ce que Maurice a vu',
           texte:
-            'On a regardé ce que ces familles tapent vraiment. Elles ne cherchent pas « visite guidée Lyon ». Elles cherchent où manger casher, où prier, où skier en famille. Le site répond à ces questions avant de vendre une visite.',
+            'Avant d’écrire une ligne, il a étudié 1 486 recherches dans neuf pays. Ces familles cherchent où manger casher, où prier, où skier en famille. Le site répond à chaque question, une page par question.',
         },
         {
-          titre: 'Ce qu’on a livré',
+          titre: 'Le pari',
           texte:
-            'Un nom, un logo, un site en quatre langues, 196 pages, la fiche Google.',
+            'Le jour de la mise en ligne, il ouvre une deuxième porte d’entrée : les Alpes, strictement casher. Les chiffres montraient la demande là-bas, bien au-delà de Lyon.',
         },
         {
           titre: 'Le résultat',
           texte:
-            'Le lendemain de la mise en ligne, une famille demande un séjour complet. Elle a trouvé le site sur Google, sans un euro de publicité.',
+            'Le lendemain, une famille de New York écrit. Elle ne veut pas une visite : elle veut un séjour complet dans les Alpes. Trouvée sur Google, sans un euro de publicité.',
         },
       ],
       images: [

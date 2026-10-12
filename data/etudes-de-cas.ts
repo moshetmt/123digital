@@ -1045,7 +1045,11 @@ export const etudesDeCas: EtudeDeCas[] = [
         {
           repere: 'Plus tard',
           texte:
-            'Une menorah coupée en deux, qui se lit 1 7 7 7. Jolie idée de fin de soirée. Le 7 ressemble à une branche. Je dessine douze formes de 7 et seize formes de 1.',
+            'Je reprends la menorah du Beth Habad et j’y cherche un 17. Premier trait à la souris, en rouge. Puis une menorah coupée en deux, qui se lit 1 7 7 7. Jolie idée de fin de soirée. Le 7 ressemble à une branche. Je dessine douze formes de 7 et seize formes de 1.',
+          image: {
+            src: '/images/realisations/iterations/mdj17-debut.webp',
+            alt: 'Premiers croquis de Maurice Timsit : un 17 tracé à la souris, puis la menorah du Beth Habad retravaillée pour y loger le 17',
+          },
         },
         {
           repere: 'Encore une version',
@@ -1100,9 +1104,18 @@ export const etudesDeCas: EtudeDeCas[] = [
           },
         },
         {
-          repere: 'Aujourd’hui',
+          repere: 'La remise',
           texte:
             'Un graphiste a lu le kit et peut le défendre. Onze pages, un visuel et une ligne par page. Les versions jetées sont rangées et datées : elles montrent à la maison ce qu’elle ne veut pas être.',
+        },
+        {
+          repere: 'Aujourd’hui',
+          texte:
+            'Le client reprend le crayon et garde l’idée : le 17 dans la menorah. Il dessine les deux logos définitifs. Celui de la Maison des Jeunes, avec la menorah dans la flamme. Et celui du Beth Loubavitch Monceau, la maison mère, qui porte maintenant le même signe.',
+          image: {
+            src: '/images/realisations/iterations/mdj17-final.webp',
+            alt: 'Les deux logos définitifs : Maison des Jeunes avec la menorah-17 dans la flamme, et Beth Loubavitch Monceau avec la menorah-17',
+          },
         },
       ],
     },

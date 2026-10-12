@@ -25,8 +25,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const secteur = getSecteurBySlug(secteurSlug)
   if (!secteur) return {}
 
-  const title = `Marketing digital pour ${secteur.nomPluriel} · Expert PME | 123 Digital`
-  const description = `Stratégie digitale sur mesure pour les ${secteur.nomPluriel.toLowerCase()} : ${secteur.solutions.slice(0, 2).join(', ')}. Audit gratuit 30 min avec Maurice Timsit, consultant digital à Lyon.`
+  const title = `${secteur.seoTitle ?? `Marketing digital pour ${secteur.nomPluriel}`} | 123 Digital`
+  const description = secteur.seoDescription ?? secteur.description
 
   return {
     title,

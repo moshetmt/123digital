@@ -4,6 +4,10 @@ export interface SecteurData {
   nomPluriel: string
   icon: string
   description: string
+  // Title et meta des résultats Google, distincts du H1. Sources : Keyword Planner du 12/10
+  // (ads-os/clients/123digital/06-reports/2026-10-12-titles-metas.md). Le title est écrit SANS « | 123 Digital ».
+  seoTitle?: string
+  seoDescription?: string
   problemes: string[]
   solutions: string[]
   keywords: string[]
@@ -13,6 +17,8 @@ export interface SecteurData {
 export const secteurs: SecteurData[] = [
   {
     slug: 'restaurant',
+    seoTitle: "Site internet restaurant et référencement local",
+    seoDescription: "Site internet pour restaurant : menu en ligne, réservation directe, fiche Google et référencement local pour remplir vos tables. Audit gratuit de 30 min.",
     nom: 'Restaurant',
     nomPluriel: 'Restaurants',
     icon: 'UtensilsCrossed',
@@ -55,6 +61,8 @@ export const secteurs: SecteurData[] = [
   },
   {
     slug: 'cabinet-medical',
+    seoTitle: "Site internet médecin et cabinet médical",
+    seoDescription: "Site internet pour médecins et cabinets médicaux : prise de rendez-vous en ligne, fiche Google à jour, informations claires pour vos patients. Audit gratuit.",
     nom: 'Cabinet médical',
     nomPluriel: 'Cabinets médicaux',
     icon: 'Stethoscope',
@@ -97,6 +105,8 @@ export const secteurs: SecteurData[] = [
   },
   {
     slug: 'artisan-btp',
+    seoTitle: "Artisan BTP : trouver des chantiers en direct",
+    seoDescription: "Artisans BTP : trouvez des chantiers sans dépendre des plateformes. Site avec vos réalisations, référencement local et Google Ads. Audit gratuit de 30 min.",
     nom: 'Artisan BTP',
     nomPluriel: 'Artisans BTP',
     icon: 'Hammer',
@@ -139,6 +149,8 @@ export const secteurs: SecteurData[] = [
   },
   {
     slug: 'commerce-de-proximite',
+    seoTitle: "Marketing digital pour commerce de proximité",
+    seoDescription: "Marketing digital pour commerces de proximité : site vitrine ou boutique en ligne, fiche Google à jour, clients qui reviennent. Audit gratuit de 30 min.",
     nom: 'Commerce de proximité',
     nomPluriel: 'Commerces de proximité',
     icon: 'ShoppingBag',
@@ -181,6 +193,8 @@ export const secteurs: SecteurData[] = [
   },
   {
     slug: 'cabinet-juridique',
+    seoTitle: "Site internet et référencement avocat",
+    seoDescription: "Site internet et référencement pour cabinets d'avocats : un site sobre, des pages par domaine de droit, des demandes qualifiées. Audit gratuit de 30 min.",
     nom: 'Cabinet juridique',
     nomPluriel: 'Cabinets juridiques',
     icon: 'Scale',
@@ -223,6 +237,8 @@ export const secteurs: SecteurData[] = [
   },
   {
     slug: 'agence-immobiliere',
+    seoTitle: "Site internet et marketing digital immobilier",
+    seoDescription: "Site internet et marketing digital pour agences immobilières : recherche de biens, pages d'estimation, référencement local. Audit gratuit de 30 min.",
     nom: 'Agence immobilière',
     nomPluriel: 'Agences immobilières',
     icon: 'Home',
@@ -265,6 +281,8 @@ export const secteurs: SecteurData[] = [
   },
   {
     slug: 'garage-automobile',
+    seoTitle: "Marketing et publicité garage automobile",
+    seoDescription: "Marketing et publicité pour garages automobiles : site avec prise de rendez-vous, référencement local, rappels d'entretien. Audit gratuit de 30 min.",
     nom: 'Garage automobile',
     nomPluriel: 'Garages automobiles',
     icon: 'Wrench',
@@ -307,6 +325,8 @@ export const secteurs: SecteurData[] = [
   },
   {
     slug: 'salon-beaute',
+    seoTitle: "Site internet coiffeur et institut de beauté",
+    seoDescription: "Site internet pour coiffeurs et instituts de beauté : réservation en ligne, fiche Google soignée, réseaux sociaux qui remplissent l'agenda. Audit gratuit.",
     nom: 'Salon de beauté',
     nomPluriel: 'Salons de beauté',
     icon: 'Sparkles',
@@ -349,6 +369,8 @@ export const secteurs: SecteurData[] = [
   },
   {
     slug: 'cabinet-comptable',
+    seoTitle: "Site internet et marketing expert-comptable",
+    seoDescription: "Site internet et marketing pour experts-comptables : présentation des missions, référencement local, demandes d'entrepreneurs qualifiées. Audit gratuit.",
     nom: 'Cabinet comptable',
     nomPluriel: 'Cabinets comptables',
     icon: 'BarChart3',
@@ -391,6 +413,8 @@ export const secteurs: SecteurData[] = [
   },
   {
     slug: 'entreprise-transport',
+    seoTitle: "Marketing digital pour entreprise de transport",
+    seoDescription: "Marketing digital pour entreprises de transport : site professionnel, formulaire de devis détaillé, référencement B2B. Audit gratuit de 30 min.",
     nom: 'Entreprise de transport',
     nomPluriel: 'Entreprises de transport',
     icon: 'Truck',

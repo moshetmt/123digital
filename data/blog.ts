@@ -2,6 +2,10 @@ export interface BlogArticle {
   slug: string
   titre: string
   description: string
+  // Title et meta des résultats Google, distincts du H1. Sources : Keyword Planner du 12/10
+  // (ads-os/clients/123digital/06-reports/2026-10-12-titles-metas.md). Le title est écrit SANS « | 123 Digital ».
+  seoTitle?: string
+  seoDescription?: string
   datePublication: string
   dateModification?: string
   categorie: string
@@ -22,6 +26,8 @@ export interface BlogSection {
 export const articles: BlogArticle[] = [
   {
     slug: 'seo-local-pme-guide-complet',
+    seoTitle: "SEO local pour PME : guide du référencement local",
+    seoDescription: "Le référencement local expliqué aux patrons de PME : fiche Google, avis, site et annuaires. Quatre étapes pour apparaître sur Google près de chez vous.",
     titre: 'SEO local pour PME : le guide complet pour apparaître en tête sur Google en 2026',
     description: 'Tout ce qu\'un patron de PME doit savoir pour être trouvé sur Google par ses clients locaux. De Google Business Profile aux mots-clés locaux, guide pratique étape par étape.',
     datePublication: '2026-03-15',
@@ -156,6 +162,8 @@ export const articles: BlogArticle[] = [
   },
   {
     slug: 'site-web-pme-prix-guide',
+    seoTitle: "Prix d'un site internet pour PME : tarifs 2026",
+    seoDescription: "Prix d'un site internet pour PME en 2026 : quatre niveaux de tarifs, ce qui justifie les écarts, les pièges à éviter et la bonne formule pour votre budget.",
     titre: 'Combien coûte un site web pour une PME en 2026 ? Le guide transparent',
     description: 'Tarifs réels, ce qui justifie les différences de prix, les pièges à éviter et comment choisir la bonne formule pour votre budget. Guide honnête sans langue de bois.',
     datePublication: '2026-02-20',
@@ -293,6 +301,8 @@ export const articles: BlogArticle[] = [
   },
   {
     slug: 'google-ads-pme-debuter',
+    seoTitle: "Google Ads pour PME : prix, budget et premiers pas",
+    seoDescription: "Google Ads pour PME : quel budget prévoir, comment lancer une première campagne, les erreurs qui coûtent cher et les résultats réalistes à attendre.",
     titre: 'Google Ads pour PME : comment démarrer sans se ruiner ni perdre de temps',
     description: 'Guide pratique pour lancer vos premières campagnes Google Ads avec un budget maîtrisé. Les erreurs à éviter, les bonnes pratiques et les résultats réalistes.',
     datePublication: '2026-01-10',
@@ -381,6 +391,8 @@ export const articles: BlogArticle[] = [
   },
   {
     slug: 'automatisation-marketing-pme-debutant',
+    seoTitle: "Automatisation marketing PME : le guide débutant",
+    seoDescription: "Automatisation marketing pour PME : emails automatiques, rappels clients, relances. Les outils, les cas d'usage et les erreurs à éviter pour démarrer.",
     titre: 'Automatisation marketing pour PME : comment gagner 5h par semaine sans perdre le lien humain',
     description: 'Découvrez les automations marketing accessibles aux PME : emails automatiques, rappels clients, séquences de nurturing. Les outils, les cas d\'usage et les erreurs à éviter.',
     datePublication: '2024-12-05',
@@ -440,6 +452,8 @@ export const articles: BlogArticle[] = [
   },
   {
     slug: 'refonte-site-web-quand-pourquoi',
+    seoTitle: "Refonte de site internet : quand et à quel prix",
+    seoDescription: "Refonte de site internet : les 7 signaux qui montrent qu'il faut refaire votre site, ce que comprend une vraie refonte et combien ça coûte.",
     titre: 'Refonte de site web : comment savoir si votre site a besoin d\'être refait (et quand)',
     description: 'Les 7 signaux qui montrent qu\'il est temps de refondre votre site web. Ce que comprend une vraie refonte, comment ne pas se faire avoir et combien ça coûte.',
     datePublication: '2024-11-18',
@@ -501,6 +515,8 @@ export const articles: BlogArticle[] = [
   },
   {
     slug: 'google-business-profile-guide-pme',
+    seoTitle: "Fiche Google Business Profile : créer et optimiser",
+    seoDescription: "Créer et optimiser votre fiche Google Business Profile, étape par étape, pour attirer des clients locaux. Guide pour PME avec les nouveautés 2026.",
     titre: 'Google Business Profile pour PME : le guide complet pour dominer la recherche locale en 2026',
     description: 'Comment créer, optimiser et exploiter votre fiche Google Business Profile pour attirer des clients locaux. Guide étape par étape pour PME, avec les nouveautés 2026.',
     datePublication: '2026-06-24',
@@ -670,6 +686,8 @@ export const articles: BlogArticle[] = [
   },
   {
     slug: 'consultant-digital-ou-agence-lyon',
+    seoTitle: "Consultant ou agence digitale à Lyon : que choisir",
+    seoDescription: "Consultant indépendant, agence digitale ou freelance à Lyon : prix, délais et qualité d'accompagnement comparés pour choisir votre partenaire.",
     titre: 'Consultant digital indépendant ou agence à Lyon : comment choisir en 2026 ?',
     description: 'Prix, délais, qualité d\'accompagnement : comparatif honnête entre consultant indépendant, agence digitale et freelance à Lyon pour bien choisir votre partenaire croissance.',
     datePublication: '2026-07-02',

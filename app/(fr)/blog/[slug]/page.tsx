@@ -24,8 +24,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   if (!article) return {}
 
   return {
-    title: `${article.titre} | 123 Digital`,
-    description: article.description,
+    title: `${article.seoTitle ?? article.titre} | 123 Digital`,
+    description: article.seoDescription ?? article.description,
     alternates: { canonical: `${BASE_URL}/blog/${slug}` },
     openGraph: {
       title: article.titre,

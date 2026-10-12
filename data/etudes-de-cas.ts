@@ -32,7 +32,7 @@ export const etudesDeCas: EtudeDeCas[] = [
     slug: 'mishpacha-tours',
     titre: 'Une guide, zéro site, une première famille de New York dès le lendemain',
     accroche:
-      'Le journal de bord de Maurice Timsit : un nom, un logo, un site en quatre langues, et une première demande arrivée par Google le lendemain du lancement.',
+      'Le journal de bord de Maurice Timsit : neuf semaines, cinq versions du site, quatre langues, et une première demande arrivée par Google le lendemain du lancement.',
     metaTitle: 'Site de tourisme en 4 langues : Mishpacha Tours | 123 Digital',
     metaDescription:
       'Une guide de Lyon sans présence en ligne. Un nom, un logo, un site en quatre langues, et une première demande venue de Google le lendemain.',
@@ -53,18 +53,34 @@ export const etudesDeCas: EtudeDeCas[] = [
     court: {
       journal: [
         {
-          repere: 'Jour 1',
+          repere: 'Semaine 1',
           texte:
-            'Une guide de Lyon, zéro site, zéro fiche Google. Ses clients vivent à New York et à Buenos Aires. Je trouve le nom le jour même : Mishpacha, la famille.',
+            'Une guide de Lyon, zéro site, zéro fiche Google. Ses clients vivent à New York et à Buenos Aires. Je trouve le nom : Mishpacha, la famille.',
         },
         {
-          repere: 'Jour 3',
+          repere: 'Semaine 1, le soir',
+          texte:
+            'J’épluche les tarifs de tous les guides concurrents. Ils facturent par tête. Je fixe un prix par groupe : une famille sait ce qu’elle paie avant de réserver.',
+        },
+        {
+          repere: 'Semaine 2',
+          texte:
+            'Quatre directions de logo dessinées, une gardée. Je fais relire chaque mot d’hébreu : une formule du bandeau promettait un label que la guide n’a pas. Je la retire.',
+        },
+        {
+          repere: 'Semaine 2, fin',
           texte:
             'Première page en ligne, en anglais. Propre. Trop courte pour que Google la remarque, et je le sais déjà.',
         },
         {
-          repere: 'Un mois plus tard',
-          texte: 'Je passe au vrai site : une page par visite, une page par question de voyageur.',
+          repere: 'Semaine 5',
+          texte:
+            'Trois audits de ma propre page : lecture sur mobile, accessibilité, technique. Verdict sans appel, il faut un vrai site.',
+        },
+        {
+          repere: 'Semaine 6',
+          texte:
+            'Je vérifie une par une les adresses casher de la ville sur la liste officielle. J’écarte quatorze annuaires approximatifs. Sur ce site, chaque adresse sera juste.',
         },
         {
           repere: 'Semaine 8',
@@ -72,26 +88,37 @@ export const etudesDeCas: EtudeDeCas[] = [
             'Je relis le site terminé. Je le déteste. Il ressemble à un document administratif. Je jette tout et je repars de zéro.',
         },
         {
-          repere: 'Le lendemain',
+          repere: 'Semaine 8, trois jours plus tard',
           texte:
-            'Nouvelle direction trouvée dans la journée. Le soir, je dessine le logo : un vieil homme qui marche, bâton à la main.',
+            'Troisième version, quatrième, cinquième. La cinquième est la bonne.',
           image: { src: '/images/realisations/mishpacha-tours-guide.webp', alt: 'Mishpacha Tours : le guide du Lyon juif, avec les horaires de Shabbat de la semaine' },
         },
         {
-          repere: 'Deux jours après',
-          texte: 'Le site existe en quatre langues. Plus de cent pages.',
+          repere: 'Semaine 8, un soir',
+          texte:
+            'Le logo. Cinq passes pour arriver à un vieil homme qui marche, bâton à la main. Puis treize illustrations redessinées autour de lui : une même famille, jamais un visage.',
+        },
+        {
+          repere: 'Semaine 9',
+          texte:
+            'Le site existe en quatre langues. Plus de cent pages, une carte de 72 lieux, les horaires de Shabbat en direct.',
           image: { src: '/images/realisations/mishpacha-tours-visite.webp', alt: 'Mishpacha Tours : la fiche d’une visite privée à Lyon' },
         },
         {
           repere: 'Jour du lancement',
           texte:
-            'J’étudie 1 486 recherches dans neuf pays. Surprise : ces familles ne cherchent pas Lyon, elles cherchent les Alpes. Le soir même, j’ouvre une deuxième porte sur le site. Mise en ligne dans la nuit.',
+            'J’étudie 1 486 recherches dans neuf pays. Surprise : ces familles ne cherchent pas Lyon, elles cherchent les Alpes. Le soir même, j’ouvre une deuxième porte sur le site, une page par station. Mise en ligne dans la nuit.',
           image: { src: '/images/realisations/mishpacha-tours-alpes.webp', alt: 'Mishpacha Tours : la page des Alpes, strictement casher' },
         },
         {
           repere: 'Le lendemain matin',
           texte:
             'Une famille de New York écrit. Elle veut un séjour complet dans les Alpes. Elle a trouvé le site sur Google. Zéro euro de publicité.',
+        },
+        {
+          repere: 'Aujourd’hui',
+          texte:
+            '196 pages en ligne, en quatre langues. La fiche Google est ouverte et vérifiée.',
         },
       ],
     },

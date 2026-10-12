@@ -773,17 +773,17 @@ export const etudesDeCas: EtudeDeCas[] = [
     court: {
       journal: [
         {
-          repere: 'Semaine 1',
+          repere: 'Au début',
           texte:
             'Une association étudiante, deux centres à Lyon, un camion qui va sur les campus. Tout passe par le bouche-à-oreille et des messages jetés en vrac dans des groupes WhatsApp. Je recense : deux noms, deux comptes Instagram, trois logos.',
         },
         {
-          repere: 'Semaine 1, le soir',
+          repere: 'Le soir même',
           texte:
             'Je choisis un seul nom français et un seul avatar pour toute la communauté. Pas un trait de dessin avant que ce soit réglé.',
         },
         {
-          repere: 'Semaine 2',
+          repere: 'Quelques jours plus tard',
           texte:
             'Je recolore l’ancien logo en six variantes. L’équipe les refuse dans l’heure. Une planche de couleurs ne dit rien de l’histoire du logo, alors je repars de la flamme.',
           image: {
@@ -792,17 +792,17 @@ export const etudesDeCas: EtudeDeCas[] = [
           },
         },
         {
-          repere: 'Semaine 2, trois jours plus tard',
+          repere: 'La semaine suivante',
           texte:
             'Je dessine quatre univers de posts complets, avec gabarits codés et exemples rendus. Tous jolis, tous empruntés à d’autres comptes. Je les range en archive et je pose une règle : rien qui ressemble à un autre compte.',
         },
         {
-          repere: 'Semaine 2, un soir',
+          repere: 'Un soir',
           texte:
             'Je teste la ville en noir et blanc et la flamme en couleur. Sur le papier, c’est élégant. L’équipe tranche : les étudiants viennent pour se sentir en famille, et le noir et blanc refroidit. Je reviens à la couleur.',
         },
         {
-          repere: 'Semaine 3',
+          repere: 'Les semaines passent',
           texte:
             'Quinze placements de flamme, puis quinze styles graphiques, passés au crible. J’invalide un lot entier : il redécoupait le logo sans le transformer. Il reste trois traitements où la flamme devient une matière : fenêtre, verre, alphabet.',
           image: {
@@ -811,27 +811,27 @@ export const etudesDeCas: EtudeDeCas[] = [
           },
         },
         {
-          repere: 'Semaine 3, plus tard',
+          repere: 'Plus tard',
           texte:
             'Je fixe la charte : noir, blanc cassé et braise comme base, une couleur du moment qui suit le calendrier, un sceau blanc toujours au même endroit. Un post sur trois reste dans les couleurs de base.',
         },
         {
-          repere: 'Semaine 3, un matin',
+          repere: 'Un matin',
           texte:
             'Les groupes de campus affichent tous le même rond noir, impossible à distinguer à 40 pixels. J’enchaîne quatre systèmes d’avatars. Le ballon du groupe foot est refusé deux fois, jusqu’à une vraie photo avec la flamme posée dessus.',
         },
         {
-          repere: 'Semaine 3, un soir',
+          repere: 'Un autre soir',
           texte:
             'Mes stories en aplat, fond uni, titre et date, se fabriquent vite et se regardent froid. Je construis un outil maison : la vraie photo se voit à travers la flamme, avec le grain pellicule et la musique.',
         },
         {
-          repere: 'Semaine 4',
+          repere: 'Avant une grande soirée',
           texte:
             'Je remplace le « qui vient ? » par un formulaire d’inscription. Il gère un stock de places, il ferme avant l’entrée de la fête, et personne n’est jamais refusé. L’équipe sait enfin pour combien préparer les repas.',
         },
         {
-          repere: 'Quelques jours plus tard',
+          repere: 'Quelques jours après',
           texte:
             'Le bouton d’inscription que j’ai dessiné moi-même ne reçoit aucun clic : personne ne reconnaît ce qu’il ne connaît pas. Je le refais au pixel près sur le sticker natif d’Instagram, pilule blanche et icône de chaîne. Les clics reviennent.',
         },
@@ -841,7 +841,7 @@ export const etudesDeCas: EtudeDeCas[] = [
             'Les messages d’anniversaire partent la veille à 19 h, quand la date hébraïque commence, jamais pendant le Shabbat ni les fêtes. Un soir, l’ordinateur de l’équipe était en avion et un créneau a sauté. Je recalcule les envois à l’heure de Lyon, sans dépendre d’un portable.',
         },
         {
-          repere: 'Plus tard',
+          repere: 'Plus tard encore',
           texte:
             'Pour que la marque tienne quand quelqu’un d’autre filme, j’écris une charte vidéo : deux réglages de couleur, un grain, une notice en français.',
         },
@@ -859,7 +859,7 @@ export const etudesDeCas: EtudeDeCas[] = [
   },
   {
     slug: 'mdj17',
-    titre: 'Trente-quatre versions de logo en trois jours',
+    titre: 'Trente-quatre versions de logo avant de trouver le signe',
     accroche:
       'Le journal de bord de Maurice Timsit : trente-quatre versions du signe, des pistes jetées une à une, jusqu’au 17 caché dans une menorah.',
     metaTitle: 'Charte graphique association Paris : cas MDJ17 | 123 Digital',
@@ -1028,42 +1028,42 @@ export const etudesDeCas: EtudeDeCas[] = [
     court: {
       journal: [
         {
-          repere: 'Jour 1',
+          repere: 'Au début',
           texte:
             'Je ne dessine rien. Six rapports dans la journée : design existant, secteur, audience, typographie et couleurs, réseaux sociaux, stratégie de marque. Aucune maquette avant la fin des audits.',
         },
         {
-          repere: 'Jour 1, le soir',
+          repere: 'Le soir',
           texte:
             'Les sites du secteur se ressemblent tous : bleu sur blanc, photo de groupe, ton « chaleureux et inclusif ». Je décide de sortir de là.',
         },
         {
-          repere: 'Jour 2, le matin',
+          repere: 'Le lendemain',
           texte:
             'Trois directions typographiques sur planche. Le client les regarde et dit qu’il veut un symbole, pas une typographie. Je range les trois planches.',
         },
         {
-          repere: 'Jour 2, à midi',
+          repere: 'Plus tard',
           texte:
             'Une menorah coupée en deux, qui se lit 1 7 7 7. Jolie idée de fin de soirée. Le 7 ressemble à une branche. Je dessine douze formes de 7 et seize formes de 1.',
         },
         {
-          repere: 'Jour 2, l’après-midi',
+          repere: 'Encore une version',
           texte:
             'Je mélange la police et le dessin : le résultat est sale. Je jette tout et je reconstruis en vectoriel pur, un seul trait, aucune lettre de police.',
         },
         {
-          repere: 'Jour 2, le soir',
+          repere: 'Tard dans la nuit',
           texte:
             'Le client m’envoie une référence : une menorah de sept personnages. Je transforme chaque branche en silhouette. Corps ronds, 17 anguleux, ça ne tient pas ensemble. Il revient au signe droit.',
         },
         {
-          repere: 'Jour 3, le matin',
+          repere: 'Le matin suivant',
           texte:
             'Sept pistes de matière pour confirmer la première : Réserve, Fil, Mosaïque, Taille, Pinceau, Déchirure, Calame. J’en jette trois, qui ne sont que des filtres. Le client choisit le signe nu.',
         },
         {
-          repere: 'Jour 3, tard',
+          repere: 'Un soir, très tard',
           texte:
             'Le client me reproche mes distances. Je mesure au pixel : mes vides vont de 0,38 à 0,70 selon l’endroit. Je fixe un seul vide pour tout le signe et je le fais vérifier à chaque version.',
         },
@@ -1082,7 +1082,7 @@ export const etudesDeCas: EtudeDeCas[] = [
             'Cinq palettes sur le vrai kit, à l’endroit et à l’envers. Je les jette toutes, dont une qui ressemble trop à un autre projet de la maison. Six accents sur blanc et sur noir, puis le bleu ciel. Le client dit « il manque l’orange » : le pêche entre en second accent.',
         },
         {
-          repere: 'Plus tard dans la semaine',
+          repere: 'Plus tard encore',
           texte:
             'Trois séries de flammes tracées à la main, trois séries refusées : aucune relation avec le signe. Je repars d’une feuille blanche et je construis la flamme au compas, un cercle pour le ventre, un autre pour le flanc, un petit pour la lèche.',
           image: {

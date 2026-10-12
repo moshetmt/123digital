@@ -40,7 +40,7 @@ interface PageBannerProps {
   /** Contenu libre sous les boutons (puces de reassurance, chiffre cle). */
   children?: ReactNode
   /** Scene decorative (webp transparent). Deux colonnes des `lg`, sous les boutons sur mobile. Absente : rendu inchange. */
-  illustration?: { src: string; width: number; height: number }
+  illustration?: { src: string; width: number; height: number; compactMobile?: boolean }
 }
 
 export function PageBanner({
@@ -127,15 +127,22 @@ export function PageBanner({
         </div>
 
         {illustration && (
-          <div className="relative z-10 justify-self-center lg:justify-self-end w-full mt-8 lg:mt-0 max-w-[240px] lg:max-w-[440px]">
+          // Sous `lg` le conteneur n'est pas une grille : le centrage passe par les marges, pas par justify-self.
+          // `compactMobile` : scene basse posee sur le bord bas de la banniere, pour laisser le premier ecran au contenu.
+          <div
+            className={`relative z-10 mx-auto lg:mx-0 lg:justify-self-end lg:w-full lg:mt-0 lg:max-w-[440px] ${
+              illustration.compactMobile ? 'mt-4 -mb-6 w-fit max-w-full lg:mb-0' : 'w-full mt-8 max-w-[240px]'
+            }`}
+          >
             <Image
               src={illustration.src}
               alt=""
               width={illustration.width}
               height={illustration.height}
-              sizes="(max-width: 1024px) 240px, 440px"
+              sizes="(max-width: 1024px) 300px, 440px"
               priority
-              style={{ width: '100%', height: 'auto', objectFit: 'contain' }}
+              className={illustration.compactMobile ? 'h-[150px] w-auto max-w-full lg:h-auto lg:w-full' : 'w-full h-auto'}
+              style={{ objectFit: 'contain' }}
             />
           </div>
         )}

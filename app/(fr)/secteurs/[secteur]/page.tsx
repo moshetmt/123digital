@@ -140,7 +140,7 @@ export default async function SecteurPage({ params }: PageProps) {
         align="left"
         illustration={
           scene
-            ? { src: `/images/illustrations/secteurs/${secteur.slug}.webp`, width: scene[0], height: scene[1] }
+            ? { src: `/images/illustrations/secteurs/${secteur.slug}.webp`, width: scene[0], height: scene[1], compactMobile: true }
             : undefined
         }
         breadcrumb={

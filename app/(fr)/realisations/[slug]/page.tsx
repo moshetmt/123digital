@@ -92,8 +92,9 @@ export default async function EtudeDeCasPage({ params }: Props) {
     url: `${BASE_URL}${path}`,
     image: `${BASE_URL}${etude.maquette}`,
     inLanguage: 'fr-FR',
-    author: { '@type': 'Organization', name: '123 Digital', url: BASE_URL },
-    publisher: { '@type': 'Organization', name: '123 Digital', url: BASE_URL },
+    // Pas de datePublished ni dateModified : dates de livraison non fournies.
+    author: { '@type': 'Person', '@id': `${BASE_URL}/#person`, name: 'Maurice Timsit', url: `${BASE_URL}/a-propos` },
+    publisher: { '@id': `${BASE_URL}/#business` },
   }
   const faq = etude.faq.length > 0 ? faqPageSchema(etude.faq.map((f) => ({ question: f.question, answer: f.reponse }))) : null
 

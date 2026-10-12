@@ -346,7 +346,7 @@ const fr: CvContent = {
       },
       {
         role: 'Consultant digital indépendant',
-        org: '123Digital',
+        org: '123 Digital',
         period: '2017 → aujourd’hui',
         context: 'Accompagnement de structures variées de A à Z, de l’audit jusqu’aux résultats mesurables.',
         bullets: [
@@ -656,7 +656,7 @@ const en: CvContent = {
       },
       {
         role: 'Independent Digital Consultant',
-        org: '123Digital',
+        org: '123 Digital',
         period: '2017 → present',
         context: 'End-to-end support for diverse clients, from audit to measurable results.',
         bullets: [

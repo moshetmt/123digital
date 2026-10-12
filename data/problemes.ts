@@ -24,6 +24,8 @@ export interface PageProbleme {
   dateModification?: string
   tempsLecture: number
   contenu: BlogSection[]
+  /** Sources officielles citées, avec URL complète. Section « Sources » en bas de page, absente si vide. */
+  sources?: Array<{ label: string; url: string }>
   /** Maillage interne proposé, affiché en fin de page. */
   liens: { label: string; href: string }[]
 }

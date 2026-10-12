@@ -229,6 +229,14 @@ export const page: PageProbleme = {
       ],
     },
   ],
+  sources: [
+    { label: 'Aide Google Business Profile : signaler un avis', url: 'https://support.google.com/business/answer/4596773?hl=fr' },
+    { label: 'Aide Google : contenus interdits et restreints (règles de contribution)', url: 'https://support.google.com/contributionpolicy/answer/7400114?hl=fr' },
+    { label: 'Aide Google : demande de retrait de contenu pour motif juridique', url: 'https://support.google.com/legal/troubleshooter/1114905?hl=fr' },
+    { label: 'Aide Google Business Profile : répondre aux avis et demander des avis', url: 'https://support.google.com/business/answer/3474122?hl=fr' },
+    { label: 'Aide Google Business Profile : améliorer le classement local', url: 'https://support.google.com/business/answer/7091?hl=fr' },
+    { label: 'Aide Google Business Profile : règles sur les avis et la sollicitation', url: 'https://support.google.com/business/answer/2622994?hl=fr' },
+  ],
   liens: [
     { label: 'Fiche Google suspendue ou invisible sur Maps', href: '/problemes/fiche-google-suspendue-ou-invisible' },
     { label: 'Un concurrent apparaît quand on tape mon nom', href: '/problemes/un-concurrent-apparait-sur-mon-nom' },

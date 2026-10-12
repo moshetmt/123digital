@@ -171,6 +171,16 @@ export const page: PageProbleme = {
       ],
     },
   ],
+  sources: [
+    { label: 'Google Search Central : apparaître sur Google', url: 'https://developers.google.com/search/docs/fundamentals/get-on-google' },
+    { label: 'Aide Google Business Profile : ajouter sa fiche', url: 'https://support.google.com/business/answer/2911778?hl=fr' },
+    { label: 'Google Search Central : demander une exploration', url: 'https://developers.google.com/search/docs/crawling-indexing/ask-google-to-recrawl' },
+    { label: 'Google Search Central : bloquer l’indexation', url: 'https://developers.google.com/search/docs/crawling-indexing/block-indexing' },
+    { label: 'Google Search Central : créer un sitemap', url: 'https://developers.google.com/search/docs/crawling-indexing/sitemaps/build-sitemap' },
+    { label: 'Aide Search Console : outil d’inspection d’URL', url: 'https://support.google.com/webmasters/answer/9012289' },
+    { label: 'Aide Search Console : rapport Indexation des pages', url: 'https://support.google.com/webmasters/answer/7440203' },
+    { label: 'Google Search Central : changement d’URL lors d’une migration', url: 'https://developers.google.com/search/docs/crawling-indexing/site-move-with-url-changes' },
+  ],
   liens: [
     { label: 'Votre site apparaissait et a disparu ? Le diagnostic', href: '/problemes/mon-site-n-apparait-plus-sur-google' },
     { label: 'Création de site web', href: '/services/creation-site-web' },

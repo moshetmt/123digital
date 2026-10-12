@@ -3,7 +3,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { JsonLd } from '@/components/seo/JsonLd'
 import { PageBanner, BannerCta, BannerCtaLine } from '@/components/sections/PageBanner'
-import { BASE_URL, personSchema, breadcrumbSchema } from '@/lib/schema'
+import { BASE_URL, aboutPageSchema, breadcrumbSchema } from '@/lib/schema'
 import { languesPour } from '@/data/hreflang'
 import { CTA } from '@/components/sections/CTA'
 
@@ -35,7 +35,7 @@ export default function AProposPage() {
   return (
     <>
       <JsonLd schema={[
-        personSchema(),
+        aboutPageSchema(),
         breadcrumbSchema([{ name: 'Accueil', path: '/' }, { name: 'À propos', path: '/a-propos' }]),
       ]} />
 

@@ -55,44 +55,23 @@ export function personSchema(): JsonLdObject {
     '@id': `${BASE_URL}/#person`,
     name: 'Maurice Timsit',
     alternateName: 'Moshé Timsit',
-    url: BASE_URL,
-    jobTitle: 'Expert en croissance digitale',
+    url: `${BASE_URL}/a-propos`,
+    image: `${BASE_URL}/images/maurice-timsit-portrait.jpg`,
+    jobTitle: 'Consultant digital indépendant',
     description:
-      'Expert en croissance digitale pour PME et entrepreneurs en France. Spécialiste SEO, création de sites web, publicité en ligne, branding et automatisation marketing.',
-    image: `${BASE_URL}/images/og-image.png`,
-    worksFor: {
-      '@type': 'Organization',
-      name: '123 Digital',
-      url: BASE_URL,
-    },
+      'Consultant digital indépendant à Lyon : site web, référencement, Google Ads et fiche Google pour artisans, commerçants et PME.',
+    // Une seule entité entreprise : on pointe vers #business, on ne la redéclare pas.
+    worksFor: { '@id': `${BASE_URL}/#business` },
+    homeLocation: { '@type': 'City', name: 'Lyon' },
     knowsAbout: [
-      'SEO',
       'Référencement naturel',
       'Création de sites web',
-      'Publicité en ligne',
       'Google Ads',
+      'Fiche Google et SEO local',
       'Meta Ads',
-      'Community Management',
-      'Branding',
       'Automatisation marketing',
-      'Stratégie digitale',
-      'Croissance pour PME',
     ],
-    hasOccupation: {
-      '@type': 'Occupation',
-      name: 'Consultant en croissance digitale',
-      occupationLocation: {
-        '@type': 'Country',
-        name: 'France',
-      },
-    },
-    address: {
-      '@type': 'PostalAddress',
-      addressCountry: 'FR',
-    },
-    sameAs: [
-      'https://www.linkedin.com/in/mauricetimsit/',
-    ],
+    sameAs: ['https://www.linkedin.com/in/mauricetimsit/'],
   }
 }
 
@@ -101,28 +80,28 @@ export function personSchema(): JsonLdObject {
 export function localBusinessSchema(): JsonLdObject {
   return {
     '@context': 'https://schema.org',
-    '@type': 'LocalBusiness',
+    '@type': 'ProfessionalService',
     '@id': `${BASE_URL}/#business`,
     name: '123 Digital',
-    alternateName: '123digital',
+    alternateName: ['123digital', '123digital.fr', '123Digital'],
     url: BASE_URL,
     logo: `${BASE_URL}/images/logo.svg`,
     image: `${BASE_URL}/images/og-image.png`,
     description:
-      'Consultant en croissance digitale à Lyon pour PME et entrepreneurs. SEO, création de sites web, publicité en ligne, branding, community management et automatisation marketing.',
-    founder: {
-      '@type': 'Person',
-      '@id': `${BASE_URL}/#person`,
-      name: 'Maurice Timsit',
-    },
+      'Consultant digital indépendant à Lyon pour artisans, commerçants et PME : site web, référencement, Google Ads, fiche Google. Un seul interlocuteur.',
+    disambiguatingDescription: 'Consultant digital indépendant à Lyon, Maurice Timsit',
+    founder: { '@id': `${BASE_URL}/#person` },
     foundingDate: '2017',
+    telephone: '+33652092301',
+    email: 'contact@123digital.fr',
+    // Pas de rue ni de code postal : adresse non confirmée sur la fiche Google.
     address: {
       '@type': 'PostalAddress',
       addressLocality: 'Lyon',
       addressRegion: 'Auvergne-Rhône-Alpes',
-      postalCode: '69000',
       addressCountry: 'FR',
     },
+    sameAs: ['https://www.linkedin.com/in/mauricetimsit/'],
     geo: {
       '@type': 'GeoCoordinates',
       latitude: 45.7640,
@@ -158,36 +137,30 @@ export function localBusinessSchema(): JsonLdObject {
     contactPoint: {
       '@type': 'ContactPoint',
       contactType: 'customer service',
+      telephone: '+33652092301',
+      email: 'contact@123digital.fr',
       availableLanguage: 'French',
       url: `${BASE_URL}/contact`,
     },
   }
 }
 
-// ─── WebSite + SiteLinksSearchBox ────────────────────────────────────────────
+// ─── WebSite ─────────────────────────────────────────────────────────────────
+// SearchAction retiré : la page /blog n'a pas de recherche (paramètre ?q= ignoré).
 
 export function webSiteSchema(): JsonLdObject {
   return {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
     '@id': `${BASE_URL}/#website`,
-    name: '123 Digital · Maurice Timsit',
+    name: '123 Digital',
+    alternateName: '123digital.fr',
     url: BASE_URL,
     description:
-      'Portfolio et site vitrine de Maurice Timsit, expert en croissance digitale pour PME et entrepreneurs en France.',
+      'Site de Maurice Timsit, consultant digital indépendant à Lyon : site web, référencement, Google Ads et fiche Google pour artisans, commerçants et PME.',
     inLanguage: 'fr-FR',
-    author: {
-      '@type': 'Person',
-      '@id': `${BASE_URL}/#person`,
-    },
-    potentialAction: {
-      '@type': 'SearchAction',
-      target: {
-        '@type': 'EntryPoint',
-        urlTemplate: `${BASE_URL}/blog?q={search_term_string}`,
-      },
-      'query-input': 'required name=search_term_string',
-    },
+    publisher: { '@id': `${BASE_URL}/#business` },
+    author: { '@id': `${BASE_URL}/#person` },
   }
 }
 
@@ -201,7 +174,6 @@ export function serviceSchema({ name, description, path }: ServiceSchemaParams):
     description,
     url: `${BASE_URL}${path}`,
     provider: {
-      '@type': 'LocalBusiness',
       '@id': `${BASE_URL}/#business`,
     },
     areaServed: {
@@ -267,10 +239,7 @@ export function creativeWorkSchema({
     ...(image && { image: `${BASE_URL}${image}` }),
     ...(dateCreated && { dateCreated }),
     ...(keywords && { keywords: keywords.join(', ') }),
-    creator: {
-      '@type': 'Person',
-      '@id': `${BASE_URL}/#person`,
-    },
+    creator: { '@id': `${BASE_URL}/#person` },
     inLanguage: 'fr-FR',
   }
 }
@@ -286,7 +255,6 @@ export function contactPageSchema(): JsonLdObject {
     description:
       'Contactez Maurice Timsit pour discuter de votre projet digital. Réponse sous 24h.',
     mainEntity: {
-      '@type': 'LocalBusiness',
       '@id': `${BASE_URL}/#business`,
     },
     inLanguage: 'fr-FR',
@@ -315,15 +283,10 @@ export function articleSchema({
     author: {
       '@type': 'Person',
       '@id': `${BASE_URL}/#person`,
+      name: 'Maurice Timsit',
+      url: `${BASE_URL}/a-propos`,
     },
-    publisher: {
-      '@type': 'Organization',
-      '@id': `${BASE_URL}/#business`,
-      logo: {
-        '@type': 'ImageObject',
-        url: `${BASE_URL}/images/logo.svg`,
-      },
-    },
+    publisher: { '@id': `${BASE_URL}/#business` },
     inLanguage: 'fr-FR',
   }
 }
@@ -339,7 +302,6 @@ export function auditPageSchema(): JsonLdObject {
     description:
       'Audit digital gratuit de 30 minutes pour identifier pourquoi votre site ne génère pas de clients. Analyse SEO, UX, publicité et stratégie.',
     provider: {
-      '@type': 'LocalBusiness',
       '@id': `${BASE_URL}/#business`,
     },
     offers: {
@@ -352,5 +314,20 @@ export function auditPageSchema(): JsonLdObject {
       '@type': 'Country',
       name: 'France',
     },
+  }
+}
+
+// ─── AboutPage (remplace le doublon Person de /a-propos) ─────────────────────
+
+export function aboutPageSchema(): JsonLdObject {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'AboutPage',
+    '@id': `${BASE_URL}/a-propos#page`,
+    url: `${BASE_URL}/a-propos`,
+    name: 'À propos de Maurice Timsit, consultant digital à Lyon',
+    inLanguage: 'fr-FR',
+    mainEntity: { '@id': `${BASE_URL}/#person` },
+    about: { '@id': `${BASE_URL}/#business` },
   }
 }

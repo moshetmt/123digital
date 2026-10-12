@@ -107,6 +107,12 @@ export default async function BlogArticlePage({ params }: PageProps) {
         <p style={{ marginTop: '0.9rem', fontSize: '0.8rem', fontWeight: 700, color: 'var(--ink-2)' }}>
           {article.categorie} · {new Date(article.datePublication).toLocaleDateString('fr-FR', { day: '2-digit', month: 'long', year: 'numeric' })} · {article.tempsLecture} min de lecture
         </p>
+        <p style={{ marginTop: '0.35rem', fontSize: '0.8rem', fontWeight: 700, color: 'var(--ink-2)' }}>
+          Par Maurice Timsit,{' '}
+          <Link href="/a-propos" style={{ textDecoration: 'underline', textUnderlineOffset: 3 }}>
+            consultant digital à Lyon
+          </Link>
+        </p>
       </PageBanner>
 
       {/* Image de couverture */}

@@ -211,6 +211,11 @@ export const page: PageProbleme = {
       ],
     },
   ],
+  sources: [
+    { label: 'Aide Google Business Profile : fiche suspendue, faire appel', url: 'https://support.google.com/business/answer/4569145?hl=fr' },
+    { label: 'Aide Google Business Profile : améliorer le classement local', url: 'https://support.google.com/business/answer/7091?hl=fr' },
+    { label: 'Aide Google Business Profile : consignes de représentation', url: 'https://support.google.com/business/answer/3038177?hl=fr' },
+  ],
   liens: [
     { label: 'Avis Google négatif ou faux : que faire', href: '/problemes/avis-google-negatif-ou-faux-que-faire' },
     { label: 'Le guide de la fiche Google pour les PME', href: '/blog/google-business-profile-guide-pme' },

@@ -8,7 +8,7 @@ import { BASE_URL, serviceSchema, breadcrumbSchema } from '@/lib/schema'
 import { CTA } from '@/components/sections/CTA'
 
 export const metadata: Metadata = {
-  title: 'Branding & Identité Visuelle PME · Logo & Charte | 123Digital',
+  title: 'Branding & Identité Visuelle PME · Logo & Charte | 123 Digital',
   description:
     'Création d\'identité visuelle pour PME : logo, charte graphique, positionnement de marque. Une image cohérente et mémorable qui inspire confiance. Devis en 24h.',
   alternates: { canonical: `${BASE_URL}/services/branding` },

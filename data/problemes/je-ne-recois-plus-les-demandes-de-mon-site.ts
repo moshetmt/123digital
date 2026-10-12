@@ -172,6 +172,11 @@ export const page: PageProbleme = {
       ],
     },
   ],
+  sources: [
+    { label: 'Aide Google Workspace : exigences d’authentification des expéditeurs vers Gmail', url: 'https://support.google.com/a/answer/81126?hl=fr' },
+    { label: 'Google Workspace : méthodes d’authentification (SPF, DKIM, DMARC)', url: 'https://knowledge.workspace.google.com/admin/security/about-authentication-methods?hl=fr' },
+    { label: 'Google Workspace : configurer DMARC', url: 'https://knowledge.workspace.google.com/admin/security/set-up-dmarc?hl=fr' },
+  ],
   liens: [
     { label: 'Un site d’artisan dépannage qui fait appeler', href: '/problemes/site-internet-artisan-depannage-qui-fait-appeler' },
     { label: 'Mes Google Ads ne rapportent rien', href: '/problemes/mes-google-ads-ne-rapportent-rien' },

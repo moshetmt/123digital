@@ -8,7 +8,7 @@ import { BASE_URL, serviceSchema, breadcrumbSchema } from '@/lib/schema'
 import { CTA } from '@/components/sections/CTA'
 
 export const metadata: Metadata = {
-  title: 'Création Site Web PME · Sites qui Convertissent | 123Digital',
+  title: 'Création Site Web PME · Sites qui Convertissent | 123 Digital',
   description:
     'Création de site web sur mesure pour PME : site vitrine, e-commerce, landing page. Rapide, optimisé SEO, livré en 3 à 6 semaines. Devis gratuit sous 24h.',
   alternates: { canonical: `${BASE_URL}/services/creation-site-web` },

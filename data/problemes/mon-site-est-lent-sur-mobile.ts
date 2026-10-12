@@ -145,6 +145,14 @@ export const page: PageProbleme = {
       ],
     },
   ],
+  sources: [
+    { label: 'PageSpeed Insights : à propos des mesures', url: 'https://developers.google.com/speed/docs/insights/v5/about' },
+    { label: 'web.dev : Largest Contentful Paint (LCP)', url: 'https://web.dev/articles/lcp' },
+    { label: 'Google Search Central : Core Web Vitals', url: 'https://developers.google.com/search/docs/appearance/core-web-vitals' },
+    { label: 'web.dev : optimiser le LCP', url: 'https://web.dev/articles/optimize-lcp' },
+    { label: 'web.dev : étude de cas Vodafone', url: 'https://web.dev/case-studies/vodafone' },
+    { label: 'Google Search Central : expérience de page', url: 'https://developers.google.com/search/docs/appearance/page-experience' },
+  ],
   liens: [
     { label: 'Création de site web', href: '/services/creation-site-web' },
     { label: 'Faut-il refondre son site ?', href: '/blog/refonte-site-web-quand-pourquoi' },

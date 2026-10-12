@@ -232,6 +232,13 @@ export const page: PageProbleme = {
       ],
     },
   ],
+  sources: [
+    { label: 'Aide Google Ads : suivi des conversions', url: 'https://support.google.com/google-ads/answer/1722022?hl=fr' },
+    { label: 'Aide Google Ads : termes de recherche et mots clés', url: 'https://support.google.com/google-ads/answer/2472708?hl=fr' },
+    { label: 'Aide Google Ads : calendrier de diffusion', url: 'https://support.google.com/google-ads/answer/6372656?hl=fr' },
+    { label: 'Aide Google Ads : ajustements d’enchères par appareil', url: 'https://support.google.com/google-ads/answer/2732132?hl=fr' },
+    { label: 'Aide Google Ads : ciblage géographique', url: 'https://support.google.com/google-ads/answer/1722043?hl=fr' },
+  ],
   liens: [
     { label: 'Publicité en ligne : comment je gère un compte', href: '/services/publicite-en-ligne' },
     { label: 'Je paie une agence sans résultat : vérifier soi-même', href: '/problemes/je-paie-une-agence-sans-resultat' },

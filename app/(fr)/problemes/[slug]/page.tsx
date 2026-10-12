@@ -105,6 +105,12 @@ export default async function ProblemePage({ params }: PageProps) {
           })}{' '}
           · {page.tempsLecture} min de lecture
         </p>
+        <p style={{ marginTop: '0.35rem', fontSize: '0.8rem', fontWeight: 700, color: 'var(--on-brand)', opacity: 0.8 }}>
+          Par Maurice Timsit,{' '}
+          <Link href="/a-propos" style={{ textDecoration: 'underline', textUnderlineOffset: 3 }}>
+            consultant digital à Lyon
+          </Link>
+        </p>
       </PageBanner>
 
       <article
@@ -115,6 +121,38 @@ export default async function ProblemePage({ params }: PageProps) {
           {page.contenu.map((section, i) => (
             <RenderSection key={i} section={section} />
           ))}
+
+          {/* Sources officielles citées (champ optionnel, section absente si vide) */}
+          {page.sources && page.sources.length > 0 && (
+            <div style={{ marginTop: '3rem', borderTop: '1px solid var(--line)', paddingTop: '1.5rem' }}>
+              <h2
+                style={{
+                  fontSize: '0.65rem',
+                  letterSpacing: '0.14em',
+                  textTransform: 'uppercase',
+                  color: 'var(--ink-2)',
+                  fontWeight: 700,
+                  marginBottom: '0.75rem',
+                }}
+              >
+                Sources
+              </h2>
+              <ul className="space-y-1.5">
+                {page.sources.map((s) => (
+                  <li key={s.url}>
+                    <a
+                      href={s.url}
+                      target="_blank"
+                      rel="noopener"
+                      style={{ color: 'var(--brand-strong)', fontSize: '0.85rem', textDecoration: 'underline', textUnderlineOffset: 3 }}
+                    >
+                      {s.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
 
           {/* Maillage : les pages qui prolongent celle-ci */}
           {page.liens.length > 0 && (

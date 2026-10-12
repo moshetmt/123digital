@@ -139,6 +139,10 @@ export const page: PageProbleme = {
       ],
     },
   ],
+  sources: [
+    { label: 'Règles Google Ads : marques déposées', url: 'https://support.google.com/adspolicy/answer/6118?hl=fr' },
+    { label: 'Aide Search Console : rapport sur les performances', url: 'https://support.google.com/webmasters/answer/7576553?hl=fr' },
+  ],
   liens: [
     { label: 'Avis Google négatif ou faux : que faire', href: '/problemes/avis-google-negatif-ou-faux-que-faire' },
     { label: 'Mes Google Ads ne rapportent rien : les cinq causes', href: '/problemes/mes-google-ads-ne-rapportent-rien' },

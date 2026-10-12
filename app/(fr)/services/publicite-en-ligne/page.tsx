@@ -8,7 +8,7 @@ import { BASE_URL, serviceSchema, breadcrumbSchema } from '@/lib/schema'
 import { CTA } from '@/components/sections/CTA'
 
 export const metadata: Metadata = {
-  title: 'Publicité en Ligne PME · Google Ads & Meta Ads | 123Digital',
+  title: 'Publicité en Ligne PME · Google Ads & Meta Ads | 123 Digital',
   description:
     'Gestion Google Ads et Meta Ads pour PME : campagnes ciblées, ROI mesurable dès la 1ère semaine. Budget maîtrisé, reporting hebdomadaire, sans frais cachés.',
   alternates: { canonical: `${BASE_URL}/services/publicite-en-ligne` },

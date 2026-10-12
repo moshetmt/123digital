@@ -173,6 +173,14 @@ export const page: PageProbleme = {
       ],
     },
   ],
+  sources: [
+    { label: 'Aide Google Ads : niveaux d’accès au compte', url: 'https://support.google.com/google-ads/answer/9978556?hl=fr' },
+    { label: 'Aide Google Ads : historique des modifications', url: 'https://support.google.com/google-ads/answer/19888?hl=fr' },
+    { label: 'Aide Google Business Profile : propriétaires et administrateurs de la fiche', url: 'https://support.google.com/business/answer/3403100?hl=fr' },
+    { label: 'Aide Search Console : propriétaires, utilisateurs et autorisations', url: 'https://support.google.com/webmasters/answer/7687615?hl=fr' },
+    { label: 'AFNIC : charte de nommage (juillet 2026)', url: 'https://www.afnic.fr/wp-media/uploads/2026/07/afnic-charte-de-nommage-06-07-2026.pdf' },
+    { label: 'Aide Google Ads : application automatique des recommandations', url: 'https://support.google.com/google-ads/answer/10279006?hl=fr' },
+  ],
   liens: [
     { label: 'Mes Google Ads ne rapportent rien : les cinq causes', href: '/problemes/mes-google-ads-ne-rapportent-rien' },
     { label: 'Consultant ou agence : comment choisir', href: '/blog/consultant-digital-ou-agence-lyon' },

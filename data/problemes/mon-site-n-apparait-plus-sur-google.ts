@@ -141,6 +141,17 @@ export const page: PageProbleme = {
       ],
     },
   ],
+  sources: [
+    { label: 'Google Search Central : opérateurs de recherche, site:', url: 'https://developers.google.com/search/docs/monitor-debug/search-operators/all-search-site' },
+    { label: 'Aide Search Console : outil d’inspection d’URL', url: 'https://support.google.com/webmasters/answer/9012289' },
+    { label: 'Google Search Central : comprendre une baisse de trafic', url: 'https://developers.google.com/search/docs/monitor-debug/debugging-search-traffic-drops' },
+    { label: 'Aide Search Console : rapport Indexation des pages', url: 'https://support.google.com/webmasters/answer/7440203' },
+    { label: 'Google Search Central : erreurs HTTP et réseau', url: 'https://developers.google.com/search/docs/crawling-indexing/http-network-errors' },
+    { label: 'Google Search Central : mises à jour principales', url: 'https://developers.google.com/search/updates/core-updates' },
+    { label: 'Aide Search Console : rapport Actions manuelles', url: 'https://support.google.com/webmasters/answer/9044175' },
+    { label: 'Aide Search Console : rapport Problèmes de sécurité', url: 'https://support.google.com/webmasters/answer/9044101' },
+    { label: 'Google Search Central : bloquer l’indexation', url: 'https://developers.google.com/search/docs/crawling-indexing/block-indexing' },
+  ],
   liens: [
     { label: 'Votre site est neuf et n’apparaît pas encore ? Comment apparaître sur Google', href: '/problemes/nouveau-site-invisible-sur-google' },
     { label: 'Mon site est lent sur mobile', href: '/problemes/mon-site-est-lent-sur-mobile' },

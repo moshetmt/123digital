@@ -173,6 +173,16 @@ export default async function VillePage({ params }: PageProps) {
               .
             </>
           )}
+          {/* Les requêtes SEO de l'Ain vont à la page dédiée (12/10) ; ces deux pages gardent le généraliste. */}
+          {(ville.slug === 'bourg-en-bresse' || ville.slug === 'oyonnax') && (
+            <>
+              {' '}Pour le référencement, voir la page{' '}
+              <Link href="/consultant-seo-bourg-en-bresse" className="underline underline-offset-2">
+                consultant SEO à Bourg-en-Bresse et dans l&apos;Ain
+              </Link>
+              .
+            </>
+          )}
         </p>
       </PageBanner>
 

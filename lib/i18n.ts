@@ -133,7 +133,7 @@ export const dict = {
       ctaBtn:      'Démarrer mon projet',
       stats: [
         { chiffre: '60+',  label: 'Projets réalisés' },
-        { chiffre: '8 ans', label: "D'expérience" },
+        { chiffre: '2017', label: "Début d'activité" },
         { chiffre: '94%',  label: 'Clients satisfaits' },
         { chiffre: '×3,5', label: 'ROAS moyen campagnes Ads' },
       ],
@@ -293,7 +293,7 @@ export const dict = {
       ctaBtn:      'Start my project',
       stats: [
         { chiffre: '60+',  label: 'Projects delivered' },
-        { chiffre: '8 yrs', label: 'Experience' },
+        { chiffre: '2017', label: 'In business since' },
         { chiffre: '94%',  label: 'Happy clients' },
         { chiffre: '×3.5', label: 'Avg Ads ROAS' },
       ],

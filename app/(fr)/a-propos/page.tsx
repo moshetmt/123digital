@@ -10,7 +10,7 @@ import { CTA } from '@/components/sections/CTA'
 export const metadata: Metadata = {
   title: 'À propos · Maurice Timsit, expert digital Lyon',
   description:
-    "Maurice Timsit, consultant digital Lyon spécialisé PME : SEO, site web, Google Ads. 8 ans d'expérience au service de votre croissance. Échangeons.",
+    "Maurice Timsit, consultant digital Lyon spécialisé PME : SEO, site web, Google Ads. En activité depuis 2017, au service de votre croissance. Échangeons.",
   alternates: { canonical: `${BASE_URL}/a-propos`, ...languesPour('/a-propos') },
 }
 
@@ -44,7 +44,7 @@ export default function AProposPage() {
         image={{ src: '/images/hero.jpg', priority: true }}
         title="Maurice Timsit, consultant digital à Lyon."
         highlight="consultant digital à Lyon."
-        sub="Depuis 8 ans, j&apos;aide les PME et les entrepreneurs à construire une présence digitale qui travaille pour eux. Pas une agence, pas un junior : un expert senior qui connaît votre dossier."
+        sub="Depuis 2017, j&apos;aide les PME et les entrepreneurs à construire une présence digitale qui travaille pour eux. Pas une agence, pas un junior : un expert senior qui connaît votre dossier."
         actions={
           <>
             <BannerCta href="/#contact">Discutons de votre projet</BannerCta>

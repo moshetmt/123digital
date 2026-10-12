@@ -115,7 +115,7 @@ export function localBusinessSchema(): JsonLdObject {
       '@id': `${BASE_URL}/#person`,
       name: 'Maurice Timsit',
     },
-    foundingDate: '2023',
+    foundingDate: '2017',
     address: {
       '@type': 'PostalAddress',
       addressLocality: 'Lyon',

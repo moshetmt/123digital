@@ -267,6 +267,21 @@ const fr: CvContent = {
         url: 'https://123digital.fr/realisations/mishpacha-tours',
       },
       {
+        id: 'reels-habad-etudiants-lyon',
+        name: 'Reels Habad Étudiants Lyon',
+        context: 'Association étudiante · Lyon',
+        role: 'Tournage, montage et sous-titres',
+        headline: 'Un reel de 75 secondes, 10 000 vues, zéro euro de publicité',
+        bullets: [
+          'Reel du BBQ de rentrée : 10 000 vues pour un compte d’environ 1 000 abonnés, 132 j’aime, 46 commentaires, 13 partages.',
+          'Tournage au micro, tri des phrases, montage au rythme, sous-titres mot à mot, sons et cadrage.',
+          'Micro-trottoir de Soukkot : « Pourquoi on mange dans une cabane ? » à 4 410 vues, « La parnassa » à 4 717 vues.',
+        ],
+        stack: ['Instagram', 'Reels'],
+        disciplines: ['social'],
+        url: 'https://123digital.fr/realisations/reels-habad-etudiants-lyon',
+      },
+      {
         id: 'habad-etudiants-lyon',
         name: 'Habad Étudiants Lyon',
         context: 'Association étudiante · Lyon',
@@ -577,6 +592,21 @@ const en: CvContent = {
         url: 'https://123digital.fr/realisations/mishpacha-tours',
       },
       {
+        id: 'reels-habad-etudiants-lyon',
+        name: 'Habad Étudiants Lyon reels',
+        context: 'Student association · Lyon',
+        role: 'Filming, editing and subtitles',
+        headline: 'A 75-second reel, 10,000 views, zero euros of advertising',
+        bullets: [
+          'Back-to-school BBQ reel: 10,000 views for an account of about 1,000 followers, 132 likes, 46 comments, 13 shares.',
+          'Microphone interviews, picking whole sentences, rhythm-based editing, word-by-word subtitles, sound and framing.',
+          'Sukkot street interviews: « Pourquoi on mange dans une cabane ? » at 4,410 views, « La parnassa » at 4,717 views.',
+        ],
+        stack: ['Instagram', 'Reels'],
+        disciplines: ['social'],
+        url: 'https://123digital.fr/realisations/reels-habad-etudiants-lyon',
+      },
+      {
         id: 'habad-etudiants-lyon',
         name: 'Habad Étudiants Lyon',
         context: 'Student association · Lyon',
@@ -762,6 +792,7 @@ export const cvScreenshots: Record<string, string> = {
   'aplus-audition': '/screen-aplus.jpg',
   'mishpacha-tours': '/images/realisations/mishpacha-tours-maquette.webp',
   'habad-etudiants-lyon': '/images/realisations/habad-etudiants-lyon-maquette.webp',
+  'reels-habad-etudiants-lyon': '/images/realisations/reels-habad-etudiants-lyon-maquette.webp',
   mdj17: '/images/realisations/mdj17-maquette.webp',
   'cours-anglais-esthetique': '/images/realisations/cours-anglais-esthetique-maquette.webp',
 }

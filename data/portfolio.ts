@@ -107,4 +107,18 @@ export const projects: PortfolioProject[] = [
     featured: true,
     screenshot: '/images/realisations/cours-anglais-esthetique-maquette.webp',
   },
+  {
+    id: 'reels-habad-etudiants-lyon',
+    title: 'Reels Habad Étudiants Lyon',
+    category: 'Vidéo + Réseaux sociaux',
+    sector: 'Association étudiante · Lyon',
+    description:
+      'Tournage, montage, sous-titres, sons et cadrage des reels Instagram d’une association étudiante : BBQ de rentrée et micro-trottoir de Soukkot.',
+    results: 'Un reel de 75 secondes à 10 000 vues pour un compte d’environ 1 000 abonnés, sans publicité',
+    metric: '10 000 vues, zéro euro de pub',
+    tags: ['Reels', 'Instagram', 'Montage', 'Lyon'],
+    featured: true,
+    url: 'https://www.instagram.com/reel/DdpAOO8MDSF/',
+    screenshot: '/images/realisations/reels-habad-etudiants-lyon-maquette.webp',
+  },
 ]

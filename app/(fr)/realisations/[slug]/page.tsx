@@ -140,7 +140,7 @@ export default async function EtudeDeCasPage({ params }: Props) {
         <div className="mx-auto max-w-5xl" style={{ padding: 'clamp(1.5rem, 4vw, 2.5rem) 1rem 0' }}>
           <Image
             src={etude.maquette}
-            alt={`${etude.client.nom} : maquette du site réalisé par 123 Digital`}
+            alt={etude.maquetteAlt ?? `${etude.client.nom} : maquette du site réalisé par 123 Digital`}
             width={1600}
             height={1000}
             priority
@@ -148,6 +148,21 @@ export default async function EtudeDeCasPage({ params }: Props) {
             className="rounded"
             style={{ width: '100%', height: 'auto', border: '1px solid var(--line)' }}
           />
+          {etude.court?.liens && (
+            <div className="flex flex-wrap gap-3" style={{ marginTop: '1.25rem' }}>
+              {etude.court.liens.map((l) => (
+                <a
+                  key={l.href}
+                  href={l.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={l.principal ? 'btn-plein' : 'btn-contour'}
+                >
+                  {l.label} <ArrowUpRight size={14} aria-hidden />
+                </a>
+              ))}
+            </div>
+          )}
         </div>
 
         {etude.court && (
@@ -167,11 +182,11 @@ export default async function EtudeDeCasPage({ params }: Props) {
                     <Image
                       src={e.image.src}
                       alt={e.image.alt}
-                      width={1600}
-                      height={1000}
-                      sizes="(max-width: 768px) 100vw, 720px"
+                      width={e.image.portrait ? 720 : 1600}
+                      height={e.image.portrait ? 1280 : 1000}
+                      sizes={e.image.portrait ? '(max-width: 768px) 70vw, 320px' : '(max-width: 768px) 100vw, 720px'}
                       className="rounded"
-                      style={{ width: '100%', height: 'auto', border: '1px solid var(--line)', marginTop: '1rem' }}
+                      style={{ width: '100%', maxWidth: e.image.portrait ? 320 : undefined, height: 'auto', border: '1px solid var(--line)', marginTop: '1rem' }}
                     />
                   )}
                 </li>

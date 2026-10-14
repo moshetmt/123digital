@@ -1,5 +1,5 @@
 export interface EtudeDeCas {
-  slug: 'mishpacha-tours' | 'clim69' | 'aplus-audition' | 'habad-etudiants-lyon' | 'mdj17' | 'cours-anglais-esthetique'
+  slug: 'mishpacha-tours' | 'reels-habad-etudiants-lyon' | 'clim69' | 'aplus-audition' | 'habad-etudiants-lyon' | 'mdj17' | 'cours-anglais-esthetique'
   titre: string
   accroche: string
   metaTitle: string
@@ -17,17 +17,123 @@ export interface EtudeDeCas {
   resultat: string[]
   faq: { question: string; reponse: string }[]
   maquette: string
+  /** Texte alternatif de la maquette quand ce n'est pas un site (ex. des vues de reels). */
+  maquetteAlt?: string
   /** Format court (décision opérateur du 12/10 : les récits longs sont « ennuyeux à mourir »).
    *  Quand il est rempli, la page n'affiche que lui : le problème, l'idée, ce qu'on a livré,
    *  le résultat, puis les images. Les champs longs restent vides. */
   court?: {
     /** Journal de bord à la première personne (décision opérateur du 12/10) : repères
      *  approximatifs, jamais de date exacte. Une image peut suivre une entrée. */
-    journal: { repere: string; texte: string; image?: { src: string; alt: string } }[]
+    journal: { repere: string; texte: string; image?: { src: string; alt: string; portrait?: boolean } }[]
+    /** Boutons mis en avant sous la maquette (ex. voir le reel). */
+    liens?: { label: string; href: string; principal?: boolean }[]
   }
 }
 
 export const etudesDeCas: EtudeDeCas[] = [
+  {
+    slug: 'reels-habad-etudiants-lyon',
+    titre: 'Un reel de 75 secondes, 10 000 vues, zéro euro de publicité',
+    accroche:
+      'Le journal de bord de Maurice Timsit : le tournage et le montage des reels de Habad Étudiants Lyon, du BBQ de rentrée au micro-trottoir de Soukkot.',
+    metaTitle: 'Reels pour une association étudiante à Lyon | 123 Digital',
+    metaDescription:
+      'Tournage, montage, sous-titres et sons : les reels Instagram de Habad Étudiants Lyon. Un reel de 75 secondes à 10 000 vues sans publicité, pour un compte d’environ 1 000 abonnés.',
+    client: {
+      nom: 'Habad Étudiants Lyon',
+      metier: 'Association étudiante',
+      ville: 'Lyon',
+      url: 'https://www.instagram.com/habad.etudiants.lyon/reels/',
+    },
+    services: ['community-management', 'branding'],
+    commande: [],
+    coulisses: [],
+    etapes: [],
+    choix: [],
+    resultat: [],
+    faq: [],
+    maquette: '/images/realisations/reels-habad-etudiants-lyon-maquette.webp',
+    maquetteAlt: 'Trois vues des reels de Habad Étudiants Lyon : le BBQ de rentrée, le compteur des étudiants et le micro-trottoir de Soukkot',
+    court: {
+      liens: [
+        { label: 'Voir le reel', href: 'https://www.instagram.com/reel/DdpAOO8MDSF/', principal: true },
+        { label: 'Tous les reels sur Instagram', href: 'https://www.instagram.com/habad.etudiants.lyon/reels/' },
+      ],
+      journal: [
+        {
+          repere: 'Au début',
+          texte:
+            'L’association a une identité, des stories, des affiches. Il lui manque la vidéo qui fait venir ceux qui ne la connaissent pas. Je filme la soirée de rentrée au barbecue : des étudiants qui parlent au micro, des tablées, des assiettes, un rabbin qui prend la parole.',
+        },
+        {
+          repere: 'Le lendemain',
+          texte:
+            'Je visionne tout et je cherche une histoire plutôt qu’un récap. Je garde des phrases entières, jamais une moitié de phrase pour faire joli. Chaque phrase d’étudiant devient un plan, chaque plan répond à la question posée au micro.',
+        },
+        {
+          repere: 'Quelques jours plus tard',
+          texte:
+            'Premier montage complet. Les sous-titres s’allument mot après mot, la flamme de la marque reste en haut à gauche, toujours au même endroit. Je me rends compte qu’il manque de l’énergie : je rends la vidéo plus dense, avec des coupes sur le rythme et des bruitages.',
+          image: {
+            src: '/images/realisations/reels-habad-bbq-titre.webp',
+            alt: 'Ouverture du reel du BBQ de rentrée de Habad Étudiants Lyon : la tablée et le titre',
+            portrait: true,
+          },
+        },
+        {
+          repere: 'Dans la semaine',
+          texte:
+            'Chaque emoji reçoit son bruitage, et un seul à la fois. Mes premiers sons sont trop forts, ils couvrent la voix. Je les baisse, puis je les baisse encore, jusqu’à ce que la phrase reste la première chose qu’on entende.',
+          image: {
+            src: '/images/realisations/reels-habad-bbq-100.webp',
+            alt: 'Un étudiant au micro dans le reel du BBQ, avec le compteur des participants',
+            portrait: true,
+          },
+        },
+        {
+          repere: 'Pendant le montage',
+          texte:
+            'Une fin de phrase coupée trop tôt gâche une prise. Je vérifie chaque coupe sur la forme du son, au centième près, pour ne jamais couper un mot. La séquence où toute la tablée dit lehaïm revient en entier : c’est le moment que tout le monde veut revoir.',
+        },
+        {
+          repere: 'Avant de publier',
+          texte:
+            'Je retire toute promotion d’un événement à venir. Le reel doit se suffire à lui-même, sans date ni appel à s’inscrire. L’écran de fin pose une seule question : « On remet ça ? »',
+        },
+        {
+          repere: 'Après la mise en ligne',
+          texte:
+            'Le reel dure 75 secondes. Il atteint 10 000 vues pour un compte d’environ 1 000 abonnés, avec 132 j’aime, 46 commentaires et 13 partages. Zéro euro de publicité.',
+        },
+        {
+          repere: 'Pour Soukkot',
+          texte:
+            'Même méthode, autre décor : un micro tendu aux étudiants sous la soukka, et des réponses qui partent dans tous les sens. Je garde le rythme du BBQ mais je baisse la musique sous les voix, et j’enlève un grain d’image qui rendait tout flou.',
+          image: {
+            src: '/images/realisations/reels-habad-soukka-loulav.webp',
+            alt: 'Le micro-trottoir de Soukkot : un rabbin et un étudiant avec le loulav',
+            portrait: true,
+          },
+        },
+        {
+          repere: 'Encore des essais',
+          texte:
+            'Les zooms me paraissent saccadés : je les passe sur une courbe douce. Les images qui apparaissent une fraction de seconde disparaissent du montage. Le reel « Pourquoi on mange dans une cabane ? » atteint 4 410 vues.',
+          image: {
+            src: '/images/realisations/reels-habad-soukka-rav.webp',
+            alt: 'Le micro-trottoir de Soukkot : des étudiants et un rabbin sous la soukka, sous-titres à l’écran',
+            portrait: true,
+          },
+        },
+        {
+          repere: 'Aujourd’hui',
+          texte:
+            'Un autre reel du micro-trottoir de Soukkot, « La parnassa », atteint 4 717 vues. Chaque vidéo suit la même chaîne : tournage, tri des phrases, montage, sous-titres, sons, cadrage, et une dernière vérification à l’œil avant publication.',
+        },
+      ],
+    },
+  },
   {
     slug: 'mishpacha-tours',
     titre: 'Une guide, zéro site, une première famille de New York dès le lendemain',

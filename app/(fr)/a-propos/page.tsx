@@ -77,7 +77,7 @@ export default function AProposPage() {
             </h2>
             <p className="leading-relaxed mb-4" style={{ color: 'var(--ink-2)' }}>
               J&apos;ai commencé par vendre du référencement à des commerçants qui ne voyaient pas
-              l&apos;intérêt d&apos;un site. Huit ans plus tard, je fais toujours le même métier,
+              l&apos;intérêt d&apos;un site. Depuis, je fais toujours le même métier,
               avec une conviction simple : un site qui ne fait pas sonner le téléphone ne sert à rien.
             </p>
             <p className="leading-relaxed mb-4" style={{ color: 'var(--ink-2)' }}>

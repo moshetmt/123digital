@@ -125,6 +125,9 @@ export default function ConsultantDigitalLyonPage() {
           >
             Lire le comparatif complet agence vs consultant à Lyon →
           </Link>
+          <Link href="/consultant-ia-lyon" className="btn-contour mt-8 ml-3">
+            Projets IA et automatisation à Lyon →
+          </Link>
         </div>
       </section>
 

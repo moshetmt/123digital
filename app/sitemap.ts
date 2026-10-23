@@ -20,6 +20,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE_URL}/realisations`, lastModified: now, changeFrequency: 'monthly', priority: 0.75 },
     { url: `${BASE_URL}/consultant-digital-lyon`, lastModified: now, changeFrequency: 'monthly', priority: 0.95 },
     { url: `${BASE_URL}/consultant-seo-bourg-en-bresse`, lastModified: now, changeFrequency: 'monthly', priority: 0.85 },
+    { url: `${BASE_URL}/consultant-ia-lyon`, lastModified: now, changeFrequency: 'monthly', priority: 0.9 },
     ...etudesDeCas.map((e) => ({
       url: `${BASE_URL}/realisations/${e.slug}`,
       lastModified: now,

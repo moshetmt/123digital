@@ -4,6 +4,9 @@ import { JsonLd } from '@/components/seo/JsonLd'
 import { PageBanner, BannerCta, BannerCtaLine } from '@/components/sections/PageBanner'
 import { BASE_URL, serviceSchema, breadcrumbSchema, faqPageSchema } from '@/lib/schema'
 import { CTA } from '@/components/sections/CTA'
+import Image from 'next/image'
+import { NoteGoogle } from '@/components/sections/NoteGoogle'
+import { ProchainCreneau } from '@/components/sections/ProchainCreneau'
 
 // Page « consultant SEO Lyon » validée par l'opérateur le 25/10/2026 (étude du 25/10).
 // Demande : « consultant seo lyon » 1 300 recherches/mois, concurrence faible (Keyword Planner,
@@ -81,6 +84,25 @@ export default function ConsultantSeoLyonPage() {
         icone="search"
         title="Consultant SEO à Lyon"
         highlight="à Lyon"
+        // Visage, note Google et créneau daté au premier écran (étude concurrents du 25/10,
+        // validée par l'opérateur). Photo entière en vignette 4:5, jamais recadrée.
+        breadcrumb={
+          <div className="inline-flex items-center gap-3" style={{ textAlign: 'left' }}>
+            <Image
+              src="/images/maurice-timsit-portrait.jpg"
+              alt="Maurice Timsit, consultant SEO à Lyon"
+              width={48}
+              height={60}
+              priority
+              style={{ width: 48, height: 60, borderRadius: 6, border: '2px solid var(--on-brand)' }}
+            />
+            <span style={{ fontSize: '0.9rem', lineHeight: 1.35 }}>
+              <strong>Maurice Timsit</strong>
+              <br />
+              Consultant SEO à Lyon depuis 2017
+            </span>
+          </div>
+        }
         sub="Maurice Timsit, consultant SEO indépendant à Lyon. J’aide les artisans, commerces et PME de la Métropole à être trouvés sur Google, et je fais le travail moi-même."
         actions={
           <>
@@ -88,7 +110,12 @@ export default function ConsultantSeoLyonPage() {
             <BannerCtaLine href="/services/seo">Formules et tarifs</BannerCtaLine>
           </>
         }
-      />
+      >
+        <div className="mt-4 flex flex-col items-center gap-2">
+          <ProchainCreneau />
+          <NoteGoogle tone="vert" />
+        </div>
+      </PageBanner>
 
       <section className="bg-background" style={{ padding: 'clamp(2rem, 5vw, 3.5rem) 1.5rem 3rem' }}>
         <div className="mx-auto max-w-3xl">

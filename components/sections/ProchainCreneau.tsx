@@ -1,12 +1,13 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import Link from 'next/link'
+import { ReserverCreneau } from '@/components/sections/ReserverCreneau'
 
 // « Prochain créneau » de l'audit gratuit (étude du 25/10, idée reprise de vincenthego.com,
 // validée par l'opérateur). Créneaux du lundi au jeudi à 17 h : jamais le vendredi (Chabbat
 // commence tôt l'hiver), ni le samedi, ni le dimanche. Calculé dans le navigateur : la page
 // est statique, une date écrite au build serait fausse le lendemain. Rien n'est rendu avant.
+// Le clic ouvre la réservation en ligne (ReserverCreneau) ; sans créneau, lien /audit-gratuit.
 const JOURS = ['dimanche', 'lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi', 'samedi']
 
 function prochainCreneau(maintenant: Date) {
@@ -22,11 +23,10 @@ export function ProchainCreneau() {
   useEffect(() => setJour(prochainCreneau(new Date())), [])
   if (!jour) return null
   return (
-    <Link
-      href="/audit-gratuit"
+    <ReserverCreneau
       style={{ color: 'var(--on-brand)', fontSize: '0.9rem', textDecoration: 'underline', textUnderlineOffset: 3 }}
     >
       Prochain créneau : <strong>{jour}, 17 h 00</strong>, offert
-    </Link>
+    </ReserverCreneau>
   )
 }

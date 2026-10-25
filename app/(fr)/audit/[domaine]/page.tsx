@@ -1,8 +1,8 @@
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import Image from 'next/image'
-import Link from 'next/link'
 import { PageBanner, BannerCta, BannerCtaLine } from '@/components/sections/PageBanner'
+import { ReserverCreneau } from '@/components/sections/ReserverCreneau'
 import { NoteGoogle } from '@/components/sections/NoteGoogle'
 import { SignalOuverture } from '@/components/audits/SignalOuverture'
 import { BASE_URL } from '@/lib/schema'
@@ -166,9 +166,10 @@ export default async function AuditProspectPage({ params }: PageProps) {
                   <a href={TEL} className="btn-plein">
                     Appeler le 06 52 09 23 01
                   </a>
-                  <Link href="/audit-gratuit" className="btn-contour">
+                  {/* Réservation en ligne dans l'agenda (page d'origine = /audit/<domaine>), repli /audit-gratuit. */}
+                  <ReserverCreneau className="btn-contour">
                     Qu&apos;on en parle 15 min
-                  </Link>
+                  </ReserverCreneau>
                 </div>
               </div>
             </div>

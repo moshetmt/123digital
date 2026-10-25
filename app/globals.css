@@ -227,6 +227,22 @@
   .btn-contour:hover { background-color: var(--surface-2); }
   .btn-contour-inverse { color: var(--on-brand); border-color: color-mix(in oklch, var(--on-brand) 70%, transparent); background-color: transparent; }
   .btn-contour-inverse:hover { background-color: color-mix(in oklch, var(--on-brand) 12%, transparent); }
+
+  /* 25/10 : panneau de prise de rendez-vous (ReserverCreneau). Ordinateur : bloc sous le
+     déclencheur, qui passe à la ligne dans une rangée flex. Téléphone : feuille en bas de
+     l'écran, au-dessus des boutons d'appel (60) et du bandeau cookies (55). Jamais plein écran. */
+  .panneau-rdv {
+    flex-basis: 100%; width: 100%; max-width: 520px; text-align: left;
+    background-color: var(--surface); color: var(--ink);
+    border: 1px solid var(--line); border-radius: var(--radius); padding: clamp(1rem, 4vw, 1.4rem);
+  }
+  @media (max-width: 639px) {
+    .panneau-rdv {
+      position: fixed; left: 0; right: 0; bottom: 0; z-index: 70; max-width: none;
+      max-height: 88dvh; overflow-y: auto; border-radius: var(--radius) var(--radius) 0 0;
+      padding-bottom: calc(1rem + env(safe-area-inset-bottom)); box-shadow: 0 -8px 30px rgb(0 0 0 / 0.18);
+    }
+  }
 }
 
 @layer utilities {

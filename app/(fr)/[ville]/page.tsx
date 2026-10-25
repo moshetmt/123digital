@@ -258,7 +258,8 @@ export default async function VillePage({ params }: PageProps) {
 
           <GrilleCartes
             items={services.map((service) => ({
-              href: `/${ville.slug}/${service.id}`,
+              // Page ville x service en noindex : la carte mène à la page service générale (diagnostic du 25/10).
+              href: estIndexable(`/${ville.slug}/${service.id}`) ? `/${ville.slug}/${service.id}` : `/services/${service.id}`,
               titre: `${service.title} à ${ville.nom}`,
               texte: service.description,
             }))}

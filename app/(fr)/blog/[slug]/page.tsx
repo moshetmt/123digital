@@ -48,10 +48,10 @@ export default async function BlogArticlePage({ params }: PageProps) {
   const article = getArticleBySlug(slug)
   if (!article) notFound()
 
-  const autresArticles = articles
-    .filter((a) => a.slug !== slug)
-    .sort((a, b) => new Date(b.datePublication).getTime() - new Date(a.datePublication).getTime())
-    .slice(0, 3)
+  // Les 3 articles suivants, en boucle : chaque article reçoit 3 liens de ses voisins
+  // (avant le 25/10, les 3 plus récents recevaient tous les liens).
+  const i = articles.findIndex((a) => a.slug === slug)
+  const autresArticles = [1, 2, 3].map((k) => articles[(i + k) % articles.length]).filter((a) => a.slug !== slug)
 
   const schemas = [
     articleSchema({

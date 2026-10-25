@@ -46,7 +46,10 @@ export default async function ProblemePage({ params }: PageProps) {
   const page = getProblemeBySlug(slug)
   if (!page) notFound()
 
-  const autres = problemes.filter((p) => p.slug !== slug).slice(0, 3)
+  // Les 3 pages suivantes, en boucle : chaque page problème reçoit 3 liens de ses voisines
+  // (avant le 25/10, les 3 premières de la liste recevaient tous les liens).
+  const i = problemes.findIndex((p) => p.slug === slug)
+  const autres = [1, 2, 3].map((k) => problemes[(i + k) % problemes.length]).filter((p) => p.slug !== slug)
 
   const schemas = [
     articleSchema({

@@ -41,3 +41,10 @@ test('markdown404 : explique l erreur et donne llms.txt et le sitemap', () => {
   assert.match(md, /\/llms\.txt/)
   assert.match(md, /\/sitemap\.xml/)
 })
+
+test('dates-pages.json : une vraie date AAAA-MM-JJ par page, jamais le jour du build', async () => {
+  const { readFileSync } = await import('node:fs')
+  const dates = JSON.parse(readFileSync(new URL('../data/dates-pages.json', import.meta.url), 'utf8'))
+  for (const cle of ['/', '/audit-gratuit', '/services/seo', 'realisation', 'secteur', 'ville', 'villeService', 'en'])
+    assert.match(dates[cle], /^\d{4}-\d{2}-\d{2}$/, cle)
+})

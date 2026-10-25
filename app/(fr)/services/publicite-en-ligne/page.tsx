@@ -199,6 +199,8 @@ export default function PubliciteEnLignePage() {
             {(() => {
               const liens = [
                 { label: 'Guide Google Ads PME · démarrer sans se ruiner', href: '/blog/google-ads-pme-debuter' },
+                { label: 'Mes Google Ads ne rapportent rien', href: '/problemes/mes-google-ads-ne-rapportent-rien' },
+                { label: 'Réalisation : les annonces de Clim69', href: '/realisations/clim69' },
                 { label: 'Combiner avec le SEO pour durer', href: '/services/seo' },
                 { label: 'Un site qui convertit vos clics', href: '/services/creation-site-web' },
                 { label: 'Audit de vos campagnes existantes', href: '/audit-gratuit' },

@@ -6,6 +6,20 @@ import type { BlogSection } from '@/data/blog'
  * Rendu des sections rédactionnelles (blog, pages problème). Un seul renderer
  * pour tout contenu structuré en `BlogSection[]`.
  */
+/** Transforme les liens [ancre](/chemin) d'un texte en liens internes. */
+function avecLiens(texte?: string) {
+  if (!texte) return texte
+  return texte.split(/(\[[^\]]+\]\(\/[^)]*\))/).map((morceau, i) => {
+    const m = morceau.match(/^\[([^\]]+)\]\((\/[^)]*)\)$/)
+    if (!m) return morceau
+    return (
+      <Link key={i} href={m[2]} className="underline" style={{ textUnderlineOffset: 3 }}>
+        {m[1]}
+      </Link>
+    )
+  })
+}
+
 // ─── Section renderers ────────────────────────────────────────────────────────
 
 export function RenderSection({ section }: { section: BlogSection }) {
@@ -64,7 +78,7 @@ export function RenderSection({ section }: { section: BlogSection }) {
     case 'paragraphe':
       return (
         <p style={{ color: 'var(--ink-2)', lineHeight: 1.65, fontSize: '0.95rem', marginBottom: '1.5rem' }}>
-          {section.texte}
+          {avecLiens(section.texte)}
         </p>
       )
 

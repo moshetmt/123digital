@@ -208,6 +208,7 @@ export default function AutomatisationMarketingPage() {
                 { label: 'Générer des leads avec la publicité', href: '/services/publicite-en-ligne' },
                 { label: 'SEO pour un trafic organique durable', href: '/services/seo' },
                 { label: 'Discuter de votre cas', href: '/audit-gratuit' },
+                { label: 'Consultant marketing digital à Lyon', href: '/consultant-digital-lyon' },
               ]
               return liens.map((link, i) => (
                 <span key={link.href}>

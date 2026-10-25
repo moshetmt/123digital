@@ -38,6 +38,10 @@ const faqs = [
     a: 'Un consultant digital à Lyon est un expert indépendant qui aide les PME et TPE lyonnaises à développer leur présence en ligne : site web, SEO, publicité Google/Meta, réseaux sociaux et automatisation marketing. Contrairement à une agence, vous avez un interlocuteur unique investi dans vos résultats.',
   },
   {
+    q: 'Que fait un consultant en marketing digital à Lyon ?',
+    a: 'Un consultant en marketing digital à Lyon définit la stratégie d\'acquisition d\'une entreprise, puis la met en œuvre : audit du site et de la visibilité, référencement naturel et local, campagnes Google Ads et Meta, suivi des demandes reçues. Il choisit les canaux selon votre marché et votre budget, mesure ce qui rapporte des contacts et ajuste chaque mois. Vous gardez un seul interlocuteur du diagnostic aux résultats.',
+  },
+  {
     q: 'Combien coûte un consultant digital à Lyon ?',
     a: 'Les tarifs varient selon les missions. Un audit digital est gratuit chez 123 Digital. Les projets de création de site démarrent à partir de quelques milliers d\'euros. Le SEO et la gestion de campagnes sont proposés sous forme d\'accompagnement mensuel. Contactez-moi pour un devis personnalisé.',
   },

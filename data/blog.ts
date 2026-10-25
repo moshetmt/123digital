@@ -149,6 +149,10 @@ export const articles: BlogArticle[] = [
         ],
       },
       {
+        type: 'paragraphe',
+        texte: 'Si vous préférez être accompagné sur ces étapes, un [consultant marketing digital à Lyon](/consultant-digital-lyon) peut prendre en charge l\'audit et le suivi pour votre PME.',
+      },
+      {
         type: 'resume',
         titre: 'En résumé : Les 4 étapes du SEO local pour une PME',
         items: [
@@ -668,6 +672,10 @@ export const articles: BlogArticle[] = [
         ],
       },
       {
+        type: 'paragraphe',
+        texte: 'Pour relier votre fiche à votre site et à vos campagnes, un [consultant marketing digital à Lyon](/consultant-digital-lyon) peut cadrer l\'ensemble avec vous.',
+      },
+      {
         type: 'cta',
         texte: 'Vous voulez optimiser votre fiche Google Business Profile ou améliorer votre visibilité locale ? Je vous propose un audit gratuit de 30 minutes pour identifier vos opportunités.',
       },
@@ -780,6 +788,10 @@ export const articles: BlogArticle[] = [
             reponse: 'La dilution de l\'expertise : un freelance qui fait à la fois du site web, du SEO, des réseaux sociaux et de la pub a rarement le niveau d\'un spécialiste sur chaque sujet. Pour des besoins simples ça suffit ; pour de la croissance sérieuse, ça freine souvent les résultats.',
           },
         ],
+      },
+      {
+        type: 'paragraphe',
+        texte: 'Le détail de mes missions, de ma zone d\'intervention et de ma façon de travailler se trouve sur la page du [consultant marketing digital à Lyon](/consultant-digital-lyon).',
       },
       {
         type: 'cta',

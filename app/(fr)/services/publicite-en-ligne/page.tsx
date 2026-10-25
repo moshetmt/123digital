@@ -204,6 +204,7 @@ export default function PubliciteEnLignePage() {
                 { label: 'Combiner avec le SEO pour durer', href: '/services/seo' },
                 { label: 'Un site qui convertit vos clics', href: '/services/creation-site-web' },
                 { label: 'Audit de vos campagnes existantes', href: '/audit-gratuit' },
+                { label: 'Consultant marketing digital à Lyon', href: '/consultant-digital-lyon' },
               ]
               return liens.map((link, i) => (
                 <span key={link.href}>

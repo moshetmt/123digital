@@ -209,6 +209,7 @@ export default function SeoPage() {
                 { label: 'Compléter avec la publicité en ligne', href: '/services/publicite-en-ligne' },
                 { label: 'Votre site est optimisé ? Vérifiez', href: '/services/creation-site-web' },
                 { label: 'Demander un audit SEO gratuit', href: '/audit-gratuit' },
+                { label: 'Consultant marketing digital à Lyon', href: '/consultant-digital-lyon' },
               ]
               return liens.map((link, i) => (
                 <span key={link.href}>

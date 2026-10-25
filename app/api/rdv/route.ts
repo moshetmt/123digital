@@ -20,6 +20,9 @@ import {
  */
 
 export const dynamic = 'force-dynamic'
+// Agenda (jeton, lecture, écriture) puis Sheet et mails après la réponse : la limite
+// de 10 s par défaut coupait le travail d'after() avant la ligne du Sheet (test du 25/10).
+export const maxDuration = 30
 
 const FENETRE_MS = 21 * 24 * 60 * 60 * 1000
 const OPERATEUR = 'mochetimsit@gmail.com'

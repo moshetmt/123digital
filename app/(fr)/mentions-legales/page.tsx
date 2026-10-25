@@ -102,7 +102,7 @@ export default function MentionsLegalesPage() {
               </p>
             </section>
 
-            <section>
+            <section id="cookies">
               <h2
                 className="font-display font-extrabold mb-4"
                 style={{ fontSize: '1.3rem', color: 'var(--ink)' }}
@@ -110,7 +110,7 @@ export default function MentionsLegalesPage() {
                 Cookies
               </h2>
               <p>
-                Ce site utilise des cookies techniques essentiels au fonctionnement du site. Aucun cookie publicitaire ou de tracking tiers n&apos;est déposé sans votre consentement. L&apos;analyse des statistiques, si activée, est effectuée de manière anonyme.
+                Ce site dépose des cookies de mesure d&apos;audience (Google Analytics) et de mesure publicitaire (Google Ads) seulement si vous les acceptez dans le bandeau. Sans accord, Google ne reçoit que des signaux anonymes, sans cookie. Vous pouvez changer d&apos;avis à tout moment avec le lien « Cookies » en bas de chaque page.
               </p>
             </section>
 

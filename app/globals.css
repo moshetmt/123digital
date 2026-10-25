@@ -302,3 +302,7 @@
 @utility rounded { border-radius: var(--radius); }
 @utility rounded-t { border-top-left-radius: var(--radius); border-top-right-radius: var(--radius); }
 @utility rounded-b { border-bottom-left-radius: var(--radius); border-bottom-right-radius: var(--radius); }
+
+/* Bandeau cookies (25/10) : au-dessus des boutons d'appel sur téléphone, en bas à gauche sur ordinateur. */
+.bandeau-cookies { left: 1rem; right: 1rem; bottom: calc(1rem + 52px + 0.6rem); }
+@media (min-width: 640px) { .bandeau-cookies { right: auto; bottom: 1rem; max-width: 26rem; } }

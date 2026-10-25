@@ -98,7 +98,7 @@ export default function MentionsLegalesPage() {
                 Les données collectées via les formulaires de contact (nom, email) sont utilisées uniquement pour répondre à vos demandes. Elles ne sont ni vendues ni transmises à des tiers. Conformément au RGPD et à la loi Informatique et Libertés, vous disposez d&apos;un droit d&apos;accès, de rectification et de suppression de vos données.
               </p>
               <p style={{ marginTop: '0.75rem' }}>
-                Pour exercer ces droits : <a href="mailto:contact@123digital.fr" style={{ color: 'var(--brand)' }}>contact@123digital.fr</a>
+                Pour exercer ces droits : <a href="mailto:contact@123digital.fr" style={{ color: 'var(--brand)' }}>contact@123digital.fr</a>. Le détail est dans la <a href="/confidentialite" style={{ color: 'var(--brand)' }}>politique de confidentialité</a>.
               </p>
             </section>
 

@@ -81,6 +81,7 @@ export function Footer({ lang = 'fr' }: { lang?: Locale }) {
     { label: 'Consultant IA à Lyon', href: '/consultant-ia-lyon' },
     { label: 'Consultant SEO Bourg-en-Bresse', href: '/consultant-seo-bourg-en-bresse' },
     { label: 'Mentions légales',  href: '/mentions-legales' },
+    { label: 'Confidentialité',   href: '/confidentialite' },
   ]
 
   return (

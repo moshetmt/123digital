@@ -6,13 +6,13 @@ import { BASE_URL, serviceSchema, breadcrumbSchema } from '@/lib/schema'
 import { CTA } from '@/components/sections/CTA'
 
 export const metadata: Metadata = {
-  title: 'Consultant Digital Lyon · Expert Croissance PME | 123 Digital',
+  title: { absolute: 'Consultant marketing digital à Lyon | 123 Digital' },
   description:
-    'Maurice Timsit, consultant digital à Lyon : SEO, création de site web, Google Ads et automatisation pour PME et TPE lyonnaises. Audit gratuit 30 min.',
+    'Maurice Timsit, consultant marketing digital à Lyon : SEO, site web, Google Ads pour PME. Un seul interlocuteur. Audit offert en 30 min.',
   alternates: { canonical: `${BASE_URL}/consultant-digital-lyon` },
   openGraph: {
-    title: 'Consultant Digital Lyon · 123 Digital',
-    description: 'Expert en croissance digitale pour PME à Lyon et région Auvergne-Rhône-Alpes.',
+    title: 'Consultant marketing digital à Lyon | 123 Digital',
+    description: 'Maurice Timsit, consultant marketing digital à Lyon : SEO, site web, Google Ads pour PME. Un seul interlocuteur.',
     url: `${BASE_URL}/consultant-digital-lyon`,
   },
 }
@@ -128,6 +128,37 @@ export default function ConsultantDigitalLyonPage() {
           <Link href="/consultant-ia-lyon" className="btn-contour mt-8 ml-3">
             Projets IA et automatisation à Lyon →
           </Link>
+        </div>
+      </section>
+
+      {/* Stratégie et marketing digital */}
+      <section className="bg-background" style={{ padding: '0 1.5rem 6rem' }}>
+        <div className="mx-auto max-w-3xl">
+          <h2
+            className="font-display font-extrabold mb-6"
+            style={{ fontSize: 'clamp(1.6rem, 3vw, 2.5rem)', color: 'var(--ink)', letterSpacing: '-0.02em' }}
+          >
+            Stratégie et marketing digital<br />
+            <span style={{ color: 'var(--brand)' }}>pour PME lyonnaises</span>
+          </h2>
+          <div className="flex flex-col gap-4 text-base leading-relaxed" style={{ color: 'var(--ink-2)' }}>
+            <p>
+              Un consultant en marketing digital commence par la stratégie, pas par l&apos;outil. Avant de parler site,
+              annonces ou réseaux sociaux, je regarde trois choses : ce que vos clients tapent sur Google quand ils ont
+              besoin de vous, ce qu&apos;ils voient en arrivant sur votre site depuis leur téléphone, et ce qui les fait
+              appeler, ou partir.
+            </p>
+            <p>
+              De là sort une stratégie digitale à votre taille : quelques pages qui répondent aux vraies recherches de vos
+              clients à Lyon, une fiche Google entretenue, des annonces Google Ads seulement quand elles rapportent plus
+              qu&apos;elles ne coûtent, et un suivi des demandes pour savoir d&apos;où viennent vos clients.
+            </p>
+            <p>
+              Ce travail de consulting digital s&apos;adresse aux artisans, commerces et PME de la métropole lyonnaise qui
+              n&apos;ont pas besoin d&apos;une équipe de vingt personnes, mais d&apos;un interlocuteur qui connaît leur dossier
+              et fait le travail lui-même. Le premier rendez-vous est un audit offert de 30 minutes, sur votre site.
+            </p>
+          </div>
         </div>
       </section>
 

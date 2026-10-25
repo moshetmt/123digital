@@ -57,7 +57,7 @@ export default async function AuditProspectPage({ params }: PageProps) {
         align="left"
         breadcrumb={
           <p style={{ fontSize: '0.78rem', letterSpacing: '0.12em', textTransform: 'uppercase', fontWeight: 700, opacity: 0.85 }}>
-            Regardé le {le} par Moshé Timsit, 123digital
+            Regardé le {le} par Maurice Timsit, 123digital
           </p>
         }
         title={`Ce qu'un client voit sur ${audit.domaine}`}
@@ -65,7 +65,7 @@ export default async function AuditProspectPage({ params }: PageProps) {
         sub="Regardé sur un téléphone, comme un client qui vous cherche."
         actions={
           <>
-            <BannerCta href={TEL}>Appeler Moshé : 06 52 09 23 01</BannerCta>
+            <BannerCta href={TEL}>Appeler Maurice : 06 52 09 23 01</BannerCta>
             <BannerCtaLine href="#constats">{pluriel ? `Voir les ${audit.constats.length} points` : 'Voir le point relevé'}</BannerCtaLine>
           </>
         }
@@ -149,7 +149,7 @@ export default async function AuditProspectPage({ params }: PageProps) {
             >
               <Image
                 src="/images/maurice-timsit-portrait.jpg"
-                alt="Moshé Timsit, 123digital, Lyon"
+                alt="Maurice Timsit, 123digital, Lyon"
                 width={110}
                 height={138}
                 sizes="(max-width: 640px) 88px, 110px"
@@ -157,7 +157,7 @@ export default async function AuditProspectPage({ params }: PageProps) {
                 style={{ width: '100%', height: 'auto', display: 'block', border: '1px solid var(--line-strong)' }}
               />
               <div>
-                <p style={{ fontFamily: 'var(--font-sans)', fontWeight: 800, fontSize: '1.1rem', color: 'var(--ink)' }}>Moshé Timsit</p>
+                <p style={{ fontFamily: 'var(--font-sans)', fontWeight: 800, fontSize: '1.1rem', color: 'var(--ink)' }}>Maurice Timsit</p>
                 <p className="mb-2" style={{ fontSize: '0.9rem', color: 'var(--ink-2)' }}>
                   123digital, consultant web à Lyon. Vous parlez à la personne qui fait le travail.
                 </p>

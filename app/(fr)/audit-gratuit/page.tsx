@@ -143,12 +143,12 @@ export default function AuditGratuitPage() {
         }
         title="Votre audit digital offert."
         highlight="offert."
-        sub="En 30 minutes, j&apos;identifie pourquoi votre site ne génère pas autant de clients qu&apos;il le devrait, et je vous donne les trois actions prioritaires pour changer ça. Analyse concrète, pas de discours commercial."
+        sub="30 minutes pour savoir pourquoi votre site n&apos;amène pas assez de clients, et les trois actions à faire en premier."
       />
 
       {/* Formulaire d'audit — P0-2 de l'audit UX : la page vers laquelle tous
           les CTA convergent doit permettre d'agir sans téléphoner */}
-      <CTA />
+      <CTA compact />
 
       {/* Ce que j'analyse */}
       <section

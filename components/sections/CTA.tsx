@@ -6,6 +6,7 @@ import Image from 'next/image'
 import { Check } from 'lucide-react'
 import { t, type Locale } from '@/lib/i18n'
 import { readLeadSource } from '@/lib/lead-source'
+import { NoteGoogle } from '@/components/sections/NoteGoogle'
 
 const EASE = [0.22, 1, 0.36, 1] as [number, number, number, number]
 
@@ -165,7 +166,9 @@ function FormSelect({
 
 // ── CTA Section ───────────────────────────────────────────────────────────────
 
-export function CTA({ lang = 'fr' }: { lang?: Locale }) {
+// compact : sur téléphone, le paragraphe d'intro disparaît pour que le bouton
+// d'envoi tienne dans le premier écran (page /audit-gratuit, étude du 25/10).
+export function CTA({ lang = 'fr', compact = false }: { lang?: Locale; compact?: boolean }) {
   const d = t(lang).cta
   const isEN = lang === 'en'
   const besoins = isEN ? BESOINS_EN : BESOINS_FR
@@ -283,9 +286,14 @@ export function CTA({ lang = 'fr' }: { lang?: Locale }) {
           >
             {d.heading}
           </h2>
-          <p style={{ color: 'var(--ink-2)', fontSize: 'clamp(0.92rem, 3vw, 1rem)', lineHeight: 1.5, maxWidth: '46ch', marginBottom: '0.75rem' }}>
+          <p className={compact ? 'hidden sm:block' : undefined} style={{ color: 'var(--ink-2)', fontSize: 'clamp(0.92rem, 3vw, 1rem)', lineHeight: 1.5, maxWidth: '46ch', marginBottom: '0.75rem' }}>
             {d.sub}
           </p>
+          {!isEN && (
+            <div style={{ marginBottom: '0.6rem' }}>
+              <NoteGoogle />
+            </div>
+          )}
           <p style={{ color: 'var(--ink-2)', fontSize: '0.92rem', fontWeight: 600 }}>
             {d.altPhone}{' '}
             <a href={PHONE_TEL} style={{ color: 'var(--brand)', fontWeight: 800, textDecoration: 'underline' }}>

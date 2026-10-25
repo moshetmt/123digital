@@ -4,6 +4,7 @@ import Image from 'next/image'
 import { Phone, Check } from 'lucide-react'
 import { PongCanvas } from '@/components/sections/PongCanvas'
 import { t, type Locale } from '@/lib/i18n'
+import { NoteGoogle } from '@/components/sections/NoteGoogle'
 
 const PHONE_TEL = 'tel:+33652092301'
 
@@ -88,7 +89,7 @@ export function Hero({ lang = 'fr' }: { lang?: Locale }) {
             {d.sub}
           </p>
 
-          <div className="flex flex-wrap items-center justify-center gap-3 mb-6">
+          <div className="flex flex-wrap items-center justify-center gap-3 mb-4">
             <a
               href={PHONE_TEL}
               className="inline-flex items-center gap-2 rounded font-bold whitespace-nowrap px-5 py-3 text-[0.92rem] transition duration-150 active:scale-[0.97]"
@@ -106,6 +107,11 @@ export function Hero({ lang = 'fr' }: { lang?: Locale }) {
               <span className="sm:hidden">{d.ctaQuoteShort}</span>
               <span className="hidden sm:inline">{d.ctaQuote}</span>
             </Link>
+          </div>
+
+          {/* Preuve vérifiable au premier écran (étude du 25/10) : la note de la fiche Google. */}
+          <div className="mb-5">
+            <NoteGoogle tone="vert" />
           </div>
 
           <ul className="grid grid-cols-1 sm:grid-cols-3 gap-x-5 gap-y-2 justify-items-center" role="list">

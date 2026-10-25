@@ -75,6 +75,8 @@ export function Footer({ lang = 'fr' }: { lang?: Locale }) {
     { label: 'Problèmes fréquents', href: '/problemes' },
     { label: 'Audit gratuit',     href: '/audit-gratuit' },
     { label: 'Consultant digital à Lyon', href: '/consultant-digital-lyon' },
+    { label: 'Consultant SEO à Lyon', href: '/consultant-seo-lyon' },
+    { label: 'Référencement IA', href: '/referencement-ia' },
     { label: 'Consultant IA à Lyon', href: '/consultant-ia-lyon' },
     { label: 'Consultant SEO Bourg-en-Bresse', href: '/consultant-seo-bourg-en-bresse' },
     { label: 'Mentions légales',  href: '/mentions-legales' },

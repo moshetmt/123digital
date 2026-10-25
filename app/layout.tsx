@@ -168,14 +168,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           gtag('js', new Date());
           gtag('config', 'G-96F0VT9FDY');
         `}</Script>
-        {/* Microsoft Clarity */}
-        <Script id="ms-clarity" strategy="afterInteractive">{`
-          (function(c,l,a,r,i,t,y){
-            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-          })(window, document, "clarity", "script", "xu0d6yenai");
-        `}</Script>
+        {/* Microsoft Clarity retiré le 25/10 : 2,2 s de JavaScript sur téléphone
+            (Lighthouse), données jamais lues depuis le 31/07. Ne pas le remettre
+            sans une lecture prévue. */}
       </body>
     </html>
   )

@@ -110,9 +110,11 @@ export function Hero({ lang = 'fr' }: { lang?: Locale }) {
           </div>
 
           {/* Preuve vérifiable au premier écran (étude du 25/10) : la note de la fiche Google. */}
-          <div className="mb-5">
-            <NoteGoogle tone="vert" />
-          </div>
+          {lang === 'fr' && (
+            <div className="mb-5">
+              <NoteGoogle tone="vert" />
+            </div>
+          )}
 
           <ul className="grid grid-cols-1 sm:grid-cols-3 gap-x-5 gap-y-2 justify-items-center" role="list">
             {checks.map((label) => (

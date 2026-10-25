@@ -93,7 +93,7 @@ export default function ConsultantSeoLyonPage() {
       <section className="bg-background" style={{ padding: 'clamp(2rem, 5vw, 3.5rem) 1.5rem 3rem' }}>
         <div className="mx-auto max-w-3xl">
           <p className={pClass} style={{ ...pStyle, color: 'var(--ink)', fontWeight: 600 }}>
-            Je suis Maurice Timsit, consultant SEO indépendant basé à Lyon depuis 2017. Quand un client tape votre
+            Je suis Maurice Timsit, consultant SEO indépendant à Lyon, et j’accompagne les PME depuis 2017. Quand un client tape votre
             métier et son quartier sur Google, mon travail est que votre entreprise apparaisse, sur la carte et dans
             les résultats. Vous parlez à la personne qui fait le travail, du premier appel au rapport mensuel.
           </p>
@@ -158,7 +158,7 @@ export default function ConsultantSeoLyonPage() {
           </h2>
           <p className={pClass} style={pStyle}>
             Le premier échange est un audit gratuit de 30 minutes. Un audit SEO complet démarre à 500 €.
-            L’accompagnement mensuel démarre à 450 € par mois, avec un engagement de 3 mois, puis au mois. Chaque
+            L’accompagnement mensuel démarre à 450 € par mois, avec un engagement de 3 mois. Chaque
             mois vous recevez un rapport tiré de Search Console : positions, clics, demandes reçues, et ce que je
             fais le mois suivant. Les formules sont détaillées sur la page{' '}
             <Link href="/services/seo" className="underline">SEO et référencement</Link>.

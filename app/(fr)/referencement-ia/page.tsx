@@ -49,7 +49,7 @@ const faqs = [
   },
   {
     q: 'Comment savoir si ChatGPT parle de mon entreprise ?',
-    a: 'On pose les questions de vos clients, toujours les mêmes, à plusieurs IA, plusieurs fois, et on note qui est cité et sur quelles sources. Une seule réponse ne prouve rien : les IA changent de réponse d’un jour à l’autre. Je fais ce relevé chaque semaine pour mes clients.',
+    a: 'On pose les questions de vos clients, toujours les mêmes, à plusieurs IA, plusieurs fois, et on note qui est cité et sur quelles sources. Une seule réponse ne prouve rien : les IA changent de réponse d’un jour à l’autre, il faut répéter le relevé sur plusieurs semaines.',
   },
   {
     q: 'Combien de temps pour être cité par une IA ?',
@@ -185,12 +185,11 @@ export default function ReferencementIaPage() {
             Prix
           </h2>
           <p className={pClass} style={pStyle}>
-            L’audit gratuit de 30 minutes inclut un premier relevé : ce que deux IA répondent aujourd’hui sur votre
-            métier et votre ville. Le travail GEO se fait ensuite avec l’accompagnement SEO, qui démarre à 450 € par
-            mois (voir{' '}
-            <Link href="/services/seo" className="underline">SEO et référencement</Link>), devis précis après
-            l’audit. Pour des projets d’intelligence artificielle dans votre entreprise (automatisation, formation),
-            voir plutôt{' '}
+            Le premier échange est l’audit gratuit de 30 minutes. Je vous envoie ensuite un devis précis pour le
+            travail de référencement IA. Le référencement Google classique, qui en est la base, est détaillé sur la
+            page{' '}
+            <Link href="/services/seo" className="underline">SEO et référencement</Link>. Pour des projets
+            d’intelligence artificielle dans votre entreprise (automatisation, formation), voir plutôt{' '}
             <Link href="/consultant-ia-lyon" className="underline">consultant IA à Lyon</Link>.
           </p>
 

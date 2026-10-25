@@ -1,0 +1,404 @@
+[
+  {
+    "domaine": "rtplombierchauffage.fr",
+    "nom": "RT Plombier Chauffage",
+    "metier": "plombier",
+    "ville": "Lyon",
+    "constats": [
+      {
+        "titre": "Votre établissement n'est pas décrit pour Google",
+        "texte": "Aucune donnée structurée n'a été trouvée. C'est ce qui permet à Google d'afficher vos horaires, votre adresse ou vos avis directement dans les résultats."
+      }
+    ],
+    "capture": true,
+    "date": "2026-10-07"
+  },
+  {
+    "domaine": "assistanceplomberie.com",
+    "nom": "Assistance Plomberie",
+    "metier": "plombier",
+    "ville": "Lyon",
+    "constats": [
+      {
+        "titre": "Vos titres sont coupés dans Google",
+        "texte": "Vos 25 pages ont toutes un titre trop long. Le plus long fait 183 caractères alors que Google en affiche environ 60 : « Débouchage de canalisation à Lyon, pour rérérésoudre les problèm… » et la suite est coupée."
+      },
+      {
+        "titre": "Votre établissement n'est pas décrit pour Google",
+        "texte": "Aucune donnée structurée n'a été trouvée. C'est ce qui permet à Google d'afficher vos horaires, votre adresse ou vos avis directement dans les résultats."
+      }
+    ],
+    "capture": true,
+    "date": "2026-10-07"
+  },
+  {
+    "domaine": "mure-energies.fr",
+    "nom": "Mure Énergies",
+    "metier": "plombier",
+    "ville": "Lyon",
+    "constats": [
+      {
+        "titre": "Vous n'avez aucun formulaire de contact",
+        "texte": "Aucune de vos pages ne propose de formulaire. Les clients qui ne veulent pas téléphoner, ou qui vous découvrent le soir, n'ont aucun moyen de vous laisser leur demande."
+      },
+      {
+        "titre": "Vos titres sont coupés dans Google",
+        "texte": "3 pages sur 25 ont un titre trop long. Le plus long fait 65 caractères alors que Google en affiche environ 60 : « Contacter Mure Energies - Plombier chauffagiste sur le Grand… » et la suite est coupée."
+      },
+      {
+        "titre": "Plusieurs pages portent le même titre",
+        "texte": "Un même titre est utilisé par plusieurs pages à la fois. Quand deux pages se présentent pareil, Google n'en choisit souvent aucune."
+      }
+    ],
+    "capture": true,
+    "date": "2026-10-07"
+  },
+  {
+    "domaine": "emh-plomberie.com",
+    "nom": "EMH Plomberie",
+    "metier": "plombier",
+    "ville": "Lyon",
+    "constats": [
+      {
+        "titre": "Vos titres sont coupés dans Google",
+        "texte": "Votre page a un titre trop long. Le plus long fait 65 caractères alors que Google en affiche environ 60 : « EMH Lyon - Plombier / Chauffagiste Lyon et Villefranche-sur-… » et la suite est coupée."
+      },
+      {
+        "titre": "Votre site n'a pas de plan de site",
+        "texte": "Aucun fichier sitemap.xml n'a été trouvé. C'est la liste des pages que vous donnez à Google pour qu'il n'en oublie aucune."
+      }
+    ],
+    "capture": true,
+    "date": "2026-10-07"
+  },
+  {
+    "domaine": "sauvignet-elec.com",
+    "nom": "Sauvignet Élec",
+    "metier": "électricien",
+    "ville": "Lyon",
+    "constats": [
+      {
+        "titre": "Vous n'avez aucun formulaire de contact",
+        "texte": "Aucune de vos pages ne propose de formulaire. Les clients qui ne veulent pas téléphoner, ou qui vous découvrent le soir, n'ont aucun moyen de vous laisser leur demande."
+      },
+      {
+        "titre": "Des pages n'ont pas de description",
+        "texte": "Votre page n'a pas de description. C'est le texte affiché sous votre lien dans Google : sans lui, Google découpe un morceau de page au hasard."
+      }
+    ],
+    "capture": true,
+    "date": "2026-10-07"
+  },
+  {
+    "domaine": "electricien-electricite.com",
+    "nom": "Électricien Électricité",
+    "metier": "électricien",
+    "ville": "Lyon",
+    "constats": [
+      {
+        "titre": "Votre site n'a pas de plan de site",
+        "texte": "Aucun fichier sitemap.xml n'a été trouvé. C'est la liste des pages que vous donnez à Google pour qu'il n'en oublie aucune."
+      },
+      {
+        "titre": "Vos images sont invisibles pour Google",
+        "texte": "9 images sur 10 n'ont aucune description. Google ne voit pas les images, il lit leur description."
+      }
+    ],
+    "capture": true,
+    "date": "2026-10-07"
+  },
+  {
+    "domaine": "garage-arnaud-sports.com",
+    "nom": "Garage Arnaud Sports",
+    "metier": "garage",
+    "ville": "Lyon",
+    "constats": [
+      {
+        "titre": "On ne peut pas vous appeler depuis votre site",
+        "texte": "Votre numéro est écrit sur la page d'accueil, mais il n'est pas cliquable. Sur un téléphone, il faut le retenir, quitter le site, ouvrir le clavier et le taper. Testez-le vous-même : la plupart des visiteurs abandonnent avant."
+      },
+      {
+        "titre": "La plupart de vos pages ne permettent pas de vous joindre",
+        "texte": "9 pages sur les 13 examinées n'offrent ni numéro cliquable, ni formulaire. Un visiteur qui arrive sur l'une d'elles depuis Google doit chercher comment vous contacter."
+      },
+      {
+        "titre": "Des pages n'ont pas de titre principal",
+        "texte": "Une page sur les 13 examinées n'a aucun titre principal (la balise H1). C'est ce que Google lit en premier pour comprendre le sujet d'une page. Sans elle, il devine."
+      }
+    ],
+    "capture": true,
+    "date": "2026-10-07"
+  },
+  {
+    "domaine": "ah-automobile.fr",
+    "nom": "AH Automobile",
+    "metier": "garage",
+    "ville": "Lyon",
+    "constats": [
+      {
+        "titre": "Vous n'avez aucun formulaire de contact",
+        "texte": "Aucune de vos pages ne propose de formulaire. Les clients qui ne veulent pas téléphoner, ou qui vous découvrent le soir, n'ont aucun moyen de vous laisser leur demande."
+      },
+      {
+        "titre": "Votre site est très lent sur téléphone",
+        "texte": "Votre page d'accueil met 13,3 s à s'afficher sur un mobile. Au-delà de quelques secondes, une bonne partie des visiteurs repartent avant d'avoir vu quoi que ce soit. C'est le genre de perte qui ne se voit nulle part."
+      }
+    ],
+    "capture": true,
+    "date": "2026-10-07"
+  },
+  {
+    "domaine": "chapuisplomberie.fr",
+    "nom": "Chapuis Plomberie",
+    "metier": "plombier",
+    "ville": "Lyon",
+    "constats": [
+      {
+        "titre": "Vous n'avez aucun formulaire de contact",
+        "texte": "Aucune de vos pages ne propose de formulaire. Les clients qui ne veulent pas téléphoner, ou qui vous découvrent le soir, n'ont aucun moyen de vous laisser leur demande."
+      },
+      {
+        "titre": "Vos titres sont coupés dans Google",
+        "texte": "1 page(s) sur 25 ont un titre trop long. Le plus long fait 61 caractères alors que Google en affiche environ 60 : « Réalisations : salles de bain, douches, chauffe-eau | Chapui… » et la suite est coupée."
+      }
+    ],
+    "capture": true,
+    "date": "2026-10-25"
+  },
+  {
+    "domaine": "cyril-leplombier.fr",
+    "nom": "Cyril le plombier",
+    "metier": "plombier",
+    "ville": "Lyon",
+    "constats": [
+      {
+        "titre": "Vous n'avez aucun formulaire de contact",
+        "texte": "Aucune de vos pages ne propose de formulaire. Les clients qui ne veulent pas téléphoner, ou qui vous découvrent le soir, n'ont aucun moyen de vous laisser leur demande."
+      },
+      {
+        "titre": "Vos titres sont coupés dans Google",
+        "texte": "1 page(s) sur 1 ont un titre trop long. Le plus long fait 61 caractères alors que Google en affiche environ 60 : « Plombier à Lyon — Dépannage et réparation | Cyril le Plombie… » et la suite est coupée."
+      }
+    ],
+    "capture": true,
+    "date": "2026-10-25"
+  },
+  {
+    "domaine": "egelec.co",
+    "nom": "Egelec",
+    "metier": "électricien",
+    "ville": "Lyon",
+    "constats": [
+      {
+        "titre": "Vous n'avez aucun formulaire de contact",
+        "texte": "Aucune de vos pages ne propose de formulaire. Les clients qui ne veulent pas téléphoner, ou qui vous découvrent le soir, n'ont aucun moyen de vous laisser leur demande."
+      },
+      {
+        "titre": "Vos titres sont coupés dans Google",
+        "texte": "1 page(s) sur 25 ont un titre trop long. Le plus long fait 72 caractères alors que Google en affiche environ 60 : « Politique de confidentialité | EGELEC (SYLVAIN AUGIER ELECTR… » et la suite est coupée."
+      }
+    ],
+    "capture": true,
+    "date": "2026-10-25"
+  },
+  {
+    "domaine": "tiltelec.com",
+    "nom": "Tiltelec",
+    "metier": "électricien",
+    "ville": "Lyon",
+    "constats": [
+      {
+        "titre": "Vos titres sont coupés dans Google",
+        "texte": "9 page(s) sur 24 ont un titre trop long. Le plus long fait 75 caractères alors que Google en affiche environ 60 : « Borne de recharge IRVE : ce qu'il faut savoir avant d'instal… » et la suite est coupée."
+      }
+    ],
+    "capture": true,
+    "date": "2026-10-25"
+  },
+  {
+    "domaine": "electricity-lyon.fr",
+    "nom": "Electricity Lyon",
+    "metier": "électricien",
+    "ville": "Lyon",
+    "constats": [
+      {
+        "titre": "Votre site n'a pas de plan de site",
+        "texte": "Aucun fichier sitemap.xml n'a été trouvé. C'est la liste des pages que vous donnez à Google pour qu'il n'en oublie aucune."
+      }
+    ],
+    "capture": true,
+    "date": "2026-10-25"
+  },
+  {
+    "domaine": "delta-electricite.fr",
+    "nom": "Delta Électricité",
+    "metier": "électricien",
+    "ville": "Lyon",
+    "constats": [
+      {
+        "titre": "Vos titres sont coupés dans Google",
+        "texte": "4 page(s) sur 25 ont un titre trop long. Le plus long fait 62 caractères alors que Google en affiche environ 60 : « Services électricien Lyon : urgence, normes, pose | Delta El… » et la suite est coupée."
+      }
+    ],
+    "capture": true,
+    "date": "2026-10-25"
+  },
+  {
+    "domaine": "mks-technology.fr",
+    "nom": "MKS Technology",
+    "metier": "électricien",
+    "ville": "Lyon",
+    "constats": [
+      {
+        "titre": "Vous n'avez aucun formulaire de contact",
+        "texte": "Aucune de vos pages ne propose de formulaire. Les clients qui ne veulent pas téléphoner, ou qui vous découvrent le soir, n'ont aucun moyen de vous laisser leur demande."
+      }
+    ],
+    "capture": true,
+    "date": "2026-10-25"
+  },
+  {
+    "domaine": "maselectricite.fr",
+    "nom": "MAS Électricité",
+    "metier": "électricien",
+    "ville": "Lyon",
+    "constats": [
+      {
+        "titre": "Vos titres sont coupés dans Google",
+        "texte": "3 page(s) sur 25 ont un titre trop long. Le plus long fait 61 caractères alors que Google en affiche environ 60 : « Rénovation électrique appartement Lyon | Prix T2–T5 – Masele… » et la suite est coupée."
+      },
+      {
+        "titre": "Des pages n'ont pas de description",
+        "texte": "25 page(s) sur 25 n'ont pas de description. C'est le texte affiché sous votre lien dans Google : sans lui, Google découpe un morceau de page au hasard."
+      }
+    ],
+    "capture": true,
+    "date": "2026-10-25"
+  },
+  {
+    "domaine": "elechristin.com",
+    "nom": "Elec Christin",
+    "metier": "électricien",
+    "ville": "Lyon",
+    "constats": [
+      {
+        "titre": "Vos titres sont coupés dans Google",
+        "texte": "1 page(s) sur 1 ont un titre trop long. Le plus long fait 83 caractères alors que Google en affiche environ 60 : « ELECHRISTIN – Électricien Lyon | Installation & Maintenance … » et la suite est coupée."
+      },
+      {
+        "titre": "Votre site n'a pas de plan de site",
+        "texte": "Aucun fichier sitemap.xml n'a été trouvé. C'est la liste des pages que vous donnez à Google pour qu'il n'en oublie aucune."
+      }
+    ],
+    "capture": true,
+    "date": "2026-10-25"
+  },
+  {
+    "domaine": "garage-auto-electricite-villeurbanne.fr",
+    "nom": "Garage Auto Électricité Villeurbanne",
+    "metier": "garage",
+    "ville": "Villeurbanne",
+    "constats": [
+      {
+        "titre": "Vous n'avez aucun formulaire de contact",
+        "texte": "Aucune de vos pages ne propose de formulaire. Les clients qui ne veulent pas téléphoner, ou qui vous découvrent le soir, n'ont aucun moyen de vous laisser leur demande."
+      },
+      {
+        "titre": "Vos titres sont coupés dans Google",
+        "texte": "1 page(s) sur 1 ont un titre trop long. Le plus long fait 65 caractères alors que Google en affiche environ 60 : « Garage Auto Électricité Meunier, la mécanique auto à Villeur… » et la suite est coupée."
+      }
+    ],
+    "capture": true,
+    "date": "2026-10-25"
+  },
+  {
+    "domaine": "garagecelu.fr",
+    "nom": "Garage Celu",
+    "metier": "garage",
+    "ville": "Lyon",
+    "constats": [
+      {
+        "titre": "On ne peut pas vous appeler depuis votre site",
+        "texte": "Votre numéro est écrit sur la page d'accueil, mais il n'est pas cliquable. Sur un téléphone, il faut le retenir, quitter le site, ouvrir le clavier et le taper. Testez-le vous-même : la plupart des visiteurs abandonnent avant."
+      },
+      {
+        "titre": "Vous n'avez aucun formulaire de contact",
+        "texte": "Aucune de vos pages ne propose de formulaire. Les clients qui ne veulent pas téléphoner, ou qui vous découvrent le soir, n'ont aucun moyen de vous laisser leur demande."
+      }
+    ],
+    "capture": true,
+    "date": "2026-10-25"
+  },
+  {
+    "domaine": "atelierperrin.com",
+    "nom": "Atelier Perrin",
+    "metier": "garage",
+    "ville": "Lyon",
+    "constats": [
+      {
+        "titre": "Vous n'avez aucun formulaire de contact",
+        "texte": "Aucune de vos pages ne propose de formulaire. Les clients qui ne veulent pas téléphoner, ou qui vous découvrent le soir, n'ont aucun moyen de vous laisser leur demande."
+      },
+      {
+        "titre": "Votre site n'a pas de plan de site",
+        "texte": "Aucun fichier sitemap.xml n'a été trouvé. C'est la liste des pages que vous donnez à Google pour qu'il n'en oublie aucune."
+      }
+    ],
+    "capture": true,
+    "date": "2026-10-25"
+  },
+  {
+    "domaine": "garage-caffon-boileau.fr",
+    "nom": "Garage Caffon Boileau",
+    "metier": "garage",
+    "ville": "Villeurbanne",
+    "constats": [
+      {
+        "titre": "Vos titres sont coupés dans Google",
+        "texte": "1 page(s) sur 1 ont un titre trop long. Le plus long fait 65 caractères alors que Google en affiche environ 60 : « Garage Renault Dacia Villeurbanne Lyon - Garage Caffon Boile… » et la suite est coupée."
+      },
+      {
+        "titre": "Votre site n'a pas de plan de site",
+        "texte": "Aucun fichier sitemap.xml n'a été trouvé. C'est la liste des pages que vous donnez à Google pour qu'il n'en oublie aucune."
+      }
+    ],
+    "capture": true,
+    "date": "2026-10-25"
+  },
+  {
+    "domaine": "djef-autos.com",
+    "nom": "Djef Autos",
+    "metier": "garage",
+    "ville": "Lyon",
+    "constats": [
+      {
+        "titre": "On ne peut pas vous appeler depuis votre site",
+        "texte": "Votre numéro est écrit sur la page d'accueil, mais il n'est pas cliquable. Sur un téléphone, il faut le retenir, quitter le site, ouvrir le clavier et le taper. Testez-le vous-même : la plupart des visiteurs abandonnent avant."
+      },
+      {
+        "titre": "Vous n'avez aucun formulaire de contact",
+        "texte": "Aucune de vos pages ne propose de formulaire. Les clients qui ne veulent pas téléphoner, ou qui vous découvrent le soir, n'ont aucun moyen de vous laisser leur demande."
+      }
+    ],
+    "capture": true,
+    "date": "2026-10-25"
+  },
+  {
+    "domaine": "autoparck.fr",
+    "nom": "Autoparck",
+    "metier": "garage",
+    "ville": "Lyon",
+    "constats": [
+      {
+        "titre": "Votre numéro de téléphone n'apparaît pas",
+        "texte": "Aucun numéro n'est visible sur votre page d'accueil, et rien ne permet d'appeler. Un client qui a une urgence chez lui repart chez un concurrent."
+      },
+      {
+        "titre": "Des pages n'ont pas de titre principal",
+        "texte": "1 page(s) sur les 25 examinées n'ont aucun titre principal (la balise H1). C'est ce que Google lit en premier pour comprendre le sujet d'une page. Sans elle, il devine."
+      }
+    ],
+    "capture": true,
+    "date": "2026-10-25"
+  }
+]

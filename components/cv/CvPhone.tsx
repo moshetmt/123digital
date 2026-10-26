@@ -2,7 +2,7 @@
 
 import Image from 'next/image'
 import { useRef, useState } from 'react'
-import { ArrowUpRight } from 'lucide-react'
+import { ArrowUpRight, ChevronLeft, ChevronRight } from 'lucide-react'
 import { ECRANS, sitesEnTelephone } from '@/data/telephone'
 import type { CvContent } from '@/data/cv'
 
@@ -22,8 +22,24 @@ export function CvPhone({ work }: { work: CvContent['work'] }) {
     if (el) el.scrollTo({ left: i * el.clientWidth, behavior: 'smooth' })
   }
 
+  // Fleches sur ordinateur seulement (demande de Moshe du 27/10) : sur
+  // telephone, on fait defiler au doigt.
+  const fleche = (sens: 1 | -1) => (
+    <button
+      type="button"
+      onClick={() => aller((actif + sens + sitesEnTelephone.length) % sitesEnTelephone.length)}
+      aria-label={sens === 1 ? 'Suivant' : 'Précédent'}
+      className="hidden shrink-0 items-center justify-center transition-[transform,background-color] duration-150 hover:bg-[#00713D] active:scale-90 md:flex"
+      style={{ width: '3rem', height: '3rem', borderRadius: '9999px', border: '1px solid rgba(205,230,216,0.25)', backgroundColor: 'rgba(205,230,216,0.08)', color: '#F2F7F4' }}
+    >
+      {sens === 1 ? <ChevronRight size={22} aria-hidden /> : <ChevronLeft size={22} aria-hidden />}
+    </button>
+  )
+
   return (
     <div className="flex flex-col items-center">
+      <div className="flex items-center gap-6">
+      {fleche(-1)}
       <div
         className="relative"
         style={{ width: 'min(17rem, 72vw)', aspectRatio: '9 / 18.6', borderRadius: '2.9rem', padding: '0.6rem', background: '#050706', boxShadow: '0 0 0 1px rgba(205,230,216,0.18), 0 30px 60px -20px rgba(0,0,0,0.7)' }}
@@ -43,6 +59,9 @@ export function CvPhone({ work }: { work: CvContent['work'] }) {
             </div>
           ))}
         </div>
+      </div>
+
+      {fleche(1)}
       </div>
 
       <div className="flex items-center gap-2" style={{ marginTop: '1.1rem' }}>

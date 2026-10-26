@@ -113,7 +113,7 @@ export function CvPage({ locale }: { locale: CvLocale }) {
               style={{ backgroundColor: '#0B0F0C', borderRadius: '2rem', padding: 'clamp(1.5rem, 3.5vh, 2rem) clamp(1rem, 3vw, 1.5rem) clamp(1rem, 2.5vh, 1.25rem)' }}
             >
               <Image
-                src="/images/maurice-timsit-portrait-blanc.jpg"
+                src="/images/maurice-timsit-portrait-sombre.jpg"
                 alt={identity.portraitAlt}
                 width={1000}
                 height={1250}

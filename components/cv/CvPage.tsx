@@ -4,6 +4,7 @@ import { ArrowUpRight, Download, Mail, Phone, Star } from 'lucide-react'
 import { cvContent, type CvLocale } from '@/data/cv'
 import { AVIS_GOOGLE } from '@/lib/avis-google'
 import { CvAvatar } from './CvAvatar'
+import { CvParcours } from './CvParcours'
 import { CvPhone } from './CvPhone'
 import { CvStories } from './CvStories'
 import { designs, ecrans } from '@/data/telephone'
@@ -282,54 +283,7 @@ export function CvPage({ locale }: { locale: CvLocale }) {
 
           <section id="parcours" className="scroll-mt-16" style={{ marginBottom: 'clamp(4rem, 10vh, 6rem)' }}>
             {titreSection(c.experience.heading)}
-            <ol className="flex flex-col" style={{ listStyle: 'none', padding: 0, margin: 0, gap: '2.25rem' }}>
-              {c.experience.items.map((item) => (
-                <li key={item.role + item.org} className="grid grid-cols-1 sm:grid-cols-[9rem_1fr] gap-1 sm:gap-6">
-                  <p style={{ fontSize: '0.74rem', fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase', color: C.discret, paddingTop: '0.2rem' }}>
-                    {item.period}
-                  </p>
-                  <div>
-                    <h3 style={{ fontSize: '1.02rem', fontWeight: 700, color: C.titre, lineHeight: 1.35 }}>
-                      {item.role} · {item.org}
-                    </h3>
-                    {item.note ? <p style={{ fontSize: '0.82rem', color: C.discret, marginTop: '0.15rem' }}>{item.note}</p> : null}
-                    {item.context ? (
-                      <p style={{ fontSize: '0.86rem', color: C.discret, lineHeight: 1.55, fontStyle: 'italic', marginTop: '0.45rem' }}>{item.context}</p>
-                    ) : null}
-                    <ul style={{ listStyle: 'none', padding: 0, margin: '0.55rem 0 0' }} className="flex flex-col gap-1.5">
-                      {item.bullets.map((bullet) => (
-                        <li key={bullet} style={{ fontSize: '0.92rem', color: C.texte, lineHeight: 1.6 }}>
-                          {bullet}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </li>
-              ))}
-            </ol>
-
-            <div className="grid grid-cols-1 sm:grid-cols-[9rem_1fr] gap-1 sm:gap-6" style={{ marginTop: '3rem', paddingTop: '2rem', borderTop: `1px solid ${C.filet}` }}>
-              <h3 style={{ fontSize: '0.74rem', fontWeight: 800, letterSpacing: '0.1em', textTransform: 'uppercase', color: C.titre, paddingTop: '0.2rem' }}>
-                {c.education.heading}
-              </h3>
-              <div>
-                <ul className="flex flex-col" style={{ listStyle: 'none', padding: 0, margin: 0, gap: '1rem' }}>
-                  {c.education.items.map((item) => (
-                    <li key={item.degree}>
-                      <p style={{ fontSize: '0.95rem', fontWeight: 700, color: C.titre }}>
-                        {item.degree} · {item.school}
-                      </p>
-                      <p style={{ fontSize: '0.8rem', color: C.discret, marginTop: '0.1rem' }}>{item.period}</p>
-                      {item.detail ? <p style={{ fontSize: '0.85rem', color: C.texte, lineHeight: 1.5, marginTop: '0.25rem' }}>{item.detail}</p> : null}
-                    </li>
-                  ))}
-                </ul>
-                <p style={{ fontSize: '0.9rem', color: C.texte, marginTop: '1.25rem' }}>
-                  <span style={{ fontWeight: 700, color: C.titre }}>{c.education.languagesLabel}{locale === 'fr' ? ' : ' : ': '}</span>
-                  {c.education.languages.map((l) => `${l.name} ${l.level}`).join(' · ')}
-                </p>
-              </div>
-            </div>
+            <CvParcours c={c} sep={locale === 'fr' ? ' :' : ':'} />
           </section>
 
           <section id="contact" className="scroll-mt-16">

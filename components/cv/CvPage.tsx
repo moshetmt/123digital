@@ -106,31 +106,36 @@ export function CvPage({ locale }: { locale: CvLocale }) {
         {/* Colonne de gauche */}
         <header className="lg:sticky lg:top-0 lg:flex lg:max-h-screen lg:overflow-y-auto lg:w-[46%] lg:flex-col lg:justify-between" style={{ paddingTop: 'clamp(1.25rem, 5vh, 3.5rem)', paddingBottom: 'clamp(1.5rem, 5vh, 3.5rem)' }}>
           <div>
-            <Image
-              src="/images/maurice-timsit-portrait-vert.jpg"
-              alt={identity.portraitAlt}
-              width={1000}
-              height={1250}
-              priority
-              sizes="(min-width: 1024px) 300px, (min-width: 640px) 420px, 100vw"
-              className="block w-full max-w-[26rem] h-auto lg:w-auto lg:h-[min(18rem,31vh)] lg:max-w-none lg:[@media(max-height:780px)]:h-[19vh]"
-              style={{ borderRadius: '0.75rem' }}
-            />
+            {/* En-tete de profil (reference choisie par Moshe le 26/10) : petite photo
+                ronde au-dessus du nom, bloc centre sur telephone, aligne a gauche
+                sur ordinateur. */}
+            <div className="flex flex-col items-center text-center lg:items-start lg:text-left">
+              <Image
+                src="/images/maurice-timsit-portrait-vert.jpg"
+                alt={identity.portraitAlt}
+                width={1000}
+                height={1250}
+                priority
+                sizes="120px"
+                className="block object-cover"
+                style={{ width: 'clamp(5.5rem, 12vh, 7rem)', height: 'clamp(5.5rem, 12vh, 7rem)', borderRadius: '9999px', objectPosition: '50% 18%', boxShadow: `0 0 0 3px ${C.fond}, 0 0 0 5px ${C.accent}` }}
+              />
 
-            <h1
-              style={{ fontSize: 'clamp(2.1rem, 4vw, 2.9rem)', fontWeight: 800, color: C.titre, lineHeight: 1.05, letterSpacing: '-0.025em', marginTop: 'clamp(1.25rem, 3vh, 1.75rem)' }}
-            >
-              {identity.name}
-            </h1>
-            <p style={{ fontSize: '1.05rem', fontWeight: 600, color: C.titre, lineHeight: 1.4, marginTop: '0.6rem', maxWidth: '28rem' }}>
-              {identity.role}
-            </p>
-            <p style={{ fontSize: '0.95rem', color: C.texte, lineHeight: 1.55, marginTop: '0.7rem', maxWidth: '24rem' }}>
-              {identity.pitch}
-            </p>
-            <p className="inline-flex items-center gap-1.5" style={{ fontSize: '0.82rem', fontWeight: 700, color: C.accent, marginTop: '0.8rem' }}>
-              <MapPin size={14} aria-hidden /> {identity.location} · {identity.availability}
-            </p>
+              <h1
+                style={{ fontSize: 'clamp(2.1rem, 4vw, 2.9rem)', fontWeight: 800, color: C.titre, lineHeight: 1.05, letterSpacing: '-0.025em', marginTop: 'clamp(1rem, 2.5vh, 1.4rem)' }}
+              >
+                {identity.name}
+              </h1>
+              <p style={{ fontSize: '1.05rem', fontWeight: 600, color: C.titre, lineHeight: 1.4, marginTop: '0.6rem', maxWidth: '28rem' }}>
+                {identity.role}
+              </p>
+              <p style={{ fontSize: '0.95rem', color: C.texte, lineHeight: 1.55, marginTop: '0.7rem', maxWidth: '24rem' }}>
+                {identity.pitch}
+              </p>
+              <p className="inline-flex items-center gap-1.5" style={{ fontSize: '0.82rem', fontWeight: 700, color: C.accent, marginTop: '0.8rem' }}>
+                <MapPin size={14} aria-hidden /> {identity.location} · {identity.availability}
+              </p>
+            </div>
 
             <div style={{ marginTop: 'clamp(1.25rem, 4vh, 2.5rem)' }}>
               <CvNav items={sections} label={c.nav.menuLabel} />

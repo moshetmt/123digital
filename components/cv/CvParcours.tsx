@@ -60,6 +60,7 @@ export function CvParcours({ c, sep }: { c: CvContent; sep: string }) {
             <p style={{ fontSize: '0.92rem', fontWeight: 700, color: C.titre, lineHeight: 1.3 }}>{item.degree}</p>
             <p style={{ fontSize: '0.82rem', color: C.accent, fontWeight: 600, marginTop: '0.15rem' }}>{item.school}</p>
             <p style={{ fontSize: '0.74rem', color: C.discret, marginTop: '0.3rem' }}>{item.period}</p>
+            {item.detail ? <p style={{ fontSize: '0.8rem', color: C.texte, lineHeight: 1.45, marginTop: '0.4rem' }}>{item.detail}</p> : null}
           </li>
         ))}
       </ul>

@@ -4,7 +4,8 @@ import { ArrowUpRight, Download, Mail, Phone, Star } from 'lucide-react'
 import { cvContent, type CvLocale } from '@/data/cv'
 import { AVIS_GOOGLE } from '@/lib/avis-google'
 import { CvNav } from './CvNav'
-import { CvPhone, sitesEnTelephone } from './CvPhone'
+import { CvPhone } from './CvPhone'
+import { sitesEnTelephone } from '@/data/telephone'
 
 /**
  * lucide-react 1.x ne fournit plus les logos de marque, d'ou ce glyphe local.
@@ -63,9 +64,9 @@ export function CvPage({ locale }: { locale: CvLocale }) {
   const pastilles = locale === 'fr'
     ? [
         { label: 'Création de site', href: '/services/creation-site-web' },
-        { label: 'Référencement Google', href: '/services/seo' },
-        { label: 'Publicité Google Ads', href: '/services/publicite-en-ligne' },
-        { label: 'Automatisation IA', href: '/consultant-ia-lyon' },
+        { label: 'Référencement', href: '/services/seo' },
+        { label: 'Google Ads', href: '/services/publicite-en-ligne' },
+        { label: 'IA & automatisation', href: '/consultant-ia-lyon' },
       ]
     : [
         { label: 'Websites', href: '/services/creation-site-web' },
@@ -133,7 +134,7 @@ export function CvPage({ locale }: { locale: CvLocale }) {
                     <Link
                       href={p.href}
                       className="inline-flex items-center gap-1 transition-colors hover:bg-[rgba(111,183,145,0.25)]"
-                      style={{ fontSize: '0.84rem', fontWeight: 600, color: C.titre, backgroundColor: 'rgba(205, 230, 216, 0.1)', border: `1px solid ${C.filet}`, borderRadius: '9999px', padding: '0.42rem 0.75rem 0.42rem 0.95rem' }}
+                      style={{ fontSize: '0.8rem', fontWeight: 600, color: C.titre, backgroundColor: 'rgba(205, 230, 216, 0.1)', border: `1px solid ${C.filet}`, borderRadius: '9999px', padding: '0.36rem 0.6rem 0.36rem 0.8rem' }}
                     >
                       {p.label}
                       <ArrowUpRight size={14} aria-hidden style={{ color: C.accent }} />

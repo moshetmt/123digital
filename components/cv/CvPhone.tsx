@@ -3,17 +3,9 @@
 import Image from 'next/image'
 import { useRef, useState } from 'react'
 import { ArrowUpRight } from 'lucide-react'
-import { projects } from '@/data/portfolio'
+import { ECRANS, sitesEnTelephone } from '@/data/telephone'
 import type { CvContent } from '@/data/cv'
 
-// Captures telephone (390 px) prises le 26/10/2026 sur les sites en ligne.
-const ECRANS: Record<string, string> = {
-  'mishpacha-tours': '/images/realisations/mishpacha-tours-telephone.webp',
-  clim69: '/images/realisations/clim69-telephone.webp',
-  aplusaudition: '/images/realisations/aplusaudition-telephone.webp',
-}
-
-export const sitesEnTelephone = projects.filter((p) => p.url && ECRANS[p.id])
 
 /**
  * Realisations de /portfolio : un iPhone dont l'ecran fait defiler au doigt les
@@ -36,7 +28,6 @@ export function CvPhone({ work }: { work: CvContent['work'] }) {
         className="relative"
         style={{ width: 'min(17rem, 72vw)', aspectRatio: '9 / 18.6', borderRadius: '2.9rem', padding: '0.6rem', background: '#050706', boxShadow: '0 0 0 1px rgba(205,230,216,0.18), 0 30px 60px -20px rgba(0,0,0,0.7)' }}
       >
-        <span aria-hidden className="absolute left-1/2 z-10 -translate-x-1/2" style={{ top: '1.05rem', width: '30%', height: '1.35rem', borderRadius: '9999px', background: '#050706' }} />
         <div
           ref={ecran}
           onScroll={(e) => setActif(Math.round(e.currentTarget.scrollLeft / e.currentTarget.clientWidth))}

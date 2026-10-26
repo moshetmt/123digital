@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { ArrowUpRight, Download, Mail, Phone, Star } from 'lucide-react'
 import { cvContent, type CvLocale } from '@/data/cv'
 import { AVIS_GOOGLE } from '@/lib/avis-google'
+import { CvAvatar } from './CvAvatar'
 import { CvPhone } from './CvPhone'
 import { sitesEnTelephone } from '@/data/telephone'
 
@@ -104,16 +105,7 @@ export function CvPage({ locale }: { locale: CvLocale }) {
               className="flex flex-col items-center text-center"
               style={{ backgroundColor: '#0B0F0C', borderRadius: '2rem', padding: 'clamp(1.5rem, 3.5vh, 2rem) clamp(1rem, 3vw, 1.5rem) clamp(1rem, 2.5vh, 1.25rem)' }}
             >
-              <Image
-                src="/images/maurice-timsit-portrait-sombre.jpg"
-                alt={identity.portraitAlt}
-                width={1000}
-                height={1250}
-                priority
-                sizes="120px"
-                className="block object-cover"
-                style={{ width: 'clamp(5rem, 11vh, 6rem)', height: 'clamp(5rem, 11vh, 6rem)', borderRadius: '9999px', objectPosition: '50% 18%' }}
-              />
+              <CvAvatar alt={identity.portraitAlt} fermer={locale === 'fr' ? 'Fermer' : 'Close'} />
               <h1 style={{ fontSize: 'clamp(1.9rem, 3.4vw, 2.4rem)', fontWeight: 800, color: C.titre, lineHeight: 1.05, letterSpacing: '-0.025em', marginTop: '1rem' }}>
                 {identity.name}
               </h1>

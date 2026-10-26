@@ -3,7 +3,6 @@ import Link from 'next/link'
 import { ArrowUpRight, Download, Mail, Phone, Star } from 'lucide-react'
 import { cvContent, type CvLocale } from '@/data/cv'
 import { AVIS_GOOGLE } from '@/lib/avis-google'
-import { CvNav } from './CvNav'
 import { CvPhone } from './CvPhone'
 import { sitesEnTelephone } from '@/data/telephone'
 
@@ -51,13 +50,6 @@ export function CvPage({ locale }: { locale: CvLocale }) {
   const c = cvContent[locale]
   const { identity } = c
 
-  const sections = [
-    { id: 'a-propos', label: c.nav.about },
-    { id: 'realisations', label: c.nav.work },
-    { id: 'parcours', label: c.nav.experience },
-    { id: 'contact', label: c.nav.contact },
-  ]
-
   // Pastilles = les services, nommes comme un client les cherche, chacune ouvre
   // sa page (demande de Moshe du 26/10 : « on comprend pas ce que je fais »).
   const [metier] = identity.role.split(' · ')
@@ -100,11 +92,11 @@ export function CvPage({ locale }: { locale: CvLocale }) {
   return (
     <div style={{ backgroundColor: C.fond, color: C.texte, minHeight: '100vh' }}>
       <div
-        className="mx-auto lg:flex lg:justify-between lg:gap-12"
-        style={{ maxWidth: '80rem', padding: '0 clamp(1rem, 5vw, 6rem)' }}
+        className="mx-auto"
+        style={{ maxWidth: '38rem', padding: '0 clamp(1rem, 5vw, 2rem)' }}
       >
         {/* Colonne de gauche */}
-        <header className="lg:sticky lg:top-0 lg:flex lg:max-h-screen lg:overflow-y-auto lg:w-[46%] lg:flex-col lg:justify-between" style={{ paddingTop: 'clamp(1.25rem, 5vh, 3.5rem)', paddingBottom: 'clamp(1.5rem, 5vh, 3.5rem)' }}>
+        <header style={{ paddingTop: 'clamp(1.25rem, 5vh, 3.5rem)', paddingBottom: 'clamp(1.5rem, 5vh, 3.5rem)' }}>
           <div>
             {/* En-tete de profil, calque sur la maquette « Isabella Castillo » envoyee
                 par Moshe le 26/10 : photo ronde, nom, metier, pastilles, deux chiffres. */}
@@ -194,9 +186,6 @@ export function CvPage({ locale }: { locale: CvLocale }) {
               </div>
             </div>
 
-            <div style={{ marginTop: 'clamp(1.25rem, 3.5vh, 2.25rem)' }}>
-              <CvNav items={sections} label={c.nav.menuLabel} />
-            </div>
           </div>
 
           {/* Panneau des contacts : bord haut en vague qui monte vers la droite, une
@@ -256,7 +245,7 @@ export function CvPage({ locale }: { locale: CvLocale }) {
         </header>
 
         {/* Colonne de droite */}
-        <div className="lg:w-[54%] lg:pt-[clamp(0rem,5vh,3.5rem)]" style={{ paddingBottom: '4rem' }}>
+        <div style={{ paddingBottom: '4rem' }}>
           <section id="a-propos" className="scroll-mt-16" style={{ marginBottom: 'clamp(4rem, 10vh, 6rem)' }} aria-label={c.nav.about}>
             {titreSection(c.nav.about)}
             <p style={{ fontSize: '1rem', lineHeight: 1.75, color: C.texte }}>{c.intro.body}</p>

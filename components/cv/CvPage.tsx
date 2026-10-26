@@ -191,7 +191,7 @@ export function CvPage({ locale }: { locale: CvLocale }) {
         </header>
 
         {/* Colonne de droite */}
-        <div className="lg:w-[54%]" style={{ paddingTop: 'clamp(0rem, 5vh, 3.5rem)', paddingBottom: '4rem' }}>
+        <div className="lg:w-[54%] lg:pt-[clamp(0rem,5vh,3.5rem)]" style={{ paddingBottom: '4rem' }}>
           <section id="a-propos" className="scroll-mt-16" style={{ marginBottom: 'clamp(4rem, 10vh, 6rem)' }} aria-label={c.nav.about}>
             {titreSection(c.nav.about)}
             <p style={{ fontSize: '1rem', lineHeight: 1.75, color: C.texte }}>{c.intro.body}</p>

@@ -83,7 +83,7 @@ export function CvPage({ locale }: { locale: CvLocale }) {
   // Le metier se lit en deux temps : « Consultant ... freelance » puis la liste
   // des specialites, qui devient les pastilles de la maquette.
   const [metier, specialites = ''] = identity.role.split(' · ')
-  const pastilles = specialites.split(', ').filter(Boolean)
+  const pastilles = specialites.split(', ').filter(Boolean).map((p) => p[0].toUpperCase() + p.slice(1))
 
   const chiffres = [
     { titre: locale === 'fr' ? 'Avis Google' : 'Google reviews', valeur: AVIS_GOOGLE.note, unite: locale === 'fr' ? `sur ${AVIS_GOOGLE.nombre} avis` : `from ${AVIS_GOOGLE.nombre} reviews`, href: c.proofs.reviewsHref, externe: true },

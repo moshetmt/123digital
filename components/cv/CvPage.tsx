@@ -113,7 +113,7 @@ export function CvPage({ locale }: { locale: CvLocale }) {
               style={{ backgroundColor: '#0B0F0C', borderRadius: '2rem', padding: 'clamp(1.5rem, 3.5vh, 2rem) clamp(1rem, 3vw, 1.5rem) clamp(1rem, 2.5vh, 1.25rem)' }}
             >
               <Image
-                src="/images/maurice-timsit-portrait-vert.jpg"
+                src="/images/maurice-timsit-portrait-blanc.jpg"
                 alt={identity.portraitAlt}
                 width={1000}
                 height={1250}
@@ -128,20 +128,33 @@ export function CvPage({ locale }: { locale: CvLocale }) {
               <p style={{ fontSize: '0.92rem', color: C.discret, lineHeight: 1.4, marginTop: '0.4rem' }}>
                 {metier} · {identity.location}
               </p>
-              <ul className="flex flex-wrap justify-center" style={{ listStyle: 'none', padding: 0, margin: '1rem 0 0', gap: '0.45rem' }}>
-                {pastilles.map((p) => (
-                  <li key={p.href}>
-                    <Link
-                      href={p.href}
-                      className="inline-flex items-center gap-1 transition-colors hover:bg-[rgba(111,183,145,0.25)]"
-                      style={{ fontSize: '0.8rem', fontWeight: 600, color: C.titre, backgroundColor: 'rgba(205, 230, 216, 0.1)', border: `1px solid ${C.filet}`, borderRadius: '9999px', padding: '0.36rem 0.6rem 0.36rem 0.8rem' }}
-                    >
-                      {p.label}
-                      <ArrowUpRight size={14} aria-hidden style={{ color: C.accent }} />
-                    </Link>
-                  </li>
-                ))}
-              </ul>
+              {/* Pastilles sur une seule ligne qui defile en boucle (demande de Moshe du
+                  26/10) : la liste est doublee pour boucler sans saut, la copie est
+                  cachee aux lecteurs d'ecran. Le defilement s'arrete au survol. */}
+              <div
+                className="group w-full overflow-hidden"
+                style={{ marginTop: '1rem', WebkitMaskImage: 'linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent)', maskImage: 'linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent)' }}
+              >
+                <div className="flex w-max animate-[cv-defile_18s_linear_infinite] group-hover:[animation-play-state:paused] motion-reduce:animate-none">
+                  {[0, 1].map((copie) => (
+                    <ul key={copie} aria-hidden={copie === 1 || undefined} className="flex shrink-0" style={{ listStyle: 'none', padding: '0.15rem 0', margin: 0, gap: '0.45rem', paddingRight: '0.45rem' }}>
+                      {pastilles.map((p) => (
+                        <li key={p.href}>
+                          <Link
+                            href={p.href}
+                            tabIndex={copie === 1 ? -1 : undefined}
+                            className="inline-flex items-center gap-1 whitespace-nowrap transition-[transform,background-color] duration-150 hover:bg-[rgba(111,183,145,0.25)] active:scale-90 active:bg-[rgba(111,183,145,0.4)]"
+                            style={{ fontSize: '0.84rem', fontWeight: 600, color: C.titre, backgroundColor: 'rgba(205, 230, 216, 0.1)', border: `1px solid ${C.filet}`, borderRadius: '9999px', padding: '0.4rem 0.65rem 0.4rem 0.9rem' }}
+                          >
+                            {p.label}
+                            <ArrowUpRight size={14} aria-hidden style={{ color: C.accent }} />
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  ))}
+                </div>
+              </div>
               <div className="grid w-full grid-cols-2" style={{ gap: '0.6rem', marginTop: '1.1rem' }}>
                 {/* Deux cases traitees differemment (demande de Moshe du 26/10) : les avis
                     en sombre avec la note et cinq etoiles, les realisations en carte claire

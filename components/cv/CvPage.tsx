@@ -210,7 +210,10 @@ export function CvPage({ locale }: { locale: CvLocale }) {
                     className="group flex h-full flex-col justify-between rounded-lg transition-colors hover:bg-[rgba(205,230,216,0.06)]"
                     style={{ border: `1px solid ${C.filet}`, padding: '1rem 1.1rem', gap: '0.8rem' }}
                   >
-                    <span style={{ fontSize: '1.08rem', fontWeight: 700, color: C.titre, lineHeight: 1.3 }}>{preuve.label}</span>
+                    <span style={{ display: 'flex', alignItems: 'baseline', gap: '0.5rem', whiteSpace: 'nowrap' }}>
+                      <span style={{ fontSize: '2rem', fontWeight: 800, color: C.titre, lineHeight: 1, letterSpacing: '-0.02em' }}>{preuve.label.split('|')[0]}</span>
+                      <span style={{ fontSize: '0.95rem', fontWeight: 600, color: C.titre, lineHeight: 1.2 }}>{preuve.label.split('|')[1]}</span>
+                    </span>
                     <span style={{ fontSize: '0.8rem', fontWeight: 700, color: C.accent }}>
                       <span className="underline underline-offset-4" style={{ textDecorationColor: 'rgba(111, 183, 145, 0.5)' }}>
                         {preuve.source}

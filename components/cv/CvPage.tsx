@@ -5,7 +5,7 @@ import { cvContent, type CvLocale } from '@/data/cv'
 import { AVIS_GOOGLE } from '@/lib/avis-google'
 import { CvAvatar } from './CvAvatar'
 import { CvPhone } from './CvPhone'
-import { sitesEnTelephone } from '@/data/telephone'
+import { ecrans } from '@/data/telephone'
 
 /**
  * lucide-react 1.x ne fournit plus les logos de marque, d'ou ce glyphe local.
@@ -69,7 +69,7 @@ export function CvPage({ locale }: { locale: CvLocale }) {
       ]
 
   const avis = { titre: locale === 'fr' ? 'Avis Google' : 'Google reviews', valeur: AVIS_GOOGLE.note, unite: locale === 'fr' ? `${AVIS_GOOGLE.nombre} avis` : `${AVIS_GOOGLE.nombre} reviews`, href: c.proofs.reviewsHref }
-  const realisations = { titre: locale === 'fr' ? 'Réalisations' : 'Projects', valeur: String(sitesEnTelephone.length), unite: locale === 'fr' ? 'sites' : 'websites', legende: locale === 'fr' ? 'À faire défiler' : 'Swipe through', href: '#realisations' }
+  const realisations = { titre: locale === 'fr' ? 'Réalisations' : 'Projects', valeur: String(ecrans.length), unite: locale === 'fr' ? 'créations' : 'pieces', legende: locale === 'fr' ? 'À faire défiler' : 'Swipe through', href: '#realisations' }
 
   const lignes = [
     { href: `mailto:${identity.email}`, libelle: 'Email', valeur: identity.email, icon: <Mail size={17} aria-hidden />, externe: false },

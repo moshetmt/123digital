@@ -32,7 +32,9 @@ export function CvPhone({ work }: { work: CvContent['work'] }) {
           ref={ecran}
           onScroll={(e) => setActif(Math.round(e.currentTarget.scrollLeft / e.currentTarget.clientWidth))}
           className="flex h-full w-full snap-x snap-mandatory overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
-          style={{ borderRadius: '2.35rem' }}
+          // Safari ne decoupe pas les coins arrondis d'une zone qui defile : le
+          // masque force la decoupe (l'ecran debordait du cadre, capture du 26/10).
+          style={{ borderRadius: '2.35rem', WebkitMaskImage: '-webkit-radial-gradient(white, black)', transform: 'translateZ(0)' }}
           aria-label={work.heading}
         >
           {sitesEnTelephone.map((p) => (
@@ -56,18 +58,17 @@ export function CvPhone({ work }: { work: CvContent['work'] }) {
         ))}
       </div>
 
+      <p style={{ fontSize: '1.15rem', fontWeight: 700, color: '#F2F7F4', marginTop: '0.9rem' }}>{projet.title}</p>
+      <p style={{ fontSize: '0.86rem', color: '#8FA497', marginTop: '0.15rem' }}>{sector}</p>
       <a
         href={projet.url}
         target="_blank"
         rel="noopener noreferrer"
-        className="flex flex-col items-center text-center transition-opacity hover:opacity-80"
-        style={{ marginTop: '0.9rem' }}
+        className="inline-flex items-center gap-2 transition-[transform,background-color] duration-150 hover:bg-[#008A4A] active:scale-95"
+        style={{ marginTop: '0.9rem', backgroundColor: '#00713D', color: '#FFFFFF', fontSize: '0.95rem', fontWeight: 700, borderRadius: '9999px', padding: '0.8rem 1.4rem', boxShadow: '0 10px 24px -10px rgba(0,113,61,0.8)' }}
       >
-        <span className="inline-flex items-center gap-1.5" style={{ fontSize: '1.15rem', fontWeight: 700, color: '#F2F7F4' }}>
-          {projet.title}
-          <ArrowUpRight size={17} aria-hidden style={{ color: '#6FB791' }} />
-        </span>
-        <span style={{ fontSize: '0.86rem', color: '#8FA497', marginTop: '0.2rem' }}>{sector}</span>
+        {work.openSite}
+        <ArrowUpRight size={18} aria-hidden />
       </a>
     </div>
   )

@@ -1,11 +1,10 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import { ArrowUpRight, Download, Mail, Phone } from 'lucide-react'
+import { ArrowUpRight, Download, Mail, Phone, Star } from 'lucide-react'
 import { cvContent, type CvLocale } from '@/data/cv'
-import { projects } from '@/data/portfolio'
 import { AVIS_GOOGLE } from '@/lib/avis-google'
 import { CvNav } from './CvNav'
-import { CvWork } from './CvWork'
+import { CvPhone, sitesEnTelephone } from './CvPhone'
 
 /**
  * lucide-react 1.x ne fournit plus les logos de marque, d'ou ce glyphe local.
@@ -53,42 +52,30 @@ export function CvPage({ locale }: { locale: CvLocale }) {
 
   const sections = [
     { id: 'a-propos', label: c.nav.about },
-    { id: 'preuves', label: c.nav.proofs },
     { id: 'realisations', label: c.nav.work },
     { id: 'parcours', label: c.nav.experience },
     { id: 'contact', label: c.nav.contact },
   ]
 
-  const preuves = [
-    {
-      label: c.proofs.reviewsLabel.replace('{note}', AVIS_GOOGLE.note).replace('{nombre}', String(AVIS_GOOGLE.nombre)),
-      source: c.proofs.reviewsSource,
-      href: c.proofs.reviewsHref,
-      externe: true,
-    },
-    {
-      label: c.proofs.workLabel.replace('{n}', String(projects.length)),
-      source: c.proofs.workSource,
-      href: '#realisations',
-      externe: false,
-    },
-    {
-      label: c.proofs.languagesLabel,
-      source: c.proofs.languagesSource,
-      href: c.proofs.languagesHref,
-      externe: true,
-    },
-  ]
+  // Pastilles = les services, nommes comme un client les cherche, chacune ouvre
+  // sa page (demande de Moshe du 26/10 : « on comprend pas ce que je fais »).
+  const [metier] = identity.role.split(' · ')
+  const pastilles = locale === 'fr'
+    ? [
+        { label: 'Création de site', href: '/services/creation-site-web' },
+        { label: 'Référencement Google', href: '/services/seo' },
+        { label: 'Publicité Google Ads', href: '/services/publicite-en-ligne' },
+        { label: 'Automatisation IA', href: '/consultant-ia-lyon' },
+      ]
+    : [
+        { label: 'Websites', href: '/services/creation-site-web' },
+        { label: 'Google SEO', href: '/services/seo' },
+        { label: 'Google Ads', href: '/services/publicite-en-ligne' },
+        { label: 'AI automation', href: '/consultant-ia-lyon' },
+      ]
 
-  // Le metier se lit en deux temps : « Consultant ... freelance » puis la liste
-  // des specialites, qui devient les pastilles de la maquette.
-  const [metier, specialites = ''] = identity.role.split(' · ')
-  const pastilles = specialites.split(', ').filter(Boolean).map((p) => p[0].toUpperCase() + p.slice(1))
-
-  const chiffres = [
-    { titre: locale === 'fr' ? 'Avis Google' : 'Google reviews', valeur: AVIS_GOOGLE.note, unite: locale === 'fr' ? `sur ${AVIS_GOOGLE.nombre} avis` : `from ${AVIS_GOOGLE.nombre} reviews`, href: c.proofs.reviewsHref, externe: true },
-    { titre: locale === 'fr' ? 'Réalisations' : 'Projects', valeur: String(projects.length), unite: locale === 'fr' ? 'projets' : 'projects', href: '#realisations', externe: false },
-  ]
+  const avis = { titre: locale === 'fr' ? 'Avis Google' : 'Google reviews', valeur: AVIS_GOOGLE.note, unite: locale === 'fr' ? `${AVIS_GOOGLE.nombre} avis` : `${AVIS_GOOGLE.nombre} reviews`, href: c.proofs.reviewsHref }
+  const realisations = { titre: locale === 'fr' ? 'Réalisations' : 'Projects', valeur: String(sitesEnTelephone.length), unite: locale === 'fr' ? 'sites' : 'websites', legende: locale === 'fr' ? 'À faire défiler' : 'Swipe through', href: '#realisations' }
 
   const lignes = [
     { href: `mailto:${identity.email}`, libelle: 'Email', valeur: identity.email, icon: <Mail size={17} aria-hidden />, externe: false },
@@ -142,30 +129,54 @@ export function CvPage({ locale }: { locale: CvLocale }) {
               </p>
               <ul className="flex flex-wrap justify-center" style={{ listStyle: 'none', padding: 0, margin: '1rem 0 0', gap: '0.45rem' }}>
                 {pastilles.map((p) => (
-                  <li key={p} style={{ fontSize: '0.84rem', fontWeight: 600, color: C.titre, backgroundColor: 'rgba(205, 230, 216, 0.1)', borderRadius: '9999px', padding: '0.4rem 0.9rem' }}>
-                    {p}
+                  <li key={p.href}>
+                    <Link
+                      href={p.href}
+                      className="inline-flex items-center gap-1 transition-colors hover:bg-[rgba(111,183,145,0.25)]"
+                      style={{ fontSize: '0.84rem', fontWeight: 600, color: C.titre, backgroundColor: 'rgba(205, 230, 216, 0.1)', border: `1px solid ${C.filet}`, borderRadius: '9999px', padding: '0.42rem 0.75rem 0.42rem 0.95rem' }}
+                    >
+                      {p.label}
+                      <ArrowUpRight size={14} aria-hidden style={{ color: C.accent }} />
+                    </Link>
                   </li>
                 ))}
               </ul>
               <div className="grid w-full grid-cols-2" style={{ gap: '0.6rem', marginTop: '1.1rem' }}>
-                {chiffres.map((t) => (
-                  <a
-                    key={t.titre}
-                    href={t.href}
-                    {...(t.externe ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
-                    className="flex flex-col text-left transition-opacity hover:opacity-80"
-                    style={{ backgroundColor: C.carte, borderRadius: '1.4rem', padding: '0.95rem 1rem 0.9rem' }}
-                  >
-                    <span className="flex items-start justify-between" style={{ fontSize: '0.84rem', color: C.texte }}>
-                      {t.titre}
-                      <ArrowUpRight size={17} aria-hidden />
-                    </span>
-                    <span className="flex items-baseline gap-1.5" style={{ marginTop: '1.4rem' }}>
-                      <span style={{ fontSize: '2rem', fontWeight: 700, color: C.accent, lineHeight: 1 }}>{t.valeur}</span>
-                      <span style={{ fontSize: '0.8rem', color: C.texte }}>{t.unite}</span>
-                    </span>
-                  </a>
-                ))}
+                {/* Deux cases traitees differemment (demande de Moshe du 26/10) : les avis
+                    en sombre avec la note et cinq etoiles, les realisations en carte claire
+                    comme la case « Height » de la maquette. */}
+                <a
+                  href={avis.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex flex-col text-left transition-opacity hover:opacity-80"
+                  style={{ backgroundColor: C.carte, borderRadius: '1.4rem', padding: '0.95rem 1rem 0.9rem' }}
+                >
+                  <span className="flex items-start justify-between" style={{ fontSize: '0.84rem', color: C.texte }}>
+                    {avis.titre}
+                    <ArrowUpRight size={17} aria-hidden />
+                  </span>
+                  <span style={{ fontSize: '2.3rem', fontWeight: 800, color: C.accent, lineHeight: 1, letterSpacing: '-0.03em', marginTop: '1rem' }}>{avis.valeur}</span>
+                  <span className="flex items-center gap-0.5" style={{ color: C.accent, marginTop: '0.45rem' }} aria-hidden>
+                    {[0, 1, 2, 3, 4].map((i) => <Star key={i} size={13} fill="currentColor" strokeWidth={0} />)}
+                  </span>
+                  <span style={{ fontSize: '0.78rem', color: C.discret, marginTop: '0.3rem' }}>{avis.unite}</span>
+                </a>
+                <a
+                  href={realisations.href}
+                  className="flex flex-col text-left transition-opacity hover:opacity-85"
+                  style={{ backgroundColor: C.titre, borderRadius: '1.4rem', padding: '0.95rem 1rem 0.9rem' }}
+                >
+                  <span className="flex items-start justify-between" style={{ fontSize: '0.84rem', fontWeight: 600, color: '#131814' }}>
+                    {realisations.titre}
+                    <ArrowUpRight size={17} aria-hidden />
+                  </span>
+                  <span className="flex items-baseline gap-1.5" style={{ marginTop: '1rem' }}>
+                    <span style={{ fontSize: '2.3rem', fontWeight: 800, color: C.bouton, lineHeight: 1, letterSpacing: '-0.03em' }}>{realisations.valeur}</span>
+                    <span style={{ fontSize: '0.84rem', fontWeight: 700, color: C.bouton }}>{realisations.unite}</span>
+                  </span>
+                  <span style={{ fontSize: '0.78rem', color: '#4A5A50', marginTop: 'auto', paddingTop: '0.5rem' }}>{realisations.legende}</span>
+                </a>
               </div>
             </div>
 
@@ -180,7 +191,7 @@ export function CvPage({ locale }: { locale: CvLocale }) {
             <svg viewBox="0 0 400 44" preserveAspectRatio="none" aria-hidden className="block w-full" style={{ height: '2.75rem' }}>
               <path d="M0 44V40Q0 18 22 18H170C205 18 210 0 245 0H372Q400 0 400 28V44Z" fill={C.bouton} />
             </svg>
-            <span aria-hidden className="absolute" style={{ left: 'calc(50% - 1.1rem)', top: '0.9rem', width: '2.2rem', height: '0.22rem', borderRadius: '9999px', backgroundColor: 'rgba(255,255,255,0.35)' }} />
+            <span aria-hidden className="absolute" style={{ left: 'calc(42% - 3rem)', top: '1.55rem', width: '2.2rem', height: '0.22rem', borderRadius: '9999px', backgroundColor: 'rgba(255,255,255,0.35)' }} />
             <Link
               href={c.nav.switchHref}
               aria-label={c.nav.switchAria}
@@ -259,38 +270,9 @@ export function CvPage({ locale }: { locale: CvLocale }) {
             </div>
           </section>
 
-          <section id="preuves" className="scroll-mt-16" style={{ marginBottom: 'clamp(4rem, 10vh, 6rem)' }}>
-            {titreSection(c.proofs.heading)}
-            <ul className="grid grid-cols-1 sm:grid-cols-3" style={{ listStyle: 'none', padding: 0, margin: 0, gap: '0.75rem' }}>
-              {preuves.map((preuve) => (
-                <li key={preuve.href}>
-                  <a
-                    href={preuve.href}
-                    {...(preuve.externe ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
-                    className="group flex h-full flex-col justify-between rounded-lg transition-colors hover:bg-[rgba(205,230,216,0.06)]"
-                    style={{ border: `1px solid ${C.filet}`, padding: '1rem 1.1rem', gap: '0.8rem' }}
-                  >
-                    <span style={{ display: 'flex', alignItems: 'baseline', gap: '0.5rem', whiteSpace: 'nowrap' }}>
-                      <span style={{ fontSize: '2rem', fontWeight: 800, color: C.titre, lineHeight: 1, letterSpacing: '-0.02em' }}>{preuve.label.split('|')[0]}</span>
-                      <span style={{ fontSize: '0.95rem', fontWeight: 600, color: C.titre, lineHeight: 1.2 }}>{preuve.label.split('|')[1]}</span>
-                    </span>
-                    <span style={{ fontSize: '0.8rem', fontWeight: 700, color: C.accent }}>
-                      <span className="underline underline-offset-4" style={{ textDecorationColor: 'rgba(111, 183, 145, 0.5)' }}>
-                        {preuve.source}
-                      </span>
-                      <ArrowUpRight size={13} aria-hidden className="inline-block align-[-2px] ml-1 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
-                    </span>
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </section>
-
           <section id="realisations" className="scroll-mt-16" style={{ marginBottom: 'clamp(4rem, 10vh, 6rem)' }}>
             {titreSection(c.work.heading)}
-            <div className="sm:-mx-4">
-              <CvWork work={c.work} />
-            </div>
+            <CvPhone work={c.work} />
           </section>
 
           <section id="parcours" className="scroll-mt-16" style={{ marginBottom: 'clamp(4rem, 10vh, 6rem)' }}>

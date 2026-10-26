@@ -30,6 +30,7 @@ const C = {
   accent: '#6FB791',
   filet: 'rgba(205, 230, 216, 0.14)',
   bouton: '#00713D',
+  carte: '#1A211C',
 }
 
 const SECTION_TITRE = {
@@ -106,10 +107,12 @@ export function CvPage({ locale }: { locale: CvLocale }) {
         {/* Colonne de gauche */}
         <header className="lg:sticky lg:top-0 lg:flex lg:max-h-screen lg:overflow-y-auto lg:w-[46%] lg:flex-col lg:justify-between" style={{ paddingTop: 'clamp(1.25rem, 5vh, 3.5rem)', paddingBottom: 'clamp(1.5rem, 5vh, 3.5rem)' }}>
           <div>
-            {/* En-tete de profil (reference choisie par Moshe le 26/10) : petite photo
-                ronde au-dessus du nom, bloc centre sur telephone, aligne a gauche
-                sur ordinateur. */}
-            <div className="flex flex-col items-center text-center lg:items-start lg:text-left">
+            {/* En-tete de profil dans une carte arrondie (reference 184545 choisie par
+                Moshe le 26/10) : photo ronde sans anneau, nom, metier, disponibilite. */}
+            <div
+              className="flex flex-col items-center text-center lg:items-start lg:text-left"
+              style={{ backgroundColor: C.carte, border: `1px solid ${C.filet}`, borderRadius: '1.75rem', padding: 'clamp(1.25rem, 3vh, 1.75rem) clamp(1.25rem, 3vw, 1.75rem)' }}
+            >
               <Image
                 src="/images/maurice-timsit-portrait-vert.jpg"
                 alt={identity.portraitAlt}
@@ -118,40 +121,51 @@ export function CvPage({ locale }: { locale: CvLocale }) {
                 priority
                 sizes="120px"
                 className="block object-cover"
-                style={{ width: 'clamp(5.5rem, 12vh, 7rem)', height: 'clamp(5.5rem, 12vh, 7rem)', borderRadius: '9999px', objectPosition: '50% 18%', boxShadow: `0 0 0 3px ${C.fond}, 0 0 0 5px ${C.accent}` }}
+                style={{ width: 'clamp(5rem, 11vh, 6.5rem)', height: 'clamp(5rem, 11vh, 6.5rem)', borderRadius: '9999px', objectPosition: '50% 18%' }}
               />
 
               <h1
-                style={{ fontSize: 'clamp(2.1rem, 4vw, 2.9rem)', fontWeight: 800, color: C.titre, lineHeight: 1.05, letterSpacing: '-0.025em', marginTop: 'clamp(1rem, 2.5vh, 1.4rem)' }}
+                style={{ fontSize: 'clamp(2rem, 3.6vw, 2.6rem)', fontWeight: 800, color: C.titre, lineHeight: 1.05, letterSpacing: '-0.025em', marginTop: 'clamp(0.9rem, 2vh, 1.2rem)' }}
               >
                 {identity.name}
               </h1>
-              <p style={{ fontSize: '1.05rem', fontWeight: 600, color: C.titre, lineHeight: 1.4, marginTop: '0.6rem', maxWidth: '28rem' }}>
+              <p style={{ fontSize: '1.02rem', fontWeight: 600, color: C.titre, lineHeight: 1.4, marginTop: '0.55rem', maxWidth: '28rem' }}>
                 {identity.role}
               </p>
-              <p style={{ fontSize: '0.95rem', color: C.texte, lineHeight: 1.55, marginTop: '0.7rem', maxWidth: '24rem' }}>
+              <p style={{ fontSize: '0.93rem', color: C.texte, lineHeight: 1.55, marginTop: '0.6rem', maxWidth: '26rem' }}>
                 {identity.pitch}
               </p>
-              <p className="inline-flex items-center gap-1.5" style={{ fontSize: '0.82rem', fontWeight: 700, color: C.accent, marginTop: '0.8rem' }}>
+              <p className="inline-flex items-center gap-1.5" style={{ fontSize: '0.82rem', fontWeight: 700, color: C.accent, marginTop: '0.75rem' }}>
                 <MapPin size={14} aria-hidden /> {identity.location} · {identity.availability}
               </p>
             </div>
 
-            <div style={{ marginTop: 'clamp(1.25rem, 4vh, 2.5rem)' }}>
+            <div style={{ marginTop: 'clamp(1.25rem, 3.5vh, 2.25rem)' }}>
               <CvNav items={sections} label={c.nav.menuLabel} />
             </div>
           </div>
 
-          <div style={{ marginTop: '1.5rem' }}>
-            <ul className="flex flex-wrap" style={{ listStyle: 'none', padding: 0, margin: 0, gap: '0.5rem 1.25rem' }}>
+          {/* Contacts dans un panneau vert au bord haut creuse en courbe (le bloc
+              « Detailed information » de la reference). */}
+          <div
+            style={{
+              marginTop: '1.5rem',
+              backgroundColor: C.bouton,
+              borderRadius: '1.75rem',
+              padding: '1.9rem 1.5rem 1.4rem',
+              WebkitMaskImage: 'radial-gradient(circle 1.6rem at 50% 0, transparent 98%, #000 100%)',
+              maskImage: 'radial-gradient(circle 1.6rem at 50% 0, transparent 98%, #000 100%)',
+            }}
+          >
+            <ul className="flex flex-wrap justify-center lg:justify-start" style={{ listStyle: 'none', padding: 0, margin: 0, gap: '0.5rem 1.25rem' }}>
               {liens.map((lien) => (
                 <li key={lien.href}>
                   <a
                     href={lien.href}
                     {...(lien.externe ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
                     {...(lien.download ? { download: true } : {})}
-                    className="inline-flex items-center gap-1.5 transition-colors hover:text-[#6FB791]"
-                    style={{ fontSize: '0.84rem', fontWeight: 600, color: C.titre, padding: '0.2rem 0' }}
+                    className="inline-flex items-center gap-1.5 transition-opacity hover:opacity-75"
+                    style={{ fontSize: '0.86rem', fontWeight: 700, color: '#FFFFFF', padding: '0.2rem 0' }}
                   >
                     {lien.icon}
                     {lien.label}
@@ -159,15 +173,15 @@ export function CvPage({ locale }: { locale: CvLocale }) {
                 </li>
               ))}
             </ul>
-            <div className="flex items-center gap-4" style={{ marginTop: '1.25rem' }}>
+            <div className="flex items-center justify-center gap-4 lg:justify-start" style={{ marginTop: '1.1rem' }}>
               <Link href={c.nav.backHref} aria-label={c.nav.backToSite}>
                 <Image src="/images/logo-nuit.svg" alt="123digital" width={273} height={56} unoptimized style={{ width: 120, height: 'auto' }} />
               </Link>
               <Link
                 href={c.nav.switchHref}
                 aria-label={c.nav.switchAria}
-                className="rounded transition-colors hover:text-[#6FB791]"
-                style={{ fontSize: '0.74rem', fontWeight: 800, letterSpacing: '0.08em', color: C.titre, border: `1px solid ${C.filet}`, padding: '0.25rem 0.6rem' }}
+                className="rounded transition-opacity hover:opacity-75"
+                style={{ fontSize: '0.74rem', fontWeight: 800, letterSpacing: '0.08em', color: '#FFFFFF', border: '1px solid rgba(255,255,255,0.45)', padding: '0.25rem 0.6rem' }}
               >
                 {c.nav.switchLabel}
               </Link>

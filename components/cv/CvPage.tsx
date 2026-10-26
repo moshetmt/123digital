@@ -135,8 +135,9 @@ export function CvPage({ locale }: { locale: CvLocale }) {
               <p style={{ fontSize: '0.93rem', color: C.texte, lineHeight: 1.55, marginTop: '0.6rem', maxWidth: '26rem' }}>
                 {identity.pitch}
               </p>
-              <p className="inline-flex items-center gap-1.5" style={{ fontSize: '0.82rem', fontWeight: 700, color: C.accent, marginTop: '0.75rem' }}>
-                <MapPin size={14} aria-hidden /> {identity.location} · {identity.availability}
+              <p className="flex flex-wrap items-center justify-center gap-x-1.5 lg:justify-start" style={{ fontSize: '0.82rem', fontWeight: 700, color: C.accent, marginTop: '0.75rem' }}>
+                <span className="inline-flex items-center gap-1.5"><MapPin size={14} aria-hidden /> {identity.location}</span>
+                <span>· {identity.availability}</span>
               </p>
             </div>
 

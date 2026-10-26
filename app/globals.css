@@ -327,3 +327,9 @@
 @keyframes cv-defile {
   to { transform: translateX(-50%); }
 }
+
+/* Barre de progression des stories de /portfolio. */
+@keyframes cv-barre {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}

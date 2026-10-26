@@ -2,12 +2,14 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { ArrowUpRight, Download, Mail, MapPin, Phone } from 'lucide-react'
 import { cvContent, type CvLocale } from '@/data/cv'
+import { projects } from '@/data/portfolio'
+import { AVIS_GOOGLE } from '@/lib/avis-google'
+import { CvNav } from './CvNav'
 import { CvWork } from './CvWork'
 
 /**
  * lucide-react 1.x ne fournit plus les logos de marque, d'ou ce glyphe local.
- * Trace officiel du logo LinkedIn : le carre plein avec le « in » evide, pas
- * un « in » flottant.
+ * Trace officiel du logo LinkedIn : le carre plein avec le « in » evide.
  */
 function LinkedinGlyph({ size = 16 }: { size?: number }) {
   return (
@@ -17,431 +19,311 @@ function LinkedinGlyph({ size = 16 }: { size?: number }) {
   )
 }
 
+// Charte 123digital, version nuit : fond 950 (encre), texte clair, vert 400 en
+// accent, filets 200 en transparence. Le vert 600 #00713D ne sert qu'au fond
+// des boutons (en texte sur l'encre, il ne passe pas le contraste).
+const C = {
+  fond: '#131814',
+  titre: '#F2F7F4',
+  texte: '#C9D6CE',
+  discret: '#8FA497',
+  accent: '#6FB791',
+  filet: 'rgba(205, 230, 216, 0.14)',
+  bouton: '#00713D',
+}
+
+const SECTION_TITRE = {
+  fontSize: '0.8rem',
+  fontWeight: 800,
+  letterSpacing: '0.12em',
+  textTransform: 'uppercase' as const,
+  color: C.titre,
+}
+
 /**
- * CV interactif servi sur /portfolio (FR) et /en/portfolio (EN).
- *
- * Public : recruteurs. Aucun appel a l'action commercial ici, pas d'audit
- * gratuit, pas de devis. Les seuls boutons sont mail, LinkedIn, telephone et
- * le PDF du CV. Si une section vend 123digital au lieu de presenter le
- * candidat, elle n'a rien a faire sur cette page.
+ * Page /portfolio (FR) et /en/portfolio (EN), gabarit valide le 26/10/2026 :
+ * colonne de gauche fixe sur ordinateur (photo, nom, titre, navigation par
+ * ancres, liens), colonne de droite qui defile. Sur telephone, tout s'empile,
+ * photo en premier.
  */
 export function CvPage({ locale }: { locale: CvLocale }) {
   const c = cvContent[locale]
   const { identity } = c
 
-  const SECTION = 'clamp(2.5rem, 6vw, 4rem) 1.5rem'
+  const sections = [
+    { id: 'a-propos', label: c.nav.about },
+    { id: 'preuves', label: c.nav.proofs },
+    { id: 'realisations', label: c.nav.work },
+    { id: 'parcours', label: c.nav.experience },
+    { id: 'contact', label: c.nav.contact },
+  ]
+
+  const preuves = [
+    {
+      label: c.proofs.reviewsLabel.replace('{note}', AVIS_GOOGLE.note).replace('{nombre}', String(AVIS_GOOGLE.nombre)),
+      source: c.proofs.reviewsSource,
+      href: c.proofs.reviewsHref,
+      externe: true,
+    },
+    {
+      label: c.proofs.workLabel.replace('{n}', String(projects.length)),
+      source: c.proofs.workSource,
+      href: '#realisations',
+      externe: false,
+    },
+    {
+      label: c.proofs.languagesLabel,
+      source: c.proofs.languagesSource,
+      href: c.proofs.languagesHref,
+      externe: true,
+    },
+  ]
+
+  const liens = [
+    { href: `mailto:${identity.email}`, label: locale === 'fr' ? 'Mail' : 'Email', icon: <Mail size={17} aria-hidden />, externe: false },
+    { href: identity.linkedin, label: c.contact.linkedinCta, icon: <LinkedinGlyph size={16} />, externe: true },
+    { href: identity.phoneHref, label: identity.phone, icon: <Phone size={17} aria-hidden />, externe: false },
+    { href: identity.cvFile, label: 'PDF', icon: <Download size={17} aria-hidden />, externe: false, download: true },
+  ]
+
+  // Titre de section : collant en haut sur telephone (comme le gabarit de
+  // reference), simple intertitre sur ordinateur.
+  const titreSection = (texte: string) => (
+    <div
+      className="sticky top-0 z-20 mb-2 bg-[rgba(19,24,20,0.92)] backdrop-blur-sm lg:static lg:mb-4 lg:bg-transparent lg:backdrop-blur-none"
+      style={{ padding: '1.1rem 0' }}
+    >
+      <h2 style={SECTION_TITRE}>{texte}</h2>
+    </div>
+  )
 
   return (
-    <>
-      {/* Barre du CV : pas de menu commercial, seulement les ancres, la langue
-          et le PDF. */}
-      <header
-        className="sticky top-0 z-40"
-        style={{ backgroundColor: 'var(--surface-alpha)', borderBottom: '1px solid var(--line)' }}
+    <div style={{ backgroundColor: C.fond, color: C.texte, minHeight: '100vh' }}>
+      <div
+        className="mx-auto lg:flex lg:justify-between lg:gap-12"
+        style={{ maxWidth: '80rem', padding: '0 clamp(1rem, 5vw, 6rem)' }}
       >
-        <div className="mx-auto max-w-4xl flex items-center justify-between gap-4" style={{ padding: '0.7rem 1.5rem' }}>
-          {/* Le logo reste, le nom vient s'y accrocher : la page appartient au
-              site, elle n'est pas une page isolee sans provenance. */}
-          <Link href={c.nav.backHref} className="flex items-center gap-2 min-w-0" aria-label={`123 Digital, ${identity.name}`}>
+        {/* Colonne de gauche */}
+        <header className="lg:sticky lg:top-0 lg:flex lg:max-h-screen lg:overflow-y-auto lg:w-[46%] lg:flex-col lg:justify-between" style={{ paddingTop: 'clamp(1.25rem, 5vh, 3.5rem)', paddingBottom: 'clamp(1.5rem, 5vh, 3.5rem)' }}>
+          <div>
             <Image
-              src="/images/logo.svg"
-              alt="123 Digital"
-              width={140}
-              height={29}
-              style={{ height: 26, width: 'auto' }}
+              src="/images/maurice-timsit-portrait.jpg"
+              alt={identity.portraitAlt}
+              width={1000}
+              height={1250}
               priority
-              unoptimized
+              sizes="(min-width: 1024px) 300px, (min-width: 640px) 420px, 100vw"
+              className="block w-full max-w-[26rem] h-auto lg:w-auto lg:h-[min(18rem,31vh)] lg:max-w-none lg:[@media(max-height:780px)]:h-[19vh]"
+              style={{ borderRadius: '0.75rem' }}
             />
-            <span
-              className="truncate"
-              style={{ fontSize: '0.82rem', color: 'var(--ink-2)', fontWeight: 600, borderLeft: '1px solid var(--line-strong)', paddingLeft: '0.6rem' }}
-            >
-              by {identity.name}
-            </span>
-          </Link>
 
-          <div className="flex items-center gap-2 sm:gap-4 shrink-0">
-            <a
-              href={identity.cvFile}
-              download
-              className="hidden sm:inline-flex items-center gap-1.5"
-              style={{ fontSize: '0.8rem', fontWeight: 700, color: 'var(--ink-2)' }}
+            <h1
+              style={{ fontSize: 'clamp(2.1rem, 4vw, 2.9rem)', fontWeight: 800, color: C.titre, lineHeight: 1.05, letterSpacing: '-0.025em', marginTop: 'clamp(1.25rem, 3vh, 1.75rem)' }}
             >
-              <Download size={14} aria-hidden /> PDF
-            </a>
-            <Link
-              href={c.nav.switchHref}
-              className="rounded"
-              style={{ fontSize: '0.74rem', fontWeight: 800, letterSpacing: '0.06em', color: 'var(--ink-2)', border: '1px solid var(--line-strong)', padding: '0.25rem 0.6rem' }}
-            >
-              {c.nav.switchLabel}
-            </Link>
-            <a
-              href={`mailto:${identity.email}`}
-              className="inline-flex items-center gap-1.5 rounded font-bold"
-              style={{ backgroundColor: 'var(--brand)', color: 'var(--on-brand)', padding: '0.45rem 0.95rem', fontSize: '0.8rem' }}
-            >
-              <Mail size={14} aria-hidden /> {c.contact.emailCta}
-            </a>
-          </div>
-        </div>
-      </header>
+              {identity.name}
+            </h1>
+            <p style={{ fontSize: '1.05rem', fontWeight: 600, color: C.titre, lineHeight: 1.4, marginTop: '0.6rem', maxWidth: '28rem' }}>
+              {identity.role}
+            </p>
+            <p style={{ fontSize: '0.95rem', color: C.texte, lineHeight: 1.55, marginTop: '0.7rem', maxWidth: '24rem' }}>
+              {identity.pitch}
+            </p>
+            <p className="inline-flex items-center gap-1.5" style={{ fontSize: '0.82rem', fontWeight: 700, color: C.accent, marginTop: '0.8rem' }}>
+              <MapPin size={14} aria-hidden /> {identity.location} · {identity.availability}
+            </p>
 
-      {/* Identite */}
-      <section className="bg-background" style={{ padding: 'clamp(2rem, 5vw, 3.25rem) 1.5rem clamp(2rem, 5vw, 3rem)' }}>
-        <div className="mx-auto max-w-4xl">
-          <div className="flex flex-col sm:flex-row gap-6 sm:gap-8 sm:items-center">
-            <div
-              className="relative overflow-hidden rounded shrink-0 self-start"
-              style={{ width: 116, height: 116, border: '1px solid var(--line)' }}
-            >
-              <Image
-                src="/portraitmaurice.png"
-                alt={identity.portraitAlt}
-                fill
-                sizes="116px"
-                style={{ objectFit: 'cover', objectPosition: 'center top' }}
-                priority
-              />
-            </div>
-
-            <div className="min-w-0">
-              <div className="flex flex-wrap items-center gap-2 mb-2.5">
-                <span
-                  className="inline-flex items-center gap-1.5"
-                  style={{
-                    fontSize: '0.68rem',
-                    fontWeight: 800,
-                    letterSpacing: '0.09em',
-                    textTransform: 'uppercase',
-                    color: 'var(--brand-strong)',
-                  }}
-                >
-                  <span className="rounded-full" style={{ width: 6, height: 6, backgroundColor: 'var(--brand)' }} aria-hidden />
-                  {identity.availability}
-                </span>
-                <span
-                  style={{ fontSize: '0.68rem', fontWeight: 800, letterSpacing: '0.09em', textTransform: 'uppercase', color: 'var(--ink-3)' }}
-                >
-                  · {c.intro.kicker}
-                </span>
-              </div>
-
-              <h1
-                className="font-sans font-extrabold"
-                style={{ fontSize: 'clamp(2rem, 4.4vw, 3rem)', color: 'var(--ink)', lineHeight: 1.08, letterSpacing: '-0.025em' }}
-              >
-                {identity.name}
-              </h1>
-              <p style={{ fontSize: '1rem', color: 'var(--ink-2)', fontWeight: 600, margin: '0.45rem 0 0.9rem' }}>{identity.role}</p>
-
-              <div className="flex flex-wrap gap-x-4 gap-y-2" style={{ fontSize: '0.84rem', color: 'var(--ink-2)' }}>
-                <span className="inline-flex items-center gap-1.5">
-                  <MapPin size={14} aria-hidden style={{ color: 'var(--ink-3)' }} />
-                  {identity.location}
-                </span>
-                <a href={`mailto:${identity.email}`} className="inline-flex items-center gap-1.5" style={{ fontWeight: 600 }}>
-                  <Mail size={14} aria-hidden style={{ color: 'var(--ink-3)' }} />
-                  {identity.email}
-                </a>
-                <a href={identity.phoneHref} className="inline-flex items-center gap-1.5" style={{ fontWeight: 600 }}>
-                  <Phone size={14} aria-hidden style={{ color: 'var(--ink-3)' }} />
-                  {identity.phone}
-                </a>
-              </div>
+            <div style={{ marginTop: 'clamp(1.25rem, 4vh, 2.5rem)' }}>
+              <CvNav items={sections} label={c.nav.menuLabel} />
             </div>
           </div>
 
-          {/* Scenes aplat (scripts/illustrations_cv.py d'ads-os) : la page etait du texte sur du blanc. */}
-          <div className="grid grid-cols-1 md:grid-cols-[1fr_19rem] gap-8 items-center" style={{ marginTop: '1.75rem' }}>
-          <div>
-          <p className="max-w-3xl" style={{ color: 'var(--ink-2)', lineHeight: 1.7, margin: '0 0 1.25rem' }}>
-            {c.intro.body}
-          </p>
-
-          {/* Personnalite : le profil vient d'un test passe chez un editeur, la
-              source est affichee avec lui. Sans elle, un recruteur lit ces
-              qualificatifs comme de l'auto-evaluation. */}
-          <div style={{ marginBottom: '1.5rem' }}>
-            <span
-              className="block"
-              style={{ fontSize: '0.66rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.09em', color: 'var(--ink-3)', marginBottom: '0.5rem' }}
-            >
-              {c.intro.traitsLabel}
-            </span>
-
-            <p style={{ fontSize: '0.85rem', color: 'var(--ink-2)' }}>
-              <span style={{ fontWeight: 700, color: 'var(--brand-strong)' }}>{c.intro.traitsProfile}</span>
-              {c.intro.traits.length > 0 && ' · '}
-              {c.intro.traits.join(' · ')}
-            </p>
-
-            <p style={{ fontSize: '0.75rem', color: 'var(--ink-3)', marginTop: '0.55rem' }}>
-              {c.intro.traitsSourceUrl ? (
-                <a href={c.intro.traitsSourceUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1" style={{ color: 'var(--brand-strong)', fontWeight: 600 }}>
-                  {c.intro.traitsSource} <ArrowUpRight size={12} aria-hidden />
-                </a>
-              ) : (
-                c.intro.traitsSource
-              )}
-            </p>
-          </div>
-
-          <div className="flex flex-wrap gap-3">
-            <a
-              href={`mailto:${identity.email}`}
-              className="inline-flex items-center gap-2 rounded font-bold"
-              style={{ backgroundColor: 'var(--brand)', color: 'var(--on-brand)', padding: '0.8rem 1.4rem', fontSize: '0.9rem' }}
-            >
-              <Mail size={16} aria-hidden /> {c.contact.emailCta}
-            </a>
-            <a
-              href={identity.linkedin}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded font-bold hover:bg-[var(--surface-3)] transition-colors"
-              style={{ border: '2px solid var(--line-strong)', color: 'var(--ink)', padding: '0.75rem 1.3rem', fontSize: '0.9rem' }}
-            >
-              <LinkedinGlyph /> {c.contact.linkedinCta}
-            </a>
-            <a
-              href={identity.cvFile}
-              download
-              className="inline-flex items-center gap-2 rounded font-bold hover:bg-[var(--surface-3)] transition-colors"
-              style={{ border: '2px solid var(--line-strong)', color: 'var(--ink)', padding: '0.75rem 1.3rem', fontSize: '0.9rem' }}
-            >
-              <Download size={16} aria-hidden /> {c.contact.pdfCta}
-            </a>
-          </div>
-          </div>
-          <div className="rounded overflow-hidden" style={{ border: '1px solid var(--line)' }}>
-            <Image src="/images/illustrations/cv/hero.webp" alt="" width={960} height={720} style={{ width: '100%', height: 'auto' }} priority />
-          </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Chiffres */}
-      <section className="bg-background" style={{ padding: '0 1.5rem clamp(2rem, 5vw, 3rem)' }}>
-        <div
-          className="mx-auto max-w-4xl grid grid-cols-2 md:grid-cols-4 rounded overflow-hidden"
-          style={{ backgroundColor: 'var(--surface-2)', border: '1px solid var(--line)' }}
-        >
-          {c.stats.map((stat, i) => (
-            <div key={stat.value + stat.label} style={{ padding: '1.25rem 1.1rem', borderTop: '1px solid var(--line)' }}>
-              <Image src={`/images/illustrations/cv/stat-${i + 1}.webp`} alt="" width={52} height={52} className="rounded" style={{ width: 52, height: 52, marginBottom: '0.6rem' }} />
-              <p
-                className="font-sans font-extrabold"
-                style={{ fontSize: 'clamp(1.5rem, 3.2vw, 2rem)', color: 'var(--brand-strong)', lineHeight: 1.05, letterSpacing: '-0.02em' }}
-              >
-                {stat.value}
-              </p>
-              <p style={{ fontSize: '0.76rem', color: 'var(--ink-2)', lineHeight: 1.45, marginTop: '0.3rem' }}>{stat.label}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* Realisations */}
-      <section id="realisations" className="bg-background" style={{ padding: SECTION, borderTop: '1px solid var(--line)' }}>
-        <div className="mx-auto max-w-4xl">
-          <h2
-            className="font-sans font-extrabold"
-            style={{ fontSize: 'clamp(1.5rem, 3.2vw, 2.15rem)', color: 'var(--ink)', lineHeight: 1.15, letterSpacing: '-0.015em' }}
-          >
-            {c.work.heading}
-          </h2>
-          <p style={{ color: 'var(--ink-2)', maxWidth: '58ch', margin: '0.6rem 0 1.6rem' }}>{c.work.sub}</p>
-          <CvWork work={c.work} />
-        </div>
-      </section>
-
-      {/* Parcours */}
-      <section id="parcours" className="bg-background" style={{ padding: SECTION, borderTop: '1px solid var(--line)' }}>
-        <div className="mx-auto max-w-4xl">
-          <h2
-            className="font-sans font-extrabold mb-8"
-            style={{ fontSize: 'clamp(1.5rem, 3.2vw, 2.15rem)', color: 'var(--ink)', lineHeight: 1.15, letterSpacing: '-0.015em' }}
-          >
-            {c.experience.heading}
-          </h2>
-
-          <ol className="flex flex-col" style={{ listStyle: 'none', padding: 0, margin: 0 }}>
-            {c.experience.items.map((item, i) => (
-              <li
-                key={item.role + item.org}
-                className="grid grid-cols-1 md:grid-cols-[13rem_1fr] gap-2 md:gap-8"
-                style={{
-                  paddingTop: i === 0 ? 0 : '1.6rem',
-                  paddingBottom: i === c.experience.items.length - 1 ? 0 : '1.6rem',
-                  borderBottom: i === c.experience.items.length - 1 ? 'none' : '1px solid var(--line)',
-                }}
-              >
-                <div>
-                  <Image src={`/images/illustrations/cv/exp-${i + 1}.webp`} alt="" width={120} height={120} className="rounded" style={{ width: 120, height: 120, marginBottom: '0.8rem', border: '1px solid var(--line)' }} />
-                  <p style={{ fontSize: '0.78rem', fontWeight: 700, color: 'var(--brand-strong)', letterSpacing: '0.01em' }}>{item.period}</p>
-                  <p style={{ fontSize: '0.9rem', fontWeight: 700, color: 'var(--ink)', marginTop: '0.2rem' }}>{item.org}</p>
-                  {item.note ? (
-                    <p style={{ fontSize: '0.74rem', color: 'var(--ink-3)', lineHeight: 1.45, marginTop: '0.15rem' }}>{item.note}</p>
-                  ) : null}
-                </div>
-
-                <div>
-                  <h3 className="font-sans font-extrabold" style={{ fontSize: '1.1rem', color: 'var(--ink)', lineHeight: 1.25, marginBottom: item.context ? '0.35rem' : '0.55rem' }}>
-                    {item.role}
-                  </h3>
-                  {item.context ? (
-                    <p style={{ fontSize: '0.83rem', color: 'var(--ink-3)', lineHeight: 1.55, fontStyle: 'italic', marginBottom: '0.6rem' }}>
-                      {item.context}
-                    </p>
-                  ) : null}
-                  <ul className="flex flex-col gap-1.5" style={{ listStyle: 'none', padding: 0, margin: 0 }}>
-                    {item.bullets.map((bullet) => (
-                      <li key={bullet} className="flex gap-2.5" style={{ fontSize: '0.88rem', color: 'var(--ink-2)', lineHeight: 1.6 }}>
-                        <span
-                          className="rounded-full shrink-0"
-                          style={{ width: 6, height: 6, marginTop: '0.5rem', backgroundColor: 'var(--brand)' }}
-                          aria-hidden
-                        />
-                        {bullet}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </li>
-            ))}
-          </ol>
-        </div>
-      </section>
-
-      {/* Competences, outils, formation, langues */}
-      <section id="competences" className="bg-background" style={{ padding: SECTION, borderTop: '1px solid var(--line)' }}>
-        <div className="mx-auto max-w-4xl grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10">
-          <div>
-            <Image src="/images/illustrations/cv/skills.webp" alt="" width={84} height={84} className="rounded" style={{ width: 84, height: 84, marginBottom: '1rem', border: '1px solid var(--line)' }} />
-            <h2
-              className="font-sans font-extrabold mb-5"
-              style={{ fontSize: 'clamp(1.35rem, 2.8vw, 1.75rem)', color: 'var(--ink)', lineHeight: 1.15, letterSpacing: '-0.015em' }}
-            >
-              {c.skills.heading}
-            </h2>
-
-            <p style={{ fontSize: '0.68rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.09em', color: 'var(--ink-3)', marginBottom: '0.55rem' }}>
-              {c.skills.skillsLabel}
-            </p>
-            <p style={{ fontSize: '0.85rem', fontWeight: 600, color: 'var(--brand-strong)', marginBottom: '1.4rem' }}>
-              {c.skills.items.join(' · ')}
-            </p>
-
-            <p style={{ fontSize: '0.68rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.09em', color: 'var(--ink-3)', marginBottom: '0.55rem' }}>
-              {c.skills.toolsLabel}
-            </p>
-            <p style={{ fontSize: '0.85rem', color: 'var(--ink-2)' }}>
-              {c.skills.tools.join(' · ')}
-            </p>
-          </div>
-
-          <div>
-            <Image src="/images/illustrations/cv/education.webp" alt="" width={84} height={84} className="rounded" style={{ width: 84, height: 84, marginBottom: '1rem', border: '1px solid var(--line)' }} />
-            <h2
-              className="font-sans font-extrabold mb-5"
-              style={{ fontSize: 'clamp(1.35rem, 2.8vw, 1.75rem)', color: 'var(--ink)', lineHeight: 1.15, letterSpacing: '-0.015em' }}
-            >
-              {c.education.heading}
-            </h2>
-
-            <ul className="flex flex-col" style={{ listStyle: 'none', padding: 0, margin: '0 0 1.6rem' }}>
-              {c.education.items.map((item, i) => (
-                <li
-                  key={item.degree}
-                  style={{
-                    paddingTop: i === 0 ? 0 : '0.85rem',
-                    paddingBottom: i === c.education.items.length - 1 ? 0 : '0.85rem',
-                    borderBottom: i === c.education.items.length - 1 ? 'none' : '1px solid var(--line)',
-                  }}
-                >
-                  <div className="flex items-baseline justify-between gap-3 flex-wrap">
-                    <p style={{ fontSize: '0.92rem', fontWeight: 700, color: 'var(--ink)' }}>{item.degree}</p>
-                    <p style={{ fontSize: '0.76rem', fontWeight: 700, color: 'var(--brand-strong)' }}>{item.period}</p>
-                  </div>
-                  <p style={{ fontSize: '0.82rem', color: 'var(--ink-2)', marginTop: '0.1rem' }}>{item.school}</p>
-                  {item.detail ? (
-                    <p style={{ fontSize: '0.78rem', color: 'var(--ink-3)', lineHeight: 1.5, marginTop: '0.25rem' }}>{item.detail}</p>
-                  ) : null}
+          <div style={{ marginTop: '1.5rem' }}>
+            <ul className="flex flex-wrap" style={{ listStyle: 'none', padding: 0, margin: 0, gap: '0.5rem 1.25rem' }}>
+              {liens.map((lien) => (
+                <li key={lien.href}>
+                  <a
+                    href={lien.href}
+                    {...(lien.externe ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+                    {...(lien.download ? { download: true } : {})}
+                    className="inline-flex items-center gap-1.5 transition-colors hover:text-[#6FB791]"
+                    style={{ fontSize: '0.84rem', fontWeight: 600, color: C.titre, padding: '0.2rem 0' }}
+                  >
+                    {lien.icon}
+                    {lien.label}
+                  </a>
                 </li>
               ))}
             </ul>
-
-            <p style={{ fontSize: '0.68rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.09em', color: 'var(--ink-3)', marginBottom: '0.55rem' }}>
-              {c.education.languagesLabel}
-            </p>
-            <div className="flex flex-wrap gap-x-5 gap-y-2">
-              {c.education.languages.map((lang) => (
-                <span key={lang.name} className="inline-flex items-baseline gap-1.5" style={{ fontSize: '0.85rem', color: 'var(--ink-2)' }}>
-                  <span style={{ fontWeight: 700, color: 'var(--ink)' }}>{lang.name}</span>
-                  <span style={{ fontSize: '0.74rem', fontWeight: 700, color: 'var(--brand-strong)' }}>{lang.level}</span>
-                </span>
-              ))}
+            <div className="flex items-center gap-4" style={{ marginTop: '1.25rem' }}>
+              <Link href={c.nav.backHref} aria-label={c.nav.backToSite}>
+                <Image src="/images/logo-nuit.svg" alt="123digital" width={273} height={56} unoptimized style={{ width: 120, height: 'auto' }} />
+              </Link>
+              <Link
+                href={c.nav.switchHref}
+                aria-label={c.nav.switchAria}
+                className="rounded transition-colors hover:text-[#6FB791]"
+                style={{ fontSize: '0.74rem', fontWeight: 800, letterSpacing: '0.08em', color: C.titre, border: `1px solid ${C.filet}`, padding: '0.25rem 0.6rem' }}
+              >
+                {c.nav.switchLabel}
+              </Link>
             </div>
           </div>
-        </div>
-      </section>
+        </header>
 
-      {/* Contact recruteur */}
-      <section id="contact" style={{ backgroundColor: 'var(--brand)', padding: SECTION }}>
-        <div className="mx-auto max-w-4xl grid grid-cols-1 md:grid-cols-[1fr_18rem] gap-8 items-center">
-        <div>
-          <h2
-            className="font-sans font-extrabold"
-            style={{ fontSize: 'clamp(1.6rem, 3.4vw, 2.4rem)', color: 'var(--on-brand)', lineHeight: 1.12, letterSpacing: '-0.02em' }}
-          >
-            {c.contact.heading}
-          </h2>
-          <p style={{ color: 'var(--on-brand)', lineHeight: 1.65, margin: '0.8rem 0 1.9rem', maxWidth: '46ch' }}>
-            {c.contact.body}
-          </p>
+        {/* Colonne de droite */}
+        <div className="lg:w-[54%]" style={{ paddingTop: 'clamp(0rem, 5vh, 3.5rem)', paddingBottom: '4rem' }}>
+          <section id="a-propos" className="scroll-mt-16" style={{ marginBottom: 'clamp(4rem, 10vh, 6rem)' }} aria-label={c.nav.about}>
+            {titreSection(c.nav.about)}
+            <p style={{ fontSize: '1rem', lineHeight: 1.75, color: C.texte }}>{c.intro.body}</p>
 
-          <div className="flex flex-wrap gap-3">
-            <a
-              href={`mailto:${identity.email}`}
-              className="inline-flex items-center gap-2 rounded font-bold"
-              style={{ backgroundColor: 'var(--on-brand)', color: 'var(--brand-strong)', padding: '0.8rem 1.4rem', fontSize: '0.9rem' }}
-            >
-              <Mail size={16} aria-hidden /> {identity.email}
-            </a>
-            <a
-              href={identity.linkedin}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded font-bold"
-              style={{ border: '2px solid var(--on-brand)', color: 'var(--on-brand)', padding: '0.75rem 1.3rem', fontSize: '0.9rem' }}
-            >
-              <LinkedinGlyph /> {c.contact.linkedinCta}
-            </a>
-            <a
-              href={identity.cvFile}
-              download
-              className="inline-flex items-center gap-2 rounded font-bold"
-              style={{ border: '2px solid var(--on-brand)', color: 'var(--on-brand)', padding: '0.75rem 1.3rem', fontSize: '0.9rem' }}
-            >
-              <Download size={16} aria-hidden /> {c.contact.pdfCta}
-            </a>
-          </div>
+            {/* Personnalite : le profil vient d'un test passe chez un editeur,
+                la source est affichee avec lui. */}
+            <div style={{ marginTop: '1.5rem' }}>
+              <p style={{ fontSize: '0.72rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.1em', color: C.discret, marginBottom: '0.45rem' }}>
+                {c.intro.traitsLabel}
+              </p>
+              <p style={{ fontSize: '0.92rem', color: C.texte }}>
+                <span style={{ fontWeight: 700, color: C.accent }}>{c.intro.traitsProfile}</span>
+                {c.intro.traits.length > 0 && ' · '}
+                {c.intro.traits.join(' · ')}
+              </p>
+              <p style={{ fontSize: '0.78rem', color: C.discret, marginTop: '0.45rem' }}>
+                {c.intro.traitsSourceUrl ? (
+                  <a href={c.intro.traitsSourceUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1" style={{ color: C.accent, fontWeight: 600 }}>
+                    {c.intro.traitsSource} <ArrowUpRight size={12} aria-hidden />
+                  </a>
+                ) : (
+                  c.intro.traitsSource
+                )}
+              </p>
+            </div>
+          </section>
 
-          <p style={{ marginTop: '1.8rem' }}>
-            <Link
-              href={c.nav.backHref}
-              className="btn-contour-inverse"
-            >
-              {c.nav.backToSite} <ArrowUpRight size={14} aria-hidden />
-            </Link>
-          </p>
+          <section id="preuves" className="scroll-mt-16" style={{ marginBottom: 'clamp(4rem, 10vh, 6rem)' }}>
+            {titreSection(c.proofs.heading)}
+            <ul className="grid grid-cols-1 sm:grid-cols-3" style={{ listStyle: 'none', padding: 0, margin: 0, gap: '0.75rem' }}>
+              {preuves.map((preuve) => (
+                <li key={preuve.href}>
+                  <a
+                    href={preuve.href}
+                    {...(preuve.externe ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+                    className="group flex h-full flex-col justify-between rounded-lg transition-colors hover:bg-[rgba(205,230,216,0.06)]"
+                    style={{ border: `1px solid ${C.filet}`, padding: '1rem 1.1rem', gap: '0.8rem' }}
+                  >
+                    <span style={{ fontSize: '1.08rem', fontWeight: 700, color: C.titre, lineHeight: 1.3 }}>{preuve.label}</span>
+                    <span style={{ fontSize: '0.8rem', fontWeight: 700, color: C.accent }}>
+                      <span className="underline underline-offset-4" style={{ textDecorationColor: 'rgba(111, 183, 145, 0.5)' }}>
+                        {preuve.source}
+                      </span>
+                      <ArrowUpRight size={13} aria-hidden className="inline-block align-[-2px] ml-1 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+                    </span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </section>
+
+          <section id="realisations" className="scroll-mt-16" style={{ marginBottom: 'clamp(4rem, 10vh, 6rem)' }}>
+            {titreSection(c.work.heading)}
+            <div className="sm:-mx-4">
+              <CvWork work={c.work} />
+            </div>
+          </section>
+
+          <section id="parcours" className="scroll-mt-16" style={{ marginBottom: 'clamp(4rem, 10vh, 6rem)' }}>
+            {titreSection(c.experience.heading)}
+            <ol className="flex flex-col" style={{ listStyle: 'none', padding: 0, margin: 0, gap: '2.25rem' }}>
+              {c.experience.items.map((item) => (
+                <li key={item.role + item.org} className="grid grid-cols-1 sm:grid-cols-[9rem_1fr] gap-1 sm:gap-6">
+                  <p style={{ fontSize: '0.74rem', fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase', color: C.discret, paddingTop: '0.2rem' }}>
+                    {item.period}
+                  </p>
+                  <div>
+                    <h3 style={{ fontSize: '1.02rem', fontWeight: 700, color: C.titre, lineHeight: 1.35 }}>
+                      {item.role} · {item.org}
+                    </h3>
+                    {item.note ? <p style={{ fontSize: '0.82rem', color: C.discret, marginTop: '0.15rem' }}>{item.note}</p> : null}
+                    {item.context ? (
+                      <p style={{ fontSize: '0.86rem', color: C.discret, lineHeight: 1.55, fontStyle: 'italic', marginTop: '0.45rem' }}>{item.context}</p>
+                    ) : null}
+                    <ul style={{ listStyle: 'none', padding: 0, margin: '0.55rem 0 0' }} className="flex flex-col gap-1.5">
+                      {item.bullets.map((bullet) => (
+                        <li key={bullet} style={{ fontSize: '0.92rem', color: C.texte, lineHeight: 1.6 }}>
+                          {bullet}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </li>
+              ))}
+            </ol>
+
+            <div className="grid grid-cols-1 sm:grid-cols-[9rem_1fr] gap-1 sm:gap-6" style={{ marginTop: '3rem', paddingTop: '2rem', borderTop: `1px solid ${C.filet}` }}>
+              <h3 style={{ fontSize: '0.74rem', fontWeight: 800, letterSpacing: '0.1em', textTransform: 'uppercase', color: C.titre, paddingTop: '0.2rem' }}>
+                {c.education.heading}
+              </h3>
+              <div>
+                <ul className="flex flex-col" style={{ listStyle: 'none', padding: 0, margin: 0, gap: '1rem' }}>
+                  {c.education.items.map((item) => (
+                    <li key={item.degree}>
+                      <p style={{ fontSize: '0.95rem', fontWeight: 700, color: C.titre }}>
+                        {item.degree} · {item.school}
+                      </p>
+                      <p style={{ fontSize: '0.8rem', color: C.discret, marginTop: '0.1rem' }}>{item.period}</p>
+                      {item.detail ? <p style={{ fontSize: '0.85rem', color: C.texte, lineHeight: 1.5, marginTop: '0.25rem' }}>{item.detail}</p> : null}
+                    </li>
+                  ))}
+                </ul>
+                <p style={{ fontSize: '0.9rem', color: C.texte, marginTop: '1.25rem' }}>
+                  <span style={{ fontWeight: 700, color: C.titre }}>{c.education.languagesLabel}{locale === 'fr' ? ' : ' : ': '}</span>
+                  {c.education.languages.map((l) => `${l.name} ${l.level}`).join(' · ')}
+                </p>
+              </div>
+            </div>
+          </section>
+
+          <section id="contact" className="scroll-mt-16">
+            {titreSection(c.nav.contact)}
+            <p style={{ fontSize: 'clamp(1.5rem, 3vw, 2rem)', fontWeight: 800, color: C.titre, lineHeight: 1.15, letterSpacing: '-0.02em' }}>
+              {c.contact.heading}
+            </p>
+            <p style={{ fontSize: '1rem', color: C.texte, lineHeight: 1.65, marginTop: '0.7rem' }}>{c.contact.body}</p>
+
+            <div className="flex flex-wrap" style={{ gap: '0.75rem', marginTop: '1.5rem' }}>
+              <a
+                href={`mailto:${identity.email}`}
+                className="inline-flex items-center gap-2 rounded font-bold transition-[filter] hover:brightness-110"
+                style={{ backgroundColor: C.bouton, color: '#FFFFFF', padding: '0.8rem 1.35rem', fontSize: '0.92rem' }}
+              >
+                <Mail size={16} aria-hidden /> {c.contact.emailCta}
+              </a>
+              <a
+                href={identity.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 rounded font-bold transition-colors hover:bg-[rgba(205,230,216,0.06)]"
+                style={{ border: `1px solid rgba(205, 230, 216, 0.35)`, color: C.titre, padding: '0.75rem 1.25rem', fontSize: '0.92rem' }}
+              >
+                <LinkedinGlyph /> {c.contact.linkedinCta}
+              </a>
+              <a
+                href={identity.cvFile}
+                download
+                className="inline-flex items-center gap-2 rounded font-bold transition-colors hover:bg-[rgba(205,230,216,0.06)]"
+                style={{ border: `1px solid rgba(205, 230, 216, 0.35)`, color: C.titre, padding: '0.75rem 1.25rem', fontSize: '0.92rem' }}
+              >
+                <Download size={16} aria-hidden /> {c.contact.pdfCta}
+              </a>
+            </div>
+
+            <p style={{ marginTop: '2.5rem', fontSize: '0.85rem' }}>
+              <Link href={c.nav.backHref} className="inline-flex items-center gap-1 underline underline-offset-4" style={{ color: C.accent, fontWeight: 700 }}>
+                {c.nav.backToSite} <ArrowUpRight size={14} aria-hidden />
+              </Link>
+            </p>
+          </section>
         </div>
-        <div className="rounded overflow-hidden">
-          <Image src="/images/illustrations/cv/contact.webp" alt="" width={960} height={720} style={{ width: '100%', height: 'auto' }} />
-        </div>
-        </div>
-      </section>
-    </>
+      </div>
+    </div>
   )
 }

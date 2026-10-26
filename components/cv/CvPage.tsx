@@ -107,7 +107,7 @@ export function CvPage({ locale }: { locale: CvLocale }) {
         <header className="lg:sticky lg:top-0 lg:flex lg:max-h-screen lg:overflow-y-auto lg:w-[46%] lg:flex-col lg:justify-between" style={{ paddingTop: 'clamp(1.25rem, 5vh, 3.5rem)', paddingBottom: 'clamp(1.5rem, 5vh, 3.5rem)' }}>
           <div>
             <Image
-              src="/images/maurice-timsit-portrait.jpg"
+              src="/images/maurice-timsit-portrait-vert.jpg"
               alt={identity.portraitAlt}
               width={1000}
               height={1250}

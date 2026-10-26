@@ -5,7 +5,7 @@ import { projects } from '@/data/portfolio'
 export const ECRANS: Record<string, string> = {
   'mishpacha-tours': '/images/realisations/mishpacha-tours-telephone.webp',
   clim69: '/images/realisations/clim69-telephone.webp',
-  aplusaudition: '/images/realisations/aplusaudition-telephone.webp',
+  'aplus-audition': '/images/realisations/aplusaudition-telephone.webp',
 }
 
 export const sitesEnTelephone = projects.filter((p) => p.url && ECRANS[p.id])

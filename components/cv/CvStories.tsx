@@ -87,10 +87,10 @@ export function CvStories({ intro, voir, fermer }: { intro: string; voir: string
                 muted
                 playsInline
                 onLoadedMetadata={(e) => setDuree(e.currentTarget.duration || DUREE_IMAGE)}
-                className="absolute inset-0 h-full w-full object-cover"
+                className="absolute inset-0 h-full w-full object-contain"
               />
             ) : (
-              <Image key={d.id} src={d.src} alt={d.titre} fill sizes="(min-width: 640px) 480px, 100vw" className="object-cover" priority />
+              <Image key={d.id} src={d.src} alt={d.titre} fill sizes="(min-width: 640px) 480px, 100vw" className="object-contain" priority />
             )}
 
             {/* Barres de progression : la barre active se remplit, sa fin passe a la suivante. */}

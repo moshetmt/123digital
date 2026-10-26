@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import { ArrowUpRight, Download, Mail, MapPin, Phone } from 'lucide-react'
+import { ArrowUpRight, Download, Mail, Phone } from 'lucide-react'
 import { cvContent, type CvLocale } from '@/data/cv'
 import { projects } from '@/data/portfolio'
 import { AVIS_GOOGLE } from '@/lib/avis-google'
@@ -80,12 +80,23 @@ export function CvPage({ locale }: { locale: CvLocale }) {
     },
   ]
 
-  const liens = [
-    { href: `mailto:${identity.email}`, label: locale === 'fr' ? 'Mail' : 'Email', icon: <Mail size={17} aria-hidden />, externe: false },
-    { href: identity.linkedin, label: c.contact.linkedinCta, icon: <LinkedinGlyph size={16} />, externe: true },
-    { href: identity.phoneHref, label: identity.phone, icon: <Phone size={17} aria-hidden />, externe: false },
-    { href: identity.cvFile, label: 'PDF', icon: <Download size={17} aria-hidden />, externe: false, download: true },
+  // Le metier se lit en deux temps : « Consultant ... freelance » puis la liste
+  // des specialites, qui devient les pastilles de la maquette.
+  const [metier, specialites = ''] = identity.role.split(' · ')
+  const pastilles = specialites.split(', ').filter(Boolean)
+
+  const chiffres = [
+    { titre: locale === 'fr' ? 'Avis Google' : 'Google reviews', valeur: AVIS_GOOGLE.note, unite: locale === 'fr' ? `sur ${AVIS_GOOGLE.nombre} avis` : `from ${AVIS_GOOGLE.nombre} reviews`, href: c.proofs.reviewsHref, externe: true },
+    { titre: locale === 'fr' ? 'Réalisations' : 'Projects', valeur: String(projects.length), unite: locale === 'fr' ? 'projets' : 'projects', href: '#realisations', externe: false },
   ]
+
+  const lignes = [
+    { href: `mailto:${identity.email}`, libelle: 'Email', valeur: identity.email, icon: <Mail size={17} aria-hidden />, externe: false },
+    { href: identity.phoneHref, libelle: locale === 'fr' ? 'Téléphone' : 'Phone', valeur: identity.phone, icon: <Phone size={17} aria-hidden />, externe: false },
+    { href: identity.linkedin, libelle: 'LinkedIn', valeur: identity.name, icon: <LinkedinGlyph size={16} />, externe: true },
+  ]
+
+  const rond = { width: '2.6rem', height: '2.6rem', borderRadius: '9999px', backgroundColor: 'rgba(0,0,0,0.22)' }
 
   // Titre de section : collant en haut sur telephone (comme le gabarit de
   // reference), simple intertitre sur ordinateur.
@@ -107,11 +118,11 @@ export function CvPage({ locale }: { locale: CvLocale }) {
         {/* Colonne de gauche */}
         <header className="lg:sticky lg:top-0 lg:flex lg:max-h-screen lg:overflow-y-auto lg:w-[46%] lg:flex-col lg:justify-between" style={{ paddingTop: 'clamp(1.25rem, 5vh, 3.5rem)', paddingBottom: 'clamp(1.5rem, 5vh, 3.5rem)' }}>
           <div>
-            {/* En-tete de profil dans une carte arrondie (reference 184545 choisie par
-                Moshe le 26/10) : photo ronde sans anneau, nom, metier, disponibilite. */}
+            {/* En-tete de profil, calque sur la maquette « Isabella Castillo » envoyee
+                par Moshe le 26/10 : photo ronde, nom, metier, pastilles, deux chiffres. */}
             <div
-              className="flex flex-col items-center text-center lg:items-start lg:text-left"
-              style={{ backgroundColor: C.carte, border: `1px solid ${C.filet}`, borderRadius: '1.75rem', padding: 'clamp(1.25rem, 3vh, 1.75rem) clamp(1.25rem, 3vw, 1.75rem)' }}
+              className="flex flex-col items-center text-center"
+              style={{ backgroundColor: '#0B0F0C', borderRadius: '2rem', padding: 'clamp(1.5rem, 3.5vh, 2rem) clamp(1rem, 3vw, 1.5rem) clamp(1rem, 2.5vh, 1.25rem)' }}
             >
               <Image
                 src="/images/maurice-timsit-portrait-vert.jpg"
@@ -121,24 +132,41 @@ export function CvPage({ locale }: { locale: CvLocale }) {
                 priority
                 sizes="120px"
                 className="block object-cover"
-                style={{ width: 'clamp(5rem, 11vh, 6.5rem)', height: 'clamp(5rem, 11vh, 6.5rem)', borderRadius: '9999px', objectPosition: '50% 18%' }}
+                style={{ width: 'clamp(5rem, 11vh, 6rem)', height: 'clamp(5rem, 11vh, 6rem)', borderRadius: '9999px', objectPosition: '50% 18%' }}
               />
-
-              <h1
-                style={{ fontSize: 'clamp(2rem, 3.6vw, 2.6rem)', fontWeight: 800, color: C.titre, lineHeight: 1.05, letterSpacing: '-0.025em', marginTop: 'clamp(0.9rem, 2vh, 1.2rem)' }}
-              >
+              <h1 style={{ fontSize: 'clamp(1.9rem, 3.4vw, 2.4rem)', fontWeight: 800, color: C.titre, lineHeight: 1.05, letterSpacing: '-0.025em', marginTop: '1rem' }}>
                 {identity.name}
               </h1>
-              <p style={{ fontSize: '1.02rem', fontWeight: 600, color: C.titre, lineHeight: 1.4, marginTop: '0.55rem', maxWidth: '28rem' }}>
-                {identity.role}
+              <p style={{ fontSize: '0.92rem', color: C.discret, lineHeight: 1.4, marginTop: '0.4rem' }}>
+                {metier} · {identity.location}
               </p>
-              <p style={{ fontSize: '0.93rem', color: C.texte, lineHeight: 1.55, marginTop: '0.6rem', maxWidth: '26rem' }}>
-                {identity.pitch}
-              </p>
-              <p className="flex flex-wrap items-center justify-center gap-x-1.5 lg:justify-start" style={{ fontSize: '0.82rem', fontWeight: 700, color: C.accent, marginTop: '0.75rem' }}>
-                <span className="inline-flex items-center gap-1.5"><MapPin size={14} aria-hidden /> {identity.location}</span>
-                <span>· {identity.availability}</span>
-              </p>
+              <ul className="flex flex-wrap justify-center" style={{ listStyle: 'none', padding: 0, margin: '1rem 0 0', gap: '0.45rem' }}>
+                {pastilles.map((p) => (
+                  <li key={p} style={{ fontSize: '0.84rem', fontWeight: 600, color: C.titre, backgroundColor: 'rgba(205, 230, 216, 0.1)', borderRadius: '9999px', padding: '0.4rem 0.9rem' }}>
+                    {p}
+                  </li>
+                ))}
+              </ul>
+              <div className="grid w-full grid-cols-2" style={{ gap: '0.6rem', marginTop: '1.1rem' }}>
+                {chiffres.map((t) => (
+                  <a
+                    key={t.titre}
+                    href={t.href}
+                    {...(t.externe ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+                    className="flex flex-col text-left transition-opacity hover:opacity-80"
+                    style={{ backgroundColor: C.carte, borderRadius: '1.4rem', padding: '0.95rem 1rem 0.9rem' }}
+                  >
+                    <span className="flex items-start justify-between" style={{ fontSize: '0.84rem', color: C.texte }}>
+                      {t.titre}
+                      <ArrowUpRight size={17} aria-hidden />
+                    </span>
+                    <span className="flex items-baseline gap-1.5" style={{ marginTop: '1.4rem' }}>
+                      <span style={{ fontSize: '2rem', fontWeight: 700, color: C.accent, lineHeight: 1 }}>{t.valeur}</span>
+                      <span style={{ fontSize: '0.8rem', color: C.texte }}>{t.unite}</span>
+                    </span>
+                  </a>
+                ))}
+              </div>
             </div>
 
             <div style={{ marginTop: 'clamp(1.25rem, 3.5vh, 2.25rem)' }}>
@@ -146,46 +174,58 @@ export function CvPage({ locale }: { locale: CvLocale }) {
             </div>
           </div>
 
-          {/* Contacts dans un panneau vert au bord haut creuse en courbe (le bloc
-              « Detailed information » de la reference). */}
-          <div
-            style={{
-              marginTop: '1.5rem',
-              backgroundColor: C.bouton,
-              borderRadius: '1.75rem',
-              padding: '1.9rem 1.5rem 1.4rem',
-              WebkitMaskImage: 'radial-gradient(circle 1.6rem at 50% 0, transparent 98%, #000 100%)',
-              maskImage: 'radial-gradient(circle 1.6rem at 50% 0, transparent 98%, #000 100%)',
-            }}
-          >
-            <ul className="flex flex-wrap justify-center lg:justify-start" style={{ listStyle: 'none', padding: 0, margin: 0, gap: '0.5rem 1.25rem' }}>
-              {liens.map((lien) => (
-                <li key={lien.href}>
-                  <a
-                    href={lien.href}
-                    {...(lien.externe ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
-                    {...(lien.download ? { download: true } : {})}
-                    className="inline-flex items-center gap-1.5 transition-opacity hover:opacity-75"
-                    style={{ fontSize: '0.86rem', fontWeight: 700, color: '#FFFFFF', padding: '0.2rem 0' }}
-                  >
-                    {lien.icon}
-                    {lien.label}
-                  </a>
-                </li>
-              ))}
-            </ul>
-            <div className="flex items-center justify-center gap-4 lg:justify-start" style={{ marginTop: '1.1rem' }}>
-              <Link href={c.nav.backHref} aria-label={c.nav.backToSite}>
-                <Image src="/images/logo-nuit.svg" alt="123digital" width={273} height={56} unoptimized style={{ width: 120, height: 'auto' }} />
-              </Link>
-              <Link
-                href={c.nav.switchHref}
-                aria-label={c.nav.switchAria}
-                className="rounded transition-opacity hover:opacity-75"
-                style={{ fontSize: '0.74rem', fontWeight: 800, letterSpacing: '0.08em', color: '#FFFFFF', border: '1px solid rgba(255,255,255,0.45)', padding: '0.25rem 0.6rem' }}
-              >
-                {c.nav.switchLabel}
-              </Link>
+          {/* Panneau des contacts : bord haut en vague qui monte vers la droite, une
+              ligne par contact (pastille, libelle, valeur, fleche ronde). */}
+          <div className="relative" style={{ marginTop: '1.5rem' }}>
+            <svg viewBox="0 0 400 44" preserveAspectRatio="none" aria-hidden className="block w-full" style={{ height: '2.75rem' }}>
+              <path d="M0 44V40Q0 18 22 18H170C205 18 210 0 245 0H372Q400 0 400 28V44Z" fill={C.bouton} />
+            </svg>
+            <span aria-hidden className="absolute" style={{ left: 'calc(50% - 1.1rem)', top: '0.9rem', width: '2.2rem', height: '0.22rem', borderRadius: '9999px', backgroundColor: 'rgba(255,255,255,0.35)' }} />
+            <Link
+              href={c.nav.switchHref}
+              aria-label={c.nav.switchAria}
+              className="absolute flex items-center justify-center transition-opacity hover:opacity-75"
+              style={{ right: '0.9rem', top: '0.55rem', width: '2.6rem', height: '2.6rem', borderRadius: '9999px', backgroundColor: 'rgba(0,0,0,0.22)', fontSize: '0.74rem', fontWeight: 800, letterSpacing: '0.06em', color: '#FFFFFF' }}
+            >
+              {c.nav.switchLabel}
+            </Link>
+            <div style={{ marginTop: '-1px', background: `linear-gradient(180deg, ${C.bouton} 0%, #0A4A2A 100%)`, borderRadius: '0 0 1.9rem 1.9rem', padding: '0.4rem 1.1rem 1.1rem' }}>
+              <h2 style={{ fontSize: '1.15rem', fontWeight: 700, color: '#FFFFFF', margin: '0 0 0.6rem 0.2rem' }}>
+                {locale === 'fr' ? 'Coordonnées' : 'Contact details'}
+              </h2>
+              <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
+                {lignes.map((l) => (
+                  <li key={l.href}>
+                    <a
+                      href={l.href}
+                      {...(l.externe ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+                      className="flex items-center gap-3 transition-opacity hover:opacity-80"
+                      style={{ padding: '0.5rem 0', color: '#FFFFFF' }}
+                    >
+                      <span className="flex shrink-0 items-center justify-center" style={rond}>{l.icon}</span>
+                      <span className="flex min-w-0 flex-1 flex-col text-left">
+                        <span style={{ fontSize: '0.74rem', color: 'rgba(255,255,255,0.7)' }}>{l.libelle}</span>
+                        <span className="truncate" style={{ fontSize: '0.95rem', fontWeight: 600 }}>{l.valeur}</span>
+                      </span>
+                      <span className="flex shrink-0 items-center justify-center" style={rond}><ArrowUpRight size={17} aria-hidden /></span>
+                    </a>
+                  </li>
+                ))}
+              </ul>
+              <div className="flex items-center justify-between" style={{ marginTop: '0.8rem' }}>
+                <Link href={c.nav.backHref} aria-label={c.nav.backToSite} className="flex items-center" style={{ backgroundColor: 'rgba(0,0,0,0.22)', borderRadius: '9999px', padding: '0.7rem 1.1rem' }}>
+                  <Image src="/images/logo-nuit.svg" alt="123digital" width={273} height={56} unoptimized style={{ width: 104, height: 'auto' }} />
+                </Link>
+                <a
+                  href={identity.cvFile}
+                  download
+                  className="inline-flex items-center gap-2 transition-opacity hover:opacity-80"
+                  style={{ backgroundColor: 'rgba(0,0,0,0.22)', borderRadius: '9999px', padding: '0.75rem 1.1rem', fontSize: '0.86rem', fontWeight: 700, color: '#FFFFFF' }}
+                >
+                  <Download size={17} aria-hidden />
+                  {locale === 'fr' ? 'CV en PDF' : 'PDF résumé'}
+                </a>
+              </div>
             </div>
           </div>
         </header>

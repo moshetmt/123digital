@@ -316,7 +316,7 @@ export function CTA({ lang = 'fr', compact = false }: { lang?: Locale; compact?:
                 onSubmit={handleSubmit}
                 noValidate
                 className="flex flex-col gap-2.5"
-                style={{ backgroundColor: 'var(--surface)', border: '1px solid var(--line)', borderRadius: 'var(--radius)', padding: 'clamp(1.1rem, 4vw, 1.6rem)' }}
+                style={{ backgroundColor: 'var(--surface)', borderRadius: 'var(--radius)', boxShadow: 'var(--ombre-carte)', padding: 'clamp(1.1rem, 4vw, 1.6rem)' }}
               >
                 {/* 3 lignes seulement : prenom, puis email ou telephone (un des
                     deux suffit), puis besoin. Le formulaire a 7 champs n'a
@@ -463,7 +463,7 @@ export function CTA({ lang = 'fr', compact = false }: { lang?: Locale; compact?:
                 animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
                 transition={{ duration: 0.5, ease: EASE }}
                 className="flex flex-col"
-                style={{ backgroundColor: 'var(--surface)', border: '1px solid var(--line)', borderRadius: 'var(--radius)', padding: '2rem' }}
+                style={{ backgroundColor: 'var(--surface)', borderRadius: 'var(--radius)', boxShadow: 'var(--ombre-carte)', padding: '2rem' }}
               >
                 <Check size={26} strokeWidth={1.5} aria-hidden style={{ color: 'var(--brand)', marginBottom: '0.75rem' }} />
                 <h3 style={{ fontFamily: 'var(--font-sans)', fontWeight: 800, fontSize: '1.3rem', color: 'var(--ink)', marginBottom: '0.5rem' }}>

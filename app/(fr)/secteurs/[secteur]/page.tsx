@@ -180,7 +180,7 @@ export default async function SecteurPage({ params }: PageProps) {
                 <Link
                   href={`/problemes/${c.slug}`}
                   className="flex w-full flex-col justify-between gap-4 rounded transition-colors hover:border-[var(--brand)]"
-                  style={{ border: '1px solid var(--line)', padding: '1.1rem', minHeight: '44px' }}
+                  style={{ backgroundColor: 'var(--surface)', borderRadius: 'var(--radius)', boxShadow: 'var(--ombre-carte)', padding: '1.1rem', minHeight: '44px' }}
                 >
                   <span style={{ fontWeight: 800, fontSize: '0.95rem', lineHeight: 1.3, color: 'var(--ink)' }}>
                     {c.titre}
@@ -193,7 +193,7 @@ export default async function SecteurPage({ params }: PageProps) {
               <Link
                 href="/audit-gratuit"
                 className="flex w-full flex-col justify-between gap-4 rounded transition-colors hover:border-[var(--brand)]"
-                style={{ border: '1px solid var(--line)', backgroundColor: 'var(--surface-2)', padding: '1.1rem', minHeight: '44px' }}
+                style={{ backgroundColor: 'var(--surface)', borderRadius: 'var(--radius)', boxShadow: 'var(--ombre-carte)', padding: '1.1rem', minHeight: '44px' }}
               >
                 <span>
                   <span className="block" style={{ fontWeight: 800, fontSize: '0.95rem', lineHeight: 1.3, color: 'var(--ink)' }}>

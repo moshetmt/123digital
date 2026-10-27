@@ -61,7 +61,7 @@ export default function AProposPage() {
       {/* Portrait + bio courte */}
       <section className="bg-background" style={{ padding: '5rem 1.5rem 6rem' }}>
         <div className="mx-auto max-w-5xl grid grid-cols-1 md:grid-cols-[minmax(0,340px)_1fr] gap-10 md:gap-14 items-center">
-          <div className="rounded overflow-hidden" style={{ border: '1px solid var(--line)' }}>
+          <div className="overflow-hidden" style={{ borderRadius: 'var(--radius)', boxShadow: 'var(--ombre-carte)' }}>
             <Image
               src="/images/maurice-timsit-portrait.jpg"
               alt="Maurice Timsit, consultant digital à Lyon"

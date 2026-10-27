@@ -67,7 +67,7 @@ function Recit({ titre, paragraphes, scene, inverse = false }: { titre: string; 
           height={900}
           sizes="(max-width: 1024px) 100vw, 440px"
           className="rounded w-full"
-          style={{ height: 'auto', border: '1px solid var(--line)' }}
+          style={{ height: 'auto', borderRadius: '1.375rem', boxShadow: 'var(--ombre-carte)' }}
         />
       </div>
     </section>
@@ -146,7 +146,7 @@ export default async function EtudeDeCasPage({ params }: Props) {
             priority
             sizes="(max-width: 1024px) 100vw, 1024px"
             className="rounded"
-            style={{ width: '100%', height: 'auto', border: '1px solid var(--line)' }}
+            style={{ width: '100%', height: 'auto', borderRadius: '1.375rem', boxShadow: 'var(--ombre-carte)' }}
           />
           {etude.court?.liens && (
             <div className="flex flex-wrap gap-3" style={{ marginTop: '1.25rem' }}>
@@ -186,7 +186,7 @@ export default async function EtudeDeCasPage({ params }: Props) {
                       height={e.image.portrait ? 1280 : 1000}
                       sizes={e.image.portrait ? '(max-width: 768px) 70vw, 320px' : '(max-width: 768px) 100vw, 720px'}
                       className="rounded"
-                      style={{ width: '100%', maxWidth: e.image.portrait ? 320 : undefined, height: 'auto', border: '1px solid var(--line)', marginTop: '1rem' }}
+                      style={{ width: '100%', maxWidth: e.image.portrait ? 320 : undefined, height: 'auto', borderRadius: '1.375rem', boxShadow: 'var(--ombre-carte)', marginTop: '1rem' }}
                     />
                   )}
                 </li>
@@ -210,7 +210,7 @@ export default async function EtudeDeCasPage({ params }: Props) {
               <li
                 key={e.titre}
                 className="flex flex-col sm:flex-row gap-4 rounded"
-                style={{ border: '1px solid var(--line)', backgroundColor: 'var(--surface-2)', padding: '1.1rem' }}
+                style={{ backgroundColor: 'var(--surface)', borderRadius: 'var(--radius)', boxShadow: 'var(--ombre-carte)', padding: '1.1rem' }}
               >
                 {/* Une illustration par etape (scripts/illustrations_etapes.py d'ads-os),
                     les six pictos de service se repetaient sept fois par page. */}
@@ -240,7 +240,7 @@ export default async function EtudeDeCasPage({ params }: Props) {
               <div
                 key={c.titre}
                 className="rounded"
-                style={{ border: '1px solid var(--line)', backgroundColor: 'var(--surface-2)', padding: '1.25rem' }}
+                style={{ backgroundColor: 'var(--surface)', borderRadius: 'var(--radius)', boxShadow: 'var(--ombre-carte)', padding: '1.25rem' }}
               >
                 <h3 className="font-sans font-extrabold" style={{ fontSize: '1.02rem', color: 'var(--ink)', marginBottom: '0.4rem' }}>{c.titre}</h3>
                 <p style={{ color: 'var(--ink-2)', fontSize: '0.9rem', lineHeight: 1.6 }}>{c.texte}</p>
@@ -271,7 +271,7 @@ export default async function EtudeDeCasPage({ params }: Props) {
                       height={500}
                       sizes="(max-width: 640px) 100vw, 260px"
                       className="rounded shrink-0 w-full sm:w-[260px]"
-                      style={{ height: 'auto', border: '1px solid var(--line)', backgroundColor: 'var(--surface-2)' }}
+                      style={{ height: 'auto', backgroundColor: 'var(--surface)', borderRadius: 'var(--radius)', boxShadow: 'var(--ombre-carte)' }}
                     />
                   )}
                   <div>
@@ -292,7 +292,7 @@ export default async function EtudeDeCasPage({ params }: Props) {
                   height={1000}
                   sizes="(max-width: 1024px) 100vw, 1024px"
                   className="rounded w-full"
-                  style={{ height: 'auto', border: '1px solid var(--line)' }}
+                  style={{ height: 'auto', borderRadius: '1.375rem', boxShadow: 'var(--ombre-carte)' }}
                 />
                 <figcaption style={{ color: 'var(--ink-3)', fontSize: '0.82rem', marginTop: '0.5rem' }}>{etude.mosaique.legende}</figcaption>
               </figure>
@@ -308,7 +308,7 @@ export default async function EtudeDeCasPage({ params }: Props) {
           <section className="mx-auto max-w-5xl" style={sectionStyle}>
             <div
               className="rounded flex flex-wrap items-center justify-between gap-3"
-              style={{ border: '1px solid var(--line)', backgroundColor: 'var(--surface-2)', padding: '1.1rem 1.25rem' }}
+              style={{ backgroundColor: 'var(--surface)', borderRadius: 'var(--radius)', boxShadow: 'var(--ombre-carte)', padding: '1.1rem 1.25rem' }}
             >
               <div>
                 <div style={{ fontSize: '0.7rem', fontWeight: 800, letterSpacing: '0.1em', textTransform: 'uppercase', color: 'var(--ink-3)' }}>Site en ligne</div>
@@ -337,7 +337,7 @@ export default async function EtudeDeCasPage({ params }: Props) {
           <Link
             href={`/realisations/${suivante.slug}`}
             className="flex items-center justify-between gap-3 rounded"
-            style={{ border: '1px solid var(--line)', padding: '1.1rem 1.25rem', color: 'var(--ink)' }}
+            style={{ backgroundColor: 'var(--surface)', borderRadius: 'var(--radius)', boxShadow: 'var(--ombre-carte)', padding: '1.1rem 1.25rem', color: 'var(--ink)' }}
           >
             <span>
               <span style={{ display: 'block', fontSize: '0.7rem', fontWeight: 800, letterSpacing: '0.1em', textTransform: 'uppercase', color: 'var(--ink-3)' }}>Étude suivante</span>

@@ -55,7 +55,7 @@ export function VillesMap({ lang = 'fr' }: { lang?: 'fr' | 'en' }) {
     <div className="relative" style={{ maxWidth: '640px', margin: '0 auto' }}>
 
       {/* Carte SVG */}
-      <div style={{ position: 'relative', border: '1px solid var(--line)', backgroundColor: 'var(--surface-2)' }}>
+      <div style={{ position: 'relative', backgroundColor: 'var(--surface)', borderRadius: 'var(--radius)', boxShadow: 'var(--ombre-carte)' }}>
         <svg
           viewBox="0 0 100 80"
           style={{ width: '100%', display: 'block', touchAction: 'manipulation' }}

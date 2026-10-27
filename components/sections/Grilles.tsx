@@ -29,8 +29,8 @@ function CarteCompacte({ carte, accent, Icone }: { carte: Carte; accent?: string
     <div
       className="rounded flex flex-col"
       style={{
-        backgroundColor: 'var(--surface-3)',
-        border: '1px solid var(--line)',
+        backgroundColor: 'var(--surface)',
+        borderRadius: 'var(--radius)', boxShadow: 'var(--ombre-carte)',
         padding: 'clamp(0.85rem, 3vw, 1.4rem)',
       }}
     >
@@ -149,8 +149,8 @@ function EtapeCarte({ etape, index, illustre }: { etape: Carte; index: number; i
     <div
       className="rounded"
       style={{
-        backgroundColor: 'var(--surface-3)',
-        border: '1px solid var(--line)',
+        backgroundColor: 'var(--surface)',
+        borderRadius: 'var(--radius)', boxShadow: 'var(--ombre-carte)',
         padding: 'clamp(0.8rem, 3vw, 1.25rem)',
       }}
     >

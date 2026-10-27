@@ -17,7 +17,7 @@ function ProjectCard({ project, stepsLabel }: { project: PortfolioProject; steps
       {/* Maquette composée (cadre navigateur + téléphone sur fond pâle) : la carte
           n'ajoute qu'une bordure. */}
       {project.screenshot && (
-        <div className="overflow-hidden rounded-[1.375rem]" style={{ border: '1px solid var(--line)', marginBottom: '0.4rem' }}>
+        <div className="overflow-hidden rounded-[1.375rem]" style={{ marginBottom: '0.4rem' }}>
           <div className="relative" style={{ aspectRatio: '16 / 10' }}>
             <Image
               src={project.screenshot}

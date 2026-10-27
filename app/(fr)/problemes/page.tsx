@@ -78,8 +78,8 @@ export default function ProblemesPage() {
                       href={`/problemes/${p.slug}`}
                       className="group flex flex-col rounded"
                       style={{
-                        backgroundColor: 'var(--surface-2)',
-                        border: '1px solid var(--line)',
+                        backgroundColor: 'var(--surface)',
+                        borderRadius: 'var(--radius)', boxShadow: 'var(--ombre-carte)',
                         padding: 'clamp(0.9rem, 3vw, 1.3rem)',
                       }}
                     >

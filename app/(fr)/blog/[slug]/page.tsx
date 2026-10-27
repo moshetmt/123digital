@@ -145,9 +145,9 @@ export default async function BlogArticlePage({ params }: PageProps) {
           <div
             style={{
               marginTop: '4rem',
-              padding: '2.5rem',
-              backgroundColor: 'var(--brand-tint)',
-              border: '1px solid var(--brand-line)',
+              padding: 'clamp(1.25rem, 5vw, 2.5rem)',
+              borderRadius: 'var(--radius)',
+              backgroundColor: 'var(--surface-3)',
             }}
           >
             <p
@@ -161,9 +161,10 @@ export default async function BlogArticlePage({ params }: PageProps) {
             </p>
             <Link
               href="/audit-gratuit"
+              className="btn-rond"
               style={{
-                display: 'inline-block',
-                borderRadius: 'var(--radius)',
+                display: 'inline-flex', alignItems: 'center', gap: '0.5rem',
+                borderRadius: '9999px',
                 padding: '0.85rem 2rem',
                 backgroundColor: 'var(--brand)',
                 color: 'var(--on-brand)',

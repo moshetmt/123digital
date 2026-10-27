@@ -436,13 +436,13 @@ export function CTA({ lang = 'fr', compact = false }: { lang?: Locale; compact?:
                   transition={{ duration: 0.15, ease: EASE }}
                   onFocus={(e) => setBtnFocusVisible(e.currentTarget.matches(':focus-visible'))}
                   onBlur={() => setBtnFocusVisible(false)}
-                  className="w-full font-bold disabled:opacity-50"
+                  className="btn-rond w-full font-bold disabled:opacity-50"
                   style={{
                     backgroundColor: 'var(--brand)',
                     color: 'var(--on-brand)',
                     padding: '0.9rem',
                     border: 'none',
-                    borderRadius: 'var(--radius)',
+                    borderRadius: '9999px',
                     minHeight: '44px',
                     display: 'flex',
                     alignItems: 'center',

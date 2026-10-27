@@ -139,7 +139,6 @@ export function RenderSection({ section }: { section: BlogSection }) {
             padding: 'clamp(1rem, 4vw, 1.5rem)',
             borderRadius: 'var(--radius)',
             backgroundColor: 'var(--brand-tint)',
-            border: '1px solid var(--brand-line)',
           }}
         >
           <div

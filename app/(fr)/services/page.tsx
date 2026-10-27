@@ -226,7 +226,7 @@ export default function ServicesPage() {
                       <div className="flex gap-3 flex-wrap">
                         <Link
                           href={service.href}
-                          className="inline-flex items-center gap-2 transition-colors duration-200"
+                          className="btn-rond inline-flex items-center gap-2 transition-colors duration-200"
                           style={{
                             padding: '0.65rem 1.5rem',
                             borderRadius: 'var(--radius)',
@@ -242,7 +242,7 @@ export default function ServicesPage() {
                         </Link>
                         <Link
                           href="/audit-gratuit"
-                          className="inline-flex items-center gap-2 transition-colors duration-200 hover:border-[var(--brand)] hover:text-[var(--brand)]"
+                          className="btn-rond inline-flex items-center gap-2 transition-colors duration-200 hover:border-[var(--brand)] hover:text-[var(--brand)]"
                           style={{
                             borderRadius: 'var(--radius)', padding: '0.65rem 1.5rem',
                             border: '1px solid var(--line)',

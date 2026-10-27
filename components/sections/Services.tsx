@@ -4,24 +4,25 @@ import { ArrowRight } from 'lucide-react'
 import { getServices, type ServiceData } from '@/data/services'
 import { t, type Locale } from '@/lib/i18n'
 
+// 27/10 : textes courts pour les encarts bento (une phrase, mots-clés en pastilles).
 interface CardCopy { shortDesc: string; chips: string[] }
 
 const cardCopyFR: Record<string, CardCopy> = {
-  'seo':                      { shortDesc: 'Positionner votre entreprise en tête des résultats Google, là où vos clients cherchent.', chips: ['Google', 'Pages locales', 'Avis clients'] },
-  'publicite-en-ligne':       { shortDesc: 'Campagnes Google Ads et Meta Ads pilotées au retour sur investissement, pas au clic.', chips: ['Google Ads', 'Meta Ads', 'ROI mesuré'] },
-  'community-management':     { shortDesc: 'Vos réseaux sociaux gérés proprement pour bâtir une audience fidèle et locale.', chips: ['Instagram', 'Facebook', 'LinkedIn'] },
-  'creation-site-web':        { shortDesc: "Des sites rapides, clairs, pensés pour qu'on vous appelle, pas pour faire joli.", chips: ['Devis en ligne', "Mobile d'abord", 'Rapide'] },
-  'branding':                 { shortDesc: 'Logo, couleurs, supports : une image professionnelle et cohérente qui inspire confiance.', chips: ['Logo', 'Charte', 'Supports'] },
-  'automatisation-marketing': { shortDesc: 'Vos demandes de devis rangées, suivies et relancées automatiquement. Rien ne se perd.', chips: ['Suivi des leads', 'Relances', 'IA'] },
+  'seo':                      { shortDesc: "Vos clients vous trouvent en tête de Google.", chips: ['Google', 'Pages locales', 'Avis clients'] },
+  'publicite-en-ligne':       { shortDesc: "Chaque euro de pub se mesure en appels.", chips: ['Google Ads', 'Meta Ads', 'ROI mesuré'] },
+  'community-management':     { shortDesc: "Vos réseaux vivent chaque semaine.", chips: ['Instagram', 'Facebook', 'LinkedIn'] },
+  'creation-site-web':        { shortDesc: "Votre site fait sonner le téléphone.", chips: ['Devis en ligne', "Mobile d'abord", 'Rapide'] },
+  'branding':                 { shortDesc: "Votre image inspire confiance au premier regard.", chips: ['Logo', 'Charte', 'Supports'] },
+  'automatisation-marketing': { shortDesc: "Chaque demande est suivie et relancée.", chips: ['Suivi des leads', 'Relances', 'IA'] },
 }
 
 const cardCopyEN: Record<string, CardCopy> = {
-  'seo':                      { shortDesc: 'Rank your business at the top of Google results, right where your customers search.', chips: ['Google', 'Local pages', 'Reviews'] },
-  'publicite-en-ligne':       { shortDesc: 'Google Ads and Meta Ads campaigns steered by return on investment, not by clicks.', chips: ['Google Ads', 'Meta Ads', 'ROI tracked'] },
-  'community-management':     { shortDesc: 'Your social channels managed properly to build a loyal, local audience.', chips: ['Instagram', 'Facebook', 'LinkedIn'] },
-  'creation-site-web':        { shortDesc: 'Fast, clear websites built to make the phone ring, not just to look nice.', chips: ['Online quote', 'Mobile first', 'Fast'] },
-  'branding':                 { shortDesc: 'Logo, colours, materials: a professional, consistent image that builds trust.', chips: ['Logo', 'Guidelines', 'Materials'] },
-  'automatisation-marketing': { shortDesc: 'Your quote requests sorted, tracked and followed up automatically. Nothing gets lost.', chips: ['Lead tracking', 'Follow-ups', 'AI'] },
+  'seo':                      { shortDesc: "Customers find you at the top of Google.", chips: ['Google', 'Local pages', 'Reviews'] },
+  'publicite-en-ligne':       { shortDesc: "Every ad euro is measured in calls.", chips: ['Google Ads', 'Meta Ads', 'ROI tracked'] },
+  'community-management':     { shortDesc: "Your social channels stay alive every week.", chips: ['Instagram', 'Facebook', 'LinkedIn'] },
+  'creation-site-web':        { shortDesc: "Your website makes the phone ring.", chips: ['Online quote', 'Mobile first', 'Fast'] },
+  'branding':                 { shortDesc: "Your image earns trust at first glance.", chips: ['Logo', 'Guidelines', 'Materials'] },
+  'automatisation-marketing': { shortDesc: "Every request is tracked and followed up.", chips: ['Lead tracking', 'Follow-ups', 'AI'] },
 }
 
 // Ordre des 2 familles, dans l'ordre de la maquette
@@ -32,7 +33,7 @@ function ServiceCard({ service, copy, learnMoreLabel, learnMoreSuffix }: { servi
   return (
     <div
       className="rounded flex flex-col"
-      style={{ backgroundColor: 'var(--surface-2)', borderRadius: 'var(--radius)', padding: 'clamp(0.85rem, 3vw, 1.4rem)' }}
+      style={{ backgroundColor: 'var(--surface-2)', borderRadius: 'var(--radius)', padding: 'clamp(1rem, 3.5vw, 1.6rem)' }}
     >
       <div className="relative h-[120px] lg:h-[160px] w-full mb-2">
         <Image
@@ -43,15 +44,17 @@ function ServiceCard({ service, copy, learnMoreLabel, learnMoreSuffix }: { servi
           style={{ objectFit: 'contain', objectPosition: 'left center' }}
         />
       </div>
-      <h3 style={{ fontFamily: 'var(--font-sans)', fontWeight: 800, fontSize: 'clamp(0.92rem, 3.4vw, 1.05rem)', color: 'var(--ink)', marginBottom: '0.3rem', lineHeight: 1.2 }}>
+      <h3 style={{ fontFamily: 'var(--font-sans)', fontWeight: 800, fontSize: 'clamp(1.02rem, 3.9vw, 1.3rem)', color: 'var(--ink)', marginBottom: '0.35rem', lineHeight: 1.15, letterSpacing: '-0.01em' }}>
         {service.title}
       </h3>
-      <p style={{ fontSize: 'clamp(0.78rem, 2.6vw, 0.87rem)', color: 'var(--ink-2)', lineHeight: 1.45, marginBottom: '0.7rem', flex: 1 }}>
+      <p style={{ fontSize: 'clamp(0.85rem, 2.9vw, 0.98rem)', fontWeight: 500, color: 'var(--ink-2)', lineHeight: 1.35, marginBottom: '0.8rem', flex: 1 }}>
         {copy.shortDesc}
       </p>
-      <p style={{ color: 'var(--ink-2)', fontSize: '0.78rem', marginBottom: '0.7rem' }}>
-        {copy.chips.join(' · ')}
-      </p>
+      <ul className="flex flex-wrap" style={{ listStyle: 'none', padding: 0, margin: 0, gap: '0.3rem' }}>
+        {copy.chips.map((c) => (
+          <li key={c} style={{ fontSize: '0.72rem', fontWeight: 600, color: 'var(--brand-strong)', backgroundColor: 'var(--surface)', borderRadius: '9999px', padding: '0.2rem 0.6rem' }}>{c}</li>
+        ))}
+      </ul>
       <Link
         href={service.href}
         aria-label={`${learnMoreLabel} ${learnMoreSuffix} ${service.title}`}

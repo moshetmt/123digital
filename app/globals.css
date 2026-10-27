@@ -242,6 +242,11 @@
   :is(.btn-plein, .btn-contour, .btn-contour-inverse, .btn-rond):hover::after { transform: rotate(45deg); }
   :is(.btn-plein, .btn-contour, .btn-contour-inverse, .btn-rond) > svg:is(.lucide-arrow-right, .lucide-arrow-up-right, .lucide-chevron-right) { display: none; }
   .btn-sans-fleche::after { display: none; }
+  /* Téléphone : boutons resserrés pour tenir dans une carte en deux colonnes. */
+  @media (max-width: 480px) {
+    .btn-plein, .btn-contour, .btn-contour-inverse { padding: 0.5rem 0.95rem; font-size: 0.8rem; }
+    .btn-plein::after, .btn-contour::after, .btn-contour-inverse::after { width: 1.55rem; height: 1.55rem; margin-right: -0.6rem; }
+  }
 
   /* 25/10 : panneau de prise de rendez-vous (ReserverCreneau). Ordinateur : bloc sous le
      déclencheur, qui passe à la ligne dans une rangée flex. Téléphone : feuille en bas de

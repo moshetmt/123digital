@@ -154,7 +154,7 @@ export default function ServicesPage() {
                 <article
                   key={service.id}
                   className="group relative"
-                  style={{ backgroundColor: 'var(--surface-2)' }}
+                  style={{ backgroundColor: 'var(--surface)', borderRadius: 'var(--radius)', boxShadow: 'var(--ombre-carte)', overflow: 'hidden' }}
                 >
                   <div
                     className="grid gap-8 p-8 md:p-10"

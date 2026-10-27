@@ -211,7 +211,7 @@ export default async function BlogArticlePage({ params }: PageProps) {
                   key={a.slug}
                   href={`/blog/${a.slug}`}
                   className="group block p-6"
-                  style={{ backgroundColor: 'var(--surface-2)' }}
+                  style={{ backgroundColor: 'var(--surface)', borderRadius: 'var(--radius)', boxShadow: 'var(--ombre-carte)' }}
                 >
                   <div
                     style={{

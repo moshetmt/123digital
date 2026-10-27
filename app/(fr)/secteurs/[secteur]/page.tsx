@@ -44,7 +44,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 const CHIP =
   'inline-flex items-center min-h-[44px] px-4 rounded font-bold text-[0.85rem] transition-colors hover:border-[var(--brand)] hover:text-[var(--brand-strong)]'
-const CHIP_STYLE = { border: '1px solid var(--line)', backgroundColor: 'var(--surface-2)', color: 'var(--ink)' }
+const CHIP_STYLE = { backgroundColor: 'var(--surface-3)', color: 'var(--ink)', borderRadius: '9999px' }
 
 const SECTION_PAD = 'clamp(2.25rem, 6vw, 4.5rem) 1.5rem'
 

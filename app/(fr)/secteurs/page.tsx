@@ -115,7 +115,7 @@ export default function SecteursPage() {
                 <div
                   className="btn-contour group-hover:bg-[var(--surface-2)]"
                 >
-                  Voir la stratégie →
+                  Voir la stratégie
                 </div>
               </Link>
             ))}

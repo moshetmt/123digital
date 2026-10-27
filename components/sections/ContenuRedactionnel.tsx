@@ -171,8 +171,7 @@ export function RenderSection({ section }: { section: BlogSection }) {
             marginBottom: 'clamp(1rem, 3.5vw, 1.6rem)',
             padding: 'clamp(1.1rem, 4vw, 1.75rem)',
             borderRadius: 'var(--radius)',
-            border: '1px solid var(--line)',
-            backgroundColor: 'var(--surface-2)',
+            backgroundColor: 'var(--surface-3)',
           }}
         >
           {section.titre && (
@@ -187,9 +186,10 @@ export function RenderSection({ section }: { section: BlogSection }) {
           )}
           <Link
             href="/audit-gratuit"
+            className="btn-rond"
             style={{
-              display: 'inline-block',
-              borderRadius: 'var(--radius)',
+              display: 'inline-flex', alignItems: 'center', gap: '0.5rem',
+              borderRadius: '9999px',
               padding: '0.75rem 1.75rem',
               backgroundColor: 'var(--brand)',
               color: 'var(--on-brand)',

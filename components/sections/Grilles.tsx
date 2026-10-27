@@ -213,7 +213,7 @@ export function GrilleTarifs({ items, prefixeDelai = '' }: { items: Tarif[]; pre
         <div
           key={t.label}
           className="rounded flex flex-col"
-          style={{ backgroundColor: 'var(--surface-2)', border: '1px solid var(--line)', padding: 'clamp(1rem, 3.5vw, 1.5rem)' }}
+          style={{ backgroundColor: 'var(--surface-2)', borderRadius: 'var(--radius)', padding: 'clamp(1rem, 3.5vw, 1.5rem)' }}
         >
           <div style={{ fontSize: '0.68rem', letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--brand-strong)', fontWeight: 800, marginBottom: '0.5rem' }}>
             {t.label}

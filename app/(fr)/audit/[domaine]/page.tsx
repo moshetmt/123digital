@@ -145,7 +145,7 @@ export default async function AuditProspectPage({ params }: PageProps) {
 
             <div
               className="grid grid-cols-[88px_1fr] sm:grid-cols-[110px_1fr] gap-4 sm:gap-6 items-center rounded"
-              style={{ backgroundColor: 'var(--surface-2)', border: '1px solid var(--line)', padding: 'clamp(1rem, 3.5vw, 1.5rem)' }}
+              style={{ backgroundColor: 'var(--surface-2)', borderRadius: 'var(--radius)', padding: 'clamp(1rem, 3.5vw, 1.5rem)' }}
             >
               <Image
                 src="/images/maurice-timsit-portrait.jpg"

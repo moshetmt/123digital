@@ -78,7 +78,7 @@ export default function SecteursPage() {
                 key={secteur.slug}
                 href={`/secteurs/${secteur.slug}`}
                 className="group block rounded"
-                style={{ backgroundColor: 'var(--surface-2)', border: '1px solid var(--line)', padding: 'clamp(1.1rem, 3.5vw, 1.75rem)' }}
+                style={{ backgroundColor: 'var(--surface-2)', borderRadius: 'var(--radius)', padding: 'clamp(1.1rem, 3.5vw, 1.75rem)' }}
               >
                 <div className="flex items-start gap-4 mb-4">
                   <SecteurIcon name={secteur.icon} />

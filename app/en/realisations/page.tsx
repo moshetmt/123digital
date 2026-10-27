@@ -80,14 +80,14 @@ export default function CaseStudiesPage() {
                 <article
                   key={project.id}
                   className="flex flex-col rounded"
-                  style={{ backgroundColor: 'var(--surface-2)', border: '1px solid var(--line)', padding: '1.5rem', gap: '0.6rem' }}
+                  style={{ backgroundColor: 'var(--surface-2)', borderRadius: 'var(--radius)', padding: '1.5rem', gap: '0.6rem' }}
                 >
                   {/* The screenshot, set in a simplified browser frame: never a
                       raw capture (charte v2, section 6). */}
                   {project.screenshot && (
                     <div
-                      className="overflow-hidden rounded"
-                      style={{ border: '1px solid var(--line)', marginBottom: '0.4rem' }}
+                      className="overflow-hidden rounded-[1.375rem]"
+                      style={{ marginBottom: '0.4rem' }}
                     >
                       <div
                         style={{

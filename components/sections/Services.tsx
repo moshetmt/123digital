@@ -32,7 +32,7 @@ function ServiceCard({ service, copy, learnMoreLabel, learnMoreSuffix }: { servi
   return (
     <div
       className="rounded flex flex-col"
-      style={{ backgroundColor: 'var(--surface-2)', border: '1px solid var(--line)', padding: 'clamp(0.85rem, 3vw, 1.4rem)' }}
+      style={{ backgroundColor: 'var(--surface-2)', borderRadius: 'var(--radius)', padding: 'clamp(0.85rem, 3vw, 1.4rem)' }}
     >
       <div className="relative h-[120px] lg:h-[160px] w-full mb-2">
         <Image

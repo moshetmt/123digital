@@ -84,7 +84,7 @@ export default function PortfolioPage() {
                 <article
                   key={project.id}
                   className="flex flex-col rounded"
-                  style={{ backgroundColor: 'var(--surface-2)', border: '1px solid var(--line)', padding: '1.5rem', gap: '0.6rem' }}
+                  style={{ backgroundColor: 'var(--surface-2)', borderRadius: 'var(--radius)', padding: '1.5rem', gap: '0.6rem' }}
                 >
                   {/* Maquette composée (cadre navigateur + téléphone sur fond pâle) :
                       la carte n'ajoute qu'une bordure. */}
@@ -92,8 +92,8 @@ export default function PortfolioPage() {
                     <Link
                       href={`/realisations/${project.id}`}
                       aria-label={`Lire l'étude de cas ${project.title}`}
-                      className="block overflow-hidden rounded"
-                      style={{ border: '1px solid var(--line)', marginBottom: '0.4rem' }}
+                      className="block overflow-hidden rounded-[1.375rem]"
+                      style={{ marginBottom: '0.4rem' }}
                     >
                       <div className="relative" style={{ aspectRatio: '16 / 10' }}>
                         <Image

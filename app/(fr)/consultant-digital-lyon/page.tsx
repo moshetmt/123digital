@@ -114,7 +114,7 @@ export default function ConsultantDigitalLyonPage() {
               <div
                 key={item.num}
                 className="rounded p-7"
-                style={{ backgroundColor: 'var(--surface-2)', border: '1px solid var(--line)' }}
+                style={{ backgroundColor: 'var(--surface-2)', borderRadius: 'var(--radius)' }}
               >
                 <div className="text-xs font-bold mb-4" style={{ color: 'var(--ink-3)', letterSpacing: '0.1em' }}>{item.num}</div>
                 <h3 className="font-display font-extrabold text-base mb-3" style={{ color: 'var(--ink)', letterSpacing: '-0.01em' }}>{item.title}</h3>
@@ -183,7 +183,7 @@ export default function ConsultantDigitalLyonPage() {
                 key={s.href}
                 href={s.href}
                 className="group flex flex-col rounded p-6 transition-opacity duration-300 hover:opacity-90"
-                style={{ backgroundColor: 'var(--surface-2)', border: '1px solid var(--line)' }}
+                style={{ backgroundColor: 'var(--surface-2)', borderRadius: 'var(--radius)' }}
               >
                 <h3
                   className="font-display font-extrabold text-base mb-2 group-hover:text-[var(--ink)] transition-colors"
@@ -231,7 +231,7 @@ export default function ConsultantDigitalLyonPage() {
               <div
                 key={q}
                 className="rounded p-6"
-                style={{ backgroundColor: 'var(--surface-2)', border: '1px solid var(--line)' }}
+                style={{ backgroundColor: 'var(--surface-2)', borderRadius: 'var(--radius)' }}
               >
                 <h3 className="font-display font-extrabold text-base mb-3" style={{ color: 'var(--ink)', letterSpacing: '-0.01em' }}>{q}</h3>
                 <p className="text-sm leading-relaxed" style={{ color: 'var(--ink-2)' }}>{a}</p>

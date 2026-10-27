@@ -34,7 +34,7 @@ export function Problemes() {
               <Link
                 href={`/problemes/${p.slug}`}
                 className="group flex items-center justify-between gap-3 rounded"
-                style={{ backgroundColor: 'var(--surface)', border: '1px solid var(--line)', padding: '0.8rem 1rem', minHeight: 56 }}
+                style={{ backgroundColor: 'var(--surface)', border: '1px solid var(--line)', borderRadius: 'var(--radius)', padding: '0.8rem 1rem', minHeight: 56 }}
               >
                 <span>
                   <span style={{ display: 'block', fontSize: '0.62rem', letterSpacing: '0.1em', textTransform: 'uppercase', color: 'var(--ink-3)', fontWeight: 800, marginBottom: '0.15rem' }}>

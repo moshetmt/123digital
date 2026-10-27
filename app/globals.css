@@ -34,9 +34,9 @@
   --font-display: var(--font-sans);
   --font-serif:   var(--font-sans);
   --font-mono: ui-monospace, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
-  /* 07/10 : l'operateur trouvait le site trop « brique » a 4 px. Deux rayons :
-     --radius (12 px) pour les cartes, images et cadres, --radius-sm (8 px) pour
-     les boutons, champs et chips. Les paliers lg a 3xl valent --radius. */
+  /* 27/10 : --radius (32 px) pour les cartes, images et cadres (encarts bento doux, choix C
+     de Moshe sur references Dribbble), --radius-sm (8 px) pour les champs. Boutons en
+     pilule (.btn-*). Les paliers lg a 3xl valent --radius. */
   --radius-sm: var(--radius-ctrl);
   --radius-md: var(--radius-ctrl);
   --radius-lg: var(--radius);
@@ -153,7 +153,7 @@
   /* Anneau de focus : 600 à 100 % sur fond clair, décalé de 2 px. Sur le pied
      de page (fond 950) il repasse en 400, règle ciblée plus bas. */
   --ring:        var(--g-600);
-  --radius:      0.75rem;
+  --radius:      2rem; /* 27/10 : encarts « bento doux » 32 px, choix C de Moshe (references Dribbble) */
   --radius-ctrl: 0.5rem;
 
   --chart-1: var(--g-600);

@@ -214,7 +214,7 @@ export default async function ProblemePage({ params }: PageProps) {
                   key={p.slug}
                   href={`/problemes/${p.slug}`}
                   className="group block rounded p-6"
-                  style={{ backgroundColor: 'var(--surface-2)', border: '1px solid var(--line)' }}
+                  style={{ backgroundColor: 'var(--surface-2)', borderRadius: 'var(--radius)' }}
                 >
                   <div
                     style={{

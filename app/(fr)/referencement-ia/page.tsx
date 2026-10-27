@@ -225,7 +225,7 @@ export default function ReferencementIaPage() {
               <div
                 key={q}
                 className="rounded p-6"
-                style={{ backgroundColor: 'var(--surface-2)', border: '1px solid var(--line)' }}
+                style={{ backgroundColor: 'var(--surface-2)', borderRadius: 'var(--radius)' }}
               >
                 <h3 className="font-display font-extrabold text-base mb-3" style={{ color: 'var(--ink)', letterSpacing: '-0.01em' }}>{q}</h3>
                 <p className="text-sm leading-relaxed" style={{ color: 'var(--ink-2)' }}>{a}</p>

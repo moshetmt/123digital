@@ -12,12 +12,12 @@ function ProjectCard({ project, stepsLabel }: { project: PortfolioProject; steps
   return (
     <article
       className="flex flex-col rounded shrink-0 snap-start sm:shrink"
-      style={{ backgroundColor: 'var(--surface-2)', border: '1px solid var(--line)', padding: 'clamp(1rem, 3.5vw, 1.5rem)', gap: '0.45rem', width: 'min(82vw, 100%)' }}
+      style={{ backgroundColor: 'var(--surface-2)', borderRadius: 'var(--radius)', padding: 'clamp(1rem, 3.5vw, 1.5rem)', gap: '0.45rem', width: 'min(82vw, 100%)' }}
     >
       {/* Maquette composée (cadre navigateur + téléphone sur fond pâle) : la carte
           n'ajoute qu'une bordure. */}
       {project.screenshot && (
-        <div className="overflow-hidden rounded" style={{ border: '1px solid var(--line)', marginBottom: '0.4rem' }}>
+        <div className="overflow-hidden rounded-[1.375rem]" style={{ border: '1px solid var(--line)', marginBottom: '0.4rem' }}>
           <div className="relative" style={{ aspectRatio: '16 / 10' }}>
             <Image
               src={project.screenshot}

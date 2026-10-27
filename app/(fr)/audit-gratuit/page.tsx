@@ -181,7 +181,7 @@ export default function AuditGratuitPage() {
               <div
                 key={bloc.titre}
                 className="rounded"
-                style={{ backgroundColor: 'var(--surface-2)', border: '1px solid var(--line)', padding: 'clamp(1rem, 3vw, 1.6rem)' }}
+                style={{ backgroundColor: 'var(--surface-2)', borderRadius: 'var(--radius)', padding: 'clamp(1rem, 3vw, 1.6rem)' }}
               >
                 <h3
                   className="font-display font-extrabold mb-4"
@@ -273,7 +273,7 @@ export default function AuditGratuitPage() {
               <div
                 key={etape.num}
                 className="rounded"
-                style={{ backgroundColor: 'var(--surface-2)', border: '1px solid var(--line)', padding: 'clamp(1rem, 3vw, 1.6rem)' }}
+                style={{ backgroundColor: 'var(--surface-2)', borderRadius: 'var(--radius)', padding: 'clamp(1rem, 3vw, 1.6rem)' }}
               >
                 <div
                   style={{

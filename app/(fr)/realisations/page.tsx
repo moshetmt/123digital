@@ -128,7 +128,7 @@ export default function PortfolioPage() {
                         href={project.url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1.5 rounded-md text-sm font-bold"
+                        className="inline-flex items-center gap-1.5 btn-rond rounded-full text-sm font-bold"
                         style={{ color: 'var(--brand-strong)', border: '1px solid var(--brand-strong)', padding: '0.5rem 0.9rem' }}
                       >
                         {domain} <ArrowUpRight size={14} aria-hidden />
@@ -136,7 +136,7 @@ export default function PortfolioPage() {
                     ) : <span />}
                     <Link
                       href={`/realisations/${project.id}`}
-                      className="inline-flex items-center gap-1.5 rounded-md text-sm font-bold"
+                      className="inline-flex items-center gap-1.5 btn-rond rounded-full text-sm font-bold"
                       style={{ color: 'var(--on-brand)', backgroundColor: 'var(--brand)', padding: '0.5rem 0.9rem' }}
                     >
                       Lire l&apos;étude de cas <ArrowRight size={14} aria-hidden />

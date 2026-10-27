@@ -217,7 +217,7 @@
      .btn-plein = action principale, .btn-contour = secondaire, .btn-contour-inverse = sur fond vert. */
   .btn-plein, .btn-contour, .btn-contour-inverse {
     display: inline-flex; align-items: center; gap: 0.4rem; width: fit-content;
-    border-radius: var(--radius-ctrl); padding: 0.55rem 1rem;
+    border-radius: 9999px; padding: 0.6rem 1.15rem;
     font-weight: 700; font-size: 0.85rem; line-height: 1.2; text-decoration: none; white-space: nowrap;
     border: 1px solid var(--brand); transition: background-color 0.15s, color 0.15s;
   }
@@ -227,6 +227,21 @@
   .btn-contour:hover { background-color: var(--surface-2); }
   .btn-contour-inverse { color: var(--on-brand); border-color: color-mix(in oklch, var(--on-brand) 70%, transparent); background-color: transparent; }
   .btn-contour-inverse:hover { background-color: color-mix(in oklch, var(--on-brand) 12%, transparent); }
+
+  /* 27/10 (choix A de Moshe, references Pinterest « pill button », « Get started ↗ ») : tout
+     bouton d'action est une pilule terminee par un rond de la couleur du texte, fleche
+     evidee (le masque laisse voir le fond du bouton). La fleche d'origine en fin de bouton
+     est masquee pour ne pas la doubler. .btn-sans-fleche pour les choix (creneaux). */
+  .btn-plein::after, .btn-contour::after, .btn-contour-inverse::after, .btn-rond::after {
+    content: ''; flex: none; width: 1.75rem; height: 1.75rem; margin: -0.35rem -0.7rem -0.35rem 0.25rem;
+    border-radius: 9999px; background-color: currentColor;
+    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M7 17 17 7M8 7h9v9'/%3E%3C/svg%3E") center / 0.95rem no-repeat, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor; mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M7 17 17 7M8 7h9v9'/%3E%3C/svg%3E") center / 0.95rem no-repeat exclude, linear-gradient(#000 0 0);
+    transition: transform 0.2s;
+  }
+  :is(.btn-plein, .btn-contour, .btn-contour-inverse, .btn-rond):hover::after { transform: rotate(45deg); }
+  :is(.btn-plein, .btn-contour, .btn-contour-inverse, .btn-rond) > svg:last-child:not(:first-child) { display: none; }
+  .btn-sans-fleche::after { display: none; }
 
   /* 25/10 : panneau de prise de rendez-vous (ReserverCreneau). Ordinateur : bloc sous le
      déclencheur, qui passe à la ligne dans une rangée flex. Téléphone : feuille en bas de
@@ -333,3 +348,6 @@
   from { transform: scaleX(0); }
   to { transform: scaleX(1); }
 }
+
+/* Emoji (drapeaux, pastilles) : Apple sur iPhone et Mac, Noto Color Emoji ailleurs (Windows n'a pas de drapeaux). */
+.emoji { font-family: 'Apple Color Emoji', 'Noto Color Emoji', 'Segoe UI Emoji', sans-serif; font-style: normal; line-height: 1; }

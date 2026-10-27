@@ -58,16 +58,16 @@ export function CvPage({ locale }: { locale: CvLocale }) {
   const [metier] = identity.role.split(' · ')
   const pastilles = locale === 'fr'
     ? [
-        { label: 'Création de site', href: '/services/creation-site-web' },
-        { label: 'Référencement', href: '/services/seo' },
-        { label: 'Google Ads', href: '/services/publicite-en-ligne' },
-        { label: 'IA & automatisation', href: '/consultant-ia-lyon' },
+        { emoji: '💻', label: 'Création de site', href: '/services/creation-site-web' },
+        { emoji: '🔎', label: 'Référencement', href: '/services/seo' },
+        { emoji: '📈', label: 'Google Ads', href: '/services/publicite-en-ligne' },
+        { emoji: '🤖', label: 'IA & automatisation', href: '/consultant-ia-lyon' },
       ]
     : [
-        { label: 'Websites', href: '/services/creation-site-web' },
-        { label: 'Google SEO', href: '/services/seo' },
-        { label: 'Google Ads', href: '/services/publicite-en-ligne' },
-        { label: 'AI automation', href: '/consultant-ia-lyon' },
+        { emoji: '💻', label: 'Websites', href: '/services/creation-site-web' },
+        { emoji: '🔎', label: 'Google SEO', href: '/services/seo' },
+        { emoji: '📈', label: 'Google Ads', href: '/services/publicite-en-ligne' },
+        { emoji: '🤖', label: 'AI automation', href: '/consultant-ia-lyon' },
       ]
 
   const avis = { titre: locale === 'fr' ? 'Avis Google' : 'Google reviews', valeur: AVIS_GOOGLE.note, unite: locale === 'fr' ? `${AVIS_GOOGLE.nombre} avis` : `${AVIS_GOOGLE.nombre} reviews`, href: c.proofs.reviewsHref }
@@ -94,12 +94,20 @@ export function CvPage({ locale }: { locale: CvLocale }) {
 
   return (
     <div style={{ backgroundColor: C.fond, color: C.texte, minHeight: '100vh' }}>
+      {/* Sous-ensemble de Noto Color Emoji (7 emoji, quelques Ko) pour les drapeaux sur Windows. */}
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Color+Emoji&text=%F0%9F%92%BB%F0%9F%94%8E%F0%9F%93%88%F0%9F%A4%96%F0%9F%87%AB%F0%9F%87%B7%F0%9F%87%AC%F0%9F%87%A7%F0%9F%87%AE%F0%9F%87%B1&display=swap" precedence="default" />
       <div
         className="mx-auto"
         style={{ maxWidth: '38rem', padding: '0 clamp(1rem, 5vw, 2rem)' }}
       >
         {/* Colonne de gauche */}
-        <header style={{ paddingTop: 'clamp(1.25rem, 5vh, 3.5rem)', paddingBottom: 'clamp(1.5rem, 5vh, 3.5rem)' }}>
+        <header style={{ paddingTop: 'clamp(1rem, 3vh, 2rem)', paddingBottom: 'clamp(1.5rem, 5vh, 3.5rem)' }}>
+          {/* Logo 123digital en tete de page (demande de Moshe du 27/10). */}
+          <div className="flex justify-center" style={{ marginBottom: 'clamp(1rem, 3vh, 1.5rem)' }}>
+            <Link href={c.nav.backHref} aria-label={c.nav.backToSite} className="transition-opacity hover:opacity-80">
+              <Image src="/images/logo-nuit.svg" alt="123digital" width={273} height={56} unoptimized priority style={{ width: 150, height: 'auto' }} />
+            </Link>
+          </div>
           <div>
             {/* En-tete de profil, calque sur la maquette « Isabella Castillo » envoyee
                 par Moshe le 26/10 : photo ronde, nom, metier, pastilles, deux chiffres. */}
@@ -132,6 +140,7 @@ export function CvPage({ locale }: { locale: CvLocale }) {
                             className="inline-flex items-center gap-1 whitespace-nowrap transition-[transform,background-color] duration-150 hover:bg-[rgba(111,183,145,0.25)] active:scale-90 active:bg-[rgba(111,183,145,0.4)]"
                             style={{ fontSize: '0.84rem', fontWeight: 600, color: C.titre, backgroundColor: 'rgba(205, 230, 216, 0.1)', border: `1px solid ${C.filet}`, borderRadius: '9999px', padding: '0.4rem 0.65rem 0.4rem 0.9rem' }}
                           >
+                            <span aria-hidden className="emoji">{p.emoji}</span>
                             {p.label}
                             <ArrowUpRight size={14} aria-hidden style={{ color: C.accent }} />
                           </Link>
@@ -296,7 +305,7 @@ export function CvPage({ locale }: { locale: CvLocale }) {
             <div className="flex flex-wrap" style={{ gap: '0.75rem', marginTop: '1.5rem' }}>
               <a
                 href={`mailto:${identity.email}`}
-                className="inline-flex items-center gap-2 rounded font-bold transition-[filter] hover:brightness-110"
+                className="inline-flex items-center gap-2 btn-rond rounded-full font-bold transition-[filter] hover:brightness-110"
                 style={{ backgroundColor: C.bouton, color: '#FFFFFF', padding: '0.8rem 1.35rem', fontSize: '0.92rem' }}
               >
                 <Mail size={16} aria-hidden /> {c.contact.emailCta}
@@ -305,7 +314,7 @@ export function CvPage({ locale }: { locale: CvLocale }) {
                 href={identity.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded font-bold transition-colors hover:bg-[rgba(205,230,216,0.06)]"
+                className="inline-flex items-center gap-2 btn-rond rounded-full font-bold transition-colors hover:bg-[rgba(205,230,216,0.06)]"
                 style={{ border: `1px solid rgba(205, 230, 216, 0.35)`, color: C.titre, padding: '0.75rem 1.25rem', fontSize: '0.92rem' }}
               >
                 <LinkedinGlyph /> {c.contact.linkedinCta}
@@ -313,7 +322,7 @@ export function CvPage({ locale }: { locale: CvLocale }) {
               <a
                 href={identity.cvFile}
                 download
-                className="inline-flex items-center gap-2 rounded font-bold transition-colors hover:bg-[rgba(205,230,216,0.06)]"
+                className="inline-flex items-center gap-2 btn-rond rounded-full font-bold transition-colors hover:bg-[rgba(205,230,216,0.06)]"
                 style={{ border: `1px solid rgba(205, 230, 216, 0.35)`, color: C.titre, padding: '0.75rem 1.25rem', fontSize: '0.92rem' }}
               >
                 <Download size={16} aria-hidden /> {c.contact.pdfCta}

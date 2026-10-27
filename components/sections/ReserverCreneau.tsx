@@ -201,7 +201,7 @@ export function ReserverCreneau({ children, className, style }: Props) {
                     role="radio"
                     aria-checked={choix === c.iso}
                     onClick={() => setChoix(c.iso)}
-                    className={choix === c.iso ? 'btn-plein' : 'btn-contour'}
+                    className={`${choix === c.iso ? 'btn-plein' : 'btn-contour'} btn-sans-fleche`}
                     style={{ width: '100%', minHeight: 44, justifyContent: 'center', whiteSpace: 'normal', textAlign: 'center', fontSize: '0.9rem' }}
                   >
                     {c.libelle}

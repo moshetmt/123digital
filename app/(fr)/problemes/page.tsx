@@ -106,7 +106,7 @@ export default function ProblemesPage() {
                       >
                         <span>{p.tempsLecture} min de lecture</span>
                         <span className="btn-contour group-hover:bg-[var(--surface-2)]">
-                          Lire →
+                          Lire
                         </span>
                       </div>
                     </Link>

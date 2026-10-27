@@ -183,18 +183,18 @@ export function Header({ lang = 'fr' }: { lang?: Locale }) {
           {/* Selecteur de langue segmente : la langue courante est marquee,
               l'autre est cliquable. */}
           <div
-            className="inline-flex items-center rounded p-0.5"
+            className="inline-flex items-center rounded-full p-0.5"
             style={{ backgroundColor: 'var(--surface-3)' }}
           >
             <span
-              className="rounded px-2.5 py-1 text-xs font-extrabold leading-none"
+              className="rounded-full px-2.5 py-1 text-xs font-extrabold leading-none"
               style={{ backgroundColor: 'var(--ink)', color: 'var(--on-brand)' }}
             >
               {lang.toUpperCase()}
             </span>
             <Link
               href={d.langHref}
-              className="rounded px-2.5 py-1 text-xs font-extrabold leading-none transition-colors"
+              className="rounded-full px-2.5 py-1 text-xs font-extrabold leading-none transition-colors"
               style={{ color: INK_DIM }}
             >
               {d.lang}
@@ -202,7 +202,7 @@ export function Header({ lang = 'fr' }: { lang?: Locale }) {
           </div>
           <a
             href={PHONE_TEL}
-            className="inline-flex items-center gap-2 rounded font-bold text-sm transition duration-150 active:scale-[0.97] whitespace-nowrap"
+            className="inline-flex items-center gap-2 rounded-full font-bold text-sm transition duration-150 active:scale-[0.97] whitespace-nowrap"
             style={{ backgroundColor: 'var(--brand)', color: 'var(--on-brand)', padding: '0.55rem 1.15rem' }}
           >
             <Phone size={14} aria-hidden />
@@ -216,7 +216,7 @@ export function Header({ lang = 'fr' }: { lang?: Locale }) {
         <div className="lg:hidden flex items-center gap-2 shrink-0">
           <a
             href={PHONE_TEL}
-            className="inline-flex items-center justify-center gap-1.5 rounded px-3 font-bold whitespace-nowrap transition duration-150 active:scale-[0.97]"
+            className="inline-flex items-center justify-center gap-1.5 rounded-full px-3 font-bold whitespace-nowrap transition duration-150 active:scale-[0.97]"
             style={{
               backgroundColor: 'var(--brand)',
               color: 'var(--on-brand)',
@@ -314,7 +314,7 @@ export function Header({ lang = 'fr' }: { lang?: Locale }) {
                 <a
                   href={PHONE_TEL}
                   onClick={() => setMobileOpen(false)}
-                  className="flex items-center justify-center gap-2 w-full rounded font-bold text-sm transition duration-150 active:scale-[0.97]"
+                  className="flex items-center justify-center gap-2 w-full rounded-full font-bold text-sm transition duration-150 active:scale-[0.97]"
                   style={{ backgroundColor: 'var(--brand)', color: 'var(--on-brand)', padding: '0.75rem' }}
                 >
                   <Phone size={15} aria-hidden />

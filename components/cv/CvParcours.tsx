@@ -11,6 +11,10 @@ const ICONES: [RegExp, LucideIcon][] = [
   [/easybazar/i, ShoppingBag],
   [/softysoft/i, Megaphone],
 ]
+// Drapeaux des langues (demande de Moshe du 27/10) : emoji Apple sur iPhone et Mac,
+// police Noto Color Emoji ailleurs (classe .emoji dans globals.css).
+const DRAPEAUX: Record<string, string> = { Français: '🇫🇷', French: '🇫🇷', Anglais: '🇬🇧', English: '🇬🇧', Hébreu: '🇮🇱', Hebrew: '🇮🇱' }
+
 const icone = (org: string) => ICONES.find(([r]) => r.test(org))?.[1] ?? Briefcase
 
 /**
@@ -85,6 +89,7 @@ export function CvParcours({ c, sep }: { c: CvContent; sep: string }) {
         </span>
         {c.education.languages.map((l) => (
           <span key={l.name} style={{ fontSize: '0.82rem', fontWeight: 600, color: C.titre, backgroundColor: 'rgba(205,230,216,0.08)', border: `1px solid ${C.filet}`, borderRadius: '9999px', padding: '0.3rem 0.75rem' }}>
+            <span aria-hidden className="emoji" style={{ marginRight: '0.35rem' }}>{DRAPEAUX[l.name]}</span>
             {l.name} <span style={{ color: C.accent }}>{l.level}</span>
           </span>
         ))}

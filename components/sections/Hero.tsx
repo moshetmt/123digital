@@ -92,7 +92,7 @@ export function Hero({ lang = 'fr' }: { lang?: Locale }) {
           <div className="flex flex-wrap items-center justify-center gap-3 mb-4">
             <a
               href={PHONE_TEL}
-              className="inline-flex items-center gap-2 rounded font-bold whitespace-nowrap px-5 py-3 text-[0.92rem] transition duration-150 active:scale-[0.97]"
+              className="inline-flex items-center gap-2 btn-rond rounded-full font-bold whitespace-nowrap px-5 py-3 text-[0.92rem] transition duration-150 active:scale-[0.97]"
               style={{ backgroundColor: 'var(--on-brand)', color: 'var(--brand-deep)' }}
             >
               <Phone size={15} aria-hidden />
@@ -101,7 +101,7 @@ export function Hero({ lang = 'fr' }: { lang?: Locale }) {
             </a>
             <Link
               href="#contact"
-              className="inline-flex items-center gap-2 rounded font-bold whitespace-nowrap px-5 py-3 text-[0.92rem] transition duration-150 active:scale-[0.97]"
+              className="inline-flex items-center gap-2 btn-rond rounded-full font-bold whitespace-nowrap px-5 py-3 text-[0.92rem] transition duration-150 active:scale-[0.97]"
               style={{ border: '1px solid oklch(0.985 0.003 150 / 55%)', color: 'var(--on-brand)' }}
             >
               <span className="sm:hidden">{d.ctaQuoteShort}</span>

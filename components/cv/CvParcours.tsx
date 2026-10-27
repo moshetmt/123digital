@@ -1,7 +1,17 @@
-import { Plus } from 'lucide-react'
+import { Briefcase, Megaphone, Plane, Plus, ShoppingBag, TrendingUp, Users, type LucideIcon } from 'lucide-react'
 import type { CvContent } from '@/data/cv'
 
 const C = { titre: '#F2F7F4', texte: '#C9D6CE', discret: '#8FA497', accent: '#6FB791', filet: 'rgba(205, 230, 216, 0.14)', carte: '#1A211C' }
+
+// Une icone par experience, reconnue au nom de l'entreprise (demande de Moshe du 27/10).
+const ICONES: [RegExp, LucideIcon][] = [
+  [/123/i, TrendingUp],
+  [/chabad|habad/i, Users],
+  [/mission|international/i, Plane],
+  [/easybazar/i, ShoppingBag],
+  [/softysoft/i, Megaphone],
+]
+const icone = (org: string) => ICONES.find(([r]) => r.test(org))?.[1] ?? Briefcase
 
 /**
  * Parcours de /portfolio en frise repliable (choix de Moshe du 27/10) : un
@@ -12,15 +22,19 @@ const C = { titre: '#F2F7F4', texte: '#C9D6CE', discret: '#8FA497', accent: '#6F
 export function CvParcours({ c, sep }: { c: CvContent; sep: string }) {
   return (
     <>
-      <ol className="relative flex flex-col" style={{ listStyle: 'none', padding: '0 0 0 1.4rem', margin: 0, gap: '0.7rem' }}>
-        <span aria-hidden className="absolute" style={{ left: '0.35rem', top: '1.4rem', bottom: '1.4rem', width: '2px', backgroundColor: C.filet }} />
-        {c.experience.items.map((item, i) => (
+      <ol className="relative flex flex-col" style={{ listStyle: 'none', padding: '0 0 0 2.9rem', margin: 0, gap: '0.7rem' }}>
+        <span aria-hidden className="absolute" style={{ left: '1.05rem', top: '1.4rem', bottom: '1.4rem', width: '2px', backgroundColor: C.filet }} />
+        {c.experience.items.map((item, i) => {
+          const Icone = icone(item.org)
+          return (
           <li key={item.role + item.org} className="relative">
             <span
               aria-hidden
-              className="absolute rounded-full"
-              style={{ left: '-1.4rem', top: '1.2rem', width: '0.85rem', height: '0.85rem', backgroundColor: i === 0 ? C.accent : '#131814', border: `2px solid ${i === 0 ? C.accent : 'rgba(205,230,216,0.4)'}` }}
-            />
+              className="absolute flex items-center justify-center rounded-full"
+              style={{ left: '-2.9rem', top: '0.9rem', width: '2.15rem', height: '2.15rem', backgroundColor: i === 0 ? '#00713D' : '#131814', border: `2px solid ${i === 0 ? C.accent : 'rgba(205,230,216,0.3)'}`, color: i === 0 ? '#FFFFFF' : C.accent }}
+            >
+              <Icone size={15} />
+            </span>
             <details className="group" style={{ backgroundColor: C.carte, borderRadius: '1.4rem', border: `1px solid ${C.filet}` }} open={i === 0}>
               <summary className="flex cursor-pointer list-none items-start justify-between gap-3 [&::-webkit-details-marker]:hidden" style={{ padding: '1rem 1.1rem' }}>
                 <span className="min-w-0">
@@ -48,7 +62,8 @@ export function CvParcours({ c, sep }: { c: CvContent; sep: string }) {
               </div>
             </details>
           </li>
-        ))}
+          )
+        })}
       </ol>
 
       <h3 style={{ fontSize: '0.74rem', fontWeight: 800, letterSpacing: '0.1em', textTransform: 'uppercase', color: C.titre, marginTop: '2.25rem' }}>

@@ -211,11 +211,11 @@ export default async function SecteurPage({ params }: PageProps) {
       </section>
 
       {/* Deux panneaux qui se répondent */}
-      <section className="bg-background" style={{ padding: '0 1.5rem clamp(2.25rem, 6vw, 4.5rem)' }}>
+      <section className="bg-background" style={{ backgroundColor: 'var(--surface-3)',  padding: '0 1.5rem clamp(2.25rem, 6vw, 4.5rem)' }}>
         <div className="mx-auto max-w-5xl grid grid-cols-1 md:grid-cols-2 gap-4">
           <div
             className="rounded"
-            style={{ backgroundColor: 'var(--surface-2)', borderRadius: 'var(--radius)', padding: 'clamp(1.25rem, 4vw, 2rem)' }}
+            style={{ backgroundColor: 'var(--surface)', borderRadius: 'var(--radius)', boxShadow: 'var(--ombre-carte)', padding: 'clamp(1.25rem, 4vw, 2rem)' }}
           >
             <h2 style={{ ...EYEBROW, color: 'var(--ink-2)' }}>Ce que vous vivez</h2>
             <Points items={secteur.problemes} icone="x" couleur="var(--ink-3)" texte="var(--ink-2)" />

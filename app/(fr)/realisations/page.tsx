@@ -65,7 +65,7 @@ export default function PortfolioPage() {
       {/* Cas clients — les 3 seuls cas vérifiables, data/portfolio.ts */}
       <section
         id="realisations-cas"
-        className="bg-background"
+        className="bg-[var(--surface-3)]"
         style={{ padding: 'clamp(2.5rem, 6vw, 4.5rem) 1.5rem' }}
       >
         <div className="mx-auto max-w-6xl">
@@ -84,7 +84,7 @@ export default function PortfolioPage() {
                 <article
                   key={project.id}
                   className="flex flex-col rounded"
-                  style={{ backgroundColor: 'var(--surface-2)', borderRadius: 'var(--radius)', padding: '1.5rem', gap: '0.6rem' }}
+                  style={{ backgroundColor: 'var(--surface)', borderRadius: 'var(--radius)', boxShadow: 'var(--ombre-carte)', padding: '1.5rem', gap: '0.6rem' }}
                 >
                   {/* Maquette composée (cadre navigateur + téléphone sur fond pâle) :
                       la carte n'ajoute qu'une bordure. */}

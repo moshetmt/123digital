@@ -218,7 +218,7 @@ export default function ConsultantSeoBourgEnBressePage() {
         </div>
       </section>
 
-      <section className="bg-background" style={{ padding: '0 1.5rem 8rem' }}>
+      <section className="bg-background" style={{ backgroundColor: 'var(--surface-3)',  padding: '0 1.5rem 8rem' }}>
         <div className="mx-auto max-w-3xl">
           <h2 className="font-display font-extrabold mb-10" style={h2Style}>
             Questions fréquentes
@@ -228,7 +228,7 @@ export default function ConsultantSeoBourgEnBressePage() {
               <div
                 key={q}
                 className="rounded p-6"
-                style={{ backgroundColor: 'var(--surface-2)', borderRadius: 'var(--radius)' }}
+                style={{ backgroundColor: 'var(--surface)', borderRadius: 'var(--radius)', boxShadow: 'var(--ombre-carte)' }}
               >
                 <h3 className="font-display font-extrabold text-base mb-3" style={{ color: 'var(--ink)', letterSpacing: '-0.01em' }}>{q}</h3>
                 <p className="text-sm leading-relaxed" style={{ color: 'var(--ink-2)' }}>{a}</p>

@@ -24,7 +24,7 @@ function StepCard({ step, index, lang }: { step: Step; index: number; lang: 'fr'
   return (
     <div
       className="rounded"
-      style={{ backgroundColor: 'var(--surface-2)', borderRadius: 'var(--radius)', padding: 'clamp(0.8rem, 3vw, 1.25rem)' }}
+      style={{ backgroundColor: 'var(--surface)', borderRadius: 'var(--radius)', boxShadow: 'var(--ombre-carte)', padding: 'clamp(0.8rem, 3vw, 1.25rem)' }}
     >
       <div className="relative h-[110px] lg:h-[150px] w-full mb-2">
         <Image

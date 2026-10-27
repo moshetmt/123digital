@@ -192,7 +192,7 @@ export default async function ProblemePage({ params }: PageProps) {
       {/* Autres problèmes */}
       {autres.length > 0 && (
         <section
-          className="bg-background"
+          className="bg-[var(--surface-3)]"
           style={{ padding: 'clamp(2rem, 5vw, 3.5rem) 1.5rem clamp(2.25rem, 6vw, 4rem)', borderTop: '1px solid var(--line)' }}
         >
           <div className="mx-auto max-w-5xl">
@@ -214,7 +214,7 @@ export default async function ProblemePage({ params }: PageProps) {
                   key={p.slug}
                   href={`/problemes/${p.slug}`}
                   className="group block rounded p-6"
-                  style={{ backgroundColor: 'var(--surface-2)', borderRadius: 'var(--radius)' }}
+                  style={{ backgroundColor: 'var(--surface)', borderRadius: 'var(--radius)', boxShadow: 'var(--ombre-carte)' }}
                 >
                   <div
                     style={{

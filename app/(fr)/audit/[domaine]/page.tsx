@@ -71,7 +71,7 @@ export default async function AuditProspectPage({ params }: PageProps) {
         }
       />
 
-      <section className="bg-background" style={{ padding: 'clamp(2rem, 5vw, 3.5rem) 1.5rem clamp(2rem, 5vw, 3rem)' }}>
+      <section className="bg-background" style={{ backgroundColor: 'var(--surface-3)',  padding: 'clamp(2rem, 5vw, 3.5rem) 1.5rem clamp(2rem, 5vw, 3rem)' }}>
         <div className={`mx-auto max-w-5xl grid grid-cols-1 gap-10 md:gap-14 ${audit.capture ? 'md:grid-cols-[300px_1fr]' : ''} items-start`}>
           {audit.capture && (
             // Un simple cadre arrondi, pas de mockup : la capture est prise sur un iPhone de 390 px (capture.py --mobile).
@@ -145,7 +145,7 @@ export default async function AuditProspectPage({ params }: PageProps) {
 
             <div
               className="grid grid-cols-[88px_1fr] sm:grid-cols-[110px_1fr] gap-4 sm:gap-6 items-center rounded"
-              style={{ backgroundColor: 'var(--surface-2)', borderRadius: 'var(--radius)', padding: 'clamp(1rem, 3.5vw, 1.5rem)' }}
+              style={{ backgroundColor: 'var(--surface)', borderRadius: 'var(--radius)', boxShadow: 'var(--ombre-carte)', padding: 'clamp(1rem, 3.5vw, 1.5rem)' }}
             >
               <Image
                 src="/images/maurice-timsit-portrait.jpg"

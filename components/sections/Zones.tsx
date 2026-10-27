@@ -1,3 +1,4 @@
+import { Globe } from 'lucide-react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { villesARA } from '@/data/villes'
@@ -48,8 +49,8 @@ export function Zones({ lang = 'fr' }: { lang?: Locale }) {
             <Link
               key={ville.slug}
               href={`/${ville.slug}`}
-              className="zone-tile relative overflow-hidden rounded shrink-0 snap-start"
-              style={{ height: 150, border: '1px solid var(--line)' }}
+              className="zone-tile relative overflow-hidden shrink-0 snap-start transition-transform duration-150 active:scale-[0.97]"
+              style={{ height: 150, borderRadius: '1.5rem', boxShadow: 'var(--ombre-carte)' }}
             >
               <Image
                 src={`/images/villes/${ville.slug}.jpg`}
@@ -60,15 +61,21 @@ export function Zones({ lang = 'fr' }: { lang?: Locale }) {
               />
               {/* Voile vert 950 en bas pour le nom, lisible sur toute photo. */}
               <span
-                className="absolute inset-x-0 bottom-0 px-2 py-1.5"
-                style={{ backgroundColor: 'rgba(19, 24, 20, 0.78)', color: '#FFFFFF', fontSize: '0.8rem', fontWeight: 700, lineHeight: 1.2 }}
+                className="absolute inset-x-0 bottom-0 px-3 pb-2.5 pt-6"
+                style={{ background: 'linear-gradient(0deg, rgba(19, 24, 20, 0.82), transparent)', color: '#FFFFFF', fontSize: '0.82rem', fontWeight: 700, lineHeight: 1.2 }}
               >
                 {ville.nom}
               </span>
             </Link>
           ))}
         </div>
-        <p style={{ color: 'var(--brand)', fontWeight: 700, fontSize: '0.95rem', marginTop: '1rem' }}>{d.franceWide}</p>
+        {/* 27/10 : une pastille qui se lit comme une information, plus un faux lien vert. */}
+        <p className="inline-flex items-center gap-2" style={{ marginTop: '1.1rem', backgroundColor: 'var(--surface)', boxShadow: 'var(--ombre-carte)', borderRadius: '9999px', padding: '0.55rem 1rem 0.55rem 0.6rem', fontSize: '0.9rem', fontWeight: 700, color: 'var(--ink)' }}>
+          <span className="flex items-center justify-center rounded-full" style={{ width: '1.8rem', height: '1.8rem', backgroundColor: 'var(--brand)', color: 'var(--on-brand)' }}>
+            <Globe size={15} aria-hidden />
+          </span>
+          {d.franceWide}
+        </p>
       </div>
 
       <style>{`

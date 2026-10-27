@@ -68,7 +68,7 @@ export default function SecteursPage() {
 
       {/* Grille secteurs */}
       <section
-        className="bg-background"
+        className="bg-[var(--surface-3)]"
         style={{ padding: 'clamp(2rem, 5vw, 3.5rem) 1.5rem clamp(2.25rem, 6vw, 4rem)', borderTop: '1px solid var(--line)' }}
       >
         <div className="mx-auto max-w-5xl">
@@ -78,7 +78,7 @@ export default function SecteursPage() {
                 key={secteur.slug}
                 href={`/secteurs/${secteur.slug}`}
                 className="group block rounded"
-                style={{ backgroundColor: 'var(--surface-2)', borderRadius: 'var(--radius)', padding: 'clamp(1.1rem, 3.5vw, 1.75rem)' }}
+                style={{ backgroundColor: 'var(--surface)', borderRadius: 'var(--radius)', boxShadow: 'var(--ombre-carte)', padding: 'clamp(1.1rem, 3.5vw, 1.75rem)' }}
               >
                 <div className="flex items-start gap-4 mb-4">
                   <SecteurIcon name={secteur.icon} />

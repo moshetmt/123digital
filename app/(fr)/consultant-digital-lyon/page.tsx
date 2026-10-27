@@ -95,7 +95,7 @@ export default function ConsultantDigitalLyonPage() {
       />
 
       {/* Pourquoi un consultant digital à Lyon */}
-      <section className="bg-background" style={{ padding: 'clamp(2rem, 5vw, 3.5rem) 1.5rem clamp(2.25rem, 6vw, 4rem)' }}>
+      <section className="bg-background" style={{ backgroundColor: 'var(--surface-3)',  padding: 'clamp(2rem, 5vw, 3.5rem) 1.5rem clamp(2.25rem, 6vw, 4rem)' }}>
         <div className="mx-auto max-w-5xl">
           <h2
             className="font-display font-extrabold mb-8"
@@ -114,7 +114,7 @@ export default function ConsultantDigitalLyonPage() {
               <div
                 key={item.num}
                 className="rounded p-7"
-                style={{ backgroundColor: 'var(--surface-2)', borderRadius: 'var(--radius)' }}
+                style={{ backgroundColor: 'var(--surface)', borderRadius: 'var(--radius)', boxShadow: 'var(--ombre-carte)' }}
               >
                 <div className="text-xs font-bold mb-4" style={{ color: 'var(--ink-3)', letterSpacing: '0.1em' }}>{item.num}</div>
                 <h3 className="font-display font-extrabold text-base mb-3" style={{ color: 'var(--ink)', letterSpacing: '-0.01em' }}>{item.title}</h3>
@@ -167,7 +167,7 @@ export default function ConsultantDigitalLyonPage() {
       </section>
 
       {/* Services */}
-      <section className="bg-background" style={{ padding: '0 1.5rem 6rem' }}>
+      <section className="bg-background" style={{ backgroundColor: 'var(--surface-3)',  padding: '0 1.5rem 6rem' }}>
         <div className="mx-auto max-w-5xl">
           <h2
             className="font-display font-extrabold mb-10"
@@ -183,7 +183,7 @@ export default function ConsultantDigitalLyonPage() {
                 key={s.href}
                 href={s.href}
                 className="group flex flex-col rounded p-6 transition-opacity duration-300 hover:opacity-90"
-                style={{ backgroundColor: 'var(--surface-2)', borderRadius: 'var(--radius)' }}
+                style={{ backgroundColor: 'var(--surface)', borderRadius: 'var(--radius)', boxShadow: 'var(--ombre-carte)' }}
               >
                 <h3
                   className="font-display font-extrabold text-base mb-2 group-hover:text-[var(--ink)] transition-colors"
@@ -218,7 +218,7 @@ export default function ConsultantDigitalLyonPage() {
       </section>
 
       {/* FAQ */}
-      <section className="bg-background" style={{ padding: '0 1.5rem 8rem' }}>
+      <section className="bg-background" style={{ backgroundColor: 'var(--surface-3)',  padding: '0 1.5rem 8rem' }}>
         <div className="mx-auto max-w-3xl">
           <h2
             className="font-display font-extrabold mb-10"
@@ -231,7 +231,7 @@ export default function ConsultantDigitalLyonPage() {
               <div
                 key={q}
                 className="rounded p-6"
-                style={{ backgroundColor: 'var(--surface-2)', borderRadius: 'var(--radius)' }}
+                style={{ backgroundColor: 'var(--surface)', borderRadius: 'var(--radius)', boxShadow: 'var(--ombre-carte)' }}
               >
                 <h3 className="font-display font-extrabold text-base mb-3" style={{ color: 'var(--ink)', letterSpacing: '-0.01em' }}>{q}</h3>
                 <p className="text-sm leading-relaxed" style={{ color: 'var(--ink-2)' }}>{a}</p>

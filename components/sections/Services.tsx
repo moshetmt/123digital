@@ -33,7 +33,7 @@ function ServiceCard({ service, copy, learnMoreLabel, learnMoreSuffix }: { servi
   return (
     <div
       className="rounded flex flex-col"
-      style={{ backgroundColor: 'var(--surface-2)', borderRadius: 'var(--radius)', padding: 'clamp(1rem, 3.5vw, 1.6rem)' }}
+      style={{ backgroundColor: 'var(--surface)', borderRadius: 'var(--radius)', boxShadow: 'var(--ombre-carte)', padding: 'clamp(1rem, 3.5vw, 1.6rem)' }}
     >
       <div className="relative h-[120px] lg:h-[160px] w-full mb-2">
         <Image
@@ -50,9 +50,10 @@ function ServiceCard({ service, copy, learnMoreLabel, learnMoreSuffix }: { servi
       <p style={{ fontSize: 'clamp(0.85rem, 2.9vw, 0.98rem)', fontWeight: 500, color: 'var(--ink-2)', lineHeight: 1.35, marginBottom: '0.8rem', flex: 1 }}>
         {copy.shortDesc}
       </p>
-      <ul className="flex flex-wrap" style={{ listStyle: 'none', padding: 0, margin: 0, gap: '0.3rem' }}>
+      {/* Pastilles sur une seule ligne, jamais empilées (Moshé 27/10) : on glisse si elles débordent. */}
+      <ul className="flex flex-nowrap overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden" style={{ listStyle: 'none', padding: 0, margin: 0, gap: '0.3rem', WebkitMaskImage: 'linear-gradient(90deg, #000 85%, transparent)', maskImage: 'linear-gradient(90deg, #000 85%, transparent)' }}>
         {copy.chips.map((c) => (
-          <li key={c} style={{ fontSize: '0.72rem', fontWeight: 600, color: 'var(--brand-strong)', backgroundColor: 'var(--surface)', borderRadius: '9999px', padding: '0.2rem 0.6rem' }}>{c}</li>
+          <li key={c} className="shrink-0 whitespace-nowrap" style={{ fontSize: '0.72rem', fontWeight: 600, color: 'var(--brand-strong)', backgroundColor: 'var(--surface-3)', borderRadius: '9999px', padding: '0.2rem 0.6rem' }}>{c}</li>
         ))}
       </ul>
       <Link
@@ -100,7 +101,7 @@ export function Services({ lang = 'fr' }: { lang?: Locale }) {
     <section
       id="section-services"
       aria-labelledby="services-heading"
-      style={{ backgroundColor: 'var(--surface)', padding: 'clamp(1.6rem, 5vw, 4.5rem) 1.5rem' }}
+      style={{ backgroundColor: 'var(--surface-3)', padding: 'clamp(1.6rem, 5vw, 4.5rem) 1.5rem' }}
     >
       <div className="mx-auto max-w-6xl">
         <div

@@ -153,6 +153,8 @@
   /* Anneau de focus : 600 à 100 % sur fond clair, décalé de 2 px. Sur le pied
      de page (fond 950) il repasse en 400, règle ciblée plus bas. */
   --ring:        var(--g-600);
+  /* 27/10 : cartes blanches sur sections vert 100, ombre douce (choix A de Moshe). */
+  --ombre-carte: 0 1px 2px oklch(0.30 0.06 155 / 6%), 0 8px 24px oklch(0.30 0.06 155 / 9%);
   --radius:      2rem; /* 27/10 : encarts « bento doux » 32 px, choix C de Moshe (references Dribbble) */
   --radius-ctrl: 0.5rem;
 

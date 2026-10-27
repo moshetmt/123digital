@@ -136,7 +136,7 @@ export default function ConsultantIaLyonPage() {
       />
 
       {/* Réponse directe */}
-      <section className="bg-background" style={{ padding: 'clamp(2rem, 5vw, 3.5rem) 1.5rem clamp(2.25rem, 6vw, 4rem)' }}>
+      <section className="bg-background" style={{ backgroundColor: 'var(--surface-3)',  padding: 'clamp(2rem, 5vw, 3.5rem) 1.5rem clamp(2.25rem, 6vw, 4rem)' }}>
         <div className="mx-auto max-w-5xl">
           <h2
             className="font-display font-extrabold mb-6"
@@ -158,7 +158,7 @@ export default function ConsultantIaLyonPage() {
               <div
                 key={item.num}
                 className="rounded p-7"
-                style={{ backgroundColor: 'var(--surface-2)', borderRadius: 'var(--radius)' }}
+                style={{ backgroundColor: 'var(--surface)', borderRadius: 'var(--radius)', boxShadow: 'var(--ombre-carte)' }}
               >
                 <div className="text-xs font-bold mb-4" style={{ color: 'var(--ink-3)', letterSpacing: '0.1em' }}>{item.num}</div>
                 <h3 className="font-display font-extrabold text-base mb-3" style={{ color: 'var(--ink)', letterSpacing: '-0.01em' }}>{item.title}</h3>
@@ -170,7 +170,7 @@ export default function ConsultantIaLyonPage() {
       </section>
 
       {/* Preuves */}
-      <section className="bg-background" style={{ padding: '0 1.5rem 6rem' }}>
+      <section className="bg-background" style={{ backgroundColor: 'var(--surface-3)',  padding: '0 1.5rem 6rem' }}>
         <div className="mx-auto max-w-5xl">
           <h2
             className="font-display font-extrabold mb-4"
@@ -188,7 +188,7 @@ export default function ConsultantIaLyonPage() {
               <div
                 key={p.href + p.titre}
                 className="flex flex-col rounded p-6"
-                style={{ backgroundColor: 'var(--surface-2)', borderRadius: 'var(--radius)' }}
+                style={{ backgroundColor: 'var(--surface)', borderRadius: 'var(--radius)', boxShadow: 'var(--ombre-carte)' }}
               >
                 <h3 className="font-display font-extrabold text-base mb-2" style={{ color: 'var(--ink)', letterSpacing: '-0.01em' }}>{p.titre}</h3>
                 <p className="text-sm leading-relaxed mb-5" style={{ color: 'var(--ink-2)' }}>{p.desc}</p>
@@ -200,7 +200,7 @@ export default function ConsultantIaLyonPage() {
       </section>
 
       {/* Méthode */}
-      <section className="bg-background" style={{ padding: '0 1.5rem 6rem' }}>
+      <section className="bg-background" style={{ backgroundColor: 'var(--surface-3)',  padding: '0 1.5rem 6rem' }}>
         <div className="mx-auto max-w-5xl">
           <h2
             className="font-display font-extrabold mb-10"
@@ -213,7 +213,7 @@ export default function ConsultantIaLyonPage() {
               <div
                 key={e.num}
                 className="rounded p-6"
-                style={{ backgroundColor: 'var(--surface-2)', borderRadius: 'var(--radius)' }}
+                style={{ backgroundColor: 'var(--surface)', borderRadius: 'var(--radius)', boxShadow: 'var(--ombre-carte)' }}
               >
                 <div className="text-xs font-bold mb-4" style={{ color: 'var(--ink-3)', letterSpacing: '0.1em' }}>ÉTAPE {e.num}</div>
                 <h3 className="font-display font-extrabold text-base mb-3" style={{ color: 'var(--ink)', letterSpacing: '-0.01em' }}>{e.title}</h3>
@@ -229,7 +229,7 @@ export default function ConsultantIaLyonPage() {
       </section>
 
       {/* FAQ */}
-      <section className="bg-background" style={{ padding: '0 1.5rem 8rem' }}>
+      <section className="bg-background" style={{ backgroundColor: 'var(--surface-3)',  padding: '0 1.5rem 8rem' }}>
         <div className="mx-auto max-w-3xl">
           <h2
             className="font-display font-extrabold mb-10"
@@ -242,7 +242,7 @@ export default function ConsultantIaLyonPage() {
               <div
                 key={q}
                 className="rounded p-6"
-                style={{ backgroundColor: 'var(--surface-2)', borderRadius: 'var(--radius)' }}
+                style={{ backgroundColor: 'var(--surface)', borderRadius: 'var(--radius)', boxShadow: 'var(--ombre-carte)' }}
               >
                 <h3 className="font-display font-extrabold text-base mb-3" style={{ color: 'var(--ink)', letterSpacing: '-0.01em' }}>{q}</h3>
                 <p className="text-sm leading-relaxed" style={{ color: 'var(--ink-2)' }}>{a}</p>

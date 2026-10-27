@@ -152,7 +152,7 @@ export default function AuditGratuitPage() {
 
       {/* Ce que j'analyse */}
       <section
-        className="bg-background"
+        className="bg-[var(--surface-3)]"
         style={{ padding: 'clamp(2rem, 5vw, 3.5rem) 1.5rem clamp(2.25rem, 6vw, 4rem)', borderTop: '1px solid var(--line)' }}
       >
         <div className="mx-auto max-w-5xl">
@@ -181,7 +181,7 @@ export default function AuditGratuitPage() {
               <div
                 key={bloc.titre}
                 className="rounded"
-                style={{ backgroundColor: 'var(--surface-2)', borderRadius: 'var(--radius)', padding: 'clamp(1rem, 3vw, 1.6rem)' }}
+                style={{ backgroundColor: 'var(--surface)', borderRadius: 'var(--radius)', boxShadow: 'var(--ombre-carte)', padding: 'clamp(1rem, 3vw, 1.6rem)' }}
               >
                 <h3
                   className="font-display font-extrabold mb-4"
@@ -244,7 +244,7 @@ export default function AuditGratuitPage() {
 
       {/* Les 4 étapes */}
       <section
-        className="bg-background"
+        className="bg-[var(--surface-3)]"
         style={{ padding: 'clamp(2rem, 5vw, 3.5rem) 1.5rem clamp(2.25rem, 6vw, 4rem)', borderTop: '1px solid var(--line)' }}
       >
         <div className="mx-auto max-w-5xl">
@@ -273,7 +273,7 @@ export default function AuditGratuitPage() {
               <div
                 key={etape.num}
                 className="rounded"
-                style={{ backgroundColor: 'var(--surface-2)', borderRadius: 'var(--radius)', padding: 'clamp(1rem, 3vw, 1.6rem)' }}
+                style={{ backgroundColor: 'var(--surface)', borderRadius: 'var(--radius)', boxShadow: 'var(--ombre-carte)', padding: 'clamp(1rem, 3vw, 1.6rem)' }}
               >
                 <div
                   style={{

@@ -6,10 +6,10 @@ export function About({ lang = 'fr' }: { lang?: Locale }) {
   const d = t(lang).about
 
   return (
-    <section style={{ backgroundColor: 'var(--surface)', padding: '0 1.5rem clamp(2rem, 5vw, 3.5rem)' }} aria-labelledby="about-heading">
+    <section style={{ backgroundColor: 'var(--surface-3)', padding: '0 1.5rem clamp(2rem, 5vw, 3.5rem)' }} aria-labelledby="about-heading">
       <div
         className="mx-auto grid grid-cols-[76px_1fr] sm:grid-cols-[120px_1fr] md:grid-cols-[120px_1fr_170px] gap-3.5 sm:gap-6 items-center rounded"
-        style={{ maxWidth: '48rem', backgroundColor: 'var(--surface-2)', borderRadius: 'var(--radius)', padding: 'clamp(1rem, 3.5vw, 1.75rem)' }}
+        style={{ maxWidth: '48rem', backgroundColor: 'var(--surface)', borderRadius: 'var(--radius)', boxShadow: 'var(--ombre-carte)', padding: 'clamp(1rem, 3.5vw, 1.75rem)' }}
       >
         {/* Portrait a cote du texte des le telephone : empile, il ajoutait
             120 px de hauteur pour rien. */}

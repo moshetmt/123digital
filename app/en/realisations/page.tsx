@@ -61,7 +61,7 @@ export default function CaseStudiesPage() {
       {/* Client cases — the 3 only verifiable cases, data/portfolio.ts */}
       <section
         id="realisations-cas"
-        className="bg-background"
+        className="bg-[var(--surface-3)]"
         style={{ padding: 'clamp(2.5rem, 6vw, 4.5rem) 1.5rem' }}
       >
         <div className="mx-auto max-w-6xl">
@@ -80,7 +80,7 @@ export default function CaseStudiesPage() {
                 <article
                   key={project.id}
                   className="flex flex-col rounded"
-                  style={{ backgroundColor: 'var(--surface-2)', borderRadius: 'var(--radius)', padding: '1.5rem', gap: '0.6rem' }}
+                  style={{ backgroundColor: 'var(--surface)', borderRadius: 'var(--radius)', boxShadow: 'var(--ombre-carte)', padding: '1.5rem', gap: '0.6rem' }}
                 >
                   {/* The screenshot, set in a simplified browser frame: never a
                       raw capture (charte v2, section 6). */}

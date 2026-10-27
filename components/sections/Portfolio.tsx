@@ -12,7 +12,7 @@ function ProjectCard({ project, stepsLabel }: { project: PortfolioProject; steps
   return (
     <article
       className="flex flex-col rounded shrink-0 snap-start sm:shrink"
-      style={{ backgroundColor: 'var(--surface-2)', borderRadius: 'var(--radius)', padding: 'clamp(1rem, 3.5vw, 1.5rem)', gap: '0.45rem', width: 'min(82vw, 100%)' }}
+      style={{ backgroundColor: 'var(--surface)', borderRadius: 'var(--radius)', boxShadow: 'var(--ombre-carte)', padding: 'clamp(1rem, 3.5vw, 1.5rem)', gap: '0.45rem', width: 'min(82vw, 100%)' }}
     >
       {/* Maquette composée (cadre navigateur + téléphone sur fond pâle) : la carte
           n'ajoute qu'une bordure. */}
@@ -70,7 +70,7 @@ export function Portfolio({ lang = 'fr' }: { lang?: Locale }) {
   return (
     <section
       id="section-portfolio"
-      style={{ backgroundColor: 'var(--surface)', padding: 'clamp(1.6rem, 5vw, 4.5rem) 1.5rem' }}
+      style={{ backgroundColor: 'var(--surface-3)', padding: 'clamp(1.6rem, 5vw, 4.5rem) 1.5rem' }}
       aria-labelledby="portfolio-heading"
     >
       <div className="mx-auto max-w-6xl">

@@ -29,7 +29,7 @@ function CarteCompacte({ carte, accent, Icone }: { carte: Carte; accent?: string
     <div
       className="rounded flex flex-col"
       style={{
-        backgroundColor: 'var(--surface-2)',
+        backgroundColor: 'var(--surface-3)',
         border: '1px solid var(--line)',
         padding: 'clamp(0.85rem, 3vw, 1.4rem)',
       }}
@@ -149,7 +149,7 @@ function EtapeCarte({ etape, index, illustre }: { etape: Carte; index: number; i
     <div
       className="rounded"
       style={{
-        backgroundColor: 'var(--surface-2)',
+        backgroundColor: 'var(--surface-3)',
         border: '1px solid var(--line)',
         padding: 'clamp(0.8rem, 3vw, 1.25rem)',
       }}
@@ -213,7 +213,7 @@ export function GrilleTarifs({ items, prefixeDelai = '' }: { items: Tarif[]; pre
         <div
           key={t.label}
           className="rounded flex flex-col"
-          style={{ backgroundColor: 'var(--surface-2)', borderRadius: 'var(--radius)', padding: 'clamp(1rem, 3.5vw, 1.5rem)' }}
+          style={{ backgroundColor: 'var(--surface)', borderRadius: 'var(--radius)', boxShadow: 'var(--ombre-carte)', padding: 'clamp(1rem, 3.5vw, 1.5rem)' }}
         >
           <div style={{ fontSize: '0.68rem', letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--brand-strong)', fontWeight: 800, marginBottom: '0.5rem' }}>
             {t.label}

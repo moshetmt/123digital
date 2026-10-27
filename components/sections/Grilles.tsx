@@ -95,7 +95,7 @@ function CarteCompacte({ carte, accent, Icone }: { carte: Carte; accent?: string
           className="btn-contour"
           style={{ marginTop: '0.8rem' }}
         >
-          {carte.lienLabel ?? 'En savoir plus'} →
+          {carte.lienLabel ?? 'En savoir plus'}
         </Link>
       )}
 

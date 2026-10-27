@@ -240,7 +240,7 @@
     transition: transform 0.2s;
   }
   :is(.btn-plein, .btn-contour, .btn-contour-inverse, .btn-rond):hover::after { transform: rotate(45deg); }
-  :is(.btn-plein, .btn-contour, .btn-contour-inverse, .btn-rond) > svg:last-child:not(:first-child) { display: none; }
+  :is(.btn-plein, .btn-contour, .btn-contour-inverse, .btn-rond) > svg:is(.lucide-arrow-right, .lucide-arrow-up-right, .lucide-chevron-right) { display: none; }
   .btn-sans-fleche::after { display: none; }
 
   /* 25/10 : panneau de prise de rendez-vous (ReserverCreneau). Ordinateur : bloc sous le

@@ -183,6 +183,26 @@ export default async function VillePage({ params }: PageProps) {
               .
             </>
           )}
+          {/* Mâcon ne recevait qu'un lien de texte pour 526 affichages en 90 j (rapport maillage du 01/11). */}
+          {ville.slug === 'bourg-en-bresse' && (
+            <>
+              {' '}De l&apos;autre côté de la Saône, les entreprises du Mâconnais trouvent le même
+              accompagnement sur la page{' '}
+              <Link href="/macon" className="underline underline-offset-2">
+                consultant digital à Mâcon
+              </Link>
+              .
+            </>
+          )}
+          {ville.slug === 'macon' && (
+            <>
+              {' '}Mâcon touche l&apos;Ain : pour le référencement local des deux rives, voir la page{' '}
+              <Link href="/consultant-seo-bourg-en-bresse" className="underline underline-offset-2">
+                consultant SEO à Bourg-en-Bresse et dans l&apos;Ain
+              </Link>
+              .
+            </>
+          )}
         </p>
       </PageBanner>
 
@@ -361,7 +381,17 @@ export default async function VillePage({ params }: PageProps) {
             </p>
             <p style={{ fontSize: '0.8rem', color: 'var(--ink-2)' }}>
               {(() => {
-                const proches = villesARA.filter((v) => v.slug !== ville.slug && estIndexable(`/${v.slug}`)).slice(0, 8)
+                // Villes voisines d'abord : Mâcon tombait après la 8e ville et n'apparaissait jamais (01/11).
+                const voisines: Record<string, string[]> = {
+                  'bourg-en-bresse': ['macon', 'oyonnax', 'lyon'],
+                  oyonnax: ['bourg-en-bresse', 'macon', 'annemasse'],
+                  macon: ['bourg-en-bresse', 'lyon', 'oyonnax'],
+                }
+                const ordre = voisines[ville.slug] ?? []
+                const proches = villesARA
+                  .filter((v) => v.slug !== ville.slug && estIndexable(`/${v.slug}`))
+                  .sort((a, b) => (ordre.indexOf(a.slug) + 1 || 99) - (ordre.indexOf(b.slug) + 1 || 99))
+                  .slice(0, 8)
                 return proches.map((v, i) => (
                   <span key={v.slug}>
                     <Link href={`/${v.slug}`} className="hover:text-[var(--brand)] transition-colors" style={{ color: 'var(--ink-2)' }}>

@@ -133,7 +133,8 @@ export default function ConsultantSeoBourgEnBressePage() {
             celui d’Oyonnax. Mon travail commence par la liste des requêtes réellement tapées dans vos communes. Si
             vous êtes à Oyonnax, ma page{' '}
             <Link href="/oyonnax" className="underline">consultant digital à Oyonnax</Link>{' '}
-            donne le contexte industriel de la ville.
+            donne le contexte industriel de la ville. Si vous êtes de l’autre côté de la Saône, voir la page{' '}
+            <Link href="/macon" className="underline">consultant digital à Mâcon</Link>.
           </p>
 
           <h2 className="font-display font-extrabold mt-10 mb-5" style={h2Style}>

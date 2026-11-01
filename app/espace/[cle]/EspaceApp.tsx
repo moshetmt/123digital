@@ -149,7 +149,7 @@ export function EspaceApp({ cle, demo }: { cle: string; demo: boolean }) {
     )
   const ajouterOpp = async (o: { quoi: string; montant: string; action: string; quand: string }) => {
     const neuve: Opportunite = { id: 'tmp-' + Date.now(), date: new Date().toISOString().slice(0, 10), statut: 'en cours', origine: 'téléphone', ...o }
-    const r = await ecrire({ action: 'opp_ajout', ...o }, d, { ...d, opportunites: [neuve, ...d.opportunites] }, 'Opportunité ajoutée')
+    const r = await ecrire({ action: 'opp_ajout', quoi: o.quoi, montant: o.montant, etape: o.action, quand: o.quand }, d, { ...d, opportunites: [neuve, ...d.opportunites] }, 'Opportunité ajoutée')
     return !!r
   }
   const ajouterNuit = async (tache: string) => {

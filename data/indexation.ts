@@ -30,31 +30,16 @@
 // encore gardees (Paris, Marseille, Toulouse, Bordeaux, Nantes, Rennes) passent en noindex :
 // 1 148 impressions et 1 clic en 90 jours, axe geographique arrete le 20/08. Retirees a la main ;
 // une regeneration depuis le CSV ne doit pas les remettre.
+// 01/11/2026, go de l'operateur (rapport 06-reports/2026-11-01-pages-ville-a-valider.md d'ads-os) :
+// 19 pages sans preuve retirees ici et redirigees en 301 (next.config.mjs), Villeurbanne rouverte
+// (etude de cas, Mishpacha Tours, chantiers Clim69). /bourg-en-bresse, /oyonnax et /macon restent.
 export const PAGES_INDEXABLES: ReadonlySet<string> = new Set([
-  '/albertville',
-  '/albertville/creation-site-web',
-  '/annecy',
-  '/annecy/creation-site-web',
-  '/annemasse',
-  '/annemasse/seo',
   '/bourg-en-bresse',
-  '/bourg-en-bresse/community-management',
-  '/clermont-ferrand',
-  '/clermont-ferrand/publicite-en-ligne',
   '/lyon',
   '/lyon/branding',
   '/macon',
-  '/macon/seo',
   '/oyonnax',
-  '/oyonnax/community-management',
-  '/oyonnax/publicite-en-ligne',
-  '/roanne',
-  '/roanne/seo',
-  '/saint-etienne',
-  '/saint-etienne/community-management',
-  '/saint-etienne/creation-site-web',
-  '/valence',
-  '/valence/automatisation-marketing',
+  '/villeurbanne',
 ])
 
 /** Une page geographique non listee ci-dessus ne doit ni etre indexee, ni

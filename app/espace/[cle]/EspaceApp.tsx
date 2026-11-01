@@ -290,7 +290,7 @@ function Titre({ icone, texte, nombre }: { icone: React.ReactNode; texte: string
 /* Choix exclusifs en pilules, sur une ligne qui glisse si elle déborde (jamais de liste déroulante). */
 function Onglets<T extends string>({ valeurs, actif, onChange }: { valeurs: [T, string][]; actif: T; onChange: (v: T) => void }) {
   return (
-    <div className="-mx-4 mb-4 flex gap-2 overflow-x-auto px-4 pb-1">
+    <div className="-mx-4 mb-4 flex gap-2 overflow-x-auto px-4 pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
       {valeurs.map(([v, libelle]) => (
         <button
           key={v}

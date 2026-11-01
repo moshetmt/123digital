@@ -297,7 +297,7 @@ function Onglets<T extends string>({ valeurs, actif, onChange }: { valeurs: [T, 
           type="button"
           onClick={() => onChange(v)}
           aria-pressed={actif === v}
-          className={`${actif === v ? 'btn-plein' : 'btn-contour'} ${choix} shrink-0 bg-white`}
+          className={`${actif === v ? 'btn-plein' : 'btn-contour'} ${choix} shrink-0`}
           style={actif === v ? undefined : { backgroundColor: 'white' }}
         >
           {libelle}
@@ -511,7 +511,7 @@ function FormOpp({ onFermer, onAjouter }: { onFermer: () => void; onAjouter: (o:
       <div>
         <span className="mb-1 block text-[15px] font-bold">Pour quand</span>
         <div className="grid grid-cols-3 gap-2">
-          {Object.entries(QUAND).map(([v, l]) => (
+          {Object.entries({ semaine: 'Semaine', mois: 'Ce mois', 'plus-tard': 'Plus tard' }).map(([v, l]) => (
             <button key={v} type="button" aria-pressed={quand === v} onClick={() => setQuand(v)} className={`${quand === v ? 'btn-plein' : 'btn-contour'} ${choix} !w-full !px-2 !text-[0.95rem]`}>
               {l}
             </button>

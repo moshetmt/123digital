@@ -24,7 +24,10 @@ function appliquer(accepte: boolean) {
 
 export function BandeauCookies() {
   const [visible, setVisible] = useState(false)
-  const anglais = usePathname()?.startsWith('/en')
+  const chemin = usePathname()
+  const anglais = chemin?.startsWith('/en')
+  // L'Espace privé de Moshé ne mesure rien : pas de bandeau (02/11).
+  const espace = chemin?.startsWith('/espace/')
 
   useEffect(() => {
     try {
@@ -37,7 +40,7 @@ export function BandeauCookies() {
     return () => window.removeEventListener(OUVRIR, ouvrir)
   }, [])
 
-  if (!visible) return null
+  if (!visible || espace) return null
 
   const choisir = (accepte: boolean) => {
     try {

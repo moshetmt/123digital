@@ -17,7 +17,8 @@ export function proxy(request: NextRequest) {
 export const config = {
   matcher: [
     {
-      source: '/((?!_next/|api/|.*\\.[a-zA-Z0-9]+$).*)',
+      // espace/ : la page privée de Moshé n'a pas de version Markdown (02/11).
+      source: '/((?!_next/|api/|espace/|.*\\.[a-zA-Z0-9]+$).*)',
       has: [{ type: 'header', key: 'accept', value: '.*text/markdown.*' }],
     },
   ],

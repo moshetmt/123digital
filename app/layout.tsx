@@ -173,7 +173,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           gtag('consent', 'default', { ad_storage: etat, ad_user_data: etat, ad_personalization: etat, analytics_storage: etat, wait_for_update: 500 });
           gtag('set', 'ads_data_redaction', true);
           gtag('js', new Date());
-          gtag('config', 'G-96F0VT9FDY');
+          // L'Espace privé de Moshé (/espace/<clé>/) n'est jamais mesuré : la clé partirait chez Google (02/11).
+          if (location.pathname.indexOf('/espace/') !== 0) gtag('config', 'G-96F0VT9FDY');
         `}</Script>
         {/* Microsoft Clarity retiré le 25/10 : 2,2 s de JavaScript sur téléphone
             (Lighthouse), données jamais lues depuis le 31/07. Ne pas le remettre

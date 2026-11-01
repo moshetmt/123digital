@@ -51,6 +51,8 @@ function write(entry: StoredSource) {
 /** À appeler à chaque page vue. Ne fait rien côté serveur. */
 export function captureLeadSource() {
   if (typeof window === 'undefined') return
+  // L'Espace privé de Moshé porte sa clé dans le chemin : jamais mémorisé (02/11).
+  if (window.location.pathname.startsWith('/espace/')) return
 
   const search = window.location.search
   const landing = window.location.pathname

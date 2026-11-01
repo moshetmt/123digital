@@ -8,7 +8,7 @@ export const dynamic = 'force-dynamic'
 export async function GET(_req: Request, { params }: { params: Promise<{ cle: string }> }) {
   const { cle } = await params
   if (!FORMAT_CLE.test(cle) && !estDemo(cle)) return new Response('Introuvable', { status: 404 })
-  const base = `/espace/${cle}/`
+  const base = `/espace/${cle}`
   const manifest = {
     id: base,
     name: 'Espace 123digital',

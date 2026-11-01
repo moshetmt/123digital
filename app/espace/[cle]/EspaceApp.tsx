@@ -150,6 +150,8 @@ export function EspaceApp({ cle, demo }: { cle: string; demo: boolean }) {
   const ajouterOpp = async (o: { quoi: string; montant: string; action: string; quand: string }) => {
     const neuve: Opportunite = { id: 'tmp-' + Date.now(), date: new Date().toISOString().slice(0, 10), statut: 'en cours', origine: 'téléphone', ...o }
     const r = await ecrire({ action: 'opp_ajout', quoi: o.quoi, montant: o.montant, etape: o.action, quand: o.quand }, d, { ...d, opportunites: [neuve, ...d.opportunites] }, 'Opportunité ajoutée')
+    // Relecture : l'opportunité prend son vrai identifiant, sinon « Gagné » juste après échouerait.
+    if (r && !demo) charger()
     return !!r
   }
   const ajouterNuit = async (tache: string) => {
@@ -375,6 +377,7 @@ function Decisions({ liste, onRepondre }: { liste: Decision[]; onRepondre: (d: D
 
 /* ---------------------------------------------------------------- Idées R&D */
 
+const VERDICTS: Record<string, string> = { 'a-mettre': 'à mettre', 'a-surveiller': 'attendre', 'a-ne-pas-mettre': 'ne pas mettre' }
 const STATUTS_IDEE: [string, string][] = [['à essayer', 'À essayer'], ['en essai', 'En essai'], ['adopté', 'Adopté'], ['refusé', 'Refusé']]
 
 function Idees({ liste, onTrancher }: { liste: Idee[]; onTrancher: (i: Idee, oui: boolean) => void }) {
@@ -399,9 +402,14 @@ function Idees({ liste, onTrancher }: { liste: Idee[]; onTrancher: (i: Idee, oui
             <p className="text-[18px] font-bold leading-snug">{i.trouvaille}</p>
             {i.commentaire && <p className="mt-1 text-[16px]">{i.commentaire}</p>}
             {i.resultat && <p className="mt-2 text-[16px]"><b>Résultat de l’essai :</b> {i.resultat}</p>}
+            {i.statut === 'à essayer' && i.verdict && (
+              <p className="mt-2 text-[15px]" style={{ color: 'var(--ink-2)' }}>
+                Le tri conseille : <b>{VERDICTS[i.verdict] ?? i.verdict}</b>
+              </p>
+            )}
             {i.statut === 'à essayer' && (
               <div className="mt-4 grid grid-cols-2 gap-2">
-                <button type="button" onClick={() => onTrancher(i, true)} className={`btn-plein ${choix} !w-full gap-2`}>
+                <button type="button" onClick={() => onTrancher(i, true)} className={`${i.verdict === 'a-mettre' ? 'btn-plein' : 'btn-contour'} ${choix} !w-full gap-2`}>
                   <Check size={18} aria-hidden /> Essaie-la
                 </button>
                 <button type="button" onClick={() => onTrancher(i, false)} className={`btn-contour ${choix} !w-full gap-2`}>

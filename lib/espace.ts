@@ -29,6 +29,7 @@ export type Idee = {
   trouvaille: string
   metier: string
   source: string
+  verdict?: string
   statut: string
   resultat: string
   commentaire: string
@@ -72,7 +73,7 @@ export const DEMO: Donnees = {
     { id: 'd3', gravite: 'utile', question: 'Garder la veille des outils vidéo chaque mardi ?', options: [opt('A', 'Oui', true), opt('B', 'Une fois par mois')], source: 'veille du 28/10', reponse: 'A', reponduLe: '2026-11-01T21:40' },
   ],
   idees: [
-    { id: 'i1', date: '2026-11-01', trouvaille: 'Scanner de sécurité des skills', metier: 'outillage', source: 'GitHub', statut: 'à essayer', resultat: '', commentaire: 'Vérifie les skills avant installation', reponse: '' },
+    { id: 'i1', date: '2026-11-01', trouvaille: 'Scanner de sécurité des skills', metier: 'outillage', source: 'GitHub', verdict: 'a-mettre', statut: 'à essayer', resultat: '', commentaire: 'Vérifie les skills avant installation', reponse: '' },
     { id: 'i2', date: '2026-11-01', trouvaille: 'Modèle moins cher pour le mode auto', metier: 'économie', source: 'changelog', statut: 'en essai', resultat: 'en cours', commentaire: 'Mesure au 02/12', reponse: 'oui' },
     { id: 'i3', date: '2026-10-28', trouvaille: 'Sous-titres animés en une commande', metier: 'vidéo', source: 'veille', statut: 'adopté', resultat: 'gardé, 3 reels faits avec', commentaire: '', reponse: 'oui' },
     { id: 'i4', date: '2026-10-27', trouvaille: 'Mémoire partagée entre projets', metier: 'outillage', source: 'GitHub', statut: 'refusé', resultat: '', commentaire: 'Déjà couvert par le bras droit', reponse: 'non' },

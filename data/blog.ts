@@ -150,7 +150,7 @@ export const articles: BlogArticle[] = [
       },
       {
         type: 'paragraphe',
-        texte: 'Si vous préférez être accompagné sur ces étapes, un [consultant marketing digital à Lyon](/consultant-digital-lyon) peut prendre en charge l\'audit et le suivi pour votre PME.',
+        texte: 'Si vous préférez être accompagné sur ces étapes, un [consultant marketing digital à Lyon](/consultant-digital-lyon) peut prendre en charge l\'audit et le suivi pour votre PME. Dans l\'Ain, où les recherches se partagent entre Bourg-en-Bresse, Oyonnax et Ambérieu-en-Bugey, la page [consultant SEO à Bourg-en-Bresse](/consultant-seo-bourg-en-bresse) détaille la méthode commune par commune.',
       },
       {
         type: 'resume',

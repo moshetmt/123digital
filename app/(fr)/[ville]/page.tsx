@@ -257,12 +257,24 @@ export default async function VillePage({ params }: PageProps) {
           </h2>
 
           <GrilleCartes
-            items={services.map((service) => ({
-              // Page ville x service en noindex : la carte mène à la page service générale (diagnostic du 25/10).
-              href: estIndexable(`/${ville.slug}/${service.id}`) ? `/${ville.slug}/${service.id}` : `/services/${service.id}`,
-              titre: `${service.title} à ${ville.nom}`,
-              texte: service.description,
-            }))}
+            items={services.map((service) => {
+              // Ain : la carte SEO mène à la page dédiée, qui doit recevoir les requêtes SEO du département
+              // (Google montrait /bourg-en-bresse 5 fois plus souvent qu'elle, GSC 90 j au 30/10, rapport maillage du 01/11).
+              if (service.id === 'seo' && (ville.slug === 'bourg-en-bresse' || ville.slug === 'oyonnax')) {
+                return {
+                  href: '/consultant-seo-bourg-en-bresse',
+                  titre: ville.slug === 'bourg-en-bresse' ? 'Consultant SEO à Bourg-en-Bresse' : 'Consultant SEO dans l’Ain',
+                  texte: service.description,
+                  lienLabel: 'Consultant SEO à Bourg-en-Bresse',
+                }
+              }
+              return {
+                // Page ville x service en noindex : la carte mène à la page service générale (diagnostic du 25/10).
+                href: estIndexable(`/${ville.slug}/${service.id}`) ? `/${ville.slug}/${service.id}` : `/services/${service.id}`,
+                titre: `${service.title} à ${ville.nom}`,
+                texte: service.description,
+              }
+            })}
           />
         </div>
       </section>

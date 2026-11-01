@@ -210,6 +210,7 @@ export default function SeoPage() {
                 { label: 'Votre site est optimisé ? Vérifiez', href: '/services/creation-site-web' },
                 { label: 'Demander un audit SEO gratuit', href: '/audit-gratuit' },
                 { label: 'Consultant marketing digital à Lyon', href: '/consultant-digital-lyon' },
+                { label: 'Consultant SEO à Bourg-en-Bresse et dans l’Ain', href: '/consultant-seo-bourg-en-bresse' },
               ]
               return liens.map((link, i) => (
                 <span key={link.href}>

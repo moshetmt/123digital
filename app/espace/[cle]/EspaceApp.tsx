@@ -168,6 +168,7 @@ export function EspaceApp({ cle, demo }: { cle: string; demo: boolean }) {
 
       {ecran === 'accueil' && (
         <>
+          <h1 className="sr-only">Espace 123digital</h1>
           <div className="grid grid-cols-2 gap-3">
             <Tuile icone={<Signpost size={26} strokeWidth={1.5} />} mot="Décisions" nombre={aTrancher.length} detail="à trancher" onClick={() => aller('decisions')} />
             <Tuile icone={<Lightbulb size={26} strokeWidth={1.5} />} mot="Idées" nombre={aEssayer.length} detail="à essayer" onClick={() => aller('idees')} />

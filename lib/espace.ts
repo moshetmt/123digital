@@ -47,6 +47,8 @@ export type Opportunite = {
 }
 export type Chantier = { id: string; titre: string; etat: string; lien: string }
 export type TacheNuit = { id: string; tache: string; fait: string; lien: string; origine: string; ajoute_le: string }
+/* Carte « Cette nuit » (02/11) : la section EN CLAIR de bilan/nuit.md, écrite par l'agent de nuit. */
+export type BilanNuit = { titre: string; lignes: string[]; maj: string }
 export type Donnees = {
   ok: boolean
   error?: string
@@ -56,6 +58,7 @@ export type Donnees = {
   opportunites: Opportunite[]
   chantiers: Chantier[]
   nuit: TacheNuit[]
+  bilanNuit?: BilanNuit | null
 }
 
 /* Actions permises depuis le téléphone. export et import restent réservés au PC (autre clé). */
@@ -92,4 +95,13 @@ export const DEMO: Donnees = {
     { id: 'n1', tache: 'Outillage : recherche dans les décisions', fait: 'oui', lien: '', origine: 'dépôt', ajoute_le: '' },
     { id: 'n2', tache: 'Client A : préversion du formulaire', fait: '', lien: '', origine: 'dépôt', ajoute_le: '' },
   ],
+  bilanNuit: {
+    titre: 'Nuit du 02/11',
+    lignes: [
+      'Les 2 200 photos sont décrites, avec le lieu et l’heure.',
+      'La préversion du formulaire est prête, elle attend ton go.',
+      'Le banc d’essai des skills a raté : il manque un fichier, je le refais demain.',
+    ],
+    maj: '2026-11-03T04:12',
+  },
 }

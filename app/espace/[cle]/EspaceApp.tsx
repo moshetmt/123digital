@@ -171,6 +171,22 @@ export function EspaceApp({ cle, demo }: { cle: string; demo: boolean }) {
       {ecran === 'accueil' && (
         <>
           <h1 className="sr-only">Espace 123digital</h1>
+          {d.bilanNuit && d.bilanNuit.lignes.length > 0 && (
+            <section className={`${carte} mb-3`} aria-label="Cette nuit">
+              <div className="mb-2 flex items-center gap-3">
+                <Moon size={24} strokeWidth={1.5} aria-hidden />
+                <div>
+                  <h2 className="text-[17px] font-bold">{d.bilanNuit.titre || 'Cette nuit'}</h2>
+                  {d.bilanNuit.maj && <p className="text-[14px]" style={{ color: 'var(--ink-2)' }}>Écrit le {dateCourte(d.bilanNuit.maj)}</p>}
+                </div>
+              </div>
+              <ul className="space-y-2">
+                {d.bilanNuit.lignes.map((l, i) => (
+                  <li key={i} className="text-[16px] leading-snug">{l}</li>
+                ))}
+              </ul>
+            </section>
+          )}
           <div className="grid grid-cols-2 gap-3">
             <Tuile icone={<Signpost size={26} strokeWidth={1.5} />} mot="Décisions" nombre={aTrancher.length} detail="à trancher" onClick={() => aller('decisions')} />
             <Tuile icone={<Lightbulb size={26} strokeWidth={1.5} />} mot="Idées" nombre={aEssayer.length} detail="à essayer" onClick={() => aller('idees')} />

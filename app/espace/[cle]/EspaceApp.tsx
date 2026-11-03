@@ -29,6 +29,21 @@ function dateCourte(iso: string) {
   if (!m) return ''
   return `${m[3]}/${m[2]}${m[4] ? ` à ${m[4]} h ${m[5]}` : ''}`
 }
+/* Date et heure de Paris au format du script Google (yyyy-MM-ddTHH:mm). */
+function parisIso(d: Date) {
+  const p = Object.fromEntries(
+    new Intl.DateTimeFormat('en-CA', { timeZone: 'Europe/Paris', hourCycle: 'h23', year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit' })
+      .formatToParts(d).map((x) => [x.type, x.value]),
+  )
+  return `${p.year}-${p.month}-${p.day}T${p.hour}:${p.minute}`
+}
+/* Répondu, sauf « Plus tard » daté d'un autre jour de Paris : la carte revient le lendemain (décisions et chantiers). */
+function aRepondu(x: { reponse?: string; reponduLe?: string; repondu_le?: string }) {
+  if (!x.reponse) return false
+  if (x.reponse !== 'plus-tard') return true
+  const quand = (x.reponduLe || x.repondu_le || '').slice(0, 10)
+  return !quand || quand === parisIso(new Date()).slice(0, 10)
+}
 const euros = (n: number) => n.toLocaleString('fr-FR') + ' €'
 const QUAND: Record<string, string> = { semaine: 'Cette semaine', mois: 'Ce mois-ci', 'plus-tard': 'Plus tard' }
 const nettoyer = (t: string) => t.replace(/\*\*|`/g, '').trim()
@@ -157,7 +172,7 @@ export function EspaceApp({ cle, demo }: { cle: string; demo: boolean }) {
     }, animer ? 260 : 0)
   }
 
-  const maintenant = () => new Date().toISOString()
+  const maintenant = () => parisIso(new Date())
 
   const repondre = (dec: Decision, lettre: string, animer = false) =>
     traiter(dec.id, animer, () =>
@@ -263,14 +278,14 @@ export function EspaceApp({ cle, demo }: { cle: string; demo: boolean }) {
   }
 
   /* Les cartes : grave d'abord, puis les chantiers qui attendent un go, puis l'utile. */
-  const ouvertes = d.decisions.filter((x) => !x.reponse)
+  const ouvertes = d.decisions.filter((x) => !aRepondu(x))
   const cartes: Carte[] = [
     ...ouvertes.filter((x) => x.gravite === 'grave').map((dec): Carte => ({ type: 'decision', id: dec.id, dec })),
-    ...d.chantiers.filter((x) => x.etat === 'attend-go' && !x.reponse).map((ch): Carte => ({ type: 'chantier', id: ch.id, ch })),
+    ...d.chantiers.filter((x) => x.etat === 'attend-go' && !aRepondu(x)).map((ch): Carte => ({ type: 'chantier', id: ch.id, ch })),
     ...ouvertes.filter((x) => x.gravite !== 'grave').map((dec): Carte => ({ type: 'decision', id: dec.id, dec })),
   ]
   const restantes = cartes.filter((c) => !sortantes.includes(c.id)).length
-  const repondues = d.decisions.filter((x) => x.reponse).length + d.chantiers.filter((x) => x.etat === 'attend-go' && x.reponse).length
+  const repondues = d.decisions.filter(aRepondu).length + d.chantiers.filter((x) => x.etat === 'attend-go' && aRepondu(x)).length
   const bilan = d.bilanNuit && d.bilanNuit.lignes.length ? d.bilanNuit : null
   const perime = !!bilan && !demo && !!bilan.maj && Date.now() - new Date(bilan.maj).getTime() > 40 * 3600 * 1000
 
@@ -532,7 +547,9 @@ function CarteChantier({ ch, onRepondre }: { ch: Chantier; onRepondre: (r: 'oui'
       <p className="mb-2 flex items-center gap-1.5 text-[14px] font-bold uppercase tracking-wide" style={{ color: 'var(--ink-2)' }}>
         <Hammer size={16} aria-hidden /> Attend ton go
       </p>
-      <h2 className="text-[20px] font-bold leading-snug">Je mets en ligne : {ch.titre}{' '}?</h2>
+      <h2 className="text-[20px] font-bold leading-snug">
+        {ch.question ? ch.question.replace(/\s*\?\s*$/, '') : `Je mets en ligne : ${ch.titre}`}{'\u00a0'}?
+      </h2>
       <div className="mt-4 flex flex-col gap-2">
         {/^https?:\/\//.test(ch.lien) && (
           <a href={ch.lien} target="_blank" rel="noreferrer" className={`btn-contour ${reponse} gap-2`}>
@@ -588,8 +605,8 @@ function Repondu({
   d, onRepondre, onChantier,
 }: { d: Donnees; onRepondre: (d: Decision, l: string) => void; onChantier: (c: Chantier, r: 'oui' | 'non' | 'plus-tard') => void }) {
   const [changer, setChanger] = useState('')
-  const decisions = d.decisions.filter((x) => x.reponse)
-  const chantiers = d.chantiers.filter((x) => x.etat === 'attend-go' && x.reponse)
+  const decisions = d.decisions.filter(aRepondu)
+  const chantiers = d.chantiers.filter((x) => x.etat === 'attend-go' && aRepondu(x))
   const LIBELLE: Record<string, string> = { oui: 'Oui, mets en ligne', non: 'Non', 'plus-tard': 'Plus tard' }
   return (
     <>

@@ -45,7 +45,7 @@ export type Opportunite = {
   statut: string
   origine: string
 }
-export type Chantier = { id: string; titre: string; etat: string; lien: string; reponse?: string; repondu_le?: string }
+export type Chantier = { id: string; titre: string; etat: string; lien: string; reponse?: string; repondu_le?: string; question?: string }
 export type TacheNuit = { id: string; tache: string; fait: string; lien: string; origine: string; ajoute_le: string }
 /* Carte « Cette nuit » (02/11) : la section EN CLAIR de bilan/nuit.md, écrite par l'agent de nuit. */
 export type BilanNuit = { titre: string; lignes: string[]; maj: string }

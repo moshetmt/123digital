@@ -212,6 +212,7 @@ export function EspaceApp({ cle, demo }: { cle: string; demo: boolean }) {
   const changerBrouillon = (t: string) => {
     setBrouillon(t)
     setErreurMessage('')
+    if (!t.trim()) idMessage.current = '' // case vidée = nouveau message, sinon le script le prendrait pour un doublon
     if (!idMessage.current) idMessage.current = 'm' + Date.now().toString(36) + Math.random().toString(36).slice(2, 6)
     try { localStorage.setItem(BROUILLON, JSON.stringify({ texte: t, id: idMessage.current })) } catch {}
   }
@@ -286,7 +287,7 @@ export function EspaceApp({ cle, demo }: { cle: string; demo: boolean }) {
           <h1 className="mb-4 text-[28px] font-extrabold leading-tight">
             J’ai besoin de toi pour {restantes} chose{restantes > 1 ? 's' : ''}
           </h1>
-        ) : etat === 'ok' ? (
+        ) : etat === 'ok' || etat === 'charge' ? (
           <div className="mb-2 flex items-center gap-4">
             <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full" style={{ backgroundColor: 'var(--brand)', color: 'var(--on-brand)' }}>
               <Check size={32} strokeWidth={2.5} aria-hidden />
@@ -531,7 +532,7 @@ function CarteChantier({ ch, onRepondre }: { ch: Chantier; onRepondre: (r: 'oui'
       <p className="mb-2 flex items-center gap-1.5 text-[14px] font-bold uppercase tracking-wide" style={{ color: 'var(--ink-2)' }}>
         <Hammer size={16} aria-hidden /> Attend ton go
       </p>
-      <h2 className="text-[20px] font-bold leading-snug">Je mets en ligne : {ch.titre} ?</h2>
+      <h2 className="text-[20px] font-bold leading-snug">Je mets en ligne : {ch.titre}{' '}?</h2>
       <div className="mt-4 flex flex-col gap-2">
         {/^https?:\/\//.test(ch.lien) && (
           <a href={ch.lien} target="_blank" rel="noreferrer" className={`btn-contour ${reponse} gap-2`}>

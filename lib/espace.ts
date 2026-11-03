@@ -45,7 +45,7 @@ export type Opportunite = {
   statut: string
   origine: string
 }
-export type Chantier = { id: string; titre: string; etat: string; lien: string }
+export type Chantier = { id: string; titre: string; etat: string; lien: string; reponse?: string; repondu_le?: string }
 export type TacheNuit = { id: string; tache: string; fait: string; lien: string; origine: string; ajoute_le: string }
 /* Carte « Cette nuit » (02/11) : la section EN CLAIR de bilan/nuit.md, écrite par l'agent de nuit. */
 export type BilanNuit = { titre: string; lignes: string[]; maj: string }
@@ -62,7 +62,7 @@ export type Donnees = {
 }
 
 /* Actions permises depuis le téléphone. export et import restent réservés au PC (autre clé). */
-export const ACTIONS = ['donnees', 'repondre', 'idee', 'opp_ajout', 'opp_statut', 'nuit_ajout'] as const
+export const ACTIONS = ['donnees', 'repondre', 'idee', 'opp_ajout', 'opp_statut', 'nuit_ajout', 'chantier', 'message'] as const
 
 const opt = (lettre: string, texte: string, recommande = false): Option => ({ lettre, texte, recommande })
 
@@ -88,6 +88,7 @@ export const DEMO: Donnees = {
   ],
   chantiers: [
     { id: 'c1', titre: 'Fiche d’intervention : choix « Annonce Google »', etat: 'attend-go', lien: 'https://123digital.fr' },
+    { id: 'c4', titre: 'Page de prise de rendez-vous du client A', etat: 'attend-go', lien: 'https://123digital.fr/contact' },
     { id: 'c2', titre: 'Banc d’essai des skills', etat: 'avance', lien: '' },
     { id: 'c3', titre: 'Routine du soir en échec depuis 2 jours', etat: 'bloque', lien: '' },
   ],

@@ -61,7 +61,8 @@ const AGENTS: { cle: string; nom: string; Icone: LucideIcon; source: RegExp }[] 
   { cle: 'bras-droit', nom: 'Bras droit', Icone: ListChecks, source: /bras[- ]droit/i },
 ]
 const estPilote = (x: Decision) => /^pilote-/.test(x.id) || /\/pilote\//.test(x.source)
-const agentDecision = (x: Decision) => (estPilote(x) ? null : (AGENTS.find((a) => a.source.test(x.source))?.cle ?? null))
+/* Une décision GRAVE reste toujours dans « J'ai besoin de toi », quelle que soit sa source. */
+const agentDecision = (x: Decision) => (estPilote(x) || x.gravite === 'grave' ? null : (AGENTS.find((a) => a.source.test(x.source))?.cle ?? null))
 const agentIdee = (i: Idee) => AGENTS.find((a) => a.cle === i.veille)?.cle ?? AGENTS.find((a) => a.source.test(i.source))?.cle ?? null
 const ETAT_ROBOT: Record<string, { libelle: string; couleur: string }> = {
   vert: { libelle: 'Dans les clous', couleur: 'var(--brand)' },
@@ -668,10 +669,12 @@ function CarteRobot({ r, decisions, demo, onVoir }: { r: Robot; decisions: Decis
   const joursSansPassage = r.date && !demo ? Math.floor((ouvertureMs - new Date(r.date).getTime()) / 86_400_000) : 0
   const muet = joursSansPassage >= 3
   const etat = r.etat === 'rouge' ? 'rouge' : r.etat === 'orange' || muet ? 'orange' : 'vert'
-  const { libelle, couleur } = ETAT_ROBOT[etat]
+  const { libelle: libelleEtat, couleur } = ETAT_ROBOT[etat]
   const depense = nombre(r.depense)
   const projection = nombre(r.projection)
   const plafond = nombre(r.plafond)
+  // Rouge : « Au-dessus du budget » seulement si la projection dépasse le plafond ; sinon de l'argent est parti sans demande.
+  const libelle = etat === 'rouge' && !(plafond > 0 && projection > plafond) ? 'Dépensé sans demande' : libelleEtat
   const part = (n: number) => (plafond > 0 ? Math.min(100, Math.max(0, (n / plafond) * 100)) : 0)
   const demandes = decisions.filter((x) => !aRepondu(x) && (x.id.startsWith(`pilote-${r.slug}-`) || (r.decision_id || '').split(/[\s,]+/).includes(x.id)))
   const [va, pasBien, budget] = lignes
@@ -769,8 +772,9 @@ function AgentsSection({
     const questions = d.decisions.filter((x) => agentDecision(x) === a.cle && !aRepondu(x))
     const idees = d.idees.filter((i) => agentIdee(i) === a.cle)
     const opportunites = idees.filter((i) => i.statut === 'à essayer' && !aRepondu(i))
-    const gardees = idees.filter((i) => i.statut === 'en essai' || i.statut === 'adopté').length
-    const jetees = idees.filter((i) => i.statut === 'refusé').length
+    // Seules les réponses de Moshé comptent, pas le tri automatique (a-ne-pas-mettre).
+    const gardees = idees.filter((i) => i.reponse === 'oui').length
+    const jetees = idees.filter((i) => i.reponse === 'non').length
     return { a, questions, opportunites, gardees, jetees }
   }).filter((b) => b.questions.length + b.opportunites.length + b.gardees + b.jetees > 0)
   return (

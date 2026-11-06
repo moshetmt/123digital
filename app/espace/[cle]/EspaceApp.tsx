@@ -3,9 +3,11 @@
 import Image from 'next/image'
 import { useCallback, useEffect, useRef, useState } from 'react'
 import {
-  Check, ChevronDown, CircleAlert, Clock, ExternalLink, Hammer, Handshake, Lightbulb, MessageCircle, Moon, Plus, RefreshCw, Signpost, X,
+  ArrowDown, Bookmark, Bot, Check, ChevronDown, CircleAlert, Clock, ExternalLink, GitBranch, Hammer, Handshake, Lightbulb, ListChecks, MessageCircle,
+  Moon, Newspaper, PackageX, Plus, Radar, RefreshCw, Signpost, Sparkles, Telescope, Trash2, Wallet, X,
 } from 'lucide-react'
-import type { Chantier, Decision, Donnees, Idee, Opportunite } from '@/lib/espace'
+import type { LucideIcon } from 'lucide-react'
+import type { Chantier, Decision, Donnees, Idee, Opportunite, Robot } from '@/lib/espace'
 
 /* Espace 123digital, version « un seul fil » (03/11/2026). Retour de Moshé sur la version à
    rubriques : « je capte pas trop, c'est mal foutu, je sais pas quoi faire dedans ». Un seul écran,
@@ -48,6 +50,27 @@ const euros = (n: number) => n.toLocaleString('fr-FR') + ' €'
 const QUAND: Record<string, string> = { semaine: 'Cette semaine', mois: 'Ce mois-ci', 'plus-tard': 'Plus tard' }
 const nettoyer = (t: string) => t.replace(/\*\*|`/g, '').trim()
 
+/* Les agents et veilles (09/11) : une décision leur appartient quand sa « Source : » les nomme, une idée
+   quand la colonne « veille » du journal des trouvailles les nomme. Le pilote budget a sa place dans Robots. */
+const AGENTS: { cle: string; nom: string; Icone: LucideIcon; source: RegExp }[] = [
+  { cle: 'veille-metiers', nom: 'Veille métiers', Icone: Newspaper, source: /veille-metiers/i },
+  { cle: 'veille-ia', nom: 'Veille IA', Icone: Sparkles, source: /veille-ia/i },
+  { cle: 'github-quotidien', nom: 'GitHub', Icone: GitBranch, source: /github/i },
+  { cle: 'concurrents', nom: 'Concurrents', Icone: Telescope, source: /concurren/i },
+  { cle: 'ruptures', nom: 'Ruptures', Icone: PackageX, source: /rupture/i },
+  { cle: 'bras-droit', nom: 'Bras droit', Icone: ListChecks, source: /bras[- ]droit/i },
+]
+const estPilote = (x: Decision) => /^pilote-/.test(x.id) || /\/pilote\//.test(x.source)
+const agentDecision = (x: Decision) => (estPilote(x) ? null : (AGENTS.find((a) => a.source.test(x.source))?.cle ?? null))
+const agentIdee = (i: Idee) => AGENTS.find((a) => a.cle === i.veille)?.cle ?? AGENTS.find((a) => a.source.test(i.source))?.cle ?? null
+const ETAT_ROBOT: Record<string, { libelle: string; couleur: string }> = {
+  vert: { libelle: 'Dans les clous', couleur: 'var(--brand)' },
+  orange: { libelle: 'À surveiller', couleur: '#9A5B00' },
+  rouge: { libelle: 'Au-dessus du budget', couleur: 'var(--alerte)' },
+}
+const nombre = (t: string) => parseFloat((t || '').replace(',', '.')) || 0
+const pluriel = (n: number, un: string, plusieurs: string) => `${n} ${n > 1 ? plusieurs : un}`
+
 type Carte =
   | { type: 'decision'; id: string; dec: Decision }
   | { type: 'chantier'; id: string; ch: Chantier }
@@ -66,6 +89,8 @@ export function EspaceApp({ cle, demo }: { cle: string; demo: boolean }) {
   const [brouillon, setBrouillon] = useState('')
   const [envoi, setEnvoi] = useState(false)
   const [erreurMessage, setErreurMessage] = useState('')
+  const [ouverts, setOuverts] = useState<string[]>([])
+  const [marque, setMarque] = useState('')
 
   const occupe = useRef(new Set<string>()) // identifiants en cours d'envoi : un double appui n'écrit qu'une fois
   const enVol = useRef(0) // écritures en cours : une relecture ne doit pas défaire l'écran optimiste
@@ -192,15 +217,33 @@ export function EspaceApp({ cle, demo }: { cle: string; demo: boolean }) {
         'Réponse enregistrée',
       ),
     )
-  const trancherIdee = (idee: Idee, oui: boolean) =>
-    traiter(idee.id, false, () =>
+  /* true = Garder, false = Jeter, 'plus-tard' = la carte revient demain (statut inchangé). */
+  const trancherIdee = (idee: Idee, choixIdee: boolean | 'plus-tard', animer = false) => {
+    const rep = choixIdee === true ? 'oui' : choixIdee === false ? 'non' : 'plus-tard'
+    return traiter(idee.id, animer, () =>
       ecrire(
-        { action: 'idee', id: idee.id, choix: oui ? 'oui' : 'non' },
-        (x) => ({ ...x, idees: x.idees.map((y) => (y.id === idee.id ? { ...y, reponse: oui ? 'oui' : 'non', statut: oui ? 'en essai' : 'refusé' } : y)) }),
+        { action: 'idee', id: idee.id, choix: rep },
+        (x) => ({
+          ...x,
+          idees: x.idees.map((y) =>
+            y.id === idee.id ? { ...y, reponse: rep, repondu_le: maintenant(), statut: rep === 'oui' ? 'en essai' : rep === 'non' ? 'refusé' : y.statut } : y,
+          ),
+        }),
         (x) => ({ ...x, idees: x.idees.map((y) => (y.id === idee.id ? idee : y)) }),
-        oui ? 'Noté : on l’essaie' : 'Noté : on laisse tomber',
+        rep === 'oui' ? 'Noté : on garde' : rep === 'non' ? 'Noté : on jette' : 'Noté : je te le redemande demain',
       ),
     )
+  }
+  /* Fait défiler jusqu'à une carte ou une section, et la marque un instant. */
+  const aller = (id: string, marquer = true) => {
+    const el = document.getElementById(id)
+    if (!el) return
+    el.scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' })
+    if (marquer) {
+      setMarque(id)
+      window.setTimeout(() => setMarque(''), 2200)
+    }
+  }
   const statutOpp = (o: Opportunite, statut: string) =>
     traiter(o.id, false, () =>
       ecrire(
@@ -278,7 +321,8 @@ export function EspaceApp({ cle, demo }: { cle: string; demo: boolean }) {
   }
 
   /* Les cartes : grave d'abord, puis les chantiers qui attendent un go, puis l'utile. */
-  const ouvertes = d.decisions.filter((x) => !aRepondu(x))
+  const ouvertes = d.decisions.filter((x) => !aRepondu(x) && !agentDecision(x))
+  const chezAgents = d.decisions.filter((x) => !aRepondu(x) && agentDecision(x) && !sortantes.includes(x.id)).length
   const cartes: Carte[] = [
     ...ouvertes.filter((x) => x.gravite === 'grave').map((dec): Carte => ({ type: 'decision', id: dec.id, dec })),
     ...d.chantiers.filter((x) => x.etat === 'attend-go' && !aRepondu(x)).map((ch): Carte => ({ type: 'chantier', id: ch.id, ch })),
@@ -315,26 +359,42 @@ export function EspaceApp({ cle, demo }: { cle: string; demo: boolean }) {
         ) : (
           <h1 className="mb-2 text-[24px] font-extrabold leading-tight">Je ne peux pas lire tes questions pour l’instant</h1>
         )}
+        {chezAgents > 0 && (
+          <button
+            type="button"
+            onClick={() => aller('section-agents', false)}
+            className="mb-2 flex min-h-[48px] items-center gap-1.5 px-1 text-[16px] underline underline-offset-4"
+            style={{ color: 'var(--ink-2)' }}
+          >
+            <ArrowDown size={16} aria-hidden /> et {pluriel(chezAgents, 'question', 'questions')} chez les agents
+          </button>
+        )}
         <div className="flex flex-col gap-3">
-          {cartes.map((c) => {
-            const sort = sortantes.includes(c.id)
-            return (
-              <div
-                key={c.id}
-                className={`grid transition-[grid-template-rows,opacity,transform] duration-[250ms] ease-out motion-reduce:transition-none ${sort ? 'pointer-events-none grid-rows-[0fr] scale-95 opacity-0' : 'grid-rows-[1fr] opacity-100'}`}
-              >
-                <div className="-mx-3 -mb-6 -mt-2 min-h-0 overflow-hidden px-3 pb-6 pt-2">
-                  {c.type === 'decision' ? (
-                    <CarteDecision dec={c.dec} onRepondre={(l) => repondre(c.dec, l, true)} />
-                  ) : (
-                    <CarteChantier ch={c.ch} onRepondre={(l) => repondreChantier(c.ch, l, true)} />
-                  )}
-                </div>
-              </div>
-            )
-          })}
+          {cartes.map((c) => (
+            <Anime key={c.id} id={`carte-${c.id}`} sort={sortantes.includes(c.id)}>
+              {c.type === 'decision' ? (
+                <CarteDecision dec={c.dec} marque={marque === `carte-${c.id}`} onRepondre={(l) => repondre(c.dec, l, true)} />
+              ) : (
+                <CarteChantier ch={c.ch} marque={marque === `carte-${c.id}`} onRepondre={(l) => repondreChantier(c.ch, l, true)} />
+              )}
+            </Anime>
+          ))}
         </div>
       </section>
+
+      {/* 1 bis. Les robots qui pilotent les Ads */}
+      <RobotsSection liste={d.robots ?? []} decisions={d.decisions} demo={demo} onVoir={(id) => aller(`carte-${id}`)} />
+
+      {/* 1 ter. Les agents et leurs opportunités */}
+      <AgentsSection
+        d={d}
+        ouverts={ouverts}
+        onBascule={(cle) => setOuverts((o) => (o.includes(cle) ? o.filter((x) => x !== cle) : [...o, cle]))}
+        sortantes={sortantes}
+        marque={marque}
+        onRepondre={(dec, l) => repondre(dec, l, true)}
+        onIdee={(i, c) => trancherIdee(i, c, true)}
+      />
 
       {/* 2. Cette nuit */}
       <section className={`${carte} mt-6`} aria-labelledby="titre-nuit">
@@ -381,7 +441,7 @@ export function EspaceApp({ cle, demo }: { cle: string; demo: boolean }) {
               actif={autre}
               onChange={setAutre}
             />
-            {autre === 'idees' && <Idees liste={d.idees} onTrancher={trancherIdee} />}
+            {autre === 'idees' && <Idees liste={d.idees} onTrancher={(i, oui) => trancherIdee(i, oui)} />}
             {autre === 'opportunites' && <Opportunites liste={d.opportunites} onStatut={statutOpp} onAjouter={ajouterOpp} />}
             {autre === 'chantiers' && <Chantiers d={d} />}
             {autre === 'repondu' && <Repondu d={d} onRepondre={(dec, l) => repondre(dec, l)} onChantier={(ch, l) => repondreChantier(ch, l)} />}
@@ -518,10 +578,23 @@ function Panne({ etat }: { etat: string }) {
 
 /* ---------------------------------------------------------------- les cartes-questions */
 
-function CarteDecision({ dec, onRepondre }: { dec: Decision; onRepondre: (lettre: string) => void }) {
+/* Enveloppe d'une carte-question : se replie (hauteur, opacité) quand on y répond. */
+function Anime({ id, sort, children }: { id?: string; sort: boolean; children: React.ReactNode }) {
+  return (
+    <div
+      id={id}
+      className={`grid scroll-mt-4 transition-[grid-template-rows,opacity,transform] duration-[250ms] ease-out motion-reduce:transition-none ${sort ? 'pointer-events-none grid-rows-[0fr] scale-95 opacity-0' : 'grid-rows-[1fr] opacity-100'}`}
+    >
+      <div className="-mx-3 -mb-6 -mt-2 min-h-0 overflow-hidden px-3 pb-6 pt-2">{children}</div>
+    </div>
+  )
+}
+const reperage = (marque?: boolean) => ({ outline: `3px solid ${marque ? 'var(--brand)' : 'transparent'}`, transition: 'outline-color 200ms ease-out' })
+
+function CarteDecision({ dec, onRepondre, marque }: { dec: Decision; onRepondre: (lettre: string) => void; marque?: boolean }) {
   const grave = dec.gravite === 'grave'
   return (
-    <article className={carte}>
+    <article className={carte} style={reperage(marque)}>
       <p className="mb-2 flex items-center gap-1.5 text-[14px] font-bold uppercase tracking-wide" style={{ color: grave ? 'var(--alerte)' : 'var(--ink-2)' }}>
         {grave && <CircleAlert size={16} aria-hidden />} {grave ? 'Grave' : 'Utile'}
       </p>
@@ -541,9 +614,9 @@ function CarteDecision({ dec, onRepondre }: { dec: Decision; onRepondre: (lettre
   )
 }
 
-function CarteChantier({ ch, onRepondre }: { ch: Chantier; onRepondre: (r: 'oui' | 'non' | 'plus-tard') => void }) {
+function CarteChantier({ ch, onRepondre, marque }: { ch: Chantier; onRepondre: (r: 'oui' | 'non' | 'plus-tard') => void; marque?: boolean }) {
   return (
-    <article className={carte}>
+    <article className={carte} style={reperage(marque)}>
       <p className="mb-2 flex items-center gap-1.5 text-[14px] font-bold uppercase tracking-wide" style={{ color: 'var(--ink-2)' }}>
         <Hammer size={16} aria-hidden /> Attend ton go
       </p>
@@ -559,6 +632,240 @@ function CarteChantier({ ch, onRepondre }: { ch: Chantier; onRepondre: (r: 'oui'
         <button type="button" onClick={() => onRepondre('oui')} className={`btn-plein ${reponse}`}>Oui, mets en ligne</button>
         <button type="button" onClick={() => onRepondre('non')} className={`btn-contour ${reponse}`}>Non</button>
         <button type="button" onClick={() => onRepondre('plus-tard')} className={`btn-contour ${reponse} gap-2`}>
+          <Clock size={18} aria-hidden /> Plus tard
+        </button>
+      </div>
+    </article>
+  )
+}
+
+/* ---------------------------------------------------------------- Robots */
+
+function RobotsSection({ liste, decisions, demo, onVoir }: { liste: Robot[]; decisions: Decision[]; demo: boolean; onVoir: (id: string) => void }) {
+  return (
+    <section className="mt-8" aria-labelledby="titre-robots">
+      <h2 id="titre-robots" className="mb-3 flex items-center gap-2 text-[22px] font-extrabold">
+        <Bot size={24} strokeWidth={1.5} aria-hidden /> Robots
+      </h2>
+      {!liste.length ? (
+        <p className={`${carte} text-[17px]`} style={{ color: 'var(--ink-2)' }}>
+          Aucun passage pour l’instant. Chaque robot écrit ici après son passage du matin.
+        </p>
+      ) : (
+        <div className="flex flex-col gap-3">
+          {liste.map((r) => (
+            <CarteRobot key={r.slug} r={r} decisions={decisions} demo={demo} onVoir={onVoir} />
+          ))}
+        </div>
+      )}
+    </section>
+  )
+}
+
+function CarteRobot({ r, decisions, demo, onVoir }: { r: Robot; decisions: Decision[]; demo: boolean; onVoir: (id: string) => void }) {
+  const lignes = (r.en_clair || '').split(' / ').map((l) => l.trim()).filter(Boolean)
+  const [ouvertureMs] = useState(() => Date.now())
+  const joursSansPassage = r.date && !demo ? Math.floor((ouvertureMs - new Date(r.date).getTime()) / 86_400_000) : 0
+  const muet = joursSansPassage >= 3
+  const etat = r.etat === 'rouge' ? 'rouge' : r.etat === 'orange' || muet ? 'orange' : 'vert'
+  const { libelle, couleur } = ETAT_ROBOT[etat]
+  const depense = nombre(r.depense)
+  const projection = nombre(r.projection)
+  const plafond = nombre(r.plafond)
+  const part = (n: number) => (plafond > 0 ? Math.min(100, Math.max(0, (n / plafond) * 100)) : 0)
+  const demandes = decisions.filter((x) => !aRepondu(x) && (x.id.startsWith(`pilote-${r.slug}-`) || (r.decision_id || '').split(/[\s,]+/).includes(x.id)))
+  const [va, pasBien, budget] = lignes
+  const rienAReporter = !pasBien || /^rien/i.test(pasBien)
+  return (
+    <article className={carte}>
+      <div className="flex items-start justify-between gap-3">
+        <h3 className="text-[20px] font-extrabold leading-snug">{r.client}</h3>
+        <p className="flex shrink-0 items-center gap-2 pt-0.5 text-[15px] font-bold" style={{ color: couleur }}>
+          <span className="h-3.5 w-3.5 rounded-full" style={{ backgroundColor: couleur }} aria-hidden /> {libelle}
+        </p>
+      </div>
+      <ul className="mt-3 space-y-2.5">
+        {va && (
+          <li className="flex gap-3 text-[17px] leading-snug">
+            <Check size={20} className="mt-0.5 shrink-0" style={{ color: 'var(--brand)' }} aria-hidden /> <span>{va}</span>
+          </li>
+        )}
+        {pasBien && (
+          <li className="flex gap-3 text-[17px] leading-snug">
+            {rienAReporter ? (
+              <Check size={20} className="mt-0.5 shrink-0" style={{ color: 'var(--brand)' }} aria-hidden />
+            ) : (
+              <CircleAlert size={20} className="mt-0.5 shrink-0" style={{ color: couleur }} aria-hidden />
+            )}
+            <span>{pasBien}</span>
+          </li>
+        )}
+        {muet && (
+          <li className="flex gap-3 text-[17px] font-bold leading-snug">
+            <CircleAlert size={20} className="mt-0.5 shrink-0" style={{ color: couleur }} aria-hidden /> <span>Pas de passage depuis {joursSansPassage} jours</span>
+          </li>
+        )}
+        {budget && (
+          <li className="flex gap-3 text-[17px] leading-snug">
+            <Wallet size={20} strokeWidth={1.5} className="mt-0.5 shrink-0" style={{ color: 'var(--ink-2)' }} aria-hidden /> <span>{budget}</span>
+          </li>
+        )}
+      </ul>
+      {plafond > 0 && (
+        <>
+          <div
+            className="mt-4 h-2.5 overflow-hidden rounded-full"
+            style={{ backgroundColor: 'var(--g-100)' }}
+            role="img"
+            aria-label={`Dépensé ${euros(depense)}, projection ${euros(projection)}, plafond ${euros(plafond)}`}
+          >
+            <div className="relative h-full">
+              <div className="absolute inset-y-0 left-0 rounded-full" style={{ width: `${part(projection)}%`, backgroundColor: couleur, opacity: 0.3 }} />
+              <div className="absolute inset-y-0 left-0 rounded-full" style={{ width: `${part(depense)}%`, backgroundColor: couleur }} />
+            </div>
+          </div>
+          <dl className="mt-3 grid grid-cols-3 gap-2">
+            {(
+              [
+                ['Dépensé', depense],
+                ['Projection', projection],
+                ['Plafond', plafond],
+              ] as [string, number][]
+            ).map(([l, n]) => (
+              <div key={l}>
+                <dt className="text-[13px]" style={{ color: 'var(--ink-2)' }}>{l}</dt>
+                <dd className="text-[19px] font-extrabold leading-tight" style={{ color: l === 'Projection' && projection > plafond ? 'var(--alerte)' : 'var(--ink)' }}>
+                  {euros(n)}
+                </dd>
+              </div>
+            ))}
+          </dl>
+        </>
+      )}
+      {demandes.length > 0 && (
+        <button type="button" onClick={() => onVoir(demandes[0].id)} className={`btn-contour ${reponse} mt-4 gap-2`}>
+          <ArrowDown size={18} aria-hidden /> {demandes.length > 1 ? `Voir les ${demandes.length} demandes du robot` : 'Voir la demande du robot'}
+        </button>
+      )}
+      {r.date && <p className="mt-3 text-[13px]" style={{ color: 'var(--ink-2)' }}>Passage du {dateCourte(r.date)}</p>}
+    </article>
+  )
+}
+
+/* ---------------------------------------------------------------- Agents */
+
+function AgentsSection({
+  d, ouverts, onBascule, sortantes, marque, onRepondre, onIdee,
+}: {
+  d: Donnees
+  ouverts: string[]
+  onBascule: (cle: string) => void
+  sortantes: string[]
+  marque: string
+  onRepondre: (dec: Decision, lettre: string) => void
+  onIdee: (i: Idee, c: boolean | 'plus-tard') => void
+}) {
+  const blocs = AGENTS.map((a) => {
+    const questions = d.decisions.filter((x) => agentDecision(x) === a.cle && !aRepondu(x))
+    const idees = d.idees.filter((i) => agentIdee(i) === a.cle)
+    const opportunites = idees.filter((i) => i.statut === 'à essayer' && !aRepondu(i))
+    const gardees = idees.filter((i) => i.statut === 'en essai' || i.statut === 'adopté').length
+    const jetees = idees.filter((i) => i.statut === 'refusé').length
+    return { a, questions, opportunites, gardees, jetees }
+  }).filter((b) => b.questions.length + b.opportunites.length + b.gardees + b.jetees > 0)
+  return (
+    <section id="section-agents" className="mt-8 scroll-mt-4" aria-labelledby="titre-agents">
+      <h2 id="titre-agents" className="mb-3 flex items-center gap-2 text-[22px] font-extrabold">
+        <Radar size={24} strokeWidth={1.5} aria-hidden /> Agents
+      </h2>
+      {!blocs.length && <p className={`${carte} text-[17px]`} style={{ color: 'var(--ink-2)' }}>Aucun agent n’a de question pour l’instant.</p>}
+      <div className="flex flex-col gap-3">
+        {blocs.map(({ a, questions, opportunites, gardees, jetees }) => {
+          const ouvert = ouverts.includes(a.cle)
+          const q = questions.filter((x) => !sortantes.includes(x.id)).length
+          const o = opportunites.filter((x) => !sortantes.includes(x.id)).length
+          const grave = questions.some((x) => x.gravite === 'grave' && !sortantes.includes(x.id))
+          const Icone = a.Icone
+          return (
+            <div key={a.cle}>
+              <button
+                type="button"
+                onClick={() => onBascule(a.cle)}
+                aria-expanded={ouvert}
+                aria-controls={`agent-${a.cle}`}
+                className={`${carte} flex min-h-[72px] w-full items-center gap-3 !py-4 text-left`}
+              >
+                <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full" style={{ backgroundColor: 'var(--g-100)', color: 'var(--brand)' }}>
+                  <Icone size={22} strokeWidth={1.5} aria-hidden />
+                </span>
+                <span className="min-w-0 flex-1">
+                  <span className="block text-[18px] font-bold leading-snug">{a.nom}</span>
+                  <span className="block text-[15px]" style={{ color: 'var(--ink-2)' }}>
+                    {pluriel(q, 'question', 'questions')} · {pluriel(o, 'opportunité', 'opportunités')}
+                  </span>
+                </span>
+                {grave && <CircleAlert size={20} className="shrink-0" style={{ color: 'var(--alerte)' }} aria-label="Une question grave attend" />}
+                <ChevronDown size={20} aria-hidden className={`shrink-0 transition-transform duration-200 ease-out motion-reduce:transition-none ${ouvert ? 'rotate-180' : ''}`} />
+              </button>
+              <div
+                id={`agent-${a.cle}`}
+                inert={!ouvert}
+                className={`grid transition-[grid-template-rows,opacity] duration-[250ms] ease-out motion-reduce:transition-none ${ouvert ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'}`}
+              >
+                <div className="-mx-3 -mb-6 min-h-0 overflow-hidden px-3 pb-6">
+                  <div className="flex flex-col gap-3 pt-3">
+                    {questions.map((dec) => (
+                      <Anime key={dec.id} id={`carte-${dec.id}`} sort={sortantes.includes(dec.id)}>
+                        <CarteDecision dec={dec} marque={marque === `carte-${dec.id}`} onRepondre={(l) => onRepondre(dec, l)} />
+                      </Anime>
+                    ))}
+                    {opportunites.map((i) => (
+                      <Anime key={i.id} sort={sortantes.includes(i.id)}>
+                        <CarteOpportuniteAgent idee={i} onChoix={(c) => onIdee(i, c)} />
+                      </Anime>
+                    ))}
+                    {!questions.length && !opportunites.length && (
+                      <p className="px-1 text-[16px]" style={{ color: 'var(--ink-2)' }}>Rien en attente de ta réponse.</p>
+                    )}
+                    {(gardees > 0 || jetees > 0) && (
+                      <p className="px-1 text-[14px]" style={{ color: 'var(--ink-2)' }}>
+                        Déjà tranché : {pluriel(gardees, 'gardée', 'gardées')}, {pluriel(jetees, 'jetée', 'jetées')}
+                      </p>
+                    )}
+                  </div>
+                </div>
+              </div>
+            </div>
+          )
+        })}
+      </div>
+    </section>
+  )
+}
+
+function CarteOpportuniteAgent({ idee, onChoix }: { idee: Idee; onChoix: (c: boolean | 'plus-tard') => void }) {
+  const bouton = 'btn-sans-fleche !flex-col justify-center !gap-1 !px-1 !py-2 !text-[0.95rem] min-h-[64px] !w-full'
+  const quand = [idee.metier, dateCourte(idee.date)].filter(Boolean).join(' · ')
+  return (
+    <article className={carte}>
+      <p className="mb-1 flex items-center gap-1.5 text-[14px] font-bold uppercase tracking-wide" style={{ color: 'var(--ink-2)' }}>
+        <Lightbulb size={16} aria-hidden /> Opportunité{quand ? ` · ${quand}` : ''}
+      </p>
+      <h3 className="text-[19px] font-bold leading-snug">{idee.trouvaille}</h3>
+      {idee.commentaire && <p className="mt-1 text-[16px]">{idee.commentaire}</p>}
+      {idee.verdict && (
+        <p className="mt-2 text-[15px]" style={{ color: 'var(--ink-2)' }}>
+          Le tri conseille : <b>{VERDICTS[idee.verdict] ?? idee.verdict}</b>
+        </p>
+      )}
+      <div className="mt-4 grid grid-cols-3 gap-2">
+        <button type="button" onClick={() => onChoix(true)} className={`${idee.verdict === 'a-mettre' ? 'btn-plein' : 'btn-contour'} ${bouton}`}>
+          <Bookmark size={18} aria-hidden /> Garder
+        </button>
+        <button type="button" onClick={() => onChoix(false)} className={`btn-contour ${bouton}`}>
+          <Trash2 size={18} aria-hidden /> Jeter
+        </button>
+        <button type="button" onClick={() => onChoix('plus-tard')} className={`btn-contour ${bouton}`}>
           <Clock size={18} aria-hidden /> Plus tard
         </button>
       </div>

@@ -3,11 +3,12 @@
 import Image from 'next/image'
 import { useCallback, useEffect, useRef, useState } from 'react'
 import {
-  ArrowDown, Bookmark, Bot, Check, ChevronDown, CircleAlert, Clock, ExternalLink, GitBranch, Hammer, Handshake, Lightbulb, ListChecks, MessageCircle,
+  ArrowDown, Bookmark, Bot, Check, ChevronDown, CircleAlert, ClipboardList, Clock, ExternalLink, GitBranch, Hammer, Handshake, Lightbulb, ListChecks, MessageCircle,
   Moon, Newspaper, PackageX, Plus, Radar, RefreshCw, Signpost, Sparkles, Telescope, Trash2, Wallet, X,
 } from 'lucide-react'
 import type { LucideIcon } from 'lucide-react'
-import type { Chantier, Decision, Donnees, Idee, Opportunite, Robot } from '@/lib/espace'
+import { lireEtude } from '@/lib/espace'
+import type { Chantier, Decision, Donnees, Etude, Idee, Opportunite, Robot } from '@/lib/espace'
 
 /* Espace 123digital, version « un seul fil » (03/11/2026). Retour de Moshé sur la version à
    rubriques : « je capte pas trop, c'est mal foutu, je sais pas quoi faire dedans ». Un seul écran,
@@ -397,6 +398,9 @@ export function EspaceApp({ cle, demo }: { cle: string; demo: boolean }) {
         onIdee={(i, c) => trancherIdee(i, c, true)}
       />
 
+      {/* 1 quater. Les études */}
+      <EtudesSection liste={d.etudes ?? []} />
+
       {/* 2. Cette nuit */}
       <section className={`${carte} mt-6`} aria-labelledby="titre-nuit">
         <h2 id="titre-nuit" className="mb-3 flex items-center gap-2 text-[20px] font-extrabold">
@@ -752,6 +756,154 @@ function CarteRobot({ r, decisions, demo, onVoir }: { r: Robot; decisions: Decis
       )}
       {r.date && <p className="mt-3 text-[13px]" style={{ color: 'var(--ink-2)' }}>Passage du {dateCourte(r.date)}</p>}
     </article>
+  )
+}
+
+/* ---------------------------------------------------------------- Études */
+
+const GRAVITE_ETUDE: Record<string, { libelle: string; fond: string; texte: string }> = {
+  bloquant: { libelle: 'Bloquant', fond: 'var(--alerte)', texte: '#fff' },
+  gênant: { libelle: 'Gênant', fond: '#9A5B00', texte: '#fff' },
+  finition: { libelle: 'Finition', fond: '#fff', texte: 'var(--ink-2)' },
+}
+type PointEtude = NonNullable<NonNullable<Etude['lots']>[number]['points']>[number]
+
+function EtudesSection({ liste }: { liste: NonNullable<Donnees['etudes']> }) {
+  const etudes = liste.map(lireEtude).filter((e): e is Etude => !!e)
+  const [ouverte, setOuverte] = useState<string | null>(null)
+  if (!etudes.length) return null
+  return (
+    <section id="section-etudes" className="mt-8 scroll-mt-4" aria-labelledby="titre-etudes">
+      <h2 id="titre-etudes" className="mb-3 flex items-center gap-2 text-[22px] font-extrabold">
+        <ClipboardList size={24} strokeWidth={1.5} aria-hidden /> Études
+      </h2>
+      <div className="flex flex-col gap-3">
+        {etudes.map((e) => {
+          const ouvert = ouverte === e.id
+          return (
+            <article key={e.id} className={carte}>
+              <button
+                type="button"
+                onClick={() => setOuverte(ouvert ? null : e.id)}
+                aria-expanded={ouvert}
+                aria-controls={`etude-${e.id}`}
+                className="flex min-h-[44px] w-full items-start gap-3 text-left"
+              >
+                <span className="min-w-0 flex-1">
+                  <span className="block text-[14px] font-bold uppercase tracking-wide" style={{ color: 'var(--ink-2)' }}>
+                    {e.client} · {dateCourte(e.date)}
+                  </span>
+                  <span className="mt-1 block text-[19px] font-extrabold leading-snug">{e.titre}</span>
+                  {!ouvert && <span className="mt-2 block text-[16px] leading-snug">{e.en_clair}</span>}
+                </span>
+                <ChevronDown size={22} aria-hidden className={`mt-1 shrink-0 ${ouvert ? 'rotate-180' : ''}`} />
+              </button>
+              {ouvert && <CorpsEtude e={e} />}
+            </article>
+          )
+        })}
+      </div>
+    </section>
+  )
+}
+
+function CorpsEtude({ e }: { e: Etude }) {
+  const [lotsOuverts, setLotsOuverts] = useState<number[]>([0])
+  const lots = e.lots ?? []
+  return (
+    <div id={`etude-${e.id}`} className="mt-4">
+      <p className="text-[19px] font-bold leading-snug">{e.en_clair}</p>
+      {!!e.chiffres?.length && (
+        <dl className="mt-5 grid grid-cols-2 gap-3">
+          {e.chiffres.map((c, i) => (
+            <div key={i} className="min-w-0 rounded-2xl p-3" style={{ backgroundColor: 'var(--g-100)' }}>
+              <dd className="break-words text-[34px] font-extrabold leading-none" style={{ color: 'var(--brand)' }}>{c.valeur}</dd>
+              <dt className="mt-2 text-[15px] leading-snug">{c.libelle}</dt>
+            </div>
+          ))}
+        </dl>
+      )}
+      {e.cause && (
+        <>
+          <h3 className="mt-6 text-[18px] font-extrabold">Pourquoi ça casse</h3>
+          <p className="mt-1 text-[16px] leading-relaxed">{e.cause}</p>
+        </>
+      )}
+      {!!e.decisions?.length && (
+        <>
+          <h3 className="mt-6 text-[18px] font-extrabold">Ce que tu as décidé</h3>
+          <ul className="mt-2 space-y-2.5">
+            {e.decisions.map((t, i) => (
+              <li key={i} className="flex gap-3 text-[16px] leading-snug">
+                <Check size={20} className="mt-0.5 shrink-0" style={{ color: 'var(--brand)' }} aria-hidden /> <span>{t}</span>
+              </li>
+            ))}
+          </ul>
+        </>
+      )}
+      {lots.map((lot, n) => {
+        const ouvert = lotsOuverts.includes(n)
+        return (
+          <div key={n} className="mt-6 border-t pt-4" style={{ borderColor: 'var(--g-100)' }}>
+            <button
+              type="button"
+              onClick={() => setLotsOuverts((o) => (o.includes(n) ? o.filter((x) => x !== n) : [...o, n]))}
+              aria-expanded={ouvert}
+              className="flex min-h-[44px] w-full items-start gap-3 text-left"
+            >
+              <span className="min-w-0 flex-1">
+                <span className="block text-[18px] font-extrabold leading-snug">{lot.titre}</span>
+                {lot.etat && (
+                  <span className="mt-1.5 inline-block rounded-full px-3 py-1 text-[14px] font-bold" style={{ backgroundColor: 'var(--g-100)', color: 'var(--brand)' }}>
+                    {lot.etat}
+                  </span>
+                )}
+              </span>
+              <ChevronDown size={22} aria-hidden className={`mt-1 shrink-0 ${ouvert ? 'rotate-180' : ''}`} />
+            </button>
+            {ouvert && (
+              <div className="mt-2">
+                {lot.resume && <p className="text-[16px] leading-relaxed">{lot.resume}</p>}
+                {!!lot.points?.length && (
+                  <ul className="mt-3 flex flex-col gap-4">
+                    {lot.points.map((p, i) => (
+                      <PointEtudeCarte key={i} p={p} etude={e.id} />
+                    ))}
+                  </ul>
+                )}
+              </div>
+            )}
+          </div>
+        )
+      })}
+      {(e.limites || e.rapport) && (
+        <div className="mt-6 border-t pt-4 text-[14px] leading-snug" style={{ borderColor: 'var(--g-100)', color: 'var(--ink-2)' }}>
+          {e.limites && <p>{e.limites}</p>}
+          {e.rapport && <p className="mt-2 break-words">Rapport complet : {e.rapport}</p>}
+        </div>
+      )}
+    </div>
+  )
+}
+
+function PointEtudeCarte({ p, etude }: { p: PointEtude; etude: string }) {
+  const g = GRAVITE_ETUDE[p.gravite ?? ''] ?? GRAVITE_ETUDE.finition
+  const src = p.image ? `/espace/etudes/${etude}/${p.image}` : ''
+  return (
+    <li className="rounded-2xl p-3" style={{ backgroundColor: 'var(--g-100)' }}>
+      <p className="flex items-start justify-between gap-3">
+        <span className="min-w-0 text-[17px] font-bold leading-snug">{p.titre}</span>
+        <span className="shrink-0 rounded-full px-2.5 py-0.5 text-[13px] font-bold" style={{ backgroundColor: g.fond, color: g.texte }}>{g.libelle}</span>
+      </p>
+      {p.ou && <p className="mt-1.5 text-[16px] leading-snug">Où : {p.ou}</p>}
+      {src && (
+        <a href={src} target="_blank" rel="noreferrer" className="mt-3 block" aria-label={`Ouvrir la capture en grand : ${p.titre}`}>
+          {/* eslint-disable-next-line @next/next/no-img-element -- capture statique de l'étude, ouverte en grand par le lien */}
+          <img src={src} alt={p.titre} loading="lazy" className="mx-auto block max-h-[480px] w-auto max-w-full rounded-xl border" style={{ borderColor: 'var(--brand-line)' }} />
+        </a>
+      )}
+      {p.reparation && <p className="mt-3 text-[16px] leading-snug"><strong>Réparation :</strong> {p.reparation}</p>}
+    </li>
   )
 }
 

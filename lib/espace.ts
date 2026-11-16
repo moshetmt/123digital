@@ -66,6 +66,33 @@ export type Robot = {
   decision_id: string
   rapport: string
 }
+/* Une étude (16/11) : un fichier docs/espace-etudes/*.json d'ads-os. La feuille garde une ligne par étude,
+   le fichier entier dans la colonne « json » ; la page le relit avec lireEtude. */
+export type PointEtude = { titre: string; ou?: string; gravite?: string; reparation?: string; image?: string }
+export type LotEtude = { titre: string; etat?: string; resume?: string; points?: PointEtude[] }
+export type Etude = {
+  id: string
+  date: string
+  client: string
+  titre: string
+  en_clair: string
+  cause?: string
+  chiffres?: { valeur: string; libelle: string }[]
+  decisions?: string[]
+  lots?: LotEtude[]
+  limites?: string
+  rapport?: string
+}
+export type EtudeLigne = { id: string; date: string; client: string; titre: string; json: string }
+export function lireEtude(l: EtudeLigne): Etude | null {
+  try {
+    const e = JSON.parse(l.json)
+    return e && typeof e === 'object' && e.id && e.titre ? (e as Etude) : null
+  } catch {
+    return null
+  }
+}
+
 export type Donnees = {
   ok: boolean
   error?: string
@@ -77,6 +104,7 @@ export type Donnees = {
   nuit: TacheNuit[]
   bilanNuit?: BilanNuit | null
   robots?: Robot[]
+  etudes?: EtudeLigne[]
 }
 
 /* Actions permises depuis le téléphone. export et import restent réservés au PC (autre clé). */
@@ -135,6 +163,41 @@ export const DEMO: Donnees = {
       date: '2026-11-08T12:15', slug: 'demo-c', client: 'Client C', etat: 'rouge',
       en_clair: 'Dépensé jusqu’à hier : 1 640 € / Dépassement possible de 210 € en fin de cycle / Budgets : A 60 €/j',
       depense: '1640', projection: '2210', plafond: '2000', decision_id: '', rapport: '',
+    },
+  ],
+  etudes: [
+    {
+      id: 'demo-etude',
+      date: '2026-11-10',
+      client: 'Client A',
+      titre: 'Étude du site : ce qui casse',
+      json: JSON.stringify({
+        id: 'demo-etude',
+        date: '2026-11-10',
+        client: 'Client A',
+        titre: 'Étude du site : ce qui casse',
+        en_clair: 'Sur téléphone le site tient. Sur ordinateur, l’en-tête se chevauche. Exemple fictif, rien de réel.',
+        cause: 'Les styles s’empilent : chaque retouche ajoute une rustine.',
+        chiffres: [
+          { valeur: '120', libelle: 'pages contrôlées' },
+          { valeur: '3', libelle: 'défauts urgents' },
+        ],
+        decisions: ['Lot 1 préparé en préversion : oui'],
+        lots: [
+          {
+            titre: 'Lot 1 · Les réparations urgentes',
+            etat: 'en préparation',
+            resume: '3 corrections publiées en une fois après ta relecture.',
+            points: [
+              { titre: 'Le bouton passe sur le menu', ou: 'Toutes les pages, sur ordinateur', gravite: 'bloquant', reparation: 'En-tête refait, un seul modèle.' },
+              { titre: 'Texte pâle en bas de page', ou: 'Pages de services', gravite: 'gênant', reparation: 'Texte en noir.' },
+            ],
+          },
+          { titre: 'Lot 2 · Finitions', etat: 'à faire', resume: 'Petits réglages.', points: [{ titre: 'Marge trop serrée', ou: 'Accueil', gravite: 'finition', reparation: 'Marge de 24 px.' }] },
+        ],
+        limites: 'Étude d’exemple (démonstration).',
+        rapport: 'clients/demo/06-reports/exemple.md',
+      }),
     },
   ],
   bilanNuit: {

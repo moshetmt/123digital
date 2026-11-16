@@ -1,4 +1,4 @@
-import { ACTIONS, DEMO, ENDPOINT_ESPACE, FORMAT_CLE, estDemo } from '@/lib/espace'
+import { ACTIONS, DEMO, ENDPOINT_ESPACE, FORMAT_CLE, estDemo, journalDemo } from '@/lib/espace'
 
 /* Relais de l'Espace 123digital (02/11) : le téléphone n'appelle jamais Google directement.
    La clé voyage dans le corps (jamais dans une URL journalisée), l'Apps Script la vérifie. */
@@ -22,6 +22,7 @@ export async function POST(request: Request) {
 
   if (estDemo(cle)) {
     // Démonstration : rien n'est écrit nulle part.
+    if (action === 'journal') return json(journalDemo(Number(corps.jours) || 7, Number(corps.debut) || 0))
     return json(action === 'donnees' ? DEMO : { ok: true, demo: true })
   }
   if (!FORMAT_CLE.test(cle)) return json({ ok: false, error: 'cle' }, 403)

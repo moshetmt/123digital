@@ -3,12 +3,13 @@
 import Image from 'next/image'
 import { useCallback, useEffect, useRef, useState } from 'react'
 import {
-  ArrowDown, Bookmark, Bot, Check, ChevronDown, CircleAlert, ClipboardList, Clock, ExternalLink, GitBranch, Hammer, Handshake, Lightbulb, ListChecks, MessageCircle,
-  Moon, Newspaper, PackageX, Plus, Radar, RefreshCw, Signpost, Sparkles, Telescope, Trash2, Wallet, X,
+  ArrowDown, BookOpen, Bookmark, Bot, Check, ChevronDown, CircleAlert, ClipboardList, Clock, ExternalLink, GitBranch, Hammer, Handshake, Lightbulb, ListChecks, MessageCircle,
+  FileText, Globe, Hourglass, LayoutDashboard, Moon, Newspaper, PackageX, Plus, Radar, RefreshCw, Signpost, Sparkles, Telescope, TrendingUp, Trash2, User, Wallet, X,
+  Archive,
 } from 'lucide-react'
 import type { LucideIcon } from 'lucide-react'
 import { lireEtude } from '@/lib/espace'
-import type { Chantier, Decision, Donnees, Etude, Idee, Opportunite, Robot } from '@/lib/espace'
+import type { Chantier, ChantierPilotage, Decision, Donnees, EntreeJournal, Etude, Idee, Opportunite, Pilotage, ReponseJournal, Robot } from '@/lib/espace'
 
 /* Espace 123digital, version « un seul fil » (03/11/2026). Retour de Moshé sur la version à
    rubriques : « je capte pas trop, c'est mal foutu, je sais pas quoi faire dedans ». Un seul écran,
@@ -384,6 +385,15 @@ export function EspaceApp({ cle, demo }: { cle: string; demo: boolean }) {
         </div>
       </section>
 
+      {/* 1 bis-a. Le tableau de bord des chantiers (absent tant que le script Google n'est pas à jour) */}
+      {d.pilotage && d.pilotage.chantiers?.length > 0 && (
+        <TableauDeBord
+          p={d.pilotage}
+          decisions={d.decisions}
+          onVoir={(id) => (document.getElementById(`carte-${id}`) ? aller(`carte-${id}`) : aller('section-agents', false))}
+        />
+      )}
+
       {/* 1 bis. Les robots qui pilotent les Ads */}
       <RobotsSection liste={d.robots ?? []} decisions={d.decisions} demo={demo} onVoir={(id) => aller(`carte-${id}`)} />
 
@@ -422,6 +432,9 @@ export function EspaceApp({ cle, demo }: { cle: string; demo: boolean }) {
           </p>
         )}
       </section>
+
+      {/* 3. Le journal, chargé à l'ouverture */}
+      {d.pilotage && <JournalSection appeler={appeler} demo={demo} />}
 
       {/* 4. Les anciennes vues */}
       <div className="mt-6">
@@ -1335,5 +1348,418 @@ function Chantiers({ d }: { d: Donnees }) {
         </ul>
       </section>
     </>
+  )
+}
+
+/* ---------------------------------------------------------------- Tableau de bord et Journal (16/11) */
+
+const ETATS_PILOTAGE: { cle: string; libelle: string; Icone: LucideIcon; couleur: string }[] = [
+  { cle: 'attend-go', libelle: 'Attend ton go', Icone: Hammer, couleur: '#9A5B00' },
+  { cle: 'bloque', libelle: 'Bloqué', Icone: CircleAlert, couleur: 'var(--alerte)' },
+  { cle: 'attend-autre', libelle: 'Attend quelqu’un', Icone: Hourglass, couleur: 'var(--ink)' },
+  { cle: 'avance', libelle: 'Avance', Icone: TrendingUp, couleur: 'var(--brand)' },
+  { cle: 'dort', libelle: 'Dort', Icone: Moon, couleur: 'var(--ink-2)' },
+]
+const QUI: Record<string, string> = { moshe: 'Toi', claude: 'Claude', partenaire: 'Partenaire', client: 'Le client', personne: 'Personne' }
+const ARGENT: Record<string, string> = { 'à facturer': 'À facturer', facturé: 'Facturé', interne: 'Interne', inconnu: 'Pas chiffré' }
+const PLIE = 5
+const touche = 'transition-transform active:scale-[0.97] motion-reduce:transition-none motion-reduce:active:scale-100'
+
+function joursDepuis(iso: string) {
+  const m = /^(\d{4})-(\d{2})-(\d{2})/.exec(iso || '')
+  const t = /^(\d{4})-(\d{2})-(\d{2})/.exec(parisIso(new Date()))
+  if (!m || !t) return null
+  return Math.round((Date.UTC(+t[1], +t[2] - 1, +t[3]) - Date.UTC(+m[1], +m[2] - 1, +m[3])) / 86_400_000)
+}
+function ilYa(iso: string) {
+  const n = joursDepuis(iso)
+  return n === null ? '' : n <= 0 ? 'aujourd’hui' : n === 1 ? 'hier' : `il y a ${n} j`
+}
+
+/* Âge du tableau en minutes, d'après « genere » (heure de Paris, sans fuseau). */
+function minutesDepuis(iso: string) {
+  const m = /^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2})/.exec(iso || '')
+  const t = /^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2})/.exec(parisIso(new Date()))
+  if (!m || !t) return null
+  const v = (x: RegExpExecArray) => Date.UTC(+x[1], +x[2] - 1, +x[3], +x[4], +x[5])
+  return Math.max(0, Math.round((v(t) - v(m)) / 60_000))
+}
+function fraicheur(n: number) {
+  return n < 1 ? 'à l’instant' : n < 60 ? `il y a ${n} min` : n < 1440 ? `il y a ${Math.floor(n / 60)} h` : `il y a ${Math.floor(n / 1440)} j`
+}
+
+function Pastille({ nom }: { nom: string }) {
+  return (
+    <span className="inline-block max-w-full truncate rounded-full px-3 py-1 text-[14px] font-bold leading-none" style={{ backgroundColor: 'var(--g-100)', color: 'var(--brand)' }}>
+      {nom}
+    </span>
+  )
+}
+
+function TableauDeBord({ p, decisions, onVoir }: { p: Pilotage; decisions: Decision[]; onVoir: (id: string) => void }) {
+  const [etat, setEtat] = useState<string | null>(null)
+  const [client, setClient] = useState<string | null>(null)
+  const [ouvert, setOuvert] = useState<string | null>(null)
+  const [tout, setTout] = useState<string[]>([])
+  const [dortOuvert, setDortOuvert] = useState(false)
+  const ouvertes = (c: ChantierPilotage) => (c.questions ?? []).map((id) => decisions.find((x) => x.id === id)).filter((x): x is Decision => !!x && !aRepondu(x))
+  const clients = Array.from(new Map(p.chantiers.map((c) => [c.client, c.client_nom])).entries())
+  const visibles = p.chantiers.filter((c) => !client || c.client === client)
+  // Un état inconnu se range dans « Avance » au lieu de disparaître.
+  const etatDe = (c: ChantierPilotage) => (ETATS_PILOTAGE.some((e) => e.cle === c.etat) ? c.etat : 'avance')
+  const nombreDe = (e: string) => visibles.filter((c) => etatDe(c) === e).length
+  const age = minutesDepuis(p.genere)
+  const groupes = ETATS_PILOTAGE.filter((e) => (!etat || e.cle === etat) && nombreDe(e.cle) > 0)
+  const rangees = p.a_ranger && p.a_ranger.avec_travail > 0 ? p.a_ranger.avec_travail : 0
+
+  return (
+    <section id="section-tableau" className="mt-8 scroll-mt-4" aria-labelledby="titre-tableau">
+      <h2 id="titre-tableau" className="mb-3 flex items-center gap-2 text-[22px] font-extrabold">
+        <LayoutDashboard size={24} strokeWidth={1.5} aria-hidden /> Tableau de bord
+      </h2>
+      {age !== null && (
+        <p className="-mt-2 mb-3 px-1 text-[14px]" style={{ color: age > 120 ? 'var(--alerte)' : 'var(--ink-2)' }}>
+          {age > 120 ? `Données un peu anciennes : mises à jour ${fraicheur(age)}` : `Mis à jour ${fraicheur(age)}`}
+        </p>
+      )}
+
+      <div className="grid grid-cols-6 gap-2">
+        {ETATS_PILOTAGE.map((e, i) => {
+          const n = nombreDe(e.cle)
+          const actif = etat === e.cle
+          const Icone = e.Icone
+          return (
+            <button
+              key={e.cle}
+              type="button"
+              onClick={() => setEtat(actif ? null : e.cle)}
+              aria-pressed={actif}
+              className={`${touche} ${i < 2 ? 'col-span-3' : 'col-span-2'} flex min-h-[72px] flex-col items-start justify-between gap-1 rounded-[24px] px-4 py-3 text-left shadow-[var(--ombre-carte)]`}
+              style={actif ? { backgroundColor: 'var(--brand)', color: 'var(--on-brand)' } : { backgroundColor: 'white', color: e.couleur }}
+            >
+              <span className="text-[30px] font-extrabold leading-none">{n}</span>
+              <span className="flex items-center gap-1.5 text-[15px] font-bold leading-tight" style={{ color: actif ? 'var(--on-brand)' : 'var(--ink)' }}>
+                <Icone size={18} strokeWidth={1.75} aria-hidden className="shrink-0" style={{ color: actif ? 'var(--on-brand)' : e.couleur }} /> {e.libelle}
+              </span>
+            </button>
+          )
+        })}
+      </div>
+
+      {clients.length > 1 && (
+        <div className="-mx-4 mt-3 flex gap-2 overflow-x-auto px-4 pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden" role="group" aria-label="Filtrer par client">
+          {[['', 'Tous'] as [string, string], ...clients].map(([cle, nom]) => {
+            const actif = (client ?? '') === cle
+            return (
+              <button
+                key={cle || 'tous'}
+                type="button"
+                onClick={() => setClient(cle || null)}
+                aria-pressed={actif}
+                className={`${touche} flex min-h-[44px] shrink-0 items-center rounded-full px-4 text-[15px] font-bold`}
+                style={actif ? { backgroundColor: 'var(--g-950)', color: 'white' } : { backgroundColor: 'white', color: 'var(--ink-2)' }}
+              >
+                {nom}
+              </button>
+            )
+          })}
+        </div>
+      )}
+
+      {nombreDe('attend-go') === 0 && (!etat || etat === 'attend-go') && (
+        <div className={`${carte} mt-4 flex items-center gap-4`}>
+          <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full" style={{ backgroundColor: 'var(--brand)', color: 'var(--on-brand)' }}>
+            <Check size={26} strokeWidth={2.5} aria-hidden />
+          </span>
+          <p className="text-[20px] font-extrabold leading-tight">Rien n’attend ton go</p>
+        </div>
+      )}
+
+      {etat && nombreDe(etat) === 0 && etat !== 'attend-go' && (
+        <p className={`${carte} mt-4 text-[17px]`} style={{ color: 'var(--ink-2)' }}>Rien ici</p>
+      )}
+
+      {groupes.map((g) => {
+        const liste = visibles.filter((c) => etatDe(c) === g.cle)
+        const Icone = g.Icone
+        if (g.cle === 'dort' && !etat) {
+          return (
+            <div key={g.cle} className="mt-4">
+              <button
+                type="button"
+                onClick={() => setDortOuvert((o) => !o)}
+                aria-expanded={dortOuvert}
+                className={`${touche} flex min-h-[48px] w-full items-center gap-2 rounded-full px-3 text-left text-[16px]`}
+                style={{ color: 'var(--ink-2)' }}
+              >
+                <Moon size={18} aria-hidden /> <span className="font-bold">Ils dorment · {liste.length}</span>
+                <ChevronDown size={18} aria-hidden className={`ml-auto transition-transform motion-reduce:transition-none ${dortOuvert ? 'rotate-180' : ''}`} />
+              </button>
+              {dortOuvert ? (
+                <div className="mt-2 flex flex-col gap-2">{liste.map((c) => <LigneChantier key={c.id} c={c} />)}</div>
+              ) : (
+                <p className="px-3 text-[15px] leading-snug" style={{ color: 'var(--ink-2)' }}>
+                  {Array.from(new Set(liste.map((c) => c.client_nom))).join(', ')}
+                </p>
+              )}
+            </div>
+          )
+        }
+        const deplie = tout.includes(g.cle)
+        const montres = deplie ? liste : liste.slice(0, PLIE)
+        return (
+          <div key={g.cle} className="mt-6">
+            <h3 className="mb-3 flex items-center gap-2 text-[15px] font-bold uppercase tracking-wide" style={{ color: g.cle === 'bloque' ? 'var(--alerte)' : 'var(--ink-2)' }}>
+              <Icone size={18} strokeWidth={1.75} aria-hidden /> {g.libelle} · {liste.length}
+            </h3>
+            <div className={`flex flex-col ${g.cle === 'avance' || g.cle === 'dort' ? 'gap-2' : 'gap-3'}`}>
+              {montres.map((c) =>
+                g.cle === 'avance' || g.cle === 'dort' ? (
+                  <LigneChantier key={c.id} c={c} />
+                ) : (
+                  <CarteChantierPilotage
+                    key={c.id}
+                    c={c}
+                    questions={ouvertes(c)}
+                    ouvert={ouvert === c.id}
+                    onBascule={() => setOuvert(ouvert === c.id ? null : c.id)}
+                    onVoir={onVoir}
+                  />
+                ),
+              )}
+            </div>
+            {liste.length > PLIE && (
+              <button
+                type="button"
+                onClick={() => setTout((t) => (deplie ? t.filter((x) => x !== g.cle) : [...t, g.cle]))}
+                className={`${touche} btn-contour btn-sans-fleche mt-3 !w-full justify-center !text-[1rem] min-h-[48px]`}
+                style={{ backgroundColor: 'white' }}
+              >
+                {deplie ? 'Voir moins' : `Voir les ${liste.length - PLIE} autres`}
+              </button>
+            )}
+          </div>
+        )
+      })}
+
+      {rangees > 0 && (
+        <p className="mt-6 flex items-start gap-2 px-1 text-[15px] leading-snug" style={{ color: 'var(--ink-2)' }}>
+          <Archive size={18} aria-hidden className="mt-0.5 shrink-0" /> À ranger : {rangees} dossiers de travail avec des fichiers non enregistrés
+        </p>
+      )}
+    </section>
+  )
+}
+
+/* Ligne courte : chantier qui avance ou qui dort. Un mot de plus : quand. */
+function LigneChantier({ c }: { c: ChantierPilotage }) {
+  return (
+    <div className="flex min-h-[56px] items-center justify-between gap-3 rounded-[24px] bg-white px-4 py-3 shadow-[var(--ombre-carte)]">
+      <span className="min-w-0">
+        <span className="block truncate text-[13px] font-bold uppercase tracking-wide" style={{ color: 'var(--ink-2)' }}>{c.client_nom}</span>
+        <span className="block text-[17px] font-bold leading-snug">{c.titre}</span>
+      </span>
+      <span className="shrink-0 text-[14px]" style={{ color: 'var(--ink-2)' }}>{ilYa(c.derniere_action?.date ?? '')}</span>
+    </div>
+  )
+}
+
+function CarteChantierPilotage({
+  c, questions, ouvert, onBascule, onVoir,
+}: { c: ChantierPilotage; questions: Decision[]; ouvert: boolean; onBascule: () => void; onVoir: (id: string) => void }) {
+  const grave = questions.some((q) => q.gravite === 'grave')
+  const quand = ilYa(c.derniere_action?.date ?? '')
+  const lien = /^https?:\/\//.test(c.lien) ? c.lien : ''
+  return (
+    <article className={carte}>
+      <button type="button" onClick={onBascule} aria-expanded={ouvert} className="flex min-h-[44px] w-full items-start gap-3 text-left">
+        <span className="min-w-0 flex-1">
+          <span className="flex items-center justify-between gap-2">
+            <Pastille nom={c.client_nom} />
+            {grave && (
+              <span className="flex shrink-0 items-center gap-1 text-[14px] font-bold uppercase tracking-wide" style={{ color: 'var(--alerte)' }}>
+                <CircleAlert size={16} aria-hidden /> Grave
+              </span>
+            )}
+          </span>
+          <span className="mt-2 block text-[20px] font-extrabold leading-snug [overflow-wrap:anywhere]">{c.titre}</span>
+          {c.derniere_action?.libelle && (
+            <span className="mt-1.5 flex items-start gap-2 text-[15px] leading-snug" style={{ color: 'var(--ink-2)' }}>
+              <Clock size={16} aria-hidden className="mt-0.5 shrink-0" />
+              <span className="min-w-0 [overflow-wrap:anywhere]">{quand} · {c.derniere_action.libelle}</span>
+            </span>
+          )}
+        </span>
+        <ChevronDown size={22} aria-hidden className={`mt-1 shrink-0 transition-transform motion-reduce:transition-none ${ouvert ? 'rotate-180' : ''}`} />
+      </button>
+      {questions.length > 0 && (
+        <button
+          type="button"
+          onClick={() => onVoir(questions[0].id)}
+          className={`${touche} mt-3 flex min-h-[44px] items-center rounded-full px-4 text-[15px] font-bold`}
+          style={{ backgroundColor: '#9A5B00', color: 'white' }}
+        >
+          {pluriel(questions.length, 'question', 'questions')}
+        </button>
+      )}
+      {ouvert && (
+        <dl className="mt-4 space-y-4 border-t pt-4" style={{ borderColor: 'var(--g-100)' }}>
+          <div>
+            <dt className="flex items-center gap-2 text-[13px] font-bold uppercase tracking-wide" style={{ color: 'var(--ink-2)' }}><Hammer size={16} aria-hidden /> Prochaine action</dt>
+            <dd className="mt-1 text-[17px] leading-snug [overflow-wrap:anywhere]">{c.prochaine_action || 'Rien de prévu'}</dd>
+          </div>
+          <div>
+            <dt className="flex items-center gap-2 text-[13px] font-bold uppercase tracking-wide" style={{ color: 'var(--ink-2)' }}>{c.qui === 'claude' ? <Bot size={16} aria-hidden /> : <User size={16} aria-hidden />} Qui</dt>
+            <dd className="mt-1.5"><span className="inline-flex min-h-[36px] items-center rounded-full px-4 text-[16px] font-bold" style={{ backgroundColor: 'var(--g-100)', color: 'var(--brand)' }}>{QUI[c.qui] ?? c.qui}</span></dd>
+          </div>
+          <div>
+            <dt className="flex items-center gap-2 text-[13px] font-bold uppercase tracking-wide" style={{ color: 'var(--ink-2)' }}><Wallet size={16} aria-hidden /> Argent</dt>
+            <dd className="mt-1 text-[17px] font-bold">{ARGENT[c.argent] ?? c.argent}</dd>
+          </div>
+          {c.a_surveiller && (
+            <div>
+              <dt className="flex items-center gap-2 text-[13px] font-bold uppercase tracking-wide" style={{ color: 'var(--alerte)' }}><CircleAlert size={16} aria-hidden /> À surveiller</dt>
+              <dd className="mt-1 text-[16px] leading-snug [overflow-wrap:anywhere]">{c.a_surveiller}</dd>
+            </div>
+          )}
+          {lien && (
+            <a href={lien} target="_blank" rel="noreferrer" className={`btn-contour ${reponse} gap-2`}>
+              <ExternalLink size={18} aria-hidden /> Voir
+            </a>
+          )}
+        </dl>
+      )}
+    </article>
+  )
+}
+
+const TYPES_JOURNAL: Record<string, { libelle: string; Icone: LucideIcon }> = {
+  decision: { libelle: 'Décision', Icone: Check },
+  'en-ligne': { libelle: 'Mise en ligne', Icone: Globe },
+  livrable: { libelle: 'Livrable', Icone: FileText },
+  compte: { libelle: 'Compte', Icone: Wallet },
+  note: { libelle: 'Note', Icone: MessageCircle },
+}
+const CACHE_JOURNAL = 'espace-123digital-journal'
+const JOURS_PAR_PAGE = 7
+
+function titreJour(iso: string) {
+  const n = joursDepuis(iso)
+  if (n === 0) return 'Aujourd’hui'
+  if (n === 1) return 'Hier'
+  const m = /^(\d{4})-(\d{2})-(\d{2})/.exec(iso)
+  if (!m) return iso
+  const j = new Intl.DateTimeFormat('fr-FR', { weekday: 'short', timeZone: 'UTC' }).format(new Date(Date.UTC(+m[1], +m[2] - 1, +m[3]))).replace('.', '')
+  return `${j.charAt(0).toUpperCase()}${j.slice(1)}. ${m[3]}/${m[2]}`
+}
+
+function JournalSection({ appeler, demo }: { appeler: (c: Record<string, unknown>) => Promise<unknown>; demo: boolean }) {
+  const [ouvert, setOuvert] = useState(false)
+  const [entrees, setEntrees] = useState<EntreeJournal[]>([])
+  const [plus, setPlus] = useState(false)
+  const [charge, setCharge] = useState(false)
+  const [erreur, setErreur] = useState(false)
+  const [jours, setJours] = useState(0)
+  const [hors, setHors] = useState(false)
+  const enCours = useRef(false)
+
+  const charger = async (debut: number) => {
+    if (enCours.current) return
+    enCours.current = true
+    setCharge(true)
+    setErreur(false)
+    try {
+      const r = (await appeler({ action: 'journal', jours: JOURS_PAR_PAGE, debut })) as ReponseJournal
+      if (!r.ok || !Array.isArray(r.entrees)) throw new Error(r.error)
+      setEntrees((e) => {
+        const vues = new Set(e.map((x) => x.cle))
+        const suite = [...e, ...r.entrees.filter((x) => !vues.has(x.cle))]
+        if (debut === 0 && !demo) try { localStorage.setItem(CACHE_JOURNAL, JSON.stringify({ entrees: r.entrees, plus: r.plus })) } catch {}
+        return suite
+      })
+      setPlus(!!r.plus)
+      setJours(debut + JOURS_PAR_PAGE)
+      setHors(false)
+    } catch {
+      // Hors ligne : la première page gardée sur le téléphone, sinon un message.
+      if (debut === 0) {
+        try {
+          const c = JSON.parse(localStorage.getItem(CACHE_JOURNAL) || 'null')
+          if (c && Array.isArray(c.entrees)) { setEntrees(c.entrees); setPlus(false); setHors(true); return }
+        } catch {}
+      }
+      setErreur(true)
+    } finally {
+      enCours.current = false
+      setCharge(false)
+    }
+  }
+
+  const bascule = () => {
+    const o = !ouvert
+    setOuvert(o)
+    if (o && jours === 0) charger(0)
+  }
+
+  const parJour: { date: string; liste: EntreeJournal[] }[] = []
+  entrees.forEach((e) => {
+    const g = parJour.find((x) => x.date === e.date)
+    if (g) g.liste.push(e)
+    else parJour.push({ date: e.date, liste: [e] })
+  })
+  parJour.sort((a, b) => (a.date < b.date ? 1 : -1))
+
+  return (
+    <section id="section-journal" className="mt-8 scroll-mt-4" aria-labelledby="titre-journal">
+      <h2 id="titre-journal" className="text-[22px] font-extrabold">
+        <button type="button" onClick={bascule} aria-expanded={ouvert} aria-controls="corps-journal" className={`${touche} flex min-h-[48px] w-full items-center gap-2 text-left`}>
+          <BookOpen size={24} strokeWidth={1.5} aria-hidden /> Journal
+          <ChevronDown size={22} aria-hidden className={`ml-auto transition-transform motion-reduce:transition-none ${ouvert ? 'rotate-180' : ''}`} />
+        </button>
+      </h2>
+      {ouvert && (
+        <div id="corps-journal" className="mt-2">
+          {hors && <p className="mb-3 px-1 text-[15px]" style={{ color: 'var(--ink-2)' }}>Pas de connexion : voici ce que j’avais gardé.</p>}
+          {parJour.map((g) => (
+            <div key={g.date} className="mb-5">
+              <h3 className="mb-2 px-1 text-[14px] font-bold uppercase tracking-wide" style={{ color: 'var(--ink-2)' }}>{titreJour(g.date)}</h3>
+              <ul className={`${carte} !p-2`}>
+                {g.liste.map((e) => {
+                  const t = TYPES_JOURNAL[e.type] ?? TYPES_JOURNAL.note
+                  const Icone = t.Icone
+                  return (
+                    <li key={e.cle} className="flex gap-3 border-b px-2 py-3 last:border-b-0" style={{ borderColor: 'var(--g-100)' }}>
+                      <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full" style={{ backgroundColor: 'var(--g-100)', color: 'var(--brand)' }}>
+                        <Icone size={20} strokeWidth={1.75} aria-hidden />
+                      </span>
+                      <span className="min-w-0 flex-1">
+                        <span className="flex flex-wrap items-center gap-x-2 gap-y-1">
+                          <Pastille nom={e.client_nom || e.client} />
+                          <span className="text-[13px] font-bold uppercase tracking-wide" style={{ color: 'var(--ink-2)' }}>{t.libelle}</span>
+                        </span>
+                        <span className="mt-1.5 block text-[17px] leading-snug [overflow-wrap:anywhere]">{e.texte}</span>
+                      </span>
+                    </li>
+                  )
+                })}
+              </ul>
+            </div>
+          ))}
+          {charge && <p className="px-1 py-3 text-[16px]" role="status" style={{ color: 'var(--ink-2)' }}><RefreshCw size={16} aria-hidden className="mr-2 inline animate-spin motion-reduce:animate-none" />Je charge…</p>}
+          {erreur && (
+            <div className={carte}>
+              <p className="mb-3 text-[17px]">Je n’arrive pas à lire le journal pour l’instant.</p>
+              <button type="button" onClick={() => charger(jours)} className={`btn-contour ${reponse}`}>Réessayer</button>
+            </div>
+          )}
+          {!charge && !erreur && entrees.length === 0 && <p className={`${carte} text-[17px]`} style={{ color: 'var(--ink-2)' }}>Rien dans le journal pour l’instant.</p>}
+          {plus && !charge && !hors && !erreur && (
+            <button type="button" onClick={() => charger(jours)} className={`${touche} btn-contour btn-sans-fleche !w-full justify-center gap-2 !text-[1rem] min-h-[48px]`} style={{ backgroundColor: 'white' }}>
+              <ChevronDown size={18} aria-hidden /> Plus ancien
+            </button>
+          )}
+        </div>
+      )}
+    </section>
   )
 }

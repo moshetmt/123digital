@@ -13,7 +13,9 @@ export const ENDPOINT_ESPACE =
 export const FORMAT_CLE = /^[0-9a-f]{48}$/
 export const estDemo = (cle: string) => cle === 'demo' && process.env.VERCEL_ENV !== 'production'
 
-export type Option = { lettre: string; texte: string; recommande: boolean }
+/* image : vignette de l'option ; vues : images de la question (portées par la première option) ;
+   libre : option « Autre réponse », Moshé écrit sa réponse (17/11). Chemins relatifs à /espace/etudes/ ou adresses https. */
+export type Option = { lettre: string; texte: string; recommande: boolean; image?: string; vues?: string[]; libre?: boolean }
 export type Decision = {
   id: string
   gravite: string

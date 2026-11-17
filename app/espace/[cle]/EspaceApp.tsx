@@ -211,6 +211,17 @@ export function EspaceApp({ cle, demo }: { cle: string; demo: boolean }) {
         'Réponse enregistrée',
       ),
     )
+  /* « Autre réponse » : le texte part d'abord comme message (avec l'identifiant de la question), puis la question est marquée répondue. */
+  const repondreLibre = async (dec: Decision, lettre: string, texte: string) => {
+    try {
+      const r = await appeler({ action: 'message', id: 'r' + Date.now().toString(36) + Math.random().toString(36).slice(2, 6), texte: `[${dec.id}] ${texte}`.slice(0, 1900) })
+      if (!r.ok) throw new Error(r.error)
+    } catch {
+      return false
+    }
+    repondre(dec, lettre, true)
+    return true
+  }
   const repondreChantier = (ch: Chantier, oui: 'oui' | 'non' | 'plus-tard', animer = false) =>
     traiter(ch.id, animer, () =>
       ecrire(
@@ -376,7 +387,7 @@ export function EspaceApp({ cle, demo }: { cle: string; demo: boolean }) {
           {cartes.map((c) => (
             <Anime key={c.id} id={`carte-${c.id}`} sort={sortantes.includes(c.id)}>
               {c.type === 'decision' ? (
-                <CarteDecision dec={c.dec} marque={marque === `carte-${c.id}`} onRepondre={(l) => repondre(c.dec, l, true)} />
+                <CarteDecision dec={c.dec} marque={marque === `carte-${c.id}`} onRepondre={(l) => repondre(c.dec, l, true)} onLibre={(l, t) => repondreLibre(c.dec, l, t)} />
               ) : (
                 <CarteChantier ch={c.ch} marque={marque === `carte-${c.id}`} onRepondre={(l) => repondreChantier(c.ch, l, true)} />
               )}
@@ -609,21 +620,84 @@ function Anime({ id, sort, children }: { id?: string; sort: boolean; children: R
 }
 const reperage = (marque?: boolean) => ({ outline: `3px solid ${marque ? 'var(--brand)' : 'transparent'}`, transition: 'outline-color 200ms ease-out' })
 
-function CarteDecision({ dec, onRepondre, marque }: { dec: Decision; onRepondre: (lettre: string) => void; marque?: boolean }) {
+/* Image d'une question : chemin relatif à /espace/etudes/ ou adresse https. */
+const srcImage = (chemin: string) => (/^https?:\/\//.test(chemin) ? chemin : `/espace/etudes/${chemin.replace(/^\/+/, '')}`)
+
+function CarteDecision({ dec, onRepondre, onLibre, marque }: { dec: Decision; onRepondre: (lettre: string) => void; onLibre?: (lettre: string, texte: string) => Promise<boolean>; marque?: boolean }) {
   const grave = dec.gravite === 'grave'
+  const vues = dec.options.flatMap((o) => o.vues ?? [])
+  const [libreOuvert, setLibreOuvert] = useState(false)
+  const [texteLibre, setTexteLibre] = useState('')
+  const [envoiLibre, setEnvoiLibre] = useState(false)
+  const [erreurLibre, setErreurLibre] = useState('')
+  const envoyerLibre = async (lettre: string) => {
+    const t = texteLibre.trim()
+    if (t.length < 2 || envoiLibre || !onLibre) return
+    setEnvoiLibre(true)
+    setErreurLibre('')
+    const ok = await onLibre(lettre, t)
+    setEnvoiLibre(false)
+    if (!ok) setErreurLibre('Pas envoyé. Ton texte est gardé, réessaie dans un instant.')
+  }
   return (
     <article className={carte} style={reperage(marque)}>
       <p className="mb-2 flex items-center gap-1.5 text-[14px] font-bold uppercase tracking-wide" style={{ color: grave ? 'var(--alerte)' : 'var(--ink-2)' }}>
         {grave && <CircleAlert size={16} aria-hidden />} {grave ? 'Grave' : 'Utile'}
       </p>
       <h2 className="text-[20px] font-bold leading-snug">{dec.question}</h2>
+      {vues.length > 0 && (
+        <div className="-mx-5 mt-4 flex snap-x gap-3 overflow-x-auto px-5 pb-1">
+          {vues.map((v) => (
+            <a key={v} href={srcImage(v)} target="_blank" rel="noreferrer" className="shrink-0 snap-start">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={srcImage(v)} alt="" loading="lazy" className="h-[300px] w-auto rounded-[12px] border border-black/10 object-contain" />
+            </a>
+          ))}
+        </div>
+      )}
       <div className="mt-4 flex flex-col gap-2">
-        {dec.options.map((o) => (
-          <button key={o.lettre} type="button" onClick={() => onRepondre(o.lettre)} className={`${o.recommande ? 'btn-plein' : 'btn-contour'} ${reponse}`}>
-            {o.texte}
-            {o.recommande && <span className="text-[13px] font-semibold opacity-90">conseillé</span>}
-          </button>
-        ))}
+        {dec.options.map((o) =>
+          o.libre ? (
+            <div key={o.lettre} className="flex flex-col gap-2">
+              {!libreOuvert || !onLibre ? (
+                onLibre && (
+                  <button type="button" onClick={() => setLibreOuvert(true)} className={`btn-contour ${reponse}`}>
+                    {o.texte}
+                  </button>
+                )
+              ) : (
+                <>
+                  <textarea
+                    value={texteLibre}
+                    onChange={(e) => setTexteLibre(e.target.value)}
+                    rows={3}
+                    autoFocus
+                    placeholder="Écris ta réponse"
+                    aria-label="Ta réponse"
+                    className="w-full rounded-[12px] border border-black/20 bg-white p-3 text-[16px] leading-snug"
+                  />
+                  {erreurLibre && <p className="text-[14px]" role="alert" style={{ color: 'var(--alerte)' }}>{erreurLibre}</p>}
+                  <button type="button" onClick={() => envoyerLibre(o.lettre)} disabled={envoiLibre || texteLibre.trim().length < 2} className={`btn-plein ${reponse} disabled:opacity-50`}>
+                    {envoiLibre ? 'Envoi…' : 'Envoyer ma réponse'}
+                  </button>
+                </>
+              )}
+            </div>
+          ) : (
+            <div key={o.lettre} className="flex flex-col gap-2">
+              {o.image && (
+                <a href={srcImage(o.image)} target="_blank" rel="noreferrer">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src={srcImage(o.image)} alt="" loading="lazy" className="max-h-[320px] w-full rounded-[12px] border border-black/10 object-contain" />
+                </a>
+              )}
+              <button type="button" onClick={() => onRepondre(o.lettre)} className={`${o.recommande ? 'btn-plein' : 'btn-contour'} ${reponse}`}>
+                {o.texte}
+                {o.recommande && <span className="text-[13px] font-semibold opacity-90">conseillé</span>}
+              </button>
+            </div>
+          ),
+        )}
         <button type="button" onClick={() => onRepondre('plus-tard')} className={`btn-contour ${reponse} gap-2`}>
           <Clock size={18} aria-hidden /> Plus tard
         </button>

@@ -123,7 +123,7 @@ export default function ConsultantDigitalLyonPage() {
             href="/blog/consultant-digital-ou-agence-lyon"
             className="btn-contour mt-8"
           >
-            Lire le comparatif complet agence vs consultant à Lyon →
+            Lire le comparatif agence vs consultant →
           </Link>
         </div>
       </section>

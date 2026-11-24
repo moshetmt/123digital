@@ -175,7 +175,7 @@ export function BannerCta({ href, children }: { href: string; children: ReactNod
 /** Bouton secondaire : contour clair, fond transparent, sur le vert du fond. */
 export function BannerCtaLine({ href, children }: { href: string; children: ReactNode }) {
   const className =
-    'inline-flex items-center gap-2 rounded font-bold whitespace-nowrap px-5 py-2.5 text-[0.92rem] transition duration-150 active:scale-[0.97]'
+    'inline-flex items-center gap-2 rounded-full font-bold whitespace-nowrap px-5 py-2.5 text-[0.92rem] transition duration-150 active:scale-[0.97]'
   const style = { border: '1px solid oklch(0.985 0.003 150 / 55%)', color: 'var(--on-brand)' }
 
   return href.startsWith('/') || href.startsWith('#') ? (

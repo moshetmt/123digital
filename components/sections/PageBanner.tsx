@@ -162,7 +162,7 @@ function detacher(title: string, highlight?: string): ReactNode {
 /** Bouton principal de banniere : blanc sur le vert du fond, rayon 4 px. */
 export function BannerCta({ href, children }: { href: string; children: ReactNode }) {
   const className =
-    'inline-flex items-center gap-2 rounded font-bold whitespace-nowrap px-5 py-2.5 text-[0.92rem] transition duration-150 active:scale-[0.97]'
+    'inline-flex items-center gap-2 rounded-full font-bold whitespace-nowrap px-5 py-2.5 text-[0.92rem] transition duration-150 active:scale-[0.97]'
   const style = { backgroundColor: 'var(--on-brand)', color: 'var(--brand-deep)' }
 
   return href.startsWith('/') ? (

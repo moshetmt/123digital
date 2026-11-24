@@ -164,7 +164,7 @@ export function CvWork({ work }: { work: CvContent['work'] }) {
                     type="button"
                     onClick={() => setOpenId(project.id)}
                     aria-haspopup="dialog"
-                    className="inline-flex items-center gap-1.5 rounded-md font-bold"
+                    className="inline-flex items-center gap-1.5 rounded-full font-bold"
                     style={{ fontSize: '0.82rem', color: 'var(--on-brand)', backgroundColor: 'var(--brand)', border: '1px solid var(--brand)', padding: '0.55rem 0.95rem', cursor: 'pointer' }}
                   >
                     {work.detailIntro} <ArrowRight size={14} aria-hidden />
@@ -173,7 +173,7 @@ export function CvWork({ work }: { work: CvContent['work'] }) {
                     href={project.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 rounded-md font-bold"
+                    className="inline-flex items-center gap-1.5 rounded-full font-bold"
                     style={{ fontSize: '0.82rem', color: 'var(--brand-strong)', border: '1px solid var(--brand-strong)', padding: '0.55rem 0.95rem' }}
                   >
                     {project.url.includes('/realisations/') ? work.openCase : work.openSite} <ArrowUpRight size={14} aria-hidden />
@@ -232,7 +232,7 @@ function CvWorkDialog({
             type="button"
             onClick={onClose}
             aria-label={work.closeLabel}
-            className="absolute rounded inline-flex items-center justify-center"
+            className="absolute rounded-full inline-flex items-center justify-center"
             style={{ top: 12, right: 12, width: 34, height: 34, backgroundColor: 'var(--surface-2)', border: '1px solid var(--line)', cursor: 'pointer', color: 'var(--ink)' }}
           >
             <X size={17} aria-hidden />
@@ -243,7 +243,7 @@ function CvWorkDialog({
           <button
             type="button"
             onClick={onClose}
-            className="inline-flex items-center gap-1.5 rounded-md font-bold"
+            className="inline-flex items-center gap-1.5 rounded-full font-bold"
             style={{ fontSize: '0.82rem', color: 'var(--ink)', backgroundColor: 'var(--surface-3)', border: '1px solid var(--line)', padding: '0.45rem 0.85rem', cursor: 'pointer', marginBottom: '1.1rem' }}
           >
             <ArrowLeft size={15} aria-hidden /> {work.backLabel}
@@ -281,7 +281,7 @@ function CvWorkDialog({
               href={project.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-md font-bold"
+              className="inline-flex items-center gap-2 rounded-full font-bold"
               style={{ backgroundColor: 'var(--brand)', color: 'var(--on-brand)', padding: '0.75rem 1.35rem', fontSize: '0.88rem' }}
             >
               {project.url.includes('/realisations/') ? work.openCase : work.openSite} <ArrowUpRight size={15} aria-hidden />
@@ -289,7 +289,7 @@ function CvWorkDialog({
             <button
               type="button"
               onClick={onClose}
-              className="inline-flex items-center gap-2 rounded-md font-bold"
+              className="inline-flex items-center gap-2 rounded-full font-bold"
               style={{ color: 'var(--ink)', border: '1px solid var(--line-strong)', padding: '0.75rem 1.35rem', fontSize: '0.88rem', cursor: 'pointer', backgroundColor: 'transparent' }}
             >
               <ArrowLeft size={15} aria-hidden /> {work.backLabel}

@@ -434,7 +434,7 @@ export function CTA({ lang = 'fr' }: { lang?: Locale }) {
                     color: 'var(--on-brand)',
                     padding: '0.9rem',
                     border: 'none',
-                    borderRadius: 'var(--radius)',
+                    borderRadius: 9999,
                     minHeight: '44px',
                     display: 'flex',
                     alignItems: 'center',

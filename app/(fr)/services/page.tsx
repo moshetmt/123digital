@@ -229,7 +229,7 @@ export default function ServicesPage() {
                           className="inline-flex items-center gap-2 transition-colors duration-200"
                           style={{
                             padding: '0.65rem 1.5rem',
-                            borderRadius: 'var(--radius)',
+                            borderRadius: 9999,
                             backgroundColor: 'var(--brand)',
                             color: 'var(--on-brand)',
                             fontSize: '0.8rem',
@@ -244,7 +244,7 @@ export default function ServicesPage() {
                           href="/audit-gratuit"
                           className="inline-flex items-center gap-2 transition-colors duration-200 hover:border-[var(--brand)] hover:text-[var(--brand)]"
                           style={{
-                            borderRadius: 'var(--radius)', padding: '0.65rem 1.5rem',
+                            borderRadius: 9999, padding: '0.65rem 1.5rem',
                             border: '1px solid var(--line)',
                             color: 'var(--ink-2)',
                             fontSize: '0.8rem',

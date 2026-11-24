@@ -359,7 +359,7 @@ export default function AuditGratuitPage() {
               fontWeight: 600,
               fontSize: '1rem',
               padding: '14px 28px',
-              borderRadius: 'var(--radius)',
+              borderRadius: 9999,
               textDecoration: 'none',
               letterSpacing: '-0.01em',
             }}

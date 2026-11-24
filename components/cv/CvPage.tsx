@@ -71,14 +71,14 @@ export function CvPage({ locale }: { locale: CvLocale }) {
             </a>
             <Link
               href={c.nav.switchHref}
-              className="rounded"
+              className="rounded-full"
               style={{ fontSize: '0.74rem', fontWeight: 800, letterSpacing: '0.06em', color: 'var(--ink-2)', border: '1px solid var(--line-strong)', padding: '0.25rem 0.6rem' }}
             >
               {c.nav.switchLabel}
             </Link>
             <a
               href={`mailto:${identity.email}`}
-              className="inline-flex items-center gap-1.5 rounded font-bold"
+              className="inline-flex items-center gap-1.5 rounded-full font-bold"
               style={{ backgroundColor: 'var(--brand)', color: 'var(--on-brand)', padding: '0.45rem 0.95rem', fontSize: '0.8rem' }}
             >
               <Mail size={14} aria-hidden /> {c.contact.emailCta}
@@ -190,7 +190,7 @@ export function CvPage({ locale }: { locale: CvLocale }) {
           <div className="flex flex-wrap gap-3">
             <a
               href={`mailto:${identity.email}`}
-              className="inline-flex items-center gap-2 rounded font-bold"
+              className="inline-flex items-center gap-2 rounded-full font-bold"
               style={{ backgroundColor: 'var(--brand)', color: 'var(--on-brand)', padding: '0.8rem 1.4rem', fontSize: '0.9rem' }}
             >
               <Mail size={16} aria-hidden /> {c.contact.emailCta}
@@ -199,7 +199,7 @@ export function CvPage({ locale }: { locale: CvLocale }) {
               href={identity.linkedin}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded font-bold hover:bg-[var(--surface-3)] transition-colors"
+              className="inline-flex items-center gap-2 rounded-full font-bold hover:bg-[var(--surface-3)] transition-colors"
               style={{ border: '2px solid var(--line-strong)', color: 'var(--ink)', padding: '0.75rem 1.3rem', fontSize: '0.9rem' }}
             >
               <LinkedinGlyph /> {c.contact.linkedinCta}
@@ -207,7 +207,7 @@ export function CvPage({ locale }: { locale: CvLocale }) {
             <a
               href={identity.cvFile}
               download
-              className="inline-flex items-center gap-2 rounded font-bold hover:bg-[var(--surface-3)] transition-colors"
+              className="inline-flex items-center gap-2 rounded-full font-bold hover:bg-[var(--surface-3)] transition-colors"
               style={{ border: '2px solid var(--line-strong)', color: 'var(--ink)', padding: '0.75rem 1.3rem', fontSize: '0.9rem' }}
             >
               <Download size={16} aria-hidden /> {c.contact.pdfCta}
@@ -404,7 +404,7 @@ export function CvPage({ locale }: { locale: CvLocale }) {
           <div className="flex flex-wrap gap-3">
             <a
               href={`mailto:${identity.email}`}
-              className="inline-flex items-center gap-2 rounded font-bold"
+              className="inline-flex items-center gap-2 rounded-full font-bold"
               style={{ backgroundColor: 'var(--on-brand)', color: 'var(--brand-strong)', padding: '0.8rem 1.4rem', fontSize: '0.9rem' }}
             >
               <Mail size={16} aria-hidden /> {identity.email}
@@ -413,7 +413,7 @@ export function CvPage({ locale }: { locale: CvLocale }) {
               href={identity.linkedin}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded font-bold"
+              className="inline-flex items-center gap-2 rounded-full font-bold"
               style={{ border: '2px solid var(--on-brand)', color: 'var(--on-brand)', padding: '0.75rem 1.3rem', fontSize: '0.9rem' }}
             >
               <LinkedinGlyph /> {c.contact.linkedinCta}
@@ -421,7 +421,7 @@ export function CvPage({ locale }: { locale: CvLocale }) {
             <a
               href={identity.cvFile}
               download
-              className="inline-flex items-center gap-2 rounded font-bold"
+              className="inline-flex items-center gap-2 rounded-full font-bold"
               style={{ border: '2px solid var(--on-brand)', color: 'var(--on-brand)', padding: '0.75rem 1.3rem', fontSize: '0.9rem' }}
             >
               <Download size={16} aria-hidden /> {c.contact.pdfCta}

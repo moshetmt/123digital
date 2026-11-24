@@ -205,7 +205,7 @@ export function AuditSimulator() {
                 onMouseLeave={() => setHoveredOption(null)}
                 style={{
                   padding: '0.85rem 0.75rem',
-                  borderRadius: 'var(--radius)',
+                  borderRadius: 9999,
                   border: `1px solid ${hoveredOption === option.value ? 'var(--brand)' : 'var(--ink-3)'}`,
                   backgroundColor: hoveredOption === option.value ? 'var(--brand-tint)' : 'transparent',
                   color: hoveredOption === option.value ? 'var(--ink)' : 'var(--ink-2)',
@@ -295,7 +295,7 @@ export function AuditSimulator() {
               onClick={handleReset}
               style={{
                 padding: '0.85rem 1.75rem',
-                borderRadius: 'var(--radius)',
+                borderRadius: 9999,
                 border: '1px solid var(--line)',
                 color: 'var(--ink-2)',
                 fontSize: '0.82rem',

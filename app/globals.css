@@ -217,8 +217,8 @@
      .btn-plein = action principale, .btn-contour = secondaire, .btn-contour-inverse = sur fond vert. */
   .btn-plein, .btn-contour, .btn-contour-inverse {
     display: inline-flex; align-items: center; gap: 0.4rem; width: fit-content;
-    border-radius: var(--radius-ctrl); padding: 0.55rem 1rem;
-    font-weight: 700; font-size: 0.85rem; line-height: 1.2; text-decoration: none; white-space: nowrap;
+    border-radius: 9999px; padding: 0.55rem 1rem; max-width: 100%; justify-content: center; text-align: center;
+    font-weight: 700; font-size: 0.85rem; line-height: 1.2; text-decoration: none; white-space: normal;
     border: 1px solid var(--brand); transition: background-color 0.15s, color 0.15s;
   }
   .btn-plein { background-color: var(--brand); color: var(--on-brand); }

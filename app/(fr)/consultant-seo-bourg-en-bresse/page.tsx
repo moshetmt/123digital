@@ -133,7 +133,8 @@ export default function ConsultantSeoBourgEnBressePage() {
             celui d’Oyonnax. Mon travail commence par la liste des requêtes réellement tapées dans vos communes. Si
             vous êtes à Oyonnax, ma page{' '}
             <Link href="/oyonnax" className="underline">consultant digital à Oyonnax</Link>{' '}
-            donne le contexte industriel de la ville.
+            donne le contexte industriel de la ville. Si vous êtes de l’autre côté de la Saône, voir la page{' '}
+            <Link href="/macon" className="underline">consultant digital à Mâcon</Link>.
           </p>
 
           <h2 className="font-display font-extrabold mt-10 mb-5" style={h2Style}>
@@ -218,7 +219,7 @@ export default function ConsultantSeoBourgEnBressePage() {
         </div>
       </section>
 
-      <section className="bg-background" style={{ padding: '0 1.5rem 8rem' }}>
+      <section className="bg-background" style={{ backgroundColor: 'var(--surface-3)',  padding: '0 1.5rem 8rem' }}>
         <div className="mx-auto max-w-3xl">
           <h2 className="font-display font-extrabold mb-10" style={h2Style}>
             Questions fréquentes
@@ -228,7 +229,7 @@ export default function ConsultantSeoBourgEnBressePage() {
               <div
                 key={q}
                 className="rounded p-6"
-                style={{ backgroundColor: 'var(--surface-2)', border: '1px solid var(--line)' }}
+                style={{ backgroundColor: 'var(--surface)', borderRadius: 'var(--radius)', boxShadow: 'var(--ombre-carte)' }}
               >
                 <h3 className="font-display font-extrabold text-base mb-3" style={{ color: 'var(--ink)', letterSpacing: '-0.01em' }}>{q}</h3>
                 <p className="text-sm leading-relaxed" style={{ color: 'var(--ink-2)' }}>{a}</p>

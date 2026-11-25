@@ -6,5 +6,5 @@
  * a faire dans un tunnel de vente : cette page n'a que sa propre barre.
  */
 export default function CvLayout({ children }: { children: React.ReactNode }) {
-  return <main>{children}</main>
+  return <main style={{ backgroundColor: '#131814' }}>{children}</main>
 }

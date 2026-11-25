@@ -34,9 +34,9 @@
   --font-display: var(--font-sans);
   --font-serif:   var(--font-sans);
   --font-mono: ui-monospace, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
-  /* 07/10 : l'operateur trouvait le site trop « brique » a 4 px. Deux rayons :
-     --radius (12 px) pour les cartes, images et cadres, --radius-sm (8 px) pour
-     les boutons, champs et chips. Les paliers lg a 3xl valent --radius. */
+  /* 27/10 : --radius (32 px) pour les cartes, images et cadres (encarts bento doux, choix C
+     de Moshe sur references Dribbble), --radius-sm (8 px) pour les champs. Boutons en
+     pilule (.btn-*). Les paliers lg a 3xl valent --radius. */
   --radius-sm: var(--radius-ctrl);
   --radius-md: var(--radius-ctrl);
   --radius-lg: var(--radius);
@@ -153,7 +153,9 @@
   /* Anneau de focus : 600 à 100 % sur fond clair, décalé de 2 px. Sur le pied
      de page (fond 950) il repasse en 400, règle ciblée plus bas. */
   --ring:        var(--g-600);
-  --radius:      0.75rem;
+  /* 27/10 : cartes blanches sur sections vert 100, ombre douce (choix A de Moshe). */
+  --ombre-carte: 0 1px 2px oklch(0.30 0.06 155 / 6%), 0 8px 24px oklch(0.30 0.06 155 / 9%);
+  --radius:      2rem; /* 27/10 : encarts « bento doux » 32 px, choix C de Moshe (references Dribbble) */
   --radius-ctrl: 0.5rem;
 
   --chart-1: var(--g-600);
@@ -217,7 +219,7 @@
      .btn-plein = action principale, .btn-contour = secondaire, .btn-contour-inverse = sur fond vert. */
   .btn-plein, .btn-contour, .btn-contour-inverse {
     display: inline-flex; align-items: center; gap: 0.4rem; width: fit-content;
-    border-radius: 9999px; padding: 0.55rem 1rem; max-width: 100%; justify-content: center; text-align: center;
+    border-radius: 9999px; padding: 0.6rem 1.15rem; max-width: 100%; justify-content: center; text-align: center;
     font-weight: 700; font-size: 0.85rem; line-height: 1.2; text-decoration: none; white-space: normal;
     border: 1px solid var(--brand); transition: background-color 0.15s, color 0.15s;
   }
@@ -227,6 +229,42 @@
   .btn-contour:hover { background-color: var(--surface-2); }
   .btn-contour-inverse { color: var(--on-brand); border-color: color-mix(in oklch, var(--on-brand) 70%, transparent); background-color: transparent; }
   .btn-contour-inverse:hover { background-color: color-mix(in oklch, var(--on-brand) 12%, transparent); }
+
+  /* 27/10 (choix A de Moshe, references Pinterest « pill button », « Get started ↗ ») : tout
+     bouton d'action est une pilule terminee par un rond de la couleur du texte, fleche
+     evidee (le masque laisse voir le fond du bouton). La fleche d'origine en fin de bouton
+     est masquee pour ne pas la doubler. .btn-sans-fleche pour les choix (creneaux). */
+  .btn-plein::after, .btn-contour::after, .btn-contour-inverse::after, .btn-rond::after {
+    content: ''; flex: none; width: 1.75rem; height: 1.75rem; margin: -0.35rem -0.7rem -0.35rem 0.25rem;
+    border-radius: 9999px; background-color: currentColor;
+    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M7 17 17 7M8 7h9v9'/%3E%3C/svg%3E") center / 0.95rem no-repeat, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor; mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M7 17 17 7M8 7h9v9'/%3E%3C/svg%3E") center / 0.95rem no-repeat exclude, linear-gradient(#000 0 0);
+    transition: transform 0.2s;
+  }
+  :is(.btn-plein, .btn-contour, .btn-contour-inverse, .btn-rond):hover::after { transform: rotate(45deg); }
+  :is(.btn-plein, .btn-contour, .btn-contour-inverse, .btn-rond) > svg:is(.lucide-arrow-right, .lucide-arrow-up-right, .lucide-chevron-right) { display: none; }
+  .btn-sans-fleche::after { display: none; }
+  /* Téléphone : boutons resserrés pour tenir dans une carte en deux colonnes. */
+  @media (max-width: 480px) {
+    .btn-plein, .btn-contour, .btn-contour-inverse { padding: 0.5rem 0.95rem; font-size: 0.8rem; }
+    .btn-plein::after, .btn-contour::after, .btn-contour-inverse::after { width: 1.55rem; height: 1.55rem; margin-right: -0.6rem; }
+  }
+
+  /* 25/10 : panneau de prise de rendez-vous (ReserverCreneau). Ordinateur : bloc sous le
+     déclencheur, qui passe à la ligne dans une rangée flex. Téléphone : feuille en bas de
+     l'écran, au-dessus des boutons d'appel (60) et du bandeau cookies (55). Jamais plein écran. */
+  .panneau-rdv {
+    flex-basis: 100%; width: 100%; max-width: 520px; text-align: left;
+    background-color: var(--surface); color: var(--ink);
+    border: 1px solid var(--line); border-radius: var(--radius); padding: clamp(1rem, 4vw, 1.4rem);
+  }
+  @media (max-width: 639px) {
+    .panneau-rdv {
+      position: fixed; left: 0; right: 0; bottom: 0; z-index: 70; max-width: none;
+      max-height: 88dvh; overflow-y: auto; border-radius: var(--radius) var(--radius) 0 0;
+      padding-bottom: calc(1rem + env(safe-area-inset-bottom)); box-shadow: 0 -8px 30px rgb(0 0 0 / 0.18);
+    }
+  }
 }
 
 @layer utilities {
@@ -302,3 +340,21 @@
 @utility rounded { border-radius: var(--radius); }
 @utility rounded-t { border-top-left-radius: var(--radius); border-top-right-radius: var(--radius); }
 @utility rounded-b { border-bottom-left-radius: var(--radius); border-bottom-right-radius: var(--radius); }
+
+/* Bandeau cookies (25/10) : au-dessus des boutons d'appel sur téléphone, en bas à gauche sur ordinateur. */
+.bandeau-cookies { left: 1rem; right: 1rem; bottom: calc(1rem + 52px + 0.6rem); }
+@media (min-width: 640px) { .bandeau-cookies { right: auto; bottom: 1rem; max-width: 26rem; } }
+
+/* Pastilles de /portfolio qui defilent en boucle (liste doublee). */
+@keyframes cv-defile {
+  to { transform: translateX(-50%); }
+}
+
+/* Barre de progression des stories de /portfolio. */
+@keyframes cv-barre {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+
+/* Emoji (drapeaux, pastilles) : Apple sur iPhone et Mac, Noto Color Emoji ailleurs (Windows n'a pas de drapeaux). */
+.emoji { font-family: 'Apple Color Emoji', 'Noto Color Emoji', 'Segoe UI Emoji', sans-serif; font-style: normal; line-height: 1; }

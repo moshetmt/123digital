@@ -6,6 +6,7 @@ import { projects } from '@/data/portfolio'
 import { villesARA, villesFrance } from '@/data/villes'
 import { estIndexable } from '@/data/indexation'
 import { CHIP_VILLES } from '@/components/sections/Zones'
+import { LienCookies } from '@/components/layout/BandeauCookies'
 
 // Villes indexables absentes des tuiles de l'accueil : elles n'ont pas d'autre
 // chemin interne depuis la page d'accueil. Calcule, pas en dur : suit
@@ -75,8 +76,12 @@ export function Footer({ lang = 'fr' }: { lang?: Locale }) {
     { label: 'Problèmes fréquents', href: '/problemes' },
     { label: 'Audit gratuit',     href: '/audit-gratuit' },
     { label: 'Consultant digital à Lyon', href: '/consultant-digital-lyon' },
+    { label: 'Consultant SEO à Lyon', href: '/consultant-seo-lyon' },
+    { label: 'Référencement IA', href: '/referencement-ia' },
+    { label: 'Consultant IA à Lyon', href: '/consultant-ia-lyon' },
     { label: 'Consultant SEO Bourg-en-Bresse', href: '/consultant-seo-bourg-en-bresse' },
     { label: 'Mentions légales',  href: '/mentions-legales' },
+    { label: 'Confidentialité',   href: '/confidentialite' },
   ]
 
   return (
@@ -158,6 +163,9 @@ export function Footer({ lang = 'fr' }: { lang?: Locale }) {
                 </Link>
               </li>
             ))}
+            <li className="footer-link" style={{ color: 'var(--vert-1)', fontSize: '0.85rem' }}>
+              <LienCookies />
+            </li>
           </ul>
         </div>
 

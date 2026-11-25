@@ -1,13 +1,17 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import { ArrowUpRight, Download, Mail, MapPin, Phone } from 'lucide-react'
+import { ArrowUpRight, Download, Mail, Phone, Star } from 'lucide-react'
 import { cvContent, type CvLocale } from '@/data/cv'
-import { CvWork } from './CvWork'
+import { AVIS_GOOGLE } from '@/lib/avis-google'
+import { CvAvatar } from './CvAvatar'
+import { CvParcours } from './CvParcours'
+import { CvPhone } from './CvPhone'
+import { CvStories } from './CvStories'
+import { designs, ecrans } from '@/data/telephone'
 
 /**
  * lucide-react 1.x ne fournit plus les logos de marque, d'ou ce glyphe local.
- * Trace officiel du logo LinkedIn : le carre plein avec le « in » evide, pas
- * un « in » flottant.
+ * Trace officiel du logo LinkedIn : le carre plein avec le « in » evide.
  */
 function LinkedinGlyph({ size = 16 }: { size?: number }) {
   return (
@@ -17,431 +21,322 @@ function LinkedinGlyph({ size = 16 }: { size?: number }) {
   )
 }
 
+// Charte 123digital, version nuit : fond 950 (encre), texte clair, vert 400 en
+// accent, filets 200 en transparence. Le vert 600 #00713D ne sert qu'au fond
+// des boutons (en texte sur l'encre, il ne passe pas le contraste).
+const C = {
+  fond: '#131814',
+  titre: '#F2F7F4',
+  texte: '#C9D6CE',
+  discret: '#8FA497',
+  accent: '#6FB791',
+  filet: 'rgba(205, 230, 216, 0.14)',
+  bouton: '#00713D',
+  carte: '#1A211C',
+}
+
+const SECTION_TITRE = {
+  fontSize: '0.8rem',
+  fontWeight: 800,
+  letterSpacing: '0.12em',
+  textTransform: 'uppercase' as const,
+  color: C.titre,
+}
+
 /**
- * CV interactif servi sur /portfolio (FR) et /en/portfolio (EN).
- *
- * Public : recruteurs. Aucun appel a l'action commercial ici, pas d'audit
- * gratuit, pas de devis. Les seuls boutons sont mail, LinkedIn, telephone et
- * le PDF du CV. Si une section vend 123digital au lieu de presenter le
- * candidat, elle n'a rien a faire sur cette page.
+ * Page /portfolio (FR) et /en/portfolio (EN), gabarit valide le 26/10/2026 :
+ * colonne de gauche fixe sur ordinateur (photo, nom, titre, navigation par
+ * ancres, liens), colonne de droite qui defile. Sur telephone, tout s'empile,
+ * photo en premier.
  */
 export function CvPage({ locale }: { locale: CvLocale }) {
   const c = cvContent[locale]
   const { identity } = c
 
-  const SECTION = 'clamp(2.5rem, 6vw, 4rem) 1.5rem'
+  // Pastilles = les services, nommes comme un client les cherche, chacune ouvre
+  // sa page (demande de Moshe du 26/10 : « on comprend pas ce que je fais »).
+  const [metier] = identity.role.split(' · ')
+  const pastilles = locale === 'fr'
+    ? [
+        { emoji: '💻', label: 'Création de site', href: '/services/creation-site-web' },
+        { emoji: '🔎', label: 'Référencement', href: '/services/seo' },
+        { emoji: '📈', label: 'Google Ads', href: '/services/publicite-en-ligne' },
+        { emoji: '🤖', label: 'IA & automatisation', href: '/consultant-ia-lyon' },
+      ]
+    : [
+        { emoji: '💻', label: 'Websites', href: '/services/creation-site-web' },
+        { emoji: '🔎', label: 'Google SEO', href: '/services/seo' },
+        { emoji: '📈', label: 'Google Ads', href: '/services/publicite-en-ligne' },
+        { emoji: '🤖', label: 'AI automation', href: '/consultant-ia-lyon' },
+      ]
+
+  const avis = { titre: locale === 'fr' ? 'Avis Google' : 'Google reviews', valeur: AVIS_GOOGLE.note, unite: locale === 'fr' ? `${AVIS_GOOGLE.nombre} avis` : `${AVIS_GOOGLE.nombre} reviews`, href: c.proofs.reviewsHref }
+  const realisations = { titre: locale === 'fr' ? 'Réalisations' : 'Projects', valeur: String(ecrans.length + designs.length), unite: locale === 'fr' ? 'créations' : 'pieces', legende: locale === 'fr' ? 'À faire défiler' : 'Swipe through', href: '#realisations' }
+
+  const lignes = [
+    { href: `mailto:${identity.email}`, libelle: 'Email', valeur: identity.email, icon: <Mail size={17} aria-hidden />, externe: false },
+    { href: identity.phoneHref, libelle: locale === 'fr' ? 'Téléphone' : 'Phone', valeur: identity.phone, icon: <Phone size={17} aria-hidden />, externe: false },
+    { href: identity.linkedin, libelle: 'LinkedIn', valeur: identity.name, icon: <LinkedinGlyph size={16} />, externe: true },
+  ]
+
+  const rond = { width: '2.6rem', height: '2.6rem', borderRadius: '9999px', backgroundColor: 'rgba(0,0,0,0.22)' }
+
+  // Titre de section : collant en haut sur telephone (comme le gabarit de
+  // reference), simple intertitre sur ordinateur.
+  const titreSection = (texte: string) => (
+    <div
+      className="sticky top-0 z-20 mb-2 bg-[rgba(19,24,20,0.92)] backdrop-blur-sm lg:static lg:mb-4 lg:bg-transparent lg:backdrop-blur-none"
+      style={{ padding: '1.1rem 0' }}
+    >
+      <h2 style={SECTION_TITRE}>{texte}</h2>
+    </div>
+  )
 
   return (
-    <>
-      {/* Barre du CV : pas de menu commercial, seulement les ancres, la langue
-          et le PDF. */}
-      <header
-        className="sticky top-0 z-40"
-        style={{ backgroundColor: 'var(--surface-alpha)', borderBottom: '1px solid var(--line)' }}
+    <div style={{ backgroundColor: C.fond, color: C.texte, minHeight: '100vh' }}>
+      {/* Sous-ensemble de Noto Color Emoji (7 emoji, quelques Ko) pour les drapeaux sur Windows. */}
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Color+Emoji&text=%F0%9F%92%BB%F0%9F%94%8E%F0%9F%93%88%F0%9F%A4%96%F0%9F%87%AB%F0%9F%87%B7%F0%9F%87%AC%F0%9F%87%A7%F0%9F%87%AE%F0%9F%87%B1&display=swap" precedence="default" />
+      <div
+        className="mx-auto"
+        style={{ maxWidth: '38rem', padding: '0 clamp(1rem, 5vw, 2rem)' }}
       >
-        <div className="mx-auto max-w-4xl flex items-center justify-between gap-4" style={{ padding: '0.7rem 1.5rem' }}>
-          {/* Le logo reste, le nom vient s'y accrocher : la page appartient au
-              site, elle n'est pas une page isolee sans provenance. */}
-          <Link href={c.nav.backHref} className="flex items-center gap-2 min-w-0" aria-label={`123 Digital, ${identity.name}`}>
-            <Image
-              src="/images/logo.svg"
-              alt="123 Digital"
-              width={140}
-              height={29}
-              style={{ height: 26, width: 'auto' }}
-              priority
-              unoptimized
-            />
-            <span
-              className="truncate"
-              style={{ fontSize: '0.82rem', color: 'var(--ink-2)', fontWeight: 600, borderLeft: '1px solid var(--line-strong)', paddingLeft: '0.6rem' }}
+        {/* Colonne de gauche */}
+        <header style={{ paddingTop: 'clamp(1rem, 3vh, 2rem)', paddingBottom: 'clamp(1.5rem, 5vh, 3.5rem)' }}>
+          {/* Logo 123digital en tete de page (demande de Moshe du 27/10). */}
+          <div className="flex justify-center" style={{ marginBottom: 'clamp(1rem, 3vh, 1.5rem)' }}>
+            <Link href={c.nav.backHref} aria-label={c.nav.backToSite} className="transition-opacity hover:opacity-80">
+              <Image src="/images/logo-nuit.svg" alt="123digital" width={273} height={56} unoptimized priority style={{ width: 150, height: 'auto' }} />
+            </Link>
+          </div>
+          <div>
+            {/* En-tete de profil, calque sur la maquette « Isabella Castillo » envoyee
+                par Moshe le 26/10 : photo ronde, nom, metier, pastilles, deux chiffres. */}
+            <div
+              className="flex flex-col items-center text-center"
+              style={{ backgroundColor: '#0B0F0C', borderRadius: '2rem', padding: 'clamp(1.5rem, 3.5vh, 2rem) clamp(1rem, 3vw, 1.5rem) clamp(1rem, 2.5vh, 1.25rem)' }}
             >
-              by {identity.name}
-            </span>
-          </Link>
+              <CvAvatar alt={identity.portraitAlt} fermer={locale === 'fr' ? 'Fermer' : 'Close'} />
+              <h1 style={{ fontSize: 'clamp(1.9rem, 3.4vw, 2.4rem)', fontWeight: 800, color: C.titre, lineHeight: 1.05, letterSpacing: '-0.025em', marginTop: '1rem' }}>
+                {identity.name}
+              </h1>
+              <p style={{ fontSize: '0.92rem', color: C.discret, lineHeight: 1.4, marginTop: '0.4rem' }}>
+                {metier} · {identity.location}
+              </p>
+              {/* Pastilles sur une seule ligne qui defile en boucle (demande de Moshe du
+                  26/10) : la liste est doublee pour boucler sans saut, la copie est
+                  cachee aux lecteurs d'ecran. Le defilement s'arrete au survol. */}
+              <div
+                className="group w-full overflow-hidden"
+                style={{ marginTop: '1rem', WebkitMaskImage: 'linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent)', maskImage: 'linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent)' }}
+              >
+                <div className="flex w-max animate-[cv-defile_18s_linear_infinite] group-hover:[animation-play-state:paused] motion-reduce:animate-none">
+                  {[0, 1].map((copie) => (
+                    <ul key={copie} aria-hidden={copie === 1 || undefined} className="flex shrink-0" style={{ listStyle: 'none', padding: '0.15rem 0', margin: 0, gap: '0.45rem', paddingRight: '0.45rem' }}>
+                      {pastilles.map((p) => (
+                        <li key={p.href}>
+                          <Link
+                            href={p.href}
+                            tabIndex={copie === 1 ? -1 : undefined}
+                            className="inline-flex items-center gap-1 whitespace-nowrap transition-[transform,background-color] duration-150 hover:bg-[rgba(111,183,145,0.25)] active:scale-90 active:bg-[rgba(111,183,145,0.4)]"
+                            style={{ fontSize: '0.84rem', fontWeight: 600, color: C.titre, backgroundColor: 'rgba(205, 230, 216, 0.1)', border: `1px solid ${C.filet}`, borderRadius: '9999px', padding: '0.4rem 0.65rem 0.4rem 0.9rem' }}
+                          >
+                            <span aria-hidden className="emoji">{p.emoji}</span>
+                            {p.label}
+                            <ArrowUpRight size={14} aria-hidden style={{ color: C.accent }} />
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  ))}
+                </div>
+              </div>
+              <div className="grid w-full grid-cols-2" style={{ gap: '0.6rem', marginTop: '1.1rem' }}>
+                {/* Deux cases traitees differemment (demande de Moshe du 26/10) : les avis
+                    en sombre avec la note et cinq etoiles, les realisations en carte claire
+                    comme la case « Height » de la maquette. */}
+                <a
+                  href={avis.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex flex-col text-left transition-opacity hover:opacity-80"
+                  style={{ backgroundColor: C.carte, borderRadius: '1.4rem', padding: '0.95rem 1rem 0.9rem' }}
+                >
+                  <span className="flex items-start justify-between" style={{ fontSize: '0.84rem', color: C.texte }}>
+                    {avis.titre}
+                    <ArrowUpRight size={17} aria-hidden />
+                  </span>
+                  <span style={{ fontSize: '2.3rem', fontWeight: 800, color: C.accent, lineHeight: 1, letterSpacing: '-0.03em', marginTop: '1rem' }}>{avis.valeur}</span>
+                  <span className="flex items-center gap-0.5" style={{ color: C.accent, marginTop: '0.45rem' }} aria-hidden>
+                    {[0, 1, 2, 3, 4].map((i) => <Star key={i} size={13} fill="currentColor" strokeWidth={0} />)}
+                  </span>
+                  <span style={{ fontSize: '0.78rem', color: C.discret, marginTop: '0.3rem' }}>{avis.unite}</span>
+                </a>
+                <a
+                  href={realisations.href}
+                  className="flex flex-col text-left transition-opacity hover:opacity-85"
+                  style={{ backgroundColor: C.titre, borderRadius: '1.4rem', padding: '0.95rem 1rem 0.9rem' }}
+                >
+                  <span className="flex items-start justify-between" style={{ fontSize: '0.84rem', fontWeight: 600, color: '#131814' }}>
+                    {realisations.titre}
+                    <ArrowUpRight size={17} aria-hidden />
+                  </span>
+                  <span className="flex items-baseline gap-1.5" style={{ marginTop: '1rem' }}>
+                    <span style={{ fontSize: '2.3rem', fontWeight: 800, color: C.bouton, lineHeight: 1, letterSpacing: '-0.03em' }}>{realisations.valeur}</span>
+                    <span style={{ fontSize: '0.84rem', fontWeight: 700, color: C.bouton }}>{realisations.unite}</span>
+                  </span>
+                  <span style={{ fontSize: '0.78rem', color: '#4A5A50', marginTop: 'auto', paddingTop: '0.5rem' }}>{realisations.legende}</span>
+                </a>
+              </div>
+            </div>
 
-          <div className="flex items-center gap-2 sm:gap-4 shrink-0">
-            <a
-              href={identity.cvFile}
-              download
-              className="hidden sm:inline-flex items-center gap-1.5"
-              style={{ fontSize: '0.8rem', fontWeight: 700, color: 'var(--ink-2)' }}
-            >
-              <Download size={14} aria-hidden /> PDF
-            </a>
+          </div>
+
+          {/* Panneau des contacts : bord haut en vague qui monte vers la droite, une
+              ligne par contact (pastille, libelle, valeur, fleche ronde). */}
+          <div className="relative" style={{ marginTop: '1.5rem' }}>
+            <svg viewBox="0 0 400 44" preserveAspectRatio="none" aria-hidden className="block w-full" style={{ height: '2.75rem' }}>
+              <path d="M0 44V40Q0 18 22 18H170C205 18 210 0 245 0H372Q400 0 400 28V44Z" fill={C.bouton} />
+            </svg>
+            <span aria-hidden className="absolute" style={{ left: 'calc(42% - 3rem)', top: '1.55rem', width: '2.2rem', height: '0.22rem', borderRadius: '9999px', backgroundColor: 'rgba(255,255,255,0.35)' }} />
             <Link
               href={c.nav.switchHref}
-              className="rounded-full"
-              style={{ fontSize: '0.74rem', fontWeight: 800, letterSpacing: '0.06em', color: 'var(--ink-2)', border: '1px solid var(--line-strong)', padding: '0.25rem 0.6rem' }}
+              aria-label={c.nav.switchAria}
+              className="absolute flex items-center justify-center transition-opacity hover:opacity-75"
+              style={{ right: '0.9rem', top: '0.55rem', width: '2.6rem', height: '2.6rem', borderRadius: '9999px', backgroundColor: 'rgba(0,0,0,0.22)', fontSize: '0.74rem', fontWeight: 800, letterSpacing: '0.06em', color: '#FFFFFF' }}
             >
               {c.nav.switchLabel}
             </Link>
-            <a
-              href={`mailto:${identity.email}`}
-              className="inline-flex items-center gap-1.5 rounded-full font-bold"
-              style={{ backgroundColor: 'var(--brand)', color: 'var(--on-brand)', padding: '0.45rem 0.95rem', fontSize: '0.8rem' }}
-            >
-              <Mail size={14} aria-hidden /> {c.contact.emailCta}
-            </a>
-          </div>
-        </div>
-      </header>
-
-      {/* Identite */}
-      <section className="bg-background" style={{ padding: 'clamp(2rem, 5vw, 3.25rem) 1.5rem clamp(2rem, 5vw, 3rem)' }}>
-        <div className="mx-auto max-w-4xl">
-          <div className="flex flex-col sm:flex-row gap-6 sm:gap-8 sm:items-center">
-            <div
-              className="relative overflow-hidden rounded shrink-0 self-start"
-              style={{ width: 116, height: 116, border: '1px solid var(--line)' }}
-            >
-              <Image
-                src="/portraitmaurice.png"
-                alt={identity.portraitAlt}
-                fill
-                sizes="116px"
-                style={{ objectFit: 'cover', objectPosition: 'center top' }}
-                priority
-              />
-            </div>
-
-            <div className="min-w-0">
-              <div className="flex flex-wrap items-center gap-2 mb-2.5">
-                <span
-                  className="inline-flex items-center gap-1.5"
-                  style={{
-                    fontSize: '0.68rem',
-                    fontWeight: 800,
-                    letterSpacing: '0.09em',
-                    textTransform: 'uppercase',
-                    color: 'var(--brand-strong)',
-                  }}
+            <div style={{ marginTop: '-1px', background: `linear-gradient(180deg, ${C.bouton} 0%, #0A4A2A 100%)`, borderRadius: '0 0 1.9rem 1.9rem', padding: '0.4rem 1.1rem 1.1rem' }}>
+              <h2 style={{ fontSize: '1.15rem', fontWeight: 700, color: '#FFFFFF', margin: '0 0 0.6rem 0.2rem' }}>
+                {locale === 'fr' ? 'Coordonnées' : 'Contact details'}
+              </h2>
+              <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
+                {lignes.map((l) => (
+                  <li key={l.href}>
+                    <a
+                      href={l.href}
+                      {...(l.externe ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+                      className="flex items-center gap-3 transition-opacity hover:opacity-80"
+                      style={{ padding: '0.5rem 0', color: '#FFFFFF' }}
+                    >
+                      <span className="flex shrink-0 items-center justify-center" style={rond}>{l.icon}</span>
+                      <span className="flex min-w-0 flex-1 flex-col text-left">
+                        <span style={{ fontSize: '0.74rem', color: 'rgba(255,255,255,0.7)' }}>{l.libelle}</span>
+                        <span className="truncate" style={{ fontSize: '0.95rem', fontWeight: 600 }}>{l.valeur}</span>
+                      </span>
+                      <span className="flex shrink-0 items-center justify-center" style={rond}><ArrowUpRight size={17} aria-hidden /></span>
+                    </a>
+                  </li>
+                ))}
+              </ul>
+              <div className="flex items-center justify-between" style={{ marginTop: '0.8rem' }}>
+                <Link href={c.nav.backHref} aria-label={c.nav.backToSite} className="flex items-center" style={{ backgroundColor: 'rgba(0,0,0,0.22)', borderRadius: '9999px', padding: '0.7rem 1.1rem' }}>
+                  <Image src="/images/logo-nuit.svg" alt="123digital" width={273} height={56} unoptimized style={{ width: 104, height: 'auto' }} />
+                </Link>
+                <a
+                  href={identity.cvFile}
+                  download
+                  className="inline-flex items-center gap-2 transition-opacity hover:opacity-80"
+                  style={{ backgroundColor: 'rgba(0,0,0,0.22)', borderRadius: '9999px', padding: '0.75rem 1.1rem', fontSize: '0.86rem', fontWeight: 700, color: '#FFFFFF' }}
                 >
-                  <span className="rounded-full" style={{ width: 6, height: 6, backgroundColor: 'var(--brand)' }} aria-hidden />
-                  {identity.availability}
-                </span>
-                <span
-                  style={{ fontSize: '0.68rem', fontWeight: 800, letterSpacing: '0.09em', textTransform: 'uppercase', color: 'var(--ink-3)' }}
-                >
-                  · {c.intro.kicker}
-                </span>
-              </div>
-
-              <h1
-                className="font-sans font-extrabold"
-                style={{ fontSize: 'clamp(2rem, 4.4vw, 3rem)', color: 'var(--ink)', lineHeight: 1.08, letterSpacing: '-0.025em' }}
-              >
-                {identity.name}
-              </h1>
-              <p style={{ fontSize: '1rem', color: 'var(--ink-2)', fontWeight: 600, margin: '0.45rem 0 0.9rem' }}>{identity.role}</p>
-
-              <div className="flex flex-wrap gap-x-4 gap-y-2" style={{ fontSize: '0.84rem', color: 'var(--ink-2)' }}>
-                <span className="inline-flex items-center gap-1.5">
-                  <MapPin size={14} aria-hidden style={{ color: 'var(--ink-3)' }} />
-                  {identity.location}
-                </span>
-                <a href={`mailto:${identity.email}`} className="inline-flex items-center gap-1.5" style={{ fontWeight: 600 }}>
-                  <Mail size={14} aria-hidden style={{ color: 'var(--ink-3)' }} />
-                  {identity.email}
-                </a>
-                <a href={identity.phoneHref} className="inline-flex items-center gap-1.5" style={{ fontWeight: 600 }}>
-                  <Phone size={14} aria-hidden style={{ color: 'var(--ink-3)' }} />
-                  {identity.phone}
+                  <Download size={17} aria-hidden />
+                  {locale === 'fr' ? 'CV en PDF' : 'PDF résumé'}
                 </a>
               </div>
             </div>
           </div>
+        </header>
 
-          {/* Scenes aplat (scripts/illustrations_cv.py d'ads-os) : la page etait du texte sur du blanc. */}
-          <div className="grid grid-cols-1 md:grid-cols-[1fr_19rem] gap-8 items-center" style={{ marginTop: '1.75rem' }}>
-          <div>
-          <p className="max-w-3xl" style={{ color: 'var(--ink-2)', lineHeight: 1.7, margin: '0 0 1.25rem' }}>
-            {c.intro.body}
-          </p>
+        {/* Colonne de droite */}
+        <div style={{ paddingBottom: '4rem' }}>
+          <section id="a-propos" className="scroll-mt-16" style={{ marginBottom: 'clamp(4rem, 10vh, 6rem)' }} aria-label={c.nav.about}>
+            {titreSection(c.nav.about)}
+            <p style={{ fontSize: '1rem', lineHeight: 1.75, color: C.texte }}>{c.intro.body}</p>
 
-          {/* Personnalite : le profil vient d'un test passe chez un editeur, la
-              source est affichee avec lui. Sans elle, un recruteur lit ces
-              qualificatifs comme de l'auto-evaluation. */}
-          <div style={{ marginBottom: '1.5rem' }}>
-            <span
-              className="block"
-              style={{ fontSize: '0.66rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.09em', color: 'var(--ink-3)', marginBottom: '0.5rem' }}
-            >
-              {c.intro.traitsLabel}
-            </span>
-
-            <p style={{ fontSize: '0.85rem', color: 'var(--ink-2)' }}>
-              <span style={{ fontWeight: 700, color: 'var(--brand-strong)' }}>{c.intro.traitsProfile}</span>
-              {c.intro.traits.length > 0 && ' · '}
-              {c.intro.traits.join(' · ')}
-            </p>
-
-            <p style={{ fontSize: '0.75rem', color: 'var(--ink-3)', marginTop: '0.55rem' }}>
-              {c.intro.traitsSourceUrl ? (
-                <a href={c.intro.traitsSourceUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1" style={{ color: 'var(--brand-strong)', fontWeight: 600 }}>
-                  {c.intro.traitsSource} <ArrowUpRight size={12} aria-hidden />
-                </a>
-              ) : (
-                c.intro.traitsSource
-              )}
-            </p>
-          </div>
-
-          <div className="flex flex-wrap gap-3">
-            <a
-              href={`mailto:${identity.email}`}
-              className="inline-flex items-center gap-2 rounded-full font-bold"
-              style={{ backgroundColor: 'var(--brand)', color: 'var(--on-brand)', padding: '0.8rem 1.4rem', fontSize: '0.9rem' }}
-            >
-              <Mail size={16} aria-hidden /> {c.contact.emailCta}
-            </a>
-            <a
-              href={identity.linkedin}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-full font-bold hover:bg-[var(--surface-3)] transition-colors"
-              style={{ border: '2px solid var(--line-strong)', color: 'var(--ink)', padding: '0.75rem 1.3rem', fontSize: '0.9rem' }}
-            >
-              <LinkedinGlyph /> {c.contact.linkedinCta}
-            </a>
-            <a
-              href={identity.cvFile}
-              download
-              className="inline-flex items-center gap-2 rounded-full font-bold hover:bg-[var(--surface-3)] transition-colors"
-              style={{ border: '2px solid var(--line-strong)', color: 'var(--ink)', padding: '0.75rem 1.3rem', fontSize: '0.9rem' }}
-            >
-              <Download size={16} aria-hidden /> {c.contact.pdfCta}
-            </a>
-          </div>
-          </div>
-          <div className="rounded overflow-hidden" style={{ border: '1px solid var(--line)' }}>
-            <Image src="/images/illustrations/cv/hero.webp" alt="" width={960} height={720} style={{ width: '100%', height: 'auto' }} priority />
-          </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Chiffres */}
-      <section className="bg-background" style={{ padding: '0 1.5rem clamp(2rem, 5vw, 3rem)' }}>
-        <div
-          className="mx-auto max-w-4xl grid grid-cols-2 md:grid-cols-4 rounded overflow-hidden"
-          style={{ backgroundColor: 'var(--surface-2)', border: '1px solid var(--line)' }}
-        >
-          {c.stats.map((stat, i) => (
-            <div key={stat.value + stat.label} style={{ padding: '1.25rem 1.1rem', borderTop: '1px solid var(--line)' }}>
-              <Image src={`/images/illustrations/cv/stat-${i + 1}.webp`} alt="" width={52} height={52} className="rounded" style={{ width: 52, height: 52, marginBottom: '0.6rem' }} />
-              <p
-                className="font-sans font-extrabold"
-                style={{ fontSize: 'clamp(1.5rem, 3.2vw, 2rem)', color: 'var(--brand-strong)', lineHeight: 1.05, letterSpacing: '-0.02em' }}
-              >
-                {stat.value}
+            {/* Personnalite : le profil vient d'un test passe chez un editeur,
+                la source est affichee avec lui. */}
+            <div style={{ marginTop: '1.5rem' }}>
+              <p style={{ fontSize: '0.72rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.1em', color: C.discret, marginBottom: '0.45rem' }}>
+                {c.intro.traitsLabel}
               </p>
-              <p style={{ fontSize: '0.76rem', color: 'var(--ink-2)', lineHeight: 1.45, marginTop: '0.3rem' }}>{stat.label}</p>
+              <p style={{ fontSize: '0.92rem', color: C.texte }}>
+                <span style={{ fontWeight: 700, color: C.accent }}>{c.intro.traitsProfile}</span>
+                {c.intro.traits.length > 0 && ' · '}
+                {c.intro.traits.join(' · ')}
+              </p>
+              <p style={{ fontSize: '0.78rem', color: C.discret, marginTop: '0.45rem' }}>
+                {c.intro.traitsSourceUrl ? (
+                  <a href={c.intro.traitsSourceUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1" style={{ color: C.accent, fontWeight: 600 }}>
+                    {c.intro.traitsSource} <ArrowUpRight size={12} aria-hidden />
+                  </a>
+                ) : (
+                  c.intro.traitsSource
+                )}
+              </p>
             </div>
-          ))}
-        </div>
-      </section>
+          </section>
 
-      {/* Realisations */}
-      <section id="realisations" className="bg-background" style={{ padding: SECTION, borderTop: '1px solid var(--line)' }}>
-        <div className="mx-auto max-w-4xl">
-          <h2
-            className="font-sans font-extrabold"
-            style={{ fontSize: 'clamp(1.5rem, 3.2vw, 2.15rem)', color: 'var(--ink)', lineHeight: 1.15, letterSpacing: '-0.015em' }}
-          >
-            {c.work.heading}
-          </h2>
-          <p style={{ color: 'var(--ink-2)', maxWidth: '58ch', margin: '0.6rem 0 1.6rem' }}>{c.work.sub}</p>
-          <CvWork work={c.work} />
-        </div>
-      </section>
+          <section id="realisations" className="scroll-mt-16" style={{ marginBottom: 'clamp(4rem, 10vh, 6rem)' }}>
+            {titreSection(c.work.heading)}
+            <CvPhone work={c.work} />
+          </section>
 
-      {/* Parcours */}
-      <section id="parcours" className="bg-background" style={{ padding: SECTION, borderTop: '1px solid var(--line)' }}>
-        <div className="mx-auto max-w-4xl">
-          <h2
-            className="font-sans font-extrabold mb-8"
-            style={{ fontSize: 'clamp(1.5rem, 3.2vw, 2.15rem)', color: 'var(--ink)', lineHeight: 1.15, letterSpacing: '-0.015em' }}
-          >
-            {c.experience.heading}
-          </h2>
+          <section id="designs" className="scroll-mt-16" style={{ marginBottom: 'clamp(4rem, 10vh, 6rem)' }}>
+            {titreSection(locale === 'fr' ? 'Designs & vidéos' : 'Designs & videos')}
+            <CvStories
+              intro={locale === 'fr' ? 'Stories et reels faits pour Habad Étudiants Lyon. Touchez une bulle.' : 'Stories and reels made for Habad Étudiants Lyon. Tap a bubble.'}
+              voir={c.work.openInstagram}
+              fermer={locale === 'fr' ? 'Fermer' : 'Close'}
+            />
+          </section>
 
-          <ol className="flex flex-col" style={{ listStyle: 'none', padding: 0, margin: 0 }}>
-            {c.experience.items.map((item, i) => (
-              <li
-                key={item.role + item.org}
-                className="grid grid-cols-1 md:grid-cols-[13rem_1fr] gap-2 md:gap-8"
-                style={{
-                  paddingTop: i === 0 ? 0 : '1.6rem',
-                  paddingBottom: i === c.experience.items.length - 1 ? 0 : '1.6rem',
-                  borderBottom: i === c.experience.items.length - 1 ? 'none' : '1px solid var(--line)',
-                }}
+          <section id="parcours" className="scroll-mt-16" style={{ marginBottom: 'clamp(4rem, 10vh, 6rem)' }}>
+            {titreSection(c.experience.heading)}
+            <CvParcours c={c} sep={locale === 'fr' ? ' :' : ':'} />
+          </section>
+
+          <section id="contact" className="scroll-mt-16">
+            {titreSection(c.nav.contact)}
+            <p style={{ fontSize: 'clamp(1.5rem, 3vw, 2rem)', fontWeight: 800, color: C.titre, lineHeight: 1.15, letterSpacing: '-0.02em' }}>
+              {c.contact.heading}
+            </p>
+            <p style={{ fontSize: '1rem', color: C.texte, lineHeight: 1.65, marginTop: '0.7rem' }}>{c.contact.body}</p>
+
+            <div className="flex flex-wrap" style={{ gap: '0.75rem', marginTop: '1.5rem' }}>
+              <a
+                href={`mailto:${identity.email}`}
+                className="inline-flex items-center gap-2 btn-rond rounded-full font-bold transition-[filter] hover:brightness-110"
+                style={{ backgroundColor: C.bouton, color: '#FFFFFF', padding: '0.8rem 1.35rem', fontSize: '0.92rem' }}
               >
-                <div>
-                  <Image src={`/images/illustrations/cv/exp-${i + 1}.webp`} alt="" width={120} height={120} className="rounded" style={{ width: 120, height: 120, marginBottom: '0.8rem', border: '1px solid var(--line)' }} />
-                  <p style={{ fontSize: '0.78rem', fontWeight: 700, color: 'var(--brand-strong)', letterSpacing: '0.01em' }}>{item.period}</p>
-                  <p style={{ fontSize: '0.9rem', fontWeight: 700, color: 'var(--ink)', marginTop: '0.2rem' }}>{item.org}</p>
-                  {item.note ? (
-                    <p style={{ fontSize: '0.74rem', color: 'var(--ink-3)', lineHeight: 1.45, marginTop: '0.15rem' }}>{item.note}</p>
-                  ) : null}
-                </div>
-
-                <div>
-                  <h3 className="font-sans font-extrabold" style={{ fontSize: '1.1rem', color: 'var(--ink)', lineHeight: 1.25, marginBottom: item.context ? '0.35rem' : '0.55rem' }}>
-                    {item.role}
-                  </h3>
-                  {item.context ? (
-                    <p style={{ fontSize: '0.83rem', color: 'var(--ink-3)', lineHeight: 1.55, fontStyle: 'italic', marginBottom: '0.6rem' }}>
-                      {item.context}
-                    </p>
-                  ) : null}
-                  <ul className="flex flex-col gap-1.5" style={{ listStyle: 'none', padding: 0, margin: 0 }}>
-                    {item.bullets.map((bullet) => (
-                      <li key={bullet} className="flex gap-2.5" style={{ fontSize: '0.88rem', color: 'var(--ink-2)', lineHeight: 1.6 }}>
-                        <span
-                          className="rounded-full shrink-0"
-                          style={{ width: 6, height: 6, marginTop: '0.5rem', backgroundColor: 'var(--brand)' }}
-                          aria-hidden
-                        />
-                        {bullet}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </li>
-            ))}
-          </ol>
-        </div>
-      </section>
-
-      {/* Competences, outils, formation, langues */}
-      <section id="competences" className="bg-background" style={{ padding: SECTION, borderTop: '1px solid var(--line)' }}>
-        <div className="mx-auto max-w-4xl grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10">
-          <div>
-            <Image src="/images/illustrations/cv/skills.webp" alt="" width={84} height={84} className="rounded" style={{ width: 84, height: 84, marginBottom: '1rem', border: '1px solid var(--line)' }} />
-            <h2
-              className="font-sans font-extrabold mb-5"
-              style={{ fontSize: 'clamp(1.35rem, 2.8vw, 1.75rem)', color: 'var(--ink)', lineHeight: 1.15, letterSpacing: '-0.015em' }}
-            >
-              {c.skills.heading}
-            </h2>
-
-            <p style={{ fontSize: '0.68rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.09em', color: 'var(--ink-3)', marginBottom: '0.55rem' }}>
-              {c.skills.skillsLabel}
-            </p>
-            <p style={{ fontSize: '0.85rem', fontWeight: 600, color: 'var(--brand-strong)', marginBottom: '1.4rem' }}>
-              {c.skills.items.join(' · ')}
-            </p>
-
-            <p style={{ fontSize: '0.68rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.09em', color: 'var(--ink-3)', marginBottom: '0.55rem' }}>
-              {c.skills.toolsLabel}
-            </p>
-            <p style={{ fontSize: '0.85rem', color: 'var(--ink-2)' }}>
-              {c.skills.tools.join(' · ')}
-            </p>
-          </div>
-
-          <div>
-            <Image src="/images/illustrations/cv/education.webp" alt="" width={84} height={84} className="rounded" style={{ width: 84, height: 84, marginBottom: '1rem', border: '1px solid var(--line)' }} />
-            <h2
-              className="font-sans font-extrabold mb-5"
-              style={{ fontSize: 'clamp(1.35rem, 2.8vw, 1.75rem)', color: 'var(--ink)', lineHeight: 1.15, letterSpacing: '-0.015em' }}
-            >
-              {c.education.heading}
-            </h2>
-
-            <ul className="flex flex-col" style={{ listStyle: 'none', padding: 0, margin: '0 0 1.6rem' }}>
-              {c.education.items.map((item, i) => (
-                <li
-                  key={item.degree}
-                  style={{
-                    paddingTop: i === 0 ? 0 : '0.85rem',
-                    paddingBottom: i === c.education.items.length - 1 ? 0 : '0.85rem',
-                    borderBottom: i === c.education.items.length - 1 ? 'none' : '1px solid var(--line)',
-                  }}
-                >
-                  <div className="flex items-baseline justify-between gap-3 flex-wrap">
-                    <p style={{ fontSize: '0.92rem', fontWeight: 700, color: 'var(--ink)' }}>{item.degree}</p>
-                    <p style={{ fontSize: '0.76rem', fontWeight: 700, color: 'var(--brand-strong)' }}>{item.period}</p>
-                  </div>
-                  <p style={{ fontSize: '0.82rem', color: 'var(--ink-2)', marginTop: '0.1rem' }}>{item.school}</p>
-                  {item.detail ? (
-                    <p style={{ fontSize: '0.78rem', color: 'var(--ink-3)', lineHeight: 1.5, marginTop: '0.25rem' }}>{item.detail}</p>
-                  ) : null}
-                </li>
-              ))}
-            </ul>
-
-            <p style={{ fontSize: '0.68rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.09em', color: 'var(--ink-3)', marginBottom: '0.55rem' }}>
-              {c.education.languagesLabel}
-            </p>
-            <div className="flex flex-wrap gap-x-5 gap-y-2">
-              {c.education.languages.map((lang) => (
-                <span key={lang.name} className="inline-flex items-baseline gap-1.5" style={{ fontSize: '0.85rem', color: 'var(--ink-2)' }}>
-                  <span style={{ fontWeight: 700, color: 'var(--ink)' }}>{lang.name}</span>
-                  <span style={{ fontSize: '0.74rem', fontWeight: 700, color: 'var(--brand-strong)' }}>{lang.level}</span>
-                </span>
-              ))}
+                <Mail size={16} aria-hidden /> {c.contact.emailCta}
+              </a>
+              <a
+                href={identity.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 btn-rond rounded-full font-bold transition-colors hover:bg-[rgba(205,230,216,0.06)]"
+                style={{ border: `1px solid rgba(205, 230, 216, 0.35)`, color: C.titre, padding: '0.75rem 1.25rem', fontSize: '0.92rem' }}
+              >
+                <LinkedinGlyph /> {c.contact.linkedinCta}
+              </a>
+              <a
+                href={identity.cvFile}
+                download
+                className="inline-flex items-center gap-2 btn-rond rounded-full font-bold transition-colors hover:bg-[rgba(205,230,216,0.06)]"
+                style={{ border: `1px solid rgba(205, 230, 216, 0.35)`, color: C.titre, padding: '0.75rem 1.25rem', fontSize: '0.92rem' }}
+              >
+                <Download size={16} aria-hidden /> {c.contact.pdfCta}
+              </a>
             </div>
-          </div>
-        </div>
-      </section>
 
-      {/* Contact recruteur */}
-      <section id="contact" style={{ backgroundColor: 'var(--brand)', padding: SECTION }}>
-        <div className="mx-auto max-w-4xl grid grid-cols-1 md:grid-cols-[1fr_18rem] gap-8 items-center">
-        <div>
-          <h2
-            className="font-sans font-extrabold"
-            style={{ fontSize: 'clamp(1.6rem, 3.4vw, 2.4rem)', color: 'var(--on-brand)', lineHeight: 1.12, letterSpacing: '-0.02em' }}
-          >
-            {c.contact.heading}
-          </h2>
-          <p style={{ color: 'var(--on-brand)', lineHeight: 1.65, margin: '0.8rem 0 1.9rem', maxWidth: '46ch' }}>
-            {c.contact.body}
-          </p>
-
-          <div className="flex flex-wrap gap-3">
-            <a
-              href={`mailto:${identity.email}`}
-              className="inline-flex items-center gap-2 rounded-full font-bold"
-              style={{ backgroundColor: 'var(--on-brand)', color: 'var(--brand-strong)', padding: '0.8rem 1.4rem', fontSize: '0.9rem' }}
-            >
-              <Mail size={16} aria-hidden /> {identity.email}
-            </a>
-            <a
-              href={identity.linkedin}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-full font-bold"
-              style={{ border: '2px solid var(--on-brand)', color: 'var(--on-brand)', padding: '0.75rem 1.3rem', fontSize: '0.9rem' }}
-            >
-              <LinkedinGlyph /> {c.contact.linkedinCta}
-            </a>
-            <a
-              href={identity.cvFile}
-              download
-              className="inline-flex items-center gap-2 rounded-full font-bold"
-              style={{ border: '2px solid var(--on-brand)', color: 'var(--on-brand)', padding: '0.75rem 1.3rem', fontSize: '0.9rem' }}
-            >
-              <Download size={16} aria-hidden /> {c.contact.pdfCta}
-            </a>
-          </div>
-
-          <p style={{ marginTop: '1.8rem' }}>
-            <Link
-              href={c.nav.backHref}
-              className="btn-contour-inverse"
-            >
-              {c.nav.backToSite} <ArrowUpRight size={14} aria-hidden />
-            </Link>
-          </p>
+            <p style={{ marginTop: '2.5rem', fontSize: '0.85rem' }}>
+              <Link href={c.nav.backHref} className="inline-flex items-center gap-1 underline underline-offset-4" style={{ color: C.accent, fontWeight: 700 }}>
+                {c.nav.backToSite} <ArrowUpRight size={14} aria-hidden />
+              </Link>
+            </p>
+          </section>
         </div>
-        <div className="rounded overflow-hidden">
-          <Image src="/images/illustrations/cv/contact.webp" alt="" width={960} height={720} style={{ width: '100%', height: 'auto' }} />
-        </div>
-        </div>
-      </section>
-    </>
+      </div>
+    </div>
   )
 }

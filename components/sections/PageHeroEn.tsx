@@ -40,8 +40,8 @@ export function PageHeroEn({ title, intro, points }: Props) {
               key={p}
               className="rounded"
               style={{
-                backgroundColor: 'var(--surface-3)',
-                border: '1px solid var(--line)',
+                backgroundColor: 'var(--surface)',
+                borderRadius: 'var(--radius)', boxShadow: 'var(--ombre-carte)',
                 padding: '0.7rem 0.85rem',
               }}
             >

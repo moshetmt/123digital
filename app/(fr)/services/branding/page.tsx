@@ -200,6 +200,7 @@ export default function BrandingPage() {
                 { label: 'Appliquer votre identité sur un site web', href: '/services/creation-site-web' },
                 { label: 'Gérer votre image sur les réseaux', href: '/services/community-management' },
                 { label: 'Qui je suis · à propos', href: '/a-propos' },
+                { label: 'Consultant marketing digital à Lyon', href: '/consultant-digital-lyon' },
               ]
               return liens.map((link, i) => (
                 <span key={link.href}>

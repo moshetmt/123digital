@@ -65,7 +65,7 @@ export default function PortfolioPage() {
       {/* Cas clients — les 3 seuls cas vérifiables, data/portfolio.ts */}
       <section
         id="realisations-cas"
-        className="bg-background"
+        className="bg-[var(--surface-3)]"
         style={{ padding: 'clamp(2.5rem, 6vw, 4.5rem) 1.5rem' }}
       >
         <div className="mx-auto max-w-6xl">
@@ -84,7 +84,7 @@ export default function PortfolioPage() {
                 <article
                   key={project.id}
                   className="flex flex-col rounded"
-                  style={{ backgroundColor: 'var(--surface-2)', border: '1px solid var(--line)', padding: '1.5rem', gap: '0.6rem' }}
+                  style={{ backgroundColor: 'var(--surface)', borderRadius: 'var(--radius)', boxShadow: 'var(--ombre-carte)', padding: '1.5rem', gap: '0.6rem' }}
                 >
                   {/* Maquette composée (cadre navigateur + téléphone sur fond pâle) :
                       la carte n'ajoute qu'une bordure. */}
@@ -92,8 +92,8 @@ export default function PortfolioPage() {
                     <Link
                       href={`/realisations/${project.id}`}
                       aria-label={`Lire l'étude de cas ${project.title}`}
-                      className="block overflow-hidden rounded"
-                      style={{ border: '1px solid var(--line)', marginBottom: '0.4rem' }}
+                      className="block overflow-hidden rounded-[1.375rem]"
+                      style={{ marginBottom: '0.4rem' }}
                     >
                       <div className="relative" style={{ aspectRatio: '16 / 10' }}>
                         <Image
@@ -128,7 +128,7 @@ export default function PortfolioPage() {
                         href={project.url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1.5 rounded-full text-sm font-bold"
+                        className="inline-flex items-center gap-1.5 btn-rond rounded-full text-sm font-bold"
                         style={{ color: 'var(--brand-strong)', border: '1px solid var(--brand-strong)', padding: '0.5rem 0.9rem' }}
                       >
                         {domain} <ArrowUpRight size={14} aria-hidden />
@@ -136,7 +136,7 @@ export default function PortfolioPage() {
                     ) : <span />}
                     <Link
                       href={`/realisations/${project.id}`}
-                      className="inline-flex items-center gap-1.5 rounded-full text-sm font-bold"
+                      className="inline-flex items-center gap-1.5 btn-rond rounded-full text-sm font-bold"
                       style={{ color: 'var(--on-brand)', backgroundColor: 'var(--brand)', padding: '0.5rem 0.9rem' }}
                     >
                       Lire l&apos;étude de cas <ArrowRight size={14} aria-hidden />

@@ -132,8 +132,8 @@ export function AuditSimulator() {
   return (
     <div
       style={{
-        backgroundColor: 'var(--surface-2)',
-        border: '1px solid var(--line)',
+        backgroundColor: 'var(--surface)',
+        boxShadow: 'var(--ombre-carte)',
         borderRadius: 'var(--radius)',
         padding: 'clamp(1.25rem, 4vw, 2.25rem)',
         maxWidth: '640px',

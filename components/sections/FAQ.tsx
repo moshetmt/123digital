@@ -15,7 +15,7 @@ function FAQItem({ question, answer }: { question: string; answer: string }) {
   return (
     <div
       className="rounded overflow-hidden"
-      style={{ border: '1px solid var(--line)', backgroundColor: 'var(--surface-2)' }}
+      style={{ backgroundColor: 'var(--surface)', borderRadius: '1.5rem', boxShadow: 'var(--ombre-carte)' }}
     >
       <button
         onClick={() => setOpen((v) => !v)}
@@ -60,7 +60,7 @@ export function FAQ({ lang = 'fr' }: { lang?: Locale }) {
   const d = t(lang).faq
 
   return (
-    <section style={{ backgroundColor: 'var(--surface)', padding: 'clamp(1.6rem, 5vw, 4.5rem) 1.5rem' }} aria-labelledby="faq-heading">
+    <section style={{ backgroundColor: 'var(--surface-3)', padding: 'clamp(1.6rem, 5vw, 4.5rem) 1.5rem' }} aria-labelledby="faq-heading">
       <div className="mx-auto max-w-5xl">
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.4fr] gap-10 lg:gap-16">
           {/* Titre au-dessus, illustration en dessous : côte à côte, le h2

@@ -6,13 +6,13 @@ import { BASE_URL, serviceSchema, breadcrumbSchema } from '@/lib/schema'
 import { CTA } from '@/components/sections/CTA'
 
 export const metadata: Metadata = {
-  title: 'Consultant Digital Lyon · Expert Croissance PME | 123 Digital',
+  title: { absolute: 'Consultant marketing digital à Lyon | 123 Digital' },
   description:
-    'Maurice Timsit, consultant digital à Lyon : SEO, création de site web, Google Ads et automatisation pour PME et TPE lyonnaises. Audit gratuit 30 min.',
+    'Maurice Timsit, consultant marketing digital à Lyon : SEO, site web, Google Ads pour PME. Un seul interlocuteur. Audit offert en 30 min.',
   alternates: { canonical: `${BASE_URL}/consultant-digital-lyon` },
   openGraph: {
-    title: 'Consultant Digital Lyon · 123 Digital',
-    description: 'Expert en croissance digitale pour PME à Lyon et région Auvergne-Rhône-Alpes.',
+    title: 'Consultant marketing digital à Lyon | 123 Digital',
+    description: 'Maurice Timsit, consultant marketing digital à Lyon : SEO, site web, Google Ads pour PME. Un seul interlocuteur.',
     url: `${BASE_URL}/consultant-digital-lyon`,
   },
 }
@@ -36,6 +36,10 @@ const faqs = [
   {
     q: 'Qu\'est-ce qu\'un consultant digital à Lyon ?',
     a: 'Un consultant digital à Lyon est un expert indépendant qui aide les PME et TPE lyonnaises à développer leur présence en ligne : site web, SEO, publicité Google/Meta, réseaux sociaux et automatisation marketing. Contrairement à une agence, vous avez un interlocuteur unique investi dans vos résultats.',
+  },
+  {
+    q: 'Que fait un consultant en marketing digital à Lyon ?',
+    a: 'Un consultant en marketing digital à Lyon définit la stratégie d\'acquisition d\'une entreprise, puis la met en œuvre : audit du site et de la visibilité, référencement naturel et local, campagnes Google Ads et Meta, suivi des demandes reçues. Il choisit les canaux selon votre marché et votre budget, mesure ce qui rapporte des contacts et ajuste chaque mois. Vous gardez un seul interlocuteur du diagnostic aux résultats.',
   },
   {
     q: 'Combien coûte un consultant digital à Lyon ?',
@@ -91,7 +95,7 @@ export default function ConsultantDigitalLyonPage() {
       />
 
       {/* Pourquoi un consultant digital à Lyon */}
-      <section className="bg-background" style={{ padding: 'clamp(2rem, 5vw, 3.5rem) 1.5rem clamp(2.25rem, 6vw, 4rem)' }}>
+      <section className="bg-background" style={{ backgroundColor: 'var(--surface-3)',  padding: 'clamp(2rem, 5vw, 3.5rem) 1.5rem clamp(2.25rem, 6vw, 4rem)' }}>
         <div className="mx-auto max-w-5xl">
           <h2
             className="font-display font-extrabold mb-8"
@@ -110,7 +114,7 @@ export default function ConsultantDigitalLyonPage() {
               <div
                 key={item.num}
                 className="rounded p-7"
-                style={{ backgroundColor: 'var(--surface-2)', border: '1px solid var(--line)' }}
+                style={{ backgroundColor: 'var(--surface)', borderRadius: 'var(--radius)', boxShadow: 'var(--ombre-carte)' }}
               >
                 <div className="text-xs font-bold mb-4" style={{ color: 'var(--ink-3)', letterSpacing: '0.1em' }}>{item.num}</div>
                 <h3 className="font-display font-extrabold text-base mb-3" style={{ color: 'var(--ink)', letterSpacing: '-0.01em' }}>{item.title}</h3>
@@ -123,13 +127,47 @@ export default function ConsultantDigitalLyonPage() {
             href="/blog/consultant-digital-ou-agence-lyon"
             className="btn-contour mt-8"
           >
-            Lire le comparatif complet agence vs consultant à Lyon →
+            Lire le comparatif complet agence vs consultant à Lyon
+          </Link>
+          <Link href="/consultant-ia-lyon" className="btn-contour mt-8 ml-3">
+            Projets IA et automatisation à Lyon
           </Link>
         </div>
       </section>
 
-      {/* Services */}
+      {/* Stratégie et marketing digital */}
       <section className="bg-background" style={{ padding: '0 1.5rem 6rem' }}>
+        <div className="mx-auto max-w-3xl">
+          <h2
+            className="font-display font-extrabold mb-6"
+            style={{ fontSize: 'clamp(1.6rem, 3vw, 2.5rem)', color: 'var(--ink)', letterSpacing: '-0.02em' }}
+          >
+            Stratégie et marketing digital<br />
+            <span style={{ color: 'var(--brand)' }}>pour PME lyonnaises</span>
+          </h2>
+          <div className="flex flex-col gap-4 text-base leading-relaxed" style={{ color: 'var(--ink-2)' }}>
+            <p>
+              Un consultant en marketing digital commence par la stratégie, pas par l&apos;outil. Avant de parler site,
+              annonces ou réseaux sociaux, je regarde trois choses : ce que vos clients tapent sur Google quand ils ont
+              besoin de vous, ce qu&apos;ils voient en arrivant sur votre site depuis leur téléphone, et ce qui les fait
+              appeler, ou partir.
+            </p>
+            <p>
+              De là sort une stratégie digitale à votre taille : quelques pages qui répondent aux vraies recherches de vos
+              clients à Lyon, une fiche Google entretenue, des annonces Google Ads seulement quand elles rapportent plus
+              qu&apos;elles ne coûtent, et un suivi des demandes pour savoir d&apos;où viennent vos clients.
+            </p>
+            <p>
+              Ce travail de consulting digital s&apos;adresse aux artisans, commerces et PME de la métropole lyonnaise qui
+              n&apos;ont pas besoin d&apos;une équipe de vingt personnes, mais d&apos;un interlocuteur qui connaît leur dossier
+              et fait le travail lui-même. Le premier rendez-vous est un audit offert de 30 minutes, sur votre site.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Services */}
+      <section className="bg-background" style={{ backgroundColor: 'var(--surface-3)',  padding: '0 1.5rem 6rem' }}>
         <div className="mx-auto max-w-5xl">
           <h2
             className="font-display font-extrabold mb-10"
@@ -145,7 +183,7 @@ export default function ConsultantDigitalLyonPage() {
                 key={s.href}
                 href={s.href}
                 className="group flex flex-col rounded p-6 transition-opacity duration-300 hover:opacity-90"
-                style={{ backgroundColor: 'var(--surface-2)', border: '1px solid var(--line)' }}
+                style={{ backgroundColor: 'var(--surface)', borderRadius: 'var(--radius)', boxShadow: 'var(--ombre-carte)' }}
               >
                 <h3
                   className="font-display font-extrabold text-base mb-2 group-hover:text-[var(--ink)] transition-colors"
@@ -180,7 +218,7 @@ export default function ConsultantDigitalLyonPage() {
       </section>
 
       {/* FAQ */}
-      <section className="bg-background" style={{ padding: '0 1.5rem 8rem' }}>
+      <section className="bg-background" style={{ backgroundColor: 'var(--surface-3)',  padding: '0 1.5rem 8rem' }}>
         <div className="mx-auto max-w-3xl">
           <h2
             className="font-display font-extrabold mb-10"
@@ -193,7 +231,7 @@ export default function ConsultantDigitalLyonPage() {
               <div
                 key={q}
                 className="rounded p-6"
-                style={{ backgroundColor: 'var(--surface-2)', border: '1px solid var(--line)' }}
+                style={{ backgroundColor: 'var(--surface)', borderRadius: 'var(--radius)', boxShadow: 'var(--ombre-carte)' }}
               >
                 <h3 className="font-display font-extrabold text-base mb-3" style={{ color: 'var(--ink)', letterSpacing: '-0.01em' }}>{q}</h3>
                 <p className="text-sm leading-relaxed" style={{ color: 'var(--ink-2)' }}>{a}</p>

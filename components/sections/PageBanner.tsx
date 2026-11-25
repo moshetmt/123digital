@@ -40,7 +40,7 @@ interface PageBannerProps {
   /** Contenu libre sous les boutons (puces de reassurance, chiffre cle). */
   children?: ReactNode
   /** Scene decorative (webp transparent). Deux colonnes des `lg`, sous les boutons sur mobile. Absente : rendu inchange. */
-  illustration?: { src: string; width: number; height: number }
+  illustration?: { src: string; width: number; height: number; compactMobile?: boolean }
 }
 
 export function PageBanner({
@@ -127,21 +127,44 @@ export function PageBanner({
         </div>
 
         {illustration && (
-          <div className="relative z-10 justify-self-center lg:justify-self-end w-full mt-8 lg:mt-0 max-w-[240px] lg:max-w-[440px]">
+          // Sous `lg` le conteneur n'est pas une grille : le centrage passe par les marges, pas par justify-self.
+          // `compactMobile` : case de hauteur fixe (mobile : posee sur le bord bas, scene calee en bas ; ordinateur : centree).
+          // La largeur vient d'une surface constante, pour qu'une scene haute et une scene large pesent autant.
+          <div
+            className={`relative z-10 mx-auto lg:mx-0 lg:justify-self-end lg:w-full lg:mt-0 lg:max-w-[440px] ${
+              illustration.compactMobile
+                ? 'mt-4 -mb-6 h-[170px] flex items-end justify-center lg:mb-0 lg:h-[330px] lg:items-center lg:justify-end'
+                : 'w-full mt-8 max-w-[240px]'
+            }`}
+          >
             <Image
               src={illustration.src}
               alt=""
               width={illustration.width}
               height={illustration.height}
-              sizes="(max-width: 1024px) 240px, 440px"
+              sizes="(max-width: 1024px) 300px, 440px"
               priority
-              style={{ width: '100%', height: 'auto', objectFit: 'contain' }}
+              className={illustration.compactMobile ? 'w-[var(--scene-w)] h-auto lg:w-[var(--scene-w-lg)]' : 'w-full h-auto'}
+              style={{
+                objectFit: 'contain',
+                ...(illustration.compactMobile
+                  ? {
+                      ['--scene-w' as string]: `${largeurScene(illustration.width / illustration.height, 30000, 170, 290)}px`,
+                      ['--scene-w-lg' as string]: `${largeurScene(illustration.width / illustration.height, 120000, 330, 440)}px`,
+                    }
+                  : {}),
+              }}
             />
           </div>
         )}
       </div>
     </section>
   )
+}
+
+// Largeur d'une scene de ratio donne : surface constante, plafonnee en hauteur et en largeur par la case.
+function largeurScene(ratio: number, surface: number, hMax: number, lMax: number): number {
+  return Math.round(Math.min(Math.sqrt(surface * ratio), hMax * ratio, lMax))
 }
 
 // Le mot detache est cherche tel quel dans le titre : pas de decoupage
@@ -159,10 +182,10 @@ function detacher(title: string, highlight?: string): ReactNode {
   )
 }
 
-/** Bouton principal de banniere : blanc sur le vert du fond, rayon 4 px. */
+/** Bouton principal de banniere : blanc sur le vert du fond, pilule + rond fleche (charte 27/10). */
 export function BannerCta({ href, children }: { href: string; children: ReactNode }) {
   const className =
-    'inline-flex items-center gap-2 rounded-full font-bold whitespace-nowrap px-5 py-2.5 text-[0.92rem] transition duration-150 active:scale-[0.97]'
+    'btn-rond inline-flex items-center gap-2 rounded-full font-bold whitespace-nowrap px-5 py-2.5 text-[0.92rem] transition duration-150 active:scale-[0.97]'
   const style = { backgroundColor: 'var(--on-brand)', color: 'var(--brand-deep)' }
 
   return href.startsWith('/') ? (
@@ -175,7 +198,7 @@ export function BannerCta({ href, children }: { href: string; children: ReactNod
 /** Bouton secondaire : contour clair, fond transparent, sur le vert du fond. */
 export function BannerCtaLine({ href, children }: { href: string; children: ReactNode }) {
   const className =
-    'inline-flex items-center gap-2 rounded-full font-bold whitespace-nowrap px-5 py-2.5 text-[0.92rem] transition duration-150 active:scale-[0.97]'
+    'btn-rond inline-flex items-center gap-2 rounded-full font-bold whitespace-nowrap px-5 py-2.5 text-[0.92rem] transition duration-150 active:scale-[0.97]'
   const style = { border: '1px solid oklch(0.985 0.003 150 / 55%)', color: 'var(--on-brand)' }
 
   return href.startsWith('/') || href.startsWith('#') ? (

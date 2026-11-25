@@ -82,8 +82,8 @@ export default function BlogPage() {
                 href={`/blog/${article.slug}`}
                 className="group flex flex-col rounded overflow-hidden"
                 style={{
-                  backgroundColor: 'var(--surface-2)',
-                  border: '1px solid var(--line)',
+                  backgroundColor: 'var(--surface)',
+                  borderRadius: 'var(--radius)', boxShadow: 'var(--ombre-carte)',
                 }}
               >
                 <div style={{ position: 'relative', width: '100%', aspectRatio: '16 / 9' }}>
@@ -124,7 +124,7 @@ export default function BlogPage() {
                     <span>
                       {new Date(article.datePublication).toLocaleDateString('fr-FR', { day: '2-digit', month: 'short', year: 'numeric' })}
                     </span>
-                    <span className="btn-contour group-hover:bg-[var(--surface-2)]">Lire →</span>
+                    <span className="btn-contour group-hover:bg-[var(--surface-2)]">Lire</span>
                   </div>
                 </div>
               </Link>

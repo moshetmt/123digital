@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from 'next'
 import { Rethink_Sans } from 'next/font/google'
+import { BandeauCookies } from '@/components/layout/BandeauCookies'
 import Script from 'next/script'
 import './globals.css'
 import { JsonLd } from '@/components/seo/JsonLd'
@@ -160,22 +161,24 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         {children}
         {/* Provenance des leads (gclid, utm) memorisee des la premiere page vue */}
         <LeadSource />
+        <BandeauCookies />
         {/* Google Analytics */}
         <Script src="https://www.googletagmanager.com/gtag/js?id=G-96F0VT9FDY" strategy="afterInteractive" />
         <Script id="ga4" strategy="afterInteractive">{`
           window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);}
+          // Mode consentement v2 (25/10) : refus par défaut, levé par BandeauCookies.
+          var ok = null; try { ok = localStorage.getItem('consentement-cookies') } catch (e) {}
+          var etat = ok === 'oui' ? 'granted' : 'denied';
+          gtag('consent', 'default', { ad_storage: etat, ad_user_data: etat, ad_personalization: etat, analytics_storage: etat, wait_for_update: 500 });
+          gtag('set', 'ads_data_redaction', true);
           gtag('js', new Date());
-          gtag('config', 'G-96F0VT9FDY');
+          // L'Espace privé de Moshé (/espace/<clé>/) n'est jamais mesuré : la clé partirait chez Google (02/11).
+          if (location.pathname.indexOf('/espace/') !== 0) gtag('config', 'G-96F0VT9FDY');
         `}</Script>
-        {/* Microsoft Clarity */}
-        <Script id="ms-clarity" strategy="afterInteractive">{`
-          (function(c,l,a,r,i,t,y){
-            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-          })(window, document, "clarity", "script", "xu0d6yenai");
-        `}</Script>
+        {/* Microsoft Clarity retiré le 25/10 : 2,2 s de JavaScript sur téléphone
+            (Lighthouse), données jamais lues depuis le 31/07. Ne pas le remettre
+            sans une lecture prévue. */}
       </body>
     </html>
   )

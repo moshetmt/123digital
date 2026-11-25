@@ -84,7 +84,7 @@ export default function ContactPage() {
                 target={moyen.href.startsWith('http') ? '_blank' : undefined}
                 rel={moyen.href.startsWith('http') ? 'noopener noreferrer' : undefined}
                 className="group block p-8"
-                style={{ backgroundColor: 'var(--surface-2)' }}
+                style={{ backgroundColor: 'var(--surface)', borderRadius: 'var(--radius)', boxShadow: 'var(--ombre-carte)' }}
               >
                 <div
                   style={{

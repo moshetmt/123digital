@@ -46,7 +46,10 @@ export default async function ProblemePage({ params }: PageProps) {
   const page = getProblemeBySlug(slug)
   if (!page) notFound()
 
-  const autres = problemes.filter((p) => p.slug !== slug).slice(0, 3)
+  // Les 3 pages suivantes, en boucle : chaque page problème reçoit 3 liens de ses voisines
+  // (avant le 25/10, les 3 premières de la liste recevaient tous les liens).
+  const i = problemes.findIndex((p) => p.slug === slug)
+  const autres = [1, 2, 3].map((k) => problemes[(i + k) % problemes.length]).filter((p) => p.slug !== slug)
 
   const schemas = [
     articleSchema({
@@ -189,7 +192,7 @@ export default async function ProblemePage({ params }: PageProps) {
       {/* Autres problèmes */}
       {autres.length > 0 && (
         <section
-          className="bg-background"
+          className="bg-[var(--surface-3)]"
           style={{ padding: 'clamp(2rem, 5vw, 3.5rem) 1.5rem clamp(2.25rem, 6vw, 4rem)', borderTop: '1px solid var(--line)' }}
         >
           <div className="mx-auto max-w-5xl">
@@ -211,7 +214,7 @@ export default async function ProblemePage({ params }: PageProps) {
                   key={p.slug}
                   href={`/problemes/${p.slug}`}
                   className="group block rounded p-6"
-                  style={{ backgroundColor: 'var(--surface-2)', border: '1px solid var(--line)' }}
+                  style={{ backgroundColor: 'var(--surface)', borderRadius: 'var(--radius)', boxShadow: 'var(--ombre-carte)' }}
                 >
                   <div
                     style={{

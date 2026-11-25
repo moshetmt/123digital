@@ -88,7 +88,7 @@ export const dict = {
       sub:              "Votre prénom, un moyen de vous joindre, votre besoin. Je vous rappelle sous 24h avec un premier avis honnête : parfois, la bonne réponse est « vous n'avez pas besoin de moi ».",
       altPhone:         'Vous préférez parler tout de suite ?',
       firstName:        'Prénom',
-      emailLabel:       'Email professionnel',
+      emailLabel:       'Email',
       phoneLabel:       'Téléphone',
       contactLabel:     'Email ou téléphone',
       contactHint:      'un des deux suffit',

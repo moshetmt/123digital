@@ -61,15 +61,6 @@ const serviceDetails = [
   },
 ]
 
-const serviceImages: Record<string, string> = {
-  'creation-site-web': '/images/services/creation-site-web.jpg',
-  seo: '/images/services/seo.jpg',
-  'publicite-en-ligne': '/images/services/publicite-en-ligne.jpg',
-  branding: '/images/services/branding.jpg',
-  'community-management': '/images/services/community-management.jpg',
-  'automatisation-marketing': '/images/services/automatisation-marketing.jpg',
-}
-
 const faqs = [
   {
     question: 'Proposez-vous des forfaits ou des prestations à la carte ?',
@@ -154,12 +145,9 @@ export default function ServicesPage() {
                 <article
                   key={service.id}
                   className="group relative"
-                  style={{ backgroundColor: 'var(--surface-2)' }}
+                  style={{ backgroundColor: 'var(--surface)', borderRadius: 'var(--radius)', boxShadow: 'var(--ombre-carte)', overflow: 'hidden' }}
                 >
-                  <div
-                    className="grid gap-8 p-8 md:p-10"
-                    style={{ gridTemplateColumns: '1fr auto' }}
-                  >
+                  <div className="grid gap-5 p-6 sm:p-8 md:grid-cols-[1fr_240px] md:gap-8 md:p-10">
                     <div>
                       <div
                         className="inline-block mb-4"
@@ -226,7 +214,7 @@ export default function ServicesPage() {
                       <div className="flex gap-3 flex-wrap">
                         <Link
                           href={service.href}
-                          className="inline-flex items-center gap-2 transition-colors duration-200"
+                          className="btn-rond inline-flex items-center gap-2 transition-colors duration-200"
                           style={{
                             padding: '0.65rem 1.5rem',
                             borderRadius: 9999,
@@ -242,7 +230,7 @@ export default function ServicesPage() {
                         </Link>
                         <Link
                           href="/audit-gratuit"
-                          className="inline-flex items-center gap-2 transition-colors duration-200 hover:border-[var(--brand)] hover:text-[var(--brand)]"
+                          className="btn-rond inline-flex items-center gap-2 transition-colors duration-200 hover:border-[var(--brand)] hover:text-[var(--brand)]"
                           style={{
                             borderRadius: 9999, padding: '0.65rem 1.5rem',
                             border: '1px solid var(--line)',
@@ -258,22 +246,18 @@ export default function ServicesPage() {
                       </div>
                     </div>
 
+                    {/* Illustration du service (charte, les mêmes que sur l'accueil), en tête de carte
+                        sur téléphone, à droite sur ordinateur (demande de Moshé du 27/10). */}
                     <div
-                      className="hidden md:block"
-                      style={{
-                        position: 'relative',
-                        width: '220px',
-                        height: '220px',
-                        borderRadius: 'var(--radius)',
-                        overflow: 'hidden',
-                      }}
+                      className="relative order-first h-[170px] md:order-none md:h-[240px]"
+                      style={{ backgroundColor: 'var(--surface-3)', borderRadius: '1.375rem' }}
                     >
                       <Image
-                        src={serviceImages[service.id]}
-                        alt={service.title}
+                        src={`/images/illustrations/service-${service.id}.webp`}
+                        alt=""
                         fill
-                        sizes="220px"
-                        style={{ objectFit: 'cover' }}
+                        sizes="(min-width: 768px) 240px, 90vw"
+                        style={{ objectFit: 'contain', padding: '1rem' }}
                       />
                     </div>
                   </div>

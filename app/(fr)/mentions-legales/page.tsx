@@ -98,11 +98,11 @@ export default function MentionsLegalesPage() {
                 Les données collectées via les formulaires de contact (nom, email) sont utilisées uniquement pour répondre à vos demandes. Elles ne sont ni vendues ni transmises à des tiers. Conformément au RGPD et à la loi Informatique et Libertés, vous disposez d&apos;un droit d&apos;accès, de rectification et de suppression de vos données.
               </p>
               <p style={{ marginTop: '0.75rem' }}>
-                Pour exercer ces droits : <a href="mailto:contact@123digital.fr" style={{ color: 'var(--brand)' }}>contact@123digital.fr</a>
+                Pour exercer ces droits : <a href="mailto:contact@123digital.fr" style={{ color: 'var(--brand)' }}>contact@123digital.fr</a>. Le détail est dans la <a href="/confidentialite" style={{ color: 'var(--brand)' }}>politique de confidentialité</a>.
               </p>
             </section>
 
-            <section>
+            <section id="cookies">
               <h2
                 className="font-display font-extrabold mb-4"
                 style={{ fontSize: '1.3rem', color: 'var(--ink)' }}
@@ -110,7 +110,7 @@ export default function MentionsLegalesPage() {
                 Cookies
               </h2>
               <p>
-                Ce site utilise des cookies techniques essentiels au fonctionnement du site. Aucun cookie publicitaire ou de tracking tiers n&apos;est déposé sans votre consentement. L&apos;analyse des statistiques, si activée, est effectuée de manière anonyme.
+                Ce site dépose des cookies de mesure d&apos;audience (Google Analytics) et de mesure publicitaire (Google Ads) seulement si vous les acceptez dans le bandeau. Sans accord, Google ne reçoit que des signaux anonymes, sans cookie. Vous pouvez changer d&apos;avis à tout moment avec le lien « Cookies » en bas de chaque page.
               </p>
             </section>
 

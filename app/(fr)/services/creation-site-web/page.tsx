@@ -205,6 +205,7 @@ export default function CreationSiteWebPage() {
                 { label: 'Quand refondre votre site web ?', href: '/blog/refonte-site-web-quand-pourquoi' },
                 { label: 'Ajouter le SEO après la création', href: '/services/seo' },
                 { label: 'Voir le portfolio de réalisations', href: '/realisations' },
+                { label: 'Consultant marketing digital à Lyon', href: '/consultant-digital-lyon' },
               ]
               return liens.map((link, i) => (
                 <span key={link.href}>

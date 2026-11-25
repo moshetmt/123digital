@@ -61,7 +61,7 @@ export default function CaseStudiesPage() {
       {/* Client cases — the 3 only verifiable cases, data/portfolio.ts */}
       <section
         id="realisations-cas"
-        className="bg-background"
+        className="bg-[var(--surface-3)]"
         style={{ padding: 'clamp(2.5rem, 6vw, 4.5rem) 1.5rem' }}
       >
         <div className="mx-auto max-w-6xl">
@@ -80,14 +80,14 @@ export default function CaseStudiesPage() {
                 <article
                   key={project.id}
                   className="flex flex-col rounded"
-                  style={{ backgroundColor: 'var(--surface-2)', border: '1px solid var(--line)', padding: '1.5rem', gap: '0.6rem' }}
+                  style={{ backgroundColor: 'var(--surface)', borderRadius: 'var(--radius)', boxShadow: 'var(--ombre-carte)', padding: '1.5rem', gap: '0.6rem' }}
                 >
                   {/* The screenshot, set in a simplified browser frame: never a
                       raw capture (charte v2, section 6). */}
                   {project.screenshot && (
                     <div
-                      className="overflow-hidden rounded"
-                      style={{ border: '1px solid var(--line)', marginBottom: '0.4rem' }}
+                      className="overflow-hidden rounded-[1.375rem]"
+                      style={{ marginBottom: '0.4rem' }}
                     >
                       <div
                         style={{
@@ -138,7 +138,7 @@ export default function CaseStudiesPage() {
                         href={project.url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1.5 rounded-full text-sm font-bold"
+                        className="inline-flex items-center gap-1.5 btn-rond rounded-full text-sm font-bold"
                         style={{ color: 'var(--brand-strong)', border: '1px solid var(--brand-strong)', padding: '0.5rem 0.9rem' }}
                       >
                         {domain} <ArrowUpRight size={14} aria-hidden />
@@ -146,7 +146,7 @@ export default function CaseStudiesPage() {
                     ) : <span />}
                     <Link
                       href="/en/audit"
-                      className="inline-flex items-center gap-1.5 rounded-full text-sm font-bold"
+                      className="inline-flex items-center gap-1.5 btn-rond rounded-full text-sm font-bold"
                       style={{ color: 'var(--on-brand)', backgroundColor: 'var(--brand)', padding: '0.5rem 0.9rem' }}
                     >
                       {d.caseStudiesPage.sameResultCta} <ArrowRight size={14} aria-hidden />

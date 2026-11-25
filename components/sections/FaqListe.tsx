@@ -24,7 +24,7 @@ function Item({ question, answer }: Question) {
   return (
     <div
       className="rounded overflow-hidden"
-      style={{ border: '1px solid var(--line)', backgroundColor: 'var(--surface-2)' }}
+      style={{ backgroundColor: 'var(--surface)', borderRadius: '1.5rem', boxShadow: 'var(--ombre-carte)' }}
     >
       <button
         onClick={() => setOuvert((v) => !v)}

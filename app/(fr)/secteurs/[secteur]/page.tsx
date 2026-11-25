@@ -43,8 +43,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 }
 
 const CHIP =
-  'inline-flex items-center min-h-[44px] px-4 rounded-full font-bold text-[0.85rem] transition-colors hover:border-[var(--brand)] hover:text-[var(--brand-strong)]'
-const CHIP_STYLE = { border: '1px solid var(--line)', backgroundColor: 'var(--surface-2)', color: 'var(--ink)' }
+  'inline-flex items-center min-h-[44px] px-4 rounded font-bold text-[0.85rem] transition-colors hover:border-[var(--brand)] hover:text-[var(--brand-strong)]'
+const CHIP_STYLE = { backgroundColor: 'var(--surface-3)', color: 'var(--ink)', borderRadius: '9999px' }
 
 const SECTION_PAD = 'clamp(2.25rem, 6vw, 4.5rem) 1.5rem'
 
@@ -140,7 +140,7 @@ export default async function SecteurPage({ params }: PageProps) {
         align="left"
         illustration={
           scene
-            ? { src: `/images/illustrations/secteurs/${secteur.slug}.webp`, width: scene[0], height: scene[1] }
+            ? { src: `/images/illustrations/secteurs/${secteur.slug}.webp`, width: scene[0], height: scene[1], compactMobile: true }
             : undefined
         }
         breadcrumb={
@@ -180,7 +180,7 @@ export default async function SecteurPage({ params }: PageProps) {
                 <Link
                   href={`/problemes/${c.slug}`}
                   className="flex w-full flex-col justify-between gap-4 rounded transition-colors hover:border-[var(--brand)]"
-                  style={{ border: '1px solid var(--line)', padding: '1.1rem', minHeight: '44px' }}
+                  style={{ backgroundColor: 'var(--surface)', borderRadius: 'var(--radius)', boxShadow: 'var(--ombre-carte)', padding: '1.1rem', minHeight: '44px' }}
                 >
                   <span style={{ fontWeight: 800, fontSize: '0.95rem', lineHeight: 1.3, color: 'var(--ink)' }}>
                     {c.titre}
@@ -193,7 +193,7 @@ export default async function SecteurPage({ params }: PageProps) {
               <Link
                 href="/audit-gratuit"
                 className="flex w-full flex-col justify-between gap-4 rounded transition-colors hover:border-[var(--brand)]"
-                style={{ border: '1px solid var(--line)', backgroundColor: 'var(--surface-2)', padding: '1.1rem', minHeight: '44px' }}
+                style={{ backgroundColor: 'var(--surface)', borderRadius: 'var(--radius)', boxShadow: 'var(--ombre-carte)', padding: '1.1rem', minHeight: '44px' }}
               >
                 <span>
                   <span className="block" style={{ fontWeight: 800, fontSize: '0.95rem', lineHeight: 1.3, color: 'var(--ink)' }}>
@@ -211,11 +211,11 @@ export default async function SecteurPage({ params }: PageProps) {
       </section>
 
       {/* Deux panneaux qui se répondent */}
-      <section className="bg-background" style={{ padding: '0 1.5rem clamp(2.25rem, 6vw, 4.5rem)' }}>
+      <section className="bg-background" style={{ backgroundColor: 'var(--surface-3)',  padding: '0 1.5rem clamp(2.25rem, 6vw, 4.5rem)' }}>
         <div className="mx-auto max-w-5xl grid grid-cols-1 md:grid-cols-2 gap-4">
           <div
             className="rounded"
-            style={{ backgroundColor: 'var(--surface-2)', border: '1px solid var(--line)', padding: 'clamp(1.25rem, 4vw, 2rem)' }}
+            style={{ backgroundColor: 'var(--surface)', borderRadius: 'var(--radius)', boxShadow: 'var(--ombre-carte)', padding: 'clamp(1.25rem, 4vw, 2rem)' }}
           >
             <h2 style={{ ...EYEBROW, color: 'var(--ink-2)' }}>Ce que vous vivez</h2>
             <Points items={secteur.problemes} icone="x" couleur="var(--ink-3)" texte="var(--ink-2)" />

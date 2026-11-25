@@ -204,9 +204,13 @@ export default function SeoPage() {
             {(() => {
               const liens = [
                 { label: 'Guide SEO local pour PME · étape par étape', href: '/blog/seo-local-pme-guide-complet' },
+                { label: 'Mon site n’apparaît plus sur Google', href: '/problemes/mon-site-n-apparait-plus-sur-google' },
+                { label: 'Réalisation : le site de Mishpacha Tours', href: '/realisations/mishpacha-tours' },
                 { label: 'Compléter avec la publicité en ligne', href: '/services/publicite-en-ligne' },
                 { label: 'Votre site est optimisé ? Vérifiez', href: '/services/creation-site-web' },
                 { label: 'Demander un audit SEO gratuit', href: '/audit-gratuit' },
+                { label: 'Consultant marketing digital à Lyon', href: '/consultant-digital-lyon' },
+                { label: 'Consultant SEO à Bourg-en-Bresse et dans l’Ain', href: '/consultant-seo-bourg-en-bresse' },
               ]
               return liens.map((link, i) => (
                 <span key={link.href}>

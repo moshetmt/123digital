@@ -61,7 +61,7 @@ export default function AProposPage() {
       {/* Portrait + bio courte */}
       <section className="bg-background" style={{ padding: '5rem 1.5rem 6rem' }}>
         <div className="mx-auto max-w-5xl grid grid-cols-1 md:grid-cols-[minmax(0,340px)_1fr] gap-10 md:gap-14 items-center">
-          <div className="rounded overflow-hidden" style={{ border: '1px solid var(--line)' }}>
+          <div className="overflow-hidden" style={{ borderRadius: 'var(--radius)', boxShadow: 'var(--ombre-carte)' }}>
             <Image
               src="/images/maurice-timsit-portrait.jpg"
               alt="Maurice Timsit, consultant digital à Lyon"
@@ -77,7 +77,7 @@ export default function AProposPage() {
             </h2>
             <p className="leading-relaxed mb-4" style={{ color: 'var(--ink-2)' }}>
               J&apos;ai commencé par vendre du référencement à des commerçants qui ne voyaient pas
-              l&apos;intérêt d&apos;un site. Huit ans plus tard, je fais toujours le même métier,
+              l&apos;intérêt d&apos;un site. Depuis, je fais toujours le même métier,
               avec une conviction simple : un site qui ne fait pas sonner le téléphone ne sert à rien.
             </p>
             <p className="leading-relaxed mb-4" style={{ color: 'var(--ink-2)' }}>
@@ -94,14 +94,14 @@ export default function AProposPage() {
       </section>
 
       {/* Valeurs */}
-      <section className="bg-background" style={{ padding: '0 1.5rem 6rem' }}>
+      <section className="bg-background" style={{ backgroundColor: 'var(--surface-3)',  padding: '0 1.5rem 6rem' }}>
         <div className="mx-auto max-w-5xl">
           <h2 className="font-display font-extrabold mb-10" style={{ fontSize: 'clamp(1.6rem, 3vw, 2.5rem)', color: 'var(--ink)', letterSpacing: '-0.02em' }}>
             Mon approche
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
             {values.map((v) => (
-              <div key={v.title} className="rounded p-7" style={{ backgroundColor: 'var(--surface-2)', border: '1px solid var(--line)' }}>
+              <div key={v.title} className="rounded p-7" style={{ backgroundColor: 'var(--surface)', borderRadius: 'var(--radius)', boxShadow: 'var(--ombre-carte)' }}>
                 <h3 className="font-display font-extrabold text-base mb-3" style={{ color: 'var(--ink)' }}>{v.title}</h3>
                 <p className="text-sm leading-relaxed" style={{ color: 'var(--ink-2)' }}>{v.desc}</p>
               </div>

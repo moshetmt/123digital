@@ -26,44 +26,20 @@
  */
 
 // Genere le 19/08/2026.
+// 25/10/2026, decision de l'operateur (etude du 25/10) : les 13 pages hors Auvergne-Rhone-Alpes
+// encore gardees (Paris, Marseille, Toulouse, Bordeaux, Nantes, Rennes) passent en noindex :
+// 1 148 impressions et 1 clic en 90 jours, axe geographique arrete le 20/08. Retirees a la main ;
+// une regeneration depuis le CSV ne doit pas les remettre.
+// 01/11/2026, go de l'operateur (rapport 06-reports/2026-11-01-pages-ville-a-valider.md d'ads-os) :
+// 19 pages sans preuve retirees ici et redirigees en 301 (next.config.mjs), Villeurbanne rouverte
+// (etude de cas, Mishpacha Tours, chantiers Clim69). /bourg-en-bresse, /oyonnax et /macon restent.
 export const PAGES_INDEXABLES: ReadonlySet<string> = new Set([
-  '/albertville',
-  '/albertville/creation-site-web',
-  '/annecy',
-  '/annecy/creation-site-web',
-  '/annemasse',
-  '/annemasse/seo',
-  '/bordeaux',
-  '/bordeaux/creation-site-web',
   '/bourg-en-bresse',
-  '/bourg-en-bresse/community-management',
-  '/clermont-ferrand',
-  '/clermont-ferrand/publicite-en-ligne',
   '/lyon',
   '/lyon/branding',
   '/macon',
-  '/macon/seo',
-  '/marseille',
-  '/marseille/automatisation-marketing',
-  '/marseille/branding',
-  '/nantes',
-  '/nantes/branding',
-  '/nantes/creation-site-web',
   '/oyonnax',
-  '/oyonnax/community-management',
-  '/oyonnax/publicite-en-ligne',
-  '/paris',
-  '/rennes',
-  '/rennes/branding',
-  '/roanne',
-  '/roanne/seo',
-  '/saint-etienne',
-  '/saint-etienne/community-management',
-  '/saint-etienne/creation-site-web',
-  '/toulouse',
-  '/toulouse/creation-site-web',
-  '/valence',
-  '/valence/automatisation-marketing',
+  '/villeurbanne',
 ])
 
 /** Une page geographique non listee ci-dessus ne doit ni etre indexee, ni

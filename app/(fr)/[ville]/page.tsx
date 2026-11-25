@@ -183,6 +183,26 @@ export default async function VillePage({ params }: PageProps) {
               .
             </>
           )}
+          {/* Mâcon ne recevait qu'un lien de texte pour 526 affichages en 90 j (rapport maillage du 01/11). */}
+          {ville.slug === 'bourg-en-bresse' && (
+            <>
+              {' '}De l&apos;autre côté de la Saône, les entreprises du Mâconnais trouvent le même
+              accompagnement sur la page{' '}
+              <Link href="/macon" className="underline underline-offset-2">
+                consultant digital à Mâcon
+              </Link>
+              .
+            </>
+          )}
+          {ville.slug === 'macon' && (
+            <>
+              {' '}Mâcon touche l&apos;Ain : pour le référencement local des deux rives, voir la page{' '}
+              <Link href="/consultant-seo-bourg-en-bresse" className="underline underline-offset-2">
+                consultant SEO à Bourg-en-Bresse et dans l&apos;Ain
+              </Link>
+              .
+            </>
+          )}
         </p>
       </PageBanner>
 
@@ -257,11 +277,24 @@ export default async function VillePage({ params }: PageProps) {
           </h2>
 
           <GrilleCartes
-            items={services.map((service) => ({
-              href: `/${ville.slug}/${service.id}`,
-              titre: `${service.title} à ${ville.nom}`,
-              texte: service.description,
-            }))}
+            items={services.map((service) => {
+              // Ain : la carte SEO mène à la page dédiée, qui doit recevoir les requêtes SEO du département
+              // (Google montrait /bourg-en-bresse 5 fois plus souvent qu'elle, GSC 90 j au 30/10, rapport maillage du 01/11).
+              if (service.id === 'seo' && (ville.slug === 'bourg-en-bresse' || ville.slug === 'oyonnax')) {
+                return {
+                  href: '/consultant-seo-bourg-en-bresse',
+                  titre: ville.slug === 'bourg-en-bresse' ? 'Consultant SEO à Bourg-en-Bresse' : 'Consultant SEO dans l’Ain',
+                  texte: service.description,
+                  lienLabel: 'Consultant SEO à Bourg-en-Bresse',
+                }
+              }
+              return {
+                // Page ville x service en noindex : la carte mène à la page service générale (diagnostic du 25/10).
+                href: estIndexable(`/${ville.slug}/${service.id}`) ? `/${ville.slug}/${service.id}` : `/services/${service.id}`,
+                titre: `${service.title} à ${ville.nom}`,
+                texte: service.description,
+              }
+            })}
           />
         </div>
       </section>
@@ -348,7 +381,17 @@ export default async function VillePage({ params }: PageProps) {
             </p>
             <p style={{ fontSize: '0.8rem', color: 'var(--ink-2)' }}>
               {(() => {
-                const proches = villesARA.filter((v) => v.slug !== ville.slug && estIndexable(`/${v.slug}`)).slice(0, 8)
+                // Villes voisines d'abord : Mâcon tombait après la 8e ville et n'apparaissait jamais (01/11).
+                const voisines: Record<string, string[]> = {
+                  'bourg-en-bresse': ['macon', 'oyonnax', 'lyon'],
+                  oyonnax: ['bourg-en-bresse', 'macon', 'annemasse'],
+                  macon: ['bourg-en-bresse', 'lyon', 'oyonnax'],
+                }
+                const ordre = voisines[ville.slug] ?? []
+                const proches = villesARA
+                  .filter((v) => v.slug !== ville.slug && estIndexable(`/${v.slug}`))
+                  .sort((a, b) => (ordre.indexOf(a.slug) + 1 || 99) - (ordre.indexOf(b.slug) + 1 || 99))
+                  .slice(0, 8)
                 return proches.map((v, i) => (
                   <span key={v.slug}>
                     <Link href={`/${v.slug}`} className="hover:text-[var(--brand)] transition-colors" style={{ color: 'var(--ink-2)' }}>

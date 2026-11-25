@@ -143,16 +143,16 @@ export default function AuditGratuitPage() {
         }
         title="Votre audit digital offert."
         highlight="offert."
-        sub="En 30 minutes, j&apos;identifie pourquoi votre site ne génère pas autant de clients qu&apos;il le devrait, et je vous donne les trois actions prioritaires pour changer ça. Analyse concrète, pas de discours commercial."
+        sub="30 minutes pour savoir pourquoi votre site n&apos;amène pas assez de clients, et les trois actions à faire en premier."
       />
 
       {/* Formulaire d'audit — P0-2 de l'audit UX : la page vers laquelle tous
           les CTA convergent doit permettre d'agir sans téléphoner */}
-      <CTA />
+      <CTA compact />
 
       {/* Ce que j'analyse */}
       <section
-        className="bg-background"
+        className="bg-[var(--surface-3)]"
         style={{ padding: 'clamp(2rem, 5vw, 3.5rem) 1.5rem clamp(2.25rem, 6vw, 4rem)', borderTop: '1px solid var(--line)' }}
       >
         <div className="mx-auto max-w-5xl">
@@ -181,7 +181,7 @@ export default function AuditGratuitPage() {
               <div
                 key={bloc.titre}
                 className="rounded"
-                style={{ backgroundColor: 'var(--surface-2)', border: '1px solid var(--line)', padding: 'clamp(1rem, 3vw, 1.6rem)' }}
+                style={{ backgroundColor: 'var(--surface)', borderRadius: 'var(--radius)', boxShadow: 'var(--ombre-carte)', padding: 'clamp(1rem, 3vw, 1.6rem)' }}
               >
                 <h3
                   className="font-display font-extrabold mb-4"
@@ -244,7 +244,7 @@ export default function AuditGratuitPage() {
 
       {/* Les 4 étapes */}
       <section
-        className="bg-background"
+        className="bg-[var(--surface-3)]"
         style={{ padding: 'clamp(2rem, 5vw, 3.5rem) 1.5rem clamp(2.25rem, 6vw, 4rem)', borderTop: '1px solid var(--line)' }}
       >
         <div className="mx-auto max-w-5xl">
@@ -273,7 +273,7 @@ export default function AuditGratuitPage() {
               <div
                 key={etape.num}
                 className="rounded"
-                style={{ backgroundColor: 'var(--surface-2)', border: '1px solid var(--line)', padding: 'clamp(1rem, 3vw, 1.6rem)' }}
+                style={{ backgroundColor: 'var(--surface)', borderRadius: 'var(--radius)', boxShadow: 'var(--ombre-carte)', padding: 'clamp(1rem, 3vw, 1.6rem)' }}
               >
                 <div
                   style={{

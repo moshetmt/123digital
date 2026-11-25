@@ -204,6 +204,7 @@ export default function CommunityManagementPage() {
                 { label: 'Créer une identité visuelle cohérente', href: '/services/branding' },
                 { label: 'Automatiser vos séquences de suivi', href: '/services/automatisation-marketing' },
                 { label: 'Demander un audit de vos réseaux', href: '/audit-gratuit' },
+                { label: 'Consultant marketing digital à Lyon', href: '/consultant-digital-lyon' },
               ]
               return liens.map((link, i) => (
                 <span key={link.href}>
